@@ -1,0 +1,57 @@
+# Calculus of aliquot sequences with KASH
+# Sequence: 0276
+
+n := 276;;
+ord := 1;;
+
+show := function(F)
+   local i, j;
+   for i in [1..Length(F)-1] do
+       for j in [1..F[i][2]] do
+           Print(F[i][1], " * ");
+       od;
+    od;
+    i := Length(F);
+    for j in [1..F[i][2]-1] do
+        Print(F[i][1], " * ");
+    od;
+    Print(F[i][1], "\n");
+end;
+
+s := function(num)
+   local i, j, sn, snpartial, pacum, F;
+   sn := 1;
+   F := IntFactor(num);
+   #   Print(F, "\n"); # KASH notation for factorization
+   show(F);            # our notation for factorization
+   for i in [1..Length(F)] do
+       snpartial := 1;
+       pacum := 1;
+       for j in [1..F[i][2]] do
+           pacum := pacum * F[i][1];
+           snpartial := snpartial + pacum;
+       od;
+       sn := sn * snpartial;
+   od;
+   sn := sn - num;
+   return sn;
+end;
+
+Print("\n--------\n");
+Print("    Initial index: ", ord, "\n");
+Print("    Initial value: ", n, "\n");
+Print("\n--------\n");
+
+cont := ord;;
+
+while n > 1 do
+    if cont = ord then Print("\n"); fi;
+    n := s(n);
+    cont := cont + 1;
+    Print(cont, "    ");
+    if cont < 1000 then Print(" "); fi;
+    if cont < 100 then Print(" "); fi;
+    if cont < 10 then Print(" "); fi;
+    Print(n,"\n");
+od;
+

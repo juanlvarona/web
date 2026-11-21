@@ -1,0 +1,202 @@
+<html>
+<head><title>Aliquot sequences</title></head>
+
+<body>
+
+<CENTER><H1>Aliquot sequences</H1></CENTER>
+
+Welcome to
+<a href="MAILTO:jvarona@unirioja.es">Juan L. Varona</a>
+WWW page about aliquot sequences.
+
+<P><HR><P>
+
+First of all, sorry for the English in this page; I am sure it will have
+some spelling and grammar mistakes.
+Also, note that the notation for some mathematical formulas
+follows the one of TeX.
+
+<P><HR><P>
+
+For a positive integer n, let sigma(n) denote the sum of the divisors of
+n, and s(n) = sigma(n) - n. A perfect number is a number n such that
+s(n) = n, and an amicable pair of numbers is (n,m) satisfying 
+s(n) = m, s(m) = n. In a similar way, cycles of numbers
+(a_1, a_2, ... , a_p) such that s(a_i) = a_{i+1} for i = 1, ... , p-1
+and s(a_p) = a_1 are known as aliquot cycles or sociable numbers.<P>
+
+Iterating with the function s, it appears
+a aliqout sequence. For instance, starting from n = 20,
+s(20) = 1+2+4+5+10 = 22, s(22) = 1+2+11 = 14,
+s(14) = 1+2+7 = 10, s(10) = ... and so on. For one of such sequences,
+there are four possibilities:
+<ul>
+<li> (i) it terminates at 1 (the previous term being a prime),
+<li> (ii) it reaches a perfect number,
+<li> (iii) it reaches an amicable pair or a cycle,
+<li> (iv) it is unbounded.
+</ul>
+Catalan-Dickson conjecture says that (iv) does not actually
+happen. But other researchers disagree with this conjecture and
+they think that there are unbounded sequences; in fact, the alternative
+conjecture from Guy-Selfridge states that there are a lot of sequences
+that go to infinity, perhaps almost all those that start at an even number.<P>
+
+The smallest n for which there was ever doubt was 138, but Lehmer showed
+that the sequence terminates at s^{177}(138) = 1.
+Since then, the first number whose behavior is not known is 276. Many
+researchers have investigated the behavior of this sequence,
+but it is not yet known if its end exists.<P>
+
+But there are many other sequences whose end is in doubt.
+For instance, there are five main sequences starting in a number smaller than
+1000 whose behavior is unknown (Lehmer five: 276, 552, 564, 660
+and 966). Before the year 1980, there were fourteen main sequences starting
+between 1000 and 2000 (Godwin fourteen), but at the present time only
+twelve remain unknown (Godwin showed that the 1848 sequence terminates, and
+so did Dickerman for the 1248 one).<P>
+
+In 1994, A. W. P. Guy and R. K. Guy published a article with a table
+showing the status of the sequences starting with numbers less than or equal
+to 7044. In the same year, the book <em>Unsolved problems in Number Theory</em>
+(2nd ed.), from R. K. Guy, updates the information of the article.
+In this book, a extensive bibliography on this subject can be found.<P>
+
+Since then, <A HREF="MAILTO:mbenit8@palmera.pntic.mec.es">Manuel Benito</A>
+and <A HREF="MAILTO:jvarona@unirioja.es">myself</A>
+have been checking the aliquot sequences for numbers under 10000.
+For some starting values, we have shown for the first time
+that the sequence terminates. In December 22, 1996, we found the record
+for the maximum of a terminating sequence:
+the one starting at 4170 converges to 1 after 869
+iterations getting a maximum of 84 decimal digits at iteration 289.<P>
+
+In Octuber 1999, Wieb Bosma beated this record: he found that the aliquot
+sequence starting with 44922 terminates after 1689 iterations (at 1) after
+reaching a maximum of 85 digits at step 1167.
+Later, in December 3, 1999, he beated again the record finding that
+the sequence starting at 43230 finished: it terminates (at 1) after 4357 steps
+after reaching a maximum of 91 digits at step 967.<P>
+
+On June 10, 2001, Manuel Benito and myself got again the record for the
+highest known terminating sequence.
+The sequence starting at 3630 reaches a maximum of 100 digits at index 1263,
+and ends (at 1) at step 2624 (with the prime 59 being the previous term).
+Later, in December 25, 2001, we found that the sequence starting at 6160
+finished: it terminates (at 1) after 3027 steps (with the prime 601 being
+the previous term) after reaching a maximum of 96 digits at step 1631.
+<P>
+
+In our web pages, we will deal only with sequences starting under 10000.
+At present time, the aliquot sequences starting in a number under 10000,
+and whose end is yet unknown are the following:
+276, 552, 564, 660, 966, 1074, 1134, 1464, 1476,
+1488, 1512, 1560, 1578, 1632, 1734, 1920, 1992, 2232,
+2340, 2360, 2484, 2514, 2664, 2712, 2982, 3270, 3366,
+3408, 3432, 3564, 3678, 3774, 3876, 3906, 4116, 4224,
+4290, 4350, 4380, 4788, 4800, 4842, 5148, 5208, 5250,
+5352, 5400, 5448, 5736, 5748, 5778, 6396, 6552, 6680,
+6822, 6832, 6984, 7044, 7392, 7560, 7890, 7920, 8040,
+8154, 8184, 8288, 8352, 8760, 8844, 8904, 9120, 9282,
+9336, 9378, 9436, 9462, 9480, 9588, 9684, 9708, 9852.
+These sequences have have pursued to at
+least 100 digits.<P>
+
+To get more information about these sequences:
+<ul>
+<li> <a href="table.html">
+Table</A> that summarize the present state of these sequences.
+<li> Occurrences of numbers of
+<a href="C80.txt">80 digits</A>,
+<a href="C90.txt">90 digits</A>,
+and
+<a href="C100.txt">100 digits</A>
+in these sequences.
+<li> The
+<a href="ftp://mat.unirioja.es/pub/aliquot/00xxxx">sequences</A>
+themselves in the ftp server.
+</ul>
+
+<P><HR><P>
+
+All our work has been done by using free packages available on internet.
+We have run the programs on many computers from the authors and
+some colleages, and their respective institutions.<P>
+
+We have used the following packages, that are available at their corresponding web pages
+(or anonymous ftp sites):
+<ul>
+<li> <A HREF="ftp://rkmath.rikkyo.ac.jp/pub/ubibm/">UBASIC</A>
+<li> <A HREF="http://www.parigp-home.de/">PARI-GP</A>
+<li> <A HREF="http://www.math.TU-Berlin.DE/algebra/">KANT-KASH</A>
+<li> <A HREF="http://indigo.ie/~mscott/">MIRACL</A>
+</ul>
+
+<P><HR><P>
+
+If you are interested in this subject, you can found pre-print with our
+results (in tex, dvi and pdf formats), the last term for any doubtful sequence,
+and the present state of the calculus by using anonymous ftp from
+<A HREF="ftp://mat.unirioja.es/pub/aliquot">
+mat.unirioja.es/pub/aliquot</A>.<P>
+
+Here, you can download a simple
+<A HREF="sucali.gp">PARI-GP program</A>
+or
+<A HREF="sucali.kash">KASH program</A>
+that allow to compute an aliquot sequence.<P>
+
+In any case, feel free to contact us; perhaps the results in these web
+pages and/or the ftp server are not up to date.
+
+<P><HR><P>
+
+Other people that is involved in this subject:
+<ul>
+<li> <A HREF="MAILTO:Wolfgang.Creyaufmueller@t-online.de">Wolfgang Creyaufmueller</A>,
+from Aachen, is cumputing aliquot sequences
+starting a in number between 10^5 and 10^6 up to a minimum of 60 digits.
+This work is documented in his website, both
+<A HREF="http://home.t-online.de/home/Wolfgang.Creyaufmueller/aliquote.htm">in English</A>
+and <A HREF="http://home.t-online.de/home/Wolfgang.Creyaufmueller/aliquot.htm">in German</A>.
+<li> <A HREF="MAILTO:Paul.Zimmermann@inria.fr">Paul Zimmermann</A> is computing
+iterates of the sequences starting in the numbers
+276, 552, 564, 660, 966, 1074, 1134 and 204828. Also, he is working with aliquot
+sequences starting between 50000 and 100000. He maintains a 
+<A HREF="http://www.loria.fr/~zimmerma/records/aliquot.html">web page</A>.
+<li> <A HREF="MAILTO:jrhowell@ix.netcom.com">Jim Howell</A> is working in the
+aliquot sequence starting in 966. The status can be seen in his
+<A HREF="http://home.netcom.com/~jrhowell/math/aliquot.htm">aliquot page</A>
+<li> <A HREF="MAILTO:bosma@sci.kun.nl">Wieb Bosma</A> is working with
+aliquot sequences starting between 10000 and 50000. He also maintains a 
+<A HREF="http://www-math.sci.kun.nl/math/~bosma/nuth/ali.html">web page</A>.
+<li> <A HREF="MAILTO:christophe.clavier@free.fr">Christophe Clavier</A> is
+continuing with sequences starting in a number under 10000. See his
+<A HREF="http://christophe.clavier.free.fr/Aliquot/site/Aliquot.html">web page</A>.
+<li> <A HREF="MAILTO:mrd@world.std.com">Mitchell Dickerman</A>
+(who completed the 1248 sequence) is working with
+unitary aliquot sequences (one takes only the unitary divisors,
+i.e. those divisors d which do not divide n/d).
+</ul>
+
+<P><HR><P>
+
+<I>Last modification of
+<a href="http://www.unirioja.es/cu/jvarona/aliquot.html">this page</a>:
+September 16, 2004.</I>
+<p>
+<A HREF="MAILTO:jvarona@unirioja.es">jvarona@dmc.unirioja.es</A>
+<p>
+Personal home page (in Spanish):
+<a href="http://www.unirioja.es/cu/jvarona/hola.html">
+http://www.unirioja.es/cu/jvarona/hola.html</A>
+<p>
+Personal home page (in English):
+<a href="http://www.unirioja.es/cu/jvarona/welcome.html">
+http://www.unirioja.es/cu/jvarona/welcome.html</A>
+<p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<html>
+<head><title>Dos teclados de Mac especializados en la escritura de TeX/LaTeX</title></head>
+
+<body>
+
+<CENTER><H1>Dos teclados de Mac especializados en la escritura de TeX/LaTeX</H1></CENTER>
+<CENTER><H3>Juan Luis Varona, 21-9-2004, bajo licencia GPL de GNU</H3></CENTER>
+<small>
+<a href="TeXkeylayout.html">In English</a>
+</small>
+<p>
+
+Bienvenido a las p&aacute;ginas web de
+<a href="MAILTO:jvarona@unirioja.es">Juan Luis Varona Malumbres</a>.
+En esta p&aacute;gina obtendr&aacute;s informaci&oacute;n sobre
+dos dise&ntilde;os de teclado desarrollados por m&iacute;.
+Est&aacute;n particularmente bien adaptados para escribir TeX y LaTeX
+en un Mac con teclado espa&ntilde;ol. Requieren el sistema Mac OS X 10.2 o posterior.<p>
+
+Si quieres instal&aacute;rtelos y usarlos,
+<A HREF="http://www.unirioja.es/cu/jvarona/downloads/TecladosTeX.zip">pulsa aqu&iacute;</A>
+para descargar un archivo comprimido que contiene todo lo necesario.<p>
+
+A continuaci&oacute;n, describimos lo que contiene, y c&oacute;mo usarlo.
+
+<P><HR><P>
+
+<h4>Instalaci&oacute;n y uso</h4>
+
+Los dos archivos
+<pre>
+   TeX-7bits-spanish.keylayout
+</pre>
+y
+<pre>
+   TeX-8bits-spanish.keylayout
+</pre>
+son dos dise&ntilde;os de teclado cuyo objetivo es hacer m&aacute;s sencilla
+la escritura con TeX/LaTeX en cualquier programa de Mac OS X
+(versi&oacute;n 10.2 o posterior; no funcionan con 10.1).
+
+Vienen acompa&ntilde;ados de sus correspondientes iconos
+<pre>
+   TeX-7bits-spanish.icns
+</pre>
+y
+<pre>
+   TeX-8bits-spanish.icns
+</pre>
+Est&aacute;n pensados para escribir en un teclado en espa&ntilde;ol;
+funcionan con cualquier otro teclado, pero algunos s&iacute;mbolos no
+estar&iacute;an colocados donde indica f&iacute;sicamente el teclado en s&iacute;,
+pues la disposici&oacute;n de las teclas var&iacute;a de pa&iacute;s a pa&iacute;s.
+(Por supuesto, el usuario puede adaptar los dos archivos
+.keylayout seg&uacute;n sus necesidades y preferencias.)
+<p>
+
+El correspondiente a &laquo;7bits&raquo; usa la codificaci&oacute;n de TeX tradicional.
+Por ejemplo, al pulsar las teclas correspondientes a
+<tt>&ntilde;</tt>, <tt>&aacute;</tt>, <tt>&iquest;</tt>
+escribe <tt>\~n</tt>, <tt>\'a</tt>, <tt>?`</tt>.
+El de &laquo;8bits&raquo; las mantiene en su forma original,
+y es m&aacute;s adecuado para escribir LaTeX con 
+<tt>\usepackage[utf8]{inputenc}</tt> (o los actualmente obsoletos
+<tt>\usepackage[applemac]{inputenc}</tt> y <tt>\usepackage[latin1]{inputenc}</tt>).
+Gran parte de la utilidad de ambos radica en que muchas
+letras griegas se pueden teclear de manera muy r&aacute;pida.
+Por ejemplo, al teclear <tt>alt-a</tt> aparece <tt>\alpha</tt>,
+y al teclear <tt>alt-may-S</tt> aparece <tt>\Sigma</tt>.
+<p>
+
+Adem&aacute;s, ambos teclados tienen las teclas correspondientes
+a <tt>`</tt> y <tt>^</tt>
+desactivadas como teclas muertas, pues esos acentos no existen
+en espa&ntilde;ol y, encima, estorban el comportamiento de dos
+caracteres muy usados en TeX; si se quieren usar como
+acentos, hay que emplear <tt>alt-may-`</tt> y <tt>alt-may-i</tt>, respectivamente.
+<p>
+
+Para usar los dise&ntilde;os de teclado hay que colocarlos en el
+directorio
+<pre>
+   Library/Keyboard Layouts
+</pre>
+del usuario (tambi&eacute;n se pueden poner en el correspondiente
+directorio del System o de Network, si se quiere que todos
+los usuarios del ordenador, o todos los usuarios de la red,
+puedan usarlos). No hay problema en colocar ambos. &iexcl;Ah!,
+y los iconos se ponen en el mismo directorio. Una vez hecho
+eso, su funcionamiento es como el de cualquier otro
+dise&ntilde;o de teclado, por medio del panel Internacional de las
+preferencias del sistema. Haciendo que aparezcan en la
+barra de men&uacute;s resulta muy sencillo cambiar de teclado
+cuando lo deseemos.
+<p>
+
+Para ver qu&eacute; es lo que se obtiene en cada tecla del teclado,
+procede del siguente modo:
+en el panel Internacional de las preferencias del sistema
+(en el mismo lugar donde se activan los teclados),
+haz que la paleta &laquo;Mostrar Visor de Teclado&raquo; aparezca en la barra de men&uacute;s.
+&iexcl;Y &uacute;sala!
+<p>
+
+<b>Nota:</b> En la distribuci&oacute;n, hemos acompa&ntilde;ado todo esto
+con la Technical Note TN2056 de Apple,
+y con una captura de pantalla que muestra c&oacute;mo se ven los
+posibles errores que hayamos cometido al modificar y reinstalar
+los archivos .keylayout (v&eacute;ase  m&aacute;s adelante).
+Pero esto es &uacute;til s&oacute;lo si queremos comprender el comportamiento interno
+de los dise&ntilde;os de teclado, o si queremos hacer cambios en los archivos
+.keylayout que se proporcionan.
+
+<h4>Algunas decisiones controvertidas</h4>
+
+De acuerdo a mi gusto personal, he tomado algunas decisiones
+que algunos pueden no compartir:
+<ul>
+<li> <tt>\int</tt> es mucho m&aacute;s usado que <tt>\iota</tt>,
+luego <tt>alt-i</tt> saca <tt>\int</tt>
+en vez de <tt>\iota</tt> (no est&aacute; previsto obtener <tt>\iota</tt> directamente).
+<li> <tt>\varepsilon</tt> (que yo prefiero a <tt>\epsilon</tt>) es mucho m&aacute;s usado
+que el s&iacute;mbolo del euro, luego ocupa su lugar en <tt>\alt-e</tt>
+(para obtener <tt>\euro</tt> se puede usar <tt>alt-&iexcl;</tt>)
+<li> Las &uacute;nicas letras griegas que no se pueden obtener
+directamente con ninguna combinaci&oacute;n de teclas son <tt>\varsigma</tt>
+y <tt>\vartheta</tt>; no encontr&eacute; ning&uacute;n lugar adecuado para ellas.
+<li> En el teclado num&eacute;rico, en vez de la &laquo;, decimal&raquo; aparece
+un &laquo;. decimal&raquo;. A m&iacute; me ha parecido m&aacute;s &uacute;til
+(pues, adem&aacute;s, spanish-babel puede transformar autom&aacute;ticamente
+estos &laquo;.&raquo; en
+&laquo;,&raquo; al generar el dvi/pdf).
+</ul>
+
+Para cambiarlo, debes editar los archivos .keylayout.
+<p>
+
+<h4>Adaptaciones personales</h4>
+
+Los dos archivos .keylayout son ficheros de texto, as&iacute; que cualquiera 
+puede abrirlos y adaptarlos a su gusto. Pero hay que hacer una
+advertencia importante: son archivos Unicode (UTF-8), no ASCII,
+luego para editarlos hay que usar un programa que permita
+escribir leer y archivos Unicode. Por ejemplo, TeXShop, siempre
+que en las preferencias hayamos se&ntilde;alado que use codificaci&oacute;n
+UTF-8 Unicode.
+<p>
+
+Con esa salvedad, est&aacute;n escritos en xml, y son f&aacute;ciles de entender.
+Se dan detalles de todo esto en la &laquo;Technical Note TN2056&raquo;
+de Apple:
+<A HREF=http://developer.apple.com/technotes/tn2002/tn2056.html>
+http://developer.apple.com/technotes/tn2002/tn2056.html</a>
+(que tambi&eacute;n hemos incluido en la distribuci&oacute;n).
+Lamentablemente, tras hacer cambios en los archivos y reinstalarlos,
+hay veces que el sistema no se entera de que los hemos modificado.
+Podemos forzarle a ello usando en el Terminal el comando &laquo;touch&raquo;
+de Unix aplicado al directorio Keyboard Layouts y, por si acaso,
+al Library que lo contiene (tambi&eacute;n puede ser &uacute;til
+jugar con las fechas, adelantando previamente el calendario).
+Si, al hacer modificaciones, hemos cometido errores, los podemos
+observar en la Consola.
+<p>
+
+<h4>Recordatorio final</h4>
+
+Todo esto se distribuye bajo licencia GPL de GNU:
+<A HREF=http://www.gnu.org>http://www.gnu.org</a>
+<p>
+
+&iexcl;<A HREF="http://www.unirioja.es/cu/jvarona/downloads/TecladosTeX.zip">Desc&aacute;rgalo</A>
+y que lo disfrutes!
+<p>
+
+Juan Luis Varona
+
+<P><HR><P>
+
+<I>Fecha de &uacute;ltima modificaci&oacute;n de 
+<A HREF="http://www.unirioja.es/cu/jvarona/tecladoTeX.html">esta p&aacute;gina</A>:
+29 de diciembre de 2004.</I>
+<p>
+<A HREF="MAILTO:jvarona@unirioja.es">jvarona@unirioja.es</A>
+<p>
+Mi p&aacute;gina web sobre TeX (en espa&ntilde;ol):
+<a href="http://www.unirioja.es/cu/jvarona/tex.html">
+http://www.unirioja.es/cu/jvarona/tex.html</A>
+<p>
+P&aacute;gina web personal (en espa&ntilde;ol):
+<a href="http://www.unirioja.es/cu/jvarona/hola.html">
+http://www.unirioja.es/cu/jvarona/hola.html</A>
+<p>
+P&aacute;gina web personal (en ingl&eacute;s):
+<a href="http://www.unirioja.es/cu/jvarona/welcome.html">
+http://www.unirioja.es/cu/jvarona/welcome.html</A>
+<p>
+
+</body>
+
+</html>
+
+
