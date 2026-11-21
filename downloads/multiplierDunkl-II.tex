@@ -1,0 +1,862 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                           %
+%    The multiplier of the interval $[-1,1]$ for the        %
+%    Dunkl transform of arbitrary order on the real line    %
+% by                                                        %
+%    \'O Ciaurri, L. Roncal and J. L. Varona                %
+%                                                           %
+% BEGINNING DATE: 7 - January - 2015                        %
+% LAST MODIFICATION DATE: 23 - January - 2015               %
+% CORRECTIONS AFTER GALLEY PROOFS: 28 - April - 2015        %
+%                                                           %
+% Written with LaTeX2e                                      %
+% AMS package version 2.0                                   %
+%                                                           %
+% For problems with this file, write to                     %
+%    jvarona@unirioja.es                                    %
+%                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper]{amsart}
+%\renewcommand{\baselinestretch}{2} % DOBLE ESPACIO
+%\renewcommand{\baselinestretch}{1.4}
+
+%% FOR DRAFTS (marks in the margins)
+%% \usepackage[notcite,notref]{showkeys}
+
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.10} % Required for the fillbetween library
+\usepgfplotslibrary{fillbetween} 
+
+\usepackage[compress]{cite}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+%\newtheorem*{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+%\newcommand{\Real}{\operatorname{Re}} % \Re already defined
+%\newcommand{\Imag}{\operatorname{Im}} % \Im already defined
+\newcommand{\Fa}{\mathcal{F}_\alpha} % Dunkl transform of order \alpha
+\newcommand{\Ma}{\mathcal{M}_\alpha} % Multiplier of [-1,1]
+\newcommand{\Ka}{\mathcal{K}_\alpha} % Kernel of the multiplier
+\newcommand{\Ta}{\mathcal{T}_\alpha} % Summands \Ta^1 and \Ta^2
+\newcommand{\Ua}{\mathcal{U}_\alpha} % Summands \Ua^1 and \Ua^2
+\newcommand{\mua}{\mu_\alpha}
+\newcommand{\pa}{{p,\alpha}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title[The multiplier of {$[-1,1]$} for the Dunkl transform]%
+{The multiplier of the interval $[-1,1]$ for the Dunkl transform of arbitrary order on the real line}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, 26004 Lo\-gro\-\~no, Spain}
+\email{oscar.ciaurri@unirioja.es}
+
+\author[L. Roncal]{Luz Roncal}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, 26004 Lo\-gro\-\~no, Spain}
+\email{luz.roncal@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/luroncal}
+
+\author[J. L. Varona]{Juan~L.~Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, 26004 Lo\-gro\-\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona}
+
+%\thanks{Research of the authors supported by grant MTM2012-36732-C03-02 of the DGI}
+
+\renewcommand{\datename}{\textbf{THIS PAPER HAS BEEN PUBLISHED IN}:}
+\date{\textit{Integral Transforms Spec.\ Funct.}\ \textbf{26} (2015), 728--736,
+doi: \texttt{http://dx.doi.org/10.1080/10652469.2015.1038707}}
+% Integral Transforms and Special Functions, ISSN: 1065-2469 
+
+\subjclass[2000]{Primary 42A45; Secondary 42A38}
+
+\keywords{Dunkl operator, Dunkl transform, Bessel functions, multipliers.}
+
+\begin{abstract}
+We study the boundedness of the multiplier of the interval $[-1,1]$ for the Dunkl transform of order $\alpha > -1$ on weighted $L^p$ spaces, with $1<p<\infty$. In particular, we get that it is bounded from $L^p(\mathbb{R},|x|^{2\alpha+1}\,dx)$ into itself if and only if $4(\alpha+1)/(2\alpha+3) < p < 4(\alpha+1)/(2\alpha+1)$ when $\alpha > -1/2$ or if and only if $1 < p < \infty$ when $-1 < \alpha \le -1/2$.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction and main result}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For $\alpha>-1$, let $J_{\alpha}$ denote the Bessel function of order
+$\alpha$:
+\[
+   J_{\alpha}(x)
+   = \left( \frac{x}{2} \right)^{\alpha}
+   \sum_{n=0}^{\infty} \frac{(-1)^n (x/2)^{2n}}{n! \, \Gamma(\alpha+n+1)}
+\]
+(a classical reference on Bessel functions is~\cite{Wat}). 
+Throughout this paper, by $\frac{J_{\alpha}(z)}{z^\alpha}$ we denote the even 
+function
+\begin{equation*}
+   \frac{1}{2^\alpha}
+   \sum_{n=0}^{\infty} \frac{(-1)^n (z/2)^{2n}}{n! \, \Gamma(\alpha+n+1)},
+   \quad z \in \C.
+\end{equation*}
+In this way, for complex values of the variable~$z$, let
+\[
+   \mathcal{I}_{\alpha}(z)
+   = 2^{\alpha} \Gamma(\alpha+1) \frac{J_{\alpha}(iz)}{(iz)^{\alpha}}
+   = \Gamma(\alpha+1) \sum_{n=0}^{\infty}
+   \frac{(z/2)^{2n}}{n!\,\Gamma(n+\alpha+1)}
+\]
+(the function $\mathcal{I}_{\alpha}$ is a small variation of the so-called 
+modified Bessel function of the first kind and order $\alpha$, usually denoted 
+by~$I_{\alpha}$). Moreover, let us take
+\[
+   E_{\alpha}(z)
+   = \mathcal{I}_{\alpha}(z) + \frac{z}{2(\alpha+1)}\, \mathcal{I}_{\alpha+1}(z),
+   \quad z \in \C.
+\]
+
+%Following~\cite{Du}, in the real line and with the reflection group~$\Z_2$, the Dunkl operator $\Lambda_\alpha$ is defined as
+%\begin{equation}
+%\label{eq:Duop}
+%  \Lambda_\alpha f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{2}
+%  \left(\frac{f(x)-f(-x)}{x}\right),
+%\end{equation}
+%where $f$ are suitable functions on~$\R$.
+%It is easy to check that, for any $\lambda \in \C$, we have
+%\begin{equation}
+%\label{eq:LDu}
+%  \Lambda_\alpha E_\alpha(\lambda x) = \lambda E_\alpha(\lambda x).
+%\end{equation}
+%%	Yet more, $E_\alpha(\lambda x)$ is the unique solution of the initial value problem
+%%	$$
+%%	  \Lambda_\alpha f(x) = \lambda f(x),
+%%	  \quad f(0) = 1.
+%%	$$
+%Let us note that, when $\alpha = -1/2$, we have $\Lambda_{-1/2} = d/dx$ and $E_{-1/2}(\lambda x) = e^{\lambda x}$.
+
+The Dunkl operators on $\R^n$ are differential-difference operators
+associated with some finite reflection groups (see~\cite{Du}). We
+consider the Dunkl operator $\Lambda_\alpha$, $\alpha \ge -1/2$, associated
+with the reflection group $\Z_2$ on $\R$ given by
+\begin{equation}
+\label{eq:dunkloper}
+  \Lambda_\alpha f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{x}
+  \left(\frac{f(x)-f(-x)}{2}\right).
+\end{equation}
+For $\alpha \ge -1/2$ and $\lambda\in \C$, the initial value problem
+\begin{equation}
+\label{eq:dunklproblem}
+\begin{cases}
+  \Lambda_\alpha f(x) = \lambda f(x),\quad x\in \R, \\
+  f(0) = 1
+\end{cases}
+\end{equation}
+has $E_\alpha(\lambda x)$ as its unique solution (see~\cite{Du2} and~\cite{Jeu}); 
+this function is called the Dunkl kernel. 
+For $\alpha = -1/2$, it is clear that $\Lambda_{-1/2} = d/dx$, and $E_{-1/2}(\lambda x) = e^{\lambda x}$.
+
+In a similar way to the Fourier transform (which is the particular case $\alpha = -1/2$), the Dunkl transform of order $\alpha \ge -1/2$ on the real line is
+\begin{equation}
+\label{eq:trDu}
+  \Fa f(y)
+  = \int_{\R} E_\alpha(-ixy)f(x)\,d\mua(x),
+  \qquad y \in \R, 
+\end{equation}
+were $d\mua$ denotes the measure
+$$
+  d\mua(x) = \tfrac{1}{2^{\alpha+1}\Gamma(\alpha+1)}\, |x|^{2\alpha+1}\,dx.
+$$
+The study of the properties of the Dunkl transform has a great interest, and many papers about this subject have been published during the last years.
+See, for instance, \cite{Tr, CV, ThX, BMR, KY, DW1, ACV-EM, DW2, Gh, Gon} and the references therein.
+
+The behaviour of the Bessel functions is very well known. For instance, for real values of the variable, they verify the asymptotics
+\begin{equation}
+\label{eq:zero}
+  J_\alpha(x) = \frac{x^\alpha}{2^\alpha \Gamma(\alpha+1)} + O(x^{\alpha+2}),
+    \qquad x \to 0^+;
+\end{equation}
+and
+\begin{equation}
+\label{eq:infty}
+  J_\alpha(x) = \left(\frac{2}{\pi x}\right)^{1/2}\left[ \cos\left(x-\frac{\alpha\pi}2
+    - \frac\pi4 \right) + O(x^{-1}) \right], \qquad x \to +\infty.
+\end{equation}
+From these and similar results, and noticing that
+\begin{equation}
+\label{eq:Eix}
+  E_\alpha(ix) = 2^\alpha \Gamma(\alpha+1) \, \frac{J_\alpha(x)}{x^\alpha}
+  + 2^\alpha \Gamma(\alpha+1) \, \frac{J_{\alpha+1}(x)}{x^{\alpha+1}}\,xi,
+\end{equation}
+it is easy to check that $|E_\alpha(i x)| \le 1$ for every $x \in \R$. Then, \eqref{eq:trDu} is well defined for every $f \in L^1(\R,d\mua)$, and
+\begin{equation}
+\label{eq:L1infty}
+  \|\Fa f\|_{\infty,\alpha} \le \|f\|_{1,\alpha},
+\end{equation}
+where we use $\|\cdot\|_\pa$ as a shorthand for $\|\cdot\|_{L^p(\R,d\mua)}$.
+
+Just as the Fourier transform, $\Fa$ is an isomorphism of the Schwartz class $S$ into itself, and $\Fa^2f(x) = f(-x)$. Fubini's theorem implies the multiplication formula
+$$
+  \int_\R \Fa f(x)g(x) \,d\mua(x)
+  = \int_\R \Fa g(x)f(x) \,d\mua(x),
+  \quad f,g \in S.
+$$
+Taking $g(x) = \overline{\Fa f(x)}$ we get $\|\Fa f\|_{2,\alpha} = \|f\|_{2,\alpha}$, $f \in S$. By density, this can be extended to functions in $L^2(\R,d\mua)$.
+
+Via $S$, the $[-1,1]$-multiplier $\Ma$ is defined as
+\begin{equation}
+\label{eq:Ma}
+  \Ma f(x) = \Fa(\chi_{[-1,1]} \Fa f)(-x)
+\end{equation}
+or, equivalently,
+$$
+  \Fa(\Ma f)(x) = \chi_{[-1,1]}(x)\Fa f(x),
+$$
+which is the usual notation.
+
+In the paper~\cite{BCV}, the authors studied the boundedness of the operator $\Ma$ for $\alpha\ge-1/2$ in weighted $L^p$ spaces. 
+
+But the Dunkl transform $\Fa$ can also be defined in $L^2(\R,d\mu_{\alpha})$ 
+for $\alpha > -1$, although some properties
+like \eqref{eq:L1infty} are no longer valid for $-1 < \alpha < -1/2$.
+However, it preserves the same properties in $L^2(\R,d\mu_{\alpha})$; 
+see~\cite{Ros} for details. 
+The aim of this paper is to extend the case $\alpha \ge -1/2$ in \cite{BCV}
+to the whole range $\alpha > -1$.
+
+Thus, the main result of this paper is the following:
+
+\begin{theorem}
+\label{th:acotMab-1}
+Let $\alpha > -1$, $1<p<\infty$, and
+$w_{a,b}(x) = |x|^a (1+|x|)^{b-a}$.
+Then, there exists a constant $C$ such that
+\begin{equation}
+\label{eq:acotMa-1}
+   \|w_{a,b} \Ma f \|_\pa \le C \|w_{a,b} f\|_\pa
+\end{equation} 
+if and only if 
+\begin{equation}
+\label{eq:nec1}
+  -\frac{2\alpha+2}{p} < a < (2\alpha+2)\left(1-\frac1p\right)
+\end{equation}
+and 
+\begin{equation}
+\label{eq:nec2}
+  \frac{2\alpha+1}{2} - \frac{2\alpha+2}{p}
+    < b < -\frac{2\alpha+1}{2} + (2\alpha+2)\left(1-\frac1p\right).
+\end{equation}
+\end{theorem}
+
+As a simple consequence, it is easy to check that, in the \textit{unweighted} case $a=b=0$, we have
+\begin{equation*}
+  \|\Ma f\|_\pa \le C \|f\|_\pa
+  \iff
+  \begin{cases}
+  \displaystyle
+  \frac{4(\alpha+1)}{2\alpha+3} < p < \frac{4(\alpha+1)}{2\alpha+1}, & \text{if $\alpha\ge-1/2$}, \\[1ex]
+  1 < p < \infty, & \text{if $-1 < \alpha < -1/2$}.
+  \end{cases}
+\end{equation*}
+In Figure~\ref{fig:a1/p} we show the region of boundedness of the multiplier $\Ma$ for $\alpha>-1$ and $1<p<\infty$; 
+there, the filled region consists of the values $(\alpha,1/p)$ such that $\Ma$ is bounded from $L^p(\R,d\mua)$
+into itself.
+% on the plane $(\alpha,1/p)$
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+    width=9.5cm, height=6cm,
+    samples=150,
+    axis x line=middle,
+    axis y line=left,
+%    enlarge y limits=true,
+    enlarge y limits={abs=0.1},
+    xmin=-1, xmax=6.24,
+    ymin=0, ymax=1,
+    ytick={0,0.5,1},
+    yticklabels={0,1/2,1},
+    minor x tick num=3,
+    tick label style={font=\footnotesize},
+    extra x ticks={-0.5},
+    extra x tick labels={$-\frac{1}{2}$\,},
+    domain=-1:6,
+    xlabel=$\alpha$,
+    ylabel=$1/p$,
+    label style={font=\small},
+    xlabel style={at={(current axis.south east)},xshift=3.5ex,yshift=1.25ex},
+    ylabel style={at={(current axis.north west)},rotate=-90,xshift=2.5ex,yshift=2ex}
+    ]
+%        \addplot[name path=A,black,very thick,dotted] {(x<=-1/2)*1 + (x>-1/2)*1/(4*(x+1)/(2*x+3))};
+%        \addplot[name path=B,black,very thick,dotted] {(x<=-1/2)*0 + (x>-1/2)*1/(4*(x+1)/(2*x+1))};
+        \addplot[name path=A,black,very thick,dotted] {(x<-1/2)*1 + !(x<-1/2)/(4*(x+1)/(2*x+3))};
+        \addplot[name path=B,black,very thick,dotted] {(x<-1/2)*0 + !(x<-1/2)/(4*(x+1)/(2*x+1))};
+        \addplot[gray!20] fill between[of=A and B];
+%        \addplot[black,thin,dashed] {1/2}; % Better:
+        \addplot[black,thin,dashed] coordinates {(-1,0.5) (6,0.5)};
+%        \draw[black,thin,dashed] (axis cs:-1,0.5) -- (axis cs:6,0.5);
+    \end{axis}
+\end{tikzpicture}
+\caption{Region of boundedness of $\Ma$.}
+\label{fig:a1/p}
+\end{figure}
+
+Although the theorem presented in this paper is very similar to the theorem in~\cite{BCV}, 
+the proof is not the same. It is interesting to explain the difference.
+
+The usual procedure in harmonic analysis to study the boundedness of an operator on $L^p$ spaces 
+is to write it as an integral operator with a kernel and then analyse such kernel. 
+For our multiplier $\Ma$, by using~\eqref{eq:Ma} and~\eqref{eq:trDu}, we have
+\begin{align*}
+  \Ma f(x) &= \Fa(\chi_{[-1,1]}(r) \Fa f(r))(-x)
+  = \int_{-1}^1 E_\alpha(irx) \Fa f(r)\,d\mua(r) \\
+  &= \int_{-1}^1 E_\alpha(irx)
+    \left( \int_\R E_\alpha(-iyr) f(y) \,d\mua(y) \right) \,d\mua(r) \\
+  &= \int_{\R} \left( \int_{-1}^1 E_\alpha(irx) E_\alpha(-iry)\,d\mua(r) \right)
+    f(y) \,d\mua(y),
+\end{align*}
+where in the last step we have used Fubini's theorem 
+(which is justified for suitable functions and extended in the usual way). 
+Then, $\Ma$ can be written as
+\begin{equation}
+\label{eq:MaKa}
+  \Ma f(x) = \int_{\R} \Ka(x,y) f(y) \,d\mua(y)
+\end{equation}
+with kernel
+\begin{equation}
+\label{eq:Kaint}
+  \Ka(x,y) = \int_{-1}^1 E_\alpha(irx) E_\alpha(-iry)\,d\mua(r).
+\end{equation}
+
+The next step is to get a good expression for the kernel.
+In~\cite{BCV} we see that, for $x,y \in \R$, $x \ne y$, one has
+\begin{equation}
+\label{eq:oldkernel}
+  \int_{-1}^1 E_{\alpha}(ixr)E_{\alpha}(-iyr)\, d\mua(r)
+  = \frac{1}{2^{\alpha+1}\Gamma(\alpha+1)}
+    \frac{E_{\alpha}(ix)E_{\alpha}(-iy)-E_{\alpha}(-ix)E_{\alpha}(iy)}{i(x-y)}
+\end{equation}
+(this expression has been useful not only in~\cite{BCV}, but also in~\cite{CV} 
+in connection with a sampling theorem related to the Dunkl transform).
+
+Then, the operator $\Ma$ can be written as
+% By \eqref{eq:MaKa}, \eqref{eq:Kaint} and~\eqref{eq:kernelold}, we can write
+\begin{align}
+  \label{eq:olddecom}
+  \Ma f(x) &= \int_{\R} \Ka(x,y) f(y) \,d\mua(y) \\
+  \notag
+  &= \frac{1}{2^{\alpha+1}\Gamma(\alpha+1)}
+    \int_{\R} \frac{E_{\alpha}(ix)E_{\alpha}(-iy)}{i(x-y)}\, f(y) \,d\mua(y) \\
+  \notag
+  &\hspace{0.2\textwidth}\null- \frac{1}{2^{\alpha+1}\Gamma(\alpha+1)}
+    \int_{\R} \frac{E_{\alpha}(-ix)E_{\alpha}(iy)}{i(x-y)}\, f(y) \,d\mua(y) \\
+  \notag
+  &= \frac{1}{2^{2\alpha+2}\Gamma(\alpha+1)^2} \left(\Ta^1 f(x) - \Ta^2 f(x)\right),
+\end{align}
+with
+\begin{align*}
+  \Ta^1 f(x)
+  &= E_{\alpha}(ix) H\big( (E_{\alpha}(-iy)/i) f(y) |y|^{2\alpha+1}\big)(x), \\
+  \Ta^2 f(x)
+  &= E_{\alpha}(-ix) H\big( (E_{\alpha}(iy)/i) f(y) |y|^{2\alpha+1}\big)(x),
+\end{align*}
+where $H$ denotes the Hilbert transform. 
+
+In~\cite{BCV}, the process continues by proving the $L^p$-boundedness of the operators
+$\Ta^1$ and $\Ta^2$ by means of the $A_p$ theory of weights, what holds for
+$\alpha \ge -1/2$ in the corresponding range of~$p$'s.
+
+But this method is not longer valid for the case $-1<\alpha<-1/2$ because,
+if we try to follow it, we find that neither $\Ta^1$ nor $\Ta^2$ are bounded operators
+in the requires $L^p$ spaces. Therefore, such decomposition is not useful
+in the range $-1<\alpha<-1/2$.
+% Of course, this is not useful. 
+
+Thus, in this paper we will use a different decomposition of the kernel, that will lead
+to another decomposition of $\Ma$ as the sum of two operators. 
+Then, we will make a clever use of the $A_p$ theory of weights to prove the $L^p$-boundedness 
+of these new operators.
+Note that the decomposition shown in this paper works both for the cases $\alpha\ge-1/2$
+and $-1<\alpha<-1/2$, so the present proof also covers the result previously stated in~\cite{BCV}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of the theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The method to prove that the conditions~\eqref{eq:nec1} and~\eqref{eq:nec2}
+are necessary for~\eqref{eq:acotMa-1} is as in~\cite{BCV}; here, we will not repeat it. 
+Then, let us see that, provided $\alpha>-1$ and $1<p<\infty$, 
+the conditions~\eqref{eq:nec1} and~\eqref{eq:nec2} are sufficient for~\eqref{eq:acotMa-1}.
+
+Given $p \in (1,\infty)$, a weight $w$ in $\R$ is said to belong to the $A_p$ class if
+$$
+   \left(\int_I w(x)\,dx \right) \left(\int_I w(x)^{-1/(p-1)}\,dx \right)^{p-1}
+   \le C|I|^p
+$$
+for every interval $I \subseteq \R$, with $C$ independent of~$I$. An
+important application of $A_p$ theory lies on its relation with the boundedness
+of the Hilbert transform
+$$
+   Hg(x) = \int_{\R} \frac{g(y)}{x-y}\,dy.
+$$
+Indeed, in~\cite{HMW} (see also~\cite{GcRf} for further information) it is proved that
+$$
+  H \colon L^p(\R,w) \to L^p(\R,w) \textrm{ bounded}
+  \ \iff \ w \in A_p.
+$$
+For radial weights, it is well known that
+$$
+   |x|^\beta \in A_p \iff -1< \beta < p-1.
+$$
+If we take $\Phi(x) = |x|^r$ for $x \in [-1,1]$ and $\Phi(x) = |x|^s$ for $x
+\in (-\infty,1) \cup (1,\infty)$,
+\begin{equation}
+\label{eq:PhiAp}
+   \Phi \in A_p \iff -1 < r < p-1 \text{ and } -1 < s < p-1
+\end{equation}
+(the intuitive behaviour is clear; see~\cite{Per} for details and a proof).
+
+In what follows, we will use $C$ (perhaps with subindex) to denote a positive constant independent of $x$ or $f$ (and all other variables), which can assume different values in different occurrences. Moreover, for non-negative functions $u$ and $v$ defined on an interval, $u(x) \sim v(x)$ means that there exist two positive constants $C_1$ and $C_2$ such that $C_1 \le u(x)/v(x) \le C_2$. 
+
+As explained in the introduction, we are going to find a decomposition of $\Ma f$ different to~\eqref{eq:olddecom}.
+To do this, we will manipulate the right hand side in~\eqref{eq:oldkernel}. 
+By substituting~\eqref{eq:Eix}, we obtain 
+\begin{align*}
+  &E_{\alpha}(ix)E_{\alpha}(-iy)-E_{\alpha}(-ix)E_{\alpha}(iy) \\
+  &\qquad\qquad
+  = 2^{2\alpha+1} \Gamma(\alpha+1)^2 
+  \left( \frac{J_{\alpha+1}(x)}{x^{\alpha+1}} \,ix\, \frac{J_{\alpha}(y)}{y^{\alpha}}
+    - \frac{J_{\alpha}(x)}{x^{\alpha}} \frac{J_{\alpha+1}(y)}{y^{\alpha+1}} \,iy \right)
+\end{align*}
+and then the kernel can be expressed, for $x \ne y$, as
+\begin{equation}
+\label{eq:kernel}
+  \int_{-1}^1 E_{\alpha}(ixr)E_{\alpha}(-iyr)\, d\mua(r)
+  = 2^{\alpha} \Gamma(\alpha+1)
+  \frac{ \frac{J_{\alpha+1}(x)}{x^{\alpha+1}} \,x\, \frac{J_{\alpha}(y)}{y^{\alpha}} 
+    - \frac{ J_{\alpha}(x)}{x^{\alpha}} \frac{J_{\alpha+1}(y)}{y^{\alpha+1}} \,y }{x-y}.
+\end{equation}
+Now, to write $\Ma f$ in terms of Hilbert transforms to apply the $A_p$ theory of weights, 
+let us use~\eqref{eq:MaKa}, \eqref{eq:Kaint} and~\eqref{eq:kernel}. In this way, we get 
+\begin{align}
+\label{eq:decom}
+  \Ma f(x) &= \int_{\R} \Ka(x,y) f(y) \,d\mua(y) \\
+  \notag
+  &= 2^{\alpha} \Gamma(\alpha+1)
+    \int_{\R} \frac{ \frac{J_{\alpha+1}(x)}{x^{\alpha+1}} \,x\, \frac{J_{\alpha}(y)}{y^{\alpha}} }{x-y}\, f(y) \,d\mua(y) \\
+  \notag
+  &\hspace{0.2\textwidth}\null- 2^{\alpha} \Gamma(\alpha+1)
+    \int_{\R} \frac{ \frac{J_{\alpha}(x)}{x^{\alpha}} \frac{J_{\alpha+1}(y)}{y^{\alpha+1}} \,y }{x-y}\, f(y) \,d\mua(y) \\
+  \notag
+  &= \Ua^1 f(x) - \Ua^2 f(x), \notag
+\end{align}
+with
+\begin{align*}
+  \Ua^1 f(x)
+  &= x \, \frac{J_{\alpha+1}(x)}{x^{\alpha+1}} \, H\bigg( \frac{J_{\alpha}(y)}{y^{\alpha}} f(y) |y|^{2\alpha+1}\bigg)(x), \\
+  \Ua^2 f(x)
+  &= \frac{J_{\alpha}(x)}{x^{\alpha}} \, H\bigg( y\, \frac{J_{\alpha+1}(y)}{y^{\alpha+1}} \, f(y) |y|^{2\alpha+1}\bigg)(x).
+\end{align*}
+
+With this decomposition, \eqref{eq:acotMa-1} follows if we prove that there exists a constant $C$ independent of $f \in L^p(\R,w_{a,b}(x)^p|x|^{2\alpha+1}\,dx)$ such that
+$$
+  \| \Ua^j f(x) w_{a,b}(x) \|_{L^p(\R,|x|^{2\alpha+1}\,dx)}
+  \le C \| f(x) w_{a,b}(x) \|_{L^p(\R,|x|^{2\alpha+1}\,dx)},
+  \quad j=1,2.
+$$
+Taking $g(y) = (J_{\alpha}(y)/y^{\alpha}) f(y) |y|^{2\alpha+1}$, the inequality corresponding to $j=1$ is equivalent to
+\begin{equation}
+\label{eq:acotH1}
+\begin{aligned}
+  &\| H g(x) \|_{L^p(\R, |xJ_{\alpha+1}(x)/x^{\alpha+1}|^p 
+    w_{a,b}(x)^p |x|^{2\alpha+1}\,dx)} \\
+  &\qquad
+  \le C \| g(x) \|_{L^p(\R, |J_{\alpha}(x)/x^{\alpha}|^{-p} |x|^{-(2\alpha+1)p}
+    w_{a,b}(x)^p |x|^{2\alpha+1}\,dx)};
+\end{aligned}
+\end{equation}
+similarly, the corresponding to $j=2$ is equivalent to
+\begin{equation}
+\label{eq:acotH2}
+\begin{aligned}
+  &\| H g(x) \|_{L^p(\R, |J_{\alpha}(x)/x^{\alpha}|^p
+    w_{a,b}(x)^p |x|^{-(2\alpha+1)p} |x|^{2\alpha+1}\,dx)} \\
+  &\qquad
+  \le C \| g(x) \|_{L^p(\R, |xJ_{\alpha+1}(x)/x^{\alpha+1}|^{-p} |x|^{-(2\alpha+1)p}
+    w_{a,b}(x)^p |x|^{2\alpha+1}\,dx)}.
+\end{aligned}
+\end{equation}
+
+Let us start with~\eqref{eq:acotH1}. It is enough to prove that there is a weight $\Phi \in A_p$ with
+\begin{equation*}
+   C_1 \left|x \, \frac{J_{\alpha+1}(x)}{x^{\alpha+1}}\right|^p w_{a,b}(x)^p |x|^{2\alpha+1}
+   \le \Phi(x) \le
+   C_2 \left|\frac{J_{\alpha}(x)}{x^{\alpha}}\right|^{-p} |x|^{-(2\alpha+1)p} w_{a,b}(x)^p |x|^{2\alpha+1}.
+\end{equation*}
+Remember that we are here using the even functions $J_\alpha(x)/x^\alpha$ and $J_{\alpha+1}(x)/x^{\alpha+1}$ defined on the whole
+real line, so we can write this condition as
+\begin{equation}
+\label{eq:acotPhi}
+\begin{aligned}
+   &C_1 |J_{\alpha+1}(|x|)|^p |x|^{-\alpha p} w_{a,b}(x)^p |x|^{2\alpha+1} \\
+   &\hspace{0.2\textwidth}\null\le \Phi(x) \le
+   C_2 |J_{\alpha}(|x|)|^{-p} |x|^{-(\alpha+1)p} w_{a,b}(x)^p |x|^{2\alpha+1}.
+\end{aligned}
+\end{equation}
+
+We have $w_{a,b}(x) \sim |x|^a$ in $[-1,1]$ and $w_{a,b}(x) \sim |x|^b$ in $(-\infty,-1] \cup [1,\infty)$.
+Moreover, from the estimates~\eqref{eq:zero} and~\eqref{eq:infty} it is clear that, for $\alpha>-1$,
+\begin{equation*}
+    |J_\alpha(|x|)| \le 
+    \begin{cases} 
+      C_\alpha |x|^\alpha, & \text{if $x \in [-1,1]$}, \\
+      C_\alpha |x|^{-1/2}, & \text{if $x \in (-\infty,-1] \cup [1,\infty)$},
+    \end{cases}
+\end{equation*}
+with a $C_\alpha$ constant depending only on~$\alpha$.
+According to these bounds, we have 
+\begin{equation*}
+   |J_{\alpha+1}(|x|)|^p |x|^{-\alpha p} w_{a,b}(x)^p |x|^{2\alpha+1} 
+  \le
+  \begin{cases}
+    C |x|^{p + ap + 2\alpha+1} , &{\text{ if }} |x| \in (0,1), \\
+    C |x|^{-p/2 - \alpha p + bp + 2\alpha+1}, &{\text{ if }} |x| \in (1,\infty),
+  \end{cases}
+\end{equation*}
+and 
+\begin{equation*}
+  |J_{\alpha}(|x|)|^{-p} |x|^{-(\alpha+1)p} w_{a,b}(x)^p |x|^{2\alpha+1} 
+  \ge
+  \begin{cases}
+    C |x|^{-(2\alpha+1)p + ap + 2\alpha+1}, &{\text{ if }} |x| \in (0,1), \\
+    C |x|^{-p/2 - \alpha p + bp + 2\alpha+1}, &{\text{ if }} |x| \in (1,\infty).
+  \end{cases}
+\end{equation*}
+
+Let us write
+\begin{equation*}
+  \Phi(x) = \begin{cases}
+    |x|^r, &{\text{ if }} |x| \in (0,1), \\
+    |x|^{-p/2 - \alpha p + bp + 2\alpha+1}, &{\text{ if }} |x| \in (1,\infty).
+  \end{cases}
+\end{equation*}
+By~\eqref{eq:PhiAp}, $\Phi \in A_p$ will hold and fulfil~\eqref{eq:acotPhi} if
+\begin{equation}
+\label{eq:ineqU1}
+  \begin{cases}
+    -(2\alpha+1)p + ap + 2\alpha+1 \le r \le p + ap + 2\alpha+1, \\
+    -1 < r < p - 1, \\
+    -1 < -p/2 - \alpha p + bp + 2\alpha+1 < p - 1.
+  \end{cases}
+\end{equation}
+The third line is equivalent to
+\begin{equation*}
+  \frac{2\alpha+1}{2} - \frac{2\alpha+2}{p}
+    < b < -\frac{2\alpha+1}{2} + (2\alpha+2)\left(1-\frac1p\right),
+\end{equation*}
+which is the condition~\eqref{eq:nec2} of the theorem. 
+For the inequalities in~(\ref{eq:ineqU1}) involving $r$, let us first note that
+$-(2\alpha+1)p + ap + 2\alpha+1 \le p + ap + 2\alpha+1$ 
+is equivalent to $0 \le (2\alpha+2)p$, and this is true for any $\alpha>-1$.
+Then, for the existence of $r$ it is enough to show that $-(2\alpha+1)p + ap + 2\alpha+1 < p-1$ 
+and $-1 < p + ap + 2\alpha+1$. Even more, the existence of $r$ will be also guaranteed if
+we substitute the condition $-1 < p + ap + 2\alpha+1$ by $-1 < ap + 2\alpha+1$, that is stronger.
+Then, it suffices to note that the inequalities $-(2\alpha+1)p + ap + 2\alpha+1 < p-1$ and
+$-1 < ap + 2\alpha+1$ are equivalent to
+\begin{equation*}
+  - \frac{2\alpha+2}{p} < a < (2\alpha+2)\left(1-\frac1p\right),
+\end{equation*}
+that is the condition~\eqref{eq:nec1} of the theorem.
+
+The study of~\eqref{eq:acotH2} is completely similar. Instead of~\eqref{eq:ineqU1} we get
+the conditions
+\begin{equation}
+\label{eq:ineqU2}
+  \begin{cases}
+    -2(\alpha+1)p + ap + 2\alpha+1 \le r \le ap + 2\alpha+1, \\
+    -1 < r < p - 1, \\
+    -1 < -p/2 - \alpha p + bp + 2\alpha+1 < p - 1,
+  \end{cases}
+\end{equation}
+and, now, the inequality $-2(\alpha+1)p + ap + 2\alpha+1 \le ap + 2\alpha+1$
+is true for any $\alpha > -1$. With small variations of the arguments used 
+for $\Ua^1$ we deduce the boundedness of $\Ua^2$, and consequently the theorem is proved.
+
+\begin{remark}
+If we try to follow the method in~\cite{BCV} with the operators $\Ta^1$ and $\Ta^2$ in the decomposition~\eqref{eq:olddecom}, the first lines in~\eqref{eq:ineqU1} and~\eqref{eq:ineqU2} become, instead, $-(2\alpha+1)p + ap + 2\alpha+1 \le r \le p + ap + 2\alpha+1$ (twice the same condition). But, this time, the inequality $-(2\alpha+1)p + ap + 2\alpha+1 \le ap + 2\alpha+1$ is not true in general for any $\alpha > -1$ (only for $\alpha \ge -1/2$), so the method fails (actually, it is possible to prove that neither $\Ta^1$ nor $\Ta^2$ are bounded operators in the whole range given by~\eqref{eq:nec1} and~\eqref{eq:nec2} when $-1 < \alpha < -1/2$, but this is not of interest).
+\end{remark}
+
+\subsection*{Funding}
+The research of the authors is supported by the DGI 
+(Mi\-nis\-te\-rio de Eco\-no\-m\'ia y Com\-pe\-ti\-ti\-vi\-dad, Spain)
+under Grant MTM2012-36732-C03-02.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{99}
+
+%%%% REFERENCIAS ORDENADAS POR ORDEN DE APARICI\'ON EN EL ART\'ICULO:
+
+\bibitem{Wat} G. N. Watson,
+\textit{A Treatise on the Theory of Bessel Functions} (2nd edition),
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+\bibitem{Du} C. F. Dunkl,
+{Differential-difference operators associated with reflections groups},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{311} (1989), 167--183.
+
+\bibitem{Du2} C. F. Dunkl, 
+{Integral kernels with reflections group invariance}, 
+\textit{Canad. J. Math.} 
+\textbf{43} (1991), 1213--1227.
+
+\bibitem{Jeu} M. F. E. de Jeu,
+{The Dunkl transform},
+\textit{Invent. Math.}
+\textbf{113} (1993), 147--162.
+
+\bibitem{Tr} K. Trim\`eche,
+{Paley-Wiener theorems for the Dunkl transform and Dunkl translation operators},
+\textit{Integral Transforms Spec. Funct.}
+\textbf{13} (2002), 17--38.
+
+\bibitem{CV} \'O. Ciaurri and J. L. Varona,
+{A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{135} (2007), 2939--2947.
+
+\bibitem{ThX} S. Thangavelu and Y. Xu, 
+{Riesz transform and Riesz potentials for Dunkl transform}, 
+\textit{J. Comput. Appl. Math.} 
+\textbf{199} (2007), 181--195.
+% arXiv:math.CA/0412037
+
+\bibitem{BMR} J. J. Betancor, S. M. Molina, and L. Rodr\'iguez-Mesa,
+{Dunkl transforms and Dunkl convolutions on functions and distributions with restricted growth},
+\textit{Math. Nachr.} 
+\textbf{282} (2009), 800--819. 
+% http://www.ams.org/mathscinet-getitem?mr=2530881
+
+\bibitem{KY} J. El Kamel and Ch. Yacoub, 
+{Almost everywhere convergence of inverse Dunkl transform on the real line}, 
+\textit{Tamsui Oxf. J. Math. Sci.} 
+\textbf{25} (2009), 259--267.
+% http://www.ams.org/mathscinet-getitem?mr=2599125
+
+\bibitem{DW1} Fend Dai and Heping Wang, 
+A transference theorem for the Dunkl transform and its applications, 
+\textit{J. Funct. Anal.} 
+\textbf{258} (2010), 4052--4074.
+
+\bibitem{ACV-EM} L. D. Abreu, \'O. Ciaurri, and J. L. Varona, 
+{Bilinear biorthogonal expansions and the Dunkl kernel on the real line}, 
+\textit{Expo. Math.} 
+\textbf{30} (2012), 32--48.
+
+\bibitem{DW2} Fend Dai and Heping Wang,  
+Interpolation by weighted Paley-Wiener spaces associated with the Dunkl transform, 
+\textit{J. Math. Anal. Appl.} 
+\textbf{390} (2012), 556--572.
+
+\bibitem{Gh} S. Ghobber, 
+Uncertainty principles involving $L^1$-norms for the Dunkl transform, 
+\textit{Integral Transforms Spec. Funct.} 
+\textbf{24} (2013), 491--501.
+
+\bibitem{Gon} F. J. Gonz\'alez Vieli, 
+Generalization of the Bochner identity for the Dunkl transform, 
+\textit{Integral Transforms Spec. Funct.} 
+\textbf{25} (2014), 930--936. 
+
+\bibitem{BCV} J. J. Betancor, \'O. Ciaurri, and J. L. Varona,
+{The multiplier of the interval $[-1,1]$ for the Dunkl transform on the real line},
+\textit{J. Funct. Anal.}
+\textbf{242} (2007), 327--336.
+
+\bibitem{Ros} M. Rosenblum,
+{Generalized Hermite polynomials and the Bose-like oscillator calculus},
+\textit{Oper. Theory Adv. Appl.}
+\textbf{73} (1994), 369--396.
+
+\bibitem{HMW} R. Hunt, B. Muckenhoupt, and R. Wheeden,
+{Weighted norm inequalities for the conjugate function and the Hilbert transform},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{176} (1973), 227--251.
+
+\bibitem{GcRf} J. Garc\'{\i}a Cuerva and J. L. Rubio de Francia,
+\textit{Weighted Norm Inequalities and Related Topics},
+North-Holland, Amsterdam, 1985.
+
+\bibitem{Per} M. P\'erez,
+{A note on $A\sb p$ weights: pasting weights and changing variables},
+\textit{J. Inequal. Appl.}
+\textbf{7} (2002), 747--758.
+
+
+
+
+
+%\bibitem{Var} J. L. Varona,
+%{Fourier series of functions whose Hankel transform is supported on $[0,1]$},
+%\textit{Constr. Approx.}
+%\textbf{10} (1994), 65--75.
+
+
+
+%%%% LAS MISMAS REFERENCIAS PERO ORDENADAS ALFABETICAMENTE:
+
+%-----------
+
+%%\bibitem{AA} C. Abdelkefi
+%%http://link.springer.com/article/10.1007%2Fs00009-011-0130-z
+%
+%\bibitem{AR} C. Abdelkefi and F. Rached, 
+%Weighted $L^p$-inequalities for the Dunkl Transform, 
+%\textit{J. Math.} % Journal of Mathematics
+%\textbf{2014} (2014), Art. ID 702151, 7~pp.
+%% http://www.hindawi.com/journals/jmath/2014/702151/
+%% http://dx.doi.org/10.1155/2014/702151
+%
+%%\bibitem{ACV-RMC} L. D. Abreu, \'O. Ciaurri and J. L. Varona, 
+%%The spectrum of the right inverse of the Dunkl operator, 
+%%\textit{Rev. Mat. Complut.} 
+%%\textbf{26} (2013), 471--483. 
+%
+%\bibitem{ACV-EM} L. D. Abreu, \'O. Ciaurri, and J. L. Varona, 
+%{Bilinear biorthogonal expansions and the Dunkl kernel on the real line}, 
+%\textit{Expo. Math.} 
+%\textbf{30} (2012), 32--48. 
+%
+%\bibitem{BCV} J. J. Betancor, \'O. Ciaurri, and J. L. Varona,
+%{The multiplier of the interval $[-1,1]$ for the Dunkl transform on the real line},
+%\textit{J. Funct. Anal.}
+%\textbf{242} (2007), 327--336.
+%
+%\bibitem{BMR} J. J. Betancor, S. M. Molina, and L. Rodr\'iguez-Mesa,
+%{Dunkl transforms and Dunkl convolutions on functions and distributions with restricted growth},
+%\textit{Math. Nachr.} 
+%\textbf{282} (2009), 800--819. 
+%% http://www.ams.org/mathscinet-getitem?mr=2530881
+%
+%%\bibitem{CGPV-DIE} \'O. Ciaurri, J. J. Guadalupe, M. P\'erez and J. L. Varona,
+%%{Solving dual integral equations on Lebesgue spaces},
+%%\textit{Studia Math.}
+%%\textbf{142} (2000), 253--267.
+%
+%\bibitem{CV} \'O. Ciaurri and J. L. Varona,
+%{A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform},
+%\textit{Proc. Amer. Math. Soc.}
+%\textbf{135} (2007), 2939--2947.
+%
+%\bibitem{Du} C. F. Dunkl,
+%{Differential-difference operators associated with reflections groups},
+%\textit{Trans. Amer. Math. Soc.}
+%\textbf{311} (1989), 167--183.
+%
+%\bibitem{Du2} C. F. Dunkl, 
+%{Integral kernels with reflections group invariance}, 
+%\textit{Canad. J. Math.} 
+%\textbf{43} (1991), 1213--1227.
+%
+%\bibitem{GcRf} J. Garc\'{\i}a Cuerva and J. L. Rubio de Francia,
+%\textit{Weighted Norm Inequalities and Related Topics},
+%North-Holland, Amsterdam, 1985.
+%
+%%\bibitem{Her} C. S. Herz,
+%%{On the mean inversion of Fourier and Hankel transforms},
+%%\textit{Proc. Nat. Acad. Sci. U.S.A.}
+%%\textbf{40} (1954), 996--999.
+%
+%\bibitem{HMW} R. Hunt, B. Muckenhoupt, and R. Wheeden,
+%{Weighted norm inequalities for the conjugate function and the Hilbert transform},
+%\textit{Trans. Amer. Math. Soc.}
+%\textbf{176} (1973), 227--251.
+%
+%\bibitem{Jeu} M. F. E. de Jeu,
+%{The Dunkl transform},
+%\textit{Invent. Math.}
+%\textbf{113} (1993), 147--162.
+%
+%%\bibitem{Le} N. N. Lebedev,
+%%{Special functions and its applications},
+%%Dover, New York, 1972.
+%
+%%\bibitem{Mej-11} H. Mejjaoli, 
+%%Dunkl-Sobolev spaces of exponential type and applications, 
+%%\textit{J. Funct. Spaces Appl.} 
+%%\textbf{9} (2011), 41--66.
+%% http://www.hindawi.com/journals/jfs/2011/728563/abs/
+%
+%\bibitem{Mej} H. Mejjaoli, 
+%Generalized Lorentz spaces and applications, 
+%\textit{J. Funct. Spaces Appl.} 
+%\textbf{2013} (2013), Art. ID 302941, 14~pp.
+%% http://www.hindawi.com/journals/jfs/2013/302941/
+%
+%\bibitem{Per} M. P\'erez,
+%{A note on $A\sb p$ weights: pasting weights and changing variables},
+%\textit{J. Inequal. Appl.}
+%\textbf{7} (2002), 747--758.
+%
+%\bibitem{Ros} M. Rosenblum,
+%{Generalized Hermite polynomials and the Bose-like oscillator calculus},
+%\textit{Oper. Theory Adv. Appl.}
+%\textbf{73} (1994), 369--396.
+%
+%%\bibitem{Sol} F. Soltani,
+%%{$L^p$-Fourier multipliers for the Dunkl operator on the real line},
+%%\textit{J. Funct. Anal.}
+%%{209} (2004), 16--35.
+%
+%%\bibitem{Ste} K. Stempak,
+%%{Transplanting maximal inequalities between Laguerre and Hankel multipliers},
+%%\textit{Monatsh. Math.}
+%%\textbf{122} (1996), 187--197.
+%
+%\bibitem{ThX} S. Thangavelu and Y. Xu, 
+%{Riesz transform and Riesz potentials for Dunkl transform}, 
+%\textit{J. Comput. Appl. Math.} 
+%\textbf{199} (2007), 181--195.
+%% arXiv:math.CA/0412037
+%
+%\bibitem{Tr} K. Trim\`eche,
+%{Paley-Wiener theorems for the Dunkl transform and Dunkl translation operators},
+%\textit{Integral Transforms Spec. Funct.}
+%\textbf{13} (2002), 17--38.
+%
+%%\bibitem{Var} J. L. Varona,
+%%{Fourier series of functions whose Hankel transform is supported on $[0,1]$},
+%%\textit{Constr. Approx.}
+%%\textbf{10} (1994), 65--75.
+%
+%\bibitem{Wat} G. N. Watson,
+%\textit{A Treatise on the Theory of Bessel Functions} (2nd edition),
+%Cambridge Univ. Press,
+%Cambridge, 1944.
+
+%-----------
+
+
+\end{thebibliography}
+
+\end{document}

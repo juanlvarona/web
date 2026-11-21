@@ -1,0 +1,248 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% On a theorem of Erd\H{o}s concerning additive functions,           %
+% by                                                                 %
+% Jos\'e Luis Ansorena and Juan Luis Varona                          %
+%                                                                    %
+% Crux Mathematicorum 33 (2007), no. 5 (September), 294--296.        %
+%                                                                    %
+% DATE: November 20, 2006                                            %
+%                                                                    %
+% Written with LaTeX2e with amsart classes                           %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[12pt,a4paper]{amsart}
+
+% \usepackage{amsthm,amsfonts}
+
+%% PAPER WRITTEN WITH CONCRETE FONTS:
+\usepackage[T1]{fontenc}
+\usepackage{ccfonts,eulervm}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{On a theorem of Erd\H{o}s concerning additive functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author[J. L. Ansorena]{Jos\'e Luis Ansorena}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,
+Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}
+\email{joseluis.ansorena@dmc.unirioja.es}
+
+\author[J. L. Varona]{Juan Luis Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,
+Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+
+\subjclass[2000]{Primary 11A25}
+\keywords{Additive functions, completely additive functions, Erd\H{o}s}
+
+%\date{November 17, 2006}
+% \newcommand{\datename}{\textit{Date}:} %% <- Original
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+\date{\textit{Crux Mathematicorum} \textbf{33} (2007), no.~5 (September), 294--296.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+Erd\H{o}s proved that every increasing additive
+function must be a constant multiple of the logarithmic function.
+We prove a weaker result that assumes that the function is 
+completely additive.
+In particular, what this paper does show is how wide the gulf is
+between additive and completely additive functions:
+proving the result for completely additive functions is very easy,
+but Erd\H{o}s's proof for merely additive functions
+required a formidable effort.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+An \textit{additive} function is defined as a real-valued
+arithmetic function $f \colon \N \to \R$ such that 
+$f(nm) = f(n)+f(m)$ for all pairs of coprime integers $n$ and~$m$.
+If $f(nm) = f(n)+f(m)$ for all $n,m \in \N$, then
+we say that $f$ is a \textit{completely additive} function.
+
+In~\cite[Theorem~XI, p.~17]{Erdos}, Erd\H{o}s states that
+if $f$ is an additive function such that $f(n+1) \ge f(n)$
+for all $n \in \N$, then $f(n) = C\log n$ for a constant $C \in \R$.
+Without the hypothesis $f(n+1) \ge f(n)$, this is not true in general, as is
+shown, for instance, by the completely additive function $\Omega(n)$ defined by
+$\Omega(p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}) = a_1 + a_2 + \cdots + a_k$,
+where $n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$ is the prime decomposition
+of~$n$.
+Erd\H{o}s's Theorem is a deep and interesting result, but its proof is 
+rather complicated; see~\cite[p.~133]{Ruzsa} and 
+\cite[\S\,8.33 and 8.34, p.~265 and ff.]{Erdos-Suranyi} 
+for adequate comments and additional references, including a proof 
+(due to Moser and Lambek) 
+that simplifies the original proof of Erd\H{o}s. 
+%	In Erd\H{o}s's paper, the theorem is deduced as a consequence
+%	of a deeper result, whose proof is not easy (a.k.a.,
+%	\cite[Theorem~V, p.~3]{Erdos}). 
+
+In this note, we pose a weaker result, but with a very elementary proof.
+Also, we will show a nice consequence.
+
+\begin{theorem}
+\label{th:cadd}
+Let $f$ be a completely additive function such that $f(n+1) \ge f(n)$
+for all $n \in \N$. Then, there is a real constant $C \ge 0$
+such that $f(n) = C\log n$ for all $n \in \N$.
+\end{theorem}
+
+\begin{proof}
+We claim that, if $f$ and $g$ are two functions
+satisfying the conditions, they must satisfy
+\begin{equation}
+\label{eq:fgfg}
+  f(n)g(2) = f(2)g(n)\quad \forall n \in \N.
+\end{equation} 
+In particular, this would be true for $g(n) = \log n$.
+Then, our claim implies that $f(n) = C \log n$ with $C = f(2)/\log 2$
+and so the theorem is proved. Thus, we only need to check~(\ref{eq:fgfg}).
+
+Let $n \in \N$ and $k\in\N$. Let us take $l\in \N$ such that
+$2^{l-1} \le n^k < 2^l$. Then $(l-1)f(2) \le k f(n) \le lf(2)$.
+The same inequality is true for the function~$g$; we can write it as
+$-lg(2) \le -k g(n) \le -(l-1)g(2)$.
+Multiplying the first expression by $g(2)$, the second by $f(2)$,
+adding them, and dividing by~$k$, we get
+$$
+  -\frac{1}{k}\,f(2)g(2) \le f(n)g(2) - f(2)g(n) \le \frac{1}{k}\,f(2)g(2).
+$$
+Since this happens for every $k\in\N$, equation~(\ref{eq:fgfg}) follows
+and the proof is complete.
+\end{proof}
+
+As a consequence, let us establish the following result:
+
+\begin{theorem}
+\label{th:NN0}
+Let $f \colon \N \to \N \cup \{0\}$ be an increasing and completely additive
+function. Then, $f$ is the zero function.
+\end{theorem}
+
+\begin{proof}
+Let us suppose that $f$ is not the zero function.
+By Theorem~\ref{th:cadd}, there is a real constant $C>0$ 
+such that $f(n) = C\log n$ for all $n \in \N$.
+If $f$ takes integer values, then
+$f(n)/f(m) = (\log n) / (\log m)$ for all integers $n, m \ge 2$.
+Therefore, $(\log n) / (\log m) = a/b$ with $a, b \in \N$.
+This implies that $n^b = m^a$. But this is impossible if $n$ and $m$ 
+have a non common prime factor. 
+% For instance, if $n$ and $m$ are different prime numbers.
+\end{proof}
+
+\begin{rem}
+By using Erd\H{o}s's Theorem, we see that the same proof serves to 
+establish the corresponding result for additive functions.
+\end{rem}
+
+For completeness, let us show that, without using Theorem~\ref{th:cadd}, another
+proof of the Theorem~\ref{th:NN0} can be given. Let us begin with
+
+\begin{lemma}
+Let $f$ be an increasing and completely additive function.
+Then, $f(1) = 0$. Moreover, if $f$ is not the zero function, it satisfies
+$f(n) > 0$ for all $n > 1$, and $f$ is strictly increasing.
+\end{lemma}
+
+\begin{proof}
+We have $f(n) = f(1 \cdot n) = f(1) + f(n)$ and so $f(1) = 0$.
+If $f$ is not the zero function, there exists $a \in \N$ 
+such that $f(a) \ne 0$.  
+Since $a \ge 1$, it follows that $f(a) \ge f(1) = 0$; hence, $f(a)>0$.
+Now, given $n > 1$, there exists $k$ such that $n^k > a$; then
+$k f(n) = f(n^k) \ge f(a) > 0$, and we have $f(n) > 0$.
+
+Finally, let us suppose that $f(n) = f(m)$ with $n < m$.
+This is not possible if $n = 1$, because $f(1) = 0$ and $f(m)>0$;
+thus, we may assume that $1 < n < m$.
+Let us take $k$ large enough such that $n^{k+1} < m^k$
+(it suffices to take $k > (\log n) /(\log m - \log n)$).
+Then
+$$
+  f(n^k) = kf(n) = kf(m) = f(m^k).
+$$ 
+Consequently, $f(r) = f(n^k) = f(m^k)$ for every $r$ such that 
+$n^k \le r \le m^k$. In particular, $f(n^{k+1}) = f(n^k)$, and so
+$(k+1)f(n) = kf(n)$, which is impossible, because $f(n) > 0$.
+\end{proof}
+
+Using this lemma we get the following.
+
+\begin{proof}[Second proof of Theorem~\ref{th:NN0}]
+For every $n \in \N$, there exists an integer $k$ such that 
+$2^{k+1} - 2^k = 2^k > n$.
+Let us take $n$ intermediate numbers $r_i$ between $2^k$ 
+and $2^{k+1}$; that is,
+$$
+  2^k < r_1 < r_2 < \cdots < r_n < 2^{k+1}.
+$$
+Now, let us suppose that $f$ is not the zero function.
+By the lemma, $f$ is strictly increasing which implies that
+{%% LOCAL CHANGE. TRICK TO AVOID amsmath AND align* ENVIRONMENT
+\setlength\arraycolsep{0pt}
+\begin{eqnarray*}
+  k f(2) &\null=\null& f(2^k) < f(r_1) < f(r_2) < \cdots
+  < f(r_n) < f(2^{k+1}) \\
+  &\null=\null& (k+1) f(2) = k f(2) + f(2).
+\end{eqnarray*}
+}% %% THE "%" IS IMPORTANT
+Then, by the pigeonhole principle, we have $f(2) > n$.
+% ALTERNATIVE:
+% Then, there are, at least, $n$ intermediate numbers between
+% $k f(2)$ and $k f(2) + f(2)$, and so $f(2) > n$.
+But this happens for every $n \in \N$, which is absurd.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{Erdos}
+{P. Erd\H{o}s},
+On the distribution of additive functions,
+\textit{Ann. of Math.} \textbf{47} (1946), 1--20.
+
+\bibitem{Erdos-Suranyi}
+{P. Erd\H{o}s and J. Sur\'anyi},
+\textit{Topics in the Theory of Numbers},
+Springer, 2003.
+
+\bibitem{Ruzsa}
+{I. Z. Ruzsa},
+Erd\H{o}s and the Integers,
+\textit{J. Number Theory} \textbf{79} (1999), 115--163.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

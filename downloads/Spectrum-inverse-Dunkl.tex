@@ -1,0 +1,925 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% L. D. Abreu, \'O. Ciaurri and J. L. Varona,               %
+% The spectrum of the right inverse of the Dunkl operator   %
+%                                                           %
+% LAST MODIFICATION DATE: 10 - November- 2012               %
+%                                                           %
+% Written with LaTeX, class amsart                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,a4paper]{amsart}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%--------------------------------------------------------
+%\usepackage[notcite,notref]{showkeys} % <----- For drafts
+%\usepackage{color}
+%--------------------------------------------------------
+
+\usepackage{amsfonts}
+
+\usepackage{url}
+
+
+%% FOR DRAFTS AT 12pt:
+\advance\textwidth by 1.5cm
+
+% \usepackage{backref} % for drafts
+
+\theoremstyle{plain}
+\newtheorem{Thm}{Theorem}
+%\newtheorem{Cor}[Thm]{Corollary}
+%\newtheorem*{Prop}{Proposition}
+%\newtheorem{Lem}{Lemma}%[section]
+
+\theoremstyle{definition}
+%\newtheorem{Defn}{Definition}
+%\newtheorem*{Ackn}{Acknowledgement}
+%\theoremstyle{remark}
+\newtheorem*{Rem}{Remark}
+
+%\newcommand{\supp}{\operatorname{supp}}
+%\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\spa}{\operatorname{span}}
+%\renewcommand{\Im}{\operatorname{Im}}
+%\renewcommand{\Re}{\operatorname{Re}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+%\newcommand{\calK}{\mathcal{K}}
+%\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calI}{\mathcal{I}}
+%\newcommand{\calJ}{\mathcal{J}}
+%\newcommand{\calP}{\mathcal{P}}
+%\newcommand{\calQ}{\mathcal{Q}}
+
+
+\allowdisplaybreaks[3]
+
+
+%------------------------------
+\begin{document}
+%------------------------------
+
+%\date{November 9, 2012.}
+\renewcommand{\datename}{\textbf{THIS PAPER HAS BEEN PUBLISHED IN:}}
+\date{\textit{Rev.\@ Mat.\@ Complut.\@} \textbf{26} (2013), 471--483.}
+
+\title[The spectrum of the right inverse of the Dunkl operator]{%
+The spectrum of the right inverse of the Dunkl operator}
+
+
+\author[L. D. Abreu]{Lu\'{\i}s Daniel Abreu}
+\address{CMUC and Departamento de Matem\'atica,
+Universidade de Coimbra,
+Faculdade de Ci\^{e}ncias e Tecnologia (FCTUC),
+3001-454 Coimbra, Portugal}
+\curraddr{Austrian Academy of Sciences, Acoustic Research Institute, 
+Reichsratsstrasse 17, A-1010 Vienna, Austria}
+\email{daniel@mat.uc.pt}
+\thanks{Research of the first author supported by FCT project
+SPTDC/MAT/114394/2009, POCI 2010 and FSE, and Austrian Science Fund (FWF) 
+START-project FLAME (``Frames and Linear Operators for Acoustical Modeling
+and Parameter Estimation'', Y 551-N13)}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{CIME and Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, % Edificio J.~L.~Vives,
+% Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}
+\email{oscar.ciaurri@unirioja.es}
+
+\author[J. L. Varona]{Juan Luis Varona}
+\address{CIME and Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, % Edificio J.~L.~Vives,
+% Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+\thanks{Research of the second and third authors supported 
+by grant MTM2012-36732-C03-02 of the DGI}
+
+
+\keywords{Plane wave expansion, Dunkl operator, Dunkl kernel, spectrum, 
+diagonalization of operators, special functions.}
+\subjclass[2010]{Primary 42C10; Secondary 47A10, 47A75, 33C10, 33C45}
+
+
+\begin{abstract}
+From the Dunkl analogue of Gegenbauer's expansion of the plane wave, 
+we derive an explicit closed formula for the spectrum of a right 
+inverse of the Dunkl operator. This is done by stating the problem 
+in such a way it is possible to use the technique due to Ismail and Zhang.
+\end{abstract}
+
+%------------------------------
+\maketitle
+%------------------------------
+
+%\tableofcontents
+
+%------------------------------
+\section{Introduction}
+%------------------------------
+
+During the last years, and starting in the seminal paper~\cite{IZ}, 
+Mourad Ismail and his collaborators had studied the diagonalization 
+of the inverse of several differential or difference operators. 
+In particular, it has been done in \cite{IZ, IRZ} for the differential 
+and the Askey-Wilson divided difference operators in different polynomial 
+bases, in~\cite{IR} for the full Askey-Wilson weight,
+in~\cite{ISem} for the $q$-difference operator, and in~\cite{IJacob} 
+for the $q^{-1}$-Askey-Wilson operator.
+
+This article is devoted to the diagonalization of the right inverse of 
+the Dunkl operator on the real line given by
+\[
+  \Lambda_\alpha f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{x}
+  \left(\frac{f(x)-f(-x)}{2}\right).
+\]
+The operator $\Lambda_\alpha$ is a generalization of the derivative 
+$\frac{d}{dx}$ (which is the case corresponding to $\alpha=-1/2$) 
+whose study, as well as of the so-called Dunkl transform that is 
+closely related to~$\Lambda_\alpha$, has engender many recent papers 
+(see, for instance,~\cite{AJ, BCV, CV, Dunkl, Dunkl2, Jeu, Rosenblum, Rosler}). 
+In the present paper, we are going to find the spectrum of a right inverse 
+for the Dunkl operator $\Lambda_\alpha$ in spaces weighted by the appropriated 
+weight functions.
+
+In~\cite{IZ}, an important tool to study the inverse of the differential 
+operator $\frac{d}{dx}$ is Gegenbauer's expansion of the plane wave in 
+ultraspherical polynomials and Bessel functions 
+(see~\cite[\S\,4.8, formula (4.8.3), p.~116]{Ism}):
+\begin{equation}
+\label{eq:geg}
+  e^{ixt} = \Gamma(\beta) \left(\frac{x}{2}\right)^{-\beta}
+  \sum_{n = 0}^{\infty} i^{n}(\beta+n)J_{\beta+n}(x)C_{n}^{\beta}(t)
+\end{equation}
+(in the particular case $\beta=0$, this formula is the so-called
+Jacobi-Anger identity). Instead of this expansion for $e^{ixt}$,
+that is the kernel of the Fourier transform, we will require an
+expansion for $E_{\alpha}(ixt)$, the kernel of the Dunkl transform
+on the real line. Thus, we will use that the Dunkl kernel
+$E_{\alpha}(ixt)$ can be expanded as
+\begin{equation}
+\label{eq:Dunklexpans}
+  E_\alpha(ixt) = \Gamma(\alpha+\beta+1) \left(\frac{x}{2}\right)^{-\alpha-\beta-1}
+  \sum_{n=0}^\infty i^n (\alpha+\beta+n+1)J_{\alpha+\beta+n+1}(x)
+  C_n^{(\beta+1/2,\alpha+1/2)}(t),
+\end{equation}
+where $C_n^{(\beta+1/2,\alpha+1/2)}$ are the so-called generalized
+Gegenbauer polynomials and $J_a$ denotes the Bessel function of
+order~$a$. The identity~\eqref{eq:Dunklexpans} holds for $\alpha,\beta>-1$ 
+and $\alpha+\beta>-1$. It was proved by M.~R\"{o}sler in~\cite{Rosler} 
+for $\alpha\ge -1/2$, and by the authors in~\cite{ACV} for $\alpha>-1$. 
+By using~\eqref{eq:Dunklexpans} in the place of~\eqref{eq:geg}, a
+part of the technique for $\frac{d}{dx}$ can be followed, and the
+results obtained are very satisfactory, finally getting a nice
+extension of the result of Ismail and Zhang in~\cite{IZ}, in the
+same sense as the Bessel functions generalize the trigonometric
+functions, the Dunkl operator has the derivative as a particular
+case, or the Dunkl transform is an extension of the Fourier
+transform.
+
+The structure of the paper is as follows.
+In Section~\ref{sec:prelim} we state the precise notation and give some 
+preliminaries related to the Dunkl operator on the real line and to the 
+generalized Gegenbauer polynomials, as well as the identity~\eqref{eq:Dunklexpans}, 
+that is the main tool to solve our problem.
+The essential part of the paper is included in Section~\ref{sec:inverse}.
+We define the right inverse of the Dunkl operator in spaces weighted by 
+the weight function of the generalized Gegenbauer polynomials and use 
+this definition to find explicit formulas for the spectrum of this 
+right inverse that we will denote~$T_{\beta,\alpha}$. It turns out that 
+the eigenvalues of the resulting integral operator $T_{\beta,\alpha}$ 
+are defined in terms of zeros of Bessel functions 
+$\{\pm i/j_{\alpha+\beta+1,k}\}_{k\ge 1}$ and the eigenfunctions are
+\[
+  g_{\pm i/j_{\alpha+\beta+1,k}}(t) = \mp i
+  \left(\frac{j_{\alpha+\beta+1,k}}{2}\right)^{\alpha+\beta+1}
+  \frac{E_\alpha(\mp t j_{\alpha+\beta+1,k})}
+    {\Gamma(\alpha+\beta+1)(\alpha+\beta+2)J_{\alpha+\beta}(j_{\alpha+\beta+1,k})};
+\]
+actually, this is the main result of the paper, whose complete details can be seen 
+in Theorem~\ref{thm:main}.
+
+%------------------------------
+\section{Notation and preliminaries}
+\label{sec:prelim}
+%------------------------------
+
+%------------------------------
+\subsection{The Dunkl operator on the real line}
+%------------------------------
+
+For $\alpha > -1$, let $J_\alpha$ denote the Bessel function of order $\alpha$ and,
+for complex values of the variable $z$, let
+\begin{equation*}
+  \calI_\alpha(z)
+  = 2^\alpha \Gamma(\alpha+1)\, \frac{J_\alpha(iz)}{(iz)^\alpha}
+  = \Gamma(\alpha+1) \sum_{k=0}^\infty \frac{(z/2)^{2k}}{k!\,\Gamma(k+\alpha+1)}
+\end{equation*}
+($\calI_\alpha$ is a small variation of the so-called modified
+Bessel function of the first kind and order~$\alpha$, usually
+denoted by $I_\alpha$; see~\cite{Wat}). Moreover, let us take
+\begin{equation*}
+  E_\alpha(z) = \calI_\alpha(z) + \frac{z}{2(\alpha+1)}\,
+    \calI_{\alpha+1}(z),
+  \qquad z \in \C;
+\end{equation*}
+this function is called the Dunkl kernel.
+
+The Dunkl operators on $\R^n$ are differential-difference operators
+associated with some finite reflection groups (see~\cite{Dunkl}). We
+consider the Dunkl operator $\Lambda_\alpha$, $\alpha \ge -1/2$, associated
+with the reflection group $\Z_2$ on $\R$ given by
+\begin{equation}
+\label{eq:dunkloper}
+  \Lambda_\alpha f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{x}
+  \left(\frac{f(x)-f(-x)}{2}\right).
+\end{equation}
+For $\alpha \ge -1/2$ and $\lambda\in \C$, the initial value problem
+\begin{equation}
+\label{eq:dunklproblem}
+\begin{cases}
+  \Lambda_\alpha f(x) = \lambda f(x),\quad x\in \R, \\
+  f(0) = 1
+\end{cases}
+\end{equation}
+has $E_\alpha(\lambda x)$ as its unique solution (see~\cite{Dunkl2}
+and~\cite{Jeu}). For $\alpha = -1/2$, it is
+clear that $\Lambda_{-1/2} = d/dx$, and $E_{-1/2}(\lambda x) = e^{\lambda x}$.
+
+Along this paper we will usually employ $E_\alpha$ in the form
+\begin{equation}
+\label{eq:Ea}
+  E_{\alpha}(ix) = 2^{\alpha}\Gamma(\alpha+1)
+  \left( \frac{J_{\alpha}(x)}{x^{\alpha}}+\frac{J_{\alpha+1}(x)}
+    {x^{\alpha+1}}\,xi\right).
+\end{equation}
+If, moreover, we take
+\[
+  d\mu_{\alpha}(x) = (2^{\alpha+1} \Gamma(\alpha+1))^{-1}|x|^{2\alpha+1}\,dx,
+\]
+the name Dunkl kernel for $E_\alpha$ is justified because it is the kernel 
+of the Dunkl transform of order $\alpha \geq -1/2$ given by
+\begin{equation}
+\label{eq:Du-T}
+  \calF_{\alpha}f(x) = \int_{\R} f(t)E_{\alpha}(-ixt)
+  \,d\mu_{\alpha}(t),\quad x\in \R,
+\end{equation}
+for $f\in L^{1}(\R,d\mu_{\alpha})$.
+In a similar way to the Fourier transform (which is the particular
+case $\alpha = -1/2$), the definition is extended $L^{2}(\R,d\mu_{\alpha})$ 
+and $\calF_{\alpha}$ becomes to be an isometric isomorphism on $L^{2}(\R,d\mu_{\alpha})$.
+Yet more, the Dunkl transform $\calF_{\alpha}$ can also be defined in
+$L^2(\R,d\mu_{\alpha})$ for $-1 < \alpha < -1/2$; although in this case the
+expression~\eqref{eq:Du-T} is no longer valid for
+$f\in L^1(\R,d\mu_{\alpha})$ in general, it preserves the same properties in
+$L^2(\R,d\mu_{\alpha})$ (see~\cite{Rosenblum} for details).
+Following this spirit, we will do our study not only for $\alpha\ge-1/2$, 
+but for the whole range $\alpha > -1$.
+
+%------------------------------
+\subsection{Generalized Gegenbauer polynomials}
+%------------------------------
+
+Following~\cite[Definition~1.5.5, p.~27]{DX}, let us introduce the generalized
+Gegenbauer polynomials $C^{(\lambda,\nu)}(t)$ for $\lambda>-1/2$, $\nu \ge 0$
+and $n \ge 0$
+(the case $\nu=0$ corresponding with the ordinary Gegenbauer polynomials);
+actually, for convenience with the notation of this paper,
+we are going to use $C_n^{(\beta+1/2,\alpha+1/2)}(x)$. In this way, for $\beta>-1$
+and $\alpha\ge -1/2$, the generalized Gegenbauer polynomials are defined by
+\begin{align}
+\label{eq:C2n}
+  C_{2n}^{(\beta+1/2,\alpha+1/2)}(t)
+  &= (-1)^n \, \frac{(\alpha+\beta+1)_n}{(\alpha+1)_n} P_n^{(\alpha,\beta)}(1-2t^2), \\
+\label{eq:C2n1}
+  C_{2n+1}^{(\beta+1/2,\alpha+1/2)}(t)
+  &= (-1)^n \, \frac{(\alpha+\beta+1)_{n+1}}{(\alpha+1)_{n+1}} t P_n^{(\alpha+1,\beta)}(1-2t^2),
+\end{align}
+where in the coefficients we are using the Pochhammer symbol
+$(a)_n = a(a+1)\cdots(a+n-1) = \Gamma(a+n)/\Gamma(a)$. 
+Note that there is no problem in extending the definition of the generalized Gegenbauer 
+polynomials taking $\alpha>-1$, so we will assume this situation.
+
+The definitions~\eqref{eq:C2n} and~\eqref{eq:C2n1} easily allow to translate the 
+well known orthogonality of the Jacobi polynomials on $(-1,1)$ to the orthogonality 
+of the generalized Gegenbauer polynomials on $(-1,1)$ with a related weight, 
+which is more useful in the context of this paper.
+In particular, the generalized Gegenbauer polynomials 
+$\{C_{k}^{(\beta+1/2,\alpha+1/2)}(t)\}_{k\ge0}$ form a complete 
+orthogonal system on $L^2((-1,1),(1-t^2)^\beta \,d\mu_\alpha(t))$ 
+for $\alpha,\beta>-1$.
+Moreover, from the $L^2$-norm of the Jacobi polynomials
+(see~\cite[formula 22.2.1, p.~774]{AbSt}),
+it is easy to find
+\begin{align}
+\label{eq:hC2n}
+  h_{2n}^{(\beta,\alpha)}
+  &= \int_{-1}^1 \left[C_{2n}^{(\beta+1/2,\alpha+1/2)}(t)\right]^2
+  (1-t^2)^\beta \,d\mu_\alpha(t) \\
+  &= \frac{1}{2^{\alpha+1}} \frac{\Gamma(\alpha+1)\Gamma(\beta+n+1)\Gamma(\alpha+\beta+n+1)}
+    {(\alpha+\beta+2n+1)\Gamma(\alpha+\beta+1)^2 \Gamma(\alpha+n+1)\, n!},
+  \notag \\
+\label{eq:hC2n1}
+  h_{2n+1}^{(\beta,\alpha)}
+  &= \int_{-1}^1 \left[C_{2n+1}^{(\beta+1/2,\alpha+1/2)}(t)\right]^2
+  (1-t^2)^\beta \,d\mu_\alpha(t) \\
+  &= \frac{1}{2^{\alpha+1}} \frac{\Gamma(\alpha+1)\Gamma(\beta+n+1)\Gamma(\alpha+\beta+n+2)}
+    {(\alpha+\beta+2n+2) \Gamma(\alpha+\beta+1)^2 \Gamma(\alpha+n+2)\, n!}.
+\notag
+\end{align}
+
+%------------------------------
+\subsection{The expansion of the Dunkl kernel}
+%------------------------------
+
+The last ingredient in this section with preliminaries is to explain 
+the~\eqref{eq:Dunklexpans} that we give in the introduction. 
+Firstly, let us note that, when you use something like ${J_{a+n}(x)}/{x^a}$, we mean
+\[
+  \frac{J_{a+n}(x)}{x^a}
+  = \sum_{k=0}^\infty \frac{(-1)^k}{2^ k!\,\Gamma(k+a+n+1)}
+  \Bigl(\frac{x}{2}\Bigr)^{2k+n},
+\]
+that is an analytic function on the complex plane for every $a>-1$ 
+and every integer $n \ge 0$.
+
+Then, the precise statement of the Dunkl analogue of Gegenbauer's 
+expansion of the plane wave is that, for $\alpha,\beta > -1$ and $\alpha+\beta>-1$, 
+the Dunkl kernel can be expanded, for $x\in \R$, as
+\begin{equation}
+\label{eq:JA-Dunkl}
+  E_\alpha(ixt) = 2^{\alpha+\beta+1} \Gamma(\alpha+\beta+1)
+  \sum_{n = 0}^{\infty} i^{n}(\alpha+\beta+n+1)
+  \frac{J_{\alpha+\beta+n+1}(x)}{x^{\alpha+\beta+1}} C_{n}^{(\beta+1/2,\alpha+1/2)}(t),
+\end{equation}
+and this expansion holds in $L^{2}((-1,1),d\mu_{\alpha}(t))$.
+
+This important identity has been proved in~\cite{Rosler} for $\alpha\ge -1/2$ 
+by showing that, under this restriction, formulas~\eqref{eq:geg} and~\eqref{eq:JA-Dunkl} 
+are equivalent. The proof in one direction is clear, just by specializing the parameters. 
+To obtain~\eqref{eq:JA-Dunkl} from~\eqref{eq:geg}, we can use the intertwining operator
+\begin{equation*}
+  V_\alpha g(t) = \frac{\Gamma(2\alpha+2)}{2^{2\alpha+1} \Gamma(\alpha+1/2)\Gamma(\alpha+3/2)}
+  \int_{-1}^1 g(st) (1-s)^{\alpha-1/2} (1+s)^{\alpha+1/2}\,ds
+\end{equation*}
+(see~\cite[Definition~1.5.1, p.~24]{DX}, we change the parameter $\mu$ 
+in the definition given in~\cite{DX} by $\alpha+1/2$), defined for $\alpha\ge -1/2$. 
+With this notation we have
+\begin{equation*}
+  V_\alpha C_n^{\alpha+\beta+1}(t) = C_n^{(\beta+1/2,\alpha+1/2)}(t)
+\end{equation*}
+and
+\begin{equation*}
+  V_\alpha e^{i\cdot}(t) = E_\alpha(it).
+\end{equation*}
+In this way, applying $V_\alpha$ to~\eqref{eq:geg} 
+(with $\alpha+\beta+1$ instead of~$\beta$) we get~\eqref{eq:JA-Dunkl}.
+
+This idea cannot be used in the whole range $\alpha>-1$, 
+and the extension of~\eqref{eq:JA-Dunkl} to this case can be found in~\cite{ACV}.
+
+%\begin{Rem}
+%Another way of obtaining~\eqref{eq:JA-Dunkl} is as follows. Some results from~\cite{FW}
+%were generalizated in~\cite{Ve} to
+%\begin{multline*}
+%  \sum_{m=0}^{\infty} a_mb_m \frac{(zw)^m}{m!}
+%  = \sum_{n=0}^{\infty} \frac{(-z)^n}{n!\, (\gamma+n)_n}
+%  \left( \sum_{r=0}^\infty \frac{b_{n+r}z^r}{r!\,(\gamma+2n+1)_r} \right) \\
+%  \times \left( \sum_{s=0}^n \frac{(-n)_s (n+\gamma)_s}{s!} \,a_s w^s \right).
+%\end{multline*}
+%When $z$ and $w$ are replaced by $z\gamma$ and $w/\gamma$, respectively, 
+%and we let $\gamma \to \infty$, %we get the companion formula
+%\begin{equation*}
+%  \sum_{m=0}^{\infty} a_mb_m (zw)^m
+%  = \sum_{n=0}^{\infty} \frac{(-z)^n}{n!}
+%  \Biggl( \sum_{j=0}^\infty \frac{b_{n+j}}{j!} \, z^j \Biggr)
+%  \Biggl( \sum_{k=0}^n (-n)_k a_k w^k \Biggr)
+%\end{equation*}
+%(these formulas are also stated in~\cite[Chapter 9]{Ism}).
+%These expansions contain several expansions in terms of Jacobi 
+%polynomials of argument $1 - 2t^2$ (i.e., generalized Gegenbauer polynomials). 
+%In particular, \eqref{eq:JA-Dunkl} follows in this way.
+%\end{Rem}
+
+%------------------------------
+\section{Diagonalization of the right inverse of Dunkl operator}
+\label{sec:inverse}
+%------------------------------
+
+As stated in the introduction, Ismail and Zhang study in~\cite{IZ} the
+eigenfunctions and the eigenvalues of the right inverse of the derivative operator,
+and the main tool is a suitable expansion of the corresponding plane wave.
+The aim of this section is the analysis of this question for the
+Dunkl operator~\eqref{eq:dunkloper} using the expansion~\eqref{eq:JA-Dunkl}.
+This is a very natural extension, because the ordinary derivative
+corresponds to the Dunkl operator $\Lambda_\alpha$ with $\alpha=-1/2$.
+
+To simplify the notation, let us introduce the measure
+\begin{equation*}
+  d\mu_{\beta,\alpha}(t) = (1-t^2)^\beta \, d\mu_\alpha(t)
+  = \tfrac{1}{2^{\alpha+1} \Gamma(\alpha+1)} (1-t^2)^\beta |t|^{2\alpha+1}\,dt.
+\end{equation*}
+
+It is not difficult to prove, using the appropriate recurrence
+relations for the Jacobi polynomials, that the Dunkl operator over
+the generalized Gegenbauer operator satisfies
+\begin{equation}
+\label{eq:LCn}
+  \Lambda_\alpha C_n^{(\beta+1/2,\alpha+1/2)} (t)
+  = 2(\alpha+\beta+1) C_{n-1}^{(\beta+3/2,\alpha+1/2)} (t).
+\end{equation}
+
+Motivated by the identity~\eqref{eq:LCn}, we define the right
+inverse operator of $\Lambda_\alpha$ over $L^2((-1,1),
+d\mu_{\beta+1,\alpha})$ by
+\begin{equation*}
+  T_{\beta,\alpha} g(t) = \sum_{n=1}^{\infty}
+  \frac{g_{n-1}}{2(\alpha+\beta+1)} \, C_n^{(\beta+1/2,\alpha+1/2)}(t),
+\end{equation*}
+whenever $g$ has the expansion
+\begin{equation*}
+  g(t) = \sum_{n=0}^{\infty} g_n C_n^{(\beta+3/2,\alpha+1/2)} (t),
+\end{equation*}
+with
+\begin{equation*}
+  g_n = \big( h_n^{(\beta+1,\alpha)} \big)^{-1} \int_{-1}^1 g(r)
+  C_n^{(\beta+3/2,\alpha+1/2)} (r) \,d\mu_{\beta+1,\alpha}(r)
+\end{equation*}
+(the norms $h_n^{(\beta+1,\alpha)}$ are given in~\eqref{eq:hC2n} and~\eqref{eq:hC2n1}).
+Then, we can write
+\begin{equation*}
+  T_{\beta,\alpha} g(t) = \int_{-1}^1 g(r) K_{\beta,\alpha}(t,r) \,
+  d\mu_{\beta+1,\alpha}(r),
+\end{equation*}
+with
+\begin{equation*}
+  K_{\beta,\alpha}(t,r)
+  = \frac{1}{2(\alpha+\beta+1)}\sum_{n=1}^{\infty}
+  \frac{C_n^{(\beta+1/2,\alpha+1/2)}(t) C_{n-1}^{(\beta+3/2,\alpha+1/2)}(r)}
+    {h_{n-1}^{(\beta+1,\alpha)}}.
+\end{equation*}
+
+We want to diagonalize $T_{\beta,\alpha}$. To this end we have to
+find values $\lambda \in \C$ and functions $g_{\lambda} \in
+L^2((-1,1), d\mu_{\beta,\alpha}) \cap L^2((-1,1),
+d\mu_{\beta+1,\alpha})$ such that
+\begin{equation}
+\label{eq:problem-auto}
+  \lambda g_\lambda(t) = T_{\beta,\alpha} g_\lambda(t),
+\end{equation}
+where the expansion of $g$ in
+$\{C_n^{(\beta+1/2,\alpha+1/2)}\}_{n\ge 0}$ is
+\begin{equation}
+\label{eq:expaneigen}
+  g_\lambda(t) \sim \sum_{n=1}^{\infty}
+  a_n(\lambda) C_n^{(\beta+1/2,\alpha+1/2)}(t).
+\end{equation}
+
+
+To find the eigenvalues and the eigenfunctions we start obtaining
+a recurrence relation for the coefficients $\{a_n(\lambda)\}_{n\ge 1}$.
+This is done by using an expression to write
+$(1-r^2)C_{n-1}^{(\beta+3/2,\alpha+1/2)}(r)$ in terms of
+$C_{n-1}^{(\beta+1/2,\alpha+1/2)} (r)$ and
+$C_{n+1}^{(\beta+1/2,\alpha+1/2)} (r)$. This relation can be
+deduced from the identity for the Jacobi polynomials
+(see \cite[formula 22.7.16, p.~782]{AbSt})
+\begin{equation}
+\label{eq:Jacobirecu}
+  P_n^{(a,b+1)}(z) = \frac{2(n+b+1)P_n^{(a,b)}(z)
+  + 2(n+1)P_{n+1}^{(a,b)}(z)}{(2n+a+b+2)(1+z)}.
+\end{equation}
+Indeed, taking $z=1-2t^2$ in~\eqref{eq:Jacobirecu} and using the
+definition of the generalized Gegenbauer polynomials, we have
+\begin{equation}
+\label{eq:gegenrec}
+  (\alpha+\beta+1) (1-r^2)
+  C_{n-1}^{(\beta+3/2,\alpha+1/2)} (r) = A_n
+  C_{n-1}^{(\beta+1/2,\alpha+1/2)} (r) - B_n
+  C_{n+1}^{(\beta+1/2,\alpha+1/2)} (r),
+\end{equation}
+with
+\begin{align*}
+A_n &=
+\begin{cases}
+  \dfrac{(\beta+k+1)(\alpha+\beta+k+1)}{\alpha+\beta+2k+2}, & \text{if $n=2k+1$,} \\[6pt]
+  \dfrac{(\beta+k)(\alpha+\beta+k+1)}{\alpha+\beta+2k+1}, & \text{if $n=2k$,}
+\end{cases} \\
+B_n &=
+\begin{cases}
+  \dfrac{(k+1)(\alpha+k+1)}{\alpha+\beta+2k+2}, & \text{if $n=2k+1$,} \\[6pt]
+  \dfrac{k(\alpha+k+1)}{\alpha+\beta+2k+1}, & \text{if $n=2k$.}
+\end{cases}
+\end{align*}
+From~\eqref{eq:gegenrec} we have the decomposition
+\begin{multline*}
+  (1-r^2)K_{\beta,\alpha}(t,r)
+  = \frac{1}{2(\alpha+\beta+1)^2} \sum_{n=1}^{\infty} A_n
+  \frac{C_n^{(\beta+1/2,\alpha+1/2)}(t)
+  C_{n-1}^{(\beta+1/2,\alpha+1/2)}(r)} {h_{n-1}^{(\beta+1,\alpha)}}
+  \\
+  - \frac{1}{2(\alpha+\beta+1)^2} \sum_{n=1}^{\infty} B_n
+  \frac{C_n^{(\beta+1/2,\alpha+1/2)}(t)
+  C_{n+1}^{(\beta+1/2,\alpha+1/2)}(r)} {h_{n-1}^{(\beta+1,\alpha)}}.
+\end{multline*}
+With the previous identity, we get
+\begin{multline*}
+  T_{\beta,\alpha}g_\lambda(t)
+  = \frac1{2(\alpha+\beta+1)^2}
+  \sum_{n=2}^\infty a_{n-1}(\lambda)A_n
+  \frac{h_{n-1}^{(\beta,\alpha)}}{h_{n-1}^{(\beta+1,\alpha)}}
+  C_n^{(\beta+1/2,\alpha+1/2)}(t)
+  \\
+  - \frac1{2(\alpha+\beta+1)^2}
+  \sum_{n=1}^\infty a_{n+1}(\lambda) B_n
+  \frac{h_{n+1}^{(\beta,\alpha)}}{h_{n-1}^{(\beta+1,\alpha)}}
+  C_n^{(\beta+1/2,\alpha+1/2)}(t).
+\end{multline*}
+In this way, identifying the coefficients in both sides of~\eqref{eq:problem-auto},
+we obtain the recurrence relation
+\begin{equation*}
+  \lambda a_n(\lambda)
+  = \frac{1}{2(\alpha+\beta+1)^2}
+  \left( a_{n-1}(\lambda) A_n
+  \frac{h_{n-1}^{(\beta,\alpha)}}{h_{n-1}^{(\beta+1,\alpha)}}
+  - a_{n+1}(\lambda) B_n
+  \frac{h_{n+1}^{(\beta,\alpha)}}{h_{n-1}^{(\beta+1,\alpha)}} \right),
+\qquad n>1,
+\end{equation*}
+and
+\begin{equation*}
+  \lambda a_1(\lambda) = -a_2(\lambda)
+  \frac{B_1}{2(\alpha+\beta+1)^2}
+  \frac{h_{2}^{(\beta,\alpha)}}{h_{0}^{(\beta+1,\alpha)}},
+\end{equation*}
+which, applying~\eqref{eq:hC2n} and~\eqref{eq:hC2n1}, becomes
+\begin{equation}
+\label{eq:recurrencea1}
+  \lambda a_n(\lambda)
+  = \frac{a_{n-1}(\lambda)}{2(\alpha+\beta+n)}
+  -\frac{a_{n+1}(\lambda)}{2(\alpha+\beta+n+2)}, \qquad n>1,
+\end{equation}
+and
+\begin{equation}
+\label{eq:recurrencea2}
+  \lambda a_1(\lambda) = -\frac{a_2(\lambda)}{2(\alpha+\beta+3)}.
+\end{equation}
+
+Now, we can prove the following:
+
+\begin{Thm}
+For $\alpha,\beta >-1$, and $\alpha+\beta>-1$, let
+$R_{\beta+1/2,\alpha+1/2}$ be the closure of the span of
+$\{C_n^{(\beta+1/2,\alpha+1/2)}\}_{n\ge 1}$ in
+$L^2((-1,1),d\mu_{\beta+1,\alpha})$; then
+\begin{equation}
+\label{eq:decomL2}
+  L^2((-1,1),d\mu_{\beta+1,\alpha})
+  = R_{\beta+1/2,\alpha+1/2} \oplus R_{\beta+1/2,\alpha+1/2}^\bot,
+\end{equation}
+where
+\begin{equation}
+\label{eq:orto}
+  R_{\beta+1/2,\alpha+1/2}^\bot =
+\begin{cases}
+  \spa\{(1-t^2)^{-1}\}, &\text{for }\, \beta>0,\\
+  \{0\}, & \text{for }\, 0\ge \beta>-1.
+\end{cases}
+\end{equation}
+Furthermore, if we let $g_\lambda(x)\in R_{\beta+1/2,\alpha+1/2}$
+have the orthogonal expansion~\eqref{eq:expaneigen}, then the
+eigenvalue equation~\eqref{eq:problem-auto} holds if and only if
+\begin{equation}
+\label{eq:conditionproblem}
+  \sum_{n=1}^{\infty} |a_n(\lambda)|^2 n^{2\beta-1}<\infty.
+\end{equation}
+\end{Thm}
+
+\begin{proof}
+It is clear that $L^2((-1,1),d\mu_{\beta,\alpha})\subset
+L^2((-1,1),d\mu_{\beta+1,\alpha})$ and $T_{\beta,\alpha}$ maps
+$L^2((-1,1),d\mu_{\beta+1,\alpha})$ into
+$L^2((-1,1),d\mu_{\beta,\alpha})$. Moreover, $T_{\beta,\alpha}$ is
+a bounded operator and its norm is controlled by a constant $M$
+given by
+\[
+  M^2 = \frac{1}{4(\alpha+\beta+1)^2} \, \sup_{n\ge0}
+  \frac{h_{n+1}^{(\beta,\alpha)}}{h_{n}^{(\beta+1,\alpha)}}.
+\]
+Indeed,
+\begin{align*}
+  \|T_{\beta,\alpha}g\|^2_{L^2((-1,1),d\mu_{\beta,\alpha})}
+  &= \sum_{n=1}^{\infty}
+  \frac{|g_{n-1}|^2}{4(\alpha+\beta+1)^2}h_{n}^{(\beta,\alpha)} \\
+  &\le M^2 \sum_{n=1}^{\infty}
+  |g_{n}|^2h_{n}^{(\beta+1,\alpha)}
+  = M^2\|g\|_{L^2((-1,1),d\mu_{\beta+1,\alpha})}.
+\end{align*}
+Note that $M$ is finite because
+\[
+  \frac{h_{2k+1}^{(\beta,\alpha)}}{h_{2k}^{(\beta+1,\alpha)}}
+  = \frac{(\alpha+\beta+1)^2}{(\beta+k+1)(\alpha+k+1)}
+  \qquad\text{ and }\qquad
+  \frac{h_{2k}^{(\beta,\alpha)}}{h_{2k-1}^{(\beta+1,\alpha)}}
+  =\frac{(\alpha+\beta+1)^2}{k(\alpha+\beta+k+1)}.
+\]
+In this way, we can deduce that $R_{\beta+1/2,\alpha+1/2}$ is an
+invariant subspace for $T_{\beta,\alpha}$ and the
+decomposition~\eqref{eq:decomL2} holds. Now, each
+function $f\in R_{\beta+1/2,\alpha+1/2}^\bot$ will satisfy the
+conditions $\|f\|_{L^2((-1,1),d\mu_{\beta+1,\alpha})}<\infty$ and
+\begin{equation}
+\label{eq:condiorto}
+  \int_{-1}^{1} f(r) C_{n}^{(\beta+1/2,\alpha+1/2)}(r) 
+  \, d\mu_{\beta+1,\alpha}(r) = 0,
+  \qquad n=1,2,\dots.
+\end{equation}
+Using that $\{C_{n}^{(\beta+1/2,\alpha+1/2)}\}_{n\ge 0}$ is a
+complete orthogonal system in
+$L^2((-1,1),d\mu_{\beta,\alpha})$ and the relation
+$d\mu_{\beta+1,\alpha}(r) = (1-r^2)\,d\mu_{\beta,\alpha}(r)$, 
+from~\eqref{eq:condiorto} we get
+\[
+  (1-r^2)f(r) = K
+\]
+for a certain constant~$K$. So, taking into account that $f\in
+L^2((-1,1),d\mu_{\beta+1,\alpha})$, we conclude~\eqref{eq:orto}.
+
+Let $g_\lambda$ be a function having the expansion~\eqref{eq:expaneigen} 
+and verifying~\eqref{eq:problem-auto}. Then,
+using that $g_{\lambda}\in L^2((-1,1),d\mu_{\beta,\alpha})$,
+it follows that
+\[
+  \|g_\lambda\|^2_{L^2((-1,1),d\mu_{\beta,\alpha})}
+  = \sum_{n=1}^\infty |a_n(\lambda)|^2h_{n}^{(\beta,\alpha)} < \infty
+\]
+and this imply~\eqref{eq:conditionproblem} because
+$h_{n}^{(\beta,\alpha)} \approx n^{2\beta-1}$.
+
+On other hand, let us suppose that~\eqref{eq:conditionproblem} 
+and~\eqref{eq:expaneigen} hold. To prove that $g_\lambda$ is a
+solution of~\eqref{eq:problem-auto}, we need rewrite the function
+$g_{\lambda}$ in terms of $C_n^{(\beta+3/2,\alpha+1/2)}$. To this
+end, we use that the Jacobi polynomials satisfy the identity
+\cite[formula 22.7.19, p.~782]{AbSt}
+\[
+  (2n+a+b)P_n^{(a,b-1)}(z) = (n+a+b)P_n^{(a,b)}(z) + (n+a)P_{n-1}^{(a,b)}(z)
+\]
+to produce
+\[
+  C_n^{(\beta+1/2,\alpha+1/2)}(t)
+  = \frac{\alpha+\beta+1}{\alpha+\beta+n+1}
+  (C_n^{(\beta+3/2,\alpha+1/2)}(t) - C_{n-2}^{(\beta+3/2,\alpha+1/2)}(t)).
+\]
+So, we find
+\begin{multline}
+\label{eq:glam}
+  g_{\lambda}(t) = \sum_{n=1}^\infty
+  \frac{\alpha+\beta+1}{\alpha+\beta+n+1}a_{n}(\lambda)
+  C_n^{(\beta+3/2,\alpha+1/2)}(t) \\
+  - \sum_{n=1}^\infty
+  \frac{\alpha+\beta+1}{\alpha+\beta+n+1}a_{n}(\lambda)
+  C_{n-2}^{(\beta+3/2,\alpha+1/2)}(t).
+\end{multline}
+Thus,
+\[
+  \|g_\lambda\|^2_{L^2((-1,1),d\mu_{\beta+1,\alpha})}
+  \sim \sum_{n=1}^\infty |a_{n}(\lambda)|^2 n^{2\beta-1} < \infty
+\]
+and $g_\lambda \in L^2((-1,1),d\mu_{\beta+1,\alpha})$. Moreover,
+from~\eqref{eq:glam}, with~\eqref{eq:recurrencea1} and~\eqref{eq:recurrencea2}, 
+we can check that $g_\lambda$ is an eigenfunction of~$T_{\beta,\alpha}$.
+\end{proof}
+
+It is clear, from~\eqref{eq:recurrencea1} and~\eqref{eq:recurrencea2}, 
+that $a_1(\lambda)\not=0$ (in other case $a_n(\lambda)=0$ for $n>1$). 
+So this is a multiplicative factor and can be factored out. To verify the 
+condition~\eqref{eq:conditionproblem}, we have to renormalize the sequence
+$\{a_n(\lambda)\}_{n\ge 1}$. Set
+\begin{equation}
+\label{eq:relationab}
+  a_n(\lambda) = i^{n-1}
+  \frac{(\alpha+\beta+n+1)}{(\alpha+\beta+2)}b_{n-1}(i\lambda)a_1(\lambda).
+\end{equation}
+Then, using the relations~\eqref{eq:recurrencea1} and~\eqref{eq:recurrencea2}, 
+we can check that
+\begin{equation}
+\label{eq:recurrenceb}
+  2w (\alpha+\beta+n+2)b_n(w) = b_{n-1}(w)+b_{n+1}(w),
+  \qquad n\ge 1,
+\end{equation}
+where $w=i\lambda$, $b_{-1}(w)=0$, and $b_0(w)=1$. If $R_{n,a}(z)$
+denotes the Lommel polynomials, we define
+$h_{n,a}(z) = R_{n,a}(1/z)$, which are known as modified Lommel
+polynomials. Lommel polynomials satisfy the three terms recurrence
+relation (see \cite[\S\,9.63, formula~(2), p.~299]{Wat})
+\[
+  \frac{2(n+a)}{z}R_{n,a}(z) = R_{n-1,a}(z)+R_{n+1,a}(z).
+\]
+In this way, we deduce that $b_n(w) = h_{n,\alpha+\beta+2}(w)$.
+
+Let us identify the values verifying~\eqref{eq:conditionproblem}.
+
+\begin{Thm}
+\label{thm:eigenvalues}
+The convergence condition~\eqref{eq:conditionproblem} holds 
+if and only if $\lambda$ is purely imaginary, $\lambda\not=0$, and
+$J_{\alpha+\beta+1}(i/\lambda) = 0$.
+\end{Thm}
+
+\begin{proof}
+By Hurwitz' theorem \cite[\S\,9.65, formula~(1), p.~302]{Wat}, we have
+the asymptotic relation
+\[
+  h_{n,a}(z) \sim \Gamma(n+a) (2z)^{n+a-1}J_{a-1}(1/z),
+  \qquad n\to\infty.
+\]
+This fact, taking into account~\eqref{eq:relationab} and that
+$b_{n}(i\lambda) = h_{n-1,\alpha+\beta+2}(i\lambda)$, shows that in
+order for~\eqref{eq:conditionproblem} to hold it is necessary that
+$J_{\alpha+\beta+1}(i/\lambda) = 0$ or possibly $\lambda=0$. For
+$\lambda=0$ we can deduce, by~\eqref{eq:recurrenceb}, that
+$b_{2n+1}(0) = 0$ and $b_{2n}(0) = (-1)^n$, then~\eqref{eq:conditionproblem} 
+does not hold.
+
+To deduce the sufficiency of $J_{\alpha+\beta+1}(i/\lambda) = 0$ we
+need the identity \cite[\S\,9.6, formula~(1), p.~295]{Wat}
+\[
+  J_{a+n}(z) = R_{n,a}(z)J_{a}(z)-R_{n-1,a+1}(z)J_{a-1}(z).
+\]
+From this relation we have
+\begin{equation}
+\label{eq:JH}
+  -J_{\alpha+\beta+n+1}(i/\lambda)
+  = h_{n-1,\alpha+\beta+2}(\lambda/i) J_{\alpha+\beta}(i/\lambda)
+\end{equation}
+when $J_{\alpha+\beta+1}(i/\lambda) = 0$. In this way, by the
+asymptotic
+\[
+  J_{a+n}(z) \sim \frac{(2z)^{-n-a}}{\Gamma(a+n+1)},
+  \qquad n\to\infty,
+\]
+we can conclude that~\eqref{eq:conditionproblem} is satisfied.
+\end{proof}
+
+Finally, we can obtain the eigenvalues and the eigenfunctions of~$T_{\beta,\alpha}$
+(remember that the Bessel function $J_a$ has an increasing
+sequence of positive zeros, and that we are denoting them by $j_{a,k}$, for $k\ge 1$).
+
+\begin{Thm}
+\label{thm:main}
+Let $\alpha,\beta >-1$, and $\alpha+\beta>-1$. Then the
+eigenvalues of the integral operator $T_{\beta,\alpha}$ are $\{\pm
+i/j_{\alpha+\beta+1,k}\}_{k\ge 1}$ and the eigenfunctions $g_{\pm
+i/j_{\alpha+\beta+1,k}}(t)$ have the series expansion in terms of
+the generalized Gegenbauer polynomials
+\begin{equation}
+\label{eq:expanGegen}
+  \sum_{n=1}^\infty (\mp i)^{n-1}
+  \frac{(\alpha+\beta+n+1)}{(\alpha+\beta+2)}
+  h_{n-1,\alpha+\beta+2} \left(\frac{1}{j_{\alpha+\beta+1,k}}\right)
+  C_n^{(\beta+1/2,\alpha+1/2)}(t).
+\end{equation}
+Moreover,
+\begin{equation}
+\label{eq:eigenfin}
+  g_{\pm i/j_{\alpha+\beta+1,k}}(t)
+  = \mp i \left(\frac{j_{\alpha+\beta+1,k}}{2}\right)^{\alpha+\beta+1}
+  \frac{E_\alpha(\mp t j_{\alpha+\beta+1,k})}{\Gamma(\alpha+\beta+1)(\alpha+\beta+2)
+  J_{\alpha+\beta}(j_{\alpha+\beta+1,k})}.
+\end{equation}
+\end{Thm}
+
+\begin{proof}
+The eigenvalues follow immediately from Theorem~\ref{thm:eigenvalues}.
+The expression~\eqref{eq:expanGegen} for the eigenfunctions is a 
+consequence of~\eqref{eq:expaneigen}, \eqref{eq:relationab}, the fact
+$b_n(i\lambda) = h_{n-1,\alpha+\beta+2}(i\lambda)$ and the identity
+\begin{equation*}
+  h_{n-1,\alpha+\beta+2} \left(i\frac{\pm i}{j_{\alpha+\beta+1,k}}\right)
+  = (\mp 1)^{n-1}h_{n-1,\alpha+\beta+2} \left(\frac{1}{ j_{\alpha+\beta+1,k}}\right),
+\end{equation*}
+which is obtained using that $R_{n,a}(-z)=(-1)^nR_{n,a}(a)$.
+
+Let us prove~\eqref{eq:eigenfin}. Taking $\lambda=\pm
+i/j_{\alpha+\beta+1,k}$ in~\eqref{eq:JH}, we obtain that
+\[
+  J_{\alpha+\beta+n+1}(j_{\alpha+\beta+1,k})
+  = - h_{n-1,\alpha+\beta+2} \left(\frac{1}{j_{\alpha+\beta+1,k}}\right)
+  J_{\alpha+\beta}(j_{\alpha+\beta+1,k}).
+\]
+From the previous identity, \eqref{eq:expanGegen} becomes
+\begin{multline*}
+  g_{\pm i/j_{\alpha+\beta+1,k}}(t)
+  = \frac{-1}{(\alpha+\beta+2)J_{\alpha+\beta}(j_{\alpha+\beta+1,k})}\\*
+\begin{aligned}
+  &\kern20pt \times\sum_{n=1}^\infty (\mp i)^{n-1} (\alpha+\beta+n+1)
+  J_{\alpha+\beta+n+1}(j_{\alpha+\beta+1,k})
+  C_n^{(\beta+1/2,\alpha+1/2)}(t) \\
+  &= \frac{\mp i\,j_{\alpha+\beta+1,k}^{\alpha+\beta+1}}
+  {(\alpha+\beta+2)J_{\alpha+\beta}(j_{\alpha+\beta+1,k})} \\*
+  &\kern20pt \times \sum_{n=0}^\infty i^{n}(\alpha+\beta+n+1)
+  \frac{J_{\alpha+\beta+n+1}(\mp j_{\alpha+\beta+1,k})}
+  {(\mp j_{\alpha+\beta+1,k})^{\alpha+\beta+1}}
+  C_n^{(\beta+1/2,\alpha+1/2)}(t) \\
+  &= \mp i \left( \frac{j_{\alpha+\beta+1,k}}{2}\right)^{\alpha+\beta+1}
+  \frac{E_\alpha(\mp t j_{\alpha+\beta+1,k})}
+  {\Gamma(\alpha+\beta+1)(\alpha+\beta+2) J_{\alpha+\beta}(j_{\alpha+\beta+1,k})}
+\end{aligned}
+\end{multline*}
+where in the last step we have used~\eqref{eq:JA-Dunkl}.
+\end{proof}
+
+%------------------------------
+\begin{thebibliography}{99}
+%------------------------------
+
+\bibitem{AbSt} M. Abramowitz and I. A. Stegun (Editors),
+% \textit{Handbook of mathematical functions},
+\textit{Handbook of mathematical functions with formulas, graphs
+and mathematical tables}, United States Government Printing
+Office, 1964.
+Reprinted by Dover, 1972 (10th reprint). Also available on
+\url{http://www.math.sfu.ca/~cbm/aands/}
+
+\bibitem{ACV} L. D. Abreu, \'O. Ciaurri, and J. L. Varona,
+Bilinear biorthogonal expansions and the Dunkl kernel on the real line,
+\textit{Expo. Math.} \textbf{30} (2012), 32--48.
+
+\bibitem{AJ} N. B. Andersen and M. de Jeu, {Elementary proofs of
+Paley-Wiener theorems for the Dunkl transform on the real line},
+\textit{Int. Math. Res. Not.} \textbf{2005}, no.~30, 1817--1831.
+
+\bibitem{BCV} J. Betancor, \'O. Ciaurri, and J. L. Varona, {The multiplier
+of the interval $[-1,1]$ for the Dunkl transform on the real line,}
+\textit{J. Funct. Anal.} \textbf{242} (2007), 327--336.
+
+\bibitem{IJacob} J. S. Christiansen and M. E. H. Ismail,
+{A moment problem and a family of integral evaluations},
+\textit{Trans. Amer. Math. Soc.}  \textbf{358} (2006), 4071--4097.
+
+\bibitem{CV} \'O. Ciaurri and J. L. Varona, {A Whittaker-Shannon-Kotel'nikov
+sampling theorem related to the Dunkl transform,} \textit{Proc. Amer. Math.
+Soc.} \textbf{135} (2007), 2939--2947.
+
+\bibitem{Dunkl} C. F. Dunkl, {Differential-difference operators associated
+with reflections groups,} \textit{Trans. Amer. Math. Soc.} \textbf{311}
+(1989), 167--183.
+
+\bibitem{Dunkl2} C. F. Dunkl, {Integral kernels with reflections group
+invariance,} \textit{Canad. J. Math.} \textbf{43} (1991), 1213--1227.
+
+\bibitem{DX} C. F. Dunkl and Y. Xu,
+\textit{Orthogonal polynomials of several variables},
+Encyclopedia of Mathematics and its Applications No.~81,
+Cambridge University Press, 2001.
+
+\bibitem{Ism} M. E. H. Ismail, \textit{Classical and
+quantum orthogonal polynomials in one variable},
+Encyclopedia of Mathematics and its Applications No.~98,
+Cambridge University Press, 2005.
+
+\bibitem{IR} M. E. H. Ismail and M. Rahman,
+{An inverse to the Askey-Wilson operator},
+\textit{Rocky Mountain J. Math.} \textbf{32} (2002), 657--678.
+
+\bibitem{IRZ} M. E. H. Ismail, M. Rahman, and R. Zhang,
+{Diagonalization of certain integral operators~II},
+\textit{J. Comp. Appl. Math.} \textbf{68} (1996), 163--196.
+
+\bibitem{ISem} M. E. H. Ismail and P. C. Simeonov,
+The spectrum of an integral operator in weigthed $L_2$ spaces,
+\textit{Pacific J. Math.} \textbf{198} (2001), 443--476.
+
+\bibitem{IZ} M. E. H. Ismail and R. Zhang, {Diagonalization of certain
+integral operators}, \textit{Adv. Math.} \textbf{109} (1994), no.~1, 1--33.
+
+\bibitem{Jeu} M. F. E. de Jeu, The Dunkl transform, \textit{Invent. Math.}
+\textbf{113} (1993), 147--162.
+
+\bibitem{Rosenblum} M. Rosenblum, {Generalized Hermite polynomials and the
+Bose-like oscillator calculus,} \textit{Oper. Theory Adv. Appl.} \textbf{73}
+(1994), 369--396.
+
+\bibitem{Rosler} M. R\"osler, {A positive radial product formula
+for the Dunkl kernel,} \textit{Trans. Amer. Math. Soc.} \textbf{355}
+(2003), 2413--2438.
+
+\bibitem{Wat} G. N. Watson, \textit{A Treatise on the Theory of
+Bessel Functions} (2nd edition), Cambridge Univ. Press,
+Cambridge, 1944.
+
+\end{thebibliography}
+
+
+%------------------------------
+\end{document}
+%------------------------------

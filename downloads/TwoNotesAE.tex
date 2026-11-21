@@ -1,0 +1,593 @@
+%&pdftex
+% J. J. GUADALUPE, M. PEREZ, F. J. RUIZ and J. L. VARONA
+% MANDADO a los Proc. de la A.M.S. en diciembre de 1989
+% ACEPTADO en marzo de 1991
+% Versi\'on definitiva tras corregir las erratas indicadas por el "referee"
+% PUBLICADO EN: Proc. Amer. Math. Soc. 116 (1992), 457-464.
+
+\font\rmdiez=cmr10 at 8pt
+\def\proof{\hbox{\it Proof.\enspace}}
+\font\msbm=msbm10
+\def\R{\hbox{\msbm R}}
+%\def\R{\hbox{\bf R}}
+\def\por{\thinspace}
+\magnification\magstep1
+
+\centerline{\bf TWO NOTES ON CONVERGENCE AND DIVERGENCE A.E. OF FOURIER}  
+\centerline{\bf SERIES WITH RESPECT TO SOME ORTHOGONAL SYSTEMS}
+\medskip
+\centerline {by}
+\medskip
+\centerline {J. J. GUADALUPE, M. P\'EREZ, F. J. RUIZ and J. L. VARONA}
+{\parindent=0pt\footnote{}{  AMS (1985) Subject Classification: {\bf 42C10}}
+\footnote{}{  Keywords and phrases: Fourier series, orthonormal
+polynomials, maximal operators, $A_p$-weights}\footnote{}{  Research supported
+by CAICYT PB85-0338 and DGICYT PB89-0181-C02-02}\footnote{}{  THIS PAPER HAS
+BEEN PUBLISHED IN: {\it Proc.\ Amer.\ Math.\ Soc.}\ {\bf 116} (1992), 457--464}}
+\bigskip
+\midinsert
+\narrower\narrower
+\noindent ABSTRACT: {\sl We study some problems related to convergence and
+divergence a.e. for Fourier series in systems $\{\phi_k\}$, where $\{\phi_k\}$
+is either a system of orthonormal polynomials with respect to a measure $d\mu$
+on $[-1,1]$ or a Bessel system on $[0,1]$. We obtain boundedness in weighted
+$L^p$ spaces for the maximal operators associated to Fourier-Jacobi and
+Fourier-Bessel series. On the other hand, we find general results about
+divergence a.e. of the Fourier  series associated to Bessel systems and systems
+of orthonormal polynomials on $[-1,1]$.}
+\endinsert
+\medskip
+\noindent {\bf \S 0. Introduction.}
+\medskip
+\noindent Let $d\mu$ be a positive measure on a finite interval $[a,b]\subset \R$
+and
+$$
+S_nf(x) = \sum_{k=1}^nc_k\phi_k(x) \ ,\qquad \qquad
+c_k=\int_a^bf(t)\phi_k(t)\por d\mu(t)
+$$
+the $n$-th partial sum of the Fourier series of $f$ with respect to a real,
+complete and orthonormal system $\{\phi_k\}$ on $L^2(d\mu)$.
+
+In what follows $\{\phi_k\}$ will be either the system of orthonormal
+polynomials given by the normalization of the sequence $\{1,x,x^2,\dots\}$ in
+$L^2([-1,1];d\mu)$, or the Bessel system in $L^2([0,1];d\mu)$, where
+$d\mu=x\por dx$.
+
+We shall denote by $S^*f(x)=\displaystyle\sup_n|S_nf(x)|$ the maximal operator
+associated to the Fourier series of $f$.We are interested in the two following
+questions:
+
+
+\item{(a)}Given $p\in [1,2)$\por, does $S_nf(x)$ converge to $f(x)\por \mu
+\por a.e.$ for any $f$ in $L^p(d\mu)$ ?
+
+\item{(b)}Is $S^*$ of strong or weak type (p,p) ?
+
+Very well known standard arguments show that an affirmative answer to question
+(b) leads to an affirmative answer to question (a). Several authors have
+studied the former questions in the case of orthonormal polynomials on $[-1,1]$
+or Bessel systems on $[0,1]$. Titchmarsh {\bf[16]} and Benedek-Panzone {\bf[3]}
+analyze question (a) in the case of Fourier-Bessel series, determinating the
+range of $p's$ such that (a) is true, but their techniques (equiconvergence
+theorems) cannot be used to approach matter (b).
+
+For Jacobi polynomials, equiconvergence theorems again show that there
+exists a range of $p^,s$ such that (a) is true (see {\bf[15]}). Badkov studies 
+in {\bf[2]} the problem of the boundedness of the operator $S^*$ for generalized
+Jacobi polynomials. He obtains boundedness (even in some weighted $L^p$-spaces)
+for the same range of  $p's$ in which (a) is true.
+
+With respect to negative answers to question (a), Pollard {\bf[14]} shows that
+for each $p<4/3$ there exists a function $f\in L^p(dx)$  such that its
+Legendre-Fourier series diverges a.e.. After that, Meaney {\bf[10]} extends the
+result to $p=4/3$ and to Jacobi polynomials (see also Badkov {\bf[2]}). In these
+results, the asymptotic behavior of the polynomials is used together with
+category arguments.
+
+Our purpose in this paper is two fold:
+
+First we obtain results about boundedness of the maximal operators in
+weighted $L^p$ spaces, which extend  Badkov's results in the case of Jacobi
+polynomials and  are new in the case of Bessel functions (even in the
+unweighted case). The procedure is simple and basicly consists of showing that
+a general result of Gilbert on transplantation remains true when one considers
+weights in the Muckenhoupt $A_p$-classes.
+
+Second we note that  a lower bound on the $L^p$-norm of the polynomials 
+is only needed  in order to obtain a result on divergence a.e.. In this
+case, a powerful result established by M\'at\'e, Nevai and Totik {\bf[9]}, which is
+valid for a very general class of polynomials on $[-1,1]$ allows us to prove a
+general divergence theorem which includes the Badkov and Meaney
+results. Moreover, we are able to prove an analogous to  M\'at\'e, Nevai and Totik's
+result in the context of Bessel functions which allows us to obtain divergence
+results in this case.
+
+We shall use the following notations: 
+
+Let $\alpha , \beta >-1$ . We shall denote by $P^{(\alpha , \beta )}_n$ the
+Jacobi polynomials on $[-1,1]$ with respect to the measure $d\mu^{(\alpha ,
+\beta )} = (1-x)^{\alpha} (1+x)^{\beta} dx$ (see {\bf[15]}).
+Let $J_{\alpha}$ be the Bessel function or order $\alpha >-1$, and  
+$j_n^{\alpha} (x) = \surd 2 |J_{\alpha+1}(\alpha_n)|^{-1}\por J_{\alpha}
+(\alpha_nx)$ (where ${\alpha_n}$ is the increasing sequence of the zeroes of
+$J_{\alpha}$)  the Bessel system of order $\alpha$, which is orthonormal
+and complete in $L^2 ([0,1];xdx)$.
+
+The corresponding maximal operators will be denoted by $S_{\alpha ,\beta }^*$
+and $S_{\alpha }^*$ , respectively.
+
+$A_p([a,b])$ (where $1 < p < \infty$) will stand for the  Muckenhoupt classes
+(see {\bf[11]}) consisting of those nonnegative functions $\omega$ on $[a,b]$
+such that
+$$
+   (|I|^{-1} \int_I \omega ) (|I|^{-1} \int_I \omega^{-p'/p})^{p/p'}
+   \leq C \qquad {\rm  for\  every\  interval \quad} I\subseteq [a,b],
+$$
+where $p+p'=p\por p'$.
+\medskip
+\noindent {\bf \S 1. Extension to $A_p$ classes of a Gilbert result.}
+\medskip
+\noindent Let $(u_n)_{n\geq 0}$ a sequence of functions on $[0,\pi]$ verifying:
+
+\item{(1.1)} There exists a constant $A$ such that $\displaystyle\sup_{0<x<\pi}
+|u_n(x)| \leq A \por , \por \forall n$.
+
+\item{(1.2)} There exist functions $X_1,X_2,X_3,X_4$ in $L^{\infty} ((0,\pi /2))$
+such that
+$$
+   u_n(x) = X_1(x)\cos nx + X_2(x)\sin nx +
+   (nx)^{-1}(X_3(x)\cos nx+X_4(x)\sin nx) + O((nx)^{-2})
+$$
+uniformly for $x \in (1/n,\pi /2)$.
+
+\item{(1.3)} There exist functions $X'_1,X'_2,X'_3,X'_4$ in $L^{\infty}
+((0,\pi/2))$ such that
+$$
+   \eqalign{
+   \Delta u_n(x) &= x(X'_1(x)\cos nx+X'_2(x)\sin nx) \cr
+   &+ n^{-1}(X'_3(x)\cos nx + X'_4(x)\sin nx) + O(n^{-2}x^{-1})}
+$$
+uniformly for $x \in (1/n,\pi /2)$, where $\Delta u_n=u_n-u_{n+1}$.
+
+\item{(1.4)} There exists a function $X$ in $L^{\infty} ((0,\pi /2))$ such that
+$$
+   \Delta u_n(x) =n^{-1}X(x)u_n(x) + (n^{-2}+x)O(1)
+$$
+uniformly for $x \in (0,1/n)$.
+
+\item{(1.5)} There exists a sequence $(U_n)$ satisfying (1.1)-(1.4) and such that
+$$
+   u_n(\pi -x)=(-1)^nU_n(x)+O(n^{-2})
+$$
+uniformly for $x \in (0,\pi /2)$.
+
+Let $(r_{n,k})$ be a double sequence such that:
+
+\item{(1.6)} $\sum_{n=0}^\infty |r_{n,k}| < \infty \por , \por \forall k$.
+
+\item{(1.7)} There exists a constant $B$ such that $|r_{n,k}|\leq B\  \forall
+n,k$.
+
+\item{(1.8)} There exists a constant $B$ such that $ \sum_{n=0}^\infty
+|\Delta (r_{n,k})| <B \ , \  \forall k$ , where $\Delta
+(r_{n,k})=r_{n+1,k}-r_{n,k}$.
+
+If $(u_n),(v_n)$ satisfy (1.1)-(1.5) and $(r_{n,k})$ verifies (1.6)-(1.8) then
+we define the kernels:
+$$
+   K_k(x,t) = \sum_{n=0}^\infty r_{n,k}\por e^{inx}\por e^{-int} \quad,
+   \quad L_k(x,t) = \sum_{n=0}^\infty r_{n,k}u_n(x)v_n(t).
+$$
+
+In this situation the Gilbert result is (see {\bf [5]}):
+
+\proclaim {Theorem}. Let $1<p<\infty$ . If the operator $f\longrightarrow
+\displaystyle\sup_k |\int_{-\pi} ^\pi f(t)K_k(x,t)dt|$ is of weak type $(p,p)$
+or strong type $(p,p)$ in $L^p((-\pi ,\pi))$, then the same is true for the
+operator $\phi \longrightarrow \displaystyle\sup_k |\int_{-\pi} ^\pi
+\phi(t)L_k(x,t)dt|$ in $L^p((0,\pi))$.
+
+Examples of $(u_n)$ satisfying (1.1)-(1.5) are (see {\bf [5]}):
+$$
+   u_n^{\alpha ,\beta }(\theta) =
+   A_n^{\alpha ,\beta }P_n^{\alpha ,\beta }
+   (\cos \theta )(1-\cos \theta )^{\alpha /2 +1/4}
+   (1+\cos \theta )^{\beta /2 +1/4}\ ,
+   \qquad \alpha, \beta \geq -1/2
+$$
+(where $A_n^{\alpha ,\beta }$ is a normalization constant), or
+$$
+   u_n^\alpha (\theta )=\pi^{-1}\theta^{1/2}j_n^\alpha (\pi^{-1}\theta )\ ,
+   \qquad \alpha  \geq -1/2.
+$$
+
+If we call $T_{\alpha ,\beta }^*$ and $T_{\alpha }^*$ to the corresponding
+maximal operators, then we have the  relations: 
+$$
+   S_{\alpha ,\beta}^*f(\cos \theta ) = T_{\alpha ,\beta }^*g(\theta )
+  (1-\cos \theta )^{-\alpha /2 -1/4}(1+\cos \theta )^{-\beta /2 -1/4}
+  \leqno (1.9)
+$$
+where $g(\theta)=f(\cos \theta )(1-\cos \theta )^{\alpha /2
++1/4}(1+\cos \theta )^{\beta /2 +1/4}$, and
+$$
+   S_{\alpha }^*f(\pi^{-1}\theta ) =T_{\alpha }^*g(\theta )\theta^{-1/2}
+   \leqno (1.10)
+$$
+where $g(\theta)=f(\pi^{-1}\theta )\por \theta^{-1/2}$.
+
+It is clear from  Gilbert's theorem that it is possible to obtain boundedness
+for the maximal operators $T_{\alpha ,\beta }^*$ and $T_{\alpha }^*$ by
+comparing them with the usual Carleson-Hunt maximal operator (see {\bf [4]},
+{\bf [6]})  associated to the trigonometric system. However, formulae (1.9) and
+(1.10) indicate that we shall need a "weighted" Gilbert theorem if we want to
+obtain some boundedness for the maximal operators $S_{\alpha ,\beta }^*$ and
+$S_{\alpha }^*$.
+
+\proclaim {Theorem 1}. Let $1<p<\infty$ . Let $\omega \in A_p((-\pi , \pi ))$ an even weight. Let
+$(u_n)\ ,\por (v_n)$ and $(r_{n,k})$ be sequences under the hypothesis of 
+Gilbert's theorem. If the operator $f\longrightarrow
+A^*f=\displaystyle\sup_k |\int_{-\pi} ^\pi f(t)K_k(x,t)dt|$ is of weak  or   
+strong type $(p,p)$ in $L^p((-\pi ,\pi),\omega )$, then the same is true for the
+operator $\phi \longrightarrow B^*f=\displaystyle\sup_k |\int_{-\pi} ^\pi
+\phi(t)L_k(x,t)dt|$ in $L^p((0,\pi),\omega )$.
+
+\proof The Gilbert proof is based on the control of the operator $B^*$
+by operators close to the operator $A^*$ (since $(u_n)\ ,\por (v_n)$
+may be expressed in terms of sines and cosines) together with another
+one which can be essentially controlled by the Hardy-Littlewood maximal
+function. Now, the proof consists of observing that all the operators
+taking part in the proof are bounded with $A_p$ weights because of the
+hypothesis and Muckenhoupt's result related to the boundedness of
+the  Hardy-Littlewood maximal function with  $A_p$ weights (see {\bf [11]}).
+Details can be found in ({\bf [13]}, Chapter {\bf IV}).
+
+When $r_{n,k}=1$ if $n\leq k$ and $0$ otherwise, and
+$(u_n)=(v_n)$ is the sequence $u_n^{\alpha ,\beta }$ (or $u_n^\alpha$), then 
+$A^*$ is the operator 
+$$
+   f\longrightarrow S^*(f^\flat )(x) =
+   \displaystyle\sup_k |\sum_{n=0} ^k \hat f(n)e^{inx}|,
+$$
+where $S^*$ is the Carleson maximal operator and
+$f^\flat=\hat f(0)+{1\over2}(f+\tilde f)$ , $\tilde f$ being  the conjugate
+function of $f$.
+
+Both operators $S^*$ and $f^\flat$  are bounded in $L^p((-\pi ,\pi),\omega )$
+when $\omega$ is an $A_p$ weight, due to  Hunt, Muckenhoupt and Wheeden's
+theorem (see {\bf [7]}) and   Hunt and Young's theorem (see {\bf [8]}). On the
+other hand, the corresponding operator $B^*$ is the maximal operator
+$T_{\alpha ,\beta }^*$ (or $T_{\alpha }^*$ ).
+
+Some applications of Theorem 1 are:
+
+\proclaim {Theorem 2}. 
+\item{{\bf (i)}} Let $\alpha,\beta\geq -1/2$  and $1<p<\infty$. Let
+$u$ be a weight on $[-1,1]$. If
+$$
+   \omega (t) = u(\cos t) (1-\cos t)^{(2-p)(2\alpha +1)/4}
+   (1+\cos t)^{(2-p)(2\beta +1)/4} \in A_p((0,\pi))
+$$
+then $S_{\alpha ,\beta }^*$ is bounded in $L^p(u\por d\mu^{(\alpha ,
+\beta )})$.
+\item{{\bf (ii)}} Let $\alpha \geq -1/2$  and $1<p<\infty$. Let $u$ be a weight
+on $[0,1]$.  If $u(x)\por x^{1-p/2} \in A_p((0,1))$  then $S_{\alpha }^*$ is
+bounded in $L^p(u(x)\por xdx)$.
+
+
+\proof {\bf (i)} By (1.9), $S_{\alpha ,\beta }^*$ is bounded on  $L^p(u\por
+d\mu^{(\alpha , \beta )})$ if and only if $T_{\alpha ,\beta }^*$ is bounded on 
+$L^p(\omega)$ and this follows from the abovementioned remarks. 
+
+{\bf (ii)} It is analogous using (1.10) instead of (1.9).
+
+A particular case of part (i) in Theorem 2 is
+
+\proclaim Corollary 1 (Badkov {\bf [2]}). Let $\alpha, \beta \geq -1/2$, $1 < p
+< \infty$, $u(x)=(1-x)^{ap}(1+x)^{bp}$ . If the conditions:
+$$
+   \eqalign{
+   & a + (\alpha+1)(1/p-1/2) < 1/4, \quad b + (\beta+1)(1/p-1/2) < 1/4 \cr
+   & a + (\alpha+1)(1/p-1/2) > -1/4 ,\quad b + (\beta+1)(1/p-1/2) > -1/4
+   }
+$$
+are fullfilled, then 
+$S_{\alpha ,\beta }^*$ is bounded on $L^p(u\por d\mu^{(\alpha , \beta )})$.
+
+\proof We need only to check that 
+$$
+   (1-\cos t)^{ap+\{(2-p)(2\alpha +1)\}/4}
+   (1+\cos t)^{bp+\{(2-p)(2\beta +1)\}/4} \in A_p((0,\pi))
+$$
+but this is equivalent to
+$$
+   t^{2ap+\{(2-p)(2\alpha +1)\}/2}
+   (\pi - t)^{2bp+\{(2-p)(2\beta +1)\}/2} \in A_p((0,\pi))
+$$
+and a simple exercise of integration shows that this is true taking into account
+the hypothesis.
+
+\noindent {\bf Note.}  Considering different systems $(u_n),(v_n)$, theorem 1
+also allows us to obtain transplantation's results of the following type:
+
+{\sl ``Let $d\mu,d\nu$ be two different measures of Jacobi type and
+let $P_n,Q_n$ the corresponding orthonormal Jacobi polynomials. Then, for a
+certain range of $p's$, for each $f\in L^p(d\nu)$, there exists a $g\in
+L^p(d\mu)$ such that 
+$$
+\int_{-1}^1 g(x)P_n(x)d\mu(x)=\int_{-1}^1 f(x)Q_n(x)d\nu(x)\qquad \forall
+n\geq 0
+$$
+and \quad$||g||_{L^p(d\mu)} \leq C\por ||f||_{L^p(d\nu)}$\ \  where the constant
+$C$ is independent of $f$".}
+
+Theorems of this type have been studied by Askey {\bf [1]} and Muckenhoupt {\bf
+[12]}, not for the polynomials on $[-1,1]$ but for the corresponding
+orthonormal functions in $(0,\pi)$.
+
+\medskip
+\noindent {\bf \S 2.  Divergence almost everywhere.}
+\medskip
+\noindent 
+First, we are going to study the case of orthonormal polynomials in $[-1,1]$.
+
+Assume $d\mu$ is a positive Borel measure on $[-1,1]$ such that $\mu'> 0$ a.e., 
+and let $\{P_n(x)\}_{n=0}^\infty$ denote the corresponding orthonormal
+polynomials.
+
+The following result is due to M\'at\'e, Nevai and Totik {\bf [9]}:
+
+\proclaim {Lemma 1}. Suppose $1\leq r < \infty$. If $g$ is a Lebesgue measurable
+function in $[-1,1]$, then
+$$
+   (\int_{-1}^1 |g(x)(1-x^2)^{-1/4}\mu'(x)^{-1/2}|^r dx)^{1/r} \leq
+   M\por \liminf_{n\to \infty} (\int_{-1}^1 |g(x)P_n(x)|^r dx)^{1/r}
+$$
+where $M= \pi^{1/2}2^{max\{1/r-1/2,0\}}$.
+
+By using this lemma we obtain:
+
+\proclaim {Theorem 3}. Let $\omega$ be a Lebesgue
+measurable positive function in $[-1,1]$  and $1<p\leq q < \infty$,
+$(1/p+1/q=1)$. If 
+$$
+   \omega(x)^{-1} \not\in L^q(d\mu) \qquad or \qquad
+   \mu'(x)^{1-q/2}(1-x^2)^{-q/4} \omega(x){-q} \not\in L^1(dx), \leqno (2.1)
+$$
+then there exists $f\in L^p(\omega^pd\mu)$ such that $S_nf$ either does not
+exist or diverges almost everywhere in $[-1,1]$.
+
+\proof Suppose that $c_0(f) = \int_{-1}^1 f(x) P_0(x) d\mu(x)$ exists for each
+$f \in L^p(\omega^pd\mu)$. By duality, this implies $P_0 \in
+L^q(\omega^{-q}d\mu)$, i.e., $\omega^{-1} \in  L^q(d\mu)$. If  $\omega^{-1} \in 
+L^q(d\mu)$ , then $S_nf$ exists for every $n=0,1,2,...$ and every $f\in
+L^p(\omega^pd\mu)$ , and so the operators
+$$
+   c_n:f\in L^p(\omega^pd\mu) \longrightarrow
+   c_n(f)=\int_{-1}^1f(x)P_n(x)d\mu(x)
+$$
+are continuous by using Holder's inequality.
+Moreover, $\Vert c_n \Vert = \Vert P_n\omega^{-1}\Vert_{L^q(d\mu)}$ and so, by
+(2.1) and lemma 1, it is clear that
+$\displaystyle \sup_n \Vert P_n\omega^{-1} \Vert_{L^q(d\mu)} = \infty$. Then,
+the  Banach-Steinhaus theorem shows that there exists $f \in L^p(\omega^pd\mu)$
+such that $\displaystyle \sup_n |c_n(f)| = \infty$.
+
+On the other hand, if $S_nf(x)=\sum_{k=0}^n c_k(f) P_k(x)$ converges in a
+set $E$ of Lebesgue measure $|E|>0$ and $\displaystyle \sup_n |c_n(f)| =
+\infty$, then there exists a subsequence $P_{n_k}$ with
+$$
+   \lim_k P_{n_k}(x) = 0 \qquad {\rm a.e.\ in\ } E.
+$$
+If we take $\delta>0$ and $\delta<|E|$, by using Egoroff's theorem, there exists
+$D\subset E$ such that $|D|=\delta$ and $\displaystyle \lim_k P_{n_k}(x) = 0$
+uniformly in $D$. Therefore
+$$
+   \lim_k \int_D |P_{n_k}| d\mu = 0.
+$$
+But, by lemma 1 with $r=1$ and $g(x) = \mu'(x) \chi_D(x)$, we have
+$$
+   \lim_k \int_D |P_{n_k}| d\mu \geq
+   M^{-1} \int_D (1-x^2)^{-1/4} \mu'(x)^{1/2} dx > 0,
+$$
+which is a contradiction.
+
+Next, we show a similar result for Bessel systems. First of all, we need to
+establish an analogous result to lemma 1. For that, we shall use the following
+estimates for Bessel functions
+$$
+   J_\alpha(z) = z^\alpha2^{-\alpha}\Gamma(\alpha+1)^{-1} + O(z^{\alpha+2}),
+   \quad z \longrightarrow 0 \leqno (2.2)
+$$
+$$
+   J_\alpha(z) = \sqrt 2 (\pi z)^{-1/2}
+   \cos (z-{\alpha \pi \over 2}-{ \pi \over 4}) + O(z^{-3/2})
+   \quad z \longrightarrow \infty \leqno (2.3)
+$$
+$$
+   \int_0^1 J_\alpha(\alpha_nx)^2 x\por dx \approx {1 \over \pi\alpha_n},
+   \quad n \longrightarrow \infty \leqno (2.4)
+$$
+and the Fejer lemma: if $f,g$ are nonnegative functions, $g$
+is continuous with period $2\pi$ and $f\in L^1((0,2\pi))$, then
+$$
+   \lim_{\lambda \to \infty} {1 \over 2 \pi}
+   \int_0^{2\pi} f(t) g(\lambda t) dt = \hat g (0) \por \hat f (0) \leqno (2.5)
+$$
+where $\hat h (x)$ denotes the Fourier transform of $h$.
+
+\proclaim {Lemma 2}. Let $\alpha>-1$. Let $h(x)$ be a Lebesgue measurable
+nonnegative function on $[-1,1]$ and $1<p<\infty$. Then
+$$
+   \lim_{n \to \infty} \int_0^1 |j_n^{\alpha}(x)|^p h(x) dx \geq
+   M \por \int_0^1 h(x) \por x^{-p/2} \por dx \leqno  (2.6)
+$$
+where
+$$
+   M = {2^{p/2} \over 2\pi} \int_0^{2\pi} |\cos t|^p \por dt.
+$$
+
+\proof If there exists no $\delta \in (0,1)$ such that $h(x)x^{\alpha p} \not
+\in L^1 (0,\delta)$ then (2.6) is trivial since (2.2) implies that all the
+integrals on the left in (2.6) are equal to $\infty$. Then, we may suppose that 
+$h(x) x^{\alpha p} \in L^1 (0,\delta)$ for some $\delta \in (0,1)$. By (2.4) it
+is enough to prove
+$$
+   \lim_{n \to \infty}
+   \int_0^1 |(\pi\alpha_n)^{1/2}J_\alpha(\alpha_nx)|^p h(x) dx =
+   M \por \int_0^1 h(x) \por x^{-p/2} \por dx. \leqno  (2.7)
+$$
+Suppose that $h(x)x^{-p/2}\in L^1((0,1))$. If we prove 
+$$
+   \lim_{n \to \infty} \int_0^1
+   | (\alpha_n x)^{1/2} J_\alpha (\alpha_n x) -
+   (2/\pi)^{1/2} \cos (\alpha_n x - {\alpha \pi \over 2}-{\pi \over 4}) |^p
+   h(x) x^{-p/2} dx = 0 \leqno (2.8)
+$$
+then (2.7) is reduced to show that
+$$
+   \lim_{n \to \infty} \int_0^1
+   | (2/x)^{1/2} \cos (\alpha_n x - {\alpha \pi \over 2} - { \pi \over 4}) |^p
+   h(x) dx =
+   M  \por \int_0^1 h(x) \por x^{-p/2} \por dx. \leqno (2.9)
+$$
+Now, (2.9) holds by using (2.5) with 
+$$
+   t = 2 \pi x,
+   \ g(t) = |2^{1/2} \cos (t - {\alpha\pi \over 2} - { \pi\over 4})|^p,
+   \ f(t) = h({t \over 2 \pi}) \Big({t \over 2 \pi} \Big)^{-p/2},
+   \ \lambda = {\alpha_n \over 2 \pi}.
+$$
+Thus, let us prove (2.8) under conditions 
+$$
+   h(x) x^{\alpha p}\in L^1((0,\delta)) \quad {\rm and} \quad
+   h(x)x^{- p/2} \in L^1((0,1). \leqno (2.10)
+$$
+Take $n$ large enough so that $\alpha_n>1$. In view of (2.4), if $\alpha_n x\geq
+1$ then
+$$
+   | (\alpha_n x)^{1/2} J_\alpha (\alpha_n x) -
+   (2/\pi)^{1/2} \cos (\alpha_n x - {\alpha \pi \over 2} - {\pi \over 4}) |
+   \leq C \por (\alpha_n x)^{1/2} (\alpha_n x)^{-3/2} < C_1
+$$
+and, according to (2.2), if $\alpha_n x\leq 1$ it follows
+$$
+   | (\alpha_n x)^{1/2} J_\alpha (\alpha_n x) -
+   (2/\pi)^{1/2} \cos (\alpha_n x - {\alpha \pi \over 2} - {\pi \over 4}) |
+   \leq C \por ((\alpha_n x)^{\alpha + 1/2} + 1)
+   \leq  C_1 \por (x^{\alpha + 1/2} + 1)
+$$
+(in the last inequality we use $\alpha_nx \leq 1$, if  $\alpha+1/2\geq 0$,
+and $\alpha_nx \geq x$, if $\alpha+1/2\leq 0$,  ).
+
+Now, by (2.10), we can apply the dominate convergence theorem
+and we obtain (2.8). 
+
+Finally, in case that $h(x) x^{-p/2} \not \in L^1((0,1))$, let
+$\{K_j\}_{j=1}^\infty$ be the sequence of increasing measurable sets
+$K_j=\{x\in (0,1) : h(x) x^{-p/2} \leq j\}$, and denote by $h_j$ the function
+$h_j=h$ on  $K_j$ and $0$ elsewhere. By applying (2.7) for each  $h_j$ and then 
+the monotone convergence theorem, (2.7)  also holds in this case, and the proof
+of the lemma is finished.
+
+From lemma 2 and proceeding exactly as in the proof of theorem 3, we obtain:
+
+\proclaim {Theorem 4}. Let $\alpha>-1$ be and suppose $1<p\leq q < \infty$, 
+$(1/p+1/q=1)$. Let $\omega$ be a Lebesgue measurable nonnegative function on
+$[0,1]$. If
+$$
+   \omega(x)^{-q}x^{\alpha q+1} \not\in L^1(dx) \quad or \quad 
+   \omega(x)^{-q}x^{1 - q/2} \not\in L^1(dx)
+$$
+then there exists $f \in L^p(\omega(x)^p x dx)$ whose Fourier series with
+respect to the system $\{j_n^\alpha(x)\}$ either does not exist or diverges
+almost everywhere on $[0,1]$.
+
+\noindent {\bf Notes.}
+
+\item {{\bf (i)}} If $\alpha \geq -1/2$, the proof of lemma 2 shows that the
+sign ``$\geq$'' can be replaced by ``$=$''.
+
+\item {{\bf (ii)}} Theorems 3 and 4 contain as particular cases  the known cases
+of generalized Jacobi polynomials ({\bf [2]}, {\bf [10]}, {\bf [14]}) or Bessel
+systems ({\bf [3]}).
+
+\item {{\bf (iii)}} An analogous result to Theorem 4 can be obtained for Dini
+systems in $[0,1]$.
+
+\medskip
+
+{\bf  References.} \frenchspacing
+
+\medskip
+
+\item {{\bf [1]}} R. Askey, {\sl A transplantation theorem for Jacobi series}, 
+Illinois J. Math. {\bf 13 } (1969), 583-590.
+
+\item {{\bf [2]}} V. M. Badkov, {\sl Convergence in the mean and almost
+everywhere of Fourier series in polynomials orthogonal on an interval},  Math.
+USSR Sb. {\bf 24} (1974), 223-256.
+
+\item {{\bf [3]}} A. I. Benedek and R. Panzone, {\sl Pointwise convergence of
+series of Bessel functions}, Rev. Un. Mat. Arg. {\bf 26} (1972), 167-186.
+
+\item {{\bf [4]}} L. Carleson, {\sl On convergence and growth of partial sums of
+Fourier series}, Acta Math. {\bf 116} (1966), 135-157.
+
+\item {{\bf [5]}} J. E. Gilbert, {\sl Maximal theorems for some orthogonal
+series. I}, Trans. Amer. Math. Soc. {\bf 145} (1969), 495-515.
+
+\item {{\bf [6]}} R. Hunt, {\sl On the convergence of Fourier series}, Proc.
+Conf. Orthogonal Expansions and Continuous Analogues, 235-255. Southern Illinois
+Univ. Press, Carbondale, Ill., 1968.
+
+\item {{\bf [7]}} R. Hunt, B. Muckenhoupt and R. Wheeden, {\sl Weighted norm
+inequalities for the conjugate function and Hilbert transform}, Trans. Amer.
+Math. Soc. {\bf 176} (1973), 227-251.
+
+\item {{\bf [8]}} R. Hunt and W. S. Young, {\sl A weighted norm inequality for
+Fourier series}, Bull. Amer. Math. Soc. {\bf 80} (1974), 274-277.
+
+\item {{\bf [9]}} A. M\'at\'e, P. Nevai and V. Totik, {\sl Necessary conditions
+for weighted mean convergence of Fourier series in orthogonal polynomials}, J.
+Approx. Theory {\bf 46} (1986), 314-322.
+
+\item {{\bf [10]}} C. Meaney, {\sl Divergent Jacobi polynomial series}, Proc.
+Amer. Math. Soc. {\bf 87} (1983), 459-462.
+
+\item {{\bf [11]}} B. Muckenhoupt, {\sl Weighted norm inequalities for the Hardy
+maximal function}, Trans. Amer. Math. Soc. {\bf 165} (1972), 207-226.
+
+\item {{\bf [12]}} B. Muckenhoupt, {\sl ``Transplantation theorems and
+multiplier theorems for Jacobi series"}, Memoirs of the Amer. Math. Soc., vol.
+64, n¼ 356, Providence, R. I., 1986.
+
+\item {{\bf [13]}} M. P\'erez, {\sl Series de Fourier respecto de sistemas
+ortogonales: estudio de la convergencia en espacios de Lebesgue y de
+Lorentz}, Doctoral Dissertation. Sem. Mat. Garc\'\i a de Galdeano,
+Zaragoza, 1989.
+
+\item {{\bf [14]}} H. Pollard, {\sl The convergence almost everywhere of Legendre
+series}, Proc. Amer. Math. Soc. {\bf 35} (1972), 442-444.
+
+\item {{\bf [15]}} G. Szeg\H o, {\sl \lq\lq Orthogonal polynomials"}, 3rd. ed.,
+Amer. Math. Soc., Providence, R. I., 1967.
+
+\item {{\bf [16]}} E. C. Titchmarsh, {\sl\lq\lq Eigenfunction expansions
+associated with second-order differential equations"}, Vol. 1, 2nd. ed., Oxford
+Univ. Press, Oxford, 1962.
+
+\bigskip
+
+\noindent {\rmdiez Jos\'e J. Guadalupe, Mario P\'erez and Francisco
+J. Ruiz. Departamento de Matem\'aticas. Facultad de Ciencias. Universidad de
+Zaragoza, 50009 Zaragoza, SPAIN.}
+
+\noindent {\rmdiez Juan L. Varona. Departamento de Matem\'atica
+Aplicada. Colegio Universitario de La Rioja, 26001 Logro\~no, SPAIN.}
+
+
+
+
+
+ \bye

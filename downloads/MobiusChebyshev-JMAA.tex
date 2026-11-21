@@ -1,0 +1,511 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% A transform involving Chebyshev polynomials and its inversion formula,
+% by
+% \'Oscar Ciaurri, Luis Navas and Juan L. Varona
+% 
+% COMIENZO ESCRITURA: 11-octubre-2004
+% ULTIMA MODIFICACION: 5-septiembre-2005
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,a4paper]{amsart}
+
+%\setlength{\textheight}{43pc} 
+%\setlength{\textwidth}{28pc}
+
+%\renewcommand{\baselinestretch}{1.8} %% 2.0 is double spacing
+%\renewcommand{\baselinestretch}{1.74} %% 2.0 is double spacing
+
+%\usepackage[notcite,notref]{showkeys}
+
+% \newcommand{\datename}{\textit{Date}:} %% <- Original
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+\date{\textit{J.\@ Math.\@ Anal.\@ Appl.\@} \textbf{323} (2006), 57--62.}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark} % without number
+
+\renewcommand{\Re}{\operatorname{Re}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\numdiv}{d} % number of divisors. % Alternative: \tau
+% But \tau is the Ramanujan function.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title[A transform involving Chebyshev polynomials]{A transform involving
+Chebyshev polynomials and its inversion formula}
+
+% \author{\'Oscar Ciaurri, Luis Navas and Juan L. Varona}
+% \email{oscar.ciaurri@dmc.unirioja.es, navas@usal.es,
+% jvarona@dmc.unirioja.es}
+
+\author{\'Oscar Ciaurri}
+\address{
+        Departamento de Matem\'aticas y Computaci\'on \\
+        Universidad de La Rioja                       \\
+        Calle Luis de Ulloa s/n                       \\
+        26004 Logro\~no, Spain}
+\email{oscar.ciaurri@dmc.unirioja.es}
+
+\author{Luis M. Navas}
+\address{
+        Departamento de Matem\'aticas                \\
+        Universidad de Salamanca                     \\
+        Plaza de la Merced 1-4                       \\
+        37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author{Juan L. Varona}
+\address{
+        Departamento de Matem\'aticas y Computaci\'on \\
+        Universidad de La Rioja                       \\
+        Calle Luis de Ulloa s/n                       \\
+        26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+
+\thanks{Research of the first and third authors supported by grant
+BFM2003-06335-C03-03 of the~DGI}
+
+\keywords{Chebyshev polynomials, M\"obius function, M\"obius transform,
+Dirichlet convolution, inversion formula}
+
+\subjclass[2000]{Primary 11A25; Secondary 33C45}
+
+%\date{February 8, 2005}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+We define a functional analytic transform involving the Chebyshev polynomials
+$T_{n}(x),$ with an inversion formula in which the M\"obius function $\mu(n)$
+appears. If $s \in \mathbb{C}$ with $\operatorname{Re}(s) > 1,$ then given a
+bounded function from $[-1,1]$ into $\mathbb{C}$, or from $\mathbb{C}$ into
+itself, the following inversion formula holds:
+$$
+  g(x) = \sum_{n=1}^\infty \frac{1}{n^s}\, f(T_n(x))
+$$
+if and only if
+$$
+  f(x) = \sum_{n=1}^\infty \frac{\mu(n)}{n^s}\, g(T_n(x)).
+$$
+Some other similar results are given.
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%
+\maketitle
+%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction and main results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If we have an arithmetical function $\alpha: \N \to \R$ (or $\C$) and a function
+$f: (0,\infty) \to \R$ (or $\C$), we can define a new function
+$g = \alpha  \circ f$ by taking
+\begin{equation}
+\label{eq:convocirc}
+  g(x) = (\alpha \circ f)(x) = \sum_{n=1}^\infty \alpha(n) f\left(\frac xn\right),
+  \qquad x \in (0,\infty).
+\end{equation}
+Moreover, let us suppose that $\alpha$ is invertible with respect to Dirichlet
+convolution (this happens if and only if $\alpha(1) \ne 0$).
+Then, it is well known that we have the inversion formula
+$f = \alpha^{-1} \circ g$.
+A typical case is when $\alpha$ is a completely multiplicative function;
+in this case, $\alpha^{-1}(n) = \mu(n)\alpha(n)$,
+where $\mu(n)$ is the M\"obius function.
+Thus, we have
+\begin{equation*}
+  f(x) = \sum_{n=1}^\infty \mu(n)\alpha(n) g\left(\frac xn\right),
+  \qquad x \in (0,\infty)
+\end{equation*}
+(see, for instance, \cite{Ha-Wr}).
+A common example of a completely multiplicative function is
+$\alpha(n) = n^{-s}$, $s \in \C,$ which gives rise to Dirichlet series.
+
+In this paper we present a new transform/inverse pair in which
+both the Chebyshev polynomials $\{T_n(x)\}_{n=1}^\infty$
+and the M\"obius function $\mu(n)$ appear.
+The Chebyshev polynomials satisfy many identities and orthogonal conditions,
+but for our purposes only the property
+\begin{equation}
+\label{eq:TnTm=Tnm}
+  T_m(T_n(x)) = T_{mn}(x)
+\end{equation}
+is essential.
+For $x \in [-1,1]$, this formula is clear from $T_k(x) = \cos(k\arccos x)$ and,
+for $x \in \C$, it follows by analytic continuation.
+% It is interesting to note that, if a family of polynomials satisfy an identity
+% similar to~\eqref{eq:TnTm=Tnm}, upon a linear change of variable
+% this family must be $\{z^n\}$ or the Chebyshev polynomials;
+% see~\cite[]{Ri} for details.
+It is interesting to note that, up to a linear change of variable,
+$\{x^n\}$ and the Chebyshev polynomials are the unique families of
+polynomials that satisfy an identity similar to~\eqref{eq:TnTm=Tnm}
+(see~\cite[Chapter~4, Th.~4.4]{Ri} for details);
+in particular, similar inversion formulas can be given for
+expansions in $\{x^n\}$ on $[0,1]$.
+%	There is a huge quantity of mathematical literature related to
+%	Chebyshev polynomials; however, it seems that the kind of transform
+%	and its inverse that we show have not been noticed before.
+
+Prior to continuing, let us establish our notation. For $x \in [-1,1]$,
+we have $T_n(x) = \cos(n\arccos x)$ so $T_n: [-1,1] \to [-1,1]$.
+But we can also consider $T_n$ both as $T_n: \R \to \R$ or $T_n: \C \to \C.$
+Moreover, $T_n(x) \in \Z[x]$, so we also have
+$T_n: \Z \to \Z$ and $T_n: \Q \to \Q$.
+Let us then use $\Delta$ to denote $[-1,1]$, $\R$, $\C$, $\Z$, or~$\Q$, accordingly.
+Thus, for functions $f$ of type $f: \Delta \to \R$ (or~$\C$),
+the composition $f(T_n(x))$ is well defined for every~$n$.
+(Some perhaps more ``esoteric'' choices can be taken into account for $\Delta$,
+such us $[1,\infty)$, $\N$, or the algebraic numbers.)
+
+The main result of this paper is the following:
+
+\begin{theorem}
+\label{th:f<->gChe}
+Let $s \in \C$ with $\Re(s)>1$
+and $\Delta = [-1,1]$, $\R$, $\C$, $\Z$, or~$\Q$.
+If $f$ is a bounded function defined on $\Delta$, then the series
+\begin{equation}
+\label{eq:f->gChe}
+  g(x) = \sum_{n=1}^\infty \frac{1}{n^s}\, f(T_n(x)), \qquad x \in \Delta,
+\end{equation}
+is absolutely convergent, the function $g$ is bounded, and we can recover $f$ as
+\begin{equation}
+\label{eq:g->fChe}
+  f(x) = \sum_{n=1}^\infty \frac{\mu(n)}{n^s}\, g(T_n(x)), \qquad x \in \Delta.
+\end{equation}
+Conversely, if we have a bounded function $g$ on $\Delta$, the function
+$f$ defined as in~\eqref{eq:g->fChe} is bounded and fulfills~\eqref{eq:f->gChe}.
+\end{theorem}
+
+%	\begin{remark}
+%	As operators on the Banach space $L^{\infty}(\Delta)$, in the situation of
+%	this theorem one has the estimates
+%	\begin{align*}
+%	  \|\mathcal{T}_sf\|_\infty      &\le \zeta(\Re(s)) \|f\|_\infty, \\
+%	  \|\mathcal{T}_s^{-1}g\|_\infty &\le \zeta(\Re(s)) \|g\|_\infty,
+%	\end{align*}
+%	where $\zeta$ is the Riemann zeta function.
+%	\end{remark}
+
+We also study some other conditions that yield similar results.
+In particular, in Section~\ref{sec:general} we give a more general approach to our inversion formula.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The transform and the inversion formula: proof of the main theorem}
+\label{sec:transform}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us begin by defining an operation $\odot$ similar to the~$\circ$
+in~\eqref{eq:convocirc}, but properly adapted to our circumstances.
+Given a function $f$ on $\Delta$ and an arithmetical function
+$\alpha: \N \to \R$ (or $\C$), we define the transform
+\begin{equation}
+\label{eq:convoodot}
+  g(x) = (\alpha \odot f)(x) = \sum_{n=1}^\infty \alpha(n) f(T_n(x)),
+\end{equation}
+provided that the series converges.
+
+Let us suppose that we have another arithmetical function $\beta: \N \to \R$ (or $\C$)
+that is inverse to $\alpha$ with respect to Dirichlet convolution,
+i.e., $\alpha * \beta = \delta$ with $\delta(1) = 1$ and $\delta(n)=0$ for $n>1$.
+% (usually, we denote $\beta = \alpha^{-1}$)
+Let us calculate $(\beta \odot g)(x)$, at least formally, from~\eqref{eq:convoodot}. If the formal manipulations that follow are analytically justified, we can reorder series, group the terms such than $nm=k$, use \eqref{eq:TnTm=Tnm}, $\alpha * \beta = \delta$, and $T_1(x) = x$, so
+\begin{equation}
+\label{eq:inv-formal}
+\begin{aligned}
+  (\beta \odot g)(x)
+  &= \sum_{n \in \N} \beta(n) (\alpha \odot f)(T_n(x)) \\
+  &= \sum_{n \in \N} \beta(n) \sum_{m \in \N} \alpha(m) f(T_m(T_n(x))) \\
+  &= \sum_{n,m \in \N} \beta(n) \alpha(m) f(T_{mn}(x)) \\
+  &= \sum_{k \in \N} \left(\sum_{nm = k} \beta(n) \alpha(m) \right)
+    f(T_k(x)) \\
+  &= \sum_{k \in \N} (\alpha*\beta)(k) f(T_k(x)) \\
+%  &= \sum_{k \in \N} \delta(k) f(T_k(x)) \\
+  &= f(x).
+\end{aligned}
+\end{equation}
+Thus, we have found the inversion formula.
+It remains to determine conditions under which the series that define $(\alpha \odot f)(x)$ and $(\beta \odot g)(x)$ converge and the manipulations in~\eqref{eq:inv-formal} can be justified.
+
+Some simple assumptions guaranteeing this are the following:
+
+\begin{proposition}
+\label{prop:bounded}
+Let $\alpha$ and $\beta$ be two arithmetical functions related by $\alpha*\beta = \delta$, and such that $\sum_{n=1}^\infty |\alpha(n)| < \infty$ and $\sum_{n=1}^\infty |\beta(n)| < \infty$; let $\Delta$ be $[-1,1]$, $\R$, $\C$, $\Z$, or~$\Q$.
+If $f$ is a bounded function defined on $\Delta$, then the series
+\begin{equation}
+\label{eq:f->ga}
+  g(x) = \sum_{n=1}^\infty \alpha(n) f(T_n(x)), \qquad x \in \Delta,
+\end{equation}
+is absolutely convergent, the function $g$ is bounded by
+\begin{equation}
+\label{eq:boundg}
+  \sup_{x \in \Delta} |g(x)|
+  \le \Big( \sum_{n=1}^\infty |\alpha(n)| \Big) \sup_{x \in \Delta} |f(x)|,
+\end{equation}
+and we can recover $f$ as
+\begin{equation}
+\label{eq:g->fb}
+  f(x) = \sum_{n=1}^\infty \beta(n) g(T_n(x)), \qquad x \in \Delta.
+\end{equation}
+Conversely, if we have a bounded function $g$ on $\Delta$, the function
+$f$ defined as in~\eqref{eq:g->fb} is bounded in a similar way and
+fulfills~\eqref{eq:f->ga}.
+\end{proposition}
+
+%	\begin{proof}
+%	It is clear that, under these conditions, the series
+%	$g(x) = (\alpha \odot f)(x)$ converges absolutely, and $g$ satisfies~\eqref{eq:boundg}.
+%	Then, also $(\beta \odot g)(x)$ converges absolutely. The same happens with the series 
+%	involved in~\eqref{eq:inv-formal}, so the rearrangement of the terms is justified.
+
+%	Of course, we can also start from $g$, define $f = \beta \odot g$ and recover
+%	$g = \alpha \odot g$ in a similar way.
+%	\end{proof}
+
+With this, we have,
+
+\begin{proof}[Proof of Theorem~\ref{th:f<->gChe}]
+In the proposition, take $\alpha(n) = \alpha_s(n) = n^{-s}$,
+which is a completely multiplicative function whose inverse is
+$\alpha^{-1}(n) = \mu(n) n^{-s}$.
+As $\Re(s)>1$, it follows that $\sum_{n=1}^\infty |a(n)|
+= \sum_{n=1}^\infty |n^{-s}| = \zeta(\Re(s))$, where
+$\zeta(s)$ denote the Riemann's zeta function.
+The inversion part is similar.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Another example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us consider the Liouville function $\lambda(n),$ defined by
+\begin{equation*}
+%\label{eq:lambda}
+  \lambda(n) =
+  \begin{cases}
+    1, & \mbox{if } n=1,\\
+    (-1)^{a_1+\cdots+a_k}, & \mbox{if } n = p_1^{a_1}\cdots p_k^{a_k}
+  \end{cases}
+\end{equation*}
+(where $p_1^{a_1}\cdots p_k^{a_k}$ denotes the decomposition of~$n$
+into prime factors). $\lambda(n)$ is a completely multiplicative whose
+inverse function is $\lambda^{-1}(n) = \mu(n)\lambda(n) = |\mu(n)|$.
+Then, in a similar way to Theorem~\ref{th:f<->gChe}, for $\Re(s)>1$ and bounded
+functions, we have
+\begin{equation*}
+%\label{eq:f->gChe-lambda}
+  g(x) = \sum_{n=1}^\infty \frac{\lambda(n)}{n^s} f(T_n(x)), \qquad x \in \Delta,
+\end{equation*}
+if and only if
+\begin{equation*}
+%\label{eq:g->fChe-lambda}
+  f(x) = \sum_{n=1}^\infty \frac{|\mu(n)|}{n^s} \, g(T_n(x)), \qquad x \in \Delta.
+\end{equation*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A more general approach}
+\label{sec:general}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The assumptions in Proposition~\ref{prop:bounded} are very demanding.
+Here we study other general conditions under which the transformation
+formula holds.
+
+For an arithmetical function~$\rho$, we say that $f \in L(\Delta,\rho)$ if
+\begin{equation*}
+  \sum_{n=1}^\infty |\rho(n) f(T_n(x))| < \infty
+  \quad \forall x \in \Delta
+\end{equation*}
+(recall that we are using $\Delta$ to denote $[-1,1]$, $\R$, $\C$, $\Z$ or~$\Q$).
+In particular, $f \in L(\Delta,\alpha)$ means that~\eqref{eq:convoodot}
+converges absolutely for every $x \in \Delta$.
+
+% \delta ya la he definido antes, pero por recordar...
+Once again we use the arithmetical function $\delta$ defined by
+$\delta(1) = 1$ and $\delta(n) = 0$ for all $n > 1$.
+The relation $\delta \odot f = f$ follows easily from $T_1(x) = x$.
+%indeed, for every $x \in \Delta$, we have
+%\begin{equation*}
+%  (\delta \odot f) (x) = \sum_{n=1}^\infty \delta(n) f(T_n(x))
+%  = 1 \cdot f(x) + 0 = f(x).
+%\end{equation*}
+
+Analogously to the mixed associative property between $\circ$
+and Dirichlet convolution~$*$, we have the following version between $\odot$ and~$*$.
+% (note that $\alpha * \beta$ is the ordinary
+% Dirichlet convolution, not a variant related with~$\odot$)
+The proof is straightforward, because the absolute convergence
+allows the rearrangement of the sums.
+
+\begin{proposition}
+\label{pro:mixed}
+Let $\alpha, \beta$ be two arithmetical functions, $f: \Delta \to \R$
+(or~$\C$), and suppose at a given $x \in \Delta$
+\begin{equation}
+\label{eq:conabs}
+  \sum_{n,m \in \N} |\alpha(n) \beta(m) f(T_{nm}(x))|
+  = \sum_{k \in \N} (|\alpha| * |\beta|)(k) |f(T_k(x))|
+  < \infty.
+\end{equation}
+Then, all the series involved in the definitions of 
+$(\alpha \odot (\beta \odot f))(x)$ and $((\alpha * \beta) \odot f)(x)$
+are absolutely convergent, and
+\begin{equation*}
+  (\alpha \odot (\beta \odot f))(x)
+  = ((\alpha * \beta) \odot f)(x).
+\end{equation*}
+In particular, if $f \in L(\Delta,|\alpha|*|\beta|)$, then
+$\alpha \odot (\beta \odot f) = (\alpha * \beta) \odot f$.
+\end{proposition}
+
+%	\begin{proof}
+%	By applying property~\eqref{eq:TnTm=Tnm}, and grouping together
+%	the $n,m\in\N$ such that $nm=k$, we have
+%	\begin{align*}
+%	  (\alpha \odot (\beta \odot f))(x)
+%	  &= \sum_{n \in \N} \alpha(n) (\beta \odot f)(T_n(x)) \\
+%	  &= \sum_{n \in \N} \alpha(n) \sum_{m \in \N} \beta(m) f(T_m(T_n(x))) \\
+%	  &= \sum_{n,m \in \N} \alpha(n) \beta(m) f(T_{nm}(x)) \\
+%	  &= \sum_{k \in \N} \left(\sum_{nm = k} \alpha(n) \beta(m) \right)
+%	    f(T_k(x)) \\
+%	  &= \sum_{k \in \N} (\alpha*\beta)(k) f(T_k(x))
+%	  = ((\alpha * \beta) \odot f)(x),
+%	\end{align*}
+%	where the previous series are absolutely convergent by~\eqref{eq:conabs},
+%	and thus the rearrangement of the sums is justified.
+%	\end{proof}
+
+In this general context, the inversion formula becomes
+
+\begin{proposition}
+\label{pro:f<->g-alpha}
+Let $\alpha$ be an arithmetical funcion with Dirichlet convolution
+inverse~$\alpha^{-1}$. Given a function $f: \Delta \to \R$ (or $\C$),
+with $f \in L(\Delta,|\alpha|*|\alpha^{-1}|)$, the transform
+$g(x) = (\alpha \odot f)(x)$
+is defined for all $x \in \Delta$. Moreover, if 
+$g \in L(\Delta,|\alpha|*|\alpha^{-1}|)$, then
+$f(x) = (\alpha^{-1} \odot g)(x)$
+for all $x \in \Delta$.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{pro:mixed},
+\begin{equation*}
+  \alpha^{-1} \odot g = \alpha^{-1} \odot (\alpha \odot f)
+  = (\alpha^{-1} * \alpha) \odot f = \delta \odot f = f.
+\end{equation*}
+For the second part, recall that
+$|\alpha|*|\alpha^{-1}| = |\alpha^{-1}|*|\alpha|$.
+\end{proof}
+
+% AN IMMEDIATE COMMENT:
+%	It is also possible to deduce $g = \alpha \odot f$ starting from
+%	$f = \alpha^{-1} \odot g$ simply by replacing $f$ with $g$ and
+%	$\alpha$ by $\alpha^{-1}$ in Proposition~\ref{pro:f<->g-alpha}.
+
+In general, it does not seem easy to check that the condition
+$f \in L(\Delta,|\alpha|*|\alpha^{-1}|)$ implies
+$g \in L(\Delta,|\alpha|*|\alpha^{-1}|)$; this---if true---would mean
+that the inversion formula $\alpha^{-1} \odot g$ is defined without
+this extra hypothesis.
+%	Of course the same phenomenon occurs with the ordinary Fourier transform:
+%	for every $f \in L^{1}(\R)$, the transform $\widehat{f}$ is defined,
+%	but it is not always true that $\widehat{f} \in L^{1}(\R)$,
+%	so the inverse transform could be applied.
+
+The following special case of Proposition~\ref{pro:f<->g-alpha} has special interest:
+
+\begin{proposition}
+\label{pro:f<->g-acm}
+Let $\alpha$ be a completely multiplicative arithmetical function,
+$f: \Delta \to \R$ (or $\C$), and suppose that
+$f \in L(\Delta,\alpha\numdiv)$ (where $\numdiv(n)$ is the number
+of divisors of~$n$).
+Then
+\begin{equation*}
+  g(x) = \sum_{n \in \N} \alpha(n) f(T_n(x))
+\end{equation*}
+is defined for all $x \in \Delta$. Moreover, if $g \in L(\Delta,\alpha\numdiv)$, then
+\begin{equation*}
+  f(x) = \sum_{n \in \N} \mu(n) \alpha(n) g(T_n(x))
+\end{equation*}
+for all $x \in \Delta$.
+\end{proposition}
+
+\begin{proof}
+If $\alpha$ is completely multiplicative, then $\alpha^{-1}(n) =
+\mu(n)\alpha(n)$. Moreover,
+\begin{align*}
+  (|\alpha|*|\alpha^{-1}|)(k) &= \sum_{nm=k} |\alpha(n)\mu(m)\alpha(m)| \\
+  &\le \sum_{nm=k} |\alpha(nm)| = \numdiv(k)|\alpha|(k) = |\numdiv(k)\alpha(k)|,
+\end{align*}
+so the hypothesis $f \in L(\Delta,\alpha\numdiv)$ allows us to
+apply Proposition~\ref{pro:f<->g-alpha}. The same holds with respect
+to $g \in L(\Delta,\alpha\numdiv)$.
+\end{proof}
+
+\begin{remark}
+As commented previously, it does not seem easy to check if
+$g \in L(\Delta,\alpha\numdiv)$ given that
+$f \in L(\Delta,\alpha\numdiv)$. However, we claim that something weaker is true:
+\begin{equation*}
+  f \in L(\Delta,\alpha\numdiv^2) \;\Rightarrow\;
+  g \in L(\Delta,\alpha\numdiv).
+\end{equation*}
+To prove this, take into account that $\numdiv(n) \le \numdiv(k)$ when $n \mathrel{|} k$,
+and notice also that $|\alpha|$ is completely multiplicative. 
+Thus
+\begin{align*}
+\sum_{n \in \N} \numdiv(n)|\alpha(n) g(T_n(x))| 
+&= \sum_{n \in \N} \numdiv(n)|\alpha(n)|
+  \left|\sum_{m \in \N} \alpha(m) f(T_m(T_n(x))) \right| \\
+&\le \sum_{k \in \N} \numdiv(k)
+  \left(\sum_{nm = k} |\alpha(n) \alpha(m)| \right) |f(T_k(x))| \\
+&= \sum_{k \in \N} \numdiv(k)^2 |\alpha(k)| |f(T_k(x))| < \infty
+\end{align*}
+since $f \in L(\Delta,\alpha\numdiv^2)$, so the claim is proved.
+Actually, the extra factor $\numdiv(n)$ is not very troublesome,
+because $\numdiv(n) = o(n^r)$ for every $r>0$
+(see~\cite[Section~18.1, Theorem~15, p.~260]{Ha-Wr}).
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{9}
+
+\bibitem{Ha-Wr} G. M. Hardy and E. M. Wright,
+\textit{An Introduction to the Theory of Numbers}, fifth ed.,
+Oxford Univ. Press, 1979.
+
+\bibitem{Ri} T. J. Rivlin,
+\textit{Chebyshev Polynomials:
+From Aproximation Theory to Algebra and Number Theory}, second ed.,
+Wiley, 1990.
+%% La primera edici\'on es de 1974, y se titulaba
+%% "The Chebyshev Polynomials".
+
+\end{thebibliography}
+
+\end{document}
+

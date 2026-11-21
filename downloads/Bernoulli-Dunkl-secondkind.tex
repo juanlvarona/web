@@ -1,0 +1,1582 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Discrete Appell-Dunkl sequences 
+% and Bernoulli-Dunkl polynomials of the second kind
+% by
+% J. I. Extremiana, E. Labarga, J. M\'inguez and J. L. Varona
+%
+% email: jextremi@unirioja.es, edgar.labarga@unirioja.es,
+%        judit.minguez@unirioja.es, jvarona@unirioja.es
+%
+% COMIENZO DE ESCRITURA: 2021/05/05
+% LAST MODIFICATION: 2021/05/19
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ORCID:
+% J. I. Extremiana: 0000-0002-6224-7768
+% E. Labarga: 0000-0003-1017-869X
+% J. M\'inguez: 0000-0002-9840-5772
+% J. L. Varona: 0000-0002-2023-9946
+
+\documentclass[11pt]{article}
+%\documentclass[10pt,a4paper]{article}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+\addtolength{\textwidth}{1.6cm}
+\addtolength{\oddsidemargin}{-0.8cm}
+\setlength{\evensidemargin}{\oddsidemargin}
+
+%\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+%%% ONLY FOR DRAFTS:
+%\usepackage[utf8]{inputenc}
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{color}
+%\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+%\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+
+%%% ONLY FOR DRAFTS (put it after hyperref)
+%\usepackage{backref}
+%\usepackage{refcheck}
+
+
+%%% \allowdisplaybreaks es una orden de amsmath que permite cortes de
+%%% p\'agina dentro de una f\'ormula de varias l\'ineas (align, multline, gather, ...)
+\allowdisplaybreaks[3]
+%%% Escala de 1 (permite algo) a 4 (ninguna traba para cortar).
+%%% Si en alg\'un sitio queremos impedir un posible corte, usar \\* en vez de \\
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\numberwithin{equation}{section} % To include the number of section
+
+\newcommand{\Ea}{E_{\alpha}}
+\newcommand{\La}{\Lambda_{\alpha}}
+\newcommand{\Lax}{\Lambda_{\alpha,x}}
+\newcommand{\Fa}{\mathcal{F}_{\alpha}} % Dunkl transform of order \alpha
+\newcommand{\mua}{\mu_{\alpha}}
+\newcommand{\binoma}[2]{\binom{#1}{#2}_{\!\alpha}}
+\newcommand{\arcsinh}{\operatorname{arcsinh}}
+
+\newcommand{\I}{\mathcal{I}}
+
+\newcommand{\B}{\mathfrak{B}}
+%\newcommand{\E}{\mathcal{E}}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZO}{\mathbb{Z} \setminus \{0\}}
+
+%\renewcommand{\Im}{\operatorname{Im}}
+%\renewcommand{\Re}{\operatorname{Re}}
+%\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\cc}{\gamma}
+
+%----------
+\title{Discrete Appell-Dunkl sequences 
+and Bernoulli-Dunkl polynomials of the second kind%
+\footnote{\textbf{This paper has been published as:}
+J. I. Extremiana Aldana, E. Labarga, J. M\'inguez Ceniceros and J. L. Varona, 
+Discrete Appell-Dunkl sequences and Bernoulli-Dunkl polynomials of the second kind,
+\textit{J.\ Math.\ Anal.\ Appl.}\ \textbf{507} (2022), no.~2, 125832, 20 pp., 
+\url{https://doi.org/10.1016/j.jmaa.2021.125832}}
+\footnote{Partially supported by grant PGC2018-096504-B-C32 
+(Minis\-te\-rio de Eco\-no\-m\'ia y Com\-pe\-ti\-ti\-vi\-dad, Spain)}}
+%----------
+
+
+%----------
+\author{Jos\'e Ignacio Extremiana Aldana\textsuperscript{1}, 
+Edgar Labarga\textsuperscript{2}, 
+Judit M\'inguez Ceniceros\textsuperscript{3},\\
+and Juan Luis Varona\textsuperscript{4}\\[6pt]
+\small Departamento de Matem\'aticas y
+Computaci\'on, Universidad de La Rioja,\\[-2pt]
+\small 26006 Logro\~no, Spain\\[3pt]
+\small \textsuperscript{1}{jextremi@unirioja.es},
+\textsuperscript{2}{edgar.labarga@unirioja.es},\\
+\small \textsuperscript{3}{judit.minguez@unirioja.es},
+\textsuperscript{4}{jvarona@unirioja.es}}
+%----------
+
+\date{}
+
+%----------
+\begin{document}
+%----------
+
+%----------
+\maketitle
+%----------
+
+\begin{abstract}
+In a similar way that the Appell sequences of polynomials can be extended to the Dunkl context,
+where the ordinary derivative is replaced by Dunkl operator on the real line, and the exponential function
+is replaced by the so-called Dunkl kernel, one can expect that the discrete Appell sequences can be
+extended to the Dunkl context. In this extension, the role of the ordinary translation is played by
+the Dunkl translation, that is a much more intricate operator.
+ 
+In this paper, we define discrete Appell-Dunkl sequences of polynomials, and we give some properties 
+and examples. In particular, we show which is the suitable definition for the Bernoulli polynomials 
+of the second kind in the Dunkl context.
+
+2010 Mathematics Subject Classification: Primary 11B68; Secondary 33C10, 11B83.
+
+Keywords: Appell-Dunkl sequences, Bernoulli-Dunkl polynomials, Bernoulli-Dunkl polynomials of the second kind, Dunkl transform.
+\end{abstract}
+
+%----------
+\section{Introduction}
+%----------
+
+An Appell sequence $\{P_k(x)\}_{k=0}^{\infty}$ is a sequence of polynomials such that 
+\begin{equation}
+\label{eq:A}
+  \frac{d}{dx} P_k(x) = k P_{k-1}(x), \quad k \ge 1.
+\end{equation}
+If instead of the derivative we use the discrete operator $\Delta f(x) = f(x+1) - f(x)$, we say that a discrete Appell sequence $\{p_k(x)\}_{k=0}^{\infty}$ is a sequence of polynomials such that 
+\begin{equation}
+\label{eq:Adiscrete}
+  p_k(x+1) - p_k(x) = k p_{k-1}(x), \quad k \ge 1.
+\end{equation}
+It is well known that Appell sequences can be defined by a Taylor generating expansion
+\begin{equation}
+\label{eq:As}
+  A(t) e^{xt} = \sum_{k=0}^{\infty} P_k(x) \frac{t^k}{k!},
+\end{equation}
+where $A(t)$ is a function analytic at $t=0$ with $A(0) \ne 0$; 
+similarly, discrete Appell sequences can be defined by a Taylor generating expansion
+\begin{equation}
+\label{eq:dAs}
+  A(t)(1+t)^x = \sum_{k=0}^{\infty} p_k(x) \frac{t^k}{k!},
+\end{equation}
+where $A(t)$ is a function analytic at $t=0$ with $A(0) \ne 0$. 
+
+There is a wide mathematical literature studying families of Appell sequences.
+Typical examples are the trivial case $\{x^k\}_{k=0}^{\infty}$ 
+whose generating function is \eqref{eq:As} with $A(t)=1$,
+as well as the Bernoulli polynomials that were used by Euler in 1740 to sum 
+$\sum_{n=1}^{\infty} 1/n^{2k}$, and whose generating function is
+\eqref{eq:As} with $A(t)=t/(e^t-1)$.
+
+In the case of discrete Appell sequences, the trivial case,
+obtained from \eqref{eq:dAs} with $A(t)=1$,
+is the family $\{x^{\underline{k}}\}_{k=0}^{\infty}$ where
+\begin{equation}
+\label{eq:ffact}
+x^{\underline{k}} = x(x-1)  \cdots (x-k+1) = \prod_{j=0}^{k-1} (x-j)
+\end{equation}
+is the falling factorial (some other notations have been used
+for these polynomials, here we follow~\cite{Knuth} or \cite[\S\,2.6, p.~47]{GKP}). 
+The discrete counterpart to the Bernoulli polynomials are the now so-called 
+Bernoulli polynomials of the second kind (see~\cite{Car}),
+that we will denote by $b_k(x)$, 
+that were independently 
+introduced by Jordan \cite{Jor} and Rey Pastor \cite{RP-BSMA} in 1929.
+These polynomials, that have also been known with the name of Rey Pastor polynomials
+(see~\cite{Bab}), are now defined by a generating function as in \eqref{eq:dAs} 
+by means of 
+\begin{equation}
+\label{eq:fungenAn}
+  \frac{t}{\log(1+t)}(1+t)^x = \sum_{k=0}^\infty b_k(x) \, \frac{t^k}{k!}.
+\end{equation}
+For $x=0$, the numbers $b_k(0)$ (or $b_k(0) \cdot k!$) appear, for instance, 
+in Gregory's method for numerical integration (see~\cite{Ph}), and are also
+called Bernoulli numbers of the second kind 
+(see \cite[\S\,24.16]{Dil-NIST} or \cite{WuPan}), 
+logarithmic numbers, Gregory coefficients, and 
+Cauchy numbers of the first kind (see, for instance, \cite{MSV, Zh}).
+
+There are many kind of generalizations of Bernoulli polynomials
+that are defined by means of parameters in the function $A(t) = t/(e^t-1)$
+(see, e.g., the classical papers
+\cite{Ap, Nor} or the recent \cite{AdLe, NRV-Brno, Tem}). 
+A complete different kind of generalization is obtained by replacing
+the operator $\frac{d}{dx}$ in~\eqref{eq:A} instead of changing
+the function~$A(t)$.
+
+This was done in~\cite{CDPV}, where the Dunkl operator on the real line
+(for the group $\mathbb{Z}_2$), 
+namely
+\begin{equation}
+\label{eq:La}
+  \La f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{2}
+  \left(\frac{f(x)-f(-x)}{x}\right),
+\end{equation}
+where $\alpha > -1$ is a fixed parameter (see \cite{Du, Ros}),
+was used instead of the ordinary derivative $\frac{d}{dx}$. 
+In that setting, an Appell-Dunkl sequence $\{P_{k,\alpha}\}_{k=0}^{\infty}$ is
+a sequence of polynomials that satisfies
+\begin{equation}
+\label{eq:LaPk}
+  \La P_{k,\alpha}(x) = \big(k+(\alpha+1/2)(1-(-1)^k)\big) P_{k-1,\alpha}(x)
+\end{equation}
+(instead of $\La P_{k,\alpha} = k P_{k-1,\alpha}$, the previous definition uses 
+another multiplicative constant in the place of $k$ for convenience with the notation). 
+Of course, in the case $\alpha=-1/2$,
+the operator $\La$ is the ordinary derivative and Appell-Dunkl sequences become
+the classical Appell sequences. To give Appell-Dunkl sequences by means of 
+a generating function, some extra notation is required.
+Along all the paper, to clearly distinguish Dunkl cases from classical cases,
+we will always include $\alpha$ as subindex in the notation of the polynomials
+that come from the Dunkl case.
+
+For $\alpha>-1$, we consider the entire function
+\[
+  \I_\alpha(z)
+  = 2^\alpha \Gamma(\alpha+1)\, \frac{J_\alpha(iz)}{(iz)^\alpha}
+  = \Gamma(\alpha+1) \sum_{n=0}^\infty \frac{(z/2)^{2n}}{n!\,\Gamma(n+\alpha+1)}
+  = {}_0F_1(\alpha+1,z^2/4), 
+\]
+where $J_\alpha$ is the Bessel function of order~$\alpha$
+(the function $\I_\alpha$ is a small variation of the so-called modified Bessel function of the first kind and order~$\alpha$, usually denoted by~$I_\alpha$, see~\cite{Wat} or~\cite{OlMa-NIST}),
+and 
+\[
+  \Ea(z) = \I_\alpha(z) + \frac{z}{2(\alpha+1)} \, \I_{\alpha+1}(z),
+  \qquad z \in \CC.
+\]
+From the very definition,
+\[
+  \Ea(z) = \sum_{n=0}^\infty \frac{z^n}{\cc_{n,\alpha}}
+\]
+with
+\begin{equation}
+\label{eq:ccna}
+\cc_{n,\alpha} =
+\begin{cases}
+  2^{2k}k!\,(\alpha+1)_k, & \text{if $n=2k$},\\
+  2^{2k+1}k!\,(\alpha+1)_{k+1}, & \text{if $n=2k+1$},
+\end{cases}
+\end{equation}
+and where $(a)_n$ denotes the Pochhammer symbol
+\[
+  (a)_n = a(a+1)(a+2) \cdots (a+n-1) = \frac{\Gamma(a+n)}{\Gamma(a)}
+\]
+(with $n$ a non-negative integer). Notice that $\cc_{n,-1/2} = n!$ and $E_{-1/2}(z) = e^{z}$.
+An important property is that, for any $\lambda \in \CC$, we have
+\begin{equation}
+\label{eq:LaEalx}
+  \La \Ea(\lambda x) = \lambda E_\alpha(\lambda x),
+\end{equation}
+which is a generalization of $\frac{d}{dx} e^{\lambda x} = \lambda e^{\lambda x}$.
+
+The function $\Ea(z)$ is known as the Dunkl kernel because, in a similar way to the Fourier transform (which takes place for $\alpha = -1/2$), 
+we can define the Dunkl transform on the real line
+\begin{equation}
+\label{eq:trDu}
+  \Fa f(y)
+  = \int_{\RR} \Ea(-ixy)f(x)\,d\mua(x),
+  \qquad y \in \RR,
+\end{equation}
+where $d\mua$ denotes the measure
+\[
+  d\mua(x) = \tfrac{1}{2^{\alpha+1}\Gamma(\alpha+1)}\, |x|^{2\alpha+1}\,dx
+\]
+(in particular, $d\mu_{-1/2}(x) = (2\pi)^{-1/2}\,dx$).
+This operator has been widely studied in the mathematical literature
+(see, for instance, \cite{Jeu, Ros, Rosler-LN, Tr, AdJ, NS, CPRV, DW, CRV, MO}); 
+however, the goal of this paper is not the Dunkl transform, but some families of
+polynomials that are defined with the aid of the Dunkl kernel~$\Ea$.
+%The Dunkl transform~\eqref{eq:trDu} can be extended to an isometric isomorphism 
+%on $L^2(\RR,\mua)$ and fulfils $\Fa^{-1}f(y) = \Fa f(-y)$.
+
+As far as we are concerned, the entire function $\Ea$ 
+is invariant under the Dunkl operator \eqref{eq:La}
+%\begin{equation}
+%\label{eq:La}
+%  \La f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{2}
+%  \left(\frac{f(x)-f(-x)}{x}\right)
+%\end{equation}
+in the same way that the exponential function is invariant under the ordinary derivative.
+Then, it is easy to check that, if we have an analytic function $A(t)$
+defined in a neighborhood of $0$ with $A(0) \ne 0$, and we take
+\begin{equation}
+\label{eq:APs}
+  A(t)\Ea(xt) = \sum_{k=0}^\infty P_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}},
+\end{equation}
+then $P_{k,\alpha}(x)$ is a polynomial of degree $k$ which satisfies~\eqref{eq:LaPk}.
+Thus, \eqref{eq:APs} is the characterization of Appell-Dunkl sequences
+by means of a generating function.
+
+The Appell-Dunkl polynomials had already appeared in the literature as 
+generalizations of the Hermite polynomials (see for example \cite{AlS, Ros}).
+The extension of Bernoulli polynomials to the Dunkl context was carried out in~\cite{CDPV};
+there, Bernoulli-Dunkl polynomials $\{\B_{k,\alpha}\}_{k=0}^{\infty}$
+are defined by a generating function via
+\begin{equation}
+\label{eq:defbd}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)}
+  = \sum_{k=0}^\infty \B_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}},
+\end{equation}
+and it is shown that it represents a ``genuine extension'' because it is useful
+to extend many standard properties of the classical Bernoulli polynomials
+to the Dunkl context. In particular, how to use them 
+to pose the series $\sum_{n=1}^{\infty} 1/n^{2k}$ in the Dunkl context
+and to sum them. Some other Appell-Dunkl polynomials were studied
+in \cite{DPV} and~\cite{CMV}.
+
+The goal of this paper is to provide a suitable definition of discrete Appell-Dunkl
+sequences, that is, to give an extension of~\eqref{eq:Adiscrete} and \eqref{eq:dAs} in the Dunkl context,
+and to give some representative examples and properties. 
+In particular, we show how to define Bernoulli-Dunkl polynomials of the second kind.
+
+We need to notice an important obstacle. The ordinary translation $f(x) \mapsto f(x+1)$ is
+useless in the Dunkl context, so the definition \eqref{eq:Adiscrete} must be adapted
+taking it into account. 
+There is, however, an analogue, the Dunkl translation operator $\tau_y$ which acts on a function $f$ by
+\begin{equation}
+\label{eq:tauyfx}
+  \tau_y f(x) = \sum_{n=0}^\infty \frac{y^n}{\cc_{n,\alpha}}\La^{n}f(x),
+  \qquad \alpha>-1,
+\end{equation}
+where $\La^0$ is the identity operator and $\La^{n+1} = \La(\La^n)$. 
+When $\alpha=-1/2$, $\La^{n}$ is the $n$th derivative, 
+so \eqref{eq:tauyfx} is the Taylor expansion of $f(x+y)$ around~$x$.
+For the Dunkl transform, the translation $\tau_y$ plays the same role as the classical translation for the Fourier transform (that is, $\tau_y f(x) = f(x+y)$ for the case $\alpha=-1/2$). 
+Two useful properties of the translation operator are the commutativity $\tau_a\tau_b = \tau_b\tau_a$ and the fact $\tau_a f(b) = \tau_b f(a)$.
+Some other properties including an integral expression, can be found in \cite{Ros}, \cite{Rosler-TAMS}, and~\cite{ThX}.
+In particular, let us note the identity \cite[formula (4.2.2)]{Ros}
+\begin{equation}
+\label{eq:Etxy}
+  \tau_y(E_\alpha(t\cdot))(x) = E_\alpha(tx) E_\alpha (ty),
+\end{equation}
+that is a Dunkl alternative to the formula $e^{t(x+y)} = e^{tx}e^{ty}$ (case $\alpha=-1/2$).
+
+Many properties of the Appell sequences of polynomials can be adapted to the Appell-Dunkl sequences
+using the Dunkl translation operator.
+For instance, in~\cite{CDPV, CMV} we can see that the Appell-Dunkl polynomials satisfy
+\begin{equation}
+\label{eq:tau-P}
+  \tau_y(P_{k,\alpha}(\cdot))(x)
+  = \sum_{j=0}^k \binoma{k}{j} P_{j,\alpha}(x) y^{k-j},
+\end{equation}
+with $\binoma{k}{j} = \cc_{k,\alpha}/(\cc_{j,\alpha}\cc_{k-j,\alpha})$;
+in the classical case $\alpha=-1/2$, \eqref{eq:tau-P} becomes the well-known binomial formula
+\begin{equation}
+\label{eq:binom}
+  P_k(x+y) = \sum_{j=0}^k \binom{k}{j} P_j(x)y^{k-j}
+\end{equation}
+for Appell polynomials. 
+Some other properties concerning the use of Dunkl translations
+for Appell-Dunkl polynomials can be found in~\cite{CMV}.
+
+
+The structure of this paper is as follows. 
+In Section~\ref{sec:DAD}, we see how the definition~\eqref{eq:Adiscrete} can be successfully adapted to the Dunkl context by using the Dunkl translation~\eqref{eq:tauyfx}, and what generating expansion plays the role of~\eqref{eq:dAs}.
+In Section~\ref{sec:fallfact} we extend the classical falling factorial polynomials~\eqref{eq:ffact} to the Dunkl context, and we found their expansion by means of a discrete Appell-Dunkl generating function;
+we will also see that these polynomials can be used to have a binomial formula that is analogous to \eqref{eq:binom} and \eqref{eq:tau-P} in the discrete Appell-Dunkl setting.
+In Section~\ref{sec:another} we study some families of discrete Appell-Dunkl sequences than can be expressed in terms of the generalized Bernoulli-Dunkl polynomials that were defined in~\cite{CMV}. 
+In Section~\ref{sec:connection} we show some relations between the families of polynomials defined in the Sections~\ref{sec:fallfact} and~\ref{sec:another}, and we prove some interesting results, in particular the Newton expansion in the Dunkl context.
+In Section~\ref{sec:BDsecond} we define the Bernoulli-Dunkl polynomials of the second kind, as well as their corresponding generalization of order~$r$, and prove some properties.
+
+%----------
+\section{Discrete Appell-Dunkl polynomials}
+\label{sec:DAD}
+%----------
+
+Let us start noticing that the Dunkl operator has a ``symmetric flavor'' due to the summand $(f(x)-f(-x))/x$ in \eqref{eq:La}; then, Appell-Dunkl polynomials must be defined in a symmetric way around $x=0$. However, the ``basic'' interval for the classical Bernoulli polynomials $\{B_k(x)\}_{k=0}^{\infty}$ is the interval $[0,1]$. In this way, Bernoulli-Dunkl polynomials are defined with ``basic'' interval $[-1,1]$, and a slight change of variable is needed to recover the classical Bernoulli polynomials in the case $\alpha=-1/2$. Particularly, we have
+\begin{equation}
+\label{eq:BtoB}
+  \frac{\B_{k,-1/2}(2x-1)}{2^k} = B_k(x),
+\end{equation}
+see \cite{CDPV} or \cite{CMV} for details.
+
+The same adjustment happens in the discrete case. The definition~\eqref{eq:Adiscrete} does not have a symmetric flavor, so it is not suitable for the Dunkl context. 
+Then, instead of using the discrete operator $\Delta f(x) = f(x+1) - f(x)$ (forward differences), it is convenient to consider the classical case with the central discrete operator $\Delta f(x) = (f(x+1) - f(x-1))/2$ (central differences),
+and the central discrete Appell sequences defined by means of the relation
+\begin{equation}
+\label{eq:Adiscen}
+  \frac{p_k(x+1) - p_k(x-1)}{2} = k p_{k-1}(x), \quad k \ge 1.
+\end{equation}
+Although \eqref{eq:Adiscrete} is more usual in the classical case, discrete Appell sequences defined as in \eqref{eq:Adiscen} have also been studied; see for instance~\cite[\S\,6]{Tem}. 
+
+In the same way that we have
+\[
+  f(x+1,t) - f(x,t) = t f(x,t)
+\]
+for $f(x,t) = (1+t)^x$, and this is the reason to the relation between \eqref{eq:Adiscrete} and~\eqref{eq:dAs}, we have that
+\begin{equation}
+\label{eq:eigendis}
+  \frac{f(x+1,t) - f(x-1,t)}{2} = t f(x,t)
+\end{equation}
+for 
+\begin{equation}
+\label{eq:soleigendis}
+  f(x,t) = (t+\sqrt{1+t^2})^x
+  = \exp\big(x \log(t+\sqrt{1+t^2})\big).
+\end{equation}
+Then, the central discrete Appell sequences can also be defined by means of a generating function
+\begin{equation}
+\label{eq:dAsc}
+  A(t)(t+\sqrt{1+t^2})^x = \sum_{k=0}^{\infty} p_k(x) \frac{t^k}{k!},
+\end{equation}
+where $A(t)$ is a function analytic at $t=0$ with $A(0) \ne 0$. 
+(In particular, and among other examples, \cite[\S\,6]{Tem} defines the central Bernoulli polynomials of the second kind, we will see it in the forthcoming sections.)
+
+In what follows, we will sometimes denote the Dunkl operator $\La$ and the Dunkl translation $\tau_a$ by $\Lax$ and $\tau_{a,x}$, respectively, to emphasize that the involved variable is~$x$. In fact, we will always use this notation when we apply these operators to a function with two variables. 
+% $x$ and $t$, 
+In addition, we will often use $\cc_k$ instead of $\cc_{k,\alpha}$.
+% (defined in \eqref{eq:ccna})
+
+To extend \eqref{eq:Adiscen} to the Dunkl context, that is, by using the Dunkl translation, it is enough to take sequences of polynomials that, for some constants $\theta_k$, satisfy the relation
+\[
+  (\alpha+1)(\tau_{1}-\tau_{-1}) p_{k,\alpha}(x) = \theta_k p_{k-1,\alpha}(x)
+\]
+(that, in the case $\alpha=-1/2$, recovers~\eqref{eq:Adiscen}).
+But, which is the generating function? How can one find examples?
+The key point is to give a suitable extension of \eqref{eq:eigendis} and~\eqref{eq:soleigendis} to the new scheme. We will often denote $\Delta_\alpha = (\alpha+1)(\tau_{1}-\tau_{-1})$, and we will use $\Delta_{\alpha,x}$ (as in the case of $\tau_{\pm1,x}$) if it is convenient to emphasize that the involved variable is~$x$.
+
+In the Dunkl setting, the function $\Ea$ plays the role of the exponential function.
+Then, let us take the equation
+\begin{equation}
+\label{eq:tau1-1f}
+  (\alpha+1)(\tau_{1,x}-\tau_{-1,x}) f(x,t) = t f(x,t)
+\end{equation}
+and let us look for a solution of the form $f(x,t) = \Ea(x h(t))$; we want to find $h(t)$.
+
+Recall that $\Ea(x h(t)) = \sum_{k=0}^{\infty} x^k h(t)^k/\cc_k$ and
+$\Lax \Ea(x h(t)) = h(t) \Ea(x h(t))$. Then,
+\begin{equation}
+\label{eq:E(h(t))}
+\begin{aligned} % No he escrito el (\alpha+1)
+  (\tau_{1,x}-\tau_{-1,x}) \Ea(x h(t)) 
+  &= \tau_{1,x} \Ea(x h(t)) - \tau_{-1,x} \Ea(x h(t)) \\
+  &= \sum_{k=0}^{\infty} \frac{\Lax^k \Ea(x h(t))}{\cc_k}
+  - \sum_{k=0}^{\infty} \frac{(-1)^k \Lax^k \Ea(x h(t))}{\cc_k} \\
+  &= \sum_{k=0}^{\infty} \frac{h(t)^k \Ea(x h(t))}{\cc_k}
+  - \sum_{k=0}^{\infty} \frac{(-1)^k h(t)^k \Ea(x h(t))}{\cc_k} \\
+  &= 2 \sum_{k=0}^{\infty} \frac{h(t)^{2k+1} \Ea(x h(t))}{\cc_{2k+1}}.
+\end{aligned}
+\end{equation}
+Therefore,
+\[
+  (\alpha+1)(\tau_{1,x}-\tau_{-1,x}) \Ea(x h(t)) = t \Ea(x h(t))
+\]
+becomes
+\begin{equation}
+\label{eq:h(t)}
+  \sum_{k=0}^{\infty} \frac{h(t)^{2k+1}}{\cc_{2k+1}} = \frac{t}{2(\alpha+1)}.
+\end{equation}
+Here we have the odd terms of $\Ea(z) = \sum_{k=0}^{\infty} z^k/\cc_k$, and the odd part or $\Ea(z)$ is $\frac{z}{2(\alpha+1)}\I_{\alpha+1}(z)$.
+Hence, \eqref{eq:h(t)} can be written as
+$\frac{h(t)}{2(\alpha+1)}\I_{\alpha+1}(h(t)) = \frac{t}{2(\alpha+1)}$, or 
+\begin{equation}
+\label{eq:h(t)I}
+h(t)\I_{\alpha+1}(h(t)) = t.
+\end{equation}
+Now, let us take 
+\[
+  G_{\alpha}(z) = z \I_{\alpha+1}(z) = z \,{}_0F_1(\alpha+2,z^2/4)
+  = \Gamma(\alpha+1) \sum_{n=0}^\infty \frac{z^{2n+1}}{2^{2n} n!\,\Gamma(n+\alpha+1)}.
+\]
+This function is odd, non-negative for $z>0$, and increasing (for $z>0$, the derivative term by term of the series is positive),
+so there exists the inverse function
+\[
+  h(t) = G_{\alpha}^{-1}(t), \quad t \in \RR,
+\]
+and this function satisfies~\eqref{eq:h(t)I}. 
+This implies that the function 
+\[
+  f(x,t) = \Ea(x h(t)) = \Ea(x G_{\alpha}^{-1}(t))
+\]
+is the solution of~\eqref{eq:tau1-1f}.
+
+Then, we would like to define a discrete Appell-Dunkl sequence as $\{p_{k,\alpha}(x)\}_{k=0}^{\infty}$ whose generating function is
+\begin{equation}
+\label{eq:defADd}
+  A(t) \Ea(x G_{\alpha}^{-1}(t)) = \sum_{k=0}^{\infty} p_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}},
+\end{equation}
+where $A(t)$ is an analytic function in a neighborhood of $0$ satisfying $A(0) \ne 0$.
+
+Let us now analyze the case $\alpha=-1/2$ for a moment.
+It is easy to check that $\I_{1/2}(z) = \sinh(z)/z$, so 
+% $G_{-1/2}(z) = \sinh(z)$ and
+\[
+  G_{-1/2}^{-1}(t) = \arcsinh(t) = \log(t+\sqrt{1+t^2}).
+\]
+Then, 
+% using tat $E_{-1/2}=\exp$,
+\[
+  f(x,t) = E_{-1/2}(x G_{-1/2}^{-1}(t)) 
+  = \exp(x \log(t+\sqrt{1+t^2})) = \big(t+\sqrt{1+t^2})^x,
+\]
+and, as expected, \eqref{eq:defADd} for $\alpha=-1/2$ becomes the classical central discrete Appell sequences that appear in~\eqref{eq:dAsc}.
+
+For general $\alpha>-1$, the functions $\I_{\alpha}(z)$ are related to Bessel functions, and thus $G_{\alpha}^{-1}$ is the inverse of a function expressed in terms of them. As long as we know, this kind of inverse functions, that would be a generalization of the $\arcsinh$ function, has not been widely studied, and does not have a name. An example of a paper dealing with similar functions is~\cite{Gold}.
+Later in this paper, we will give the analytic expansion of the function $G_{\alpha}^{-1}$ in terms of the generalized Bernoulli-Dunkl polynomials, see Theorem~\ref{teo:inver-Ga}.
+
+Finally, let us state the main result of this section:
+
+\begin{theorem}
+\label{teo:defADdis}
+Let $A(t)$ be an analytic function in a neighborhood of $0$ with $A(0) \ne 0$, and let $\{p_{k,\alpha}(x)\}_{k=0}^{\infty}$ be the sequence obtained by means of the generating function expansion
+\begin{equation}
+\label{eq:defADdis} 
+  A(t) \Ea(x G_{\alpha}^{-1}(t)) = \sum_{k=0}^{\infty} p_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}},
+  \qquad \alpha > -1.
+\end{equation}
+Then, $p_{k,\alpha}(x)$ is a polynomial of degree $k$, and it satisfies
+\begin{equation}
+\label{eq:tau1-1pk}
+  (\alpha+1)(\tau_{1,x}-\tau_{-1,x}) p_{k,\alpha}(x) = \theta_{k,\alpha} p_{k-1,\alpha}(x),
+  \qquad k=1,2,\ldots,
+\end{equation}
+with $\theta_{k,\alpha} = (k+(\alpha+1/2)(1-(-1)^k)) = \cc_{k,\alpha}/\cc_{k-1,\alpha}$.
+\end{theorem}
+
+\begin{proof}
+Both functions $A(t)$ and $\Ea(x G_{\alpha}^{-1}(t))$ are analytic in a neighborhood of $t=0$, so the expansion \eqref{eq:defADdis} exists. 
+Furthermore, $p_0(x) = A(0) \Ea(x G_{\alpha}^{-1}(0)) = A(0) \Ea(0) = A(0) \ne 0$, a constant.
+
+For brevity, let us denote $\Delta_{\alpha,x} = (\alpha+1)(\tau_{1,x}-\tau_{-1,x})$;
+and we will use $\theta_k$ and $\cc_k$ in the place of $\theta_{k,\alpha}$ and $\cc_{k,\alpha}$. 
+By applying $\Delta_{\alpha,x}$ to both sides of \eqref{eq:defADdis}, we have
+\begin{equation}
+\label{eq:T1x}
+  A(t) \Delta_{\alpha,x} \Ea(xG_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} \Delta_{\alpha,x} p_{k,\alpha}(x) \frac{t^k}{\cc_k}.
+\end{equation}
+By repeating the arguments in \eqref{eq:E(h(t))} and \eqref{eq:h(t)} with $G_{\alpha}(t) = t\I_{\alpha+1}(t)$, we get 
+\begin{align*}
+  \Delta_{\alpha,x} \Ea(xh(t)) 
+  &= (\alpha+1)(\tau_{1,x}-\tau_{-1,x}) \Ea(x h(t)) 
+  = 2(\alpha+1) \Ea(x h(t))  \sum_{k=0}^{\infty} \frac{h(t)^{2k+1}}{\cc_{2k+1}} \\
+  &= \Ea(x h(t)) h(t) \I_{\alpha+1}(h(t))
+  = \Ea(x h(t)) G_{\alpha}(h(t)).
+\end{align*}
+Then, taking $h(t) = G_{\alpha}^{-1}(t)$, the left hand side of \eqref{eq:T1x} is
+\[
+  \Delta_{\alpha,x} \Ea(x G_{\alpha}^{-1}(t)) = t \Ea(x G_{\alpha}^{-1}(t)).
+\]
+For the right hand side of \eqref{eq:T1x}, let us observe that $\tau_{\pm1,x}p_{0,\alpha}(x) = p_{0,\alpha}(x)$ (the translation of a constant is itself), so the term corresponding to $k=0$ vanishes. We can then simplify $t$ in both sides of \eqref{eq:T1x} so, taking  $l=k-1$, \eqref{eq:T1x} becomes
+\[
+  A(t) \Ea(xG_{\alpha}^{-1}(t)) 
+  = \sum_{l=0}^{\infty} \Delta_{\alpha,x}p_{l+1,\alpha}(x) \frac{t^l}{\cc_{l+1}}.
+\]
+But $A(t) \Ea(xG_{\alpha}^{-1}(t)) = \sum_{l=0}^{\infty} p_{l,\alpha}(x) t^l/\cc_{l}$, and, since the power expansion of an analytic function is unique, $\Delta_{\alpha,x}p_{l+1,\alpha}(x) = \theta_{l+1} p_{l,\alpha}(x)$ with $\theta_{l+1} = \cc_{l+1}/\cc_l$.
+
+Finally, taking into account that $p_{0,\alpha}(x)$ is constant (that is, a polynomial of degree~$0$), we easily get that $p_{k,\alpha}(x)$ is a polynomial of degree~$k$ by induction.
+\end{proof}
+
+%----------
+%\section{The (falling) factorial polynomials in the Dunkl context}
+\section{The factorial polynomials in the Dunkl context}
+\label{sec:fallfact}
+%----------
+
+As explained in the introduction, the classical discrete case 
+$A(t)(1+t)^x$ for $A(t)=1$ with forward differences
+$\Delta f(x) = f(x+1)-f(x)$ gives
+%  \eqref{eq:dAs}
+\[
+(1+t)^x = \sum_{k=0}^{\infty} x^{\underline{k}} \, \frac{t^k}{k!}
+\]
+where $x^{\underline{k}}$ is the falling factorial \eqref{eq:ffact}.
+
+The classical case considering central differences $\Delta f(x) = (f(x+1)-f(x-1))/2$
+and $A(t) = 1$ is
+\[
+(t+\sqrt{1+t^2})^x = \sum_{k=0}^{\infty} f_k(x) \, \frac{t^k}{k!}.
+\]
+In this case, the ``central factorial'' polynomials $f_k(x)$ have the following pattern:
+\begin{equation}
+\label{eq:clascentral}
+\begin{aligned}
+f_0(x) &= 1, \qquad
+f_1(x) = x, \qquad
+f_2(x) = x^2, \\
+f_3(x) &= (-1+x) x (1+x), \qquad
+f_4(x) = (-2+x) x^2 (2+x), \\
+f_5(x) &= (-3+x) (-1+x) x (1+x) (3+x), \\
+f_6(x) &= (-4+x) (-2+x) x^2 (2+x) (4+x), \\
+f_7(x) &= (-5+x) (-3+x) (-1+x) x (1+x) (3+x) (5+x).
+\end{aligned}
+\end{equation}
+
+For the Dunkl case, let us take \eqref{eq:defADd} with $A(t)=1$.
+Then, we can say that the Dunkl factorial (or Dunkl ``central'' factorial)
+% (we will drop the word ``falling'' because it is a case of ``central factorial'') 
+are the polynomials  
+$\{f_{k,\alpha}(x)\}_{k=0}^{\infty}$ whose generating function is
+\begin{equation}
+\label{eq:fallfka}
+  \Ea(x G_{\alpha}^{-1}(t)) = \sum_{k=0}^{\infty} f_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}}.
+\end{equation}
+It is not difficult to check that the first Dunkl factorial polynomials are
+\begin{align*}
+f_{0,\alpha}(x) &= 1, \qquad
+f_{1,\alpha}(x) = x, \qquad
+f_{2,\alpha}(x) = x^2, \\
+f_{3,\alpha}(x) &= x^3-x, \qquad
+f_{4,\alpha}(x) = x^4 - 4x^2, \\
+f_{5,\alpha}(x) &= x^5
+  - \frac{6(\alpha+3) x^3}{\alpha+2}
+  + \frac{(5\alpha+16) x}{\alpha+2}, \\
+f_{6,\alpha}(x) &= x^6
+  - \frac{12(\alpha+3)x^4}{\alpha+2}
+  + \frac{6(6\alpha+19) x^2}{\alpha+2} \\
+f_{7,\alpha}(x) &= x^7
+  - \frac{15(\alpha+4) x^5}{\alpha+2}
+  + \frac{9(\alpha+4)(7\alpha+22) x^3}{(\alpha+2)^2}
+  - \frac{(7\alpha+26)^2 x}{(\alpha+2)^2}.
+\end{align*}
+
+
+It is perhaps surprising that the polynomials $f_{k,\alpha}$ do not have any 
+recognizable pattern as in \eqref{eq:clascentral}.
+But the same happens when the falling factorials are defined in other contexts;
+indeed, this is what happens in \cite[\S\,18]{Cho},
+where they are called factor polynomials
+(a more detailed explanation of the similarities and the differences
+between the context in~\cite{Cho} and our context can be found 
+in \cite[Remark~1]{CMV}).
+
+In the discrete Appell context, there is a binomial formula that is the discrete alternative to the binomial formula~\eqref{eq:binom}: 
+if $\{p_k(x)\}_{k=0}^{\infty}$ is a discrete Appell
+sequence (that is, it is defined as in \eqref{eq:dAs}), they satisfy
+\begin{equation}
+\label{eq:binomdis}
+  p_k(x+y) = \sum_{j=0}^k \binom{k}{j} p_j(x)y^{\underline{k-j}}.
+\end{equation}
+Let us see how to adapt this expression in the discrete Appell-Dunkl setting, that is, how to obtain a discrete version of~\eqref{eq:tau-P}.
+Notice that the role of the factorial polynomials $y^{\underline{k}}$ in~\eqref{eq:binomdis} is now played by their Dunkl counterpart $f_{k,\alpha}(y)$.
+
+\begin{theorem}
+Let $\alpha>-1$ and $\{p_{k,\alpha}(x)\}_{k=0}^{\infty}$ be a discrete Appell-Dunkl sequence of polynomials 
+defined as in \eqref{eq:defADdis}. Then, we have
+\[
+   \tau_y(p_{k,\alpha}(\cdot))(x)
+  = \sum_{j=0}^k \binoma{k}{j} p_{j,\alpha}(x) f_{k-j,\alpha}(y),
+\]
+where $\{f_{k,\alpha}(y)\}_{k=0}^{\infty}$ are the Dunkl factorial polynomials defined in~\eqref{eq:fallfka}.
+\end{theorem}
+
+\begin{proof}
+By using~\eqref{eq:Etxy}, we have
+\[
+  \tau_y(\Ea(\,\cdot\, G_\alpha^{-1}(t))(x) 
+  = \Ea(xG_\alpha^{-1}(t)) \Ea (yG_\alpha^{-1}(t)).
+\]
+Then, if we apply $\tau_y$ to \eqref{eq:defADdis} we get
+\begin{align*}
+  &\sum_{k=0}^{\infty} \tau_y(p_{k,\alpha})(x) \frac{t^k}{\cc_{k}}
+  = A(t) \tau_y(\Ea(\,\cdot\, G_\alpha^{-1}(t))(x)
+  = A(t) \Ea(xG_\alpha^{-1}(t)) \Ea (yG_\alpha^{-1}(t)) \\
+  &\qquad= \bigg(\sum_{k=0}^{\infty} p_{k,\alpha}(x) \frac{t^k}{\cc_{k}}\bigg)
+  \bigg(\sum_{k=0}^{\infty} f_{k,\alpha}(y) \frac{t^k}{\cc_{k}}\bigg) 
+  = \sum_{k=0}^{\infty} \bigg( \sum_{j=0}^k \frac{p_{j,\alpha}(x)}{\cc_{j}} 
+    \frac{f_{k-j,\alpha}(y)}{\cc_{k-j}} \bigg) t^k \\
+  &\qquad= \sum_{k=0}^{\infty} \bigg( \sum_{j=0}^k \binoma{k}{j} p_{j,\alpha}(x) 
+    f_{k-j,\alpha}(y) \bigg) \frac{t^k}{\cc_{k}}.
+\end{align*}
+By equating coefficients of $t^k$, we get the result.
+\end{proof}
+
+Let us finally see that, in a similar way to what happens in the traditional settings, the role played by the monomials $x^k$ in the Appell-Dunkl case is assumed by the factorial polynomials $f_{k,\alpha}(x)$ in the discrete Appell-Dunkl case. In \cite{CDPV, CMV} we saw that, if $\{P_{k,\alpha}(x)\}_{k=0}^{\infty}$ is a Appell-Dunkl sequence defined as in \eqref{eq:APs} with $1/A(t) = \sum_{k=0}^\infty a_k t^k$, we have
+\[
+  x^k = \cc_{n,\alpha} \sum_{j=0}^k \frac{P_{j,\alpha}(x)}{\cc_{j,\alpha}}\, a_{k-j}.
+\]
+For discrete Appell-Dunkl sequences, the corresponding result is as follows:
+
+
+\begin{theorem}
+\label{teo:fnfrompj}
+Let $\alpha>-1$ and $\{p_{k,\alpha}(x)\}_{k=0}^{\infty}$ be a discrete Appell-Dunkl sequence of polynomials 
+defined as in \eqref{eq:defADdis}, with $1/A(t) = \sum_{k=0}^\infty a_k t^k$. Then, we have
+\begin{equation*}
+%\label{eq:fnfrompj}
+  f_{k,\alpha}(x) = \cc_{k,\alpha} \sum_{j=0}^k \frac{p_{j,\alpha}(x)}{\cc_{j,\alpha}}\, a_{k-j}.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+Let us write \eqref{eq:defADdis} as
+\[
+\Ea(xG_{\alpha}^{-1}(t)) 
+= \bigg( \sum_{k=0}^{\infty} p_{k,\alpha}(x) \frac{t^k}{\cc_k} \bigg) \frac{1}{A(t)}
+\]
+and express all the functions as their series,
+\[
+\sum_{k=0}^{\infty} f_{k,\alpha}(x) \frac{t^k}{\cc_k}
+= \bigg( \sum_{k=0}^{\infty} p_{k,\alpha}(x) \frac{t^k}{\cc_k} \bigg)
+\bigg( \sum_{k=0}^{\infty} a_k t^k \bigg)
+= \sum_{k=0}^{\infty} \bigg( \sum_{j=0}^k \frac{p_{j,\alpha}(x)}{\cc_{j}}\, a_{k-j} \bigg) t^k.
+\]
+The result follows by identifying coefficients.
+\end{proof}
+
+%----------
+\section{Discrete Appell-Dunkl families defined in terms 
+of generalized Bernoulli-Dunkl polynomials}
+\label{sec:another}
+%----------
+
+For an arbitrary number $r$ 
+(we are mainly interested in the case of a non-negative integer, but it is not a restriction), 
+the generalized Bernoulli polynomials of order $r$ (also known as N{\o}rlund polynomials) were defined by the first time in~\cite{Nor}, and they satisfy
+\[
+  \bigg(\frac{t}{e^t-1}\bigg)^r e^{xt} = \sum_{k=0}^{\infty} B_k^{(r)}(x) \frac{t^k}{k!}.
+\]
+We point out that the case $r=1$ corresponds to the ordinary Bernoulli polynomials, and the trivial case $r=0$ corresponds to the polynomials $\{x^k\}_{k=0}^{\infty}$.
+It is well known that the polynomials $B_k^{(r)}(x)$ satisfy 
+\begin{equation}
+\label{eq:Bkrder}
+  B_{k}^{(r+1)}(x+1) - B_{k}^{(r+1)}(x)
+  = \frac{d}{dx} B_{k}^{(r)}(x) = k B_{k-1}^{(r)}(x)
+\end{equation}
+(see, for instance, \cite{Car}, \cite[\S\S\,6.11 and 6.3]{MT} or~\cite{Nor}).
+Then, if we set 
+\begin{equation}
+\label{eq:PkDesdeBr}
+  p_k(x) = B_{k}^{(k+1)}(x), \quad k=0,1,2,\dots,
+\end{equation}
+we have $p_k(x+1) - p_k(x) = k p_{k-1}(x)$, so \eqref{eq:PkDesdeBr} is an example of a discrete Appell sequence. Actually, also $\{B_{k}^{(k+s)}(x)\}_{k=0}^{\infty}$ is a discrete Appell sequence, but the case $s=1$ that has been used in~\eqref{eq:PkDesdeBr} is the most usual because the polynomials $B_k^{(k+1)}(x)$ have a well recognizable pattern (see \cite[\S\,6.4, p.~130]{MT} or \cite{Nor}), namely $B_0^{(1)}(x)=1$ and
+\begin{equation}
+\label{eq:Bkk+1}
+  B_k^{(k+1)}(x) = (x-1)(x-2) \cdots (x-k) = (x-1)^{\underline{k}}
+\end{equation}
+(otherwise, even in the case $s=0$, $B_k^{(k+s)}(x)$ does not have an easy factorizable expression).
+The generating function for the polynomials $p_k(x) = (x-1)^{\underline{k}}$ in~\eqref{eq:PkDesdeBr} is
+\[
+  \frac{1}{1+t} (1+t)^{x} = (1+t)^{x-1} = \sum_{k=0}^{\infty} (x-1)^{\underline{k}} \,\frac{t^k}{k!}.
+\]
+
+This can also be done in the classical central case (the details are left to the reader). We can define the generalized central Bernoulli polynomials and proceed as in~\eqref{eq:PkDesdeBr}. Then, we get the polynomials 
+\begin{equation}
+\label{eq:disgenc}
+\begin{aligned}
+\mathbf{p}_{0}(x) &= 1, \qquad
+\mathbf{p}_{1}(x) = x, \qquad
+\mathbf{p}_{2}(x) = (-1 + x) (1 + x), \\
+\mathbf{p}_{3}(x) &= (-2 + x) x (2 + x), \qquad
+\mathbf{p}_{4}(x) = (-3 + x) (-1 + x) (1 + x) (3 + x), \\
+\mathbf{p}_{5}(x) &= (-4 + x) (-2 + x) x (2 + x) (4 + x), \\
+\mathbf{p}_{6}(x) &= (-5 + x) (-3 + x) (-1 + x) (1 + x) (3 + x) (5 + x), \\
+\mathbf{p}_{7}(x) &= (-6 + x) (-4 + x) (-2 + x) x (2 + x) (4 + x) (6 + x),
+\end{aligned}
+\end{equation}
+that is a central discrete Appell sequence 
+(i.e., they satisfy $\mathbf{p}_{k}(x+1)-\mathbf{p}_{k}(x-1) = 2k\mathbf{p}_{k-1}(x)$)
+whose generating function is
+\begin{equation}
+\label{eq:disgenAc}
+  \frac{1}{\sqrt{1+t^2}} \big(t + \sqrt{1+t^2}\big)^x 
+  = \sum_{k=0}^{\infty} \mathbf{p}_k(x) \frac{t^k}{k!}.
+\end{equation} 
+
+A definition as in \eqref{eq:PkDesdeBr} can also be done in the Dunkl setting. In \cite{CMV}, the generalized Bernoulli-Dunkl polynomials $\{\B_{k,\alpha}^{(r)}(x)\}_{k=0}^{\infty}$ of order $r$ (where $r$ is an arbitrary real or complex parameter) are defined by means of the generating function
+\begin{equation}
+\label{eq:defbdr}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)^r}
+  = \sum_{k=0}^\infty \B_{k,\alpha}^{(r)}(x) \frac{t^k}{\cc_{k,\alpha}}.
+\end{equation}
+In addition (see \cite[Theorem 8.2]{CMV}), they satisfy
+\begin{equation}
+\label{eq:tau1-1-Br}
+  (\alpha+1)\big(\tau_1 \B_{k,\alpha}^{(r+1)}(x) - \tau_{-1} \B_{k,\alpha}^{(r+1)}(x)\big)
+  = \La(\B_{k,\alpha}^{(r)})(x) = \theta_{k,\alpha} \B_{k-1,\alpha}^{(r)}(x).
+\end{equation}
+Then, if we take
+\begin{equation}
+\label{eq:PnDesdeBrD}
+  \mathbf{p}_{k,\alpha}(x) = \B_{k,\alpha}^{(k+1)}(x), \quad k=0,1,2,\dots,
+\end{equation}
+we have $(\alpha+1)(\tau_{1,x}-\tau_{-1,x}) \mathbf{p}_{k,\alpha}(x) 
+= \theta_{k,\alpha} \mathbf{p}_{k-1,\alpha}(x)$,
+so $\{\B_{k,\alpha}^{(k+1)}(x)\}_{k=0}^{\infty}$ is a discrete Appell-Dunkl sequence.
+
+Which is the generating function of this sequence? 
+In the view of \eqref{eq:disgenAc}, one can guess that the generating function is \eqref{eq:defADdis} with $A(t) = (1+t^2)^{\alpha}$, but it is not true. 
+In particular, this shows that a mere extension of the classical case to a more general with a parameter $\alpha$ in such a way that the value $\alpha=-1/2$ recovers the classical case is not always a good Dunkl extension. 
+
+Actually, what happens is the following:
+
+\begin{theorem}
+\label{teo:Bkr}
+Let $\alpha>-1$ and $\B_{k,\alpha}^{(r)}(x)$ denote the generalized Bernoulli-Dunkl polynomials defined by means of~\eqref{eq:defbdr}. Then $\{\B_{k,\alpha}^{(k+s)}(x)\}_{k=0}^{\infty}$ is a discrete Appell-Dunkl sequence whose generating function is
+\begin{equation}
+\label{eq:Bkrs}
+  \bigg(\frac{t}{G_{\alpha}^{-1}(t)}\bigg)^{1-s} 
+  \Big(\frac{d}{dt}(G_{\alpha}^{-1}(t))\Big) 
+  \Ea(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} \B_{k,\alpha}^{(k+s)}(x) \frac{t^k}{\cc_{k,\alpha}}, \qquad x \in \RR.
+\end{equation}
+In particular, for $s=1$ we have
+\begin{equation}
+\label{eq:Bkr}
+  \Big(\frac{d}{dt}(G_{\alpha}^{-1}(t))\Big) \Ea(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} \mathbf{p}_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}}, \qquad x \in \RR.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We have from \eqref{eq:tau1-1-Br} that $\{\B_{k,\alpha}^{(k+s)}(x)\}_{k=0}^{\infty}$ is a discrete Appell-Dunkl sequence. Let us prove that \eqref{eq:Bkrs} is the generating function.
+
+It is well known that the zeros of $J_{\alpha+1}(x)/x^{\alpha+1}$ are $\{s_{j,\alpha}\}_{j\in\ZZO}$, with $s_{j,\alpha} > 0$ and $s_{j+1,\alpha} > s_j$ for $j > 0$, and $s_{-j,\alpha}=-s_{j,\alpha}$ (see \cite[Chapter~15]{Wat} or \cite[\S\,10.21]{OlMa-NIST}). Moreover,
+\[
+  \I_{\alpha+1}(z)
+  = 2^{\alpha+1} \Gamma(\alpha+2)\, \frac{J_{\alpha+1}(iz)}{(iz)^{\alpha+1}}
+\]
+so the function ${\Ea(xt)}/{\I_{\alpha+1}(t)^r}$ (as a function of the variable~$t$) is analytic in the disk $D(0,s_{1,\alpha})$ around $t=0$.
+Then, by Cauchy's integral formula for the derivatives applied to~\eqref{eq:defbdr}, we have
+\[
+\frac{\B_{k,\alpha}^{(r)}(x)}{\cc_k}
+= \frac{1}{2\pi i} \int_{C_1} \frac{\Ea(xt)}{\I_{\alpha+1}(t)^r} \frac{1}{t^{k+1}}\,dt,
+\]
+where $C_1$ is any circle centered at the origin with radius less than $s_{1,\alpha}$. 
+
+The function $G_{\alpha}(t) = t\I_{\alpha+1}(t)$ is analytic in a neighborhood of $t=0$, and satisfies $G_{\alpha}(0)=0$ and $G_{\alpha}'(0)\ne 0$. Then, there exists $G_{\alpha}^{-1}(z)$ analytic in a neighborhood of $z=0$, and, for $C_1$ of radius small enough, $C_2 = G_{\alpha}(C_1)$ is a simple closed curve surrounding $z=0$. Thus, with the change $t = G_{\alpha}^{-1}(z)$ we have
+\[
+\frac{\B_{k,\alpha}^{(r)}(x)}{\cc_k}
+= \frac{1}{2\pi i} \int_{C_2} \frac{\Ea(xG_{\alpha}^{-1}(z))}{z^r}
+\frac{\frac{d}{dz}(G_{\alpha}^{-1}(z))}{G_{\alpha}^{-1}(z)^{k+1-r}}\,dz.
+\]
+Taking $r=k+s$, 
+\[
+\frac{\B_{k,\alpha}^{(k+s)}(x)}{\cc_k}
+= \frac{1}{2\pi i} \int_{C_2} \frac{\Ea(xG_{\alpha}^{-1}(z))}{z^{s-1}(G_{\alpha}^{-1}(z))^{1-s}}
+\frac{d}{dz}(G_{\alpha}^{-1}(z))\,\frac{dz}{z^{k+1}},
+\]
+and consequently 
+\[
+\bigg(\frac{t}{G_{\alpha}^{-1}(t)}\bigg)^{1-s} \Ea(xG_{\alpha}^{-1}(t)) 
+\frac{d}{dt}G_{\alpha}^{-1}(t)
+= \sum_{k=0}^{\infty}\frac{\B_{k,\alpha}^{(k+s)}(x)}{\cc_k} \,t^k.
+\qedhere
+\]
+\end{proof}
+
+Finally, let us note that the first polynomials $\mathbf{p}_{k,\alpha}(x) = \B_{k,\alpha}^{(k+1)}(x)$ are
+\begin{align*}
+\B_{0,\alpha}^{(1)}(x) &= 1, \qquad
+\B_{1,\alpha}^{(2)}(x) = x, \qquad
+\B_{2,\alpha}^{(3)}(x) = x^2 - \frac{3 (\alpha +1)}{\alpha +2}, \\
+\B_{3,\alpha}^{(4)}(x) &= x^3 - 4 x, \qquad
+\B_{4,\alpha}^{(5)}(x) = x^4 - 10 x^2 
+  + \frac{5 (\alpha +1) (5 \alpha +16)}{(\alpha +2) (\alpha +3)}, \\
+\B_{5,\alpha}^{(6)}(x) &= x^5 - \frac{12 (\alpha +3) x^3}{\alpha +2}
+  + \frac{6 (6\alpha +19) x}{\alpha +2}, \\
+\B_{6,\alpha}^{(7)}(x) &= x^6 - \frac{21 (\alpha +3) x^4}{\alpha +2}
+  + \frac{21 (7 \alpha +22) x^2}{\alpha +2}
+  - \frac{7 (\alpha +1) (7 \alpha +26)^2}{(\alpha +2)^2 (\alpha +4)}, \\
+\B_{7,\alpha}^{(8)}(x) &= x^7 -\frac{24 (\alpha +4) x^5}{\alpha +2}
+  + \frac{24 (\alpha +4) (8\alpha +25) x^3}{(\alpha +2)^2} 
+  - \frac{32 (2\alpha+7)(8\alpha+31) x}{(\alpha +2)^2}.
+\end{align*}
+
+Of course, \eqref{eq:disgenc} corresponds to the case $\alpha=-1/2$  but, for general $\alpha>-1$, they cannot be factorized in a similar way.
+
+
+%----------
+%\section{Relation between the polynomials of Sections~\ref{sec:fallfact} 
+%and~\ref{sec:another} and consequences}
+\section{Relationships between families and applications}
+\label{sec:connection}
+%----------
+
+
+The classical falling factorial polynomials $x^{\underline{k}}$ and the generalized Bernoulli polynomials $B_k^{(r)}$ are related by means of the formula
+\[
+    x^{\underline{k}} = \frac{x}{k} \frac{d}{dx} B_{k}^{(k)}(x),
+    \quad k \ge 1.
+\]
+% En \cite[p.~130]{MT} y \cite[\S\,6.41, p.~133]{MT}, \cite{Car} hay f\'ormulas parecidas 
+This clearly follows from $x^{\underline{k}} = xB_{k-1}^{(k)}$ (see~\eqref{eq:Bkk+1}) using~\eqref{eq:Bkrder}.
+
+In the Dunkl context, we have the following:
+
+\begin{theorem}
+\label{teo:relation}
+The Dunkl factorial polynomials $f_{k,\alpha}(x)$ defined in~\eqref{eq:fallfka}, and the generalized Bernoulli-Dunkl polynomials defined in~\eqref{eq:defbdr} are related by
+\begin{equation}
+\label{eq:relation}
+    f_{k,\alpha}(x) = \frac{x}{k} \frac{d}{dx}\B_{k,\alpha}^{(k)}(x),
+    \quad k = 1,2,\ldots.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let us check that the sequences of polynomials $\{kf_{k,\alpha}(x)\}_{k=0}^{\infty}$ and $\{x\frac{d}{dx}\B_{k,\alpha}^{(k)}(x)\}_{k=0}^{\infty}$ have the same generating function. 
+
+For $\{kf_{k,\alpha}(x)\}_{k=0}^{\infty}$ we have, from \eqref{eq:fallfka}, that
+\[
+t \frac{d}{dt} \Big(\Ea(xG_{\alpha}^{-1}(t))\Big)
+= t\sum_{k=0}^{\infty} \frac{f_{k,\alpha}(x)}{\cc_k}\,kt^{k-1} 
+= \sum_{k=1}^{\infty} \frac{kf_{k,\alpha}(x)}{\cc_k}\,t^{k}.
+\]
+Moreover, let us notice that 
+\[
+\frac{d}{dt} \big(\Ea(xG_{\alpha}^{-1}(t))\big)
+= \Ea'(xG_{\alpha}^{-1}(t)) x \frac{d}{dt} (G_{\alpha}^{-1}(t))
+\]
+where $\Ea'$ is the ordinary derivative of the Dunkl kernel $\Ea$. 
+Then, we have the generating function
+\begin{equation}
+\label{eq:gf1}
+tx \Ea'(xG_{\alpha}^{-1}(t)) \frac{d}{dt} (G_{\alpha}^{-1}(t))
+= \sum_{k=1}^{\infty} \frac{kf_{k,\alpha}(x)}{\cc_k}\,t^{k}.
+\end{equation}
+
+On the other hand, let us use \eqref{eq:Bkrs} with $s=0$, that is,
+\[
+  \frac{t}{G_{\alpha}^{-1}(t)} 
+  \Big(\frac{d}{dt}(G_{\alpha}^{-1}(t))\Big) 
+  \Ea(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} \B_{k,\alpha}^{(k)}(x) \frac{t^k}{\cc_{k}}.
+\]
+By differentiating this expression with respect to $x$, we have
+\[
+  t \Big(\frac{d}{dt}(G_{\alpha}^{-1}(t))\Big) 
+  \Ea'(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} \frac{d}{dx} \B_{k,\alpha}^{(k)}(x) \frac{t^k}{\cc_{k}},
+\]
+so
+\begin{equation}
+\label{eq:gf2}
+  tx \Big(\frac{d}{dt}(G_{\alpha}^{-1}(t))\Big) 
+  \Ea'(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} x \frac{d}{dx} \B_{k,\alpha}^{(k)}(x) \frac{t^k}{\cc_{k}}.
+\end{equation}
+The generating functions in \eqref{eq:gf1} and \eqref{eq:gf2} are the same, so the result follows.
+\end{proof}
+
+In the place of \eqref{eq:relation}, another expansion can be found for $f_{k,\alpha}(x)$, also in terms of generalized Bernoulli polynomials.
+
+We showed in \eqref{eq:tau-P} that every Appell-Dunkl sequence $\{P_{k,\alpha}(x)\}_{k=0}^{\infty}$
+satisfies the binomial property 
+\[
+  P_{k,\alpha}(x) = \sum_{j=0}^k \binoma{k}{j} P_{j,\alpha}(0) x^{k-j}
+\]
+(recall that the Dunkl translation satisfies $\tau_y f(x) = \tau_x f(y)$, and that $\tau_0$ is the identity operator). Then, for the generalized Bernoulli-Dunkl polynomials we have
+\begin{equation*}
+%\label{eq:Bergen}
+\B_{k,\alpha}^{(r)}(x) 
+= \sum_{j=0}^k \binoma{k}{j} \B_{j,\alpha}^{(r)}(0) x^{k-j}.
+\end{equation*}
+If we differentiate this expression with respect to $x$, we obtain
+\begin{equation}
+\label{eq:derBka}
+\frac{d}{dx} \B_{k,\alpha}^{(r)}(x) 
+= \sum_{j=0}^{k-1} \binoma{k}{j} \B_{j,\alpha}^{(r)}(0)(k-j)x^{k-j-1}.
+\end{equation}
+Using together \eqref{eq:relation} and \eqref{eq:derBka} with $r=k$, we get
+\begin{equation}
+\label{eq:fkaBka}
+f_{k,\alpha}(x) = \sum_{j=0}^{k-1} \binoma{k}{j} \B_{j,\alpha}^{(k)}(0) \Big(1-\frac{j}{k}\Big)x^{k-j}.
+\end{equation}
+
+This expression allows us to give the analytic expansion for the function~$G_\alpha^{-1}$:
+
+\begin{theorem}
+\label{teo:inver-Ga}
+For $\alpha>-1$, the function $G^{-1}_\alpha$, inverse of $G_\alpha(z) = z \I_{\alpha+1}(z)$, can be given as
+\[
+G_{\alpha}^{-1}(t) 
+= \sum_{k=1}^{\infty} \frac{\theta_{k}}{k} \frac{\B_{k-1,\alpha}^{(k)}(0)}{\cc_{k,\alpha}}t^k
+= t \sum_{k=0}^{\infty} \frac{\B_{k,\alpha}^{(k+1)}(0)}{k+1} \frac{t^k}{\cc_{k,\alpha}}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let us apply the Dunkl operator $\La$ to the function $\Ea(xG_{\alpha}^{-1}(t))$. 
+Using \eqref{eq:LaEalx} and evaluating at $x=0$ gives
+\[
+\Lax(\Ea(xG_{\alpha}^{-1}(t)))\big|_{x=0} = G_{\alpha}^{-1}(t).
+\]
+Then, from \eqref{eq:fallfka} we have
+\begin{equation}
+\label{eq:G-1afka0}
+G_{\alpha}^{-1}(t) = \sum_{k=0}^{\infty} \La f_{k,\alpha}(0) \frac{t^k}{\cc_k}.
+\end{equation}
+
+By applying $\La$ to \eqref{eq:fkaBka}, and using that $\La x^j = \theta_j x^{j-1}$, we get
+\[
+\La f_{k,\alpha}(x) 
+= \sum_{j=0}^{k-1} \binoma{k}{j} \B_{j,\alpha}^{(k)}(0) \Big(1-\frac{j}{k}\Big)
+\theta_{k-j}x^{k-j-1}.
+\]
+Evaluating at $x=0$, all the summands vanish except $j=k-1$, so
+\[
+\La f_{k,\alpha}(0) = \binoma{k}{k-1} \B_{k-1,\alpha}^{(k)}(0) \Big(1-\frac{k-1}{k}\Big)\theta_{1}
+= \frac{\theta_k}{k} \B_{k-1,\alpha}^{(k)}(0).
+\]
+Then, \eqref{eq:G-1afka0} proves the theorem.
+\end{proof}
+
+Let us finish this section giving an extension of the Newton expansion to the Dunkl setting.
+The Newton expansion consists of the terms of the Newton forward difference equation and,
+in essence, it is the Newton interpolation formula, first published 
+in his \textit{Principia Mathematica} in 1687. It is the discrete analog 
+of the continuous Taylor expansion. 
+
+To our concerns (see, for instance \cite[\S\,34, p.~191]{Nor}), the classical formula is the expansion of a polynomial $Q_n(x)$ of degree less than or equal to $n$ in terms of the falling factorials $x^{\underline{k}}$, namely
+\begin{equation}
+\label{eq:Qnx}
+  Q_n(x) = \sum_{k=0}^n \frac{\Delta^kQ_n(0)}{k!}\, x^{\underline{k}}
+\end{equation}
+with $\Delta^{0} f(x) = f(x)$, $\Delta f(x) = f(x+1)-f(x)$ and $\Delta^{k+1} f(x) = \Delta (\Delta^k f(x))$. 
+
+In the Dunkl case, we must use, instead of forward differences, 
+the operator $(\alpha+1)(\tau_{1,x}-\tau_{-1,x})$;
+and, instead of falling factorials $x^{\underline{k}}$, 
+their Dunkl counterpart $f_{k,\alpha}(x)$. 
+Then, the Newton-Dunkl expansion formula is the following:
+
+\begin{theorem}
+Let $\alpha>-1$ and $f_{k,\alpha}(x)$ be the Dunkl factorial polynomials defined in~\eqref{eq:fallfka}. 
+Any polynomial $Q_n(x)$ of degree less than or equal to $n$ can be written as
+\begin{equation}
+\label{eq:QnxD}
+  Q_n(x) = \sum_{k=0}^n \frac{\Delta_{\alpha}^kQ_n(0)}{\cc_{k,\alpha}}\, f_{k,\alpha}(x),
+\end{equation} 
+where $\Delta_{\alpha}^k$ is the operator $\Delta_{\alpha} = (\alpha+1)(\tau_{1}-\tau_{-1})$ applied $k$ times.
+\end{theorem}
+
+\begin{proof}
+We know that $f_{0,\alpha}(x) = 1$ and 
+$f_{k,\alpha}(x) = \frac{x}{k} \frac{d}{dx}\B_{k,\alpha}^{(k)}(x)$ 
+(Theorem~\ref{teo:relation}). Consequently,
+\begin{equation}
+\label{eq:fk0}
+f_{0,\alpha}(0) = 1 \quad\text{and}\quad f_{k,\alpha}(0) = 0 \text{ for }k \ge 1.
+\end{equation}
+The polynomials $\{f_{k,\alpha}(x)\}_{k=0}^n$ form a basis of the polynomials of degree $\le n$, so $Q_n(x)$ can be written as
+\begin{equation}
+\label{eq:Qn}
+Q_n(x) = c_0 f_{0,\alpha}(x) + c_1 f_{1,\alpha}(x) + c_2 f_{2,\alpha}(x) 
++ \cdots + c_n f_{n,\alpha}(x)
+\end{equation}
+for some coefficients $c_k$. To compute the $c_k$, let us successively apply the operator $\Delta_{\alpha}$ to \eqref{eq:Qn}, and evaluate it at $x=0$.
+
+In the first place, taking $x=0$ in \eqref{eq:Qn} gives $Q_n(0)=c_0$.
+Secondly, applying $\Delta_{\alpha}$ to \eqref{eq:Qn} 
+and using $\Delta_{\alpha}f_{k,\alpha} =  \theta_k f_{k-1,\alpha}$, gives
+\[
+\Delta_{\alpha} Q_n(x) = c_1 \theta_1 f_{0,\alpha}(x) + c_2 \theta_2 f_{1,\alpha}(x) 
++ \cdots + c_n \theta_n f_{n-1,\alpha}(x);
+\]
+and evaluating at $x=0$ gives $\Delta_{\alpha} Q_n(0) = c_1 \theta_1 = c_1 \cc_1$ (recall~\eqref{eq:fk0}), so
+%\[
+%c_1 = \frac{\Delta_{\alpha}Q_n(0)}{\cc_1}.
+%\]
+$c_1 = {\Delta_{\alpha}Q_n(0)}/{\cc_1}$.
+Applying $\Delta_{\alpha}$ again we have
+\[
+\Delta_{\alpha}^2 Q_n(x) = c_2 \theta_2\theta_1 f_{0,\alpha}(x) + c_3 \theta_3\theta_2 f_{1,\alpha}(x) 
++ \cdots + c_n \theta_n\theta_{n-1} f_{n-2,\alpha}(x);
+\]
+and taking $x=0$ gives $\Delta_{\alpha}^2 Q_n(0) = c_2 \theta_2\theta_1 = c_2 \cc_2$, so
+%\[
+%c_2 = \frac{\Delta_{\alpha}^2Q_n(0)}{\cc_2}.
+%\]
+$c_2 = {\Delta_{\alpha}^2Q_n(0)}/{\cc_2}$.
+Following this process, we get 
+\[
+\Delta_{\alpha}^n Q_n(x) = c_n \theta_n\theta_{n-1} \cdots \theta_1 f_{0,\alpha}(x),
+\]
+that evaluated at $x=0$ gives $\Delta_{\alpha}^n Q_n(0) = c_n\cc_n$, so $c_n = \Delta_{\alpha}^n Q_n(0)/\cc_n$.
+\end{proof}
+
+Actually, the Newton expansion \eqref{eq:Qnx} is very often written in the slightly more general way
+\[
+  Q_n(a+x) = \sum_{k=0}^n \frac{\Delta^kQ_n(a)}{k!}\, x^{\underline{k}}.
+\]
+In the Dunkl setting, this can be written as
+\begin{equation}
+\label{eq:aQnxD}
+  \tau_x Q_n(a) = \tau_a Q_n(x) 
+  = \sum_{k=0}^n \frac{\Delta_{\alpha}^kQ_n(a)}{\cc_{k,\alpha}}\, f_{k,\alpha}(x).
+\end{equation}
+But this expression is a simple consequence of~\eqref{eq:QnxD}. 
+To show it, let us first note that, as a consequence of $\tau_a\tau_b = \tau_b\tau_a$ we have $\tau_a\Delta_\alpha = \tau_a\Delta_\alpha$, 
+and $\tau_a\Delta_\alpha^k = \tau_a\Delta_\alpha^k$ for every~$k$.
+Then, if we take the polynomial $R_n(x) = \tau_a Q_n(x)$, we have
+$\Delta_\alpha^k R_n(x) = \Delta_\alpha^k \tau_a Q_n(x) = \tau_a \Delta_\alpha^k Q_n(x)$,
+that evaluated at $x=0$ is
+\[
+\Delta_\alpha^k R_n(0) = \tau_a (\Delta_\alpha^k Q_n)(0) 
+= \tau_0 (\Delta_\alpha^k Q_n)(a) = \Delta_\alpha^k Q_n(a).
+\]
+Finally, \eqref{eq:QnxD} applied to $R_n$ gives~\eqref{eq:aQnxD}.
+
+%----------
+\section{Bernoulli-Dunkl polynomials of the second kind}
+\label{sec:BDsecond}
+%----------
+
+Recall that the Bernoulli polynomials of the second kind are defined by
+\begin{equation*}
+%\label{eq:fungenbk}
+  \frac{t}{\log(1+t)}(1+t)^x = \sum_{k=0}^\infty b_k(x) \, \frac{t^k}{k!},
+\end{equation*}
+and that they satisfy the relation $b_k(x+1) - b_k(x) = k b_{k-1}(x)$. 
+% forward differences
+And, as explained in Section~\ref{sec:DAD}, instead of the forward differences, in the Dunkl context we must generalize classical cases with central differences. This already exists in the mathematical literature, see~\cite[\S\,6]{Tem}: the so-called central Bernoulli polynomials of the second kind $\{b_k^{\mathit{II}}(x)\}_{k=0}^{\infty}$ are defined by
+\begin{equation}
+\label{eq:bkII}
+  \frac{t}{\log(t+\sqrt{1+t^2})} \big(t+\sqrt{1+t^2}\big)^x 
+  = \sum_{k=0}^{\infty} b_k^{\mathit{II}}(x) \frac{t^k}{k!},
+\end{equation}
+and they satisfy 
+\begin{equation}
+\label{eq:bkII1-1}
+  \frac{1}{2}(b_k^{\mathit{II}}(x+1) - b_k^{\mathit{II}}(x-1)) = k b_{k-1}^{\mathit{II}}(x).
+\end{equation}
+
+In our discrete Appell-Dunkl context, \eqref{eq:bkII1-1} is \eqref{eq:tau1-1pk} for $\alpha=-1/2$, so we must use \eqref{eq:defADdis} with a suitable $A(t)$ that extends the function $t/\log(t+\sqrt{1+t^2})$ in~\eqref{eq:bkII}. 
+Since $\log(t+\sqrt{1+t^2}) = G_{\alpha}^{-1}(t)$ for $\alpha=-1/2$, we define the 
+Bernoulli-Dunkl of the second kind as
+\begin{equation}
+\label{eq:bka}
+  \frac{t}{G_{\alpha}^{-1}(t)} \Ea(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} b_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}}, 
+  \qquad x \in \RR.
+\end{equation}
+The first of these polynomials are
+\begin{align*}
+b_{0,\alpha}(x) &= 1, \qquad
+b_{1,\alpha}(x) = x, \qquad
+b_{2,\alpha}(x) = x^2 + \frac{\alpha+1}{\alpha+2}, \\
+b_{3,\alpha}(x) &= x^3, \qquad
+b_{4,\alpha}(x) = x^4 - 2 x^2
+  - \frac{(\alpha+1)(3\alpha+10)}{(\alpha+2)(\alpha+3)}, \\
+b_{5,\alpha}(x) &= x^5 - \frac{(4\alpha+12)x^3}{\alpha+2}, \\
+b_{6,\alpha}(x) &= x^6
+  - \frac{9(\alpha+3)x^4}{\alpha+2}
+  + \frac{3(5\alpha+16) x^2}{\alpha+2}
+  + \frac{(\alpha+1)(25\alpha^2+190\alpha+364)}{(\alpha+2)^2 (\alpha+4)}, \\
+b_{7,\alpha}(x) &= x^7
+  - \frac{12(\alpha+4)x^5}{\alpha+2}
+  + \frac{6(\alpha+4)(6\alpha+19) x^3}{(\alpha+2)^2}.
+\end{align*}
+
+Let us now see how to extend a classical formula, namely
+\[
+  b_k(x) = x^{\underline{k}} - k! \sum_{j=0}^{k-1} \frac{b_j(x)}{j!} \frac{(-1)^{k-j}}{k+1-j},
+  \qquad k \ge 1,
+\]
+a relation that can be used to compute the Bernoulli polynomials of the second kind in a recursive way,
+and that, in particular, implies that
+\[
+  b_k(0) = - k! \sum_{j=0}^{k-1} \frac{(-1)^{k-j}b_j(0)}{(k+1-j)j!},
+  \qquad k \ge 1.
+\]
+In the case of Bernoulli-Dunkl polynomials of the second kind, these recurrence relations are as follows:
+
+\begin{theorem}
+Let $\alpha>-1$ and $b_{k,\alpha}(x)$ be the Bernoulli-Dunkl polynomials of the second kind,
+and denote $G_\alpha^{-1}(t) = \sum_{k=1}^{\infty} a_k t^k$ (the coefficients $a_k$ are identified in Theorem~\ref{teo:inver-Ga}).
+Then, 
+\begin{equation*}
+%\label{eq:bk-recur}
+b_{k,\alpha}(x) = f_{k,\alpha}(x) - \cc_{k,\alpha} \sum_{j=0}^{k-1} 
+\frac{a_{k+1-j} b_{j,\alpha}(x)}{\cc_{j,\alpha}},
+\quad k=1,2,\ldots,
+\end{equation*}
+and, for $x=0$,
+\begin{equation*}
+%\label{eq:bk-recur-0}
+b_{k,\alpha}(0) = -\cc_{k,\alpha} \sum_{j=0}^{k-1} \frac{a_{k+1-j} b_{j,\alpha}(0)}{\cc_{j,\alpha}},
+\quad k=1,2,\ldots.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+It is enough to use Theorem~\ref{teo:fnfrompj} with $1/A(t) = G_\alpha^{-1}(t)$ and $G_\alpha^{-1}(0)=0$.
+\end{proof}
+
+Finally, in the same way than the generalized Bernoulli polynomials of the second kind and order $r$ are defined by
+\begin{equation*}
+  \left(\frac{t}{\log(1+t)}\right)^r (1+t)^x 
+  = \sum_{k=0}^\infty b_k^{(r)}(x) \, \frac{t^k}{k!}
+\end{equation*}
+(see, for instance, \cite[\S\,2]{Car}), we define the generalized Bernoulli-Dunkl polynomials of the second kind and order $r$ as
+\begin{equation}
+\label{eq:bkar}
+  \left(\frac{t}{G_{\alpha}^{-1}(t)}\right)^r \Ea(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} b_{k,\alpha}^{(r)}(x) \frac{t^k}{\cc_{k,\alpha}}.
+\end{equation}
+
+One might expect that Bernoulli-Dunkl polynomials of the second kind 
+(and order~$r$) would satisfy many identities and formulas corresponding to known 
+properties of the classical Bernoulli polynomials of the second kind. 
+Although the scope of this paper is not to look for these identities, 
+we display here just a few of them to taste their flavor.
+
+Let us start with a formula that relates the polynomials of order $r$ with
+the polynomials of order $r-1$.
+
+\begin{theorem}
+\label{teo:Labka}
+If we apply the Dunkl operator $\La$ to the Bernoulli-Dunkl polynomials of the second kind and order $r$, we have
+\[
+  \La b_{k,\alpha}^{(r)}(x) = \theta_{k,\alpha} b_{k-1,\alpha}^{(r-1)}(x),
+  \quad k=1,2,\ldots;
+\]
+in particular, for $r=1$,
+\[
+  \La b_{k,\alpha} (x) = \theta_{k,\alpha} f_{k-1,\alpha}(x),
+  \quad k=1,2,\ldots,
+\]
+where $f_{k,\alpha}(x)$ are the Dunkl factorial polynomials defined in~\eqref{eq:fallfka}.
+\end{theorem}
+
+\begin{proof}
+Let us see the case $r=1$; to do it, let us apply $\Lax$ to both sides of \eqref{eq:bka}.
+Then, by using \eqref{eq:LaEalx} we have
+\[
+  t \Ea(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=0}^{\infty} (\La b_{k,\alpha})(x) \frac{t^k}{\cc_{k}}, 
+  \qquad x \in \RR.
+\]
+Since $\La b_{0,\alpha} = 0$, we can write
+\[
+  \Ea(x G_{\alpha}^{-1}(t)) 
+  = \sum_{k=1}^{\infty} (\La b_{k,\alpha})(x) \frac{t^{k-1}}{\cc_{k}} 
+  = \sum_{k=0}^{\infty} (\La b_{k+1,\alpha})(x) \frac{t^{k}}{\cc_{k+1}}.
+\]
+Comparing to \eqref{eq:fallfka}, using $\theta_{k+1} = \cc_{k+1}/\cc_{k}$, and by the unicity of the analytic expansions,
+we get $\La b_{k+1,\alpha} = \theta_{k+1} f_{k,\alpha}$.
+The generalized case for arbitrary $r$ is completely similar but starting from~\eqref{eq:bkar}.
+\end{proof}
+
+The values at $0$ and $1$ of the classical Bernoulli polynomials 
+of the second kind are related by means of
+\[
+  b_{k+1}(1) - b_{k+1}(0) = (k+1)b_k(0).
+\]
+In the Dunkl setting, also the value at $-1$ is involved in the corresponding relation.
+Stated for the Bernoulli-Dunkl polynomials of the second kind, 
+this property is as follows:
+
+\begin{theorem}
+\label{teo:rel01-1}
+Let $\alpha>-1$ and $b_{k,\alpha}^{(r)}(x)$ be the Bernoulli-Dunkl polynomials of the second kind and order~$r$. Then, 
+\begin{equation}
+\label{eq:rel01-1}
+  (\alpha+1) \big( b_{k,\alpha}^{(r)}(1)-b_{k,\alpha}^{(r)}(-1) \big)
+  = \theta_{k,\alpha} b_{k-1,\alpha}^{(r)}(0),
+  \quad k= 1,2,\ldots.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Multiplying \eqref{eq:bkar} by $t$ and evaluating at $x=0$ we have
+\begin{equation}
+\label{eq:ev0}
+\frac{t^{r+1}}{(G_{\alpha}^{-1}(t))^r}
+= \sum_{k=1}^{\infty} \theta_k b_{k-1,\alpha}^{(r)}(0) \frac{t^k}{\cc_k}.
+\end{equation}
+Now, by evaluating $\Ea(xG_{\alpha}^{-1}(t))$ at $x=-1$ and $x=1$, 
+$$
+(\alpha+1) \left(\Ea(G_{\alpha}^{-1}(t))-\Ea(-G_{\alpha}^{-1}(t))\right)
+= 2(\alpha+1) \sum_{k=0}^{\infty} \frac{(G_{\alpha}^{-1}(t))^{2k+1}}{\cc_{2k+1}}.
+$$
+But, by the construction of $G_{\alpha}^{-1}$ in Section~\ref{sec:DAD},
+\[
+(\alpha+1) \big(\Ea(G_{\alpha}^{-1}(t))-\Ea(-G_{\alpha}^{-1}(t))\big) = t,
+\]
+so the left hand side of \eqref{eq:ev0} becomes
+\begin{align*}
+\frac{t^{r+1}}{G_{\alpha}^{-1}(t)^r}
+&= (\alpha+1) \bigg(\frac{t}{G_{\alpha}^{-1}(t)}\bigg)^r 
+\big(\Ea(G_{\alpha}^{-1}(t))-\Ea(-G_{\alpha}^{-1}(t))\big) \\
+&= (\alpha+1) \sum_{k=0}^{\infty} \frac{b_{k,\alpha}^{(r)}(1)-b_{k,\alpha}^{(r)}(-1)}{\cc_k} \,t^k.
+\end{align*}
+Equating coefficients with the right hand side of \eqref{eq:ev0} we obtain~\eqref{eq:rel01-1}.
+\end{proof}
+
+%----------
+\begin{thebibliography}{99}
+%----------
+
+\bibitem{AdLe}
+J. A. Adell and A. Lekuona,
+Binomial convolution and transformations of Appell polynomials,
+\textit{J. Math. Anal. Appl.}
+\textbf{456} (2017), 16--33.
+
+\bibitem{AlS}
+W. A. Al-Salam,
+Characterization theorems for orthogonal polynomials,
+\textit{Orthogonal Polynomials: Theory and Practice}
+(Columbus, OH, 1989, P.~Nevai, ed.), 1--24,
+NATO Adv. Sci. Inst. Ser. C Math. Phys. Sci., 294,
+Kluwer Acad. Publ., Dordrecht, 1990.
+% NATO ASI Series, Volume 294 (1990)
+% http://link.springer.com/book/10.1007/978-94-009-0501-6
+
+\bibitem{AdJ} 
+N. B. Andersen and M. de Jeu,
+{Elementary proofs of Paley-Wiener theorems
+for the Dunkl transform on the real line,}
+\textit{Int. Math. Res. Not.}
+\textbf{30} (2005), 1817--1831.
+
+\bibitem{Ap}
+T. M. Apostol,
+On the Lerch zeta function,
+\textit{Pacific J. Math.} \textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+\bibitem{Bab}
+{J. Babini},
+Polinomios generalizados de Bernoulli y sus correlativos,
+%\textit{Revista Matem\'atica Hispano-Americana (2.\textsuperscript{a} serie)}
+\textit{Rev. Mat. Hisp.-Amer. (4)}
+\textbf{10} (1935), 23--25.
+
+\bibitem{Car}
+{L. Carlitz},
+A note on Bernoulli and Euler polynomials of the second kind,
+\textit{Scripta Math.}
+\textbf{25} (1961), 323--330.
+
+\bibitem{Cho} 
+F. M. Cholewinski, 
+\textit{The finite calculus associated with Bessel functions}, 
+Contemporary Mathematics, 75, American Mathematical Society, Providence, RI, 1988.
+
+\bibitem{CDPV}
+\'O. Ciaurri, A. J. Dur\'an, M. P\'erez and J. L. Varona,
+Bernoulli-Dunkl and Apostol-Euler-Dunkl polynomials with applications to series involving
+zeros of Bessel functions,
+\textit{J. Approx. Theory}
+\textbf{235} (2018), 20--45.
+% https://doi.org/10.1016/j.jat.2018.06.001
+
+\bibitem{CMV}
+\'O. Ciaurri, J. M\'inguez Ceniceros and J. L. Varona,
+{Bernoulli-Dunkl and Euler-Dunkl polynomials and their generalizations},
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM} 
+\textbf{113} (2019), 2853--2876.
+% https://doi.org/10.1007/s13398-019-00662-z
+
+\bibitem{CPRV}
+\'O. Ciaurri, M. P\'erez, J. M. Reyes and J. L. Varona,
+Mean convergence of Fourier-Dunkl series,
+\textit{J. Math. Anal. Appl.}
+\textbf{372} (2010), 470--485.
+% http://www.unirioja.es/cu/jvarona/downloads/Fourier-Dunkl-series.pdf
+
+%\bibitem{CV}
+%\'O. Ciaurri and J. L. Varona,
+%{A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform},
+%\textit{Proc. Amer. Math. Soc.}
+%\textbf{135} (2007), 2939--2947.
+
+\bibitem{CRV}
+\'O. Ciaurri, L. Roncal and J. L. Varona,
+The multiplier of the interval $[-1,1]$ for the Dunkl transform of arbitrary order on the real line, \textit{Integral Transforms Spec. Funct.} 
+\textbf{26} (2015), 728--736.
+
+\bibitem{DW}
+% Dai, Feng (3-AB-MS); Wang, Heping (PRC-CAP-SM)
+F. Day and H. Wang, 
+Interpolation by weighted Paley-Wiener spaces associated with the Dunkl transform, 
+\textit{J. Math. Anal. Appl.} \textbf{390} (2012), 556--572. 
+
+\bibitem{Dil-NIST}
+K. Dilcher,
+Bernoulli and Euler polynomials,
+\textit{NIST handbook of mathematical functions},
+% (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+587--599, % Es el Chapter 24
+U.S. Dept. Commerce, Washington, DC, 2010.
+%% LONG CITE:
+% National Institute of Standards and Technology, Washington, DC, 
+% and Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/24}
+
+\bibitem{Du}
+C. F. Dunkl,
+{Differential-difference operators associated to reflection groups},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{311} (1989), 167--183.
+
+\bibitem{DPV}
+A. J. Dur\'an, M. P\'erez and J. L. Varona,
+Fourier-Dunkl system of the second kind and Euler-Dunkl polynomials,
+\textit{J. Approx. Theory}
+\textbf{245} (2019), 23--39.
+% https://doi.org/10.1016/j.jat.2019.04.007
+
+%\bibitem{EMOT2}
+%A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. G. Tricomi,
+%\textit{Tables of integral transforms},
+%vol.~II, McGraw-Hill, New York, 1954.
+
+\bibitem{Gold}
+L. Gold,
+{Inverse Bessel functions: Solution for the zeros},
+\textit{J. Math. and Phys.}
+\textbf{36} (1957), 167--171.
+
+\bibitem{GKP}
+R. L. Graham, D. E. Knuth and O. Patashnik,
+\textit{Concrete Mathematics: A Foundation for Computer Science}, 2nd ed.,
+Addison-Wesley, Reading, MA, 1994.
+
+\bibitem{Jeu}
+M. F. E. de Jeu,
+{The Dunkl transform},
+\textit{Invent. Math.}
+\textbf{113} (1993), 147--162.
+
+\bibitem{Jor} % Charles Jordan
+C. Jordan,
+Sur les polynomes analogues aux polynomes de Bernoulli et sur des formules de sommation analogues \`a celle de MacLaurin-Euler,
+%\textit{Acta Scientarium Mathematicarum} 
+\textit{Acta Szeged} 
+\textbf{4} (1929), 130--150.
+
+\bibitem{Knuth}
+D. E. Knuth, 
+Two notes on notation, 
+\textit{Amer. Math. Monthly} 
+\textbf{99} (1992), 403--422. % no.~5
+%arXiv:math/9205211, 
+%doi:10.2307/2325085, 
+%JSTOR 2325085 
+
+\bibitem{MO}
+H. Mejjaoli and A. Ould Ahmed Salem, 
+On the Dunkl convolution equations in spaces of $\mathcal{D}_\alpha^p$ type, 
+\textit{Integral Transforms Spec. Funct.}
+\textbf{26} (2015), 619--634.
+
+\bibitem{MSV}
+D. Merlini, R. Sprugnoli and M. C. Verri,
+The Cauchy numbers,
+\textit{Discrete Math.}
+\textbf{306} (2006), 1906--1920.
+
+% MR0043339 (realmente es un ``reprinted from the first edition of 1933'')
+\bibitem{MT}
+L. M. Milne-Thomson, 
+\textit{The Calculus of Finite Differences}, 
+Macmillan and Co., London, 1951.
+
+\bibitem{NRV-Brno}
+L. M. Navas, F. J. Ruiz and J. L. Varona, 
+Existence and reduction of generalized Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials, 
+\textit{Arch. Math. (Brno)} 
+\textbf{52} (2019), 157--165. 
+
+\bibitem{Nor}
+N. E. N{\o}rlund, 
+M\'emoire sur les polyn\^omes de Bernoulli, 
+\textit{Acta. Math.} 
+\textbf{43} (1922), 121--196.
+
+%% Aqu\'i define Euler generalizado:
+%N. E. N{\o}rlund, 
+%Vorlesungen \"uber Differenzenrechnung, 1st ed., 
+%Springer-Verlag, Berlin-Heidelberg, 1924.
+
+\bibitem{NS}
+A. Nowak and K. Stempak, 
+Relating transplantation and multipliers for Dunkl and Hankel transforms, 
+\textit{Math. Nachr.} 
+\textbf{281} (2008), 1604--1611. 
+
+\bibitem{OlMa-NIST}
+F. W. J. Olver and L. C. Maximon,
+Bessel Functions,
+\textit{NIST handbook of mathematical functions},
+% (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+215--286, % Es el Chapter 10
+U.S. Dept. Commerce, Washington, DC, 2010.
+%% LONG CITE:
+% National Institute of Standards and Technology, Washington, DC, 
+% and Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/10}
+
+\bibitem{Ph} % Lo cita OEIS
+G. M. Phillips, 
+Gregory's method for numerical integration, 
+\textit{Amer. Math. Monthly}
+\textbf{79} (1972), 270--274.
+
+\bibitem{RP-BSMA}
+{J. Rey Pastor},
+Polinomios correlativos de los de Bernoulli,
+%\textit{Bolet\'in del Seminario Matem\'atico Argentino}
+\textit{Bolet\'in Seminario Mat. Argentino}
+\textbf{1} (1929), no.~3, 1--10.
+
+\bibitem{Ros}
+M. Rosenblum,
+{Generalized Hermite polynomials and the Bose-like oscillator calculus},
+\textit{Oper. Theory Adv. Appl.}
+\textbf{73} (1994), 369--396.
+
+\bibitem{Rosler-LN}
+M. R\"osler,
+Dunkl operators: theory and applications,
+\textit{Orthogonal polynomials and special functions 
+(Leuven, 2002)}, 93--135, 
+Lecture Notes in Math., 1817, Springer, Berlin, 2003.
+
+\bibitem{Rosler-TAMS}
+M. R\"osler,
+A positive radial product formula for the Dunkl kernel,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{355} (2003), 2413--2438.
+
+\bibitem{Tem}
+P. Tempesta,
+On Appell sequences of polynomials of Bernoulli and Euler type,
+\textit{J. Math. Anal. Appl.} 
+\textbf{341} (2008), 1295--1310.
+
+\bibitem{ThX}
+S. Thangavelu and Y. Xu,
+Riesz transform and Riesz potentials for Dunkl transform,
+\textit{J. Comput. Appl. Math.}
+\textbf{199} (2007), 181--195.
+
+\bibitem{Tr}
+K. Trim\`eche,
+Paley-Wiener theorems for the Dunkl transform and Dunkl translation operators.
+\textit{Integral Transform Spec. Funct.} 
+\textbf{13} (2002), 17--38.
+
+\bibitem{Wat}
+G. N. Watson,
+\textit{A treatise on the theory of Bessel functions},
+Cambridge University Press, Cambridge, 1958.
+
+\bibitem{WuPan}
+% Ming Wu and Hao Pan, 
+M. Wu and H. Pan, 
+Sums of products of Bernoulli numbers of the second kind, 
+\textit{Fib. Quart.} \textbf{45} (2007), 146--150.
+
+\bibitem{Zh}
+F.-Z. Zhao, % Feng-Zhen Zhao
+Sums of products of Cauchy numbers,
+\textit{Discrete Math.}
+\textbf{309} (2009), 3830--3842.
+
+%----------
+\end{thebibliography}
+%----------
+
+%----------
+\end{document}
+%---------- 

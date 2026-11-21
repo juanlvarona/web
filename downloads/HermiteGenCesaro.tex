@@ -1,0 +1,812 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% Two-weight norm inequalities for the Ces\`aro means of             %
+% generalized Hermite expansions,                                    %
+% by                                                                 %
+% \'Oscar Ciaurri and Juan L. Varona                                 %
+%                                                                    %
+% DATE: first version, 20-March-2003                                 %
+% DATE: last modification, 24-March-2004                             %
+%                                                                    %
+% Written with AMS-LaTeX 2.0                                         %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{amsart}
+
+%%%%%%%% A LOT OF BIG SEVERAL-LINE EQUATIONS (aligns, etc.).
+%%%%%%%% THUS, WE ALLOW TO BREAK THEM IN PAGES.
+\allowdisplaybreaks
+
+%\date{March 24, 2003}
+
+\date{PUBLISHED IN \textit{J.\ Comput.\ Appl.\ Math.}\ \textbf{178}
+  (2005), no.~1-2, 99--110.}
+
+\theoremstyle{plain}
+\newtheorem{Theo}{Theorem}
+\newtheorem{Prop}{Proposition}
+\newtheorem{Lem}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{Def}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{Rem}{Remark}
+
+%%%%%%%%
+
+% Cesaro-Hermite kernel and means:
+\newcommand{\cheker}[5]{\mathcal{K}_{#1,#2}^{\{#3\}}%
+  (#4,#5)} % Cesaro-Hermite kernel
+\newcommand{\chem}[3]{\sigma_{#1,#2}^{\{#3\}}} % Cesaro-Hermite mean
+\newcommand{\chemmod}[3]{\widetilde{\sigma}_{#1,#2}^{\{#3\}}} % modified
+\newcommand{\fouhe}[2]{S_{#1}^{\{#2\}}} % Fourier-Hermite
+% Cesaro-Laguerre kernel and means:
+\newcommand{\claker}[5]{\mathcal{K}_{#1,#2}^{(#3)}%
+  (#4,#5)} % Cesaro-Laguerre kernel
+\newcommand{\clam}[3]{\sigma_{#1,#2}^{(#3)}} % Cesaro-Laguerre mean
+% Hermite functions and polynomials:
+\newcommand{\herfun}[2]{\mathcal{H}_{#1}^{\{#2\}}}
+\newcommand{\herpol}[2]{H_{#1}^{\{#2\}}}
+% Laguerre functions and polynomials:
+\newcommand{\lagfun}[2]{\mathcal{L}_{#1}^{(#2)}}
+\newcommand{\lagpol}[2]{L_{#1}^{(#2)}}
+% Numeros combinatorios
+\newcommand{\combi}[2]{A_{#1}^{#2}}
+%
+\newcommand{\I}{\infty}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\begin{document}
+\title[Ces\`aro means of generalized Hermite expansions]
+{Two-weight norm inequalities for the Ces\`aro means
+of generalized Hermite expansions}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{oscar.ciaurri@dmc.unirioja.es}
+
+\author[J. L. Varona]{Juan~L.~Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+\thanks{Research supported by grant BFM2003-06335-C03-03 of the DGI}
+
+\keywords{Ces\`aro means, N{\o}rlund means, Hermite expansions, Hermite polynomials,
+generalized Hermite expansions, generalized Hermite polynomials,
+two-weight norm inequalities, weighted norm inequalities}
+\subjclass[2000]{Primary 42C10}
+
+\begin{abstract}
+We prove two-weight norm inequalities for Ces\`aro means of generalized Hermite polynomial series
+and for the supremum of these means. A result about weak boundedness and an almost everywhere
+convergence result are also obtained.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Given a real number $\mu > -1/2$, let $\{\herpol{n}{\mu}\}_{n=0}^\I$ be the
+so-called generalized Hermite polynomials of order~$\mu$;
+see~\cite[Ch.~V, \S\,2 (G), p.~156]{Ch}.
+These polynomials are orthogonal on $L^2(\mathbb{R},|x|^{2\mu} e^{-x^2}\,dx)$,
+and they are uniquely defined by requiring that the leading coefficient
+of the polynomial $\herpol{n}{\mu}(x)$ be~$2^n$. 
+The sequence of generalized Hermite functions
+$\{\herfun{n}{\mu}\}_{n = 0}^{\I}$ is defined by
+\[
+  \herfun{n}{\mu}(x) :=
+  2^{-n} \left(\Bigl[\frac{n}{2}\Bigr]!\right)^{-1/2}
+    \Gamma\left(\Bigl[\frac{n+1}{2}\Bigr]
+      +\mu+\frac{1}{2}\right)^{-1/2}
+  |x|^{\mu} e^{-x^2/2} \herpol{n}{\mu}(x),
+\]
+where, as usual, $[\,\cdot\,]$ denotes the greatest
+integer function.
+The system $\{\herfun{n}{\mu}\}_{n=0}^\I$ is orthonormal on
+$L^2(\mathbb{R},dx)$.
+Of course, these polynomials and functions are generalizations
+of the ``ordinary'' Hermite polynomials and functions, which correspond
+to the case~$\mu=0$. They play an important role as
+eigenfunctions of the Dunkl transform.
+
+When we have an orthogonal system and a function, we can consider its Fourier series
+with respect to the system. An interesting problem is the study of the convergence
+of such Fourier expansions. If the system is complete, this is always true for
+functions in the appropriate $L^2$ space, but not always for functions
+in $L^p$, $p\ne2$; also, we cannot ensure almost everywhere convergence.
+It is well known the relation between the uniform boundedness of partial sum operators and the
+convergence of the series, a crucial fact in this problem. When studying the uniform
+boundedness, extra weights can be added, and this leads to convergence in different weighted $L^p$
+spaces. If the convergence of the Fourier series fails, another summation methods can be considered;
+in particular, the convergence of Ces\`aro means.
+
+These kind of questions have been widely studied for the classical
+Hermite system~\cite{AW,M2,Po,MW2}, but not for the generalized Hermite system.
+This is the aim of this paper. In particular, we are going to extend
+the results of~\cite{MW2} concerning Ces\`aro means of Hermite expansions
+to generalized Hermite expansions.
+
+For a function $f$, let $\chem{\delta}{n}{\mu}(f,x)$ be the $n$th
+Ces\`aro mean of order $\delta>0$ of the expansion of $f$ in orthonormalized
+generalized Hermite functions $\{\herpol{n}{\mu}\}_{n=0}^\I$ of order $\mu>-1/2$.
+Also, let us use $\|\cdot\|_p$ to denote the unweighted $L^p$ norm on $(-\I,\I)$.
+We prove inequalities of the form
+\begin{equation*}
+  \sup_{n\ge0} \, \Bigl\| |x|^a(1+|x|)^{b-a}\chem{\delta}{n}{\mu}(f,x) \Bigr\|_p
+  \le C \Bigl\| |x|^A(1+|x|)^{B-A}f(x) \Bigr\|_p
+\end{equation*}
+for $1 \le p \le \infty$ (Theorem~\ref{MCGWT1}), and
+\begin{equation*}
+  \Bigl\| |x|^a(1+|x|)^{b-a} \sup_{n\ge0} |\chem{\delta}{n}{\mu}(f,x)| \Bigr\|_p
+  \le C \Bigl\||x|^A(1+|x|)^{B-A}f(x) \Bigr\|_p
+\end{equation*}
+for $1 < p \le \infty$ (Theorem~\ref{MCGW2}), where $C$ is independent of~$f$.
+A result about weak boundedness for the supremum when $p=1$ (Theorem~\ref{WK}),
+and an almost everywhere convergence result (Theorem~\ref{CAE}) are also proved.
+
+An important point in the study of this question is to obtain
+estimates for the kernel of $\chem{\delta}{n}{\mu}$.
+This can be done in a direct way, such as it is done in~\cite{M}
+for the case $\mu=0$ and $\delta=0$ (i.e., the Fourier series itself).
+On the other hand, the kernel can be written in terms of Ces\`aro-Laguerre
+kernels, and so previously known results for Laguerre can be applied.
+
+If the order of summation, $\delta$, is an integer,
+this is simple since the generalized Ces\`aro-Hermite kernel is a
+linear combination of a fixed finite number of Ces\`aro-Laguerre
+kernels. This fact was used for the first time in~\cite{Po},
+for the case $\mu=0$ and $\delta=1$.
+In \cite[Chapter~6]{V}, this is done for the general case $\mu>-1/2$,
+both for $\delta=0$ and $\delta=1$.
+
+For arbitrary $\delta>0$, obtaining the estimate for the kernel of
+$\chem{\delta}{n}{\mu}$ is more complicated,
+because the expression that relates Hermite kernels with Laguerre kernels
+contains $n+1$ terms. When $\mu=0$, this decomposition is shown
+in~\cite[Lemma~(3.8)]{MW2}; and the generalization for the arbitrary
+$\mu > -1/2$ is not difficult.
+Combining the decomposition with the precise estimates
+for Laguerre kernels of~\cite{W}, an estimate for classical Hermite kernels
+is given in~\cite[Theorem~(4.5)]{MW2}. Then, because of the similarity of the
+estimate to the Laguerre case, the norm inequalities are established
+using the methods and the results of~\cite{MW}.
+
+In this paper, we extend the aforementioned studies to the general case $\mu>-1/2$.
+But this is not the only purpose of the paper, but also to show a different approach:
+we make use of the results in~\cite{MW}, but in a way different to the way in~\cite{MW2}.
+
+Instead of using Ces\`aro means of generalized Hermite series, we will use a different
+summation method, whose means we will denote by $\chemmod{\delta}{n}{\mu}$
+(see~\eqref{stilde} for details). Actually, it will be a N{\o}rlund method,
+according to the name given in~\cite[Chapter~IV]{H} (also Ces\`aro means are particular
+cases of N{\o}rlund methods).
+We will see that $\chemmod{\delta}{n}{\mu}$ can be decomposed as a sum of two
+Ces\`aro-Laguerre means (see the formula~\eqref{twosum}); i.e, we have only two summands
+in the relation between Laguerre and Hermite, instead of the $n+1$ summands that
+appear when using Ces\`aro-Hermite. As a consequence of the fixed number of summands,
+the uniform boundedness of $\chemmod{\delta}{n}{\mu}$ follows immediately from the
+uniform boundedness of
+Ces\`aro-Laguerre: contrary to~\cite{MW2}, it is not necessary the cumbersome process
+of finding bounds for the kernel of~$\chemmod{\delta}{n}{\mu}$. Also, we completely
+eliminate the part corresponding to the use of the bounds of the kernel to study
+the uniform boundedness of the operators~$\chem{\delta}{n}{\mu}$ (this would require
+to mimic the process in~\cite{MW}, as explained in~\cite{MW2}).
+
+Finally, we prove that the uniform boundedness for~$\chemmod{\delta}{n}{\mu}$ imply
+the uniform boundedness for the Ces\`aro-Hermite means~$\chem{\delta}{n}{\mu}$;
+this is the most technical part of the paper.
+In practice, due to the similarity to the Laguerre case, the norm inequalities,
+necessity results and convergence results in this paper are essentially corollaries of
+the results in~\cite{MW} for Laguerre expansions with parameter $\alpha=\mu-1/2$.
+This happens because the hypotheses over the other parameter involved,
+$\mu+1/2$, are weaker.
+
+Throughout this paper $C$ will be a positive constant independent of $f$, $n$, $x$ and
+$y$, but it assumes different values in different occurrences.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Generalized Hermite in terms of Laguerre}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In the introduction, we have already described generalized
+Hermite polynomials and functions. Let us now describe
+Laguerre polynomials and functions. To clearly differentiate
+between Hermite and Laguerre (in polynomials, functions, series,
+Ces\`aro means, kernels, bounds, \dots), we will always use superscripts
+$^{\{\cdot\}}$ to indicate the parameter for Hermite,
+and superscripts $^{(\cdot)}$ for Laguerre parameters.
+
+Given a real number $\alpha > -1$, let $\{\lagpol{n}{\alpha}\}_{n=0}^\I$
+be the Laguerre polynomials of order~$\alpha$;
+see, for instance,~\cite[Ch.~V, \S\,2 (A), p.~144]{Ch}.
+These polynomials are orthogonal on $L^2((0,\I),x^\alpha e^{-x}\,dx)$,
+and they are uniquely defined by requiring that the leading coefficient
+of $\lagpol{n}{\alpha}(x)$ be~$(-1)^n/n!$.
+The sequence of Laguerre functions
+$\{\lagfun{n}{\alpha}\}_{n = 0}^{\I}$ is defined by
+\[
+  \lagfun{n}{\alpha}(x) :=
+  {\Gamma(\alpha + 1)}^{-1/2}
+    (\combi{n}{\alpha})^{-1/2} x^{\alpha/2}
+    e^{-x/2} \lagpol{n}{\alpha}(x),
+\]
+where $\combi{n}{\alpha} = \binom{n+\alpha}{n}$. The system $\{\lagfun{n}{\mu}\}_{n=0}^\I$ is
+orthonormal on $L^2((0,\I),dx)$.
+
+It is interesting to note that, for Hermite polynomials,
+only the case $\mu=0$ is ``classical'', according to the characterizations
+of the classical orthogonal polynomials; see~\cite[Ch.~V, \S\,2 (D), p.~150]{Ch}.
+However, Laguerre polynomials are considered as classical for every $\alpha>-1$,
+although only the case $\alpha=0$ was originally studied by Laguerre.
+
+The generalized Hermite polynomials are related to the Laguerre polynomials by the identities
+\begin{align*}
+\herpol{2n}{\mu}(x) &= (-1)^n 2^{2n}n!\,\lagpol{n}{\mu-1/2}(x^2),\\
+\herpol{2n+1}{\mu}(x) &= (-1)^n 2^{2n+1}n!\,x\lagpol{n}{\mu+1/2}(x^2)
+\end{align*}
+(we must comment that in~\cite[Ch.~V, \S\,2 (G), p.~156]{Ch} there is a misprint in the second identity, the factor $x$ was omitted).
+Then, each $\herfun{n}{\mu}$ can be expressed in terms of some
+$\lagfun{n}{\alpha}$; namely, given a nonnegative integer $n$ and a real number $x$,
+\begin{equation}
+\label{h-lid}
+\begin{aligned}
+  \herfun{2n}{\mu}(x) &= (-1)^{n}|x|^{1/2}
+    \lagfun{n}{\mu-1/2}(x^{2}),\\
+  \herfun{2n + 1}{\mu}(x) &= (-1)^{n}\sgn(x)|x|^{1/2}
+    \lagfun{n}{\mu+1/2}(x^{2}).
+\end{aligned}
+\end{equation}
+
+The generalized Hermite expansion of a function $f$ is
+\[
+  \sum_{k=0}^\infty\herfun{k}{\mu}(x)
+  \left(\int_{-\I}^\I f(y)\herfun{k}{\mu}(y)\,dy\right)
+\]
+provided that the integrals (i.e., the Fourier coefficients) exist.
+For $\delta>0$, the $n$th $(C,\delta)$-Ces\`aro
+mean of this expansion is
+\[
+  \chem{\delta}{n}{\mu}(f,x)
+  := \frac{1}{\combi{n}{\delta}} \sum_{k=0}^n\combi{n-k}{\delta}
+  \herfun{k}{\mu}(x) \left(\int_{-\I}^\I f(y)\herfun{k}{\mu}(y)\,dy\right).
+\]
+It follows that
+\begin{equation*}
+  \chem{\delta}{n}{\mu}(f,x) = \int_{-\I}^{\I}f(y)
+    \cheker{\delta}{n}{\mu}{x}{y}\,dy,
+\end{equation*}
+where
+\begin{equation*}
+  \cheker{\delta}{n}{\mu}{x}{y}
+  := \frac{1}{\combi{n}{\delta}} \sum_{k = 0}^{n}
+  \combi{n-k}{\delta} \herfun{k}{\mu}(x)\herfun{k}{\mu}(y).
+\end{equation*}
+Similarly, the $n$th ($C,\delta$)-Ces\`aro mean for a Laguerre expansion satisfies
+\begin{equation*}
+  \clam{\delta}{n}{\alpha}(f,x)
+  = \int_{0}^{\I}f(y) \claker{\delta}{n}{\alpha}{x}{y}\,dy,
+\end{equation*}
+where
+\begin{equation*}
+  \claker{\delta}{n}{\alpha}{x}{y}
+  := \frac{1}{\combi{n}{\delta}} \sum_{k = 0}^{n}
+  \combi{n-k}{\delta} \lagfun{k}{\alpha}(x)\lagfun{k}{\alpha}(y).
+\end{equation*}
+
+The main tool to prove the results in this paper will be the use of another summation method.
+For a generalized Hermite expansion, the $n$th $(\widetilde{C},\delta)$ mean is defined by
+\begin{equation}
+\label{stilde}
+  \chemmod{\delta}{n}{\mu}(f,x)
+  := \frac{1}{\combi{[\frac{n}2]}{\delta}}
+  \sum_{k=0}^n\combi{[\frac{n-k}2]}{\delta}
+  \herfun{k}{\mu}(x) \left(\int_{-\I}^\I f(y)\herfun{k}{\mu}(y)\,dy\right).
+\end{equation}
+The point of the $(\widetilde{C},\delta)$ summation method is that we can express it easily
+in terms of the Ces\`{a}ro means of two Laguerre expansions. So, norm inequalities for
+$\chemmod{\delta}{n}{\mu}$ can be deduced from the results in \cite{MW} for
+Ces\`{a}ro-Laguerre expansions. This will be done in Proposition~\ref{Propo1}. Moreover,
+as we will show in Proposition~\ref{Propo2}, norm inequalities for $\chem{\delta}{n}{\mu}$
+follow from the norm inequalities for~$\chemmod{\delta}{n}{\mu}$.
+
+\begin{Prop}
+\label{Propo1}
+Let $1\le p \le \I$, $\mu >-1/2$ and $\delta>0$.
+\begin{enumerate}
+\item[a)] If
+\[
+  \sup_{n\ge 0} \left\|w(x)\int_{-\I}^{\I}f(y)|xy|^{1/2}
+    \claker{\delta}{n}{\mu\pm 1/2}{x^2}{y^2}\,dy\right\|_{p}
+  \le C \|W(x)f(x)\|_{p}
+\]
+then
+\[
+  \sup_{n\ge 0} \left\|w(x)\chemmod{\delta}{n}{\mu}(f,x)\right\|_p
+  \le C \|W(x)f(x)\|_p.
+\]
+\item[b)] If
+\[
+  \left\|w(x)\sup_{n\ge 0} \left|\int_{-\I}^{\I}f(y)|xy|^{1/2}
+    \claker{\delta}{n}{\mu\pm 1/2}{x^2}{y^2}\,dy\right|\right\|_{p}
+  \le C \|W(x)f(x)\|_{p}
+\]
+then
+\[
+  \left\|w(x)\sup_{n\ge 0} \left|\chemmod{\delta}{n}{\mu}(f,x)\right|\right\|_p
+  \le C \|W(x)f(x)\|_p.\]
+\end{enumerate}
+\end{Prop}
+The proof of this result follows immediately from the identity
+\begin{multline}
+\label{twosum}
+  \chemmod{\delta}{n}{\mu}(f,x)
+  = \int_{-\I}^{\I}f(y)|xy|^{1/2}
+    \claker{\delta}{[\frac{n}2]}{\mu-1/2}{x^2}{y^2}\,dy \\
+  + \int_{-\I}^{\I}f(y)\sgn(xy)|xy|^{1/2}
+    \claker{\delta}{[\frac{n-1}2]}{\mu+1/2}{x^2}{y^2}\,dy,
+\end{multline}
+which can be easily obtained by using~\eqref{h-lid}.
+
+\begin{Rem}
+\label{equiv}
+Actually, we can prove the reverse condition both in parts (a) and~(b).
+For this, it suffices to take even and odd functions.
+Then, one of the two summands in~\eqref{twosum} vanishes,
+and so the boundedness of $\chemmod{\delta}{n}{\mu}$ is equivalent
+to the boundedness of Ces\`aro-Laguerre means.
+In particular, this would ensure that, in the situation of Theorem~\ref{MCGWT1},
+the sufficient conditions are also necessary for the uniform boundedness
+of~$\chemmod{\delta}{n}{\mu}$,
+because this is what happens in the Laguerre case~\cite{MW}.
+\end{Rem}
+
+\begin{Prop}
+\label{Propo2} Let $1\le p \le \I$, $\mu>-1/2$ and $\delta>0$.
+\begin{enumerate}
+\item[a)] If
+\[
+  \sup_{n\ge 0} \left\|w(x)\chemmod{\delta}{n}{\mu}(f,x)\right\|_{p}
+  \le C \|W(x)f(x)\|_{p}
+\]
+then
+\[
+  \sup_{n\ge 0} \left\|w(x)\chem{\delta}{n}{\mu}(f,x)\right\|_p
+  \le C \|W(x)f(x)\|_p.
+\]
+\item[b)] If
+\[
+  \left\|w(x)\sup_{n\ge 0} \left|\chemmod{\delta}{n}{\mu}(f,x)\right|\right\|_{p}
+  \le C \|W(x)f(x)\|_{p}
+\]
+then
+\[
+  \left\|w(x)\sup_{n\ge 0} \left|\chem{\delta}{n}{\mu}(f,x)\right|\right\|_p
+  \le C \|W(x)f(x)\|_p.
+\]
+\end{enumerate}
+\end{Prop}
+
+\begin{proof}
+The proof of these results relies on the ideas of \cite[\S\,4.3]{H} about
+the \emph{inclusion} of different N{\o}rlund methods. Let us begin
+writing $\chem{\delta}{n}{\mu}$ in terms of $\chemmod{\delta}{n}{\mu}$.
+By using the identity
+$\combi{m}{\delta}-\combi{m-1}{\delta} = \combi{m}{\delta-1}$,
+it is clear that
+\[
+  \chem{\delta}{n}{\mu}(f,x)
+  = \frac{1}{\combi{n}{\delta}} \sum_{k=0}^{n}\combi{n-k}{\delta-1} \fouhe{k}{\mu}(f,x),
+\]
+where
+\[
+  \fouhe{k}{\mu}(f,x) = \sum_{i=0}^k \herfun{i}{\mu}(x)
+   \left(\int_{-\I}^\I f(y)\herfun{i}{\mu}(y)\,dy\right)
+\]
+are the partial sums of the Fourier series.
+In a similar way, we can show that
+\[
+  \chemmod{\delta}{n}{\mu}(f,x) =
+  \begin{cases} \displaystyle
+    \frac{1}{\combi{m}{\delta}} \sum_{k=0}^m \combi{m-k}{\delta-1} \fouhe{2k}{\mu}(f,x),
+      &\text{if $n=2m$,}\\[4mm]
+    \displaystyle
+    \frac{1}{\combi{m}{\delta}}\sum_{k=0}^m \combi{m-k}{\delta-1} \fouhe{2k+1}{\mu}(f,x),
+      &\text{if $n=2m+1$.}
+  \end{cases}
+\]
+From this point on, we will consider $n=2m$. The case $n=2m+1$ is similar. It is easy to verify that
+\begin{align*}
+  \chem{\delta}{2m}{\mu}(f,x)
+  &= \frac{1}{\combi{2m}{\delta}} \sum_{j=0}^{m}\combi{2(m-j)}{\delta-1} \fouhe{2j}{\mu}(f,x)
+  + \frac{1}{\combi{2m}{\delta}} \sum_{j=0}^{m-1}\combi{2(m-j)-1}{\delta-1} \fouhe{2j+1}{\mu}(f,x) \\
+  &=: \chem{\delta}{2m}{\mu,1}(f,x) + \chem{\delta}{2m}{\mu,2}(f,x).
+\end{align*}
+Now, we claim that
+\begin{align}
+\label{ec:Id1}
+  \chem{\delta}{2m}{\mu,1}(f,x)
+  &= \frac{1}{\combi{2m}{\delta}}\sum_{j=0}^m
+    \combi{j}{\delta} \binom{\delta}{2(m-j)} \chemmod{\delta}{2j}{\mu}(f,x)\\
+\intertext{and}
+\label{ec:Id2}
+  \chem{\delta}{2m}{\mu,2}(f,x)
+  &= \frac{1}{\combi{2m}{\delta}} \sum_{j=0}^{m-1}
+   \combi{j}{\delta}\binom{\delta}{2(m-j)-1}\chemmod{\delta}{2j+1}{\mu}(f,x).
+\end{align}
+Then, the proof can be concluded using two facts:
+for a constant $C$ independent of $m$ and~$0 \le j \le m$,
+the binomial coefficients satisfy $\combi{j}{\delta}\le C \combi{2m}{\delta}$;
+and, finally, $\sum_{j=0}^\I |\binom{\delta}{j}| < \I$.
+
+Now, let us check our claim. We only prove~\eqref{ec:Id1},
+because the identity~\eqref{ec:Id2} follows in the same way.
+Taking the power series (which are absolutelly convergent for $|t|$ small enough)
+\[
+  s(t) = \sum_{m=0}^\I \fouhe{2m}{\mu}(f,x)t^m,\quad p(t)
+  = \sum_{m=0}^\I \combi{2m}{\delta-1}t^m\quad
+  \text{and}\quad
+  q(t) = \sum_{m=0}^\I \combi{m}{\delta-1}t^m,
+\]
+it is clear that
+\[
+  s(t)p(t) = \sum_{m=0}^\I \combi{2m}{\delta} \chem{\delta}{2m}{\mu,1}(f,x)t^m
+  \quad\text{and}\quad
+  s(t)q(t) = \sum_{m=0}^\I \combi{m}{\delta} \chemmod{\delta}{2m}{\mu}(f,x)t^m.
+\]
+Moreover,
+\[
+  p(t) = \frac{(1+\sqrt{t})^{\delta}+(1-\sqrt{t})^{\delta}}{2(1-t)^\delta},
+  \quad q(t) = \frac{1}{(1-t)^\delta}
+\]
+and
+\[
+  \frac{p(t)}{q(t)} = \frac12((1+\sqrt{t})^\delta + (1-\sqrt{t})^\delta)
+  = \sum_{m=0}^\I \binom{\delta}{2m}t^m.
+\]
+In this way,
+\begin{align*}
+  \sum_{m=0}^\I \combi{2m}{\delta} \chem{\delta}{2m}{\mu,1}(f,x)t^m
+  &= \frac{p(t)}{q(t)}s(t)q(t)
+  = \sum_{m=0}^\I \binom{\delta}{2m}t^m
+    \cdot \sum_{m=0}^\I \combi{\delta}{m} \chemmod{\delta}{2m}{\mu}(f,x)t^m \\
+  &= \sum_{m=0}^\I \left(\sum_{j=0}^m \combi{j}{\delta}\binom{\delta}{2(m-j)}
+    \chemmod{\delta}{2j}{\mu}(f,x)\right)t^m
+\end{align*}
+and so we have~\eqref{ec:Id1}.
+\end{proof}
+
+\begin{Rem}
+\label{sst}
+In general, the converse results are not true. If we try to prove them,
+a problem arises: the series $\sum_{j=0}^\I |\binom{-\delta}{j}|$ does not converge.
+\end{Rem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Norm inequalities and convergence results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Here, we establish the main results of the paper.
+Most of their proofs are immediate by applying~\cite{MW} together
+with Propositions~\ref{Propo1} and~\ref{Propo2}; only the necessary conditions will require some extra comments.
+Analogs of other results in~\cite{MW} or~\cite{MW2} could be obtained similarly;
+in particular, the theorems corresponding to the case $a=A=b=B=r$.
+
+\begin{Def}
+\label{DNp} Let $1\le p\le\infty$, $\mu>-1/2$ and $\delta>0$. We say that parameters
+$(a,b,A,B,\mu,\delta)$ satisfy the $H\!N_p$ conditions if
+\begin{align}
+\label{Na1} a &\ge -\delta-1/p,\\
+\label{Na2} a &> -\mu-1/p && (\ge \textup{if } p=\infty),\\
+\label{NAa} A-a &\le 0,\\
+\label{NA1} A &\le 1+\delta-1/p,\\
+\label{NA2} A &< 1+\mu-1/p && (\le \textup{if } p=1),\\
+\label{NaB1} a+B &\ge -1-2\delta-2/(3p),\\
+\label{NaB2} a+B &\ge -2\delta-2/p,\\
+\label{NAb1} A+b &\le 2+2\delta-2/p,\\
+\label{NAb2} A+b &\le 5/3+2\delta-2/(3p),\\
+\label{Nb1} b &\le 1+2\delta-1/p,\\
+\label{Nb2} b &\le 2/3+2\delta+1/(3p),\\
+\label{NbB1} b-B &\le 1+2\delta-4/(3p),\\
+\label{NbB2} b-B &\le 0,\\
+\label{NbB3} b-B &\le -1/3+2\delta+4/(3p),\\
+\label{NB1} B &\ge -1-2\delta+1/(3p),\\
+\label{NB2} B &\ge -2\delta-1/p,
+\end{align}
+and in at least one of each of the following pairs
+the inequality is strict:
+\eqref{Na1} and \eqref{NAa} except for $p=1$,
+\eqref{Na1} and \eqref{NaB2},
+\eqref{NAa} and \eqref{NA1} except for $p=\I$,
+\eqref{NA1} and \eqref{NAb1},
+\eqref{NaB1} and \eqref{NaB2},
+\eqref{NaB1} and \eqref{NB1},
+\eqref{NaB2} and \eqref{NB2} except for $p=\I$,
+\eqref{NAb1} and \eqref{NAb2},
+\eqref{NAb1} and \eqref{Nb1} except for $p=1$,
+\eqref{NAb2} and \eqref{Nb2},
+\eqref{Nb1} and \eqref{Nb2},
+\eqref{Nb2} and \eqref{NbB3},
+\eqref{NbB1} and \eqref{NB1},
+\eqref{NB1} and \eqref{NB2}.
+\end{Def}
+
+\begin{Theo}
+\label{MCGWT1}
+Let $1\le p\le\infty$, $\mu>-1/2$, $\delta>0$, and suppose $(a,b,A,B,\mu,\delta)$
+satisfy the $H\!N_{p}$ conditions. Then
+\begin{equation}
+\label{MCGW1}
+  \sup_{n\ge0} \left\| |x|^a(1+|x|)^{b-a}\chem{\delta}{n}{\mu}(f,x) \right\|_p
+  \le C \left\| |x|^A(1+|x|)^{B-A}f(x) \right\|_p
+\end{equation}
+with $C$ independent of~$f$.
+Conversely, let us suppose that~\eqref{MCGW1} holds; thus, if $\mu\le \delta$, then
+$(a,b,A,B,\mu,\delta)$ satisfy the $H\!N_p$ conditions; and, if $\mu>\delta$, then
+$(a,b,A,B,\mu,\delta)$ satisfy the $H\!N_p$ conditions except for, perhaps,~\eqref{Na1},
+\eqref{NA1} and their pair conditions.
+\end{Theo}
+
+For $p\ne\infty$, it is a corollary that,
+under the conditions of the previous theorem, we have
+$\displaystyle{\lim_{n\to\infty}\chem{\delta}{n}{\mu}f=f}$
+in the $L^p((-\I,\I),|x|^{ap}(1+|x|)^{(b-a)p}\,dx)$-norm for every
+$f \in L^p((-\I,\I),|x|^{Ap}(1+|x|)^{(B-A)p}\,dx)$.
+
+\begin{Def}
+\label{SNp}
+Let $1\le p\le\infty$, $\mu>-1/2$ and $\delta>0$. We say that parameters
+$(a,b,A,B,\mu,\delta)$ satisfy the $H\!S_p$ conditions if they satisfy inequalities
+\eqref{Na2}--\eqref{NaB2}, \eqref{NbB2}, \eqref{NB1}--\eqref{NB2},
+\begin{align}
+\label{Sa} a &> -\delta-1/p && (\ge\textup{if } p=\I),\\
+\label{SAb} A+b &\le 5/3+2\delta-2/p,\\
+\label{Sb} b &< 2/3+2\delta-1/p && (\le\textup{if } p=\I),\\
+\label{SbB} b-B &\le -1/3 + 2\delta,
+\end{align}
+and in at least one of each of the following pairs
+the inequality is strict:
+\eqref{NAa} and \eqref{NA1} except for $p=\I$,
+\eqref{NAa} and \eqref{NA2},
+\eqref{NAa} and \eqref{Sa},
+\eqref{NA2} and \eqref{SAb},
+\eqref{NaB1} and \eqref{NaB2},
+\eqref{NaB1} and \eqref{NB1},
+\eqref{NaB2} and \eqref{NB2} except for $p=\I$,
+\eqref{NaB2} and \eqref{Sa},
+\eqref{NB1} and \eqref{NB2},
+\eqref{NB1} and \eqref{SbB} for $p=1$,
+\eqref{SAb} and \eqref{Sb},
+\eqref{Sb} and \eqref{SbB}.
+\end{Def}
+
+\begin{Theo}
+\label{MCGW2}
+Let $1<p\le\infty$, $\mu>-1/2$, $\delta>0$, and suppose $(a,b,A,B,\mu,\delta)$ satisfy
+the $H\!S_p$ conditions. Then
+\begin{equation}
+\label{SCGW1}
+  \left\| |x|^a(1+|x|)^{b-a}\sup_{n\ge0}|\chem{\delta}{n}{\mu}(f,x)| \right\|_p
+  \le C \left\| |x|^A(1+|x|)^{B-A}f(x) \right\|_p
+\end{equation}
+with $C$ independent of~$f$.
+\end{Theo}
+
+Note that since \eqref{SCGW1} implies \eqref{MCGW1}, the necessary conditions of
+Theorem~\ref{MCGWT1} are also necessary for \eqref{SCGW1}. On the other hand, the condition
+\eqref{SbB} is not necessary: following the method of~\cite[\S\,10]{MW}, some hypotheses that
+guarantee \eqref{SCGW1} with $b-B>2\delta-1/3$ can be found.
+
+\begin{Theo}
+\label{WK} If $\mu>-1/2$, $\delta>0$, $(a,b,A,B,\mu,\delta)$ satisfy the $H\!S_1$ conditions and
+$E_{\lambda}$ is the set where $|x|^a(1+|x|)^{b-a} \sup_{n\ge0}
+\bigl(\bigl|\chem{\delta}{n}{\mu}(f,x)\bigr|\bigr) > \lambda$, then
+\[
+  \left|E_\lambda\right|
+  \le (C/\lambda) \left\| |x|^A(1+|x|)^{B-A}f(x) \right\|_1
+\]
+holds with $C$ independent of~$f$ and~$\lambda$.
+\end{Theo}
+
+\begin{Theo}
+\label{CAE} If $1\le p\le\infty$, $\mu>-1/2$, $\delta>0$, \eqref{NA1}, \eqref{NA2}, \eqref{NB1}
+and \eqref{NB2} are satisfied with equality in at most one of \eqref{NB1} and \eqref{NB2}, and
+\[
+  \left\| |x|^A(1+|x|)^{B-A}f(x)\right\|_p < \infty,
+\]
+then
+$\displaystyle{\lim_{n\to\infty}\chem{\delta}{n}{\mu}(f,x)=f(x)}$
+for almost every $x \in \mathbb{R}$.
+\end{Theo}
+
+Theorem~\ref{CAE} is proved by choosing an $a$ large enough and a $b$ small enough that $a$, $A$,
+$b$ and $B$ satisfy the conditions of Theorem~\ref{MCGW2} if $p>1$ or Theorem~\ref{WK} if $p=1$.
+The conclusions of those theorems then imply the almost everywhere convergence by a standard
+argument.
+
+To prove the sufficiency of the conditions in Theorem~\ref{MCGWT1}, applying
+Propositions~\ref{Propo1} and~\ref{Propo2}, and using that the kernel and the weight
+functions are even in both $x$ and $y$, it is enough to show that
+\begin{multline*}
+  \int_0^\I x^{ap}(1+x)^{(b-a)p} \left|\int_0^\I f(y)(xy)^{1/2}
+    \claker{\delta}{n}{\mu\pm 1/2}{x^2}{y^2}\,dy\right|^p\,dx \\
+  \le C \int_0^\I x^{Ap}(1+x)^{(B-A)p}|f(x)|^p\,dx.
+\end{multline*}
+With the change of variables $x=\sqrt{z}$, $y=\sqrt{u}$, and taking
+$g(u) = u^{-1/4}|f(\sqrt{u})|$, this is equivalent to
+\begin{multline*}
+  \int_0^{\I}z^{(2a+1)p/4-1/2}(1+z)^{(b-a)p/2}|
+    \clam{\delta}{n}{\mu\pm 1/2}(g,z)|^p\,dz \\
+  \le C \int_0^\I z^{(2A+1)p-1/2}(1+z)^{(B-A)p/2}|g(z)|^p\,dz.
+\end{multline*}
+But this inequality holds provided that the parameters
+\begin{equation}
+\label{prm}
+  \left( \frac{a}{2}+\frac{1}{4}-\frac{1}{2p},
+  \ \frac{b}{2}+\frac{1}{4}-\frac{1}{2p},
+  \ \frac{A}{2}+\frac{1}{4}-\frac{1}{2p},
+  \ \frac{B}{2}+\frac{1}{4}-\frac{1}{2p},
+  \ \mu\pm\frac{1}{2},\ \delta \right)
+\end{equation}
+satisfy the corresponding $N_p$ conditions for Laguerre, defined on~\cite[p.~1125--1126]{MW}. It
+is now a routine procedure to show that these parameters satisfy the $N_p$ conditions for Laguerre
+if $(a,b,A,B,\mu,\delta)$ satisfy the hypotheses of Theorem~\ref{MCGWT1}, i.e., our $H\!N_p$
+conditions of Definition~\ref{DNp}. This completes the sufficiency part of Theorem~\ref{MCGWT1}.
+
+Theorems~\ref{MCGW2} and~\ref{WK} are proved in the same way as the sufficiency proof of
+Theorem~\ref{MCGWT1}. The same change of variables will reduce the proof to the sufficiency part
+of Theorems~(2.30) and~(2.31) of~\cite{MW}, and it is simple to show that the
+resulting parameters \eqref{prm} satisfy the corresponding $S_p$ conditions for Laguerre (defined
+on~\cite[p.~1126]{MW}).
+
+Now, let us analyze the necessity of the conditions in Theorem~\ref{MCGWT1}.
+First, it is clear that the orthogonal functions must satisfy
+$\herfun{n}{\mu}(x)|x|^a(1+|x|)^{b-a} \in L^p(\mathbb{R},dx)$;
+this is equivalent to~\eqref{Na2}.
+Second, we must ensure that the Fourier coefficients exist for every
+function $f$ such that $f(x)|x|^A(1+|x|)^{B-A} \in L^p(\mathbb{R},dx)$;
+by duality, this is equivalent to
+$\herfun{n}{\mu}(x)|x|^{-A}(1+|x|)^{A-B} \in L^{p'}(\mathbb{R},dx)$
+(being $1/p+1/p'=1$), and so we get the necessity of~\eqref{NA2}.
+
+In addition, for a fixed $\delta>0$ and $r>0$, Theorem~\ref{CAE} implies that
+$|\chem{\delta}{n}{\mu}(\chi_{[r,2r]},x)|$ converges almost everywhere to
+$\chi_{[r,2r]}(x)$.  From Fatou's lemma and \eqref{MCGW1} it follows
+that
+\[
+  \left\| x^a(1+x)^{b-a}\chi_{[r,2r]}(x) \right\|_p
+  \le C \left\| x^A(1+x)^{B-A}\chi_{[r,2r]}(x) \right\|_p;
+\]
+\eqref{NAa} and \eqref{NbB2} follow from this.  Next, a standard argument as
+given on~\cite[p.~1141]{MW} or~\cite[p.~113]{Th} shows that \eqref{MCGW1}
+implies
+\[
+  \left\| |x|^a(1+|x|)^{b-a}\herfun{n}{\mu}(x) \right\|_p
+  \left\| |x|^{-A}(1+|x|)^{A-B}\herfun{n}{\mu}(x) \right\|_{p'}
+  \le C(n+1)^{\delta}.
+\]
+The necessity of the rest of the $H\!N_p$ conditions in Theorem~\ref{MCGWT1}, except~\eqref{Na1},
+\eqref{NA1} and the pair restrictions for these inequalities, follow from this and the following
+lemma:
+
+\begin{Lem}
+\label{SL}
+Let $1\le p\le\infty$, $\mu>-1/2$ and $n\ge2$. Then,
+\begin{multline*}
+  \left\||x|^a(1+|x|)^{b-a}\herfun{2n}{\mu}(x)\right\|_p \\
+  \ge C \left(n^{-1/4} + n^{-a/2-1/4-1/(2p)}
+    + n^{b/2-1/4+1/(2p)} + n^{b/2-1/12-1/(6p)}\right).
+\end{multline*}
+Moreover, if $a=-1/p$ or $b=-1/p$, then
+\[
+  \left\||x|^a(1+|x|)^{b-a}\herfun{2n}{\mu}(x)\right\|_p
+  \ge C n^{-1/4}(\log n)^{1/p};
+\]
+and, for $p=4$, we have
+\[
+  \left\||x|^a(1+|x|)^{b-a}\herfun{2n}{\mu}(x)\right\|_4
+  \ge C n^{b/2-1/8}(\log n)^{1/4}.
+\]
+\end{Lem}
+
+To prove Lemma~\ref{SL}, use
+$\herfun{2n}{\mu}(x) = (-1)^n\sqrt{|x|}\lagfun{n}{\mu-1/2}(x^2)$ and
+make a change of variables to show that
+\[
+  \left\||x|^a(1+|x|)^{b-a}\herfun{2n}{\mu}(x)\right\|_p
+  \ge C\left\| x^{a/2+1/4-1/(2p)}(1+x)^{(b-a)/2}
+    \lagfun{n}{\mu-1/2}(x) \right\|_p,
+\]
+where the norm on the right is taken over $[0,\infty)$. Then, the result
+follows immediately from~\cite[Lemma~(7.2), p.~1142]{MW}.
+
+To complete the proof of Theorem~\ref{MCGWT1}, it is enough to prove that~\eqref{Na1}
+and~\eqref{NA1} are also necessary when $\mu\le\delta$. This is clear because they are
+implied by~\eqref{Na2} and~\eqref{NA2}. In the case $\mu>\delta$, by applying
+Lemma~\ref{SL}, instead of the conditions~\eqref{Na1} and~\eqref{NA1}, we get the
+necessity of $a \ge -2\delta-1-1/p$ and $A \le 2\delta+2-1/p$, that are weaker.
+
+Finally, let us comment the necessity (or not) of conditions \eqref{Na1} and~\eqref{NA1} (and the
+pair restrictions involving them). When, in~\cite{MW2}, Ces\`aro-Laguerre series are studied, the
+proof of the necessity of the conditions corresponding to \eqref{Na1} and~\eqref{NA1} is based on
+the lower bounds for $\claker{\delta}{n}{\alpha}{x}{y}$ of \cite[Lemma~(8.1)]{MW} that, moreover,
+are strongly dependent on~\cite{W}. As stated, it does not seem possible to apply them to
+get lower bounds for $\cheker{\delta}{n}{\mu}{x}{y}$. However, it seems reasonable that these lower
+bounds exist. It seems feasible to find them, but this would not be a direct consequence of the
+Laguerre result; instead, this would require to reproduce a big part of~\cite{W,MW}, which is
+outside of the purposes of the paper.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{99}
+
+\bibitem{AW} R. Askey and S. Wainger,
+{Mean convergence of expansions in Laguerre and Hermite series},
+\textit{Amer. J. Math.}
+\textbf{87} (1965), 695--708.
+
+\bibitem{Ch} T. S. Chihara,
+\textit{An Introduction to Orthogonal Polynomials},
+Gordon and Breach, 1978.
+
+\bibitem{H} G. H. Hardy,
+\textit{Divergent Series},
+Oxford at the Clarendon Press, Oxford, 1949.
+
+\bibitem{M} B. Muckenhoupt,
+{Asymptotic forms for Laguerre polynomials},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{24} (1970), 288--292.
+
+\bibitem{M2} B. Muckenhoupt,
+{Mean convergence of Hermite and Laguerre series. I},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{147} (1970), 419--431;
+{II}, \textit{ibid.} \textbf{147} (1970), 433--460.
+
+\bibitem{MW} B. Muckenhoupt and D. W. Webb,
+{Two-weight norm inequalities for Ces\`aro means
+of Laguerre expansions},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{353} (2001), 1119--1149.
+
+\bibitem{MW2} B. Muckenhoupt and D. W. Webb,
+{Two-weight norm inequalities for the Ces\`aro means
+of Hermite expansions},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{354} (2002), 4525--4537.
+
+\bibitem{Po} E. Poiani,
+{Mean Ces\`aro summability of Laguerre and Hermite series},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{173} (1972), 1--31.
+
+\bibitem{Th} S. Thangavelu,
+\textit{Lectures on Hermite and Laguerre Expansions},
+Princeton Univ. Press, 1993.
+
+\bibitem{V} J. L. Varona,
+\textit{Convergencia en $L^p$ con pesos de la serie de Fourier
+respecto de algunos sistemas ortogonales},
+Doctoral Dissertation,
+Publ. Sem. Mat. Garc\'{\i}a de Galdeano,
+Ser.~II, no.~22, Zaragoza (Spain), 1989.
+
+\bibitem{W} D. W. Webb,
+{Pointwise estimates of the moduli of Ces\`aro-Laguerre kernels},
+\textit{preprint}.
+
+\end{thebibliography}
+
+\end{document}

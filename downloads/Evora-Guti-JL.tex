@@ -1,0 +1,485 @@
+%&pdftex
+\hsize=13.8true cm
+\vsize=21.75true cm % \vsize=21.2true cm
+%\nopagenumbers
+\font\docemay=cmcsc10 scaled 1200
+\font\doceit=cmbxti10 scaled 1200
+\font\diezit=cmbxti10 
+\font\msym=msbm10
+\def\R{\hbox{\msym R}}
+\def\N{\hbox{\msym N}}
+
+\centerline{\bf CONVERGENCIA EN NORMA DE LA SERIE DE FOURIER-JACOBI}
+\centerline{\bf CON PESOS LOGAR\'ITMICOS%
+\footnote{}{\rm PUBLICADO EN:
+{\it Actas XV Jornadas Luso-Espanholas de Matem\'atica}, Vol.~II
+(\'Evo\-ra, Portugal, 1990), 113--118,
+Universidade de \'Evora, \'Evora, 1991.}}
+\vskip 10pt
+\noindent{\diezit Jos\'e Manuel Guti\'errez y Juan Luis Varona}
+
+\noindent{\diezit Colegio Universitario de La Rioja (Universidad de Zaragoza)}
+\vskip 5pt
+
+{\narrower\noindent{$\underline{\bf Abstract.}$ In this paper we give necessary 
+conditions and  sufficient conditions for the  convergence in $L^p(u)$-norm of
+Fourier-Jacobi series of $f\in L^p(v)$ where $u$  and $v$ are radial type
+weights multiplied by logarithms.}\smallskip}
+
+
+\vskip 7pt
+\noindent{\sl Clasificaci\'on A.M.S. (1980): 42C10, 44A15}
+\vskip 10pt
+
+En el intervalo $[-1,1]$, sea el peso $w(x)=(1-x)^\alpha(1+x)^\beta$ con
+$\alpha, \beta \ge -1/2$, y consideremos el correspondiente sistema de
+polinomios ortonormales $\{p_n(x)\}_{n\in\N}$ respecto a $w(x)$, es decir,
+$$\int_{-1}^{1} p_j (x)p_k(x)w(x)dx=\delta_{jk},\qquad j,k\in \N,$$
+donde $p_n(x)$ es un polinomio de grado $n$. Los polinomios anteriores se
+denominan polinomios de Jacobi.
+
+Si $f\in L^1([-1,1],w)$, se define la suma de Fourier $n$-\'esima de 
+$f$ respecto al sistema $\{p_n(x)\}_{n\in\N}$ mediante
+$$S_nf(x)=\sum_{k=0}^n\widehat f(k) p_k(x),\qquad 
+\widehat f(k)=\int_{-1}^{1} f(y) p_k(y) w(y)dy.$$
+
+Es bien conocido que $S_nf\rightarrow f$ en $L^2([-1,1],w)\ \forall f\in 
+L^2([-1,1],w).$ Sin embargo, si tomamos $1<p<\infty$ y dos pesos $u$ y
+$v$ en $[-1,1]$, no est\'a resuelto en general el problema de cu\'ando
+$S_nf\rightarrow f$ en $L^p([-1,1],u) \ \forall f\in L^p([-1,1],v).$
+Si $u(x)\le C v(x)$, esto es equivalente a la acotaci\'on uniforme de las sumas
+parciales de la serie de Fourier
+$\Vert S_nf\Vert_{L^p([-1,1],u)} \le C\Vert
+f\Vert_{L^p([-1,1],v)}, n\in \N.$
+(Tanto {aqu\'\i} como en adelante utilizaremos siempre $C$ para denotar una
+constante cualquiera independiente de $n$ o de $x\in[-1,1]$.)
+
+Como generalizaci\'on a lo que se hace en [7], en este trabajo tomaremos dos
+pesos $U(x)$ y $V(x)$ de la forma
+
+\centerline{$ U(x)=(1-x)^a(1+x)^b(-\log{1-x\over 4})^r(-\log{1+x \over 4})^s,$}
+
+\vskip 5pt
+
+\centerline{$V(x)=(1-x)^A(1+x)^B(-\log{1-x \over 4})^R(-\log{1+x \over 4})^S$}
+
+\vskip 5pt
+\noindent y nos ocuparemos de encontrar condiciones necesarias y condiciones
+suficientes para que
+
+\vskip 5pt
+\centerline{$S_nf\rightarrow f \quad {\rm en} \quad L^p([-1,1],U(x)^p) \quad
+\forall\ f\in L^p([-1,1],V(x)^p),$}
+
+\vskip 5pt
+\noindent lo cual es equivalente a la acotaci\'on uniforme
+
+\vskip 5pt
+\centerline{$\Vert S_nf(x) U(x)\Vert_{p}\le C\Vert
+f(x) V(x)\Vert_{p},\quad n\in \N$}
+
+\vskip 5pt
+\noindent (no nos preocuparemos de la desigualdad $U(x) \le C V(x)$ que se
+utiliza para demostrar la equivalencia ente la acotaci\'on uniforme y la
+convergencia de la serie de Fourier pues veremos m\'as adelante que esta
+desigualdad es necesaria para la acotaci\'on uniforme).
+
+A continuaci\'on, enunciaremos una serie de resultados que utilizaremos m\'as
+adelante.
+
+\proclaim DEFINICION 1.  Dado $p\in(1,\infty)$, un  intervalo $[a,b]$ fijo
+$(-\infty\le a<b\le\infty)$ y dos pesos $u,v: [a,b]\ \rightarrow \ [0,\infty]$,
+decimos que el par de pesos $(u,v)\in A_p([a,b])$ si
+$$\left(\int_Iu(x)dx\right)\left(\int_Iv(x)^{-1/(p-1)}dx\right)^{p-1}\le C|I|^p\
+,\quad I\subseteq [a,b], \quad I{\sl\ intervalo}.$$
+Diremos que $(u,v)\in A_p^{\delta}([a,b])$ si $(u^{\delta},v^{\delta})\in
+A_p([a,b]).$
+\vskip 10pt
+
+
+El siguiente teorema puede verse en Muckenhoupt-Wheeden [3] y Neugebauer
+[4]:
+
+\proclaim TEOREMA 2. Si existe $\delta>1$ tal que $(u,v)\in
+A_p^{\delta}([a,b])$, entonces la transformada de Hilbert  $H:L^p([a,b],v)
+\rightarrow L^p([a,b],u)$ est\'a acotada.
+\vskip 10pt
+
+Este teorema puede encontrarse en Varona [7]:
+
+\proclaim TEOREMA 3. Sean $\varepsilon >0$ y $u_1$, $u_2$, $v_1$ y $v_2$ pesos
+en $[-1,1]$ tales que $u_1\sim v_1\sim cte$ en $[-\varepsilon,1]$, $u_2\sim
+v_2\sim cte$ en $[-1,\varepsilon]$. Entonces
+$$(u_1,v_1)\in A_p([-1,0]),\ (u_2,v_2)\in A_p([0
+,1])\quad\Rightarrow \quad (u_1u_2,v_1v_2)\in A_p([-1,1]).$$
+
+
+\vskip 10pt 
+
+No es muy dif\'\i cil, utilizando la definici\'on 1, probar el siguiente
+
+\proclaim TEOREMA 4.
+Si consideramos pesos de la forma
+$$u(x)=x^a(-\log x)^r,\qquad  v(x)=x^A(-\log x)^R,$$
+entonces, para $1<p<\infty$, $(u,v)\in A_p([0,1/2])$ si y s\'olo si se satisface
+alguna de las condiciones siguientes
+
+  i)\phantom{iiv} $a=A=-1$,\quad $r<-1$\quad {\sl y}\quad $r+1\le R$
+
+ ii)\phantom{iv} $a=A=p-1$,\quad $R>p-1$\quad {\sl y}\quad $r\le R-p+1$
+
+iii)\phantom{v} $a>-1$,\quad $A<p-1$\quad {\sl y}\quad $A<a$
+
+ iv)\phantom{ii} $a=-1$,\quad $r<-1$\quad {\sl y}\quad $A<a$
+
+  v)\phantom{ii} $A=p-1$,\quad $R>p-1$\quad {\sl y}\quad $A<a$
+
+ vi)\phantom{ii} $a=A$,\quad $r\le R$\quad {\sl y}\quad $-1<a=A<p-1.$
+ \smallskip
+\noindent{\sl Adem\'as, $(u,v)\in A_p^{\delta}([0,1/2])$ para alg\'un $\delta >1$
+si y s\'olo si {\rm iii)} \'o {\rm vi)}.}
+
+\vskip 10pt
+
+\proclaim LEMA 5. Sean $\alpha, \ \beta \ge -1/2$,
+$w(x)=(1-x)^{\alpha}(1+x)^{\beta}$ y los correspondientes polinomios
+de Jacobi $\{p_n(x)\}_{n\in \N}$. Entonces $$ \left|p_n(x)\right|
+w(x)^{1/2}(1-x^2)^{1/4}\le C.$$
+
+Este resultado puede verse en Szeg\H{o} [6].
+\vskip 10pt
+La siguiente descomposici\'on del n\'ucleo de la serie de Fourier es debida a
+Pollard [5].
+
+\proclaim LEMA 6. 
+Sea el n\'ucleo  $K_n(x,y)=\sum_{j=0}^n p_j(x)p_j(y)$. Existen constantes $r_n$
+y $s_n$ tales que
+$$K_n(x,y)=r_n T_1(n,x,y)+s_nT_2(n,x,y)+s_nT_3(n,x,y)$$
+donde $T_1(n,x,y)=p_n(x)p_n(y),$  $T_2(n,x,y)=(1-y^2)
+{p_n(x)q_{n-1}(y)\over x-y},$  $T_3(n,x,y)=T_2(n,y,x)$
+y $q_n(x)$ son los polinomios ortonormales respecto a la medida
+$(1-x^2)w(x)dx$.
+Adem\'as, $r_n$ y $s_n$ est\'an acotadas por una constante que s\'olo depende
+de $\alpha$ y $\beta$.
+\vskip 10pt
+
+\proclaim TEOREMA 7. 
+Sea la distribuci\'on $d\mu=\mu (x)dx+d\mu_s$, $sop(d\mu)\i[-1,1]$, $\mu
+>0$ a.e. en $[-1,1]$. Sean $U(x)$, $V(x)$ funciones medibles Borel no nulas en
+$[-1,1]$, $V(x)$ finita en un conjunto con medida de Lebesgue positiva.
+
+\noindent{\sl Si se verifica la acotaci\'on uniforme
+$$\Vert S_nf(x) U(x)\Vert_{L^p([-1,1],d\mu)}\le C\Vert
+f(x)V(x)\Vert_{L^p([-1,1],d\mu)}\quad \forall n\in
+\N$$ entonces}
+\vskip 7pt
+i)\quad $U(x)\in L^p([-1,1],d\mu)$
+\vskip 5pt
+ii)\quad $V(x)^{-1}\in L^q([-1,1],d\mu)$
+\vskip 5pt
+iii)\quad $\int_{-1}^1\left|\matrix{{U(x)\over \nu (x)}}\right|^p \mu(x) dx
+ <\infty$
+\vskip 5pt
+iv)\quad $\int_{-1}^1\left|\matrix{V(x) \nu (x)}\right|^{-q} \mu(x) dx <\infty$
+\vskip 5pt
+v)\quad $U(x)\le C\ V(x)\quad d\mu -a.e.$
+\vskip 5pt
+\noindent{\sl donde} $\nu (x)=(\mu(x)\sqrt{1-x^2})^{1/2}$ {\sl y} $1/p+1/q=1.$
+
+Los apartados i), ii), iii) y iv) pueden verse en M\'at\'e-Nevai-Totik [2]; v) se
+encuentra en Guadalupe-P\'erez-Ruiz-Varona [1]. 
+\vskip 10pt
+ \proclaim TEOREMA 8. Sean $\alpha$, $\beta \ >-1/2$, el peso
+$w(x)=(1-x)^{\alpha}(1+x)^{\beta}$ y los correspondientes polinomios de Jacobi
+$\{p_n(x)\}_{n\in \N}$. Sean $1<p<\infty$ y $a, b, r, s, A, B, R, S \in
+\R$.\break
+Entonces las relaciones
+$$\vbox{ \halign{#&#&#&#&#\cr
+&{\rm (I)} &$-a+{\alpha + 1\over 2}-1/p<1/4$ \quad &\' o \quad $-a+{\alpha +
+1\over 2}-1/p=1/4$ \enskip &y \enskip $r<-1/p$\cr
+\noalign{\vskip 5pt}
+&{\rm (II)} &$-b+{\beta + 1\over 2}-1/p<1/4$ \quad &\' o \quad $-b+{\beta +
+1\over 2}-1/p=1/4$ \enskip &y \enskip $s<-1/p$\cr
+\noalign{\vskip 5pt}
+&{\rm (III)} & $A-{\alpha + 1\over 2}+1/p<1/4$ \quad &\' o \quad $A-{\alpha +
+1\over 2}+1/p=1/4$ \enskip &y \enskip $R>1-1/p$\cr
+\noalign{\vskip 5pt}
+&{\rm (IV)} & $B-{\beta + 1\over 2}+1/p<1/4$ \quad &\' o \quad $B-{\beta + 1\over
+2}+1/p=1/4$ \enskip &y \enskip $S>1-1/p$\cr
+\noalign{\vskip 5pt}
+&{\rm (V)} & $A<a$ \quad \' o \quad $A=a$ \enskip y \enskip $r\le R$\cr
+\noalign{\vskip 5pt}
+&{\rm (VI)} & $B<b$ \quad \' o \quad $
+B=b$ \enskip y \enskip $s\le S$\cr}}$$
+son necesarias para la acotaci\'on uniforme
+$$\Vert S_nf(x) U(x)\Vert_{p}\le C\Vert
+f(x) V(x)\Vert_{p}\quad \forall n\in \N
+\leqno (1) $$
+donde
+$$U(x)=(1-x)^a(1+x)^b(-\log{1-x \over 4})^r(-\log{1+x \over 4})^s,$$
+$$V(x)=(1-x)^A(1+x)^B(-\log{1-x \over 4})^R(-\log{1+x \over 4})^S.$$
+
+\proclaim TEOREMA 9. Con la notaci\'on del teorema 8, las condiciones
+$$\vbox{ \halign{#&#&#&#&#\cr
+&{\rm (I')} &$-a+{\alpha + 1\over 2}-1/p<1/4$ \qquad &{\rm (IV')} 
+&\hbox{$B-{\beta + 1\over 2}+1/p<1/4$}\cr
+\noalign{\vskip 5pt}
+&{\rm (II')} &$-b+{\beta + 1\over 2}-1/p<1/4$ \qquad
+&{\rm (V')} & $A<a$ \quad \' o \quad $A=a$ \enskip y \enskip $r\le R$ \cr
+\noalign{\vskip 5pt}
+&{\rm (III')} & $A-{\alpha + 1\over 2}+1/p<1/4$ \qquad 
+&{\rm (VI')} & $B<b$ \quad \' o \quad $B=b$ \enskip y \enskip $s\le S$\cr
+}}$$
+son suficientes para la acotaci\'on (1).
+ 
+\vskip 10pt
+\noindent$\underline{\doceit Demostraci\acute on.}$\par\nobreak
+
+{\docemay condiciones necesarias.}
+(1)  es equivalente a probar la acotaci\'on
+$$
+\int_{-1}^1\left|\matrix{S_nf(x) U_1(x)}\right|^{p}w(x)dx\ \le C\int_{-1}^1
+\left|\matrix{f(x)V_1(x)}\right|^{p} w(x)dx
+$$
+con $U_1(x)=(1-x)^{a-\alpha /p}(1+x)^{b-\beta /p}(-\log{1-x \over 4})^r(-\log{1+x
+\over 4})^s,$
+\par\nobreak\vskip 5pt
+$V_1(x)=(1-x)^{A-\alpha /p}(1+x)^{B-\beta /p}(-\log{1-x \over
+4})^R(-\log{1+x \over 4})^S.$
+\vskip 5pt
+
+Aplicando el teorema 7 tenemos las condiciones necesarias
+\vskip 5pt
+
+i)\quad $U_1(x)\in L^p([-1,1],w)$, que se tiene si
+$$\vbox{ \halign{#&#&#\cr
+$ap>-1$&\qquad\'o\qquad $ap=-1$ &\quad y\quad$rp<-1$\cr
+\noalign{y}
+$bp>-1$&\qquad\'o\qquad $bp=-1$ &\quad y\quad$sp<-1$\cr}}$$ 
+
+ii)\quad $V_1(x)^{-1}\in L^q([-1,1],w)$, que es cierto si
+$$\vbox{ \halign{#&#&#\cr
+$(\alpha /p-A)q+\alpha>-1$&\qquad\'o\qquad$(\alpha /p-A)q+\alpha=-1$ &\quad
+y\quad$-Rq<-1$\cr  \noalign{y}
+$(\beta /p-B)q+\beta>-1$&\qquad\'o\qquad$(\beta /p-B)q+\beta=-1$ &\quad
+y\quad$-Sq<-1$\cr}}$$
+
+iii)\quad$\int_{-1}^1\left|\matrix{{U_1(x)\over \nu (x)}}\right|^p w(x) dx 
+<\infty$, lo que ocurre cuando
+$$\vbox{ \halign{#&#&#\cr
+$(a-\alpha /2-1/4)p>-1$&\qquad\'o\qquad$(a-\alpha /2-1/4)p=-1$ &\quad y\quad
+$rp<-1$\cr \noalign{y}
+$(b-\beta/2-1/4)p>-1$&\qquad\'o\qquad$(b-\beta/2-1/4)p=-1$ &\quad y\quad
+$sp<-1$\cr}}$$ 
+
+iv)\quad$\int_{-1}^1\left|\matrix{V_1(x) \nu (x)}\right|^{-q} w(x) dx 
+<\infty$, que se verifica si
+$$\vbox{ \halign{#&#&#\cr
+$(\alpha /p-A-\alpha /2-1/4)q+\alpha>-1$&\quad\'o\quad$(\alpha /p-A-\alpha
+/2-1/4)q+\alpha=-1$&\enskip y\enskip $-Rq<-1$\cr \noalign{y}
+$(\beta /p-B-\beta /2-1/4)q+\beta>-1$&\quad\'o\quad$(\beta /p-B-\beta 
+/2-1/4)q+\beta=-1$&\enskip y\enskip $-Sq<-1$\cr}}$$
+
+v) \quad $U_1(x)\le C\ V_1(x)$, inmediato por (V) y (VI). 
+
+\vskip 5pt
+
+Se comprueba f\'acilmente que las restantes condiciones necesarias son
+equivalentes a (I), (II), (III) y (IV).
+\vskip 10pt
+
+{\docemay condiciones suficientes.} Por lema 6,
+\setbox1=\hbox{$S_nf(x)=\int_{-1}^1K_n(x,y)\ f(y)\ w(y)\ dy\ =
+r_n\int_{-1}^1T_1(n,x,y)f(y)w(y)dy$}
+\setbox2=\hbox{$+s_n\int_{-1}^1T_2(n,x,y)f(y)w(y)dy+
+s_n\int_{-1}^1T_3(n,x,y)f(y)w(y)dy.$}
+$$
+\displaylines{\qquad\smash{\box1}\hfill\cr
+\hfill\cr
+\kern 1cm\smash{\box2}\hfill\cr}
+$$
+Con esto, para probar la acotaci\'on (1) basta con demostrar
+\setbox1=\hbox{$\int_{-1}^1\kern -2pt
+\left(\left|\matrix{\int_{-1}^1T_j(n,x,y)f(y)(1-y)^{\alpha}
+(1+y)^{\beta}dy}\right|\kern -2pt (1-x)^{a}(1+x)^{b}(\kern -1pt -\log{1-x \over
+4})^{r}(\kern -1pt -\log{1-x \over 4})^{s}\right)^pdx$} \setbox2=\hbox{$\le \
+C\int_{-1}^1\left(|f(x)|(1-x)^{A}(1+x)^{B} (-\log{1-x\over 4})^{R}(-\log{1+x\over
+4})^{S}\right)^p dx,\qquad j=1,2,3.$} 
+$$ \displaylines{\smash{\box1}\hfill\cr
+\hfill\cr
+\quad\smash{\box2}\hfill\cr}
+$$
+\noindent{$\bullet$ {\doceit j=1.}
+Partimos de }
+\setbox1=\hbox{$\int_{-1}^1\left|\matrix{\int_{-1}^1f(y)
+(1-y)^{\alpha}(1+y)^{\beta}p_n(x)p_n(y)dy}\right|^p (1-x)^{ap}$}
+\setbox2=\hbox{$\times(1+x)^{bp}
+(-\log{1-x \over 4})^{rp}(-\log{1+x \over 4})^{sp} dx.$} 
+$$
+\displaylines{\smash{\box1}\hfill\cr
+\hfill\cr
+\kern 4cm\smash{\box2}\hfill\cr}
+$$
+Por la desigualdad de H\" older, la expresi\'on anterior es menor \'o igual que
+\setbox1=\hbox{$\left(\int_{-1}^1|f(y)|^p(1-y)^{Ap}(1+y)^{Bp}
+(-\log{1-y \over 4})^{Rp}(-\log{1+y \over 4})^{Sp} dy\right)$}
+\setbox2=\hbox{$\times\left(\int_{-1}^1|p_n(y)|^q(1-y)^{(\alpha -A)q}
+(1+y)^{(\beta -B)q} (-\log{1-y \over4})^{-Rq} 
+ (-\log{1-y \over4})^{-Sq}dy\right)^{p/q}$}
+\setbox3=\hbox{$\times\left(\int_{-1}^1|p_n(x)|^p(1-x)^{ap}(1+x)^{bp}(-\log{1-x
+\over 4})^{rp} (-\log{1+x \over 4})^{sp}dx\right).$} 
+$$
+\displaylines{\smash{\box1}\hfill\cr
+\hfill\cr
+\kern 1.5cm\smash{\box2}\hfill\cr
+\hfill\cr
+\kern 3cm\smash{\box3}\hfill\cr}
+$$
+Basta ahora que veamos que las dos \'ultimas integrales est\'an acotadas.  
+Nos ocupamos de la primera de ellas.
+  Teniendo en cuenta el lema 5, esta integral estar\'a acotada si
+$$\int_0^1(1-y)^{q({\alpha \over 2}
+-A-{1\over 4})}(-\log{1-y\over4})^{-Rq}dy<\infty , \ \int_{-1}^0(1+y)^{q({\beta
+\over 2} -B-{1\over 4})}(-\log{1+y\over4})^{-Sq}dy<\infty$$  lo cual es cierto
+cuando
+ $$\left\{\matrix{q(\alpha /2 -A-1/4)>-1\cr \hbox{\rm
+\'o}\cr q(\alpha /2 -A-1/4)=-1 \ {\rm y}\ Rq>1\cr}\right.\quad{\rm y}\quad 
+ \left\{\matrix{q(\beta /2 -B-1/4)>-1\cr \hbox{\rm
+\'o}\cr q(\beta /2 -B-1/4)=-1 \ {\rm y}\ Sq>1.\cr}\right.$$ 
+ Ahora, para que la \'ultima integral est\'e acotada, tiene que ocurrir 
+$$\int_{0}^1(1-x)^{p(a-{\alpha \over 2} -{1\over 4})} (-\log{1-x\over4})^{rp}
+dx<\infty  ,\ \int_{-1}^0(1+x)^{p(b-{\beta \over 2} -{1\over 4})}
+(-\log{1+x\over4})^{sp} dx<\infty$$  que se verifica si 
+$$\left\{\matrix{p(a-\alpha / 2 -1/4)>-1\cr
+\hbox{\rm \'o}\cr
+p(a-\alpha /2 -1/4)=-1 \quad {\rm y}\quad rp<-1\cr}\right.
+{\rm y}\ \left\{\matrix{p(b-\beta /2 -1/4)>-1\cr
+\hbox{\rm \'o}\cr
+p(b-\beta /2 -1/4)=-1 \ {\rm y}\ sp<-1.\cr}\right.
+$$
+\noindent{$\bullet$ {\doceit j=2.}
+Queremos ver si las condiciones del teorema son suficientes para que se
+verifique la desigualdad}
+\setbox1=\hbox{$\int_{-1}^1\kern -3pt\left(\kern -1pt
+\left|\matrix{\int_{-1}^1\kern -3pt{f(y) (1-y)^{\alpha +1} (1+y)^{\beta +1}q_{n-1}(y)\over
+x-y}dy}\kern -1pt\right| |p_n(x)|(1-x)^{a}(1+x)^{b} (-\log{1-x \over
+4})^{r}(-\log{1+x \over 4})^{s}\right)^p\kern -4pt dx$}
+ \setbox2=\hbox{$\le\ C\int_{-1}^1\left(|f(x)| (1-x)^{A}(1+x)^{B}
+  (-\log{1-x\over 4})^{R}(-\log{1+x\over 4})^{S}\right)^p dx.$} 
+$$
+\displaylines{\smash{\box1}\hfill\cr
+\hfill\cr
+\kern 3cm\smash{\box2}\hfill\cr}
+$$ 
+Teniendo en cuenta que $|q_{n}(x)|(1-x)^{(\alpha +1)/ 2}
+(1+x)^{(\beta +1)/ 2}(1-x^2)^{1/4}\le C$ (lema 5), la desigualdad anterior es
+cierta si lo es
+\setbox1=\hbox{$\int_{-1}^1\left|\matrix{H\left(g(y), x\right)}\right|^p
+ (1-x)^{p(a-{\alpha / 2} -{1/ 4})}(1+x)^{p(b-{\beta / 2}-{1/4})}
+(-\log{1-x\over 4})^{rp} (-\log{1+x\over 4})^{sp} dx$}
+ \setbox2=\hbox{$\le C\int_{-1}^1|g(x)|^p 
+  (1-x)^{p(A-\alpha /2-1/4)}(1+x)^{p(B-\beta /2-1/4)} (-\log{1-x\over 4})^{Rp}
+(-\log{1+x\over 4})^{Sp}dx .$}  $$
+\displaylines{\smash{\box1}\hfill\cr
+\hfill\cr
+\quad\smash{\box2}\hfill\cr}
+$$
+con $g(x)=f(x) (1-x)^{\alpha /2 +1/ 4}(1+x)^{{\beta / 2} +{1/4}}.$
+El problema se reduce al estudio de la acotaci\'on de la transformada de Hilbert 
+con pesos. Por el teorema 2, sabemos que se cumple si\  
+$\left(u(x),v(x)\right)\in A_p^{\delta}([-1,1])$
+para alg\'un $\delta>1$, donde
+$$u(x)=u_1(x)u_2(x),\quad v(x)=v_1(x)v_2(x),$$
+$$u_1(x)=(1-x)^{p(a-{\alpha / 2} -{1/ 4})}
+(-\log{1-x\over 4})^{rp},\ u_2(x)=(1+x)^{p(b-{\beta/2}-{1/4})}(-\log{1+x\over
+4})^{sp},$$ 
+ $$\ v_1(x)=(1-x)^{p(A-\alpha /2-1/4)}
+(-\log{1-x\over 4})^{Rp},\ v_2(x)=(1+x)^{p(B-\beta /2-1/4)} (-\log{1+x\over
+4})^{Sp}.$$
+Por el teorema 3, esto ocurre si
+$$\left(u_1(x),\ v_1(x) \right)\in A_p^{\delta}([0,1]) \quad {\rm y}\quad
+\left(u_2(x),\ v_2(x) \right)\in A_p^{\delta}([-1,0])$$
+que, haciendo un cambio de variable en el teorema 4, se verifica si 
+$$
+\left\{\eqalign {&p(a-\alpha /2 -1/4)>-1\cr
+&p(A-\alpha /2 -1/4)<p-1\cr
+& A< a \ \ {\rm \acute o}\ \ A=a \ {\rm y} \ r\le R\cr}
+\right.
+\qquad \hbox{\rm y}\qquad
+\left\{\eqalign { &p(b-\beta /2 -1/4)>-1\cr
+&p(B-\beta /2 -1/4)<p-1\cr
+& B< b \ \ {\rm \acute o}\ \ B=b \ {\rm y} \ s\le S.\cr}
+\right.\qquad
+$$
+\noindent{$\bullet$ {\doceit j=3.}
+Procediendo de la misma forma, obtenemos las siguientes condiciones suficientes
+para la acotaci\'on del tercer sumando}
+$$
+\left\{\eqalign {&p(a-\alpha /2 +1/4)>-1\cr
+& p(A-\alpha /2 +1/4)<p-1\cr
+& A< a \ \ {\rm \acute o}\ \ A=a \ {\rm y} \ r\le R\cr}
+\right.
+\qquad \hbox{\rm y}\qquad
+\left\{\eqalign { &p(b-\beta /2 +1/4)>-1\cr
+&p(B-\beta /2 +1/4)<p-1\cr
+& B< b \ \ {\rm \acute o}\ \ B=b \ {\rm y} \ s\le S.\cr}
+\right.
+$$
+
+Por \'ultimo, es s\'olo una comprobaci\'on ver que las condiciones (I'),
+(II'), (III'), (IV'), (V') y (VI') implican las condiciones suficientes
+anteriores. \vskip 10pt 
+
+\centerline {\bf BIBLIOGRAFIA}
+
+\frenchspacing
+\def\raya{\vrule height 0.1pt depth 0.5pt width 15mm}
+\vskip 7pt
+
+\item {{\bf [1]}}J.J. Guadalupe, M. P\'erez, F.J. Ruiz y J.L. Varona, {\it
+Mean and weak convergence of Fourier-Bessel series}, por aparecer.
+\vskip 5pt
+
+\item {{\bf [2]}}A. M\'at\'e, P. Nevai y V. Totik, {\it Necessary
+conditions for weighted mean convergence of Fourier series in orthogonal
+polynomials}, J. Approx. Theory {\bf 46} (1986), 314--322.
+\vskip 5pt
+
+\item {{\bf [3]}} B. Muckenhoupt y R.L. Wheeden, {\it  Two weight function
+norm inequalities for the Hardy-Littlewood maximal function and the Hilbert
+transform}, Studia Math. {\bf 55} (1976), 279--295. 
+\vskip 5pt
+
+\item {{\bf [4]}}C.J. Neugebauer, {\it Inserting $A_p$-weights}, Proc. Amer.
+Math. Soc. {\bf 87} (1983), 644--648.
+\vskip 5pt
+
+\item {{\bf [5]}} H. Pollard, {\it The mean convergence of orthogonal series
+II}, Trans. Amer. Math. Soc. {\bf 63} (1948), 355--367.
+\vskip 5pt
+
+\item {{\bf [6]}} G. Szeg\H{o}, {\it ``Orthogonal Polynomials'' ($3^{a.}$
+edici\'on)}, A.M.S. Colloquium Publications {\bf 23}, Providence, Rhode Island,
+1967.
+\vskip 5pt
+
+\item {{\bf [7]}}J.L. Varona, {\it ``Convergencia en $L^p$ con
+pesos de la Serie de Fourier respecto de algunos sistemas ortogonales''}, Tesis
+Doctoral, Sem. G. de Galdeano, secci\'on 2, {\bf n$^\circ$ 22}, Zaragoza, 1989. 
+\vskip 1cm
+\setbox1=\vtop{
+\hbox{\sl Jos\'e Manuel Guti\'errez}
+\hbox{\sl Departamento de Matem\'aticas}
+\hbox{\sl Colegio Universitario de La Rioja}
+\hbox{\sl (Universidad de Zaragoza)}
+\hbox{\sl Obispo Bustamante, 3}
+\hbox{\sl 26001 Logro\~no, ESPA\~NA}}
+\setbox2=\vtop{
+\hbox{\sl Juan Luis Varona}
+\hbox{\sl Departamento de Matem\'atica Aplicada}
+\hbox{\sl Colegio Universitario de La Rioja}
+\hbox{\sl (Universidad de Zaragoza)}
+\hbox{\sl Obispo Bustamante, 3}
+\hbox{\sl 26001 Logro\~no, ESPA\~NA}}
+\line{\box1\hfill\box2\qquad}
+\bye

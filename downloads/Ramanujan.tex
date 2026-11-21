@@ -1,0 +1,225 @@
+%!TEX encoding = IsoLatin
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             %
+% MINIATURAS MATEM\'ATICAS DE LA GACETA DE LA RSME            %
+%                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[autocontact]{gaceta}
+
+%---------------------
+% La Gaceta se har\'a con esto activado, 
+% pero no hace falta ahora si no quieres:
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Puedes usar esto (u otra codificaci\'on) si quieres:
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+%\decimalpoint
+%---------------------
+
+%---------------------
+% Esto ya lo carga el estilo de La Gaceta:
+%\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{url} % <-- Para p\'aginas web o similar: \url{...}
+%\usepackage{graphicx}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+% \usepackage{wrapfig}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+%\usepackage{tikz}
+%\usepackage{pgfplots}
+%---------------------
+
+%---------------------
+% <<< ESTO SE AJUSTAR\'A AL EDITAR CADA N\'UMERO DE LA GACETA >>>
+%\provisional
+\newcounter{pageforminiatura}
+\setcounter{pageforminiatura}{134} % Siempre ser\'a p\'agina par
+\setcounter{page}{1} % No se usa (dejarlo como 1)
+\journame{La Gaceta de la RSME}
+\yearofpublication{2020}
+\volume{23}
+\issuenumber{1}
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+%\belongstopart{Art\'{\i}culos} 
+%\belongstopart{Secciones} 
+%\belongstopart{Noticias de la Sociedad} 
+%\belongstopart{Actualidad} 
+\nopart
+%---------------------
+
+%---------------------
+%% Usa este tipo de definiciones si las necesitas:
+%\theoremstyle{plain}
+%%\newtheorem*{Prop}{Proposici\'on}
+%\newtheorem*{Teo}{Teorema}
+%\newtheorem*{Lema}{Lema}
+%\newtheorem*{Cor}{Corolario}
+%---------------------
+
+
+%---------------------
+% Deja esto as\'{\i}: 
+\supertitle{\large Miniaturas matem\'aticas de \thejourname\\[1mm]
+\hfill\footnotesize
+Vol.~\thevolume\ (\theyearofpublication), 
+N\'um.~\theissuenumber, P\'ag.~\thepageforminiatura\theprovisional}
+%
+\noeditor
+%---------------------
+
+%---------------------
+\title{En recuerdo de Srinivasa Ramanujan (1887--1920).\\
+¿De cuántas formas podemos sumar 176 votos?}
+%\author{} % Poner \author{} o no poner nada, da igual.
+% Para ahorrar espacio, el autor solo se pone en la firma:
+\contact{Juan Luis Varona, Dpto. de Matemáticas y Computación,
+Universidad de La Rioja}{jvarona@unirioja.es}{}
+% % http://www.unirioja.es/cu/jvarona/
+%---------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deja esto as\'{\i}: 
+\previousvspace{-1.8cm}
+\makesupertitle
+\previousvspace{-0.25cm}
+\maketitle
+\vspace*{-0.4cm}
+\thispagestyle{empty} % <<<<< Importante
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% A PARTIR DE AQU\'I HAY LIBERTAD PARA EL AUTOR:
+
+Dado un entero positivo $n$, una partición de $n$ es una descomposición en enteros positivos cuya suma sea~$n$.
+Teniendo en cuenta que dos particiones que solo difieren en el orden de los sumandos no se consideran distintas,
+el número de particiones de $n$ se denota $p(n)$. 
+Calcular $p(n)$ es un problema de combinatoria nada sencillo si $n$ es grande; ¿cómo conseguirlo?
+Lo planteó Leibniz en una carta fechada en 1696. Euler (alrededor de 1750) probó que, para $|x| < 1$
+(y tomando $p(0)=1$), se puede escribir
+\[
+  \prod_{m=1}^{\infty} \frac{1}{1-x^{m}} = \sum_{n=0}^{\infty} p(n) x^n.
+\]
+
+%Por otra parte, sean 
+%\[
+%  g_k = {k(3k-1)}/{2}, \quad k = 0, 1, {-1}, 2, {-2}, 3, {-3},\dots
+%\]
+%los denominados números pentagonales generalizados (cuando $k \ge 1$, 
+%esto responde a cierta distribución de puntos en 
+%la superposición de $k$ pentágonos regulares superpuestos, y de ahí el nombre).
+%Con esta notación, y si tomamos $p(n) = 0$ para $n<0$, Euler también probó que
+%%\[
+%%  p(n) - p(n-1) - p(n-2) + p(n-5) + p(n-7) + \cdots = 0,
+%%\]
+%%o bien,
+%\[
+%  p(n) = \sum_{k=1}^{\infty} (-1)^{k+1} \big(p(n-g_k)+p(n-g_{-k})\big),
+% \qquad n \ge 1
+%\]
+%(son sumas finitas). Esto da una fórmula recursiva para calcular $p(n)$.
+
+Si además tomamos $p(n)=0$ para $n<0$, Euler también demostró que
+%\[
+%  p(n) - p(n-1) - p(n-2) + p(n-5) + p(n-7) + \cdots = 0,
+%\]
+%o bien,
+\[
+  p(n) = \sum_{k=1}^{\infty} (-1)^{k+1} \big(p(n-g_k)+p(n-g_{-k})\big),
+ \quad n \ge 1, \quad \text{con }g_k = {k(3k-1)}/{2}
+\]
+(son sumas finitas). Esto da una fórmula recursiva para calcular $p(n)$.
+
+Con ella, MacMahon calculó $p(176) = 476\,715\,857\,290$, que es el número de formas 
+de conseguir mayoría absoluta en el Congreso español 
+(sin restricciones sobre el número de partidos ni sobre los diputados de cada uno);
+de hecho, llegó hasta $p(200)$.
+
+%Usándola, MacMahon fue capaz de calcular $p(176) = 476\,715\,857\,290$, que es el número de formas 
+%distintas de conseguir mayoría absoluta en el Congreso de los Diputados español; 
+%% (sin restricciones sobre el número de partidos representados ni sobre los diputados de cada uno)
+%de hecho, llegó hasta $p(200)$.
+
+En el que posiblemente sea su resultado más conocido, Hardy y Ramanujan probaron, en 1917, que
+\[
+p(n) = \frac{1}{2\pi\sqrt{2}} \sum_{k \le \alpha\sqrt{n}} A_{k}(n) \sqrt{k} \,
+\frac{d}{dn} \Bigg\{\frac{\exp\Big(\frac{\pi}{k} \sqrt{\frac{2}{3}(n-1/24)}\,\Big)}{\sqrt{n-1/24}}\Bigg\}
+ + O\big(n^{-1/4}\big),
+\]
+con $\alpha>0$ constante arbitraria y 
+%(con expresiones más compactas que las originales)
+(usando expresiones equivalentes a las originales)
+\[
+% NOTACIÓN: A veces (menos) ponen 1 \le h \le k, pero da igual, lo mismo da 0 que k.
+% Lo que pasa es es si se pone 0 hay que usar el convenio mcd(0,k) = k.
+A_{k}(n) = \!\! \sum_{\begin{smallmatrix}0 \le h < k\\ \operatorname{mcd}(h,k)=1\end{smallmatrix}} 
+\!\!\omega_{h,k} \exp\bigg({-2\pi} i\frac{h}{k} n\bigg),
+\quad
+\omega_{h,k} = \exp\bigg( \pi i \sum_{\mu=1}^{k-1} \frac{\mu}{k} 
+\Big( \frac{h\mu}{k} - \Big\lfloor \frac{h\mu}{k} \Big\rfloor  - \frac{1}{2} \Big) \bigg).
+\]
+%(se usa $\lfloor\,\cdot\,\rfloor$ para denotar la parte entera). 
+%Pero eso es una fórmula asintótica;
+%no es una serie convergente si hacemos $\sum_{k=1}^{\infty}$.
+%
+Esto aproximaba $p(n)$ incluso mejor de lo previsto,
+pero es una fórmula asintótica, no una serie convergente si hacemos $\sum_{k=1}^{\infty}$.
+Modificando ligeramente el método, Rademacher (1937) dio una representación de $p(n)$ 
+por medio de una serie convergente:
+\[
+p(n) = \frac{1}{\pi\sqrt{2}} \sum_{k=1}^{\infty} A_{k}(n) \sqrt{k} \,
+\frac{d}{dn} \Bigg\{\frac{\senh\Big(\frac{\pi}{k} \sqrt{\frac{2}{3}(n-1/24)}\,\Big)}{\sqrt{n-1/24}}\Bigg\},
+\]
+que resuelve el problema iniciado por Leibniz y Euler de forma muy satisfactoria.
+
+\enlargethispage{0.4cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Truco para que el t\'{\i}tulo ``Referencias'' no quede tan separado
+% ni destaque tanto el tama\~no de letra:
+%\let\section\subsection
+% (se puede hacer pues no hay secciones ni subsecciones;
+% tambi\'en lo suelo usar en la secci\'on de "Problemas y Soluciones")
+
+%\begin{thebibliography}{0}
+
+%% http://ramanujan.sirinudi.org/Volumes/published/ram31.html
+%\bibitem{HR-CR1917} 
+% G. H. Hardy y S. Ramanujan,
+% Une formule asymptotique pour le nombre des partitions de $n$,
+% \textit{Comptes Rendus}, 2 Jan. 1917.
+
+%% http://ramanujan.sirinudi.org/Volumes/published/ram36.html
+%\bibitem{HR-PLMS1918} 
+% G. H. Hardy y S. Ramanujan,
+% Asymptotic formul\ae\ in combinatory analysis,
+% \textit{Proc. London Mathematical Society}, 2, XVII, 1918, 75--115.
+%% Proceedings of the London Mathematical Society
+
+%\bibitem{Rad-1937} 
+% Hans Rademacher,
+% A convergent series for the partition function $p(n)$,
+% \textit{Proc. Nac. Acad. Sci.} 23 (February 1, 1937), no.~2, 78--84. 
+%% https://doi.org/10.1073/pnas.23.2.78
+
+%\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

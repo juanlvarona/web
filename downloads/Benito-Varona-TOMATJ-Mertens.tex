@@ -1,0 +1,1019 @@
+%% Recursive formulas related to
+%% the summation of the M\"obius function,
+%% by
+%% M. Benito and J. L. Varona
+%%
+%%     Contact address: jvarona@dmc.unirioja.es
+%%
+%% The Open Mathematics Journal, 2008, Vol. 1, 25--34
+%%
+%% http://www.bentham.org/open/tomatj/
+%%
+% Last modification of this document: September 5, 2008
+
+\documentclass[10pt]{amsart}
+\addtolength{\textwidth}{1.4cm}
+\hoffset=-0.7cm
+%\addtolength{\textheight}{0.8cm}
+\voffset=0.3cm
+
+% With these commands we add 1cm to the separation of the headings:
+\addtolength{\topmargin}{-1cm}
+\addtolength{\headsep}{1cm}
+
+\usepackage{amsmath,amsthm}
+\allowdisplaybreaks
+
+%\date{September 5, 2008}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+%\theoremstyle{plain}
+\newtheorem{theor}{Theorem}
+\newtheorem{propo}[theor]{Proposition}
+
+% The LaTeX Companion 2nd ed., section 4.4.2, p. 242 and ff.
+\usepackage{fancyhdr}
+
+\setcounter{page}{25}
+
+\fancypagestyle{firstpage}{%
+\fancyhead{} % Clear header fields
+\fancyheadoffset[R,L]{1.25cm}
+\fancyhead[L]{} % left
+\fancyhead[C]{\bfseries\itshape\scriptsize 
+  The Open Mathematics Journal, 2008, 1, 25--34} % center
+\fancyhead[R]{\bfseries\itshape\scriptsize\thepage} % right
+\fancyfoot[C]{\vspace*{0.5cm}\bfseries\itshape\scriptsize 
+  1874-1177/08\qquad 2008 Bentham Open} % center
+}
+
+
+\fancypagestyle{usual}{%
+\fancyhead{} % Clear header fields
+\fancyheadoffset[R,L]{1.25cm}
+\fancyhead[LO]{\bfseries\itshape\scriptsize 
+  Recursive Formulas Related to the Summation} % left odd
+\fancyhead[RO]{\bfseries\itshape\scriptsize
+  The Open Mathematics Journal, 2008, Volume 1\qquad\thepage} % right odd
+\fancyhead[LE]{\bfseries\itshape \scriptsize
+  \thepage\qquad 
+  The Open Mathematics Journal, 2008, Volume 1} % left even
+\fancyhead[RE]{\bfseries\itshape\scriptsize 
+  Benito and Varona} % right even
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}%
+}
+
+\fancypagestyle{final}{%
+\fancyfoot[L]{\vspace*{-3cm}%
+\hspace*{-0.02\textwidth}\rule{1.04\textwidth}{0.6pt}\hspace*{-0.02\textwidth}\hss\\[1mm]
+\sffamily 
+Received: January 24, 2008
+\hfill
+Revised: April 18, 2008
+\hfill
+Accepted: September 6, 2008\\[3mm]
+\copyright\ Benito and Varona; Licensee Bentham Open.\\[3mm]
+This is an open access article licensed under the terms of the Creative Commons Attribution Non-Commertial License (http://creativecommons.org/licenses/by-nc/3.0/) which permits unrestricted, non-commertial use, distribution and reproduction in any medium, provided the work is properly cited.}%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[The summation of the M\"obius function]{%
+\vspace*{-10mm}
+\hspace*{-0.12\textwidth}\rule{1.24\textwidth}{0.6pt}\hspace*{-0.12\textwidth}\\[1mm]
+Recursive formulas related to the summation\\of the M\"obius function}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%    Information for first author
+\author{Manuel Benito}
+%    Address of record for the research reported here
+\address{Instituto Sagasta,
+Glorieta del Doctor Zub\'{\i}a s/n,
+26003 Logro\~no, Spain}
+%    Current address
+%\curraddr{---}
+\email{mbenit8@palmera.pntic.mec.es}
+
+%    Information for second author
+\author{Juan L. Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on, Universidad de La
+Rioja, Edificio J.~L.~Vives, Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+%    \thanks will become a 1st page footnote.
+\thanks{Research of the second author supported by grant MTM2006-13000-C03-03
+of the DGI}
+
+%    General info
+\subjclass[2000]{Primary 11A25}
+
+\keywords{M\"obius function, summation of the M\"obius function,
+Mertens function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+For positive integers $n$, let $\mu(n)$ be the M\"obius function,
+and $M(n)$ its sum $M(n) = \sum_{k=1}^n \mu(k)$.
+We find some identities and recursive formulas for computing $M(n)$;
+in particular, we present a two-parametric family of recursive formulas.
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%\thispagestyle{empty}
+%\pagestyle{empty}
+
+\thispagestyle{firstpage}
+\pagestyle{usual}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The well-known M\"obius function $\mu(n)$ is defined, for positive integers $n$, as
+$$
+\mu(n) := \left\{
+\begin{array}{ll}
+1 & \mbox{ if } n=1,\\
+(-1)^k & \mbox{ if $n$ is a product of $k$ different prime numbers,}\\
+0 & \mbox{ if there exists a prime $p$ such that $p^2$ divides $n$}
+\end{array}\right.
+$$
+(see~\cite[Chapter~2]{Ap}).
+Then, for every real number $x\geq 0$, the summation of the M\"obius function
+is defined by taking
+\begin{equation*}
+%\label{eq:M}
+M(x) = M(\lfloor x \rfloor) := \sum_{k=1}^{\lfloor x \rfloor}\mu(k).
+\end{equation*}
+In what follows, and as usually, we refer to $M(x)$ as the Mertens function,
+although, before F.~Mertens (who used it in 1897, see~\cite{Mer}), 
+T.~J.~Stieltjes already had introduced this function in his attempts to prove the Riemann Hypothesis
+(see~\cite[Lettre 79, p.~160--164]{Her}, dated in 1885).
+
+The behaviour of $M(x)$ is rather erratic and difficult of analyze,
+but it is very important in analytic number theory.
+In 1912, J.~E.~Littlewood \cite{Lit} proved that
+the Riemann Hypothesis is equivalent to this fact:
+\begin{equation}
+\label{eq:Me}
+|M(x)| = O(x^{1/2+\varepsilon}), \quad\mbox{when } x\to \infty,
+\quad\mbox{for every } \varepsilon>0;
+\end{equation}
+in relation to this subject, see also~\cite{Tit}. Of course,
+it is not yet known if~(\ref{eq:Me}) is true or false.
+%
+Previously, in 1897, Mertens \cite{Mer} had given a table of values
+of $M(n)$ for $1\leq n\leq 10000$. Relying on this table, he conjectured that,
+for $x>1$,
+$$
+|M(x)| < \sqrt{x}.
+$$
+This conjecture was disproved, in 1985, by A.~M.~Odlyzko and H.~te Riele
+\cite{OdRie}, but they did not find an explicit counterexample. Actually,
+for every value of $M(n)$ computed up to that date, always happened
+$|M(n)| < 0.6 \sqrt n$.
+In 1987, J. Pintz \cite{Pi} proved that the Mertens conjecture is false for some 
+$n < \exp(3.21 \times 10^{64})$;
+and this was improved further recently in 2006 by T.~Kotnik and H.~te Riele \cite{KoRie},
+who showed that the Mertens conjecture is false for some $n < \exp(1.59 \times 10^{40})$.
+More studies about the order of the Mertens function can be found in~\cite{Ma} and~\cite{KoLu}.
+Nowadays, to find an explicit counterexample of the Mertens conjecture
+is yet a very pursued result in number theory, and it generally believed
+that no counterexample will be found for $n < 10^{20}$.
+
+To evaluate $M(n)$, a big quantity of recursive formulas appear in the mathematical literature.
+For instance, Stieltjes~\cite[Letter~79, p.~163]{Her} proved the expression
+\begin{equation} 
+\label{eq:Stiel}
+\sum_{k \le \sqrt n} (-1)^{k-1} M(n/k) 
+= -1 + M(\sqrt n) z(\sqrt n) - \sum_{k \le \sqrt n } z(n/k)  \mu(k)
+\end{equation}
+where $z(x) = 0$ if $\lfloor x\rfloor$ is even and $1$ if it is odd;
+some other recursive formulas appear in the famous \textit{Primzahlen} of E.~Landau~\cite{Lan}.
+In 1996, M.~Del\'eglise and J.~Rivat \cite{DeRi},
+used an algorithm derived from the recurrence formula
+\begin{equation}
+\label{eq:DR}
+M(x) = M(u) - \sum_{a \leq u} \mu(a) \sum_{\frac ua < b \leq \frac xa}
+M\left( \frac x{ab}\right)
+\end{equation}
+(being  $1 \leq u \leq x$) to evaluate $M(10^{16}) = -3195437$.
+More recursive formulas can be found in~\cite{Neu}, and~\cite{Dr}; also,
+a large number of further references to related studies, including a nice historical review, 
+are given in~\cite{Rie}.
+
+The aim of this paper is to prove different identities and recursive
+formulas satisfied by the Mertens function~$M$.
+We devote to this end sections~\ref{sec:M}, \ref{sec:mu} and~\ref{sec:Mmu};
+see Theorems~\ref{th:Ma}, \ref{th:Mk},
+\ref{th:2M+3}, \ref{th:2M+3gh}, and~\ref{th:2M+3sr}.
+For instance, in Theorem~\ref{th:Mk} we present a formula to
+evaluate $M(n)$ similar to the one given by its definition,
+but with only $\left\lfloor\frac n3\right\rfloor$ summands.
+Also, let us note the interesting expansion for $2M(n)+3$
+that appears in Theorem~\ref{th:2M+3}, as well as the properties of the
+involved coefficients, studied below; they will lead us to
+Theorems~\ref{th:2M+3gh} and~\ref{th:2M+3sr}.
+In particular, Theorem~\ref{th:2M+3sr} gives a two-parametric family
+of recursive formulas for computing the Mertens function.
+As long as we know, all the ``theorems'' that we present in these sections
+are new; however, some of the ``propositions'' are already known, and we have included
+them by completeness.
+
+Finally, in section~\ref{sec:H}, we study some properties
+of a function (that we will denote $H(n,m)$)
+related with the ones that appear in the previous
+sections; in particular, we prove the periodicity of this function.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formulas in which only $M$ appears}
+\label{sec:M}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us begin by recalling the following well-known property of the
+M\"obius function:
+\begin{equation}
+\label{eq:summu}
+\sum_{d|n}\mu(d) =
+\left\{
+\begin{array}{lll}
+1& \mbox{ if } & n=1,\\
+0& \mbox{ if } & n>1.
+\end{array}
+\right.
+\end{equation}
+Indeed, it is trivial for $n=1$. And, for $n>1$, if
+$n = \prod_{j=1}^kp_j^{\alpha_j}>1$ ($p_j$ primes, $p_j \ne p_i$ for $j \ne i$),
+then
+$$
+\sum_{d|n}\mu(d) = \binom{k}{0} - \binom{k}{1}
++ \cdots + (-1)^k\binom{k}{k} = (1-1)^k = 0.
+$$
+The identity~(\ref{eq:summu}) allows to find a way of relating the value
+$M(n)$ with the values of $M(m)$, with $m$ less than~$n$. This result, also
+known (and whose proof we reproduce by completeness), is the following:
+
+\begin{propo}
+\label{th:1=}
+For every positive $n$, the Mertens function verifies
+\begin{equation}
+\label{eq:1=}
+1 = \sum_{a=1}^n M\left(\frac na\right).
+\end{equation}
+\end{propo}
+
+\begin{proof}
+Actually, we will prove~(\ref{eq:1=}) also for real numbers $x \geq 1$.
+{}From the definition $M(x) = \sum_{k \leq x}\mu(k)$, we have
+$$
+\sum_{a=1}^{\lfloor x\rfloor} M\left(\frac xa\right)
+= \sum_{a=1}^{\lfloor x\rfloor}
+\sum_{b=1}^{\lfloor \frac xa \rfloor} \mu(b).
+$$
+If $ab=k$, then $a|k$ and, moreover, when the values of $a$ and $b$ vary,
+$k$ takes the values $1, 2, \ldots, \lfloor x\rfloor$.
+Then, we have
+$$
+\sum_{a=1}^{\lfloor x\rfloor}
+\sum_{b=1}^{\lfloor \frac xa \rfloor} \mu(b)
+= \sum_{1\leq k\leq \lfloor x\rfloor}\sum_{a|k}\mu(a).
+$$
+By applying~(\ref{eq:summu}), we get~(\ref{eq:1=}).
+\end{proof}
+
+Of course, from (\ref{eq:1=}) we obtain the following recursive formula
+satisfied by~$M(n)$:
+\begin{equation}
+\label{eq:1-}
+M(n) = 1-\sum_{a=2}^n M\left(\frac na\right),
+\end{equation}
+which is essentially one of the recursive formulae used by Neubauer~\cite{Neu} 
+to compute $M(n)$ up to $10^{10}$.
+Moreover, let us note that (\ref{eq:summu}) and (\ref{eq:1=}) were used by Del\'eglise
+and Rivat~\cite{DeRi} to find the identity~(\ref{eq:DR}).
+
+In (\ref{eq:1-}), $n$ summands appear. In the following
+theorem, we reduce the number of summands up to
+$\left\lfloor \frac {n-1}2\right\rfloor$.
+
+\begin{theor}
+\label{th:Ma}
+If $n\geq 3$, then
+\begin{equation}
+\label{eq:Ma}
+M(n) = -\sum_{a=1}^{\lfloor\frac{n-1}2\rfloor} M\left(\frac {n}{2a+1}\right).
+\end{equation}
+\end{theor}
+
+\begin{proof}
+If $n=2m$ with $m>1$, by applying~(\ref{eq:1-}) and~(\ref{eq:1=}),
+we get
+\begin{align*}
+M(2m) &= 1-\sum_{a=2}^{2m} M\left(\frac {2m}{a}\right)
+= \sum_{a=1}^{m} M\left(\frac {m}{a}\right)-\sum_{a=2}^{2m} M\left(\frac {2m}{a}\right) \\
+&= -\sum_{a=1}^{m-1} M\left(\frac {2m}{2a+1}\right)
+= -\sum_{a=1}^{\lfloor\frac{n-1}2\rfloor} M\left(\frac {n}{2a+1}\right).
+\end{align*}
+
+For the case $n=2m+1$, let us first note that the greatest remainder 
+that can be obtained when $m$ is divided by $a$ is $a-1$, and, moreover
+$$
+\frac{a-1}a + \frac 1{2a} = \frac{2a-2+1}{2a} = \frac{2a-1}{2a} < 1.
+$$
+Thus, it is clear that
+$$
+M\left(\frac{2m+1}{2a}\right)
+= M\left(\frac ma + \frac 1{2a}\right)
+= M\left(\frac{m}{a}\right).
+$$
+Then, by applying~(\ref{eq:1-}), (\ref{eq:1=}), and this fact, we get
+\begin{align*}
+M(2m+1) &= 1-\sum_{a=2}^{2m+1} M\left(\frac {2m+1}{a}\right) %\\
+= \sum_{a=1}^{m} M\left(\frac {m}{a}\right)
+- \sum_{a=2}^{2m+1} M\left(\frac {2m+1}{a}\right) \\
+&= -\sum_{a=1}^{m} M\left(\frac {2m+1}{2a+1}\right)
+= -\sum_{a=1}^{\lfloor\frac{n-1}2\rfloor} M\left(\frac {n}{2a+1}\right).
+\qedhere
+\end{align*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formulas in which only $\mu$ appears}
+\label{sec:mu}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In the following theorem, we expand $M(n)$ as a sum with
+$\left\lfloor\frac{n}3\right\rfloor$
+summands, in which only $\mu$ and the integer-part function appear.
+In particular, this result provides a more efficient way to
+compute $M(n)$ than just to use its definition
+$M(n) = \sum_{k=1}^n \mu(k)$.
+
+\begin{theor}
+\label{th:Mk}
+If $n\geq 3$, then
+\begin{equation}
+\label{eq:Mk}
+M(n) = -\sum_{k=1}^{\lfloor\frac{n}3\rfloor}
+\left\lfloor \frac{n-k}{2k}\right\rfloor \mu(k).
+\end{equation}
+\end{theor}
+
+\begin{proof}
+Let us remind~(\ref{eq:Ma}) in Theorem~\ref{th:Ma}.
+The greatest value achieved by $\left\lfloor \frac{n}{2a+1} \right\rfloor$ is
+$\left\lfloor \frac{n}{3} \right\rfloor$. Moreover, 
+$\left\lfloor \frac{n}{2a+1} \right\rfloor$ takes value $k$ if
+$$
+k \leq \frac{n}{2a+1} < k+1,
+$$
+i.e.,
+$$
+\frac{n-(k+1)}{2(k+1)} < a \leq \frac {n-k}{2k}.
+$$
+In this way, $\left\lfloor \frac{n}{2a+1}\right\rfloor = k$ for
+$\left\lfloor \frac{n-k}{2k}\right\rfloor
+- \left\lfloor \frac{n-(k+1)}{2(k+1)}\right\rfloor$ values
+of~$a$.
+
+As a consequence,
+\begin{multline*}
+M(n) = -\sum_{k=1}^{\lfloor\frac{n}3\rfloor}
+\left( \left\lfloor \frac{n-k}{2k}\right\rfloor
+- \left\lfloor \frac {n-(k+1)}{2(k+1)}\right\rfloor \right) M(k)
+\\
+= -\Bigg(
+\left( \left\lfloor \frac{n-1}{2}\right\rfloor
+- \left\lfloor \frac {n-2}{2\cdot 2}\right\rfloor \right) M(1)
++ \left( \left\lfloor \frac {n-2}{2\cdot 2}\right\rfloor
+- \left\lfloor \frac {n-3}{2\cdot 3}\right\rfloor \right) M(2)
++ \cdots
+\\
++ \left( \left\lfloor \frac {n-\left\lfloor \frac n3\right\rfloor}{2\left\lfloor
+\frac n3\right\rfloor}\right\rfloor 
+- \left\lfloor \frac {n-\left\lfloor \frac n3\right\rfloor-1}{2\left(\left\lfloor
+\frac n3\right\rfloor+1\right)}\right\rfloor\right)
+M\left(\left\lfloor \frac n3\right\rfloor\right)
+\Bigg)
+\\
+= -\Bigg(
+\left\lfloor \frac {n-1}{2}\right\rfloor \mu(1)
++ \left\lfloor \frac {n-2}{2\cdot 2}\right\rfloor \mu(2)
++ \left\lfloor \frac {n-3}{2\cdot 3}\right\rfloor \mu(3)
++ \cdots
+\\
++ \left\lfloor \frac {n-\left\lfloor \frac n3\right\rfloor}{2\left\lfloor
+\frac n3\right\rfloor}\right\rfloor
+\mu\left(\left\lfloor \frac n3\right\rfloor\right)
+- \left\lfloor \frac {n-\left\lfloor \frac n3\right\rfloor-1}{2\left(\left\lfloor
+\frac n3\right\rfloor+1\right)}\right\rfloor
+M\left(\left\lfloor \frac n3\right\rfloor\right)
+\Bigg).
+\end{multline*}
+Now, let us observe
+$$
+\frac {n-\left\lfloor \frac n3\right\rfloor-1}{2\left(\left\lfloor
+\frac n3\right\rfloor+1\right)}
+= \left\{ \begin{array}{lll}
+\frac{3m-m-1}{2m+2} = \frac{2m-1}{2m+2} < 1 & \mbox{ if } & n=3m ,\\[1mm]
+\frac{3m+1-m-1}{2m+2} = \frac{2m}{2m+2} < 1  & \mbox{ if } & n=3m+1,\\[1mm]
+\frac{3m+2-m-1}{2m+2} = \frac{2m+1}{2m+2} < 1 & \mbox{ if } & n=3m+2,
+\end{array}
+\right.
+$$
+and so
+$$
+\left\lfloor \frac {n-\left\lfloor \frac n3\right\rfloor-1}{2\left(\left\lfloor
+\frac n3\right\rfloor+1\right)}\right\rfloor = 0.
+$$
+Then, (\ref{eq:Mk}) follows.
+\end{proof}
+
+The following result relates the value of $\mu(n)$ to
+the values of $\mu(m)$ for $1\leq m<n$. Actually, this result is
+already known (see~\cite[Theorem~3.12]{Ap}),
+although the proof that we make in this paper is different and,
+perhaps, new; here, we use an argument similar to the one used in the proof
+of Theorem~\ref{th:Mk}.
+
+\begin{propo}
+\label{th:1=k}
+The M\"obius function satisfies
+\begin{equation}
+\label{eq:1=k}
+1 = \sum_{k=1}^n \left\lfloor \frac {n}{k}\right\rfloor \mu(k).
+\end{equation}
+\end{propo}
+
+\begin{proof}
+By Proposition~\ref{th:1=}, $1 = \sum_{a=1}^n M\left(\frac na\right)$.
+Here, we have $\left\lfloor \frac {n}{a}\right\rfloor =k$ if and only if
+$$
+k\leq \frac na < k+1,
+$$
+i.e.,
+$$
+\frac n{k+1} < a \leq \frac nk,
+$$
+and so $M\left(\frac na\right) = M\left(\left\lfloor\frac n a\right\rfloor\right) = M(k)$
+for $\left\lfloor\frac n{k}\right\rfloor -\left\lfloor\frac n{k+1}\right\rfloor$
+values of~$a$.
+
+Then
+\begin{align*}
+1 &= \sum_{a=1}^n M\left(\frac na\right)
+= \sum_{k=1}^n \left( \left\lfloor\frac n{k}\right\rfloor
+- \left\lfloor\frac n{k+1}\right\rfloor\right) M(k)
+\\
+&= \left( \left\lfloor\frac n{1}\right\rfloor -\left\lfloor\frac n{2}\right\rfloor\right) M(1)
++ \left( \left\lfloor\frac n{2}\right\rfloor -\left\lfloor\frac n{3}\right\rfloor\right) M(2)
++ \cdots
++ \left( \left\lfloor\frac n{n}\right\rfloor -\left\lfloor\frac n{n+1}\right\rfloor\right) M(n)
+\\
+&= \left\lfloor\frac n{1}\right\rfloor
++ \left\lfloor\frac n{2}\right\rfloor (M(2)-M(1))
++ \cdots
++ \left\lfloor\frac n{n}\right\rfloor (M(n)-M(n-1))
+- \left\lfloor\frac n{n+1}\right\rfloor M(n)
+\\
+&= \left\lfloor\frac n{1}\right\rfloor \mu(1)
++ \left\lfloor\frac n{2}\right\rfloor \mu(2)
++ \cdots
++ \left\lfloor\frac n{n}\right\rfloor \mu(n)
+= \sum_{k=1}^n \left\lfloor \frac {n}{k}\right\rfloor \mu(k).
+\qedhere
+\end{align*}
+\end{proof}
+
+Now, let us prove another expansion of $1$ as a sum of $\mu$'s.
+We will use this result in the proof of Theorem~\ref{th:2M+3}.
+
+\begin{propo}
+\label{th:1=3k}
+For $n \geq 3$, the M\"obius function satisfies
+$$
+1 = \sum_{k=1}^{\lfloor\frac{n}3\rfloor}
+\left\lfloor \frac {n}{3k}\right\rfloor \mu(k).
+$$
+\end{propo}
+
+\begin{proof}
+First, let us suppose $n=3m$. By Proposition~\ref{th:1=k}, we have
+$$
+1 = \sum_{k=1}^{m} \left\lfloor \frac{m}{k}\right\rfloor \mu(k)
+= \sum_{k=1}^{\frac{n}3} \left\lfloor \frac{3m}{3k}\right\rfloor \mu(k)
+= \sum_{k=1}^{\lfloor\frac{n}3\rfloor} \left\lfloor \frac{n}{3k}\right\rfloor \mu(k).
+$$
+
+If $n=3m+1$,
+$$
+\sum_{k=1}^{\lfloor\frac{n}3\rfloor} \left\lfloor \frac {n}{3k}\right\rfloor \mu(k)
+= \sum_{k=1}^{m} \left\lfloor \frac{3m+1}{3k}\right\rfloor \mu(k)
+= \sum_{k=1}^{m} \left\lfloor \frac{m}{k}\right\rfloor \mu(k) = 1,
+$$
+because, in
+$$
+\left\lfloor \frac{3m+1}{3k}\right\rfloor
+= \left\lfloor \frac{m}{k} + \frac 1{3k}\right\rfloor,
+$$
+the remainder when $m$ is divided by $k$ is always less or equal than $k-1$;
+and, by being
+$$
+\frac {k-1}k + \frac 1{3k} = \frac{3k-2}{3k} < 1,
+$$
+we have
+$$
+\left\lfloor \frac{3m+1}{3k}\right\rfloor
+= \left\lfloor \frac{m}{k}\right\rfloor.
+$$
+
+If $n=3m+2$,
+$$
+\left\lfloor \frac{3m+2}{3k}\right\rfloor
+= \left\lfloor \frac{m}{k} + \frac 2{3k}\right\rfloor
+= \left\lfloor \frac {m}{k}\right\rfloor
+$$
+by being
+$$
+\frac{k-1}{k} + \frac {2}{3k} = \frac{3k-1}{3k} < 1;
+$$
+thus,
+\begin{equation*}
+\sum_{k=1}^{\lfloor\frac{n}3\rfloor} \left\lfloor \frac {n}{3k}\right\rfloor \mu(k)
+= \sum_{k=1}^{m} \left\lfloor \frac {3m+2}{3k}\right\rfloor \mu(k)
+= \sum_{k=1}^{m} \left\lfloor \frac {m}{k}\right\rfloor \mu(k) = 1.
+\qedhere
+\end{equation*}
+\end{proof}
+
+Then, we establish the following result, in which, as in Theorem~\ref{th:Mk},
+we show an expansion of $M(n)$ as a sum of $\lfloor\frac{n}3\rfloor$ summands;
+in every summand, only the M\"obius function and a coefficient
+(related to the integer-part function) appear.
+This will be a fruitful result, because, later in this paper, we will find
+some alternative formulas and interesting properties for the coefficients.
+
+\begin{theor}
+\label{th:2M+3}
+For $n \geq 3$, we have
+\begin{equation}
+\label{eq:2M+3}
+2M(n)+3 = \sum_{k=1}^{\lfloor\frac{n}3\rfloor} g(n,k) \mu(k)
+\end{equation}
+with
+\begin{equation}
+\label{eq:g}
+g(n,k) = 3 \left\lfloor \frac {n}{3k}\right\rfloor
+- 2\left\lfloor \frac {n}{2k} - \frac 12 \right\rfloor.
+\end{equation}
+\end{theor}
+
+\begin{proof}
+Let us add $2$ times the expansion for $M(n)$ in Theorem~\ref{th:Mk}
+plus $3$ times the expansion for $1$ in Proposition~\ref{th:1=3k}.
+\end{proof}
+
+The next result presents an alternative way for computing~$g(n,k)$:
+
+\begin{propo}
+\label{th:gnk}
+For $k>0$ and $n\ge0$, let us take $n_0$ such that
+$$
+n\equiv n_0 \mod 6k,\quad 0\leq n_0<6k.
+$$
+Then
+\begin{equation}
+\label{eq:gnk}
+g(n,k) = \left\{
+\begin{array}{lll}
+2 & \mbox{ if } & 0 \leq n_0 < k,\\
+0 & \mbox{ if } & k \leq n_0 < 3k,\\
+1 &  \mbox{ if } & 3k \leq n_0 < 5k,\\
+-1 & \mbox{ if } & 5k \leq n_0 < 6k.
+\end{array}
+\right.
+\end{equation}
+\end{propo}
+
+\begin{proof}
+Le us decompose $n = n_0+6kn_1$, with  $0 \leq n_0 < 6k$. By~(\ref{eq:g}),
+$$
+g(n,k)
+= 3 \left\lfloor \frac{n_0+6kn_1}{3k} \right\rfloor
+- 2 \left\lfloor \frac{n_0+6kn_1-k}{2k} \right\rfloor.
+$$
+Then, it is clear that
+\begin{align*}
+\mbox{if\quad} & 0\leq n_0<k, & g(n,k)
+&= 6n_1-2 \left\lfloor \tfrac{6k(n_1-1)}{2k}
++ \tfrac{5k+n_0}{2k} \right\rfloor = 2;\\
+\mbox{if\quad} & k\leq n_0 < 3k, & g(n,k) &= 6n_1-6n_1 = 0;\\
+\mbox{if\quad} & 3k \leq n_0 < 5k, & g(n,k) &= 3+6n_1-6n_1-2 = 1;\\
+\mbox{if\quad} & 5k \leq n_0 < 6k, & g(n,k) &= 3+6n_1-6n_1-4 = -1.\qedhere
+\end{align*}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formulas in which both $M$ and $\mu$ appear}
+\label{sec:Mmu}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us consider the function $g(n,k)$ for fixed $n$, i.e., as a function of~$k$.
+In the following proposition, we show how $g(n,k)$ is constant when $k$ varies
+a certain interval.
+
+\begin{propo}
+\label{th:gnkct}
+Let $a$ and $n$ be positive integers, with $a<n$.
+When $k$ varies in the interval
+$$
+\frac{n}{a+1} < k \leq \frac na
+$$
+the value of $g(n,k)$ remains constant. This value depends only
+upon the remainder of $a$ modulus~$6$.
+\end{propo}
+
+\begin{proof}
+Let us decompose $a = a_0+6a_1$ with $0 \leq a_0 < 6$.
+If $\frac {n}{a+1}<k\leq \frac na$, then
+$ka \leq n < k(a+1)$ and so
+\begin{equation}
+\label{eq:ineq1}
+ka_0+6ka_1 \leq n < k(a_0+6a_1+1).
+\end{equation}
+Thus, $n = n_0+6ka_1$ for some $n_0$ verifying $0 \leq n_0 < 6k$.
+By substituting this value of $n$ in~(\ref{eq:ineq1}), it becomes
+\begin{equation}
+\label{eq:ineq2}
+ka_0 \leq n_0 < ka_0+k.
+\end{equation}
+By~(\ref{eq:gnk}), $g(n,k)$ takes the same value for all~$n_0$
+that satisfies~(\ref{eq:ineq2}), and this value of $g(n,k)$ depends
+only on~$a_0$.
+\end{proof}
+
+As a consequence of Proposition~\ref{th:gnkct}, we can define
+the function
+\begin{equation}
+\label{eq:h=g}
+h(a) = g(n,k) \quad \mbox{for}\quad \frac{n}{a+1} < k \leq \frac na.
+\end{equation}
+By using (\ref{eq:gnk}) (pay attention to $a_0$ in the proof
+of Proposition~\ref{th:gnkct}), $h(a)$ takes these values:
+\begin{equation}
+\label{eq:h(a)}
+h(a) = \left\{
+\begin{array}{lll}
+2, & \mbox{ if }& a\equiv 0 \mod 6, \\
+0, & \mbox{ if }& a\equiv 1 \mod 6, \\
+0, & \mbox{ if }& a\equiv 2 \mod 6, \\
+1, & \mbox{ if }& a\equiv 3 \mod 6, \\
+1, & \mbox{ if }& a\equiv 4 \mod 6, \\
+-1, & \mbox{ if }& a\equiv 5 \mod 6.
+\end{array}\right.
+\end{equation}
+
+Now, we will split the sum in (\ref{eq:2M+3}) in two parts,
+introducing a parameter~$r$.
+The first part will consist in the $\lfloor\frac{n}{r+1}\rfloor$
+first terms of the sum in (\ref{eq:2M+3}). The second part will be,
+of course, the summands that remain; they will be manipulated
+in such way that we will get $r$ sumands in which only the functions
+$h$ and $M$ appear. We can say that this is a \textit{mixed}
+recursive formula for computing $M$: $M(n)$ is obtained from
+$\mu(m)$ and $M(m)$ with $m<n$.
+
+\begin{theor}
+\label{th:2M+3gh}
+Let $n$ and $r$ two integers satisfying $3\leq r\leq n-1$. Then
+\begin{equation}
+\label{eq:2M+3gh}
+2M(n)+3 = \sum_{k=1}^{\lfloor\frac{n}{r+1}\rfloor} g(n,k)\mu(k)
++ \sum_{a=3}^r h(a)\left(M\left(\frac na\right)
+- M\left(\frac n{a+1}\right)\right).
+\end{equation}
+\end{theor}
+
+\begin{proof}
+By~(\ref{eq:2M+3}) and~(\ref{eq:h=g}),
+\begin{align*}
+2M(n)+3 &= \sum_{k=1}^{\lfloor\frac{n}{3}\rfloor} g(n,k)\mu(k)
+= \sum_{k=1}^{\lfloor\frac{n}{r+1}\rfloor} g(n,k)\mu(k)
++ \sum_{a=3}^r \sum_{k=\lfloor \frac {n}{a+1}\rfloor+1}^{\lfloor
+\frac na\rfloor} g(n,k)\mu(k)
+\\
+&= \sum_{k=1}^{\lfloor\frac{n}{r+1}\rfloor} g(n,k)\mu(k)
++ \sum_{a=3}^r h(a)\sum_{k=\lfloor \frac{n}{a+1}
+\rfloor+1}^{\lfloor \frac na\rfloor}\mu(k)
+\\
+&= \sum_{k=1}^{\lfloor\frac{n}{r+1}\rfloor} g(n,k)\mu(k)
++ \sum_{a=3}^r h(a)\left(M\left(\frac na\right)
+- M\left(\frac n{a+1}\right)\right).
+\qedhere
+\end{align*}
+\end{proof}
+
+Prior to continue, let us note which would be the two limit
+cases: of course, $r=2$ is Theorem~\ref{th:2M+3}; and,
+when $r=n$, the sum indexed by $k$ in~(\ref{th:2M+3gh}) disappears.
+Another particular case appears by taking $r = \lfloor\sqrt{n}\rfloor$;
+thus~(\ref{eq:2M+3gh}) becomes
+\begin{multline*}
+M(n) = \frac12 \Biggl( -3 
++ \sum_{k=1}^{\lfloor\frac{n}{\lfloor\sqrt{n}\rfloor+1}\rfloor} g(n,k)\mu(k)
++ M\left(\frac n3\right) \\
++ \sum_{a=4}^{\lfloor\sqrt{n}\rfloor} (h(a)-h(a-1)) M\left(\frac na\right) 
+- h(\lfloor\sqrt{n}\rfloor) M\left(\frac n{\lfloor\sqrt{n}\rfloor+1}\right) 
+\Biggr), 
+\end{multline*}
+a formula that resembles~(\ref{eq:Stiel}) after isolating $M(n)$, 
+but starting in $M(\frac n3)$ instead of~$M(\frac n2)$.
+
+On the other hand, by splitting again the summand on the right
+in~(\ref{eq:2M+3gh}), we can introduce a new parameter~$s$:
+
+\begin{theor}
+\label{th:2M+3sr}
+Let $n$, $r$ and $s$ be three integers such that $s \geq 0$ and
+$6s+9\leq r\leq n-1$.
+Then
+\begin{multline*}
+%\label{eq:2M+3sr}
+2M(n)+3 = \sum_{k=1}^{\lfloor\frac{n}{r+1}\rfloor} g(n,k)\mu(k) \\
++ \sum_{b=0}^s \left( M\left( \frac{n}{3+6b}\right)
+- 2M\left( \frac{n}{5+6b}\right)
++ 3M\left( \frac{n}{6+6b}\right)
+- 2M\left( \frac{n}{7+6b}\right)\right) \\
++ \sum_{a=6s+9}^r h(a)\left(M\left(\frac na\right)
+- M\left(\frac n{a+1}\right)\right).
+\end{multline*}
+\end{theor}
+
+\begin{proof}
+Let us expand the summand $\sum_{a=3}^r$ in~(\ref{eq:2M+3gh}). In this way,
+\begin{multline*}
+2M(n)+3 = \sum_{k=1}^{\lfloor\frac{n}{r+1}\rfloor} g(n,k)\mu(k)
++ h(3)M\left(\frac n3\right) - h(3)M\left(\frac n{4}\right)
+\\
+\null+ h(4)M\left(\frac n4\right) - h(4)M\left(\frac n{5}\right)
++ h(5)M\left(\frac n5\right) - h(5)M\left(\frac n{6}\right)
+\\
+\null+ h(6)M\left(\frac n6\right) - h(6)M\left(\frac n{7}\right)
++ h(7)M\left(\frac n7\right) - h(7)M\left(\frac n{8}\right)
+\\
+\null+ h(8)M\left(\frac n8\right) - h(8)M\left(\frac n{9}\right)
++ \cdots
+\\
+\null+ h(6s+8)M\left(\frac n{6s+8}\right)
+- h(6s+8)M\left(\frac n{6s+9}\right)
+\\
+\null+ \sum_{a=6s+9}^r h(a)\left(M\left(\frac na\right)
+- M\left(\frac n{a+1}\right)\right).
+\end{multline*}
+By applying the values of $h$ according~(\ref{eq:h(a)}),
+the result follows.
+\end{proof}
+
+Thus, in Theorem~\ref{th:2M+3sr} we have presented a two-parametric family of
+recurrence relation for computing an isolated value of $M(n)$.
+They provide mixed ways to calculate $M(n)$ using,
+in part, previously computed (and stored) values of $M(m)$ for a
+certain values of $m$, and another part that must be explicitly computed.
+Eventually, a suitable election of parameters $r$ and $s$ (that may depend on~$n$)
+will allow to get efficient methods of running this algorithm in a computer;
+at this point, it is clear that a careful implementation must be performed,
+taking into account the machine to be used.
+%
+The idea to use this expansion is as follows: The terms in the first sum
+$\sum_{k=1}^{\lfloor\frac{n}{r+1}\rfloor}$ are directly evaluated.
+The second sum $\sum_{b=0}^s$ is computed by using previously computed
+and stored values of~$M$. And the third sum
+$$
+\sum_{a=6s+9}^r h(a)\left(M\left(\frac na\right)
+- M\left(\frac n{a+1}\right)\right)
+= \sum_{a=6s+9}^r h(a) \sum_{k=\lfloor
+\frac n{a+1}\rfloor +1}^{\lfloor\frac na\rfloor}\mu(k)
+$$
+can be computed by using both methods, according the size of~$n$, $r$ and~$s$.
+
+Finally, let us note which are the limit cases of the identity
+established by Theorem~\ref{th:2M+3sr}: $s=-1$ (Theorem~\ref{th:2M+3gh});
+$s=-1$ and $r=2$ (Theorem~\ref{th:2M+3}); $r=n$ ($\sum_b$~disappears);
+and $r=6s+8$ ($\sum_k$~disappears).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The function $H(n,m)$. Periodicity}
+\label{sec:H}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In the previous sections (see Theorems~\ref{th:2M+3},
+\ref{th:2M+3gh} and~\ref{th:2M+3sr}),
+we often obtain expressions with the form
+$\sum_{k=1}^m g(n,k)\mu(k)$.
+Thus, in this section, we define a new function $H(n,m)$
+(for non-negative integers $n$ and positive integers $m$) by taking
+$$
+H(n,m) := \sum_{k=1}^m g(n,k)\mu(k),
+$$
+and we are going to study some of its properties.
+Also, we will use the following notation:
+$$
+C_m := 6 \cdot \lcm \{1,2,\ldots,m\}.
+$$
+
+First, let us see that, when we fix $m$ in the second variable of $H$,
+the function is periodic with period~$C_m$.
+
+\begin{propo}
+\label{th:H}
+For every non-negative integer $t$, we have
+$$
+H(n + t C_m,m) = H(n,m).
+$$
+\end{propo}
+
+\begin{proof}
+By being $g(n+{6k}t, k) = g(n,k)$ for $k=1,2,\ldots, m$, we have
+$g(n+C_mt,k) = g(n,k)$. Thus, the result follows.
+\end{proof}
+
+The following result gives the value of $H(n,m)$ as a function of~$M(m)$.
+
+\begin{propo}
+%\label{th:HC}
+For every non-negative integer $t$, we have
+\begin{align*}
+H(0 + t C_m,m) &= 2M(m),\\
+H(1 + t C_m,m) &= 2M(m)-2,\\
+H(2 + t C_m,m) &= 2M(m),\\
+H(n + t C_m,m) &= 2M(m)+3, \quad \mbox { if }\ 2<n\leq m .
+\end{align*}
+\end{propo}
+
+\begin{proof}
+By Proposition~\ref{th:H}, without loss of generality, we can suposse $t=0$.
+Then, it is enough for computing $H(n,m)$ for $0\leq n\leq m$.
+First, let us analyze the cases $n=0,1,2,3$. By applying~(\ref{eq:gnk}), we have
+\begin{align*}
+H(0,m) &= \sum_{k=1}^m g(0,k)\mu(k) = 2\sum_{k=1}^m \mu(k) = 2M(m),
+\\
+H(1,m) &= \sum_{k=1}^m g(1,k)\mu(k) = 0\cdot \mu(1)+2\sum_{k=2}^m \mu(k) = 2M(m)-2,
+\\
+H(2,m) &= \sum_{k=1}^m g(2,k)\mu(k)
+= 0\cdot \mu(1) + 0\cdot\mu(2) + 2\sum_{k=3}^m \mu(k) = 2M(m).
+% \\ % Unnecessary
+% H(3,m) &= \sum_{k=4}^m g(3,k)\mu(k)
+% = 1\cdot \mu(1) + 0\cdot \mu(2) + 0\cdot\mu(3) + 2\sum_{k=4}^m \mu(k)
+% = 2M(m)+3.
+\end{align*}
+
+For $n$ verifying $2 < n\leq m$, let us decompose
+\begin{equation}
+\label{eq:3sums}
+H(n,m) = \sum_{k=1}^{\lfloor\frac n3\rfloor} g(n,k)\mu(k)
++ \sum_{k=\left\lfloor\frac n3\right\rfloor+1}^n g(n,k)\mu(k)
++ \sum_{k=n+1}^m g(n,k)\mu(k).
+\end{equation}
+Now, in the first sum, let us apply~(\ref{eq:2M+3});
+in the second sum, let us use that, for
+$\left\lfloor\frac n3\right\rfloor < k\leq n$ (i.e., $k\leq n<3k$)
+we have $g(n,k)=0$ (see~(\ref{eq:gnk})); and, finally,
+for the third sum, let us note that $g(n,k)=2$ for $0\leq n<n+1\leq k$.
+In this way,~(\ref{eq:3sums}) becomes
+\begin{equation*}
+H(n,m) = (2M(n)+3) + 0 + 2\left(M(m)-M(n)\right) = 2M(m)+3.
+\qedhere
+\end{equation*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{15}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% References with style "Vancouver", as requested by The Open Mathematics Journal.
+% The references are ordered according the order of its citation in the paper.
+
+\bibitem{Ap}
+{Apostol TM}.
+{Introduction to Analytic Number Theory}.
+New York: Springer-Verlag; 1976.
+
+\bibitem{Mer}
+{Mertens F}.
+{\"Uber eine zahlentheoretische Funktion}.
+{Sitzungsberichte Akad. Wiss. Wien IIa}. 
+1897; {106}: 761--830.
+
+\bibitem{Her}
+{Hermite C}. 
+{Correspondence d'Hermite et de Stieltjes: publi\'ee par le soins de B.~Baillaud et H.~Bourget}. Vol.~1. 
+Paris: Gauthier-Villars; 1905. 
+%% Also available in:
+% The Cornell University Library Digital Collections, 2005,
+% http://name.umdl.umich.edu/AAN9223.0001.001
+
+\bibitem{Lit}
+{Littlewood JE},
+{Quelques cons\'equences de l'hypoth\`ese que la fonction $\zeta(s)$
+n'a pas de z\'eros dans le demi-plan $\operatorname{Re}(s)>\frac 12$}.
+{C. R. Acad. Sci. Paris}. 
+1912; {154}: 263--266.
+
+\bibitem{Tit}
+{Titchmarsh EC}.
+{The Theory of the Riemann Zeta-Function}.
+Oxford: At the Clarendon Press; 1967.
+%% Existe una segunda edici\'on (con prefacio de D. R. Heath-Brown),
+%% pero es de 1986.
+
+\bibitem{OdRie}
+{Odlyzko AM, te Riele H}.
+{Disproof of the Mertens conjecture}.
+{J. Reine Angew. Math.} 
+1985; {357}: 138--160.
+
+\bibitem{Pi}
+{Pintz J}.
+{An effective disproof of the Mertens conjecture}.
+In: {Journ\'ees Arithm\'etiques} (Besan\c{c}on, France, 1985).
+{Ast\'erisque}. 
+1987; {147-148}: 325--333, 346.
+
+\bibitem{KoRie}
+{Kotnik T, te~Riele H}. 
+{The Mertens conjecture revisited}. 
+In: {Algorithmic number theory}.
+{Lecture Notes in Comput. Sci.} {4076}. 
+Berlin: Springer; 2006. p.~156--167.
+% DOI 10.1007/11792086_12. 
+% http://dx.doi.org/10.1007/11792086_12
+
+\bibitem{Ma}
+{el Marraki M}.  
+{Fonction sommatoire de la fonction de M\"obius, 3. Majorations asymptotiques effectives fortes}.
+{J. Th\'eor. Nombres Bordeaux}. % {Journal de Th\'eorie des Nombres de Bordeaux} 
+1995; {7}: 407--433.
+% http://archive.numdam.org/article/JTNB_1995__7_2_407_0.pdf
+
+\bibitem{KoLu}
+{Kotnik T, van de Lune J}.
+{On the order of the Mertens function}. 
+{Experiment. Math.}
+2004; {13}: 473--481. 
+% http://www.expmath.org/expmath/volumes/13/13.4/Kotnik.pdf
+
+\bibitem{Lan}
+{Landau E}. 
+{Handbuch der Lehre von der Verteilung der Primzahlen}. 
+Leipzig \& Berlin: Teubner; 1909.
+
+\bibitem{DeRi}
+{Del\'eglise M, Rivat J}.
+{Computing the summation of the M\"obius function}.
+{Experiment. Math.} % Experimental Mathematics 
+1996; {5}: 291--295.
+% http://www.expmath.org/restricted/5/5.4/rivat.ps
+
+\bibitem{Neu}
+{Neubauer G}. 
+{Eine empirische Untersuchung zur Mertensschen Funktion}. 
+{Numer. Math.} % Numerische Mathematik 
+1963; {5}: 1--13. 
+% DOI 10.1007/BF01385874. 
+% http://dx.doi.org/10.1007/BF01385874
+
+\bibitem{Dr}
+{Dress F}. 
+{Fonction sommatiore de la fonction de M\"obius. I. Majorations exp\'erimentales}. 
+{Experiment. Math.} 
+1993; {2}: 89--98. 
+% http://www.expmath.org/restricted/2/2.2/dress.ps
+
+\bibitem{Rie}
+{te~Riele H}. 
+{On the history of the function $M(x)/\sqrt{x}$ since Stieltjes}. 
+In: Thomas Jan Stieltjes: {\OE}uvres Compl\`etes/Collected Papers. Vol.~1. 
+Berlin: Springer-Verlag; 1993. p. 69--79.
+
+\end{thebibliography}
+
+\thispagestyle{final}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

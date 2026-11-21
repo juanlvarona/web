@@ -1,0 +1,1218 @@
+% !TEX encoding = UTF-8 Unicode	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Stirling-Dunkl numbers 
+% by
+% J. M\'inguez and J. L. Varona
+%
+% email: judit.minguez@unirioja.es, jvarona@unirioja.es
+%
+% COMIENZO DE ESCRITURA: 2022/03/17
+% LAST MODIFICATION: 2022/07/27
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ORCID:
+% J. M\'inguez: 0000-0002-9840-5772
+% J. L. Varona: 0000-0002-2023-9946
+
+\documentclass[11pt,a4paper]{article}
+
+%---------------------
+\usepackage{amsmath,amsthm,amsfonts}
+%---------------------
+
+%---------------------
+\usepackage{fullpage} % ensancha los m\'argenes de la hoja
+%---------------------
+
+%\addtolength{\textwidth}{1.6cm}
+%\addtolength{\oddsidemargin}{-0.8cm}
+%\setlength{\evensidemargin}{\oddsidemargin}
+
+%---------------------
+%% PARA BORRADORES:
+%\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+%---------------------
+
+
+%---------------------
+\usepackage{hyperref}
+%\makeatletter
+%\def\do@url@hyp{\do\-}% allow breaks after hyphens
+%\makeatother
+%---------------------
+
+%---------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+%---------------------
+
+%---------------------
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\Ea}{E_{\alpha}}
+\newcommand{\La}{\Lambda_{\alpha}}
+\newcommand{\binoma}[2]{\binom{#1}{#2}_{\!\alpha}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Bell}{\operatorname{Bell}}
+%---------------------
+
+%---------------------
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\ZZO}{\mathbb{Z} \setminus \{0\}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+%---------------------
+
+%---------------------
+\newcommand{\cc}{\gamma}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+%\newcommand{\dis}{\mathrm{d}}
+%---------------------
+
+%---------------------
+\title{Stirling-Dunkl numbers\footnote{\textbf{This paper has been published as:}
+J. M\'inguez Ceniceros and J. L. Varona, 
+Stirling-Dunkl numbers,
+\textit{J.~Math.\ Anal.\ Appl.}\ \textbf{518} (2023), no.~1, 126698, 17~pp., 
+\url{https://doi.org/10.1016/j.jmaa.2022.126698}}
+\footnote{Partially supported by grant PID2021-124332NB-C22 
+(Mi\-nis\-te\-rio de Cien\-cia e Inno\-va\-ci\'on, Spain).}}
+%---------------------
+
+%----------
+\author{Judit M\'inguez Ceniceros\textsuperscript{1}
+and Juan Luis Varona\textsuperscript{2}\\[6pt]
+\small Departamento de Matem\'aticas y Computaci\'on, 
+Universidad de La Rioja,\\[-2pt]
+\small 26006 Logro\~no, Spain\\[3pt]
+\small \textsuperscript{1}{judit.minguez@unirioja.es},
+\textsuperscript{2}{jvarona@unirioja.es}}
+%----------
+
+%---------------------
+\date{}
+%---------------------
+
+%---------------------------
+\begin{document}
+%---------------------------
+
+%---------------------
+\maketitle
+%---------------------
+
+%---------------------
+\begin{abstract}
+The Appell sequences of polynomials can be extended to the Dunkl context, where the ordinary derivative is replaced by Dunkl operator on the real line, and the exponential function is replaced by the so-called Dunkl kernel. In a similar way, the discrete Appell sequences can be extended to the Dunkl context, where the role of the ordinary translation is played by the Dunkl translation, that is a much more intricate operator. In particular, this allows to define the falling factorial polynomials in the Dunkl context.
+
+Some numbers closely related to falling factorial are the so called Stirling numbers of the first kind and of the second kind, as well as the Bell numbers and the Bell polynomials. In this paper, we define these numbers and polynomials in the Dunkl context, and prove some of their properties.
+
+2010 Mathematics Subject Classification: Primary 11B73; Secondary 33C10, 11B68, 11B83.
+
+Keywords: Stirling numbers, Stirling-Dunkl numbers, Bell numbers, Bell-Dunkl numbers, Appell-Dunkl sequences, Dunkl transform.
+\end{abstract}
+%---------------------
+
+%---------------------
+%\tableofcontents
+%---------------------
+
+%---------------------
+\section{Introduction}
+%---------------------
+
+The origin of Stirling numbers of the first and second kind may be found in combinatorics, but they can be also defined in terms of the falling factorial 
+\begin{equation*}
+%\label{eq:ffact}
+  x^{\underline{k}} = x(x-1)  \cdots (x-k+1) = \prod_{j=0}^{k-1} (x-j),
+  \quad k = 1,2,\ldots,
+\end{equation*}
+for $0\ne x\in\RR$ (or $\CC$), and $x^{\underline{0}}=1$. Some other notations have been used
+for these polynomials, here we follow~\cite{Knuth} or \cite[Section~2.6, p.~47]{GKP}. Stirling numbers of the first kind $s(n,k)$ are the coefficients in the expansion of the falling factorial
+\begin{equation}
+\label{eq:Stirling}
+  x^{\underline{n}} = \sum_{k=0}^n s(n,k)x^k,
+\end{equation}
+see \cite[\S\,50, (3)]{Jor2}, while Stirling numbers of the second kind $S(n,k)$ are given by 
+\begin{equation}
+\label{eq:Stirling-second}
+  x^n = \sum_{k=0}^n S(n,k) x^{\underline{k}},
+\end{equation}
+see \cite[\S\,58, (2)]{Jor2}. 
+For these numbers, we are using the notation given in \cite{Br-NIST}, that is very common nowadays, but in the mathematical literature there are some other notation and/or small variation in the definition, such as in \cite{Jor2} or in~\cite{GKP}.
+
+The sequence of falling factorial $\{x^{\underline{k}}\}_{k=0}^{\infty}$ is an example of discrete Appell polynomials. A general discrete Appell sequence $\{p_k(x)\}_{k=0}^{\infty}$ is a sequence of polynomials such that 
+\begin{equation}
+\label{eq:Adiscrete}
+  \Delta p_k(x)=p_k(x+1) - p_k(x) = k p_{k-1}(x), \quad k \ge 1.
+\end{equation}
+In this case, the polynomials can be defined by a Taylor generating expansion 
+\begin{equation}
+\label{eq:dAs}
+  A(t)(1+t)^x = \sum_{k=0}^{\infty} p_k(x) \frac{t^k}{k!},
+\end{equation}
+where, from now on, $A(t)$ will denote a function analytic in a disk $|t|<R$ (for a certain $R>0$ that does not play any role), and with $A(0) \ne 0$. Note that the series \eqref{eq:dAs} is convergent in $|t|<\min\{R,1\}$.  When $p_k(x)=x^{\underline{k}}$ the generating function is $A(t)=1$. 
+
+
+When we take the derivative operator instead of the discrete operator \eqref{eq:Adiscrete}, we obtain the Appell sequences. That is, sequences of polynomials $\{P_k\}_{k=0}^{\infty}$ that satisfy
+\begin{equation*}
+%\label{eq:Appell}
+  P_0(x)=1,\quad P_k'(x)=kP_{k-1}(x).
+\end{equation*}
+These polynomials are characterized by a Taylor generating function
+\begin{equation}
+\label{eq:As}
+  A(t) e^{xt} = \sum_{k=0}^{\infty} P_k(x) \frac{t^k}{k!},
+  \quad |t| < R,
+\end{equation}
+where $A(t)$ is a function analytic on $|t|<R$ (for some $R>0$), with $A(0) \ne 0$. Appell polynomials have been widely studied because they have multiple applications to number theory, numerical analysis, combinatorics\dots\ Taking different analytic functions $A(t)$ in \eqref{eq:As}, we obtain examples of Appell polynomials such as $\{x^n\}_{n=0}^{\infty}$ with $A(t)=1$, Bernoulli polynomials with $A(t)=\frac{t}{e^t-1}$, and Euler polynomials with $A(t)=\frac{2}{e^t+1}$.
+
+In \cite{CDPV, CMV, DH}, Appell polynomials are extended to the Dunkl context. That is, the derivative operator is changed by the Dunkl operator 
+\begin{equation}
+\label{eq:La}
+  \La f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{2}
+  \left(\frac{f(x)-f(-x)}{x}\right),
+\end{equation}
+where $\alpha > -1$ is a fixed parameter (see \cite{Du, Ros}); of course, $(f(x)-f(-x))/x$ for $x=0$ must be understood as the limit when $x\to0$ (this limit exists if the first term $f'(0)$ exists). In that setting, an Appell-Dunkl sequence $\{P_k\}_{k=0}^{\infty}$ is
+a sequence of polynomials that satisfies
+\begin{equation*}
+%\label{eq:LaPk}
+  \La P_k(x) = \big(k+(\alpha+1/2)(1-(-1)^k)\big)P_{k-1}(x)
+\end{equation*}
+(instead of $\La P_k = k P_{k-1}$, the previous definition with 
+another multiplicative constant in the place of $k$ is used for 
+convenience with the notation). Of course, in the case $\alpha=-1/2$,
+the operator $\La$ is the ordinary derivative and Appell-Dunkl sequences become
+the classical Appell sequences. To give Appell-Dunkl sequences by means of 
+a generating function, some extra notation is required that we will explain in Section \ref{sec:Dunkl}.
+
+
+
+To extended discrete Appell polynomials to the Dunkl context, we need an analogous operator to the difference $\Delta f(x)=f(x+1)-f(x)$. From the definition of \eqref{eq:La} the role of $0$ and $1$ in the classical case is played by $1$ and $-1$ in the context Dunkl. Then it is more natural generalize the central difference operator $\Delta_{\mathrm{c}}f(x) = (f(x+1)-f(x-1))/2$ instead of~$\Delta$ (a somewhat general definition of difference operators can be seen in \cite[Section~2.1]{Simsek2}). In this case, instead of \eqref{eq:Adiscrete} we obtain 
+\begin{equation}
+	\label{eq:clascentral}
+	\Delta_{\mathrm{c}} q_k(x) = kq_{k-1}(x),\quad k\ge 1,
+\end{equation}
+and can be also defined using a Taylor generating expansion
+\[
+  A(t)(t+\sqrt{1+t^2})^x = \sum_{k=0}^{\infty} q_k(x) \frac{t^k}{k!},
+  \quad |t| < \min\{R,1\},
+\]
+where $A(t)$ is a function analytic on $|t|<R$ (for some $R>0$) with $A(0)\ne 0$. In \cite{Tem}, using this central operator  Bernoulli polynomials of the second kind are defined. When we take $A(t) = 1$ the ``central factorial'' polynomials $f_k(x)$ are considered,
+\[
+  (t+\sqrt{1+t^2})^x = \sum_{k=0}^{\infty} f_k(x) \, \frac{t^k}{k!},
+  \quad |t| < 1.
+\]
+In \cite{ELMV} the operator $\Delta_{\mathrm{c}}$ has been extended to the Dunkl context, $\Delta_{\alpha}$, in this way:
+\[
+  \Delta_{\alpha}f(x) = (\alpha+1)(\tau_1-\tau_{-1})f(x),
+\]
+where $\tau_y$ is the Dunkl translation operator of a function $f$ as (see~\cite{Ros})
+\begin{equation}
+\label{eq:translation}
+  \tau_y f(x) = \sum_{n=0}^\infty \La^{n}f(x) \frac{y^n}{\cc_{n,\alpha}},
+  \qquad \alpha>-1,
+\end{equation}
+where $\La^0$ is the identity operator and $\La^{n+1} = \La(\La^n)$. 
+In the case $\alpha=-1/2$, the translation $\tau_y f$ is just the Taylor expansion of a function $f$ around a fixed point $x$, that is,
+\[
+  f(x+y) = \sum_{n=0}^\infty f^{(n)}(x) \frac{y^n}{n!},
+\]
+and $\Delta_{-1/2}=\Delta_{\mathrm{c}}$. Of course, definition~\eqref{eq:translation} is valid only for $C^{\infty}$ functions, and assuming also that the series on the right is convergent. In particular, this can be guaranteed when $f$ is a polynomial, because the operator $\La$ applied to a polynomial of degree $k$ generates a polynomial of degree $k-1$, so the series~\eqref{eq:translation} has only a finite quantity on not null summands. 
+Some other properties of the Dunkl translation, including an integral expression that is more general than~\eqref{eq:translation}, can be found in \cite{Ros}, \cite{Rosler}, and \cite{ThX}.
+
+Discrete Appell-Dunkl polynomials are defined in \cite{ELMV} as a sequence of polynomials $\{p_{k,\alpha}(x)\}_{k=0}^{\infty}$ such that
+\[
+  \Delta_{\alpha}p_{k,\alpha}(x) = \theta_k p_{k-1,\alpha}(x),
+\]
+for certain constants $\theta_k$.
+There, besides to extend the typical discrete Appell polynomials to the Dunkl case (in particular, the so called Bernoulli polynomials of the second kind, also known as Rey Pastor polynomials, see~\cite{Jor, RP-BSMA, Bab, Car}), the analogous sequence of the falling factorial is denoted by $\{f_{k,\alpha}\}_{k=0}^{\infty}$ and called Dunkl factorial. 
+
+Stirling numbers have a great mathematical interest, with many recent papers devoted to the subject, and they have been generalized in many ways. To cite a few, in \cite[\S\,18]{Cho} and \cite{Tem} the authors use different discrete operators to obtain the falling factorial; in \cite{AARV, KS} symmetric polynomials are used and a new combinatorial interpretation is obtained; in \cite{BM} an extension of the M\"obius function is used in order to generalize the Stirling numbers of the first kind; in~\cite{Simsek1, Simsek3} some properties of Stirling numbers and generalized Stirling type numbers are proved using generating functions.
+
+The aim of this paper is to give the corresponding definitions in the Dunkl case, using instead of $x^{\underline{k}}$ the Dunkl factorial polynomials $f_{k,\alpha}(x)$; we will call these numbers Stirling-Dunkl numbers of the first kind and of the second kind (and order $\alpha>-1$), and we will denote them $s^\alpha(n,k)$ and $S_\alpha(n,k)$, respectively. 
+After Section~\ref{sec:Dunkl} where some aditional details of the Dunkl context are given, this is done in Sections~\ref{sec:S-D-first} and Sections~\ref{sec:S-D-second} and, of course, we prove some of their properties. Note that, in the Dunkl case, we are using the ``central'' factorial (that would correspond to \eqref{eq:clascentral} in the case $\alpha=-1/2$), so we do not recover the classical Stirling numbers in the case $\alpha=-1/2$, that are defined using~$x^{\underline{k}}$. Finally, in Section~\ref{sec:Bell} we study the so-called Bell-Dunkl numbers (and polynomials), that are an extension to the Dunkl case of the classical Bell numbers (or polynomials), that are closely related with the Stirling numbers of the second kind.
+
+%---------------------
+\section{Details for the Dunkl context}
+\label{sec:Dunkl}
+%---------------------
+
+For $\alpha > -1$, let $J_\alpha$ denote the Bessel function of order $\alpha$ and,
+for complex values of the variable~$z$, let
+\[
+  \I_\alpha(z)
+  = 2^\alpha \Gamma(\alpha+1)\, \frac{J_\alpha(iz)}{(iz)^\alpha}
+  = \Gamma(\alpha+1) \sum_{n=0}^\infty \frac{(z/2)^{2n}}{n!\,\Gamma(n+\alpha+1)}
+  = {}_0F_1(\alpha+1,z^2/4)
+\]
+(the function $\I_\alpha$ is a small variation of the so-called modified Bessel function of the first kind and order~$\alpha$, usually denoted by $I_\alpha$; see~\cite{Wat} or~\cite{OlMa-NIST}).
+Also, take % us take
+\[
+  \Ea(z) = \I_\alpha(z) + \frac{z}{2(\alpha+1)}\, \I_{\alpha+1}(z),
+  \qquad z \in \CC.
+\]
+
+For any $\lambda \in \CC$, we have
+\begin{equation*}
+%\label{eq:LDu}
+  \La \Ea(\lambda x) = \lambda \Ea(\lambda x).
+\end{equation*}
+Let us note that, when $\alpha = -1/2$, we have $\Lambda_{-1/2} = d/dx$ and $E_{-1/2}(\lambda x) = e^{\lambda x}$.
+
+From the definition, it is easy to check that
+\begin{equation}
+\label{eq:serie-Ea}
+  \Ea(z) = \sum_{n=0}^\infty \frac{z^n}{\cc_{n,\alpha}},
+  \qquad z\in\CC,
+\end{equation}
+with 
+\begin{equation}
+\label{eq:ccna}
+\cc_{n,\alpha} =
+\begin{cases} 
+  2^{2k}k!\,(\alpha+1)_k, & \text{if $n=2k$},\\
+  2^{2k+1}k!\,(\alpha+1)_{k+1}, & \text{if $n=2k+1$},
+\end{cases}
+\end{equation}
+and where $(a)_n$ denotes the Pochhammer symbol
+\[
+  (a)_n = a(a+1)(a+2) \cdots (a+n-1) = \frac{\Gamma(a+n)}{\Gamma(a)}
+\]
+(with $a$ a non-negative integer); of course, $\cc_{n,-1/2} = n!$.
+From~\eqref{eq:ccna}, we have
+\begin{equation*}
+%\label{eq:coccc}
+  \frac{\cc_{n,\alpha}}{\cc_{n-1,\alpha}} = n+(\alpha+1/2)(1-(-1)^n) =: \theta_{n,\alpha}.
+\end{equation*}
+We also define
+\[
+  \binoma{n}{j} = \frac{\cc_{n,\alpha}}{\cc_{j,\alpha}\cc_{n-j,\alpha}},
+\]
+that becomes the ordinary binomial numbers in the case $\alpha=-1/2$.
+To simplify the notation we sometimes write $\cc_n=\cc_{n,\alpha}$ and $\theta_n=\theta_{n,\alpha}$.
+
+Then, Appell-Dunkl polynomials may be defined by the generating function
+\begin{equation}
+\label{eq:As-Dunkl}
+  A(t)\Ea(xt) = \sum_{k=0}^{\infty}\frac{P_k(x)}{\gamma_{k,\alpha}} \,t^k,
+  \qquad |t|<R,
+\end{equation}
+where $A(t)$ is a function analytic on $|t|<R$ (for some $R>0$) with $A(0)\ne 0$.
+Taking $A(t) = {1}/{\I_{\alpha+1}(t)}$ in \eqref{eq:As-Dunkl} we obtain the Bernoulli-Dunkl polynomials whose properties have been studied in \cite{CDPV}, \cite{CMV} and \cite{MV}. In \cite{CMV}, the generalized Bernoulli-Dunkl polynomials of order~$r$, $\{\B_{k,\alpha}^{(r)}(x)\}_{k=0}^{\infty}$, are also introduced as
+\begin{equation}
+\label{eq:B-D-gener}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)^r} 
+  = \sum_{k=0}^{\infty} \frac{\B_{k,\alpha}^{(r)}(x)}{\gamma_{k,\alpha}} \,t^k,
+  \qquad |t|<s_{1,\alpha},
+\end{equation}
+where $s_{1,\alpha}$ is the first positive zero of $J_{\alpha+1}(z)$. 
+
+As we have seen, in order to generalize the discrete operator $\Delta f$ or $\Delta_{\mathrm{c}} f$ in the Dunkl context, we have introduced the Dunkl translation operator in~\eqref{eq:translation}.
+It is clear that $\tau_y$ commutes with the Dunk operator~$\La$.
+A nice property of the Dunkl translation, that resembles the Newton binomial $(x+y)^n = \sum_{k=0}^n \binom{n}{k} y^k x^{n-k}$, is the following:
+\begin{equation*}
+%\label{eq:Newton}
+  \tau_y ((\cdot)^n)(x) = 
+  \sum_{k=0}^n \binoma{n}{k} y^k x^{n-k}.
+\end{equation*}
+Because $\binoma{n}{k} = \binoma{n}{n-k}$, this implies that $\tau_y ((\cdot)^n)(x) = \tau_x ((\cdot)^n)(y)$. Then, $\tau_y f(x) = \tau_x f(y)$ for polynomials, and it is also true for general functions. Moreover this operator is commutative, that is, $\tau_{a} \tau_{b} = \tau_{b} \tau_{a}$ as we can see in~\cite{CMV}.
+
+The Dunkl translation has a nice behavior when applies to the function $\Ea$; we have the identity \cite[formula (4.2.2)]{Ros}
+\begin{equation*}
+%\label{eq:EEE}
+  \tau_y(\Ea(t\cdot))(x) = \Ea(tx) \Ea(ty).
+\end{equation*}
+In the case $\alpha=-1/2$, this identity becomes $e^{t(x+y)} = e^{tx}e^{ty}$.
+
+Many properties of the Appell sequences of polynomials can be adapted to the Appell-Dunkl sequences
+using the Dunkl translation operator as we can see 
+in~\cite{CDPV} and~\cite{CMV}. 
+
+We denote 
+\[
+  G_{\alpha}(z) = z \I_{\alpha+1}(z) = z \,{}_0F_1(\alpha+2,z^2/4)
+  = \Gamma(\alpha+1) \sum_{n=0}^\infty \frac{z^{2n+1}}{2^{2n} n!\,\Gamma(n+\alpha+1)},
+  \quad z\in\CC.
+\]
+This function is odd, non-negative for $z>0$, and increasing (for $z>0$, the derivative term by term of the series is positive),
+so there exists the inverse function, $G^{-1}_{\alpha}(z)$. The function $G_{\alpha}^{-1}$ will have a power expansion around $0$ that will converge in a certain disk of radius~$R_{\alpha}$.
+As we can see in \cite{ELMV} the generating function of a discrete Appell-Dunkl sequence $\{p_{k,\alpha}\}_{k=0}^{\infty}$ is
+\begin{equation}
+\label{eq:defADd}
+  A(t) \Ea(x G_{\alpha}^{-1}(t)) = \sum_{k=0}^{\infty} p_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}},
+  \qquad |t|<\min\{R,R_{\alpha}\},
+\end{equation}
+where $A(t)$ is a function analytic on $|t|<R$ (for some $R>0$) with $A(0)\ne 0$.
+That is, in the Dunkl context $\Ea(xG_{\alpha}^{-1}(t))$ plays the role of $(t+\sqrt{1+t^2})^x$ in the classical case.
+
+For the Dunkl case, let us take \eqref{eq:defADd} with $A(t)=1$.
+Then, we can say that the Dunkl factorial (or Dunkl ``central'' factorial)
+% (we will drop the word ``falling'' because it is a case of ``central factorial'') 
+are the polynomials  
+$\{f_{k,\alpha}(x)\}_{k=0}^{\infty}$ whose generating function is
+\begin{equation}
+\label{eq:fallfka}
+  \Ea(x G_{\alpha}^{-1}(t)) = \sum_{k=0}^{\infty} f_{k,\alpha}(x) \frac{t^k}{\cc_{k,\alpha}},
+  \qquad |t|<R_{\alpha}.
+\end{equation}
+It is not difficult to check that the first Dunkl factorial polynomials are
+%%\begin{equation*}
+%%\label{eq:alfa-sinA(a+1)}
+%%\begin{aligned}
+%\begin{align*}
+%f_{0,\alpha}(x) &= 1, \\
+%f_{1,\alpha}(x) &= x, \\
+%f_{2,\alpha}(x) &= x^2, \\
+%f_{3,\alpha}(x) &= x^3-x, \\
+%f_{4,\alpha}(x) &= x^4 - 4x^2, \\
+%f_{5,\alpha}(x) &= x^5
+%  - \frac{(6\alpha+18) x^3}{\alpha+2}
+%  + \frac{(5\alpha+16) x}{\alpha+2}, \\
+%f_{6,\alpha}(x) &= x^6
+%  - \frac{(12\alpha+36)x^4}{\alpha+2}
+%  + \frac{(36\alpha+114) x^2}{\alpha+2} \\
+%f_{7,\alpha}(x) &= x^7
+%  - \frac{15(\alpha+4) x^5}{\alpha+2}
+%  + \frac{9(\alpha+4)(7\alpha+22) x^3}{(\alpha+2)^2}
+%  - \frac{(7\alpha+26)^2 x}{(\alpha+2)^2}.
+%\end{align*}
+%%\end{aligned}
+%%\end{equation*}
+\begin{align*}
+  f_{0,\alpha}(x) &= 1, \qquad
+  f_{1,\alpha}(x) = x, \qquad
+  f_{2,\alpha}(x) = x^2, \\
+  f_{3,\alpha}(x) &= x^3-x, \qquad
+  f_{4,\alpha}(x) = x^4 - 4x^2, \\
+  f_{5,\alpha}(x) &= x^5
+  - \frac{6(\alpha+3) x^3}{\alpha+2}
+  + \frac{(5\alpha+16) x}{\alpha+2}, \\
+  f_{6,\alpha}(x) &= x^6
+  - \frac{12(\alpha+3)x^4}{\alpha+2}
+  + \frac{6(6\alpha+19) x^2}{\alpha+2}, \\
+  f_{7,\alpha}(x) &= x^7
+  - \frac{15(\alpha+4) x^5}{\alpha+2}
+  + \frac{9(\alpha+4)(7\alpha+22) x^3}{(\alpha+2)^2}
+  - \frac{(7\alpha+26)^2 x}{(\alpha+2)^2}.
+\end{align*}
+
+It is perhaps surprising that the polynomials $f_{k,\alpha}$ do not have any 
+recognizable pattern.
+But the same happens when the falling factorials are defined in other contexts;
+indeed, this is what happens in \cite[\S\,18]{Cho},
+where they are called factor polynomials
+(a more detailed explanation of the similarities and the differences
+between the context in~\cite{Cho} and our context can be found 
+in \cite[Remark~1]{CMV}).
+
+
+
+In the classical case, if $\{p_k(x)\}_{k=0}^{\infty}$ is a discrete Appell
+sequence (that is, it is defined as in~\eqref{eq:dAs}), they satisfy
+\begin{equation*}
+%\label{eq:binomdis}
+  p_k(x+y) = \sum_{j=0}^k \binom{k}{j} p_j(x)y^{\underline{k-j}}.
+\end{equation*}
+In~\cite{ELMV}, the analogous formula for the Appell-Dunkl polynomials is proved where $f_{k,\alpha}(y)$ plays the role of the factorial polynomials $y^{\underline{k}}$. In this context, if $\{p_{k,\alpha}(x)\}_{k=0}^{\infty}$, $\alpha>-1$, is a discrete Appell-Dunkl sequence of polynomials defined by \eqref{eq:defADd}, then
+\[
+  \tau_y(p_{k,\alpha}(\cdot))(x)
+  = \sum_{j=0}^k \binoma{k}{j} p_{j,\alpha}(x) f_{k-j,\alpha}(y).
+\]
+
+An example of discrete Appell-Dunkl polynomials are the generalized Bernoulli-Dunkl polynomials defined in \eqref{eq:B-D-gener} of order $k+1$, $\B_{k,\alpha}^{(k+1)}(x)$, because from \cite[Theorem 8.2]{CMV}), they satisfy
+\begin{equation*}
+%\label{eq:tau1-1-Br}
+  \Delta_{\alpha} \B_{k,\alpha}^{(k+1)}(x) 
+  = (\alpha+1)\big(\tau_1 \B_{k,\alpha}^{(k+1)}(x) - \tau_{-1} \B_{k,\alpha}^{(k+1)}(x)\big)
+  = \La(\B_{k,\alpha}^{(k)})(x) = \theta_{k,\alpha} \B_{k-1,\alpha}^{(k)}(x).
+\end{equation*}
+From \cite[Theorem 8.3]{CMV} we know that 
+\begin{equation}
+\label{eq:tras-generalizados}
+  \tau_y(\B_k^{(r+s)})(x)=\sum_{j=0}^{k}\binoma{k}{j}\B_j^{(r)}(x)\B_{k-j}^{(s)}(y).
+\end{equation}
+Taking $r=k$, $s=0$ and $y=0$ in \eqref{eq:tras-generalizados} we can write
+\begin{equation}
+\label{eq:tras-0}
+  \B_{k,\alpha}^{(k)}(x) = \sum_{j=0}^k \binoma{k}{j}\B_{j,\alpha}^{(k)}(0)x^{k-j}.
+\end{equation}
+
+In Theorem 5.1 of~\cite{ELMV} the falling-Dunkl polynomials $\{f_{k,\alpha}(x)\}$ are expressed in terms of generalized Bernoulli-Dunkl polynomials $\{\B_{k,\alpha}^{(k)}(x)\}$ as follows (see~\cite{ELMV}):
+\begin{equation*}
+  f_{k,\alpha}(x) = \frac{x}{k} \frac{d}{dx}\B_{k,\alpha}^{(k)}(x),
+  \quad k = 1,2,\ldots.
+\end{equation*}
+So, derivating in \eqref{eq:tras-0} we can write
+\begin{equation}
+\label{eq:relation}
+  f_{k,\alpha}(x) =\sum_{j=0}^k \frac{j}{k}\binoma{k}{j} \B_{k-j,\alpha}^{(k)}(0)x^j,
+  \quad k = 1,2,\ldots.
+\end{equation}
+
+%----------
+\section{Stirling-Dunkl numbers of the first kind}
+\label{sec:S-D-first}
+%----------
+
+
+Stirling numbers of the first kind were defined in \eqref{eq:Stirling} in terms of the falling factorial.
+As we have an analogous sequence for the falling factorial in the Dunkl context, using \eqref{eq:relation} we can define the Stirling-Dunkl numbers of the first kind of order~$\alpha$, $s^{\alpha}(n,k)$, as 
+\begin{equation}
+\label{eq:def-S-D}
+  s^{\alpha}(n,k) = \frac{k}{n} \binoma{n}{k} \B_{n-k,\alpha}^{(n)}(0),
+\end{equation}
+obtaining that they are the coefficients in the following expansion analogous to \eqref{eq:Stirling}: 
+\begin{equation}
+\label{eq:Stirling-Dunkl}
+    f_{n,\alpha}(x) = \sum_{k=0}^n s^{\alpha}(n,k)x^k,
+  \quad k = 1,2,\ldots.
+\end{equation}
+Note that $s^{\alpha}(n,k)$ for $k>n$ does not appear in this formula, so we can take $s^{\alpha}(n,k) = 0$ in those cases; among other things, this allows to use $\sum_{n=0}^{\infty}$ instead of~$\sum_{n=r}^{\infty}$ in the generating function~\eqref{eq:genSa}.
+
+We are going to prove some properties of these numbers. We start proving a recurrence relation. 
+
+\begin{proposition}
+\label{prop:S-D}
+Let $s^{\alpha}(n,k)$ be the Stirling-Dunkl numbers of the first kind of order $\alpha>-1$. Then 
+\begin{equation}
+\label{eq:S-D-0}
+  s^{\alpha}(n,0)=0,\quad s^{\alpha}(n,n)=1,
+\end{equation}
+\begin{equation}
+\label{eq:S-D-n+1}
+  s^{\alpha}(n+1,1) = \frac{\theta_{n+1}}{2(\alpha+1)(n+1)} 
+  \B_{n,\alpha}^{(n)}(0) + \frac{\theta_{n+1}n}{2(\alpha+1)(n+1)}
+  \sum_{j=1}^n \frac{\B_{j,\alpha}^{(n)}(0)}{j} s^{\alpha}(n,j).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+From the definition~\eqref{eq:def-S-D},
+\[
+  s^{\alpha}(n,0)=0,\quad s^{\alpha}(n,n) = \B_{0,\alpha}^{(n)}(0) = 1,
+\]
+and
+\begin{equation}
+\label{eq:S-D-n+1-aux}
+  s^{\alpha}(n+1,1) = \frac{1}{n+1} \binoma{n+1}{1} \B_{n,\alpha}^{(n+1)}(0).
+\end{equation}
+Thus, we obtain \eqref{eq:S-D-0}. On the other hand, from \eqref{eq:tras-generalizados} and that $\tau_0f(x)=f(x)$, we can write
+\begin{gather*}
+  \B_{n,\alpha}^{(n+1)}(0) = \tau_0(\B_{n,\alpha}^{(n+1)})(0)
+  = \sum_{j=0}^n\binoma{n}{j}\B_{n-j,\alpha}^{(n)}(0)\B_{j,\alpha}(0) \\
+  = \B_{n,\alpha}^{(n)}(0) + \sum_{j=1}^{n} \binoma{n}{j}\B_{n-j,\alpha}^{(n)}(0) \B_{j,\alpha}(0)
+  = \B_{n,\alpha}^{(n)}(0) + \sum_{j=1}^{n} \frac{n}{j} \frac{j}{n} 
+  \binoma{n}{j} \B_{n-j,\alpha}^{(n)}(0) \B_{j,\alpha}(0) \\
+  = \B_{n,\alpha}^{(n)}(0) + \sum_{j=1}^{n} \frac{n}{j} s^{\alpha}(n,j) \B_{j,\alpha}(0).
+\end{gather*}
+Applying now the property of the binomial numbers
+\[
+  \frac{1}{n+1}\binoma{n+1}{1} 
+  = \frac{1}{n+1}\frac{\gamma_{n+1,\alpha}}{\gamma_{1,\alpha}\gamma_{n,\alpha}}
+  = \frac{\theta_{n+1}}{2(\alpha+1)(n+1)},
+\]
+  \eqref{eq:S-D-n+1-aux} can be expressed by
+\[
+  s^{\alpha}(n+1,1) = \frac{\theta_{n+1}}{2(\alpha+1)(n+1)}
+  \left(\B_{n,\alpha}^{(n)}(0)
+  + \sum_{j=1}^{n} \frac{n}{j}s^{\alpha}(n,j) \B_{j,\alpha}(0)\right).
+\]
+Therefore, \eqref{eq:S-D-n+1} is proved.
+\end{proof}
+
+Another relationship for the Stirling-Dunkl numbers of the fist kind is the following. 
+
+\begin{proposition}
+\label{prop:proptSa} 
+Let $s^{\alpha}(n,k)$ be the Stirling-Dunkl numbers of the first kind of order $\alpha>-1$. Then,
+\[
+  \theta_{n+1}s^{\alpha}(n,k) 
+  = (\alpha+1) \sum_{l=k}^n s^{\alpha}(n+1,l+1)(1-(-1)^{l+1-k}) \binoma{l+1}{k}.
+\]
+\end{proposition}
+
+\begin{proof}
+We know that
+\[
+  f_{n+1,\alpha}(x) = \sum_{k=0}^{n+1} s^{\alpha}(n+1,k)x^k.
+\]
+If we apply the operator $\Delta_{\alpha}$ we have
+\begin{equation}
+\label{eq:proptSa-1}
+  \Delta_{\alpha}f_{n+1,\alpha}(x) = \theta_{n+1}f_{n,\alpha}(x)
+  = \theta_{n+1}\sum_{k=0}^n s^{\alpha}(n,k)x^k.
+\end{equation}
+On the other hand,
+\[
+  \Delta_{\alpha}f_{n+1,\alpha}(x)
+  = \sum_{l=0}^{n+1} s^{\alpha}(n+1,l) \Delta_{\alpha}x^l
+\]
+and
+\[
+  \Delta_{\alpha}x^l = (\alpha+1)\sum_{j=0}^l (1-(-1)^j) \binoma{l}{j}x^{l-j}.
+\]
+Then,
+\begin{multline}
+\label{eq:proptSa-2}
+  \Delta_{\alpha}f_{n+1,\alpha}(x)
+  = \sum_{l=0}^{n+1}s^{\alpha}(n+1,l)(\alpha+1) \sum_{j=0}^l (1-(-1)^j) \binoma{l}{j}x^{l-j} \\
+  = (\alpha+1) \sum_{l=1}^{n+1} s^{\alpha}(n+1,l) \sum_{j=1}^l (1-(-1)^j) \binoma{l}{j}x^{l-j} \\
+  = (\alpha+1) \sum_{l=1}^{n+1} s^{\alpha}(n+1,l) \sum_{j=0}^{l-1} (1-(-1)^{l-j}) \binoma{l}{j}x^{j} \\
+  = (\alpha+1) \sum_{l=0}^{n} s^{\alpha}(n+1,l+1) \sum_{j=0}^{l} (1-(-1)^{l+1-j}) \binoma{l+1}{j}x^{j} \\
+  = (\alpha+1) \sum_{j=0}^n \sum_{l=j}^n s^{\alpha}(n+1,l+1) (1-(-1)^{l-j+1}) \binoma{l+1}{j}x^j.
+\end{multline}
+Equaling coefficients in \eqref{eq:proptSa-1} and \eqref{eq:proptSa-2} we obtain the desired result.
+\end{proof}
+
+\begin{proposition}
+\label{prop:rel=0} 
+Let $s^{\alpha}(n,k)$ be the Stirling-Dunkl numbers of the first kind of order $\alpha>-1$. Then,
+\[
+  \sum_{k=0}^n (1-(-1)^k) s^{\alpha}(n,k)=0.
+\]
+\end{proposition}
+
+\begin{proof}
+From the construction of $G_{\alpha}^{-1}(t)$ (see \cite{ELMV} for details) we know that
+\begin{equation}
+\label{eq:constructionG}
+  (\alpha+1)(\Ea(G_{\alpha}^{-1}(t))-\Ea(-G_{\alpha}^{-1}(t))) = t.
+\end{equation}
+Using \eqref{eq:fallfka} and \eqref{eq:constructionG} we can obtain
+\[
+  (\alpha+1) \sum_{k=0}^{\infty} \frac{f_{k,\alpha}(1)-f_{k,\alpha}(-1)}{\gamma_k} \,t^k = t.
+\]
+So, equaling coefficients we have proved
+\begin{equation}
+\label{eq:fact_1}
+  f_{1,\alpha}(1)-f_{1,\alpha}(-1)=2,\qquad
+  f_{k,\alpha}(1)-f_{k,\alpha}(-1)=0,\quad k>1.
+\end{equation}
+Finally, the result follows from~\eqref{eq:Stirling-Dunkl}.
+\end{proof}
+
+The classical Stirling numbers of the first kind have the generating function
+\[
+  \sum_{n=r}^{\infty} s(n,r) \frac{t^n}{n!} = \frac{(\log(1+t))^r}{r!},
+  \qquad |t| < 1,
+\]
+see \cite[\S\,51, (3)]{Jor2} or \cite[26.8.8]{Br-NIST}.
+In the Dunkl context we have this analogous result:
+
+\begin{theorem} 
+The generating function of the Stirling-Dunkl numbers of the first kind of order $\alpha>-1$, $s^{\alpha}(n,r)$, is 
+\begin{equation}
+\label{eq:genSa} 
+  \sum_{n=r}^{\infty} s^{\alpha}(n,r) \frac{t^n}{\gamma_n}
+  = \frac{G_{\alpha}^{-1}(t)^r}{\gamma_r}, \qquad |t|<R_{\alpha}
+\end{equation}
+(recall that $R_{\alpha}$ is the radious of the disk of convergence of $G_{\alpha}^{-1}$), for $r\ge 0$ integer.
+\end{theorem}
+
+\begin{proof}
+From \eqref{eq:serie-Ea} we have 
+\begin{equation}
+\label{eq:generSa1}
+    \Ea(xG_{\alpha}^{-1}(t)) 
+    = \sum_{r=0}^{\infty} G_{\alpha}^{-1}(t)^r \,\frac{x^r}{\gamma_r}.
+\end{equation}
+Now, using the definition of the Stirling-Dunkl of the first kind \eqref{eq:Stirling-Dunkl} in  \eqref{eq:fallfka} we can write
+\[
+  \Ea(xG_{\alpha}^{-1}(t))
+  = \sum_{n=0}^{\infty} \left(\sum_{r=0}^{n} s^{\alpha}(n,r)x^r\right) \frac{t^n}{\gamma_n}.
+\]
+Applying Fubini's theorem we obtain
+\begin{equation}
+\label{eq:generSa2}
+  \Ea(xG_{\alpha}^{-1}(t)) = \sum_{r=0}^{\infty} 
+  \left(\sum_{n=r}^{\infty} s^{\alpha}(n,r)\frac{t^n}{\gamma_n}\right)x^r.
+\end{equation}
+Equating coefficients of \eqref{eq:generSa1} and \eqref{eq:generSa2}, the theorem is proved.
+\end{proof}
+
+\begin{remark}
+Taking $r=1$ in \eqref{eq:genSa} and $k=1$ in \eqref{eq:def-S-D} we obtain Theorem 5.2 of~\cite{ELMV}, that is,
+\begin{equation}
+\label{eq:inversa}
+  G_{\alpha}^{-1}(t)=\sum_{k=1}^{\infty}\frac{1}{k}\frac{\B_{k-1}^{(k)}(0)}{\gamma_{k-1}} \,t^k.
+\end{equation}
+\end{remark}
+
+Using \eqref{eq:genSa} we can deduce the following recurrence relation:
+
+\begin{corollary} 
+Let $s^{\alpha}(n,r)$ be the Stirling-Dunkl numbers of the first kind of order $\alpha>-1$. Then for $r\ge 0$ integer,
+\[
+  \frac{s^{\alpha}(n,r)}{\gamma_n\gamma_{r-1}}
+  = \sum_{k=1}^{n-r+1}\frac{s^{\alpha}(n-k,r-1)}{\gamma_{n-k}\gamma_{k-1}}
+  \frac{\B_{k-1}^{(k)}(0)}{k}.
+\]
+\end{corollary}
+
+\begin{proof}
+We use \eqref{eq:inversa} and \eqref{eq:genSa} with $r-1$ to write
+\begin{align*}
+  G_{\alpha}^{-1}(t)^r = G_{\alpha}^{-1}(t)G_{\alpha}^{-1}(t)^{r-1}
+  = \gamma_{r-1}\sum_{k=1}^{\infty} \sum_{m=r-1}^{\infty} s^{\alpha}(m,r-1)
+  \frac{\B_{k-1}^{(k)}(0)}{k} \frac{t^{m+k}}{\gamma_m\gamma_{k-1}} \\
+  = \gamma_{r-1}\sum_{n=r}^{\infty} \sum_{k=1}^{n-r+1} s^{\alpha}(n-k,r-1)
+  \frac{\B_{k-1}^{(k)}(0)}{k} \frac{t^n}{\gamma_{n-k}\gamma_{k-1}}.
+\end{align*}
+Equating coefficients with the series \eqref{eq:genSa}, the result is proved.
+\end{proof}
+
+%---------------------
+\section{Stirling-Dunkl numbers of the second kind}
+\label{sec:S-D-second}
+%---------------------
+
+The classical Stirling numbers of the second kind, $S(n,k)$, were defined in \eqref{eq:Stirling-second} using the falling factorial. Then the Stirling-Dunkl numbers of the second kind, $S_{\alpha}(n,k)$, can be defined as the coefficients in the expansion of $x^n$ in terms of the Dunkl factorial 
+\begin{equation}
+\label{eq:S-D-second}
+  x^n = \sum_{k=0}^n S_{\alpha}(n,k)f_{k,\alpha}(x).
+\end{equation}
+One again, note that $S_{\alpha}(n,k)$ for $k>n$ does not appear in this formula, so we can take $S_{\alpha}(n,k) = 0$. With this notation, it is equivalent to take $\sum_{n=0}^{\infty}$ or~$\sum_{n=r}^{\infty}$ in the generating formula~\eqref{eq:S-gen-second}.
+
+Evaluating \eqref{eq:S-D-second} in $x=0$ and taking into account $f_{k,\alpha}(0)=0$ for $k>1$ and $f_{0,\alpha}(x)=1$, we get
+\[
+  S_{\alpha}(n,0)=0,\quad n\ge 1.
+\]
+Moreover, we have the following:
+
+\begin{proposition}
+\label{prop:S-D-2n+1} 
+Let $S_{\alpha}(n,k)$ be the Stirling-Dunkl numbers of the second kind of order $\alpha>-1$. Then,
+\[
+  1 = S_{\alpha}(2n+1,1).
+\]
+\end{proposition}
+
+\begin{proof}
+Evaluating \eqref{eq:S-D-second} in $x=1$ and $x=-1$ we have
+\[
+  1 = \sum_{k=0}^n S_{\alpha}(n,k)f_{k,\alpha}(1),
+  \quad (-1)^n = \sum_{k=0}^n S_{\alpha}(n,k)f_{k,\alpha}(-1).
+\]
+If we subtract, 
+\[
+  1-(-1)^n = \sum_{k=0}^n S_{\alpha}(n,k)(f_{k,\alpha}(1)-f_{k,\alpha}(-1)).
+\]
+Then from \eqref{eq:fact_1} we obtain the result.
+\end{proof}
+
+Now we are going to prove the analogous of the generalized Stirling formula, that in the classical case is  
+\[
+S(n,k) = \frac{1}{k!} \sum_{i=0}^k (-1)^i \binom{k}{i}(k-i)^n
+= \frac{1}{k!} \sum_{i=0}^k (-1)^{k-i} \binom{k}{i}i^n,
+\]
+see \cite[26.8.6]{Br-NIST}.
+
+
+
+\begin{theorem}
+\label{teo:S-D-formula} 
+Let $S_{\alpha}(n,k)$ be the Stirling-Dunkl numbers of the second kind of order $\alpha>-1$. Then,
+\begin{equation}
+\label{eq:S-D-formula}
+  S_{\alpha}(n,k) = \frac{(\alpha+1)^k}{\gamma_k}
+  \sum_{j=0}^k (-1)^j \binom{k}{j} \tau_1^{k-j}\circ\tau_{-1}^{j}(\cdot)^n(0).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If we apply $k$ times the operator $\Delta_{\alpha}$ in \eqref{eq:S-D-second} we obtain
+\[
+  \Delta_{\alpha}^k x^n 
+  = \sum_{l=0}^n S_{\alpha}(n,l) \frac{\gamma_l}{\gamma_{l-k}} f_{l-k,\alpha}(x).
+\]
+Taking $x=0$ it holds
+\[
+  \Delta_{\alpha}^k(\cdot)^n(0) = S_{\alpha}(n,k) \frac{\gamma_k}{\gamma_0},
+\]
+because $f_{k,\alpha}(0)=0$, $k\ge 1$.
+Therefore,
+\[
+  S_{\alpha}(n,k) = \frac{1}{\gamma_k}\Delta_{\alpha}^k(\cdot)^n(0).
+\]
+The theorem is proved using that 
+\[
+  \Delta_{\alpha}^k(\cdot)^n(x) 
+  = (\alpha+1)^k \sum_{j=0}^{k} (-1)^j\binom{k}{j} \tau_1^{k-j}\circ\tau_{-1}^j(\cdot)^n(x).
+\qedhere
+\]
+\end{proof}
+
+The classical Stirling numbers of the second kind have as generating function an exponential function given by
+\[
+  \sum_{n=0}^{\infty} S(n,r) \frac{t^n}{n!} = \frac{(e^t-1)^r}{r!},
+\]
+see \cite[26.8.12]{Br-NIST}.
+In the Dunkl context we find the following generating function in terms of~$\Ea(t)$:
+
+
+\begin{theorem}
+\label{teo:S-gen-second} 
+Let $S_{\alpha}(n,k)$ be the Stirling-Dunkl numbers of the second kind of order $\alpha>-1$. Then for $r\ge 0$ integer,
+\begin{equation}
+\label{eq:S-gen-second}
+  \sum_{n=0}^{\infty} S_{\alpha}(n,r) \frac{t^n}{\gamma_n}
+  = \frac{(\alpha+1)^r}{\gamma_r}(\Ea(t)-\Ea(-t))^r,
+  \qquad t\in\CC.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+First of all we are going to prove that for $l,\,m\in\mathbb{N}\cup\{0\}$:
+\begin{equation}
+\label{eq:pot-tau}
+  \Ea(t)^l\Ea(-t)^m = \sum_{n=0}^{\infty} \tau_1^l\circ\tau_{-1}^m(\cdot)^n(0) \frac{t^n}{\gamma_n}.
+\end{equation}
+
+We start taking $m=0$. Then we will prove the equation \eqref{eq:pot-tau} using induction over $l$. It is trivial to prove it for $l=1$ because $\tau_1(\cdot)^n(0)=\tau_0(\cdot)^n(1)=1$. Now, suppose that the equation holds for $l-1$; then applying the induction hypothesis we can write
+\begin{equation}
+\label{eq:pot-Ealpha}
+  \Ea(t)^l = \Ea(t)\Ea(t)^{l-1}
+  = \sum_{k=0}^{\infty} \frac{t^k}{\gamma_k} 
+  \sum_{j=0}^{\infty} \tau_1^{l-1}(\cdot)^j(0) \frac{t^j}{\gamma_j}
+  = \sum_{n=0}^{\infty} \sum_{k=0}^n \tau_1^{l-1}(\cdot)^{n-k}(0) \binoma{n}{k} \frac{t^n}{\gamma_n}.
+\end{equation} 
+We develop $\tau_1^{l}(\cdot)^n(0)$ taking account that $\tau_a\circ\tau_b=\tau_b\circ\tau_a$:
+\begin{equation}
+\label{eq:pot-tau-aux}
+  \tau_1^l(\cdot)^n(0) 
+  = \tau_1^{l-1}(\tau_1(\cdot)^n)(0)
+  = \tau_1^{l-1}\left(\sum_{k=0}^n \binoma{n}{k}x^{n-k}\right)(0)
+  = \sum_{k=0}^n \binoma{n}{k} \tau_1^{l-1}(\cdot)^{n-k}(0).
+\end{equation}
+By placing \eqref{eq:pot-tau-aux} in \eqref{eq:pot-Ealpha}, we have proved \eqref{eq:pot-tau} with $m=0$.
+Analogously we prove \eqref{eq:pot-tau} for $l=0$. We apply induction over $m$. It is true for $m=1$ because $\tau_{-1}(\cdot)^n(0)=(-1)^n$. Suppose that \eqref{eq:pot-tau} is true for $m-1$; then
+\begin{equation}
+\label{eq:pot-Ealpha2}
+  \Ea(-t)\Ea(-t)^{m-1}
+  = \sum_{k=0}^{\infty} \frac{(-1)^k}{\gamma_k} t^k 
+  \sum_{j=0}^{\infty} \tau_{-1}^{m-1}(\cdot)^j(0) \frac{t^j}{\gamma_j}
+  = \sum_{n=0}^{\infty} \sum_{k=0}^n (-1)^k \tau_{-1}^{m-1}(\cdot)^{n-k}(0)
+  \binoma{n}{k} \frac{t^n}{\gamma_n}.
+\end{equation}
+We develop $\tau_{-1}^m(\cdot)^n(0)$ and we get
+\begin{equation}
+\label{eq:pot-tau-aux2}
+  \tau_{-1}^m(\cdot)^n(0)
+  = \tau_{-1}^{m-1}\circ\tau_{-1}(\cdot)^n(0)
+  = \tau_{-1}^{m-1} \left(\sum_{k=0}^n \binoma{n}{k}(-1)^kx^{n-k}\right)(0)
+  = \sum_{k=0}^n(-1)^k \binoma{n}{k}\tau_{-1}^{m-1}(\cdot)^{n-k}(0).
+\end{equation} 
+
+By placing \eqref{eq:pot-tau-aux2} in \eqref{eq:pot-Ealpha2}, we have proved \eqref{eq:pot-tau} with $l=0$. The next step will be applying induction over $l$ but with $m\ne 0$. We have proved that the base case, $l=0$, is true. Suppose that it is true for $l-1$; then
+\begin{multline}
+\label{eq:pot-Ealpha3}
+  \Ea(t)^l\Ea(-t)^m = \Ea(t)\Ea(t)^{l-1}\Ea(-t)^m
+  = \sum_{k=0}^{\infty} \frac{t^k}{\gamma_k} 
+  \sum_{j=0}^{\infty} \tau_1^{l-1}\circ\tau_{-1}^m(\cdot)^j(0) \frac{t^j}{\gamma_j} \\
+  = \sum_{n=0}^{\infty} \sum_{k=0}^n \tau_1^{l-1}\circ\tau_{-1}^m(\cdot)^{n-k}(0)
+  \binoma{n}{k}\frac{t^n}{\gamma_n}.
+\end{multline}
+Developing $\tau_1^l\circ\tau_{-1}^m(\cdot)^n(0)$ and taking account the commutativity of the translation operator, we obtain
+\begin{equation}
+\label{eq:pot-tau-aux3}
+  \tau_1^l\circ\tau_{-1}^m(\cdot)^n(0)
+  = \tau_1^{l-1}\circ\tau_{-1}^m \left(\sum_{k=0}^n \binoma{n}{k} x^{n-k}\right)(0)
+  = \sum_{k=0}^n \binoma{n}{k} \tau^{l-1}_1\circ\tau_{-1}^{m}(\cdot)^{n-k}(0).
+\end{equation}
+So, placing \eqref{eq:pot-tau-aux3} in \eqref{eq:pot-Ealpha3}, we have \eqref{eq:pot-tau}. Finally, we apply induction over $m$ with $l\ne 0$. We have proved the base case, $m=0$. Supposing that it is true for $m-1$,
+\begin{multline}
+\label{eq:pot-Ealpha4}
+  \Ea(t)^l\Ea(-t)^m = \Ea(-t)\Ea(t)^{l}\Ea(-t)^{m-1}
+  = \sum_{k=0}^{\infty} \frac{(-1)^k}{\gamma_k} t^k 
+  \sum_{j=0}^{\infty} \tau_1^{l}\circ_{-1}^{m-1}(\cdot)^j(0)\frac{t^j}{\gamma_j} \\
+  = \sum_{n=0}^{\infty} \sum_{k=0}^n(-1)^k 
+  \tau_1^{l} \circ\tau_{-1}^{m-1}(\cdot)^{n-k}(0) \binoma{n}{k} \frac{t^n}{\gamma_n}.
+\end{multline}
+Developing $\tau_1^l\circ\tau_{-1}^m(\cdot)^n(0)$ and taking account the commutativity of the translation operator, we obtain
+\begin{equation}
+\label{eq:pot-tau-aux4}
+  \tau_1^l\circ\tau_{-1}^m(\cdot)^n(0)
+  = \tau_1^{l}\circ\tau_{-1}^{m-1} \left(\sum_{k=0}^n(-1)^k \binoma{n}{k}x^{n-k}\right)(0)
+  = \sum_{k=0}^n(-1)^k \binoma{n}{k} \tau^{l}_1\circ\tau_{-1}^{m-1}(\cdot)^{n-k}(0).
+\end{equation}
+So, placing \eqref{eq:pot-tau-aux4} in \eqref{eq:pot-Ealpha4}, we have \eqref{eq:pot-tau}.
+
+Finally, we substitute $S_{\alpha}(n,r)$ by \eqref{eq:S-D-formula} and apply \eqref{eq:pot-tau}, obtaining
+\begin{align*}
+  \sum_{n=0}^\infty S_{\alpha}(n,r) \frac{t^n}{\gamma_n}
+  &= \sum_{n=0}^{\infty} \frac{(\alpha+1)^r}{\gamma_r}
+  \sum_{j=0}^r (-1)^j \binom{r}{j}\tau_1^{r-j}\circ\tau_{-1}^j(\cdot)^n(0) \frac{t^n}{\gamma_n} \\
+  &= \frac{(\alpha+1)^r}{\gamma_r} \sum_{j=0}^r (-1)^j\binom{r}{j}
+  \sum_{n=0}^{\infty} \tau_1^{r-j}\circ\tau_{-1}^j(\cdot)^n(0) \frac{t^n}{\gamma_n} \\
+  &= \frac{(\alpha+1)^r}{\gamma_r} \sum_{j=0}^r (-1)^r \binom{r}{j} \Ea(t)^{r-j}\Ea(-t)^j 
+  = \frac{(\alpha+1)^r}{\gamma_r} (\Ea(t)-\Ea(-t))^r.
+\end{align*}
+So, we have proved \eqref{eq:S-gen-second}.
+\end{proof}
+
+Applying mathematical induction it is easy to prove that
+\[
+(\Ea(t)-\Ea(-t))^r
+= 2^r\sum_{j_r=0}^{\infty} \sum_{j_1\le j_2 \le\cdots\le j_r}
+\binoma{2j_2+2}{2j_1+1} \binoma{2j_3+3}{2j_2+2}\cdots \binoma{2j_r+r}{2j_{r-1}+r-1}
+\frac{t^{2j_r+r}}{\gamma_{2j_r+r}}.
+\]
+By equating coefficients with \eqref{eq:S-gen-second} we obtain the following: 
+
+\begin{itemize} 
+\item If $r=2s+1$ is an odd number,
+\begin{gather*}
+  S_{\alpha}(2m,2s+1)=0,
+\\
+  S_{\alpha}(2m+1,2s+1) = \frac{(2\alpha+2)^{2s+1}}{\gamma_{2s+1}}
+  \sum_{j_1\le\cdots \le j_r=m-s} \binoma{2j_2+2}{2j_1+1} \binoma{2j_3+3}{2j_2+2} \cdots 
+  \binoma{2j_r+r}{2j_{r-1}+r-1}.
+\end{gather*}
+\item If $r=2s$ is an even number,
+\begin{gather*}
+  S_{\alpha}(2m+1,2s)=0,
+\\
+  S_{\alpha}(2m,2s) = \frac{(2\alpha+2)^{2s}}{\gamma_{2s}}
+  \sum_{j_1\le\cdots \le j_r=m-s} \binoma{2j_2+2}{2j_1+1} \binoma{2j_3+3}{2j_2+2} \cdots 
+  \binoma{2j_r+r}{2j_{r-1}+r-1}.
+\end{gather*}
+\end{itemize}
+These formulas are the analogous to the classical determination of the Stirling number of the second kind given by (see \cite[\S\,60, (5), p.~176]{Jor2})
+\[
+  S(n,k) = \frac{n!}{k!} \sum_{r_1+r_2+\cdots+r_k=n} \frac{1}{r_1!\,r_2!\cdots r_k!}.
+\]
+
+Now, we are going to relate the Stirling-Dunkl numbers of the second kind with the generalized Bernoulli-Dunkl numbers.
+
+
+\begin{corollary}
+Let $\{\B_{n,\alpha}^{(-r)}\}_{n=0}^{\infty}$ be the sequence of generalized Bernoulli-Dunkl polynomials of order $-r$, with $r\ge 0$ integer. Then, the Stirling-Dunkl numbers of the second kind, $S_{\alpha}(n,r)$, can be written as
+\[
+  S_{\alpha}(n,r) = \B_{n-r}^{(-r)}(0) \binoma{n}{r}.
+\]
+\end{corollary}
+
+\begin{proof}
+If we rewrite $\I_{\alpha+1}(t)$ as
+\[
+  \I_{\alpha+1}(t) = \frac{(\alpha+1)(\Ea(t)-\Ea(-t))}{t}
+\]
+and take $x=0$ in \eqref{eq:B-D-gener}, we obtain
+\[
+  \frac{t^r}{(\alpha+1)^r(\Ea(t)-\Ea(-t))^r}
+  = \sum_{n=0}^{\infty} \frac{\B_{n,\alpha}^{(r)}(0)}{\gamma_{n,\alpha}} \,t^n.
+\]
+So, 
+\begin{equation}
+\label{eq:relacion-B}
+  \frac{(\Ea(t)-\Ea(-t))^r(\alpha+1)^r}{\gamma_{r,\alpha}}
+  = \sum_{n=0}^{\infty}\frac{\B_{n,\alpha}^{(-r)}(0)}{\gamma_{n,\alpha}\gamma_{r,\alpha}} \,t^{n+r}
+  = \sum_{n=r}^{\infty}\B_{n-r}^{(-r)}(0)\binoma{n}{r}\frac{t^n}{\gamma_{n,\alpha}}.
+\end{equation}
+Equating \eqref{eq:S-gen-second} and \eqref{eq:relacion-B} we have proved the result.
+\end{proof}
+
+Classical Stirling numbers of first and second kind satisfy an inversion formula as we can see, for instance, in \cite[26.8.39]{Br-NIST}: 
+\[
+  \sum_{j=k}^n s(j,k)S(n,j) = \delta_{n,k} = \sum_{j=k}^n s(n,j)S(j,k),
+\]
+where $\delta_{n,k}$ is the Kronecker delta. That is, if $A$ and $B$ are the $n \times n$ matrices with $(j,k)$th elements $s(j,k)$ and $S(j,k)$, respectively, then $A^{-1} = B$.
+
+In the Dunkl context we obtain the analogous result.
+
+\begin{theorem}
+\label{teo:inversion}
+Let $s^{\alpha}(n,k)$ and $S_{\alpha}(n,k)$ be the Stirling numbers of first and second kind, respectively. Then, the following formulas hold: 
+\begin{equation}
+\label{eq:inversion-Dunkl}
+  \sum_{j=k}^n s^{\alpha}(j,k)S_{\alpha}(n,j)
+  = \delta_{n,k} = \sum_{j=k}^n s^{\alpha}(n,j)S_{\alpha}(j,k).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Using the definitions \eqref{eq:S-D-second} and \eqref{eq:Stirling-Dunkl}, and Fubini's theorem, we can write
+\[
+  x^n = \sum_{j=0}^n S_{\alpha}(n,j)f_{j,\alpha}(x)
+  = \sum_{j=0}^n S_{\alpha}(n,j) \sum_{k=0}^js^{\alpha}(j,k)x^k
+  = \sum_{k=0}^n \left(\sum_{j=k}^n S_{\alpha}(n,j) s^{\alpha}(j,k)\right) x^k.
+\]
+Equaling coefficients we obtain the first equality of~\eqref{eq:inversion-Dunkl}. Now, taking first \eqref{eq:Stirling-Dunkl} and then \eqref{eq:S-D-second}, and using Fubini's theorem again,
+\[
+  f_{n,\alpha}(x) = \sum_{j=0}^n s^{\alpha}(n,j)x^j
+  = \sum_{j=0}^n s^{\alpha}(n,j) \sum_{k=0}^j S_{\alpha}(j,k)f_{k,\alpha}(x)
+  = \sum_{k=0}^n \left(\sum_{j=k}^n s^{\alpha}(n,j) S_{\alpha}(j,k)\right) f_{k,\alpha}(x).
+\]
+Equaling coefficients we obtain the second equality of~\eqref{eq:inversion-Dunkl}.
+\end{proof}
+
+%---------------------
+\section{Bell-Dunkl numbers and polynomials}
+\label{sec:Bell}
+%---------------------
+
+The classical Bell numbers and polynomials are usually denoted by $B_n$ (or $B(n)$) and $B_n(x)$. Here, to avoid any kind of confusion with the Bernoulli numbers and polynomials, we will use $\Bell_n$ and $\Bell_n(x)$. Actually, the name ``Bell polynomials'' not always appear in the mathematical literature, and it sometimes is used with another meaning; on the other hand, the polynomials that we are denoting by $\Bell_n(x)$ are sometimes called as Touchard polynomials and denoted as $T_n(x)$ (see~\cite{Tou}, where these polynomials were defined, and also~\cite[\S\,4.6]{NRV}). With the notation $\Bell_n(x)$ the Bell numbers are $\Bell_n = \Bell_n(1)$, so the name Bell polynomials is clearly justified. Taking into account, for instance, \cite[26.7.5 and 26.8.13]{Br-NIST}, the Bell polynomials are defined by means of the generating function
+\[
+  e^{(e^t-1)x} = \sum_{n=0}^{\infty} \Bell_n(x) \frac{t^n}{n!},
+  \qquad t\in\CC.
+\]
+One of the main properties of these polynomials is that they are related to the Stirling numbers of the second kind as follows (see \cite[26.7.2]{Br-NIST}): 
+\[
+  \Bell_n(x) = \sum_{k=0}^n S(n,k) x^k.
+\]
+
+In the Dunkl context, we define the Bell-Dunkl polynomials of order $\alpha>-1$, denoted as $\Bell_n^\alpha(x)$, by means of the generating function
+\begin{equation}
+\label{eq:defBell}
+  \Ea((\alpha+1)(\Ea(t)-\Ea(-t))x) = \sum_{n=0}^{\infty} \Bell_n^\alpha(x) \frac{t^n}{\cc_{n,\alpha}},
+  \qquad t\in\CC.
+\end{equation}
+
+From this generating function, and using Theorem~\ref{teo:S-gen-second}, we have  
+\begin{align*}
+  \sum_{r=0}^{\infty} \left( \sum_{n=0}^{\infty} S_{\alpha}(n,r) \frac{t^n}{\gamma_n} \right) x^r 
+  &= \sum_{r=0}^{\infty} \frac{(\alpha+1)^r(\Ea(t)-\Ea(-t))^rx^r}{\gamma_r} \\
+  &= \Ea((\alpha+1)(\Ea(t)-\Ea(-t))x),
+\end{align*}
+that, of course, resembles one of the typical properties of the Stirling numbers of the second kind, namely
+\[
+  \sum_{r=0}^{\infty} \left( \sum_{n=0}^{\infty} S(n,r) \frac{t^n}{n!} \right) x^r
+  = e^{(e^t-1)x}
+\]
+(see, for instance, \cite[26.8.13]{Br-NIST}).
+
+Finally, we have the following:
+
+\begin{theorem}
+The Bell-Dunkl polynomials of order $\alpha>-1$ are related to the corresponding Stirling-Dunkl numbers of the second kind by means or
+\[
+  \Bell_n^\alpha(x) = \sum_{k=0}^n S_\alpha(n,k) x^k.
+\]
+\end{theorem}
+
+\begin{proof}
+Applying Fubini's theorem and Theorem~\ref{teo:S-gen-second}, we have
+\begin{align*}
+  \sum_{n=0}^{\infty} \left( \sum_{k=0}^{n} S_{\alpha}(n,k) x^k \right) \frac{t^n}{\gamma_n} 
+  &= \sum_{k=0}^{\infty} \left( \sum_{n=k}^{\infty} S_{\alpha}(n,k) \frac{t^n}{\gamma_n}  \right) x^k 
+  = \sum_{k=0}^{\infty} \frac{(\alpha+1)^k}{\gamma_k} (\Ea(t)-\Ea(-t))^k x^k \\
+  &= \Ea((\alpha+1)(\Ea(t)-\Ea(-t))x),
+\end{align*}
+The result follows by equaling coefficients with~\eqref{eq:defBell}.
+\end{proof}
+
+%---------------------
+\section{Conclusion}
+%---------------------
+
+In this paper, we have defined the Stirling numbers of the first and the second kind in the Dunkl context, as well as the Bell polynomials. We have proved some of their properties and, in every case, we have shown how these properties generalize the ones of the classical case. 
+
+
+%---------------------
+\begin{thebibliography}{00}
+%---------------------
+
+\small
+
+% MR4412312
+\bibitem{AARV}
+{B. Abdelghafour, M. Ahmia, J. L. Ram\'irez and D. Villamizar},
+New modular symmetric function and its applications: Modular $s$-Stirling numbers,
+\textit{Bull. Malays. Math. Sci. Soc.}
+\textbf{45} (2022), 1093--1109.
+% https://link.springer.com/article/10.1007/s40840-022-01262-8
+
+\bibitem{Bab}
+{J. Babini},
+Polinomios generalizados de Bernoulli y sus correlativos (Spanish),
+\textit{Rev. Mat. Hisp.-Amer. (4)}
+\textbf{10} (1935), 23--25.
+
+\bibitem{BM}
+{C. Ballantine and M. Merca},
+The $r$-Stirling numbers of the first kind in terms of the M\"obius function,
+\textit{Ramanujan J.}
+\textbf{55} (2021), 593--608. 
+
+\bibitem{Br-NIST}
+D. M. Bressoud,
+Combinatorial Analysis,
+\textit{NIST handbook of mathematical functions},
+617--636,
+U.S. Dept. Commerce, Washington, DC, 2010.
+Available online in \url{http://dlmf.nist.gov/26}
+
+\bibitem{Car}
+{L. Carlitz},
+A note on Bernoulli and Euler polynomials of the second kind,
+\textit{Scripta Math.}
+\textbf{25} (1961), 323--330.
+
+\bibitem{Cho} 
+F. M. Cholewinski, 
+\textit{The finite calculus associated with Bessel functions}, 
+Contemporary Mathematics, 75, American Mathematical Society, Providence, RI, 1988.
+
+\bibitem{CDPV}
+\'O. Ciaurri, A. J. Dur\'an, M. P\'erez and J. L. Varona,
+{Bernoulli-Dunkl and Apostol-Euler-Dunkl polynomials with applications to series involving zeros of Bessel functions},
+\textit{J. Approx. Theory}
+\textbf{235} (2018), 20--45.
+
+\bibitem{CMV}
+\'O. Ciaurri, J. M\'inguez Ceniceros and J. L. Varona,
+{Bernoulli-Dunkl and Euler-Dunkl polynomials and their generalizations},
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM}
+\textbf{113} (2019), 2853--2876.
+
+\bibitem{DH}
+I. H. Dimovski and V. Z. Hristov,
+Nonlocal operational calculi for Dunkl operators,
+\textit{SIGMA Symmetry Integrability Geom. Methods Appl.}
+\textbf{5} (2009), Paper~030, 16~pp.
+
+\bibitem{Du}
+C. F. Dunkl,
+{Differential-difference operators associated to reflection groups},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{311} (1989), 167--183.
+
+\bibitem{ELMV}
+J. I. Extremiana Aldana, E. Labarga, J. M\'inguez Ceniceros and J. L. Varona,
+{Discrete Appell-Dunkl sequences and Bernoulli-Dunkl polynomials of the second kind},
+\textit{J. Math. Anal. Appl.} \textbf{507} (2022), 125832, 20~pp. 
+
+\bibitem{GKP}
+R. L. Graham, D. E. Knuth and O. Patashnik,
+\textit{Concrete Mathematics: A Foundation for Computer Science}, 2nd ed.,
+Addison-Wesley, Reading, MA, 1994.
+
+\bibitem{Jor} % Charles Jordan
+C. Jordan,
+Sur les polynomes analogues aux polynomes de Bernoulli et sur des formules de sommation analogues \`a celle de MacLaurin-Euler (French),
+\textit{Acta Szeged} 
+\textbf{4} (1929), 130--150.
+
+% MR0183987
+\bibitem{Jor2} % Charles Jordan
+C. Jordan,
+\textit{Calculus of Finite Differences}, 3rd ed., Chelsea Publ. Co., New York, 1965.
+
+\bibitem{Knuth}
+D. E. Knuth, 
+Two notes on notation, 
+\textit{Amer. Math. Monthly} 
+\textbf{99} (1992), 403--422. 
+%arXiv:math/9205211, 
+%doi:10.2307/2325085, 
+%JSTOR 2325085 
+
+\bibitem{KS}
+I. Kucukoglu and Y. Simsek,
+{Construction and computation of unified Stirling-type numbers emerging from $p$-adic integrals and symmetric polynomials},
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM} 
+\textbf{115} (2021), Paper No.~167, 24~pp. 
+
+\bibitem{MV}
+J. M\'inguez Ceniceros and J. L. Varona,
+{Asymptotic behavior of Bernoulli-Dunkl and Euler-Dunkl polynomials and their zeros},
+\textit{Funct. Approx. Comment. Math.} \textbf{65} (2021), 211--226.
+
+\bibitem{NRV}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+{Appell polynomials as values of special functions},
+\textit{J. Math. Anal. Appl.} \textbf{459} (2018), 419--436.
+
+\bibitem{OlMa-NIST}
+F. W. J. Olver and L. C. Maximon,
+Bessel Functions,
+\textit{NIST handbook of mathematical functions},
+% (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+215--286, % Es el Chapter 10
+%National Institute of Standards and Technology, Washington, DC, and
+%Cambridge University Press, Cambridge, 2010.
+U.S. Dept. Commerce, Washington, DC, 2010.
+Available online in \url{http://dlmf.nist.gov/10}
+
+% Ref [256] de Talcys
+\bibitem{RP-BSMA}
+{J. Rey Pastor},
+Polinomios correlativos de los de Bernoulli (Spanish),
+\textit{Bol. Semin. Mat. Argent.}
+\textbf{1} (1929), no.~3, 1--10.
+
+\bibitem{Ros}
+M. Rosenblum,
+{Generalized Hermite polynomials and the Bose-like oscillator calculus},
+\textit{Oper. Theory Adv. Appl.}
+\textbf{73} (1994), 369--396.
+
+\bibitem{Rosler}
+M. R\"osler,
+A positive radial product formula for the Dunkl kernel,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{355} (2003), 2413--2438.
+
+\bibitem{Simsek1}
+Y. Simsek,
+Generating functions for generalized Stirling type numbers, array type polynomials, Eulerian type polynomials and their applications,
+%\textit{Fixed Point Theory Appl.}
+%(2013), 2013:87, 28~pp.
+\textit{Fixed Point Theory Appl.}
+\textbf{2013} (2013), article 87, 28~pp.
+
+\bibitem{Simsek2}
+Y. Simsek,
+Construction method for generating functions of special numbers and polynomials arising from analysis of new operators,
+\textit{Math. Methods Appl. Sci.}
+\textbf{41} (2018), 6934--6954. % no.~6
+
+\bibitem{Simsek3}
+Y. Simsek,
+Formulas for Poisson-Charlier, Hermite, Milne-Thomson and other type polynomials by their generating functions and $p$-adic integral approach,
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM}
+\textbf{113} (2019), 931--948. % no.~2
+
+\bibitem{Tem}
+P. Tempesta,
+On Appell sequences of polynomials of Bernoulli and Euler type,
+\textit{J. Math. Anal. Appl.} 
+\textbf{341} (2008), 1295--1310.
+
+\bibitem{ThX}
+S. Thangavelu and Y. Xu,
+Riesz transform and Riesz potentials for Dunkl transform,
+\textit{J. Comput. Appl. Math.}
+\textbf{199} (2007), 181--195.
+
+\bibitem{Tou}
+J. Touchard,
+Sur les cycles des substitutions (French),
+\textit{Acta Math.} \textbf{70} (1939), 243--297. % no. 1
+% doi: 10.1007/BF02547349
+
+\bibitem{Wat}
+G. N. Watson,
+\textit{A Treatise on the Theory of Bessel Functions}, 2nd ed.,
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+%---------------------
+\end{thebibliography}
+%---------------------
+
+%---------------------------
+\end{document}
+%---------------------------

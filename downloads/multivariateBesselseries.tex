@@ -1,0 +1,1945 @@
+\documentclass[12pt,leqno]{amsart}
+%\documentclass[10pt]{amsart}
+
+\usepackage{geometry} % define las dimensiones de la p\'agina
+\geometry{
+ a4paper,
+ margin = 25mm,
+% headheight=3mm, % Para que quepan las may\'usculas con acentos en la cabecera
+ centering % Lo habitual
+}
+
+%% ORCID:
+% A. J. Dur\'an: https://orcid.org/0000-0002-8351-7392
+% M. P\'erez: https://orcid.org/0000-0002-3050-3712
+% J. L. Varona: https://orcid.org/0000-0002-2023-9946
+
+%% FOR DRAFTS:
+%\usepackage[latin1]{inputenc}
+%\usepackage[utf8]{inputenc}
+%\usepackage[spanish]{babel}   % selecciona idioma
+%\usepackage[T1]{fontenc}       % gesti\'on de caracteres con acentos
+%\usepackage{lmodern}           % tipograf\'ia con caracteres acentuados "pata negra"
+
+\usepackage{hyperref}
+
+%%--- ONLY FOR DRAFTS
+%\usepackage{color}
+%\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+%\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+
+%--- ONLY FOR DRAFTS (put it after hyperref)
+%\usepackage{backref}
+%\usepackage{refcheck}
+%\usepackage[notcite,notref]{showkeys}
+
+%%% \allowdisplaybreaks es una orden de amsmath que permite cortes de
+%%% p\'agina dentro de una f\'ormula de varias l\'ineas (align, multline, gather, ...)
+\allowdisplaybreaks[3]
+%%% Escala de 1 (permite algo) a 4 (ninguna traba para cortar).
+%%% Si en alg\'un sitio queremos impedir un posible corte, usar \\* en vez de \\
+
+\numberwithin{equation}{section}
+
+%----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+%----------
+
+\newcommand{\Hh}{\mathcal{H}}
+\newcommand{\cC}{\mathcal{C}}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\Re}{\operatorname{Re}}
+\newcommand{\FF}[3]{{}_{2}F_{1}%
+  \mathopen{}\left(\genfrac{}{}{0pt}{}{#1}{#2};#3\right)\mathclose{}}
+
+%----------
+\title[How to compute multivariate Bessel expansions]
+{How to compute multivariate Bessel expansions}
+%----------
+
+\keywords{Bessel functions, Bessel series, multivariate Bessel series}
+\subjclass[2020]{Primary 33C10; Secondary 41A58, 41A63}
+
+%----------
+\author[A.~J.~Dur\'an]{Antonio J. Dur\'an}
+\address[A.~J.~Dur\'an]{%
+        Departamento de An\'alisis Matem\'atico and IMUS,
+        Universidad de Sevilla,
+        41080 Sevilla, Spain}
+\email{duran@us.es}
+
+\author[M.~P\'erez]{Mario P\'erez}
+\address[M.~P\'erez]{%
+        Departamento de Matem\'aticas and IUMA,
+        Universidad de Zaragoza,
+        50009 Zaragoza, Spain}
+\email{mperez@unizar.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address[J.~L.~Varona]{%
+        Departamento de Matem\'aticas y Computaci\'on,
+        Universidad de La Rioja,
+        26006 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+%----------
+
+\thanks{This research was partially supported by PID2021-124332NB-C21 and PID2021-124332NB-C22
+(FEDER(EU)/Mi\-nis\-te\-rio de Cien\-cia e Inno\-va\-ci\'on-Agen\-cia Esta\-tal de Inves\-ti\-ga\-ci\'on),
+FQM-262 (Jun\-ta de Anda\-lu\-c\'ia), and E48\_20R (Go\-bier\-no de Ara\-g\'on).}
+
+%\date{January 31, 2023}
+
+\renewcommand{\datename}{\textbf{This paper has been published in:}}
+\date{\textit{The Ramanujan Journal} \textbf{64} (2024), 721--759, 
+\url{https://doi.org/10.1007/s11139-024-00844-3}}
+% DOI: 10.1007/s11139-024-00844-3
+
+%----------
+\begin{document}
+%----------
+
+% To completely avoid underfulls and overfulls in this manuscript:
+%\sloppy
+
+%----------
+%\maketitle
+%----------
+
+\begin{abstract}
+We develop a constructive method for computing explicitly
+multivariate Bessel expansions of the type
+\[
+\sum_{m\ge 1} \alpha_m \prod_{i=1}^k \frac{J_{\mu_i}(\zeta_m x_i)}{(\zeta_m x_i)^{\mu_i}},
+\]
+assuming that for a particular value $\eta$ a closed expression for the single variable Bessel expansion
+\[
+\sum_{m\ge 1}\alpha_m \frac{J_{\eta}(\zeta_m x)}{(\zeta_m x)^\eta}
+\]
+as a power series of $x^{2j}$, $j\in \mathbb{N}$, is known. Using the method we compute in a closed form a bunch of examples of multivariate Bessel expansions.
+\end{abstract}
+
+%----------
+\maketitle
+%----------
+
+%----------
+\section{Introduction}
+%----------
+
+In 2022 we commemorate the first centenary of Watson's celebrated masterpiece \textit{A~treatise on the theory of Bessel functions} \cite{Wat}; see also~\cite{Mar2}.
+Although one hundred years have passed since the first edition of this fundamental book was published, there are still some interesting problems about Bessel functions to be addressed. One of them is related to Bessel expansions in several variables. Watson displayed just a couple of bivariate expansions: the Kneser-Sommerfeld expansion \cite[\S\,15.42, p.~499]{Wat} (by the way, this expansion is likely the only mistake in Watson's book: see \cite{Mar}), and a particular example of a Neumann series \cite[\S\,16.32, p.~531]{Wat}.
+And it is enough to take a look at
+\cite[Sect.~5.7]{PBM1} or \cite[Sect.~6.8]{Br} to realize that only a few two variable Bessel series of the form
+\[
+\sum_{m\ge 1} \alpha_m J_{\mu_1}(\zeta_m x_1)J_{\mu_2}(\zeta_m x_2)
+\]
+have been explicitly computed if we compare to single variable ones (see also \cite{DGMT, Gre, KhYa}). Even less is known if we consider multivariate Bessel series with an arbitrary number of variables (see~\cite{Rawn}). That also happens in the more studied case when the sequence $\zeta_m$ is the sequence of zeros $j_{m,\nu}$ of other Bessel function~$J_\nu$.
+
+Of course, this is not surprising because the multivariate case is more difficult to handle than the single variable one.
+
+The purpose of this paper is to improve that situation. To do that, we develop a method for computing in a closed form
+multivariate Bessel expansions of the type
+\begin{equation}
+\label{mbs}
+\sum_{m\ge 1}\alpha_m \prod_{i=1}^k \frac{J_{\mu_i}(\zeta_m x_i)}{(\zeta_m x_i)^{\mu_i}},
+\end{equation}
+assuming that for a particular value $\eta$, a closed expression for the single-variable Bessel expansion
+\begin{equation}
+\label{obs}
+\sum_{m\ge 1}\alpha_m \frac{J_{\eta}(\zeta_m x)}{(\zeta_m x)^\eta}
+\end{equation}
+as a power series of $x^{2j}$, $j\in \NN$, is known.
+
+Using our method, we compute explicitly a bunch of multivariate Bessel expansions, among which are (for $n\in \ZZ$)
+\begin{align}
+\label{ex2}
+& \sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-2n-1}}{J_{\nu+1}(j_{m,\nu})} \prod_{i=1}^k \frac{J_{\mu_i}(j_{m,\nu}x_i)}
+{(j_{m,\nu}x_i)^{\mu_i}},\\
+\label{ex3}
+& \sum_{m\ge 1}\frac{j_{m,\nu}^{\nu-2n-1}}{(j_{m,\nu}^2-z^2)J_{\nu+ 1}(j_{m,\nu})}
+\prod_{i=1}^k \frac{J_{\mu_i}(j_{m,\nu} x_i)}{(j_{m,\nu}x)^{\mu_i}},\\
+\label{exn}
+& \sum_{m\ge 1} \frac{(-1)^m}{(1+m^2/\theta^2)^{n}}
+\prod_{i=1}^k \frac{J_{\mu_i}(\sqrt{1+m^2/\theta^2}x_i)}
+{(\sqrt{1+m^2/\theta^2}x_i)^{\mu_i}},
+\\
+\label{exd}
+& \sum_{m\ge 1} \frac{\lambda_{m}^{\nu-2n}}{(\lambda_{m}^2-\nu^2+H^2)J_\nu(\lambda_{m})}
+\prod_{i=1}^k\frac{J_{\mu_i}(\lambda_{m}x_i)}
+{(\lambda_{m}x_i)^{\mu_i}},
+\\
+\label{exd2}
+& \sum_{m\ge 1} \frac{\lambda_{m}^{\nu-2n}}{(\lambda_{m}^2-z^2)(\lambda_{m}^2-\nu^2+H^2)J_\nu(\lambda_{m})} 
+\prod_{i=1}^k \frac{J_{\mu_i}(\lambda_{m}x_i)}
+{(\lambda_{m}x_i)^{\mu_i}},
+\end{align}
+where in the last two expansions $\lambda_m$ are the positive zeros (ordered in increasing size) of the function
+\[
+zJ'_\nu(z)+HJ_\nu(z),\quad \nu>-1,\ \nu+H>0.
+\]
+
+The method is explained in full detail in Sect.~\ref{sec:method}.
+In order to establish our method we prove in Sect.~\ref{sec:trig} a theorem on multivariate cosine expansions which has interest by itself (see Theorem~\ref{th:amcos}); this theorem is the bridge which allows us to
+move from the single variable Bessel expansion \eqref{obs} to the multivariate one~\eqref{mbs}.
+
+In Sect.~\ref{sec:multipol}, we consider the case when the particular Bessel series \eqref{obs} is a polynomial in certain interval; this includes the expansions \eqref{ex2} and~\eqref{exd}. We show that associated to this type of Bessel expansions
+are the so-called Bessel-Appell polynomials, i.e., one-parameter sequences of polynomials $(p_{n,\mu})_n$ defined by a generating function of the form
+\begin{equation*}
+%\label{badi}
+A(z)\frac{J_\mu(xz)}{(xz)^\mu} = \sum_{n=0}^\infty p_{n,\mu}(x)z^n,
+\end{equation*}
+where $A$ is a function analytic at $z=0$. In particular, they satisfy
+\[
+p'_{n,\mu}(x)=-xp_{n-1,\mu+1}(x), \quad n\ge 1.
+\]
+The multivariate Bessel series \eqref{mbs} can then be explicitly summed from the Taylor coefficients of the analytic function~$A$.
+For the benefit of the readers, we display here one of our results in full detail. Denote
+\begin{equation}
+\label{hc}
+\hat \CC=\CC\setminus \{-1,-2,-3,\dots\}
+\end{equation}
+and, for $\omega>0$,
+\begin{align}
+\label{omss1}
+\Omega_{[\omega]} &= \Big\{(x_1,\dots,x_k)\in \RR^k: \sum_{i=1}^k |x_i| \le \omega \Big\},\\
+\label{omss2}
+\Omega^*_{[\omega]} &= \Big\{(x_1,\dots,x_k)\in \Omega_{[\omega]}: \prod_{i=1}^kx_i\not =0 \Big\}.
+\end{align}
+
+We then prove that for $\nu>-1$, $\nu+H>0$, $\mu_i\in \hat \CC$, $i=1,\dots ,k$, with $\nu<2n+(k+1)/2+ \sum_{i=1}^k\Re \mu_i$ and
+$(x_1,\dots,x_k)\in \Omega^*_{[1]}$, the multivariate Dini-Young expansion \eqref{exd} is equal to the polynomial
+\[
+\sum_{l=0}^na_{n-l}^{H,\nu} \sum_{l_1+\cdots+l_k=l}
+\prod_{i=1}^k \frac{\left(-x_i^2/4\right)^{l_i}}
+ {2^{\mu_i}l_i!\, \Gamma(\mu_i + l_i+1)} ,
+\]
+where $(a_n^{H,\nu})_n$ is the sequence defined by the generating function
+\[
+\frac{z^\nu}{2\big((H-\nu)J_\nu(z)+zJ_{\nu-1}(z)\big)}
+= \sum_{n=0}^\infty a_n^{H,\nu}z^{2n}.
+\]
+In Sect.~\ref{sec:nopol} we extend our results to the case when the particular Bessel series \eqref{obs} is not a polynomial but still can be expanded in powers of $x^{2j}$, $j\in \NN$ (which includes the expansions \eqref{ex3}, \eqref{exn} and~\eqref{exd2}).
+Here is an example in full detail. For $\Re \nu<2n+ \sum_{i=1}^k \Re \mu_i+(k+5)/2$ and
+$(x_1,\dots,x_k)\in \Omega_{[1]}^*$, the multivariate Dini-Young expansion \eqref{exd2} is equal to
+\begin{align*}
+& \frac{1}{z^{2n+2}} \Bigg( \frac{z^{\nu}}{2\big((H-\nu)J_\nu(z)+zJ_{\nu-1}(z)\big)}
+\prod_{i=1}^k \frac{J_{\mu_i}(x_i z)}{(x_i z)^{\mu_i}} \\
+\nonumber
+& \hspace{3cm}- \sum_{l=0}^n z^{2l} \sum_{j=0}^l
+a_{l-j}^{H,\nu} \sum_{l_1+\cdots+l_k=j}
+\prod_{i=1}^k \frac{(-x_i^2/4)^{l_i}}
+{2^{\mu_i} l_i!\,\Gamma(\mu_i + l_i+1)} \Bigg).
+\end{align*}
+
+When the particular Bessel series \eqref{obs} cannot be expanded in powers of $x^{2j}$, $j\in \NN$,
+the application of our method is much more complicated. In Appendix (``Multivariate Sneddon expansion'' section), we consider an example of such situation. We can still obtain some result but not as complete as in the previous scenario.
+We have considered the multivariate Sneddon expansion
+\begin{equation}
+\label{mse}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})} \prod_{i=1}^k
+\frac{J_{\mu_i}(j_{m,\nu}x_i)}{(j_{m,\nu}x_i)^{\mu_i}}.
+\end{equation}
+The case $k=2$ has been summed in \cite{DPVS} for $2\Re \nu<1+\Re \mu_1+\Re \mu_2$ and
+$0<x+y<2$ (see also \cite[\S\,2.2]{Sne} and~\cite{Mar}). For $k\ge 3$, we consider the sets
+\begin{align}
+\label{pic}
+\Lambda_{i}^+ &= \Big\{(x_1,\dots,x_k)\in \RR^k : 
+\forall j\, x_j>0,\, \sum_{j=1}^k x_j<2,\,
+\sum_{j\not =i}x_j < x_i\Big\}, \quad i=1,\dots ,k,\\
+\label{picr}
+\Lambda_{r}^+ &= \Big\{(x_1,\dots,x_k)\in \RR^k : 
+\sum_{j=1}^k x_j<2,\, \forall i\, 0<x_i< \sum_{j\not =i} x_j\Big\}
+\end{align}
+(notice that for $k=2$, $\Lambda_{r}^+=\emptyset$).
+
+Assuming that one of the parameters $\mu_i$ is equal to $-1/2$, we have explicitly summed the expansion \eqref{mse} in the piece~$\Lambda_{i}^+$. More precisely using the symmetry of \eqref{mse} we can take $\mu_1=-1/2$, and then we have 
+\begin{align}
+\label{mses}
+&\sum_{m\ge 1} \frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})}\prod_{i=1}^k
+\frac{J_{\mu_i}(j_{m,\nu}x_i)}{(j_{m,\nu}x_i)^{\mu_i}}
+= \frac{2^{2\nu-2}\Gamma(\nu+1)^2}{\nu\prod_{i=1}^k2^{\mu_i}\Gamma(\mu_i+1)} \\
+\nonumber
+&\qquad \times \left(-1 + \binom{\mu_1}{\nu} \sum_{j=0}^\infty (\nu)_j(\nu-\mu_1)_jx_1^{-2\nu -2j} 
+\sum_{l_2+\cdots+l_k=j} \prod_{i=2}^k \frac{x_i^{2l_{i}}}{l_i!\,(\mu_i+1)_{l_i}}\right)
+\end{align}
+for $\nu,\mu_i\in \hat \CC$, $i=2,\dots ,k$, with $2\Re\nu<2n+k/2+ \sum_{i=1}^k\Re \mu_i$ and $(x_1,\dots, x_k)\in \Lambda_{1}^+$. Moreover, we have computational evidence showing that the sum \eqref{mses} also holds when $\mu_1\not =-1/2$, but we have not been able to prove it.
+
+We have also failed summing the expansion \eqref{mse} in the piece~$\Lambda_{r}^+$~\eqref{picr}.
+
+%----------
+\section{Preliminaries}
+%\label{sec:prelim}
+%----------
+
+Throughout this paper, by $\frac{J_{\mu}(z)}{z^\mu}$ we denote the even entire function
+\begin{equation*}
+   \frac{1}{2^\mu}
+   \sum_{n=0}^{\infty} \frac{(-1)^n (z/2)^{2n}}{n! \, \Gamma(\mu+n+1)},
+   \quad z \in \CC.
+\end{equation*}
+As usual, $(a)_n$ denotes the Pochhammer symbol
+\[
+  (a)_n = a(a+1)(a+2) \cdots (a+n-1) = \frac{\Gamma(a+n)}{\Gamma(a)}
+\]
+(with $n$ a nonnegative integer).
+
+The zeros of the even function $J_{\nu}(z)/z^{\nu}$, are simple and can be ordered as a double sequence $(j_{m,\nu})_{m\in \ZZ \setminus\{0\}}$ with $j_{-m,\nu} = -j_{m,\nu}$ and $0 \leq \Re j_{m,\nu} \leq \Re j_{m+1,\nu}$ for $m \geq 1$ \cite[\S\,15.41, p.~497]{Wat}. The imaginary part of these zeros is bounded and, when $m$ is a sufficiently large integer, there is exactly one zero in the strip $m\pi + \frac{\pi}{2} \Re \nu + \frac{\pi}{4} < \Re z < (m+1)\pi + \frac{\pi}{2} \Re \nu + \frac{\pi}{4}$ \cite[\S\,15.4, p.~497]{Wat}, so that
+\[
+   \lim_{m\to+\infty} \frac{|j_{m,\nu}|}{\pi m} = 1.
+\]
+For $\nu>-1$ and $H+\nu>0$, the zeros $\lambda_m$, $m\ge 1$, of $zJ'_\nu(z)+HJ_\nu(z)$ interlace the zeros of the Bessel function $J_\nu$ \cite[\S\,15.23, p.~480]{Wat}. In particular, they are positive and increasing.
+
+We will also use the well-known estimate
+\begin{equation*}
+%\label{Jb+1(jm)}
+   0 < c \leq |J_{\nu + 1}(j_{m,\nu})^2 j_{m,\nu}| \leq C
+\end{equation*}
+for some constants $c$ and $C$ not depending on~$m$.
+
+Bessel functions satisfy the bound
+\begin{equation*}
+%\label{cotasupJ}
+   |J_\beta(z)| \leq C \frac{e^{|\Im z|}}{|z|^{1/2}},
+\end{equation*}
+for $|z|$ large enough, with a constant $C$ depending only on~$\beta$.
+To be precise, for $|z| > \eps > 0$ and $\beta$ on a compact set $K$, there is a constant $C$ depending only on $\eps$ and $K$, as follows from~\cite[Eq.~10.4.4 and \S\,10.17(iv)]{OlMa-NIST}.
+
+We also use the well-known identity
+\begin{equation}
+\label{fdbc}
+\frac{d}{dx}\left(\frac{J_{\mu}(x)}{x^\mu}\right) = -x\frac{J_{\mu+1}(x)}{x^{\mu+1}}.
+\end{equation}
+
+For $\mu$ and $\eta$ satisfying $\Re \mu>\Re \eta>-1$, consider the integral transform $T_{\mu,\eta}$ given by
+\begin{equation}
+\label{itc}
+T_{\mu,\eta}(f)(x) = \frac{1}{2^{\mu-\eta-1}\Gamma(\mu-\eta)}
+\int_0^1f(xs)s^{2\eta+1}(1-s^2)^{\mu-\eta-1}\,ds
+\end{equation}
+(with a small abuse of notation, we will often write $T_{\mu,\eta}(f(x))$ if it does not cause confusion).
+
+Sonin's formula for the Bessel functions \cite[12.11(1), p.~373]{Wat} can be written as
+\begin{equation}
+\label{eq:sonin}
+\frac{J_{\mu}(x)}{x^\mu} = \frac{1}{2^{\mu-\eta-1} \Gamma(\mu-\eta)}
+   \int_0^1 \frac{J_\eta(xs)}{(xs)^{\eta}} s^{2\eta+1} (1-s^2)^{\mu-\eta-1} \, ds = T_{\mu,\eta}\left(\frac{J_\eta(x)}{x^{\eta}}\right)
+\end{equation}
+valid for $\Re \mu>\Re \eta>-1$.
+
+For $2\Re \eta+r+2>0$, we also have
+\begin{equation}
+\label{eaq}
+T_{\mu,\eta}(x^{r})
+= \frac{\Gamma(\eta+\frac{r}{2}+1)}{2^{\mu-\eta}
+\Gamma(\mu+\frac{r}{2}+1)} \,x^{r},
+\end{equation}
+where we have used that
+\begin{equation*}
+   \int_0^1 s^{a}(1-s^2)^{b}\,ds 
+   = \frac{\Gamma(\frac{a+1}{2}) \Gamma(b+1)}{2 \Gamma(\frac{a+1}{2}+b+1)},
+   \qquad \Re a,\Re b>-1.
+\end{equation*}
+The identity \eqref{eq:sonin} can be extended for $\Re \eta<-1$ as follows. For $\mu\in \hat \CC$, $\eta\in\hat \CC$, $\eta\not =-3/2,-5/2,\dots $, and a positive integer $h$ satisfying $\Re \eta >-h/2-1$, $\Re \mu>\Re \eta+h$, consider the integral transform $T_{\mu,\eta,h}$ given by
+\begin{equation}
+\label{itch}
+T_{\mu,\eta,h}(f)(x) = \frac{(-1)^h 2^{\eta+1-\mu} \Gamma(2\eta+2)}{\Gamma(\mu-\eta)\Gamma(2\eta+2+h)}
+\int_0^1 \frac{d^h}{ds^h} \big(f(xs)(1-s^2)^{\mu-\eta-1}\big)
+s^{2\eta+h+1}\,ds.
+\end{equation}
+It is then easy to check that
+\begin{align*}
+%\label{mier0}
+T_{\mu,\eta,h}(x^{r})
+&= \frac{\Gamma(\eta+\frac{r}{2}+1)}{2^{\mu-\eta}\Gamma(\mu+\frac{r}{2}+1)} \,x^{r},\\
+%\label{mier}
+T_{\mu,\eta,h}\left(\frac{J_\eta(x)}{x^{\eta}}\right)
+&= \frac{J_{\mu}(x)}{x^\mu}.
+\end{align*}
+
+%----------
+\section{Multivariate cosine expansions}
+\label{sec:trig}
+%----------
+
+We denote by $\pi_k$ the set of $k$-tuples $\eps = (\eps_1,\dots,\eps_k)$ of signs $\eps_j=\pm 1$ and by $s_\eps$ the number of negative signs in $\eps$ (so that $\prod_{j=1}^k\eps_j = (-1)^{s_\eps}$).
+
+We define
+\begin{equation*}
+%\label{eq:suprodej}
+  \cC_{k}^{l}(x_1,\dots,x_k) = \frac{1}{2^k} \sum_{\eps\in\pi_k}
+   \Big( \sum_{j=1}^k \eps_j x_j\Big)^l,
+\end{equation*}
+where $l \in \NN$ (we often use $\cC_k^l$ without the variables~$x_j$).
+
+In what follow we will use the multinomial formula
+\[
+(y_1 + y_2 + \cdots + y_k)^l
+= \sum_{l_1+l_2+\cdots+l_k=l} \binom{l}{l_1,l_2,\dots,l_k} y_1^{l_1} y_2^{l_2} \cdots y_k^{l_k}
+\]
+(in the sum, the $l_j$ are non negative integers),
+where
+\begin{equation*}
+%\label{eq:multi}
+  \binom{l}{l_1,l_2,\dots,l_k}
+  = \frac{l!}{l_1!\,l_2!\cdots l_k!},
+  \quad \text{with } l_1+l_2+\cdots+l_k=l
+\end{equation*}
+are the so-called multinomial coefficients.
+Of course, these coefficients are invariant under permutation of the~$l_j$; this will be used along the paper without explicit remark.
+This gives
+\begin{align*}
+  \cC_{k}^{l}(x_1,\dots,x_k) &= \frac{1}{2^k} \sum_{\eps\in\pi_k}
+   \Big( \sum_{j=1}^k \eps_j x_j\Big)^l\\
+   &= \frac{1}{2^k} \sum_{\eps\in\pi_k} \sum_{l_1+\cdots+l_k=l} \binom{l}{l_1,\dots,l_k}
+  \prod_{i=1}^k \eps_i^{l_i}x_i^{l_i}\\
+   &= \frac{1}{2^k} \sum_{l_1+\cdots+l_k=l} \binom{l}{l_1,\dots,l_k}
+  \prod_{i=1}^k x_i^{l_i} \sum_{\eps\in\pi_k}\prod_{i=1}^k \eps_i^{l_i} .
+\end{align*}
+If some $l_j$ is odd, then
+\[
+\sum_{\eps\in\pi_k}\prod_{i=1}^k \eps_i^{l_i}
+= \sum_{\eps\in\pi_{k-1}}\prod_{i=1;i\not=j}^k \eps_i^{l_i}
+- \sum_{\eps\in\pi_{k-1}}\prod_{i=1;i\not=j}^k \eps_i^{l_i}=0,
+\]
+and the corresponding summand in $ \sum_{l_1+\cdots+l_k=l}$ vanishes;
+otherwise, if all the $l_j$ are even,
+\[
+\sum_{\eps\in\pi_k} \prod_{i=1}^k \eps_i^{l_i} = \sum_{\eps\in\pi_k} 1=2^k.
+\]
+Consequently, $\cC_{k}^{l}=0$ when $l$ is odd, and
+\begin{equation}
+\label{cag}
+  \cC_{k}^{2l}(x_1,\dots,x_k)
+  = \sum_{l_1+\cdots+l_k=l}
+  \binom{2l}{2l_1,\dots,2l_k} x_1^{2l_1} \cdots x_k^{2l_k}.
+\end{equation}
+
+\begin{theorem}
+\label{th:amcos}
+Let $(a_m)_{m\ge 1}$, $(\zeta_m)_{m\ge 1}$ be two sequences of real numbers such that the following sine and cosine expansions converge pointwisely in some interval $(-w,w)$:
+\begin{align*}
+\phi (x) &= \sum_{m\ge 1}a_m\cos (\zeta_m x),\\
+\psi (x) &= \sum_{m\ge 1}a_m\sin (\zeta_m x).
+\end{align*}
+Then, the series
+\begin{equation}
+\label{eq:amcos}
+G(x_1,\dots, x_k) = \sum_{m\ge 1} a_m \prod_{j=1}^k \cos (\zeta_m x_j)
+\end{equation}
+converges pointwisely if $ \sum_{j=1}^k |x_j| < \omega$, and
+\begin{equation}
+\label{eq:amcoscasos}
+G(x_1,\dots, x_k) =
+\frac{1}{2^k} \sum_{\eps \in \pi_k}
+\phi \Big( \sum_{j=1}^k\eps_jx_j\Big).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+First of all, we note that
+\begin{equation}
+\label{eq:equiv}
+\mbox{$ \sum_{j=1}^k |x_j| <\omega \iff -\omega< \sum_{j=1}^k\eps_jx_j<\omega$ for all $\eps\in \pi_k$.}
+\end{equation}
+Using Euler's formula $\cos x = (e^{ix}+e^{-ix})/2$, we get
+\begin{equation*}
+\prod_{j=1}^k\cos (\zeta_m x_j)
+= \prod_{j=1}^k \frac{e^{i\zeta_m x_j}+e^{-i\zeta_m x_j}}{2}
+= \sum_{\eps\in \pi_k} \prod_{j=1}^k \frac{1}{2}e^{\eps_j i\zeta_m x_j} \\
+= \sum_{\eps\in \pi_k} \frac{1}{2^k} e^{i\zeta_m \sum_{j=1}^k\eps_j x_j}.
+\end{equation*}
+Formally, we get from~\eqref{eq:amcos}
+\begin{align*}
+G(x_1,\dots, x_k)
+ &= \sum_{m\ge 1} a_m \sum_{\eps\in \pi_k}
+\frac{1}{2^k} e^{i\zeta_m \sum_{j=1}^k\eps_jx_j}
+= \sum_{\eps\in \pi_k}
+\frac{1}{2^k} \sum_{m\ge 1} a_m e^{i\zeta_m \sum_{j=1}^k\eps_jx_j} \\
+ &= \sum_{\eps\in \pi_k} \frac{1}{2^k}
+\sum_{m\ge 1} a_m \left( \cos\Big(\zeta_m \sum_{j=1}^k\eps_jx_j\Big)
++ i\sin\Big(\zeta_m \sum_{j=1}^k\eps_jx_j\Big) \right) \\
+ &= \sum_{\eps\in \pi_k} \frac{1}{2^k}
+\left( \phi\Big( \sum_{j=1}^k\eps_jx_j\Big)
++ i\psi\Big( \sum_{j=1}^k\eps_jx_j\Big) \right).
+\end{align*}
+The pointwise convergence of the series $\phi$ and $\psi$ and \eqref{eq:equiv} say that each series in the last sum is convergent and hence we deduce the pointwise convergence of the series~\eqref{eq:amcos}. The identity \eqref{eq:amcoscasos} then follows taking into account that $G$ is a real function because $a_m$, $m\ge 1$, are real numbers.
+\end{proof}
+
+%----------
+\section{The method}
+\label{sec:method}
+%----------
+
+Our method for computing a multivariate Bessel expansion like~\eqref{mbs} can be described in the following three steps.
+
+%----------
+\subsection{First step} 
+%----------
+
+We start with a particular expansion
+\begin{equation}
+\label{obs2}
+f_\eta(x) = \sum_{m\ge 1} \alpha _m \frac{J_\eta(\zeta_m x)}{(\zeta_mx)^\eta}.
+\end{equation}
+By applying the integral transform $T_{\mu,\eta}$ \eqref{itc} to \eqref{obs2} we get the more general expansion
+\begin{equation}
+\label{qcmr}
+\sum_{m\ge 1}\alpha _m\frac{J_\mu(\zeta_mx)}{(\zeta_mx)^\mu}
+= T_{\mu,\eta}(f_\eta)(x).
+\end{equation}
+This approach was worked out in \cite[Lemma~1]{DPV2} assuming that a closed expression for \eqref{obs} as a power series of $x$ is known. In \cite{DPV2}, we considered only the case
+when $(\zeta_m)_m$ is the sequence of zeros $(j_{m,\nu})_m$ of the Bessel function $J_\nu$, but there is not problem in taking any arbitrary sequence~$\zeta_m$.
+We consider here complex parameters $\mu,\eta\in \hat \CC$ \eqref{hc}, removing the assumption in \cite{DPV2} where we only considered real parameters with $\mu,\eta>-1$.
+For the benefit of the readers, we display next the new version of \cite[Lemma~1]{DPV2} we will use in this paper.
+
+\begin{lemma}
+\label{lem1}
+Given a real number $\omega\ge 1$, a complex number $\eta\in \hat \CC$ such that $\Re\eta \neq -\frac{3}{2}, -\frac{5}{2}, -\frac{7}{2},\dots$, and two sequences $(\alpha_m)_{m\ge 1}$ and $(\zeta_m)_{m\ge 1}$, $\zeta_m\not=0$, with $\liminf |\zeta_m| \ge 1$, assume that
+\begin{equation}
+\label{hhp}
+ \sum_{m\ge1} \frac{|\alpha_m|}{|\zeta_m|^{\Re \eta +1/2}} < +\infty
+\quad\text{ and }\quad
+   \sum_{m \geq 1} \alpha_m \frac{J_\eta(\zeta_m x)}{(\zeta_m x)^\eta}
+   = \sum_{j=0}^{+\infty} u_j x^{2j},
+   \quad x \in (0,\omega).
+\end{equation}
+Let $\mu\in \hat \CC$. If
+\begin{equation}
+\label{hhp2}
+\sum_{m\ge1} \frac{|\alpha_m|}{|\zeta_m|^{\Re \mu+1/2}} < +\infty,
+\end{equation}
+then
+\begin{equation}
+\label{olo}
+\sum_{m \geq 1} \alpha_m\frac{J_\mu(\zeta_m x)}{(\zeta_mx)^{\mu}}
+   = \sum_{j=0}^{+\infty}
+   \frac{u_j \Gamma(\eta+j + 1)}
+   {2^{\mu - \eta} \Gamma(\mu + j + 1)}
+   \, x^{2j},
+   \quad x \in (0,\omega).
+\end{equation}
+In particular, this holds if $\Re\mu \geq \Re\eta$.
+\end{lemma}
+
+\begin{proof}
+Take a positive integer $h$ and $\mu \in \hat \CC$ such that $\Re\eta>-h/2-1$ and $\Re \mu>\Re \eta+h$. The first assumption in \eqref{hhp} implies that the series in the left hand side of the Bessel expansion in \eqref{hhp} converges uniformly on compacts. The identity \eqref{olo} can then be proved by applying the integral transform $T_{\mu,\eta,h}$ \eqref{itc} to both sides of the Bessel expansion in~\eqref{hhp}. The assumption \eqref{hhp2} implies that the series in the left hand side of \eqref{olo} is an analytic function of $\mu$. Since the right hand side of \eqref{olo} is also an analytic function of $\mu$, we can conclude that \eqref{olo} holds for complex numbers $\mu\in \hat \CC$ satisfying~\eqref{hhp2}.
+\end{proof}
+
+%----------
+\subsection{Second step}
+%----------
+
+The second step of our method consists in a bridge which allows us to move from a single variable Bessel expansion to a multivariate one, and use the result on multivariate trigonometric expansions proved in Sect.~\ref{sec:trig}. Once we have~\eqref{qcmr}, since
+\begin{equation}
+\label{bsc}
+   \frac{J_{-1/2}(z)}{z^{-1/2}} = (2/\pi )^{1/2} \cos z,
+\end{equation}
+setting $\mu=-1/2$ in \eqref{qcmr} and using Theorem~\ref{th:amcos} we get the multivariate cosine expansion
+\begin{equation}
+\label{cojo}
+\sum_{m\ge 1}\alpha _m \prod_{j=1}^k \cos (\zeta_m x_j)
+= \frac{1}{2^k} \sum_{\eps \in \pi_k} \phi\Big( \sum_{j=1}^k\eps_jx_j\Big),
+\end{equation}
+where $\phi(x) = (\pi/2)^{1/2}T_{-1/2,\eta}(f_\eta)(x)$.
+
+%----------
+\subsection{Third step}
+%----------
+
+The third step of our method consists in a multivariate version of Lemma~\ref{lem1}, which was also established in \cite{DPV2} (see Lemma~2) again by using the integral transforms $T_{\mu_i,\eta_i}$ \eqref{itc} in each variable~$x_i$. In doing that we get from \eqref{cojo} the more general multivariate expansion
+\[
+\sum_{m\ge 1} \alpha_m \prod_{i=1}^k \frac{J_{\mu_i}(\zeta_m x_i)}{(\zeta_m x_i)^{\mu_i}}
+\]
+(the original version in~\cite{DPV2} takes as $\zeta_m$ the zeros of a Bessel function $J_\eta$ and considers only real parameters, but this is not relevant).
+Indeed, consider sets $\Omega \subseteq (0,+\infty)^k$ with the property that $(0,1)^k\subset \Omega$ and
+\begin{equation*}
+%\label{eq:propOmega}
+   (x_1,x_2,\dots,x_k) \in \Omega
+   \;\Longrightarrow\; \prod_{i=1}^k (0,x_i] \subseteq \Omega.
+\end{equation*}
+The precise statement goes as follows:
+
+\begin{lemma}
+\label{lemher3}
+Let $\eta_i\in \hat \CC$, $i=1,\dots, k$, such that $\Re \eta_i\not=-\frac{3}{2}, -\frac{5}{2}, -\frac{7}{2},\dots $,
+and $(\alpha_m)_{m}$ and $(\zeta_m)_m$ be two sequences, $\zeta_m\not=0$, with
+$\liminf |\zeta_m| \ge 1$, such that
+\begin{equation*}
+%\label{larp3}
+\sum_{m\ge1} \frac{|\alpha_m|}{\prod_{i=1}^k|\zeta_m|^{\Re \eta_i+1/2}} < +\infty.
+\end{equation*}
+Assume that, for $(x_1,\dots, x_k)\in \Omega$,
+\begin{equation*}
+%\label{larp4}
+\sum_{m\ge 1}\alpha_m \prod_{i=1}^k\frac{J_{\eta_i}(\zeta_m x_i)}{(\zeta_m x_i)^{\eta_i}}= \sum_{j_1,\dots,j_k=1}^{\infty}u_{j_1,\dots,j_k}
+\prod_{i=1}^kx_i^{2j_i},
+\end{equation*}
+where the power series on the right hand side converges absolutely. If $\mu_i\in \hat \CC$, $i=1,\dots, k$, and $\Re\mu_i>\Re\eta_i$ then for $(x_1,\dots, x_k)\in \Omega$,
+\begin{equation}
+\label{larp7}
+\sum_{m\ge 1} \alpha_m \prod_{i=1}^k \frac{J_{\mu_i}(\zeta_m x_i)}{(\zeta_mx_i)^{\mu_i}}
+= \sum_{j_1,\dots,j_k=1}^{\infty} u_{j_1,\dots,j_k}
+\prod_{i=1}^k\frac{\Gamma(\eta_i+j_i + 1)x_i^{2j_i}}
+   {2^{\mu_i - \eta_i} \Gamma(\mu_i + j_i + 1)}.
+\end{equation}
+Moreover, if $\mu_i\in \hat \CC$, $i=1,\dots, k$,
+satisfy
+\begin{equation*}
+%\label{larp3m}
+\sum_{m\ge1} \frac{|\alpha_m|}{\prod_{i=1}^k|\zeta_m|^{\Re \mu_i+1/2}} < +\infty,
+\end{equation*}
+then \eqref{larp7} also holds.
+\end{lemma}
+
+To sum up, this three-step method works as far as we can explicitly compute the integral transforms $T_{\mu,\eta}(f_\eta)$ in \eqref{qcmr} in the first and the third steps. This is the case when a closed expression for the function $f_\eta$ in \eqref{obs2} as an even power series of $x$ is known.
+Then, step~$1$ is Lemma~\ref{lem1}, step~$2$ is Theorem~\ref{th:amcos}, and step~$3$ is the particular case $\eta_i=-1/2$ in Lemma~\ref{lemher3}.
+
+In the following lemma we put together all the steps.
+
+\begin{lemma}
+\label{lemher2}
+Let $\eta, \mu_i\in \hat \CC$, $i=1,\dots, k$, with $\Re\eta\not =-\frac{3}{2}, -\frac{5}{2}, -\frac{7}{2},\dots$, a real number $\omega\ge 1$, and two sequences $(\alpha_m)_{m}$ and $(\zeta_m)_m$, $\zeta_m\not=0$, with $\liminf \vert\zeta_m\vert\ge 1$, such that the series
+\begin{equation}
+\label{larps}
+\sum_{m\ge1} |\alpha_m| |\zeta_m|^{-\Re \eta-1/2},
+\quad 
+\sum_{m\ge1} |\alpha_m|,\quad \sum_{m\ge1} |\alpha_m| |\zeta_m|^{-k/2- \sum_{i=1}^k\Re \mu_i}
+\end{equation}
+all converge.
+Assume that
+\begin{equation}
+\label{lar3}
+\sum_{m\ge 1}\alpha_m \frac{J_{\eta}(\zeta_m x)}{(\zeta_mx)^{\eta}}
+= \sum_{l=0}^{\infty}u_lx^{2l},\quad x\in (-\omega,\omega).
+\end{equation}
+Then we have, for $k\in\NN$ and $\sum_{i=1}^k |x_i| < \omega$,
+\begin{align}
+\label{cucu3}
+\sum_{m\ge 1}\alpha_m
+\prod_{i=1}^k \frac{J_{\mu_i}(\zeta_m x_i)}{(\zeta_mx_i)^{\mu_i}}
+&= \sum_{l=0}^{\infty} 2^{\eta} \Gamma(\eta +l+ 1)u_l \\
+\nonumber
+&\qquad \times
+\sum_{l_1+\cdots+l_k=l}
+\binom{l}{l_1,\ldots,l_k}\prod_{i=1}^k\frac{x_i^{2l_i}}
+   {2^{\mu_i} \Gamma(\mu_i + l_i+1)}.
+\end{align}
+\end{lemma}
+
+\begin{proof}
+The assumptions in \eqref{larps} on the sequences $(\alpha_m)_m$ and $(\zeta_m)_m$ guarantee the uniform convergence in compact sets of $\RR$ of the series in the left-hand side of \eqref{lar3} and~\eqref{cucu3}.
+
+Taking into account \eqref{bsc} and applying Lemma~\ref{lem1} for $\mu=-1/2$ (this is why we need the second assumption in \eqref{larps}), we get
+for $x\in (0,\omega)$ that
+\begin{equation}
+\label{jer}
+\sum_{m\ge 1}\alpha_m \cos (\zeta_mx)= \sqrt \pi \sum_{l=0}^{\infty}
+\frac{u_l \Gamma(\eta+l + 1)}
+   {2^{- \eta} \Gamma(l+\frac{1}{2})}\, x^{2l}.
+\end{equation}
+Since both sides in \eqref{jer} are even functions we get that \eqref{jer} also holds for $x\in(-\omega,0)$ and trivially from~\eqref{lar3} also for $x=0$.
+
+Theorem~\ref{th:amcos} gives, for $\sum_{i=1}^k |x_i| <\omega$,
+\begin{equation*}
+%\label{cucu}
+\sum_{m\ge 1}\alpha_m \prod_{j=1}^k\cos (\zeta_m x_j) 
+= \frac{1}{2^k} \sum_{\eps \in \pi_k} p \Big( \sum_{j=1}^k\eps_jx_j\Big),
+\end{equation*}
+where $p$ is the power series in the right-hand side of~\eqref{jer}. Using \eqref{cag} we get, for $ \sum_{i=1}^k |x_i| <\omega$,
+\begin{equation*}
+%\label{cucu2}
+\sum_{m\ge 1}\alpha_m \prod_{j=1}^k\cos (\zeta_mx_j)=\sqrt \pi \sum_{l=0}^{\infty}
+\frac{u_l \Gamma(\eta +l+ 1)}{2^{- \eta} \Gamma(l+\frac{1}{2})}
+\sum_{l_1+\cdots+l_k=l}
+\binom{2l}{2l_1,\ldots,2l_k}x_1^{2l_1}\cdots x_k^{2l_k}.
+\end{equation*}
+Taking into account \eqref{bsc}, the last identity can be rewritten in the form
+\begin{equation*}
+%\label{cucu2b}
+\sum_{m\ge 1} \alpha_m \prod_{j=1}^k\frac{J_{-1/2} (\zeta_mx_j)}{(\zeta_mx_j)^{-1/2}}=\frac{2^{k/2}}{\pi^{(k-1)/2}} \sum_{l=0}^{\infty}
+\frac{u_l \Gamma(\eta +l+ 1)}{2^{- \eta} \Gamma(l+\frac{1}{2})}
+\sum_{l_1+\cdots+l_k=l}
+\binom{2l}{2l_1,\ldots,2l_k}x_1^{2l_1}\cdots x_k^{2l_k}.
+\end{equation*}
+Write $\Lambda=\{(x_1,\dots, x_k) : x_i>0,\, \sum_{i=1}^kx_i<\omega\}$. Lemma~\ref{lemher3} gives, for $(x_1,\dots,x_k)\in \Lambda$,
+\begin{align}
+\label{cucu3s}
+& \sum_{m\ge 1} \alpha_m
+\prod_{i=1}^k \frac{J_{\mu_i}(\zeta_mx_i)}{(\zeta_mx_i)^{\mu_i}}
+= \frac{2^{k/2}}{\pi^{(k-1)/2}} \\
+\nonumber
+&\qquad \times \sum_{l=0}^{\infty}
+\frac{u_l \Gamma(\eta +l+ 1)}{2^{- \eta} \Gamma(l+\frac{1}{2})}
+\sum_{l_1+\cdots+l_k=l}
+\binom{2l}{2l_1,\ldots,2l_k} \prod_{i=1}^k \frac{\Gamma(l_i+\frac{1}{2})}
+   {2^{\mu_i +1/2} \Gamma(\mu_i + l_i+1)}\, x_i^{2l_i},
+\end{align}
+from where \eqref{cucu3} follows easily. Since both sizes of \eqref{cucu3s} are even functions in each variable $x_i$, we deduce that \eqref{cucu3} also holds in $ \sum_{i=1}^k |x_i| <\omega$, if $x_1\cdots x_k\not =0$, and by continuity
+for $x_1\cdots x_k =0$ as well.
+\end{proof}
+
+We illustrate the method with a simple but significant example.
+
+One of the most interesting examples of a trigonometric expansion is the Hurwitz
+series for the Bernoulli polynomials, $n\ge 1$,
+\begin{align}
+\nonumber%\label{bsenos}
+   B_{2n+1}(x) &= (-1)^{n+1} \, \frac{2(2n+1)!}{(2\pi)^{2n+1}}
+   \sum_{m=1}^{\infty} \frac{\sin(2\pi mx)}{m^{2n+1}},
+   \quad x\in [0,1],\\
+\label{atpc}
+   B_{2n}(x) &= (-1)^{n+1} \, \frac{2(2n)!}{(2\pi)^{2n}}
+   \sum_{m=1}^{\infty} \frac{\cos(2\pi mx)}{m^{2n}},
+   \quad x\in [0,1],
+\end{align}
+see \cite[24.8(i)]{Dil-NIST}.
+
+For our purpose, it is better to translate the expansion \eqref{atpc} to the interval $[-1,1]$. Hence, we change $x \mapsto (x+1)/2$ to obtain the equivalent cosine series
+\begin{equation}
+\label{atpc2}
+B_{2n}((x+1)/2) = (-1)^{n+1} \, \frac{2(2n)!}{2^{2n}}
+   \sum_{m=1}^{\infty} \frac{(-1)^m\cos(\pi mx)}{(\pi m)^{2n}},
+   \quad x\in [-1,1].
+\end{equation}
+Using the binomial expansion of the Bernoulli polynomials,
+\[
+  B_{2n}((x+1)/2) = \sum_{l=0}^{2n} \binom{2n}{l} B_{2n-l}({1}/2) \left(\frac{x}2\right)^l,
+\]
+the identity $B_j(1/2) = -(1-2^{1-j})B_j$ (see \cite[24.4.27]{Dil-NIST}), as well as $B_1(x) = x-1/2$ and $B_{2l+1} = 0$ for $l=0,1,2\dots$, we get
+\begin{equation*}
+%\label{atpc3}
+B_{2n}((x+1)/2) = - \sum_{j=0}^{n} \binom{2n}{2j}
+\frac{(2^{2n-2j-1}-1)B_{2n-2j}}{2^{2n-1}} \,x^{2j}.
+\end{equation*}
+Hence, \eqref{atpc2} gives, for $x\in [-1,1]$,
+\begin{equation*}
+%\label{atpc4}
+\sum_{m=1}^{\infty} \frac{(-1)^m\cos(\pi mx)}{(\pi m)^{2n}}
+= \frac{(-1)^{n}}{(2n)!} \sum_{j=0}^{n} \binom{2n}{2j}(2^{2n-2j-1}-1)B_{2n-2j}x^{2j}.
+\end{equation*}
+Taking into account \eqref{bsc}, we can apply the Lemma~\ref{lem1} to get (after easy computations) the Bessel expansion
+\begin{equation}
+\label{atpc5}
+\sum_{m=1}^{\infty} \frac{(-1)^m}{(\pi m)^{2n}}
+\frac{J_\mu(\pi mx)}{(\pi mx)^\mu}
+= (-1)^{n} \sum_{j=0}^{n} \frac{(2^{2n-2j-1}-1)B_{2n-2j}}{2^{2j+\mu}j!\,(2n-2j)!\,\Gamma(\mu+j+1)} \,x^{2j},
+\end{equation}
+valid for $x\in[0,1]$ and $2n+\Re \mu>1/2$ ($n\ge 1$).
+The identity \eqref{atpc5} is already known (although in a more complicated form): it is \cite[p.~678, (14)]{PBM1}.
+
+Applying Lemma~\ref{lemher2}, we get the following multivariate Bessel expansion which seems to be new (as far as we know):
+\begin{align}
+\label{atpc6}
+& \sum_{m=1}^{\infty} \frac{(-1)^m}{(\pi m)^{2n}} 
+\prod_{i=1}^k\frac{J_{\mu_i}(\pi mx_i)}{(\pi mx_i)^{\mu_i}} \\
+\nonumber
+&\qquad\quad = (-1)^{n} \sum_{j=0}^{n}\frac{(2^{2n-2j-1}-1)B_{2n-2j}}{(2n-2j)!}
+\sum_{l_1+\cdots+l_k=j} \prod_{i=1}^k\frac{(x_i/2)^{2l_i}}{2^{\mu_i}l_i!\, \Gamma(\mu_i+l_i+1)},
+\end{align}
+valid for $ \sum_{i=1}^k |x_i| \le 1$ and $2n+ \sum_{i=1}^k\Re \mu_i+k/2>1$ ($n\ge 1$).
+Actually, this is the particular case of the expansion \eqref{ex2} (which will be computed in the next section: see \eqref{dism2}) for $\nu=1/2$.
+
+We can also find the case when $n\le 0$ by differentiating~\eqref{atpc6}. Indeed, for $n=1$, we have
+\[
+\sum_{m=1}^{\infty} \frac{(-1)^m}{(\pi m)^{2}}
+\prod_{i=1}^k\frac{J_{\mu_i}(\pi mx_i)}{(\pi mx_i)^{\mu_i}}
+= \frac{1}{4}\prod_{i=1}^k\frac{1}{2^{\mu_i}\Gamma(\mu_i+1)}
+\left(-\frac{1}{3}+\frac{1}{2} \sum_{i=1}^k\frac{x_i^2}{\mu_i+1}\right).
+\]
+Differentiating with respect to $x_1$, using \eqref{fdbc}, and setting $\mu_1+1 \mapsto \mu_1$, we get
+\[
+\sum_{m=1}^{\infty} (-1)^m \prod_{i=1}^k \frac{J_{\mu_i}(\pi mx_i)}{(\pi mx_i)^{\mu_i}}
+= -\frac{1}{2} \prod_{i=1}^k\frac{1}{2^{\mu_i} \Gamma(\mu_i+1)},
+\]
+valid for $ \sum_{i=1}^k |x_i| \le 1$ and $ \sum_{i=1}^k\Re \mu_i+k/2>1$. And then, differentiating again, we get
+\[
+\sum_{m=1}^{\infty} (-1)^m(\pi m)^{2n} \prod_{i=1}^k \frac{J_{\mu_i}(\pi mx_i)}{(\pi mx_i)^{\mu_i}}=0,
+\]
+valid for $\sum_{i=1}^k |x_i| \le 1$ and $-2n+ \sum_{i=1}^k \Re \mu_i+k/2>1$ ($n\ge 1$) (for $k=1$ this is \cite[Identity (10), p.~678]{PBM1}).
+
+Cosine expansions \eqref{atpc} and \eqref{atpc2} are equivalent under the linear change of variable $x \mapsto (x+1)/2$. However if we apply our method to the expansion \eqref{atpc} we get completely different results to those found above (expansions \eqref{atpc5} and \eqref{atpc6}). For the one variable case, producing the Bessel extension is as easy as the previous one, but the scenario changes dramatically in the multivariate case. This is because in the left hand side of~\eqref{atpc}, $B_{2n}(x)$ contains a term $x^{2n-1}$, which corresponds to the even function $f(x) = |x|^{2n-1}$. This even function is not analytic at $0$ and in the multivariate case it makes the computation of the integral transforms \eqref{itc} rather complicated. In fact, in that case infinite power series appears in the close expression for the multivariate Bessel expansion. Indeed, by applying the integral transform $T_{\mu,-1/2}$ \eqref{itc} to both sides of \eqref{atpc}, we can still produce the following Bessel expansion:
+\begin{equation}
+\label{atpc7}
+\sum_{m=1}^{\infty} \frac{1}{(\pi m)^{2n}} \frac{J_\mu(\pi mx)}{(\pi mx)^\mu}
+= \frac{(-1)^{n+1}2^{2n}}{2\sqrt \pi(2n)!} \sum_{j=0}^{2n} \binom{2n}{j}
+\frac{\Gamma((j+1)/2)B_{2n-j}}{2^{\mu}\Gamma(\mu+j/2+1)}(x/2)^j,
+\end{equation}
+valid for $x\in [0,2]$ and $2n+\Re \mu>1/2$ ($n\ge 1$). This identity is different to \eqref{atpc5} but it is also known: \cite[p.~678, (13)]{PBM1}
+(the case $n\le 0$ can be obtained by differentiation from the case $n=1$ in~\eqref{atpc7}).
+
+As mentioned above, the monomial $x^{2n-1}$ in the cosine expansion \eqref{atpc} makes difficult to extend it to a multivariate expansion using our method. To illustrate the problem, let us take $n=1$, then \eqref{atpc} gives
+\[
+\sum_{m=1}^{\infty} \frac{\cos(\pi mx)}{(\pi m)^{2}}
+= \frac{x^2}{4}-\frac{|x|}{2}+\frac{1}{6}
+\]
+for $|x| \leq 1$. Using Theorem~\ref{th:amcos}, we get
+\[
+\sum_{m=1}^{\infty} \frac{\cos(\pi mx) \cos(\pi my)}{(\pi m)^{2}}
+= \frac{x^2}{4} + \frac{y^2}{4} + \frac{1}{6} - \frac{1}{4}(|x+y| + |x-y|).
+\]
+Applying the integral transforms $T_{\mu_1,-1/2}$ in the variable $x$ and $T_{\mu_2,-1/2}$ in the variable $y$, respectively, and using \eqref{eq:sonin}, \eqref{eaq}, we find that
+\begin{align}
+\label{atpc8}
+& \sum_{m=1}^{\infty} \frac{1}{(\pi m)^{2}}
+\frac{J_{\mu_1}(\pi mx)J_{\mu_2}(\pi my)}{(\pi mx)^{\mu_1}(\pi my)^{\mu_2}}
+= \frac{2^{-\mu_1-\mu_2-3}}{\Gamma(\mu_1+1)\Gamma(\mu_2+1)}
+\left(\frac{x^2}{\mu_1+1}+\frac{y^2}{\mu_2+1}+\frac{4}{3}\right) \\
+\nonumber
+&\quad - \frac{2^{-\mu_1-\mu_2}}{\pi\Gamma(\mu_1+1/2)\Gamma(\mu_2+1/2)}
+\int_0^1 \int_0^1 (|rx+sy| + |rx-sy|) (1-r^2)^{\mu_1-1/2}(1-s^2)^{\mu_2-1/2}\,dr\,ds.
+\end{align}
+It is not necessary to compute the double integral because the Bessel expansion \eqref{atpc8} is the particular case $\nu=1/2$ of the Sneddon-Bessel series we compute in \cite{DPVS}, and so using \cite[Sect.~4.1.2]{DPVS}, we get
+\begin{align}
+\label{atpc9}
+& \sum_{m=1}^{\infty} \frac{1}{(\pi m)^{2}}
+\frac{J_{\mu_1}(\pi mx)J_{\mu_2}(\pi my)}{(\pi mx)^{\mu_1}(\pi my)^{\mu_2}}
+= \frac{1}{2^{\mu_1+\mu_2+3} \Gamma(\mu_1+1)\Gamma(\mu_2+1)}
+\Bigg( \frac{x^2}{\mu_1+1}+\frac{y^2}{\mu_2+1} \\
+\nonumber
+&\qquad \null+ \frac{4}{3}-2 \binom{\mu_1}{1/2}x \Bigg(
+   \frac{\FF{-1/2-\mu_1,1/2}{\mu_2+1}{\frac{y^2}{x^2}}}{\mu_1+1/2}
+   + \frac{\frac{y^2}{x^2} \,\FF{1/2-\mu_1,1/2}{\mu_2+2}{\frac{y^2}{x^2}}}{\mu_2+1}
+\Bigg)\Bigg),
+\end{align}
+valid for $0<2+\Re\mu_1+\Re\mu_2$, and $0<y\le x$, $x+y<2$ (also for $x+y=2$ if $0<1+\Re\mu_1+\Re\mu_2$).
+
+Contrary to the multivariate Bessel expansion \eqref{atpc6}, \eqref{atpc9} is not anymore a polynomial (except when the parameters $\mu_1$ and $\mu_2$ are half positive integers).
+
+%----------
+\section{Bessel expansions of multivariate polynomials}
+\label{sec:multipol}
+%----------
+
+%----------
+\subsection{Bessel-Appell polynomials}
+%----------
+
+Given a function $A(z)$ analytic at $z=0$ with $A(0)\not =0$, we define the associated one-parameter family $p_{n,\mu}(x)$, $n\ge 0$, of Bessel-Appell polynomials by means of the following generating function:
+\begin{equation}
+\label{bad}
+A(z)\frac{J_\mu(xz)}{(xz)^\mu} = \sum_{n=0}^\infty p_{n,\mu}(x)z^n.
+\end{equation}
+It is straightforward from the definition that each $p_{n,\mu}$ is an even polynomial of degree~$2n$, $n\ge 0$. Moreover, using \eqref{fdbc} we have
+\begin{equation}
+\label{bade}
+p'_{n,\mu}(x) = -xp_{n-1,\mu+1}(x),\quad n\ge 1.
+\end{equation}
+Bessel-Appell polynomials have been already considered in the literature (\cite{Cho}), although with no special denomination and, as far as we know, with no connection with the explicit sum of Bessel expansions. Bessel-Appell polynomials also satisfy
+\[
+T(p_{n,\mu})(x) = p_{n-1,\mu}(x),
+\quad 
+T = -\frac{d^2}{dx^2}-\frac{2\mu+1}{x}\frac{d}{dx}.
+\]
+Write $\hat T$ for the linear operator $\hat T(p)(x)=T(p(x^2))(\sqrt x)$ acting on polynomials $p$. We then have
+\[
+\hat T(p_{n,\mu}(\sqrt x)) = p_{n-1,\mu}(\sqrt x),\quad n\ge 1,
+\]
+and so the polynomials $(p_{n,\mu}(\sqrt x))_n$ are of the Appell type studied in \cite[Chap.~10]{Ism}.
+
+The generating function \eqref{bad} also shows that if $A(z)= \sum _{n=0}^\infty a_nz^n$, then
+\begin{equation}
+\label{ba0}
+p_{n,\mu}(0) = \frac{a_n}{2^\mu\Gamma(\mu+1)},
+\quad n\ge 0.
+\end{equation}
+Moreover, iterating the identity \eqref{bade}, we get
+\begin{equation}
+\label{baj}
+\frac{p^{(2j)}_{n,\mu}(0)}{(2j)!}
+= \frac{(-1)^ja_{n-j}}{2^{\mu+2j}j!\,\Gamma(\mu+j+1)},
+\quad n\ge 0.
+\end{equation}
+
+For $\Re \mu>\Re\nu>-1$, using the integral transform \eqref{itc} in \eqref{bad} we have
+\begin{equation}
+\label{bat}
+T_{\mu,\nu}(p_{n,\nu})(x)=p_{n,\mu}(x),\quad n\ge 0.
+\end{equation}
+The identity \eqref{bat} can be extended for $\Re \nu<-1$ using the integral transform~\eqref{itch}.
+
+In the opposite direction, assume that we have a one-parameter family $p_{n,\mu}(x)$, $n\ge 0$, of polynomials with $p_{n,\mu}$ of degree $2n$ satisfying \eqref{bade} and \eqref{ba0} for certain sequence $(a_n)_n$ such that
+$A(z)= \sum _{n=0}^\infty a_nz^n$ defines a function analytic at $z=0$, which is equivalent to
+\begin{equation}
+\label{bath}
+\limsup_{n\to +\infty} |a_n|^{1/n} < +\infty.
+\end{equation}
+Since~\eqref{bade} and~\eqref{ba0} determine uniquely the whole parametric family of polynomials, it follows that $(p_{n,\mu})_n$ also satisfy~\eqref{bad}.
+
+\begin{remark}
+\label{cositas}
+We can find a connection of Bessel-Appell polynomials and Bessel expansions of the form
+\begin{equation}
+\label{bsj}
+\sum_{m\ge 1}\alpha_m\zeta_m^{-2n} \frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu}.
+\end{equation}
+\end{remark}
+
+To this end, assume we have sequences $(\alpha_m)_{m\ge 1}, (\zeta_m)_{m\ge 1}$, $\zeta_m\not=0$, such that for certain $\nu\in \CC$, $\Re \nu>-1$, and $\omega>0$,
+\begin{align}
+\label{bas1}
+& \liminf_m |\zeta_m| \ge 1, \quad \sum_{m\ge 1}
+\frac{|\alpha_m|}{|\zeta_m|^{\Re \nu +1/2}} < +\infty, \\
+\label{bas2}
+& \sum_{m\ge 1}\alpha_m \frac{J_{\nu}(\zeta_m x)}{(\zeta_m x)^\nu} 
+= a_0 \in \CC\setminus\{0\},\quad \mbox{$x\in (0,\omega)$.}
+\end{align}
+Using the assumption \eqref{bas1} we can define for $\Re\mu\ge \Re \nu$, $n\ge 0$ and $0<x$ the functions
+\begin{equation}
+\label{baba}
+p_{n,\mu}(x)= \sum_{m\ge 1}\alpha_m\zeta_m^{-2n} \frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu}.
+\end{equation}
+Notice that the convergence is uniform in compact subsets of $(0,+\infty)$. It is then easy to see using \eqref{fdbc} that they satisfy~\eqref{bade}, that is,
+\begin{equation*}
+%\label{bade2}
+p_{n,\mu}'(x) = -xp_{n-1,\mu+1}(x),\quad n\ge 1.
+\end{equation*}
+Moreover, for $\Re \mu>\Re \nu$, using \eqref{eq:sonin} we have, from \eqref{baba} that
+\begin{equation}
+\label{bamn}
+p_{n,\mu}(x) = T_{\mu,\nu}(p_{n,\nu})(x),
+\end{equation}
+where $T_{\mu,\nu}$ is the integral transform \eqref{itc}: the assumption \eqref{bas2} allows changing the order of the integral transform and the series \eqref{baba} which defines the function $p_{n,\nu}(x)$.
+
+The assumption \eqref{bas2}, the identity \eqref{bamn} for $n=0$, and \eqref{eaq} imply that for $\Re \mu\ge \Re \nu$, $p_{0,\mu}(x)$ is constant in $(0,\omega)$, and then $p_{n,\mu}(x)$, $n\ge 0$, is a polynomial of degree $2n$ in $(0,\omega)$. With a small abuse of notation, we also write $p_{n,\mu}(x)$ for the polynomial in $\CC$ that coincides with $p_{n,\mu}(x)$ in $(0,\omega)$.
+
+Let us take
+\begin{equation}
+\label{baan}
+a_n = 2^\nu\Gamma(\nu+1)p_{n,\nu}(0).
+\end{equation}
+The sequence $(a_n)_n$ can be used to sum a bunch of Bessel series, including~\eqref{bsj}. This goes as follows. Since for $n$ big enough
+\[
+p_{n,\nu}(0) = \frac{1}{2^\nu\Gamma(\nu+1)} \sum_{m\ge 1}\alpha_m\zeta_m^{-2n},
+\]
+it follows from \eqref{bas1} that $(a_n)_n$ satisfies \eqref{bath} and we can define a function $A(z)$ analytic at $z=0$, with $A(0)=a_0\not =0$, by the power series
+\begin{equation}
+\label{baa}
+A(z) = \sum_{n=0}^\infty a_nz^{2n}.
+\end{equation}
+Using \eqref{bamn} for $x=0$ and \eqref{eaq} for $r=0$, we get~\eqref{ba0}:
+\begin{equation*}
+%\label{ba02}
+p_{n,\mu}(0)=\frac{a_n}{2^\mu\Gamma(\mu+1)},\quad n\ge 0.
+\end{equation*}
+Hence for $\Re \mu>\Re \nu $ our discussion at the beginning of this section shows that the polynomials $p_{n,\mu}$, $n\ge 0$, defined by \eqref{baba}, are also the Bessel-Appell polynomials defined by \eqref{bad} where the analytic function $A$ is given by~\eqref{baa}.
+
+Using \eqref{baj} and \eqref{baba}, we get
+\begin{equation}
+\label{babas}
+\sum_{m\ge 1} \alpha_m\zeta_m^{-2n} \frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu}
+= \sum_{j=0}^n\frac{a_{n-j}(-x^2/4)^{j}}{2^{\mu}j!\,\Gamma(\mu+j+1)}, \quad x\in (0,\omega).
+\end{equation}
+Moreover, if for some $n<0$, $ \sum_{m\ge 1} |\alpha_m| |\zeta_m|^{-2n-\Re \mu -1/2} < +\infty$ (with $\Re \mu>\Re \nu$), differentiating $-n$ times in \eqref{babas} for $n=0$, we get
+\begin{equation*}
+%\label{baba2}
+\sum_{m\ge 1} \alpha_m\zeta_m^{-2n} \frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu} = 0, 
+\quad x\in (0,\omega).
+\end{equation*}
+
+In the next proposition, we include other series that can be summed using the sequence $(a_n)_n$ given in~\eqref{baan}.
+
+\begin{proposition}
+\label{qls} 
+Assume that the sequences $(\alpha_m)_{m\ge 1}, (\zeta_m)_{m\ge 1}$, satisfy \eqref{bas1} and~\eqref{bas2}. We then have for $n\ge 0$, $\Re \mu\ge \Re \nu$ and $x\in (0,\omega)$,
+\begin{equation}
+\label{qls2}
+\sum_{m\ge 1} \frac{\alpha_m\zeta_m^{-2n}}{(\zeta_m^2-z^2)}
+\frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu}
+= \frac{1}{z^{2n+2}} \left(A(z)\frac{J_{\mu}(xz)}{(xz)^\mu} - \sum_{l=0}^nz^{2l} \sum_{j=0}^l
+\frac{a_{l-j}(-x^2/4)^{j}}{2^{\mu}j!\,\Gamma(\mu+j+1)}\right),
+\end{equation}
+where $A$ is given by \eqref{baa} and $(a_n)_n$ is defined by~\eqref{baan}.
+\end{proposition}
+
+\begin{proof}
+The proof is a matter of computation. Indeed, using the geometric series and the polynomials \eqref{baba}, we deduce for $|z| < \inf_m |\zeta_m|$ (and then on the whole range by analytic continuation) that
+\begin{align*}
+\sum_{m\ge 1}\frac{\alpha_m\zeta_m^{-2n}}{(\zeta_m^2-z^2)} \frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu} 
+ &= \sum_{m\ge 1} \sum_{l=0}^\infty \frac{\alpha_m z^{2l}}{\zeta_m^{2n+2l+2}} 
+ \frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu} \\
+ &= \sum_{l=0}^\infty z^{2l} \sum_{m\ge 1} \frac{\alpha_m}{\zeta_m^{2n+2l+2}} \frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu} \\
+ &= \sum_{l=0}^\infty p_{n+l+1,\mu}(x)z^{2l}
+ = \frac{1}{z^{2n+2}} \sum_{l=n+1}^\infty p_{l,\mu}(x)z^{2l} \\
+ &= \frac{1}{z^{2n+2}} \bigg(A(z)\frac{J_{\mu}(xz)}{(xz)^\mu} - \sum_{l=0}^np_{l,\mu}(x)z^{2l} \bigg).
+\end{align*}
+It is then enough to use~\eqref{baj}.
+\end{proof}
+
+Moreover, if for some $n<0$, $ \sum_{m\ge 1} |\alpha_m| |\zeta_m|^{-2n-\Re \mu -5/2} < +\infty$ (with $\Re \mu>\Re \nu$), differentiating $-n$ times in \eqref{qls2} for $n=0$ and taking into account the identity \eqref{fdbc}, we have, for $x\in (0,\omega)$,
+\begin{equation*}
+%\label{qls3}
+\sum_{m\ge 1} \frac{\alpha_m\zeta_m^{-2n}}{(\zeta_m^2-z^2)}
+\frac{J_{\mu}(\zeta_m x)}{(\zeta_m x)^\mu}
+= \frac{A(z)}{z^{2n+2}} \frac{J_{\mu}(xz)}{(xz)^\mu}.
+\end{equation*}
+
+Our method will allow us to compute explicitly the corresponding multivariate version of the expansions~\eqref{qls2}. They can well be called Kneser-Sommerfeld type expansions, since for
+\[
+\zeta_m = j_{m,\nu},\quad \alpha_m = \frac{1}{J_{\nu+1}(j_{m,\nu})^2}
+\]
+the corresponding two variable expansion is the well-known Kneser-Sommerfeld expansion~(\cite{Mar}).
+
+Let us develop a couple of illustrative examples.
+The first one is the Dini-Young series
+\begin{equation}
+\label{dis}
+\sum_{m\ge 1} \frac{\lambda_m^{\nu-2n}}{(\lambda_m^2-\nu^2+H^2)J_\nu(\lambda_m)} 
+\frac{J_{\mu}(\lambda_m x)}{(\lambda_m x)^\mu},
+\end{equation}
+for $0<x\le 1$, where $\nu$ and $H$ are real parameters satisfying $\nu >-1$
+and $H+\nu>0$, $\mu\in \hat \CC$ with $\nu<2n+1+\Re \mu$
+and $\lambda_m$ are the positive zeros (ordered in increasing size) of the function
+\begin{equation}
+\label{difc}
+zJ'_\nu(z)+HJ_\nu(z).
+\end{equation}
+
+To sum explicitly \eqref{dis}, we define the sequence $(a_n^{H,\nu})_n$ by
+\begin{equation}
+\label{difg}
+\frac{z^\nu}{2\big((H-\nu)J_\nu(z)+zJ_{\nu-1}(z)\big)}
+= \sum_{n=0}^\infty a_n^{H,\nu}z^{2n}.
+\end{equation}
+Using the power series for the Bessel functions, the sequence $(a_n^{H,\nu})_n$ can be recursively defined as follows: $a_0^{H,\nu} = 2^{\nu-1}\Gamma(\nu+1)/(H+\nu)$, and
+\begin{equation}
+\label{dird0}
+\sum_{j=0}^n \frac{\nu+2(n-j)+H}{(-4)^{n-j}(n-j)!\,(\nu+1)_{n-j}}a_j^{H,\nu}=0,\quad n\ge 1.
+\end{equation}
+Define now the one-parameter Bessel-Appell polynomials by the generating function
+\begin{equation}
+\label{dird}
+\frac{z^\nu}{2\big((H-\nu)J_\nu(z)+zJ_{\nu-1}(z)\big)}
+\frac{J_\mu(xz)}{(xz)^\mu} = \sum_{n=0}^\infty p_{n,\mu}^{H,\nu}(x)z^n.
+\end{equation}
+For $n\ge 0$ and $0\le j\le n$, define
+\[
+b_j^n = 2(-4)^j(n-j+1)_j(\nu+n-j+1)_j(\nu+2(n-j)+H).
+\]
+An easy computation, using the power series of the Bessel functions, shows that the polynomials $p_{n,\nu}^{H,\nu}$, $n\ge 0$, can also be defined recursively by
+\begin{equation}
+\label{dird2}
+p_{0,\nu}^{H,\nu} = \frac{1}{2(\nu+H)},\qquad 
+\sum_{j=0}^nb_j^n p_{j,\nu}^{H,\nu}(x)=x^{2n},\quad n\ge 1.
+\end{equation}
+Consider next the Bessel-Dini series of $x^{2n}$ in $(0,1)$, namely
+\begin{equation}
+\label{diw}
+x^{2n} = \sum_{m\ge 1} \beta_m^n\frac{J_{\nu}(\lambda_m x)}{(\lambda_m x)^\nu}.
+\end{equation}
+The case $n=0$ was summed by Young \cite{You}, this is why we call Dini-Young series to the expansion~\eqref{dis}.
+If we write
+\begin{equation*}
+%\label{diw1}
+\xi_m = \frac{\lambda_m^{\nu}}{(\lambda_m^2-\nu^2+H^2)J_\nu(\lambda_m)},
+\end{equation*}
+according to \cite[\S\,18.12, (2), p.~581]{Wat} we have
+\begin{equation}
+\label{diw1ss}
+\beta_m^0=2(\nu+H)\xi_m,
+\end{equation}
+as follows from~\cite[\S\,18.12, (2), p.~581]{Wat} and the trivial fact that the zeros $\lambda_m$ of~\eqref{difc} satisfy
+\begin{align*}
+(\lambda_m^2-\nu^2) J_\nu(\lambda_m)^2+\lambda_m^2 J_\nu'(\lambda_m)^2
+&= (\lambda_m^2-\nu^2+H^2) J_\nu(\lambda_m)^2, \\
+\frac{\lambda_m J_{\nu+1}(\lambda_m)}{J_{\nu}(\lambda_m)} &= \nu+H.
+\end{align*}
+According to the reduction formula in \cite[\S\,18.12, p.~581]{Wat}, we have the recursion
+\[
+\beta_m^n = 2(\nu+2n+H)\xi_m-\frac{4n(\nu+n)}{\lambda_m^2}\beta_m^{n-1},\quad n\ge 1.
+\]
+This shows that
+\begin{equation}
+\label{diba}
+\beta_m^n = \xi_m \sum_{j=0}^nb_j^n\frac{1}{\lambda_m^{2j}}.
+\end{equation}
+Define finally the functions
+\begin{equation*}
+%\label{dips}
+q_{n}^{H,\nu}(x)= \sum_{m\ge 1}\xi_m\lambda_m^{-2n}\frac{J_{\nu}(\lambda_m x)}{(\lambda_m x)^\nu},\quad x\in (0,1).
+\end{equation*}
+The definition of $\beta_m^n$ \eqref{diw} and the identity \eqref{diba} show that
+\begin{equation}
+\label{dirdq}
+\sum_{j=0}^n b_j^n q_{j}^{H,\nu}(x) = x^{2n},\quad n\ge 1.
+\end{equation}
+On the one hand, \eqref{dird2}, \eqref{diw}, and \eqref{diw1ss} for $n=0$ imply that $q_{0}^{H,\nu}=p_{0,\nu}^{H,\nu}$. On the other hand, the recursions \eqref{dird} and \eqref{dirdq} show that $q_{n}^{H,\nu}=p_{n,\nu}^{H,\nu}$, $n\ge 1$.
+
+Hence setting $\zeta_m=\lambda_m$ and $\alpha_m=\xi_m$, we can apply Remark~\ref{cositas} to get, for $\Re \mu>\nu$ and $0<x\le 1$,
+\begin{equation}
+\label{dise}
+\sum_{m\ge 1} \frac{\lambda_m^{\nu-2n}}{(\lambda_m^2-\nu^2+H^2)J_\nu(\lambda_m)}
+\frac{J_{\mu}(\lambda_m x)}{(\lambda_m x)^\mu}
+= \sum_{j=0}^n\frac{a_{n-j}^{H,\nu}\left(-x^2/4\right)^{j}}{2^{\mu}j!\,\Gamma(\mu+j+1)}.
+\end{equation}
+The identity \eqref{dise} also holds for $\nu<2n+1+\Re \mu$, because then both sides of the identity are analytic functions of $\mu$. The identity is also valid for $x=0$ assuming that $\nu<2n+1/2$.
+
+Moreover, for $0<-2n<-\nu+\Re \mu+1$,
+\begin{equation*}
+%\label{dise2}
+\sum_{m\ge 1} \frac{\lambda_m^{\nu-2n}}{(\lambda_m^2-\nu^2+H^2)J_\nu(\lambda_m)}
+\frac{J_{\mu}(\lambda_m x)}{(\lambda_m x)^\mu}=0, \quad x\in (0,1).
+\end{equation*}
+In the next section, we will consider the expansions provided by Proposition~\ref{qls}.
+
+The second illustrative example are the Bessel expansions
+\begin{equation}
+\label{joj}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-1-2n}}{J_{\nu+1}(j_{m,\nu})}
+\frac{J_{\mu}(j_{m,\nu}x)}{(j_{m,\nu}x)^{\mu}},
+\end{equation}
+$0<x<1$ and $\Re \nu<\Re \mu+2n$. The series \eqref{joj} was explicitly summed in \cite[Sect.~5]{DPV3} using the theory of residues. For the sake of completeness, we compute the sum here using our method.
+
+The starting point is the sequence $(a_n^{\nu})_n$ defined by
+\begin{equation}
+\label{snfg}
+\frac{z^\nu}{2J_{\nu}(z)} = \sum_{n=0}^\infty a_n^{\nu}z^{2n}.
+\end{equation}
+This is the case $H=\nu$ of the previous example with $\nu+1$ instead of $\nu$, but since we now consider complex parameters $\nu$, we work it out from the scratch.
+
+Using the power series for the Bessel functions, the sequence $(a_n^{\nu})_n$ can be recursively defined as follows: $a_0^{\nu}=2^{\nu-1}\Gamma(\nu+1)$, and
+\begin{equation}
+\label{snrd}
+\sum_{j=0}^n \frac{4\nu+4(n-j+1)}{(-4)^{n-j}(n-j)!\,(\nu+2)_{n-j}}a_j^{\nu}=0,
+\quad n\ge 1.
+\end{equation}
+Define now the one-parameter Bessel-Appell polynomials by the generating function
+\begin{equation}
+\label{dirdv}
+\frac{z^\nu}{2J_{\nu}(z)}
+\frac{J_\mu(xz)}{(xz)^\mu} = \sum_{n=0}^\infty p_{n,\mu}^{\nu}(x)z^{2n}.
+\end{equation}
+For $\mu=\nu$ and $\mu=\nu-1$ they are the even Euler-Dunkl and Bernoulli-Dunkl polynomials we introduced in \cite{DPV} and \cite{CDPV}, respectively (up to renormalization).
+Using \cite[Theorem~3.1]{DPV}, we have
+\begin{equation}
+\label{joj1}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-1-2n}}{J_{\nu+1}(j_{m,\nu})}
+\frac{J_{\nu}(j_{m,\nu}x)}{(j_{m,\nu}x)^{\nu}} 
+= p_{n,\nu}^{\nu}(x),
+\end{equation}
+with uniform convergence on compact subsets of $(-1,1)\setminus\{0\}$ for $n=0$ and $[-1,1]\setminus \{0\}$ for $n\ge 1$. The convergence extends to $x=0$ provided that $\Re \nu<n+1/2$.
+
+We next prove that for $\Re \mu+2n>\Re \nu$ and $x\in (0,1)$,
+\begin{equation}
+\label{joj2}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-1-2n}}{J_{\nu+1}(j_{m,\nu})} 
+\frac{J_{\mu}(j_{m,\nu}x)}{(j_{m,\nu}x)^{\mu}} 
+= p_{n,\mu}^{\nu}(x)
+= \sum_{j=0}^n\frac{a^\nu_{n-j}(-x^{2}/4)^j}{2^{\mu}j!\,\Gamma(\mu+j+1)}.
+\end{equation}
+It is interesting to note that the polynomials $p_{n,\mu}^{\nu}(x)$ in this formula are Bessel-Appell polynomials as defined in \eqref{bad}, with $A(z) = \frac{z^\nu}{2J_{\nu}(z)}$, see~\eqref{dirdv}. In particular, they satisfy the general properties \eqref{bade} and~\eqref{bat}.
+
+Let us start taking $\zeta_m=j_{m,\nu}$ and $\alpha_m= \frac{j_{m,\nu}^{\nu-1}}{J_{\nu+1}(j_{m,\nu})}$. Although the second assumption in \eqref{bas1} fails, we can still use the Remark~\ref{cositas} due to the uniform convergence in $(-1,1)\setminus\{0\}$ of \eqref{joj1} for $n=0$. 
+
+To extend the identity \eqref{joj2} to $\Re \mu+2n>\Re \nu$, we proceed as follows.
+For $\Re \nu<-1$, $\nu\not =-3/2, -5/2,\dots$, consider a positive integer $h$ such that $\Re\nu>-h/2-1$, and take $\mu$ with $\Re\mu>\Re \nu+h$. Using the integral transform $T_{\mu,\nu,h}$ \eqref{itch}, together with integration by parts and \eqref{bamn}, we get from~\eqref{joj1}
+\begin{equation}
+\label{joj3}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-1-2n}}{J_{\nu+1}(j_{m,\nu})} \frac{J_{\mu}(j_{m,\nu}x)}
+{(j_{m,\nu}x)^{\mu}}
+= T_{\mu,\nu,h}(p_{n,\nu}^{\nu})(x) = T_{\mu,\nu}(p_{n,\nu}^{\nu})(x)
+= p_{n,\mu}^{\nu}(x), \quad x\in (0,1).
+\end{equation}
+For $\nu=-3/2, -5/2,\dots$, \eqref{joj3} follows by continuity.
+It is now enough to take into account that for fixed $\nu$ and assuming $\Re\mu+2n\ge \Re \nu$ both sides of \eqref{joj2} are analytic functions of~$\mu$.
+
+For $n<0$, $\Re \mu+2n>\Re \nu$ and $x\in (0,1)$, we have, differentiating the case $n=0$ in~\eqref{joj2},
+\begin{equation*}
+%\label{joj4}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-1-2n}}{J_{\nu+1}(j_{m,\nu})} \frac{J_{\mu}(j_{m,\nu}x)}
+{(j_{m,\nu}x)^{\mu}}= 0.
+\end{equation*}
+
+%----------
+\subsection{Getting multivariate Bessel expansions of polynomials}
+\label{subsec:Bespol}
+%----------
+
+We next use Lemma~\ref{lemher2} to sum in an explicit form the multivariate series \eqref{exd} and~\eqref{ex2}.
+
+For the Dini-Young expansion \eqref{exd}, we assume $\nu$, $H$ to be real parameters with $\nu+H>0$ and $\nu>-1$, and $\mu_i\in \hat \CC$, $i=1,\dots, k$.
+We next prove that for $\nu<2n+(k+1)/2+ \sum_{i=1}^k\mu_i$ and $(x_1,\dots, x_k)\in\Omega_{[1]}^*$ (see~\eqref{omss2})
+\begin{align}
+\label{dism}
+& \sum_{m\ge 1}\frac{\lambda_m^{\nu-2n}}{(\lambda_m^2-\nu^2+H^2)J_\nu(\lambda_m)}
+\prod_{i=1}^k \frac{J_{\mu_i}(\lambda_m x_i)}{(\lambda_m x_i)^{\mu_i}} \\
+\nonumber
+&\qquad = \sum_{l=0}^n a_{n-l}^{H,\nu} \sum_{l_1+\cdots+l_k=l}
+\prod_{i=1}^k \frac{\left(-x_i^2/4\right)^{l_i}}
+ {2^{\mu_i}l_i!\, \Gamma(\mu_i + l_i+1)} ,
+\end{align}
+where $(a_n^{H,\nu})_n$ is the sequence defined by~\eqref{difg} (or~\eqref{dird0}).
+
+We proceed in two steps.
+
+%----------
+\subsection{First step} 
+%----------
+
+The identity \eqref{dism} holds for $\nu<2n+1/2$, $\nu<2n+(k+1)/2+ \sum_{i=1}^k\mu_i$.
+
+This is a direct consequence of Lemma~\ref{lemher2} (after some easy computations).
+
+%----------
+\subsection{Second step} 
+%----------
+
+The identity \eqref{dism} holds for $\nu<2n+(k+1)/2+ \sum_{i=1}^k\mu_i$.
+
+Fixed $\nu$, notice that the series in the left hand side of \eqref{dism} converges uniformly in $\Omega^*_{[1]}$ for each $n$ such that $\nu<2n+(k+1)/2+ \sum_{i=1}^k\mu_i$. Fix then $n$ such that $\nu<2n+(k+1)/2+ \sum_{i=1}^k\mu_i$, and take a positive integer $n_\nu\ge n$ such that $\nu<2n_\nu+1/2$. Since we also have $\nu<2n_\nu+(k+1)/2+ \sum_{i=1}^k\mu_i$, the first step shows that \eqref{dism} holds for $n_\nu$ instead of $n$.
+Fix $j$, $1\le j\le k$, and write $H_{n,\mu_j}(x_j)$, $\Hh_{n,\mu_j}(x_j)$ for the functions in the left and right hand side of \eqref{dism}, respectively (there is no need to include in the notation neither the parameters $\nu$, $\mu_i$, $i\not =j$, nor the variables $x_i$, $i\not =j$). We have that $H_{n_\nu,\mu_j}(x_j)=\Hh_{n_\nu,\mu_j}(x_j)$.
+Take now $\mu_i$ real and big enough so as to satisfy $\nu<2n+(k+1)/2+ \sum_{i=1}^k\mu_i$ and to allow the following computations. First of all, we prove that
+\begin{equation}
+\label{jojpp}
+\frac{\partial}{\partial x_j}H_{n_\nu,\mu_j}(x_j)
+= -x_j H_{n_\nu-1,\mu_j+1}(x_j),
+\quad 
+\frac{\partial}{\partial x_j}\Hh_{n_\nu,\mu_j}(x_j) 
+= -x_j\Hh_{n_\nu-1,\mu_j+1}(x_j).
+\end{equation}
+Indeed, the first identity above is straightforward from~\eqref{fdbc}. With respect to the second identity, by differentiation it follows that
+\begin{align}
+\nonumber%\label{jojs}
+\frac{\partial}{\partial x_j}\Hh_{n_\nu,\mu_j}(x_j)
+&= \sum_{l=1}^{n_\nu}a_{n_\nu-l}^{H,\nu} \sum_{l_1+\cdots+l_k=l}
+\frac{2l_j}{x_j}
+\prod_{i=1}^k \frac{\left(-x_i^2/4\right)^{l_i }}
+ {2^{\mu_i}l_i!\, \Gamma(\mu_i + l_i+1)}
+\\
+\label{jojt}
+&= \sum_{l=0}^{n_\nu-1}a_{n_\nu-1-l}^{H,\nu} \sum_{l_1+\cdots+l_k=l+1}
+\frac{2l_j}{x_j}
+\prod_{i=1}^k \frac{\left(-x_i^2/4\right)^{l_i }}
+ {2^{\mu_i}l_i!\, \Gamma(\mu_i + l_i+1)}.
+\end{align}
+Since the summand in right hand side of \eqref{jojt} vanishes for $l_j=0$,
+%by setting $l_j \mapsto l_j+1$,
+we get (after simplification)
+\[
+\frac{\partial}{\partial x_j} \Hh_{n_\nu,\mu_j}(x_j) = -x_j\Hh_{n_\nu-1,\mu_j+1}(x_j).
+\]
+This means, using \eqref{jojpp} and $H_{n_\nu,\mu_j}(x_j)=\Hh_{n_\nu,\mu_j}(x_j)$, that
+\[
+H_{n_\nu-1,\mu_j+1}(x_j) = \Hh_{n_\nu-1,\mu_j+1}(x_j).
+\]
+Iterating, we get
+\[
+H_{n ,\mu_j+n_\nu-n}(x_j) = \Hh_{n,\mu_j+n_\nu-n}(x_j).
+\]
+This proves the identity \eqref{dism} for $\mu_i$, $i=1,\dots,k$, real and big enough. Since for $\mu_i$, $i=1,\dots,k$, such that $\nu<2n+(k+1)/2 + \sum_{i=1}^k\mu_i$ the left and right hand sides of \eqref{dism} are analytic functions of each $\mu_i$, we deduce that \eqref{dism} actually holds in $\Omega^*_{[1]}$ under the assumption $\nu<2n+(k+1)/2 + \sum_{i=1}^k\mu_i$.
+
+For $n<0$, $\nu<2n+(k+1)/2+ \sum_{i=1}^k\mu_i$ and $(x_1,\dots, x_k)\in\Omega^*_{[1]}$,
+\begin{equation*}
+%\label{dismn}
+\sum_{m\ge 1} \frac{\lambda_m^{\nu-2n}}{(\lambda_m^2-\nu^2+H^2)J_\nu(\lambda_m)}
+\prod_{i=1}^k \frac{J_{\mu_i}(\lambda_m x_i)}{(\lambda_m x_i)^{\mu_i}} = 0.
+\end{equation*}
+
+Proceeding in the same way, we can explicitly sum the Bessel expansion~\eqref{ex2}. First of all, we complete the notation \eqref{omss1} and \eqref{omss2} with the following one: for $\omega>0$,
+\begin{align}
+\nonumber%\label{omss3}
+\Omega_{(\omega)} &= \Big\{(x_1,\dots,x_k)\in \RR^k: \sum_{i=1}^k |x_i| < \omega \Big\},\\
+\label{omss4}
+\Omega^*_{(\omega)} &= \Big\{(x_1,\dots,x_k)\in \Omega_{(\omega)}: \prod_{i=1}^kx_i\not =0 \Big\}.
+\end{align}
+Then we get, for $\Re \nu<2n+(k-1)/2+ \sum_{i=1}^k\Re\mu_i$,
+\begin{equation}
+\label{dism2}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-2n-1}}{J_{\nu+1}(j_{m,\nu})}
+\prod_{i=1}^k \frac{J_{\mu_i}(j_{m,\nu} x_i)}{(j_{m,\nu} x_i)^{\mu_i}}
+= \sum_{l=0}^n a_{n-l}^{\nu} \sum_{l_1+\cdots+l_k=l}
+\prod_{i=1}^k\frac{\left(-x_i^2/4\right)^{l_i}}
+ {2^{\mu_i}l_i!\, \Gamma(\mu_i + l_i+1)} ,
+\end{equation}
+where $(a_n^{\nu})_n$ is the sequence defined by \eqref{snfg} (or~\eqref{snrd}), and $(x_1,\dots, x_k)\in\Omega^*_{[1]}$ for $n\ge 1$, or $(x_1,\dots, x_k)\in\Omega^*_{(1)}$ for $n=0$.
+
+For $n<0$, $\Re \nu<2n+(k-1)/2+ \sum_{i=1}^k\Re\mu_i$ and $(x_1,\dots, x_k)\in\Omega^*_{(1)}$, we have
+\begin{equation*}
+%\label{joj4n}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-2n-1}}{J_{\nu+1}(j_{m,\nu})}
+\prod_{i=1}^k \frac{J_{\mu_i}(j_{m,\nu} x_i)}{(j_{m,\nu} x_i)^{\mu_i}}
+= 0.
+\end{equation*}
+
+%----------
+\section{Bessel expansions of non-polynomial functions}
+\label{sec:nopol}
+%----------
+
+In this section, some other examples of Bessel expansions which are not polynomials will be given.
+
+We start from the expansion generated by Proposition~\ref{qls} applied to the Bessel expansions \eqref{joj2} and~\eqref{dise}.
+
+%----------
+\subsection{Kneser-Sommerfeld type expansions}
+\label{sec:KnSom}
+%----------
+
+Let us prove the following identity for the multivariate expansion~\eqref{ex3}:
+\begin{align}
+\label{iec8}
+& \sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-1-2n}}{(j_{m,\nu}^{2}-z^2)J_{\nu+1}(j_{m,\nu})}
+\prod_{i=1}^k \frac{J_{\mu_i}(j_{m,\nu}x_i)}
+  {(j_{m,\nu}x_i)^{\mu_i}} = \frac{1}{z^{2n+2}}
+  \Bigg( \frac{z^{\nu}}{2J_\nu(z)}\prod_{i=1}^k\frac{J_{\mu_i}(x_i z)}{(x_i z)^{\mu_i}} \\
+  \nonumber
+&\qquad\quad \null- \sum_{l=0}^nz^{2l} \sum_{j=0}^l
+a_{l-j}^\nu \sum_{l_1+\cdots+l_k=j}
+\prod_{i=1}^k\frac{(-x_i^2/4)^{l_i}}
+   {2^{\mu_i }l_i!\, \Gamma(\mu_i + l_i+1)} \Bigg),
+\end{align}
+for $\Re \nu<2n+(k+3)/2+ \sum_{i=1}^k\Re \mu_i$ and $(x_1,\dots, x_k)\in \Omega_{[1]}^*$ (see~\eqref{omss2}), where the sequence $(a_n^{\nu})_n$ is defined by~\eqref{snfg} (or~\eqref{snrd}).
+
+We proceed in two steps.
+
+%----------
+\subsection{First step} 
+%----------
+
+The case $k=1$. 
+
+Applying Proposition~\ref{qls} to the expansion \eqref{joj2}, we get
+\begin{align}
+\label{jojp}
+&\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-1-2n}}{(j_{m,\nu}^{2}-z^2)J_{\nu+1}(j_{m,\nu})}
+  \frac{J_{\mu}(j_{m,\nu}x)}{(j_{m,\nu}x)^{\mu}} \\
+\nonumber 
+&\qquad = \frac{1}{z^{2n+2}} \bigg( \frac{z^\nu}{2J_\nu(z)} \frac{J_{\mu}(xz)}{(xz)^\mu}
+- \sum_{l=0}^nz^{2l} \sum_{j=0}^l
+\frac{a_{l-j}^\nu (-x^2/4)^{j}}{2^{\mu}j!\, \Gamma(\mu+j+1)} \bigg),
+\end{align}
+with uniform convergence in compact sets of $(0,1]$ for $\Re\nu<2n+2+\Re \mu$ and in $[0,1]$ for $\Re\nu<2n+3/2$, where the sequence $(a_n^\nu)$ is defined by~\eqref{snfg} (or~\eqref{snrd}).
+
+%----------
+\subsection{Second step} 
+%----------
+
+The case $k\ge 1$.
+
+Write
+\begin{equation}
+\label{iec7}
+f_{n,\nu}(x,z)=\sqrt{\frac{2}{\pi}} \sum_{l=0}^nz^{2l} \sum_{j=0}^l
+\frac{(-1)^ja_{l-j}^\nu x^{2j}}{(2j)!}.
+\end{equation}
+
+Consider the case $\mu=-1/2$ in~\eqref{jojp}. Using the identity \eqref{bsc}, we get, for $\Re \nu< 2n+3/2$ and $x\in[-1,1]$,
+\begin{equation*}
+%\label{iec18}
+\sqrt\frac{2}{\pi} \sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-2n-1}
+\cos(j_{m,\nu} x)}{(j_{m,\nu}^2-z^2)J_{\nu+1}(j_{m,\nu})}
+= \frac{1}{z^{2n+2}} \bigg( \frac{z^{\nu}\sqrt{2/\pi}\cos(zx)}{2J_\nu(z)}-f_{n,\nu}(x,z) \bigg).
+\end{equation*}
+The trigonometric identity
+\begin{equation*}
+%\label{iec19a}
+\sum_{\eps\in \pi_k} \cos\Big(z \sum_{i=1}^k\eps_ix_i\Big) = 2^k\prod_{i=1}^k\cos(zx_i),
+\end{equation*}
+together with Theorem~\ref{th:amcos} gives
+\begin{align*}
+%\label{iec19}
+& \sqrt\frac{2}{\pi} \sum_{m\ge 1} 
+\frac{j_{m,\nu}^{\nu-2n-1}}{(j_{m,\nu}^2-z^2)J_{\nu+1}(j_{m,\nu})} 
+\prod_{i=1}^k\cos(j_{m,\nu} x_i) \\
+%\nonumber
+&\qquad\qquad = \frac{1}{z^{2n+2}} \Bigg( \frac{z^{\nu}\sqrt{2/\pi}}{2J_\nu(z)}
+\prod_{i=1}^k\cos(zx_i) - \frac{1}{2^k} \sum_{\eps\in \pi_k}
+f_{n,\nu} \Big( \sum_{i=1}^k\eps_ix_i,z\Big) \Bigg).
+\end{align*}
+Using the identity \eqref{bsc}, \eqref{iec7} and \eqref{cag}, this can be rewritten in the form
+\begin{align}
+\label{iec19j}
+& \sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-2n-1}}{(j_{m,\nu}^2-z^2)J_{\nu+1}(j_{m,\nu})}
+\prod_{i=1}^k \frac{J_{-1/2}(j_{m,\nu} x_i)}{(j_{m,\nu} x_i)^{-1/2}}
+= \frac{1}{z^{2n+2}} \Bigg(\frac{z^{\nu}}{2J_\nu(z)}
+\prod_{i=1}^k \frac{J_{-1/2}(zx_i)}{(zx_i)^{-1/2}} \\
+\nonumber
+& \qquad -\left(\frac{2}{\pi}\right)^{k/2}
+\sum_{l=0}^nz^{2l} \sum_{j=0}^l
+\frac{(-1)^ja_{l-j}^\nu x^{2j}}{(2j)!} \sum_{l_1+\cdots+l_k=j}
+\binom{2j}{2l_1,\ldots,2l_k}\prod_{i=1}^kx_i^{2l_i} \Bigg),
+\end{align}
+where $(x_1,\dots,x_k)\in \Omega^*_{[1]}$.
+
+Assuming that $\Re \mu_i\ge -1/2$ and using the integral transform $T_{\mu_i,-1/2}$ \eqref{itc} acting on the variable $x_i$, we get from \eqref{iec19j} the identity~\eqref{iec8}.
+
+To extend the formula \eqref{iec8} from $\Re \nu\le 2n+3/2$, $\Re \mu_i\ge -1/2$ to
+$\Re\nu<2n+(k+3)/2+ \sum_{i=1}^k\Re \mu_i$ and $(x_1,\dots,x_k)\in\Omega^*_{[1]}$, we can proceed as in the second step in Sect.~\ref{subsec:Bespol}.
+
+For $n<0$, we have, by $-n$ times differentiation of the case $n=0$ of~\eqref{iec8},
+\[
+\sum_{m\ge 1} \frac{j_{m,\nu}^{\nu-1-2n}}{(j_{m,\nu}^{2}-z^2)J_{\nu+1}(j_{m,\nu})}
+\prod_{i=1}^k \frac{J_{\mu_i}(j_{m,\nu}x_i)}{(j_{m,\nu}x_i)^{\mu_i}} 
+= \frac{1}{z^{2n+2}}\frac{z^{\nu+k-2n-2}}{2J_\nu(z)}
+\prod_{i=1}^k \frac{J_{\mu_i}(x_i z)}{(x_i z)^{\mu_i}}
+\]
+for $\Re \nu<2n+(k+3)/2+ \sum_{i=1}^k\Re \mu_i$ and $(x_1,\dots, x_k)\in \Omega_{[1]}^*$.
+
+\bigskip
+
+In the same way, one can prove that
+\begin{align*}
+%\label{iec8h}
+& \sum_{m\ge 1} \frac{\lambda_m^{\nu-2n}}{(\lambda_m^2-z^2)(\lambda_m^2-\nu^2+H^2)J_\nu(\lambda_m)}
+\prod_{i=1}^k \frac{J_{\mu_i}(\lambda_m x_i)}{(\lambda_m x_i)^{\mu_i}} \\
+%\nonumber
+& \hspace{2cm} = \frac{1}{z^{2n+2}} \Bigg( \frac{z^{\nu}}{2\big((H-\nu)J_\nu(z)+zJ_{\nu-1}(z)\big)}
+\prod_{i=1}^k \frac{J_{\mu_i}(x_i z)}{(x_i z)^{\mu_i}} \\
+%\nonumber
+& \hspace{3cm} - \sum_{l=0}^nz^{2l} \sum_{j=0}^l
+a_{l-j}^{H,\nu} \sum_{l_1+\cdots+l_k=j}
+\prod_{i=1}^k\frac{(-x_i^2/4)^{l_i}}
+   {2^{\mu_i}l_i!\, \Gamma(\mu_i + l_i+1)} \Bigg),
+\end{align*}
+for $\Re \nu<2n+(k+5)/2+ \sum_{i=1}^k\Re \mu_i$ and $(x_1,\dots, x_k)\in \Omega^*_{[1]}$, where the sequence $(a_n^{H,\nu})_n$ is defined by~\eqref{difg} (or~\eqref{dird0}).
+
+%----------
+\subsection{Two more examples}
+%\label{subsec:twomore}
+%----------
+
+In this section, we sum the Bessel expansion \eqref{exn} and other related expansion.
+
+Let $\varphi$ be the analytic function in $\CC\setminus\{m^2: m\in \NN\setminus\{0\}\}$ defined by
+\begin{equation}
+\label{sej}
+\varphi(z) = \frac{1}{z}-\frac{\pi}{\sqrt z\sin(\pi \sqrt {z})}
+= 2 \sum_{m\ge 1}\frac{(-1)^m}{m^2-z}.
+\end{equation}
+Define now the sequence
+\begin{equation*}
+%\label{sej01}
+a_{n}^{\theta} = 1+\frac{\theta^{2n+2}\varphi^{(n)}(-\theta^2)}{n!} , 
+\quad n\ge0.
+\end{equation*}
+We next prove that the multivariate Bessel series \eqref{exn} is equal to
+\begin{align}
+\label{sejh}
+& \sum_{m\ge 1} \frac{(-1)^m}{(1+m^2/\theta ^2)^{n}} \prod_{i=1}^k
+\frac{J_{\mu_i}(\sqrt{1+m^2/\theta ^2}x_i)}
+  {(\sqrt{1+m^2/\theta ^2}x_i)^{\mu_i}} \\
+\nonumber
+&\qquad\quad
+= \frac{1}{2} \Bigg({-}\prod_{i=1}^k\frac{J_{\mu_i}(x_i)}{x_i^{\mu_i}} 
++ \sum_{l=0}^{n-1}a_{n-l-1}^{\theta} \sum_{l_1+\cdots+l_k=l}
+\prod_{i=1}^k\frac{(-x_i^2/4)^{l_i}}
+   {2^{\mu_i} l_i!\,\Gamma(\mu_i +l_i+1)} \Bigg),
+\end{align}
+where $1<2n+k/2+ \sum_{i=1}^k\Re \mu_i$ for $(x_1,\dots, x_k)\in\Omega_{(\theta \pi)}^*$ 
+(with the notation of~\eqref{omss4}).
+
+To this end, define the polynomials $P_n^{\mu,\theta}(x)$, $n\ge 0$, by
+\begin{align}
+\nonumber%\label{sej2}
+P_0^{\mu,\theta }(x) &= 0,\\
+\label{sej21}
+P_n^{\mu,\theta }(x) &= \sum_{j=0}^{n-1}
+\frac{a_{n-j-1}^{\theta}(-x^2/4)^{j}}{2^{\mu} j!\,\Gamma(\mu+j+1)}, \quad n\ge 1.
+\end{align}
+Then, $P_n^{\mu,\theta }$ is an even polynomial of degree $2n-2$. On the one hand, it is easy to check that
+\begin{align}
+\label{sej27}
+P_n^{\mu,\theta }(0) &= \frac{1}{2^{\mu} \Gamma(\mu+1)}
+\left(1+\frac{\theta ^{2n}\varphi^{(n-1)}(-\theta ^2)}{(n-1)!}\right), 
+\quad n\ge 1,\\
+\label{sej3}
+(P_n^{\mu,\theta })'(x) &= -xP_{n-1}^{\mu+1,\theta }(x),\\
+\nonumber%\label{sej0b}
+P_n^{\mu,\theta }(x) &= T_{\mu,-1/2,h}(P_n^{-1/2,\theta})(x),\quad \mu\ge -1/2+h.
+\end{align}
+On the other hand, it is plain that the conditions \eqref{sej27} and \eqref{sej3} determine uniquely the family of polynomials $P_{n}^{\mu,\theta}$.
+
+A simple computation using \eqref{sej} and \eqref{sej21} shows that
+\begin{equation}
+\label{sej22}
+P_n^{\mu,\theta }(0) = \frac{1}{2^{\mu} \Gamma(\mu+1)}
+\left(1+2 \sum_{m\ge1}\frac{(-1)^m}{(1+m^2/\theta ^2)^n}\right), \quad n\ge 1.
+\end{equation}
+Let us note that the polynomials $(P_n^{\mu,\theta })_n$ are actually quasi Bessel-Appell. Indeed, write $p_n^{\mu,\theta }(x)=P_{n+1}^{\mu,\theta }(x)$ so that $p_n^{\mu,\theta }$ is a even polynomial of degree $2n$. It is then easy to check that the polynomials $(p_n^{\mu,\theta })_n$ are the Bessel-Appell polynomials defined by \eqref{bad} from the generating function
+\[
+A(z) = A(z;\theta) = \frac{1}{1-z}+\theta^2\varphi(\theta^2(z-1)).
+\]
+
+The starting point to prove \eqref{sejh} is the series (see \cite[5.7.22.3, p.~682]{PBM1})
+\begin{equation}
+\label{sej5}
+\sum_{m\ge 1} (-1)^m\frac{J_{\mu}(\sqrt{1+m^2/\theta ^2}x)}
+{(\sqrt{1+m^2/\theta ^2}x)^{\mu}} = -\frac{J_\mu(x)}{2x^\mu},
+\end{equation}
+where $\Re \mu\ge 0$, $x\in (0,\theta \pi)$ and $\theta \not =0$. This is the case $k=1$, $n=0$ of the series~\eqref{sej}.
+
+We next prove the case $k=1$ and $n\ge 0$:
+\begin{equation}
+\label{seju}
+\sum_{m\ge 1} \frac{(-1)^m}{(1+m^2/\theta ^2)^{n}}
+\frac{J_{\mu}(\sqrt{1+m^2/\theta ^2}x)}
+{(\sqrt{1+m^2/\theta ^2}x)^{\mu}}
+= \frac{1}{2} \bigg({-}\frac{J_\mu( x)}{x^\mu}+P^{\mu,\theta}_n(x)\bigg),
+\end{equation}
+with $x\in[0,\theta \pi )$ for $1/2< 2n+\Re \mu$ (or $x \in (0,\theta \pi)$ for $n=0$).
+Write
+\begin{equation}
+\label{iec11}
+G_{\mu,\theta,n}(x) = \sum_{m\ge 1} \frac{(-1)^m}{(1+m^2/\theta ^2)^{n}}
+\frac{J_{\mu}(\sqrt{1+m^2/\theta ^2}x)}
+{(\sqrt{1+m^2/\theta ^2}x)^{\mu}},\quad x\in (0,\theta \pi),
+\end{equation}
+which is an analytic function of $\mu$ for $1/2< \Re \mu+2n$. Let us define the functions $Q_{\mu,\theta,n}$ by the identity
+\begin{equation}
+\label{iec12}
+G_{\mu,\theta,n}(x) = \frac{1}{2} \bigg({-}\frac{J_\mu( x)}{ x^\mu}+Q_{\mu,\theta,n}(x)\bigg).
+\end{equation}
+This definition and \eqref{sej5} show that
+\begin{equation}
+\label{iec13}
+Q_{\mu,\theta,0}(x)=0.
+\end{equation}
+Consider now $\mu$ big enough so as to allow the following computations. Using \eqref{fdbc}, it easily follows that
+$G_{\mu,\theta,n}'(x)=-xG_{\mu+1,\theta,n-1}(x)$, which proves that $Q_{\mu,\theta,n}$ satisfies
+\begin{equation}
+\label{iec14}
+Q_{\mu,\theta,n}'(x)=-xQ_{\mu+1,\theta,n-1}(x).
+\end{equation}
+Thus, \eqref{iec13} and \eqref{iec14} imply that $Q_{\mu,\theta,n}$ are polynomials.
+The identities \eqref{iec11}, \eqref{iec12} and \eqref{sej22} show that
+\begin{equation}
+\label{iec131}
+Q_{\mu,\theta,n}(0) = P^{\mu,\theta}_n(0).
+\end{equation}
+Then, from \eqref{iec14} and \eqref{iec131} we obtain $Q_{\mu,\theta,n}(x)=P_n^{\mu,\theta}(x)$. This proves the identity \eqref{seju} for $\mu$ big enough, and using a standard argument of analytic continuation, for $1/2< 2n+\Re \mu$.
+
+The multivariate expansion \eqref{sejh} can be proved proceeding as in the second step in Sect.~\ref{sec:KnSom}.
+
+If we assume $n<0$ and $1<2n+k/2+ \sum_{i=1}^k\Re \mu_i$, differentiating $-n$ times in \eqref{sejh} for $n=0$ proves that
+\[
+\sum_{m\ge 1} \frac{(-1)^m}{(1+m^2/\theta ^2)^{n}}
+\prod_{i=1}^k \frac{J_{\mu_i}(\sqrt{1+m^2/\theta ^2}x_i)}
+{(\sqrt{1+m^2/\theta ^2}x_i)^{\mu_i}}
+= -\frac{1}{2}\prod_{i=1}^k\frac{J_{\mu_i}(x_i)}{x_i^{\mu_i}}
+\]
+for
+$(x_1,\dots, x_k)\in\Omega_{(\theta \pi)}^*$.
+
+\bigskip
+
+The last example in this section is the Bessel expansion
+\begin{equation*}
+%\label{exn2}
+\sum_{m\ge 1} \frac{(-1)^m}{m^2(1+m^2/\theta ^2)^{n}}
+\prod_{i=1}^k\frac{J_{\mu_i}(\sqrt{1+m^2/\theta ^2}x_i)}
+{(\sqrt{1+m^2/\theta ^2}x_i)^{\mu_i}}.
+\end{equation*}
+This can be worked out in a way similar to the previous example using now
+the analytic function $\hat\varphi$ in $\CC\setminus\{m^2: m\in \NN\setminus\{0\}\}$ defined by
+\begin{equation*}
+%\label{sejx}
+\hat\varphi(z) = \frac{1}{z} \left(\frac{1}{z}-\frac{\pi}{\sqrt z\sin(\pi \sqrt {z})}
++ \frac{\pi^2}{6}\right)
+= 2 \sum_{m\ge 1}\frac{(-1)^m}{m^2(m^2-z)}.
+\end{equation*}
+Define next the sequence
+\begin{equation*}
+%\label{sej01x}
+\hat a_{n}^\theta = \frac{\pi^2}{6}-\frac{n+1}{\theta ^2}
++ \frac{\theta ^{2n+2}\hat \varphi^{(n)}(-\theta ^2)}{n!}, \quad n\ge0,
+\end{equation*}
+and the polynomials $\hat P_n^{\mu,\theta }(x)$, $n\ge 0$, by
+\begin{align*}
+%\label{sej2x}
+\hat P_0^{\mu,\theta }(x) &= 0,\\
+%\label{sej21u}
+\hat P_n^{\mu,\theta }(x) &= \sum_{j=0}^{n-1}\frac{\hat a_{n-j-1}^\theta(-x^2/4)^{j}}{2^{\mu}j!\,\Gamma(\mu+j+1)}, \quad n\ge 1.
+\end{align*}
+As before, $\hat P_n^{\mu,\theta }$ is an even polynomial of degree $2n-2$ and satisfies
+\begin{align*}
+%\label{sej21x}
+\hat P_n^{\mu,\theta }(0) &= \frac{1}{2^{\mu} \Gamma(\mu+1)}\left(\frac{\pi^2}{6}
+- \frac{n}{\theta ^2}+\frac{\theta ^{2n}\hat \varphi^{(n-1)}(-\theta ^2)}{(n-1)!}\right), \quad n\ge 1,\\
+%\label{sej3u}
+(\hat P_n^{\mu,\theta })'(x) &= -x\hat P_{n-1}^{\mu+1,\theta }(x),\\
+%\label{sej0bpm}
+\hat P_n^{\mu,\theta }(x) &= T_{\mu,-1/2,h}(\hat P_n^{-1/2,\theta })(x),\quad \mu\ge -1/2+h.
+\end{align*}
+
+Starting from the expansion
+\begin{equation*}
+%\label{seju2xx}
+\sum_{m\ge 1} (-1)^m\frac{J_{\mu}(\sqrt{1+m^2/\theta ^2}x)}
+{(\sqrt{1+m^2/\theta ^2}x)^{\mu}}
+= \frac{1}{2} \bigg(\frac{x^2J_{\mu+1}(x)}{2\theta^2 x^{\mu+1}}
+-\frac{\pi^2}{6}\frac{J_\mu(x)}{x^\mu}\bigg)
+\end{equation*}
+(see \cite[5.7.22.4, p.~682]{PBM1}), we can prove as before that
+\begin{equation*}
+%\label{seju2x}
+\sum_{m\ge 1} \frac{(-1)^m}{m^2(1+m^2/\theta ^2)^{n}}
+\frac{J_{\mu}(\sqrt{1+m^2/\theta ^2}x)}
+{(\sqrt{1+m^2/\theta ^2}x)^{\mu}}
+= \frac{1}{2} \bigg( \frac{x^2J_{\mu+1}(x)}{2\theta^2 x^{\mu+1}}
+- \left(\frac{\pi^2}{6}-\frac{n}{\theta ^2}\right)
+\frac{J_\mu(x)}{ x^\mu}+P_{n}^{\mu,\theta}(x)\bigg),
+\end{equation*}
+with $x\in[0,\theta\pi )$ for $-3/2-2n< \Re \mu$ (or $x \in (0,\theta \pi)$ for $n=0$).
+
+Proceeding as in the previous example, and using the identities
+\begin{align*}
+\sum_{\eps\in\pi_k} \Big(\sum_{i=0}^k\eps_ix_i\Big)
+\sin\Big( \theta \sum_{i=0}^k \eps_ix_i \Big)
+&= 2^k \sum_{i=1}^kx_i\sin(\theta x_i)\prod_{j=1;j\not=i}\cos(\theta x_j), \\
+T_{\mu,-1/2}(x\sin(x)) &= 2\sqrt \pi x^2 \,\frac{J_{\mu+1}(x)}{x^{\mu+1}},
+\end{align*}
+we arrive at
+\begin{align}
+\label{sejhx}
+& \sum_{m\ge 1} \frac{(-1)^m}{m^2(1+m^2/\theta ^2)^{n}}
+\prod_{i=1}^k \frac{J_{\mu_i}(\sqrt{1+m^2/\theta ^2}x_i)}
+{(\sqrt{1+m^2/\theta ^2}x_i)^{\mu_i}}\\\nonumber
+&\qquad = \frac{1}{2} \Bigg( \sum_{i=1}^k
+ \frac{x_i^2J_{\mu_i+1}(x_i)}{2\theta^2 x_i^{\mu_i+1}}
+ \prod_{j=1;j\not=i}^k\frac{J_{\mu_j}(x_j)}{ x_j^{\mu_j}}
+- \bigg(\frac{\pi^2}{6}-\frac{n}{\theta ^2}\bigg)
+\prod_{i=1}^k\frac{J_{\mu_i}(x_i)}{x_i^{\mu_i}} \\
+\nonumber
+&\qquad\qquad\null+ \sum_{l=0}^{n-1} \hat a_{n-l-1}^\theta \sum_{l_1+\cdots+l_k=l}
+\prod_{i=1}^k\frac{(-x_i^2/4)^{l_i}}
+{2^{\mu_i}l_i!\,\Gamma(\mu_i + l_i +1)} \Bigg),
+\end{align}
+for $0<2n+1+k/2+ \sum_{i=1}^k\Re \mu_i$ and $(x_1,\dots, x_k)\in\Omega_{(\theta\pi)}^*$ (recall that this set is defined in~\eqref{omss4}).
+
+If we assume $n<0$ and $0<2n+1+k/2+ \sum_{i=1}^k\Re \mu_i$, differentiating $-n$ times in \eqref{sejhx} for $n=0$, we have, for
+$(x_1,\dots, x_k)\in\Omega_{(\theta \pi)}^*$,
+\begin{align*}
+& \sum_{m\ge 1} \frac{(-1)^m}{m^2(1+m^2/\theta ^2)^{n}}
+\prod_{i=1}^k\frac{J_{\mu_i}(\sqrt{1+m^2/\theta ^2}x_i)}
+{(\sqrt{1+m^2/\theta ^2}x_i)^{\mu_i}} \\
+\nonumber
+&\qquad = \frac{1}{2} \Bigg( \sum_{i=1}^k \frac{x_i^2J_{\mu_i+1}(x_i)}{2\theta^2 x_i^{\mu_i+1}} 
+\prod_{j=1;j\not=i}^k \frac{J_{\mu_j}(x_j)}{ x_j^{\mu_j}}
+- \bigg(\frac{\pi^2}{6}-\frac{n}{\theta ^2}\bigg)
+\prod_{i=1}^k\frac{J_{\mu_i}(x_i)}{x_i^{\mu_i}} \Bigg).
+\end{align*}
+
+%----------
+\section{Appendix: multivariate Sneddon expansion}
+%\label{sec:mSe}
+\label{sec:Apen}
+%----------
+
+As we wrote in the introduction, when the particular Bessel series \eqref{obs} cannot be expanded in powers of $x^{2j}$, $j\in \NN$,
+the application of our method is much more complicated.
+We study here the multivariate Sneddon expansion \eqref{mse} (see \cite[\S\,2.2]{Sne}, \cite{Mar, DPVS}).
+
+Our starting point is the case $k=1$ of the multivariate Sneddon expansion~\eqref{mse} (see \cite[Sect.~4.3]{DPVS})
+\[
+\sum_{m\ge 1}\frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})}
+\frac{J_{\mu}(j_{m,\nu}x)}{(j_{m,\nu}x)^{\mu}}
+= \frac{2^{2\nu-2-\mu}\Gamma(\nu+1)^2}{\nu\Gamma(\mu+1)}
+\left(-1+ |x|^{-2\nu} \binom{\mu}{\nu}\right),
+\]
+which holds in $(-2,2)\setminus\{0\}$ for $2\Re \nu<1/2+\Re \mu$ with $\nu\not=0$.
+
+Taking $\mu=-1/2$, we obtain
+\[
+\sum_{m\ge 1}\frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})}\cos (xj_{m,\nu})
+= \frac{2^{2\nu-2}\Gamma(\nu+1)^2}{\nu}
+\left(-1+ |x|^{-2\nu} \binom{-1/2}{\nu}\right),
+\]
+which holds in $(-2,2)\setminus\{0\}$ for $\Re \nu<0$.
+
+Using Theorem~\ref{th:amcos}, we get, for $(x_1,\dots,x_k)\in \Omega_{(2)}^*$,
+\begin{equation}
+\label{ueq1}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})} \prod_{i=1}^k\cos (x_ij_{m,\nu})
+= \frac{2^{2\nu-2}\Gamma(\nu+1)^2}{\nu}
+\left(-1+\frac{1}{2^k} \binom{-1/2}{\nu}\psi(x_1,\dots,x_k)\right),
+\end{equation}
+where
+\begin{equation}
+\label{defp}
+\psi(x_1,\dots,x_k)= \sum_{\eps \in \Pi_k} \Big|\sum_{i=1}^k\eps_ix_i\Big|^{-2\nu}.
+\end{equation}
+
+In terms of the Bessel functions, \eqref{ueq1} can be rewritten as
+\begin{equation}
+\label{ueq1b}
+\sum_{m\ge 1} \frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})}
+\prod_{i=1}^k \frac{J_{-1/2}(x_ij_{m,\nu})}{(x_ij_{m,\nu})^{-1/2}}
+= \frac{2^{2\nu+k/2-2}\Gamma(\nu+1)^2}{\nu \pi^{k/2}}
+\left(-1+\frac{1}{2^k} \binom{-1/2}{\nu}\psi(x_1,\dots,x_k)\right).
+\end{equation}
+By applying the integral transform $T_{\mu_i,-1/2}$ \eqref{itc} in the variable $x_i$, $i=1,\dots, k$, and using \eqref{eq:sonin}, the left hand side of \eqref{ueq1b} gives
+\[
+\sum_{m\ge 1} \frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})}
+\prod_{i=1}^k \frac{J_{\mu_i}(x_ij_{m,\nu})}{(x_ij_{m,\nu})^{\mu_i}}.
+\]
+On other hand, using \eqref{eaq}, we get, for the right hand side of~\eqref{ueq1b},
+\[
+\frac{2^{2\nu+k/2-2} \Gamma(\nu+1)^2}{\nu \pi^{k/2}}
+\Bigg({-}\frac{2^{-k/2}\Gamma(1/2)^{k}}{\prod_{i=1}^k2^{\mu_i}\Gamma(\mu_i+1)}
++ \frac{1}{2^k} \binom{-1/2}{\nu} \bigodot_{i=1}^k T_{\mu_i,-1/2,x_i}(\psi(x_1,\dots,x_k)) \Bigg),
+\]
+where by $\bigodot_{i=1}^k T_{\mu_i,-1/2,x_i}(\psi(x_1,\dots,x_k))$ we denote the successive application of each of the integral transforms $T_{\mu_i,-1/2,x_i}$ acting on the variable $x_i$ to the function $\psi(x_1,\dots,x_k)$, for $i=1,\dots, k$.
+
+That is,
+\begin{align}
+\label{net1}
+& \sum_{m\ge 1} \frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})}
+\prod_{i=1}^k\frac{J_{\mu_i}(x_ij_{m,\nu})}{(x_ij_{m,\nu})^{\mu_i}}
+= \frac{2^{2\nu-2}\Gamma(\nu+1)^2}{\nu \prod_{i=1}^k2^{\mu_i}\Gamma(\mu_i+1)}
+\\
+\nonumber
+&\qquad\null \times\Bigg({-}1+\frac{1}{2^k} \binom{-1/2}{\nu}
+\frac{\prod_{i=1}^k 2^{\mu_i}\Gamma(\mu_i+1)}{2^{-k/2}\Gamma(1/2)^{k}}
+\, \bigodot_{i=1}^k T_{\mu_i,-1/2,x_i}(\psi(x_1,\dots,x_k)) \Bigg),
+\end{align}
+which holds in $\Omega^*_{(2)}$ (see~\eqref{omss4}) for $\Re \nu<0$ and $\Re \mu_i\le -1/2$.
+Since the function in the left hand side is even, we can assume that $x_i>0$, $1\le i\le k$.
+It is then enough to compute the integral transforms
+\begin{equation*}
+%\label{net2}
+T_{\mu_i,-1/2,x_i}(\psi(x_1,\dots,x_k)),\quad i=1,\dots , k.
+\end{equation*}
+We know how to proceed in the set $\Lambda_{i}^+$ \eqref{pic} assuming that the parameter $\mu_i$ is equal to $-1/2$. Indeed, by symmetry, we can assume $i=1$. Taking into account that in $\Lambda_{1}^+$ the first coordinate $x_1$ dominates the sum of the others, we write
+\[
+\psi(x_i,\dots, x_k)= \sum_{\eps \in \Pi_{k-1}}
+\bigg( \Big(x_1+ \sum_{i=2}^k\eps_ix_i\Big)^{-2\nu}
++ \Big(x_1- \sum_{i=2}^k \eps_ix_i\Big)^{-2\nu} \bigg),
+\]
+and then
+\begin{align}
+\nonumber
+\psi(x_1,\dots,x_k) &= \sum_{\eps \in \Pi_{k-1}}x_1 ^{-2\nu}
+\Bigg( \bigg(1+\frac{ \sum_{i=2}^k\eps_ix_i}{x_1}\bigg)^{-2\nu}
++ \bigg( 1-\frac{ \sum_{i=2}^k\eps_ix_i}{x_1}\bigg) ^{-2\nu}\Bigg) \\
+\nonumber
+ &= 2 \sum_{\eps \in \Pi_{k-1}}x_1 ^{-2\nu} \sum_{j=0}^\infty
+ \binom{-2\nu}{j}\frac{\big( \sum_{i=2}^k\eps _ix_i\big)^j}{x_1^j} \\
+ \nonumber
+ &= 2x_1^{-2\nu} \sum_{j=0}^\infty \binom{-2\nu}{j}\frac{1}{x_1^{j}}
+ \sum_{\eps \in \Pi_{k-1}} \Big( \sum_{i=2}^k\eps _ix_i \Big)^{j} \\
+ \nonumber
+ &= 2x_1^{-2\nu} \sum_{j=0}^\infty \binom{-2\nu}{2j}\frac{1}{x_1^{2j}}
+ \sum_{\eps \in \Pi_{k-1}} \Big( \sum_{i=2}^k\eps _ix_i \Big)^{2j} \\
+\label{expi}
+ &= 2x_1^{-2\nu} \sum_{j=0}^\infty \binom{-2\nu}{2j} \frac{2^{k-1}}{x_1^{2j}}
+ \sum_{l_2+\cdots+l_k=j}
+\binom{2j}{2l_2,\dots,2l_k} \prod_{i=2}^k x_i^{2l_{i}},
+\end{align}
+where we have used that if $j$ is odd then $\sum_{\eps \in \Pi_{k-1}} \big(\sum_{i=2}^k\eps _ix_i\big)^{j} = 0$, and the identity~\eqref{cag}.
+
+We next apply the integral transform $T_{\mu_i,-1/2}$ \eqref{itc} in the variable $x_i$, $i=2,\dots, k$, and use~\eqref{eaq}. This can be done because for $0<s_i<1$, $i=2,\dots, k$, the set $\Lambda_{1}^+$ is stable under the map
+\[
+(x_1,\dots,x_k) \mapsto (x_1,s_2x_2,\dots, s_kx_k),
+\]
+(i.e., if $(x_1,\dots,x_k)\in \Lambda_{1}^+$, then $(x_1,s_2x_2,\dots, s_kx_k)\in \Lambda_{1}^+$, as well), and we can then use the expansion~\eqref{expi}.
+Hence, we find
+\begin{align*}
+& \bigodot_{i=2}^k T_{\mu_i,-1/2,x_i} (\psi(x_1,\dots,x_k)) \\
+&\qquad = 2^k \sum_{j=0}^\infty \binom{-2\nu}{2j}x_1^{-2\nu -2j} \sum_{l_1+\cdots+l_k=j}
+\binom{2j}{2l_2,\dots,2l_k} \prod_{i=2}^k \frac{\Gamma(l_i+1/2)x_i^{2l_{i}}}{2^{\mu_i+1/2}\Gamma(\mu_i+l_i+1)}.
+\end{align*}
+Substituting in \eqref{net1}, we get after some easy computations
+\begin{align*}
+%\label{eye}
+& \sum_{m\ge 1}\frac{j_{m,\nu}^{2\nu-2}}{J^2_{\nu+1}(j_{m,\nu})}
+\frac{J_{-1/2}(x_1j_{m,\nu})}{(x_1j_{m,\nu})^{-1/2}} 
+\prod_{i=2}^k \frac{J_{\mu_i}(x_ij_{m,\nu})}{(x_ij_{m,\nu})^{\mu_i}}
+= \frac{2^{2\nu-2}\Gamma(\nu+1)^2}{\nu 2^{-1/2}\Gamma(1/2) \prod_{i=2}^k 2^{\mu_i}\Gamma(\mu_i+1) } \\%\nonumber
+&\qquad\qquad \times \Bigg( {-}1 +
+\binom{-1/2}{\nu} \sum_{j=0}^\infty (\nu)_j(\nu+1/2)_jx_1^{-2\nu -2j} \sum_{l_2+\cdots+l_k=j}
+ \prod_{i=2}^k \frac{x_i^{2l_{i}}}{l_i!\,(\mu_i+1)_{l_i}}\Bigg).
+\end{align*}
+This proves \eqref{mses} in $\Lambda_1^+$ for $\mu_1=-1/2$, $\Re \nu<0$ and $\Re \mu_i\le -1/2$.
+The extension to $2\Re \nu<(k-1)/2+ \sum_{i=2}^k\Re \mu_i$ can be done proceeding as in \cite[Sect.~4.1]{DPVS}, where the case $k=2$ was considered.
+
+As pointed out in the introduction, we have computational evidence showing that \eqref{mses} also holds in $\Lambda_1^+$ for $\mu_1\not =-1/2$. However, we have not been able to prove it, because for $0<s_1<( \sum_{j=2}^kx_j)/x_i$, the set $\Lambda_1^+$ is not stable under the map
+\[
+(x_1,\dots,x_k) \mapsto (s_1x_1,x_2,\dots, x_k),
+\]
+and we cannot use \eqref{expi} to compute the integral transform $T_{\mu_1,-1/2}$ \eqref{itc} acting on the variable $x_1$ applied to the function $\psi(x_1,\dots, x_k)$~\eqref{defp}.
+
+We have not succeeded in summing \eqref{mse} in $\Lambda_{r}^+$ because this set
+is not stable with respect to any of the maps
+\[
+(x_1,\dots,x_k) \mapsto (x_1,x_2,\dots,s_ix_i,\dots x_k),
+\]
+for certain values $s_i$ with $0<s_i<1$.
+
+%----------
+\begin{thebibliography}{33}
+%----------
+
+%\bibitem{An}
+%G. E. Andrews,
+%\textit{The Theory of Partitions},
+%Cambridge University Press, 1984.
+% Reedición "paperback" de la original hardcover edition de Addison-Wesley, 1976.
+
+%\bibitem{ApKa}
+%P. Appell and J. Kamp\'e de F\'eriet, 
+%Fonctions hyperg\'eom\'etriques et hypersph\'eriques. Polynomes d'Hermite,
+%Gauthier-Villars, Paris, 1926. %% 434 pages
+%% https://zbmath.org/52.0361.13
+%% https://searchworks.stanford.edu/view/2425003
+
+\bibitem{Br}
+Y. A. Brychkov,
+\textit{Handbook of special functions: derivatives, integrals, series and other formulas},
+Chapman and Hall/CRC, New York, 2008.
+
+\bibitem{Cho}
+F. M. Cholewinski,
+\textit{The finite calculus associated with Bessel functions},
+Contemporary Mathematics, 75,
+American Mathematical Society, Providence, Rhode Island, 1988.
+
+\bibitem{CDPV}
+\'O. Ciaurri, A. J. Dur\'an, M. P\'erez and J. L. Varona,
+{Bernoulli-Dunkl and Apostol-Euler-Dunkl polynomials with applications to series involving
+zeros of Bessel functions},
+\textit{J. Approx. Theory} \textbf{235} (2018), 20--45.
+% https://doi.org/10.1016/j.jat.2018.06.001
+
+\bibitem{DGMT}
+G. Dattoli, L. Giannessi, L. Mezi and A. Torre, 
+Theory of generalized Bessel functions, 
+\textit{Nuovo Cimento B (11)} % Il Nuovo Cimento B (1971--1996)
+\textbf{105}  (1990), 327--348.
+%% https://doi.org/10.1007/BF02726105
+%% https://mathscinet.ams.org/mathscinet-getitem?mr=1050881
+
+\bibitem{Dil-NIST}
+K. Dilcher,
+Bernoulli and Euler polynomials,
+\textit{NIST handbook of mathematical functions},
+% (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+587--599, % Es el Chapter 24
+%National Institute of Standards and Technology, Washington, DC, and
+%Cambridge University Press, Cambridge, 2010.
+U.S. Dept. Commerce, Washington, DC, 2010.
+Available online in \url{http://dlmf.nist.gov/24}.
+
+\bibitem{DPV}
+A. J. Dur\'an, M. P\'erez and J. L. Varona,
+{Fourier-Dunkl system of the second kind and Euler-Dunkl polynomials},
+\textit{J. Approx. Theory} \textbf{245} (2019), 23--39.
+% https://doi.org/10.1016/j.jat.2018.06.001
+
+\bibitem{DPV3}
+A. J. Dur\'an, M. P\'erez and J. L. Varona,
+{On the properties of zeros of Bessel series in the real line},
+\textit{Integral Transforms Spec. Funct.}
+\textbf{32} (2021), 912--931. % no. 11.
+% https://doi.org/10.1080/10652469.2020.1867129
+
+\bibitem{DPV2}
+A. J. Dur\'an, M. P\'erez and J. L. Varona,
+{A method for summing Bessel series and a couple of illustrative examples},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{150} (2022), 763--778.
+% https://doi.org/10.1090/proc/15684
+
+\bibitem{DPVS}
+A. J. Dur\'an, M. P\'erez and J. L. Varona,
+{Summing Sneddon-Bessel series explicitly},
+\textit{Math. Methods Appl. Sci.}, 2024, to appear,
+DOI: 10.1002/mma.9939
+% submitted; arXiv: \url{http://arxiv.org/abs/2207.08709}
+
+% MR4244979
+\bibitem{Gre}
+D. S. Grebenkov,
+A physicist's guide to explicit summation formulas involving zeros of Bessel functions and related spectral sums,
+\textit{Rev. Math. Phys.} \textbf{33} (2021), 2130002.
+% \url{https://doi.org/10.1142/S0129055X21300028}
+
+\bibitem{Ism}
+M. E. H. Ismail,
+\textit{Classical and quantum orthogonal polynomials in one variable},
+Encyclopedia of Mathematics and its Applications, 98,
+Cambridge Univ. Press,
+Cambridge, 2005.
+
+\bibitem{KhYa}
+S. Khan and G. Yasmin, 
+Generalized Bessel functions and Lie algebra representation,
+\textit{Math. Phys. Anal. Geom.} \textbf{8} (2005), no. 4, 299--313 (2006).
+%% La mezcla entre 2005 y 2006 est\'a en todos los sitios:
+%% https://mathscinet.ams.org/mathscinet-getitem?mr=2230097
+%% https://doi.org/10.1007/s11040-005-2969-3
+
+\bibitem{Mar}
+P. A. Martin,
+On Fourier-Bessel series and the Kneser-Sommerfeld expansion,
+\textit{Math. Meth. Appl. Sci.}
+\textbf{45} (2022), 1145--1152.
+% \url{https://doi.org/10.1002/mma.7841}
+
+\bibitem{Mar2}
+P. A. Martin,
+One hundred years of Watson's ``Bessel functions'',
+\textit{Lond. Math. Soc. Newsl.} \textbf{499} (2022), 22--24.
+
+\bibitem{OlMa-NIST}
+F. W. J. Olver and L. C. Maximon,
+Bessel functions,
+\textit{NIST Handbook of Mathematical Functions},
+% (edited by F. W. F. Olver, D. W. Lozier, R. F. Boisvert and C. W. Clark),
+215--286, % Es el Chapter 10
+%National Institute of Standards and Technology, Washington, DC, and
+%Cambridge University Press, Cambridge, 2010.
+U.S. Dept. Commerce, Washington, DC, 2010.
+Available online in \url{http://dlmf.nist.gov/10}
+
+%\bibitem{DLMF}
+%F. W. J. Olver, A. B. Olde Daalhuis, D. W. Lozier, B. I. Schneider,
+%R. F. Boisvert, C. W. Clark, B. R. Miller, B. V. Saunders,
+%H. S. Cohl, and M. A. McClain, eds.,
+%\textit{NIST Digital Library of Mathematical Functions},
+%\url{http://dlmf.nist.gov/},
+%Release 1.1.6 of 2022-06-30.
+
+\bibitem{PBM1}
+A. P. Prudnikov, Y. A. Brychkov and O. I. Marichev,
+\textit{Integrals and series. Vol.~1: Elementary functions},
+Gordon and Breach Science Publishers, New York, 1986.
+
+\bibitem{Rawn}
+M. D. Rawn,
+{On the summation of Fourier and Bessel series},
+\textit{J. Math. Anal. Appl.} \textbf{193} (1995), 282--295.
+% https://doi.org/10.1006/jmaa.1995.1235
+
+\bibitem{Sne}
+I. N. Sneddon,
+\textit{Mixed boundary value problems in potential theory},
+North-Holland, Amsterdam, 1966.
+
+\bibitem{Wat}
+G. N. Watson,
+\textit{A Treatise on the Theory of Bessel Functions} (2nd edition),
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+\bibitem{You}
+W. H. Young,
+On series of Bessel functions,
+\textit{Proc. London Math. Soc.} \textbf{18} (1920), 163--200.
+
+%----------
+\end{thebibliography}
+%----------
+
+%----------
+\end{document}
+%---------- 

@@ -1,0 +1,589 @@
+%&pdflatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% Mean and Weak Convergence of Some Orthogonal Fourier Expansions    % 
+% by Using $A_{p}$ Theory,                                           %
+% by                                                                 %
+% J. J. Guadalupe, M. P\'erez and J. L. Varona                       %
+%                                                                    %
+% PUBLISHED IN:                                                      %
+% ``Orthogonal Polynomials and Their Applications''                  %
+% (Proc. Int. Congr., Laredo 1987, J. Vinuesa, ed.),                 %
+% 161-169, Lect. Notes Pure Appl. Math. 117,                         %
+% Marcel Dekker, New York, 1989.                                     %
+% ISBN: 0-8247-8161-9                                                %
+%                                                                    %
+% Rewrited with LaTeX2e: 2-September-2004                            %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\nofiles % The file .aux is not necessary
+
+\usepackage{amsmath,amsfonts,amsthm}
+
+\usepackage{indentfirst}
+
+\addtolength{\textwidth}{0.5cm}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\supp}{\operatorname{supp}}
+
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\centering \normalfont\large\bfseries}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem*{theoMNT}{Theorem}
+\newtheorem*{lemOne}{Lema 1}
+\newtheorem*{lemTwo}{Lema 2}
+\newtheorem*{lemThree}{Lema 3}
+\newtheorem*{lemFour}{Lema 4}
+\newtheorem*{theoOne}{Theorem 1}
+\newtheorem*{theoTwo}{Theorem 2}
+\newtheorem*{theoThree}{Theorem 3}
+\newtheorem*{corOne}{Corollary 1}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remOne}{Remark 1}
+\newtheorem*{remTwo}{Remark 2}
+\newtheorem*{remThree}{Remark 3}
+
+\title{Mean and Weak Convergence\\ of Some Orthogonal Fourier Expansions\\ 
+by Using $A_{p}$ Theory}
+
+\author{\scshape Jos\'e J. Guadalupe, 
+Mario P\'erez, Juan L. Varona\\[5pt]
+\textit{Departamento de Matem\'aticas,}
+\textit{Universidad de Zaragoza, Spain}%
+\renewcommand\thefootnote{}%
+\renewcommand\footnotemark{}%
+\footnote{Authors are supported in part 
+by a grant of the CAICYT, PB85-0338.}%
+\footnote{THIS PAPER HAS BEEN PUBLISHED IN:
+\textit{Lect.\ Notes Pure Appl.\ Math.\@}
+\textbf{117} (1989), 161--169.}%
+\footnote{Copyright \copyright\ 1989 by Marcel Dekker, Inc.}%
+}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $d\mu$ be a finite positive Borel measure on $\R$ such that 
+$\supp(d\mu)$ is an infinite set and let $p_{n}(d\mu)$ denote 
+the corresponding orthonormal polynomials. For $f \in L^{1}(d\mu)$, 
+$S_{n}f$ stands for the $n$th partial sum of the orthogonal Fourier 
+expansion of $f$ in $\{p_{n}(d\mu)\}_{n=0}^{\infty}$, 
+that is,
+$$
+S_{n}(f,x) = \sum_{k=0}^{n} a_{k}p_{k}(x),
+\quad a_{k} = \widehat{f}(k) 
+= \int_{\R} fp_{k}\,d\mu.
+$$
+
+The study of the convergence of $S_{n}f$ in $L^{p}(d\mu)$ ($p \neq 2$)
+has been discussed for several classes of orthogonal polynomials 
+(c.f. Askey-Wainger [1], Badkov [2--4], Muckenhoupt [9--11], Newman-Rudin 
+[13], Pollard [14--16], Wing [19]). For instance, in the case 
+of Jacobi polynomials $\{P^{(\alpha,\beta)}_{n}(x)\}_{n=0}^{\infty}$ 
+which are orthogonal in $[-1,1]$ with respect to the weight $w(x) 
+= (1-x)^{\alpha}(1+x)^{\beta}$, $\alpha, \beta \geq -1/2$,
+Pollard proved that
+$|1/p-1/2| < \min\{1/(4\alpha+4),1/(4\beta+4)\}$ 
+is a sufficient condition for the uniform boundedness
+$\|S_{n}f\|_{p,w} \leq C\|f\|_{p,w}$, 
+which is equivalent to the convergence in $L^{p}(w)$, $1 < p < \infty$. 
+Newman and Rudin showed that the previous condition is also necessary 
+and later Muckenhoupt extended these results to $\alpha, \beta > -1$.
+
+On the other hand, M\'at\'e, Nevai and Totik [8] obtained, in 
+a general way, necessary conditions for the mean convergence 
+of Fourier expansions:
+
+%% \textsc{Theorem (Mate-Nevai-Totik)}.
+\begin{theoMNT}[M\'at\'e-Nevai-Totik]
+Let $d\mu$ be such that $\supp(d\mu) = [-1,1]$,
+$\mu' > 0$ almost everywhere, $U$ and $V$ nonnegative 
+Borel measurable functions such that neither of them vanishes 
+almost everywhere in $[-1,1]$ and $V$ is finite on a set with positive 
+Lebesgue mea-sure. If $S_{n}$ is uniformly bounded from $L^{p}(V^{p}\,d\mu)$ 
+into $L^{p}(U^{p}\,d\mu)$, then
+\begin{itemize}
+\item[(i)] $U^{p} \in L^{1}(d\mu)$, $V^{-q} \in L^{1}(d\mu)$, 
+$q = p/(p-1)$,
+\item[(ii)] $\displaystyle \int_{-1}^{1} U(x)^{p} \mu'(x)^{1-p/2}
+(1-x^{2})^{-p/4}\,dx < \infty$,
+\item[(iii)] $\displaystyle \int_{-1}^{1} V(x)^{-q} \mu'(x)^{1-q/2}
+(1-x^{2})^{-q/4}\,dx < \infty$.
+\end{itemize}
+\end{theoMNT}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Mean convergence}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The main subject in this paper is the study of the mean and weak 
+boundedness of the orthogonal Fourier expansion, in some particular 
+cases, by using $A_{p}$-theory, which plays a central role in the 
+weighted norm inequalities for the Hardy-Littlewood maximal operator 
+and the Hilbert transform.
+
+We start with the mean convergence recalling some definitions:
+\begin{itemize}
+\item[(i)] $(u,v) \in A_{p}(-1,1)$, $1 < p < \infty$, iff there 
+exists a positive constant $C$ such that
+$\displaystyle \left( \int_{I} u(x)\,dx \right)
+\left( \int_{I} v(x)^{-1/(p-1)}\,dx \right)^{p-1} \leq C|I|^{p}$
+for all intervals $I \subset [-1,1]$, where $|I|$ is the 
+Lebesgue measure of~$I$.
+
+\item[(ii)] $(u,v) \in A_{p}^{\delta}(-1,1)$ ($\delta > 1$)
+iff $(u^{\delta},v^{\delta}) \in A_{p}(-1,1)$.
+
+\item[(iii)] \sloppy Given a sequence $\{(u_{n},v_{n})\}_{n\in\N}$, we say that 
+$(u_{n},v_{n}) \in A_{p}(-1,1)$ uniformly if there exists a constant 
+$C$, independent of $n$, such that
+$\displaystyle \left( \int_{I} u_{n}(x)\,dx \right)
+\left( \int_{I} v_{n}(x)^{-1/(p-1)}\,dx \right)^{p-1} \leq C|I|^{p}$ 
+for all intervals $I \subset [-1,1]$.
+\end{itemize}
+
+It is well known that $(u,v) \in A_{p}$ is a necessary condition 
+for the boundedness of the Hilbert transform $H$ from $L^{p}(v)$ into 
+$L^{p}(u)$ and that $(u,v) \in A_{p}^{\delta}$ (for some 
+$\delta > 1$) is a sufficient condition [7], [12]. Analogous 
+conditions work for the uniform boundedness, modifying slightly 
+the arguments in~[12].
+
+This is connected with the Fourier expansion, and the idea comes 
+from Pollard: let $\{p_{n}(x)\}_{n=0}^{\infty}$ denote 
+the orthonormal polynomials with respect to $d\mu = \mu'(x)\,dx$ 
+and $\{q_{n}(x)\}_{n=0}^{\infty}$ the orthonormal 
+polynomials with respect to $(1-x^{2})\,d\mu$. Then
+$$
+S_{n}(f,x) = \int_{-1}^{1} f(t)K_{n}(x,t)\mu'(t)\,dt
+$$
+and the kernel $K_{n}(x,t)$ can be decomposed in the form
+$$
+K_{n}(x,t) = r_{n}T_{1}(n,x,t) + s_{n}T_{2}(n,x,t) + 
+s_{n}T_{3}(n,x,t)
+$$
+where:
+\begin{align*}
+T_{1}(n,x,t) &= p_{n+1}(x)p_{n+1}(t),\\
+T_{2}(n,x,t) &= (1-t^{2}) \frac{p_{n+1}(x) q_{n}(t)}{x-t},\\
+T_{3}(n,x,t) &= T_{2}(n,t,x) = (1-x^{2}) \frac{p_{n+1}(t) q_{n}(x)}{t-x}.
+\end{align*}
+If $\mu' > 0$ a.e., then $\{r_{n}\}$ and $\{s_{n}\}$ are bounded~[17].
+Let $U$ and $V$ be weights, $1 < p < \infty$, and
+$$
+W_{i}(f,x) = W_{i,n}(f,x) = \int_{-1}^{1} f(t)T_{i}(n,x,t)\mu'(t)\,dt
+\quad (i = 1,2,3).
+$$
+We try to estimate the three terms:
+$$
+\|(W_{i}f)U\|_{p,\mu'} \leq C\|fV\|_{p,\mu'}.
+$$
+Denote:
+\begin{gather*}
+u_{n}(x) = |p_{n+1}(x)|^{p}U(x)^{p}\mu'(x), \quad
+v_{n}(x) = |q_{n}(x)|^{-p}(1-x^{2})^{-p}V(x)^{p}\mu'(x)^{1-p},\\
+\overline{u}_{n}(x) = |q_{n}(x)|^{p}(1-x^{2})^{p}U(x)^{p}\mu'(x), \quad
+\overline{v}_{n}(x) = |p_{n+1}(x)|^{-p}V(x)^{p}\mu'(x)^{1-p}.
+\end{gather*}
+By using H\"{o}lder's inequality and $A_{p}$ results we obtain the 
+following sufficient conditions for the boundedness of $W_{i}$ ($i = 1,2,3$):
+\begin{align*}
+(u_{n},v_{n}) &\in A_{p}^{\delta}(-1,1) \quad\text{uniformly for 
+some } \delta > 1,\\
+(\overline{u}_{n},\overline{v}_{n}) &\in A_{p}^{\delta}(-1,1) 
+\quad\text{uniformly for some } \delta > 1.
+\end{align*}
+On the other hand, the conditions
+\begin{equation}
+((1-x^{2})^{-p/4}U(x)^{p}\mu'(x)^{1-p/2},
+(1-x^{2})^{-p/4}V(x)^{p}\mu'(x)^{1-p/2}) \in A_{p}(-1,1)
+\tag{1}
+\end{equation}
+and
+\begin{equation}
+((1-x^{2})^{p/4}U(x)^{p}\mu'(x)^{1-p/2},
+(1-x^{2})^{p/4}V(x)^{p}\mu'(x)^{1-p/2}) 
+\in A_{p}(-1,1)
+\tag{2}
+\end{equation}
+turn out to be necessary for the boundedness of $W_{i}$ ($i = 1,2,3$). 
+From (1), (2) and Th.~2 in~[8], M\'at\'e-Nevai-Totik's conditions 
+for the mean convergence of $S_{n}f$ can be obtained.
+
+Next, we introduce a particular kind of measures.
+
+\begin{definition}
+We say that $d\mu = \mu'(x)\,dx \in H$ 
+if $\mu'(x) = (1-x)^{\alpha}(1+x)^{\beta}w(x)$, where:
+\begin{itemize}
+\item[(i)] $w > 0$ a.e.\ and $C_{1} < w(x) < C_{2}$ for $x \in (1-\varepsilon,1)$ 
+and $x \in (-1,-1+\varepsilon)$.
+\item[(ii)] $|p_{n}(x)| \leq C (1 - x + a_{n})^{-(\alpha/2+1/4)}
+(1 + x + b_{n})^{-(\beta/2+1/4)}w(x)^{-1/2}$.
+\item[(iii)] $|q_{n}(x)| \leq C (1 - x + a_{n})^{-(\alpha/2+3/4)}
+(1 + x + b_{n})^{-(\beta/2+3/4)} w(x)^{-1/2}$
+and $\{a_{n}\}$, $\{b_{n}\}$ are positive sequences such that $\lim a_{n} 
+= \lim b_{n} = 0$.
+\end{itemize}
+\end{definition}
+
+There exist particular weights belonging to the class~$H$: the 
+generalized Jacobi weights $(GJ)$ $d\mu(x) = \mu'(x)\,dx$, 
+being
+$$
+\mu'(x) = \varphi(x)(1-x)^{\Gamma_{1}}
+\prod_{k=2}^{N-1} |x-x_{k}|^{\Gamma_{k}} (1+x)^{\Gamma_{N}}
+$$
+where $\Gamma_{k} \geq 0$ ($k = 1,2,\dots,N$),
+$1 > x_{2} > \dots  > x_{N-1} > -1$, 
+$\varphi > 0$ and continuous on $[-1,1]$ and
+$\omega(\delta)/\delta \in L^{1}(0,1)$, $\omega$
+being the modulus of continuity of~$\varphi$.
+
+\begin{theoOne}
+Let $d\mu \in H$, 
+$U(x)=(1-x)^{a}(1+x)^{b}u(x)$, 
+$V(x)=(1-x)^{A}(1+x)^{B}v(x)$, with 
+$u > 0$ a.e., $v > 0$ a.e.\ and such that $C_{1} < u(x), v(x) < C_{2}$ 
+for $x \in (1-\varepsilon,1)$ and $x \in (-1,-1+\varepsilon)$. 
+If
+\begin{align*}
+|(\alpha+1)(1/p-1/2) + (a+A)/2| 
+&< (a-A)/2 + \min\{1/4,(\alpha+1)/2\},\quad A \leq a,\\
+|(\beta+1)(1/p-1/2) + (b+B)/2| 
+&< (b-B)/2 + \min\{1/4,(\beta+1)/2\},\quad B \leq b,
+\end{align*}
+and
+$$
+  (w^{1-p/2}u^{p},w^{1-p/2}v^{p}) \in A_{p}^{\delta}(-1,1) 
+  \quad\text{for some \ } \delta > 1,
+$$
+then:
+$$
+\int_{-1}^{1} |S_{n}(f,x)U(x)|^{p}\mu'(x)\,dx 
+\leq C\int_{-1}^{1} |f(x)V(x)|^{p}\mu'(x)\,dx.
+$$
+\end{theoOne}
+
+This theorem is a consequence of the following lemmas:
+
+\begin{lemOne}
+Let $\{u_{n}(x)\}$, $\{v_{n}(x)\}$, $\{U_{n}(x)\}$, $\{V_{n}(x)\}$ 
+be sequences of weights defined on a finite interval $(a,b)$. Let 
+$c \in (a,b)$ and $\varepsilon > 0$ be fixed and independent 
+of~$n$. Assume that there exist some positive constants $\lambda_{i}$ 
+($i = 1,2,3,4$) such that $\lambda_{1} \leq U_{n}(x), V_{n}(x) 
+\leq \lambda_{2}$ on $(a,c+\varepsilon)$ and $\lambda_{3} 
+\leq u_{n}(x), v_{n}(x) \leq \lambda_{4}$ on $(c-\varepsilon,b)$.\\
+If $(u_{n},v_{n}) \in A_{p}(a,c)$ and $(U_{n},V_{n}) \in A_{p}(c,b)$ 
+uniformly, then $(u_{n}U_{n},v_{n}V_{n}) \in A_{p}(a,b)$ 
+uniformly.
+\end{lemOne}
+
+\begin{lemTwo}
+Let $\{x_{n}\}$ be a sequence of positive numbers which 
+converges to zero. Then
+$(x^{r}(x+x_{n})^{s},x^{R}(x+x_{n})^{S}) \in A_{p}^{\delta}(0,1)$ 
+uniformly if and only if:
+$$
+r > -1,\ R < p-1,\ R \leq r,\ R+S \leq r+s,\ r+s > -1,\ R+S < p-1.
+$$
+\end{lemTwo}
+
+From the above theorem, we have the following result, which was 
+established by Badkov [3] (using other methods and without the 
+restriction $\Gamma_{k} \geq 0$, $2 \leq k \leq N-1$):
+
+\begin{corOne}
+Let $w \in (GJ)$ and
+$U(x) = (1-x)^{a}(1+x)^{b} \prod_{k=2}^{N-1} |x-x_{k}|^{c_{k}}$. 
+If
+\begin{align*}
+|(\Gamma_{1}+1) (1/2-1/p) - a| < \min\{1/4,(\Gamma_{1}+1)/2\},\\
+|(\Gamma_{N}+1) (1/2-1/p) - b| < \min\{1/4,(\Gamma_{N}+1)/2\}
+\end{align*}
+and
+$$
+|(\Gamma_{k}+1) (1/2-1/p) - c_{k}| < \min\{1/2,(\Gamma_{k}+1)/2\}
+\quad (k = 2,\dots ,N-1),
+$$
+then
+$$
+\int_{-1}^{1} |S_{n}(f,x)U(x)|^{p}\mu'(x)\,dx 
+\leq C \int_{-1}^{1} |f(x)U(x)|^{p}\mu'(x)\,dx.
+$$
+\end{corOne}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Weak convergence}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Another aim in this paper is to examine the weak behaviour of 
+the orthogonal Fourier expansion, that is to study if there exists 
+a constant $C$, independent of $n$, $y$ and $f$, such that:
+$$
+\int_{|S_{n}(f,x)|>y} d\mu(x)
+\leq Cy^{-p} \int_{-1}^{1} |f(x)|^{p}\,d\mu(x), 
+\quad y > 0,
+$$
+i.e., if $S_{n}$ is uniformly bounded from $L^{p}(d\mu)$ into 
+$L^{p}_{*}(d\mu)$, $1 < p < \infty$.
+
+The previous inequality only can be true, besides the mean convergence 
+interval, in its endpoints. For the Fourier-Legendre expansion 
+($d\mu = dx$), Chanillo [5] proved that the partial sum operator 
+is not weak type $(4,4)$.
+
+The following result gives necessary conditions for the weak 
+boundedness~[6].
+
+\begin{theoTwo}
+Let $d\mu$ be such that $\supp(d\mu) = [-1,1]$, 
+$\mu' > 0$ a.e., $U$ and $V$ be weights, $1 < p < \infty$. 
+If there exists a constant $C$ such that
+$$
+\|S_{n}f\|_{L^{p}_{*}(U^{p}\,d\mu)} \leq C\|f\|_{L^{p}(V^{p}\,d\mu)}
+$$
+holds for all integers $n \geq 0$ and every $f \in L^{p}(V^{p}\,d\mu)$, 
+then:
+\begin{itemize}
+\item[(i)] $U^{p}, V^{-q} \in L^{1}(d\mu)$,
+\item[(ii)] $\mu'(x)^{-1/2}(1-x^{2})^{-1/4} \in L^{p}_{*}(U^{p}\mu'\,dx)$,
+\item[(iii)] $\mu'(x)^{-1/2}(1-x^{2})^{-1/4} \in L^{q}(V^{-q}\mu'\,dx)$.
+\end{itemize}
+\end{theoTwo}
+
+This result is a consequence of the following lemmas:
+
+\begin{lemThree}
+Let $U$ and $V$ be weights and $1 < p < \infty$. 
+If there exists a constant $C$ such that for every $f \in L^{p}(V^{p}\,d\mu)$ 
+the inequality
+$$
+\|S_{n}f\|_{L^{p}_{*}(U^{p}\,d\mu)} \leq C\|f\|_{L^{p}(V^{p}\,d\mu)}
+$$
+holds for all integers $n \geq 0$, then
+$$
+\|p_{n}\|_{L^{q}(V^{-q}\,d\mu)} \|p_{n}\|_{L^{p}_{*}(U^{p}\,d\mu)} \leq C.
+$$
+\end{lemThree}
+
+\begin{lemFour}[{[8, Th.~2]}]
+Let $\supp(d\mu) = [-1,1]$, $\mu' > 0$ a.e.\ in
+$[-1,1]$ and $0 < p \leq \infty$. There exists a
+constant $C$ such that if $g$ is a Lebesgue-measurable function 
+in $[-1,1]$, then
+$$
+\|\mu'(x)^{-1/2}(1-x^{2})^{-1/4}\|_{L^{p}(|g|^{p}\,dx)}
+\leq \liminf_{n \to \infty} \|p_{n}\|_{L^{p}(|g|^{p}\,dx)}.
+$$
+In particular, if
+$$
+\liminf_{n \to \infty} \|p_{n}\|_{L^{p}(|g|^{p}\,dx)} = 0
+$$
+then $g = 0$ a.e.
+\end{lemFour}
+
+We are going to study the weak boundedness of the Fourier-Jacobi 
+expansion. Since for $-1 < \alpha, \beta \leq -1/2$ 
+the conditions $|1/p-1/2|< \min\{1/(4\alpha+4),1/(4\beta+4)\}$ 
+are trivial for $p \in (1,\infty)$, we suppose, by symmetry, 
+$\alpha \geq \beta$ and $\alpha > -1/2$. Then, 
+the mean convergence interval is $4(\alpha+1)/(2\alpha+3) 
+< p < 4(\alpha+1)/(2\alpha+1)$.
+
+\begin{remOne}
+If $U(x) = V(x) = 1$, the inequality $(\alpha+1)(1/p-1/2) 
+< 1/4$ is not satisfied for $p = 4(\alpha+1)/(2\alpha+3)$. 
+It implies that $S_{n}$ is not weak type $(p,p)$ for the lower endpoint 
+of the interval of mean convergence. The same happens with generalized 
+Jacobi polynomials.
+\end{remOne}
+
+\begin{remTwo}
+The conditions in Theorem~2 are the same as those 
+of M\'at\'e-Nevai-Totik's theorem. Thus, the conditions obtained 
+by M\'at\'e, Nevai and Totik are necessary not only for the mean 
+convergence but also for the weak convergence.
+\end{remTwo}
+
+\begin{remThree}
+It can be proved that M\'at\'e-Nevai-Totik's conditions 
+are not sufficient for the weak convergence. In order to prove 
+this, consider the Fourier-Legendre expansion ($d\mu = dx$), 
+$p = 4$ and take
+\begin{align*}
+U(x) &= \left|\log \frac{1+x}{4} \right|^{-5/8}
+\left|\log \frac{1-x}{4} \right|^{-5/8}, \\
+V(x) &= \left|\log \frac{1+x}{4} \right|^{-3/8}
+\left|\log \frac{1-x}{4} \right|^{-3/8}.
+\end{align*}
+\end{remThree}
+
+Let $S_{n}$ denote the $n$th partial sum of the Fourier-Jacobi expansion 
+with respect to $\mu'(x) = (1-x)^{\alpha}(1+x)^{\beta}$, 
+being $\alpha \geq \beta$ and $\alpha > -1/2$. 
+Then, the interval of mean convergence is given by $4(\alpha+1)/(2\alpha+3) 
+< p < 4(\alpha+1)/(2\alpha+1)$. Theorem~2 works 
+to prove that $S_{n}$ is not weak type on $L^{p}(\mu')$ for $p 
+= 4(\alpha+1)/(2\alpha+3)$, but it is not useful to show 
+that $S_{n}$ is not weak type for $p = 4(\alpha+1)/(2\alpha+1)$. 
+It leads us to make use of other arguments.
+
+\begin{theoThree}
+Let $r = 4(\alpha+1)/(2\alpha+1)$. Then, there exists no 
+constant $C$, independent of $n$ and $f \in L^{r}(\mu')$, such that
+$$
+\|S_{n}f\|_{L^{r}_{*}(\mu')} \leq C\|f\|_{L^{r}(\mu')}.
+$$
+\end{theoThree}
+
+\begin{proof}
+Decompose the kernel $K_{n}(x,t)$, as before, in the 
+form
+$$
+K_{n}(x,t) = r_{n}T_{1}(n,x,t) + s_{n}T_{2}(n,x,t) + 
+s_{n}T_{3}(n,x,t).
+$$
+By using the estimates
+$$
+|p_{n}(x)| \leq C(1-x)^{-\alpha/2-1/4}, 
+\quad
+|q_{n}(x)| \leq C(1-x)^{-\alpha/2-3/4}, 
+\quad x \in (0,1),
+$$
+H\"{o}lder's inequality and standard arguments of $A_{p}$ theory, 
+the boundedness of $T_{1}$ and $T_{3}$ can be proved.
+
+Now, it is not difficult to prove that
+$$
+\int_{|p_{n}(x)H(f(t)q_{n-1}(t)(1-t^{2})\mu'(t),x)|>y} \mu'(x)\,dx
+\leq Cy^{-r} \|f\|^{r}_{r,\mu'}
+$$
+is not satisfied for any fixed constant $C$. The proof is by contradiction, 
+constructing a sequence of functions $\{f_{m,n}\}$ such that the 
+constant $C$ appearing in the previous inequality grows with~$m$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frenchspacing
+
+\bibitem{1.}
+\textsc{R. Askey and S. Wainger}, Mean convergence of expansions 
+in Laguerre and Hermite series, \textit{Amer. J. Math.} \textbf{87} (1965), 
+695--708.
+
+\bibitem{2.}
+\textsc{V. M. Badkov}, Convergence in the mean of Fourier series 
+in orthogonal polynomials, \textit{Math. Notes} \textbf{14} (1973), 651--657.
+
+\bibitem{3.}
+\textsc{V. M. Badkov}, Convergence in the mean and almost everywhere 
+of Fourier series in polynomials orthogonal on an interval, 
+\textit{Math. USSR Sbornik} \textbf{24} (1974), 223--256.
+
+\bibitem{4.}
+\textsc{V. M. Badkov}, Approximation properties of Fourier series 
+in orthogonal polynomials, \textit{Russian Math. Surveys} \textbf{33} (1978), 
+53--117.
+
+\bibitem{5.}
+\textsc{S. Chanillo}, On the weak behaviour of partial 
+sums of Legendre series, \textit{Trans. Amer. Math. Soc.} \textbf{268} 
+(1981), 367--376.
+
+\bibitem{6.}
+\textsc{J. J. Guadalupe, M. P\'erez and J. L. Varona,} Weak behaviour 
+of Fourier-Jacobi series, \textit{to appear in Journal of Approximation 
+Theory.}
+
+\bibitem{7.}
+\textsc{R. A. Hunt, B. Muckenhoupt and R. L. Wheeden}, Weighted 
+norm inequalities for the conjugate function and the Hilbert 
+transform, \textit{Trans. Amer. Math. Soc.} \textbf{176} (1973), 227--251.
+
+\bibitem{8.}
+\textsc{A. M\'at\'e, P. Nevai and V.Totik}, Necessary conditions 
+for weighted mean convergence of Fourier series in orthogonal 
+polynomials, \textit{J. Approx. Theory} \textbf{46} (1986), 314--322.
+
+\bibitem{9.}
+\textsc{B. Muckenhoupt}, Mean convergence of Jacobi series, 
+\textit{Proc. Amer. Math. Soc.} \textbf{23} (1969), 306--310.
+
+\bibitem{10.}
+\textsc{B. Muckenhoupt}, Mean convergence of Hermite and Laguerre 
+series~I, \textit{Trans. Amer. Math. Soc.} \textbf{147} (1970), 419--431.
+
+\bibitem{11.}
+\textsc{B. Muckenhoupt}, Mean convergence of Hermite and Laguerre 
+series~II, \textit{Trans. Amer. Math. Soc.} \textbf{147} (1970), 433--460.
+
+\bibitem{12.}
+\textsc{C. J. Neugebauer}, Inserting $A_{p}$-weights, \textit{Proc. 
+Amer. Math. Soc.} \textbf{87} (1983), 644--648.
+
+\bibitem{13.}
+\textsc{J. Newman and W. Rudin}, Mean convergence of orthogonal 
+series, \textit{Proc. Amer. Math. Soc.} \textbf{3} (1952), 219--222.
+
+\bibitem{14.}
+\textsc{H. Pollard}, The mean convergence of orthogonal series~I,
+\textit{Trans. Amer. Math. Soc.} \textbf{62} (1947), 387--403.
+
+\bibitem{15.}
+\textsc{H. Pollard}, The mean convergence of orthogonal series~II,
+\textit{Trans. Amer. Math. Soc.} \textbf{63} (1948), 355--367.
+
+\bibitem{16.}
+\textsc{H. Pollard}, The mean convergence of orthogonal series~III,
+\textit{Duke Math. J.} \textbf{16} (1949), 189--191.
+
+\bibitem{17.}
+\textsc{E. A. Rahmanov}, On the asymptotics of the ratio of 
+the orthogonal polynomials.~II, \textit{Math. USSR Sbornik} \textbf{46} 
+(1983), 105--117.
+
+\bibitem{18.}
+\textsc{G. Szeg\H{o}}, ``Orthogonal Polynomials'', 
+Amer. Math. Soc. Colloq. Publ., vol. 23, Amer. Math. Soc., Providence, 
+RI, 1959.
+
+\bibitem{19.}
+\textsc{G. M. Wing}, The mean convergence of orthogonal 
+series, \textit{Amer. J. Math.} \textbf{72} (1950), 792--808.
+
+\end{thebibliography}
+
+\end{document}

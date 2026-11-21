@@ -1,0 +1,441 @@
+%&pdflatex
+\documentclass[a4paper]{article}
+
+\usepackage[english,spanish]{babel}
+
+\usepackage{amsmath,amsfonts,amsthm}
+
+\newtheorem{theorem}{Teorema}
+\newtheorem*{corollary*}{Corolario}
+\newtheorem{lemma}{Lema}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\calO}{\mathcal{O}}
+
+\def\limtoenorme{\mathop{\,\relbar\joinrel\relbar\joinrel%
+  \longrightarrow\,}\limits}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{ESTIMACIONES DE POLINOMIOS ORTOGONALES CON PESO
+$(1-x)^{\alpha} (1+x)^{\beta} + M\delta_{-1} + N\delta_{1}$}
+
+\author{Mario P\'erez Riera y Juan Luis Varona Malumbres%
+\renewcommand\thefootnote{}
+\renewcommand\footnotemark{}
+\footnote{
+Este art\'{\i}culo se present\'o en las
+\textit{XIII Jornadas Hispano Lusas de Matem\'aticas}, Universidad de Valladolid (Valladolid, 1988).
+Contrariamente a lo anunciado ~---y dado el tiempo ya transcurrido---
+parece claro que no va a haber nunca actas de dicho congreso.
+As\'{\i}, \'este es un manuscrito sin publicar; no obstante,
+el resultado principal de este trabajo ~---el teorema~2---
+tambi\'en est\'a demostrado, con un m\'etodo totalmente distinto
+y mucho m\'as general al aqu\'{\i} empleado,
+en el art\'{\i}culo
+\textsc{J.~J. Guadalupe, M.~P\'erez, F.~J.~Ruiz y J.~L.~Varona},{Asymptotic behaviour of orthogonal polynomials relative to
+measures with mass points},\textit{Mathematika}\textbf{40} (1993), 331--344.
+}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectlanguage{english}
+\begin{abstract}\noindent
+Let $w$ be a Jacobi weight function and $\delta_{t}$ the 
+delta function at a point~$t$. We obtain some estimates for the 
+polynomials which are orthogonal with respect to $w + M \delta_{-1} 
++ N \delta_{1}$, by using expresions which relate them to the 
+Jacobi polynomials.
+\end{abstract}
+\selectlanguage{spanish}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote}
+\textit{Clasificaci\'on A.M.S. (1980)}: 42C10.
+\end{quote}
+\bigskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Sean $\alpha, \beta > -1$ y $\{P^{(\alpha,\beta)}_{n}\}_{n \in \N}$
+los polinomios de Jacobi usuales~\cite{Sz}, ortogonales con respecto 
+a la funci\'{o}n peso $(1-x)^{\alpha}(1+x)^{\beta}$ sobre el 
+intervalo $[-1,1]$. Algunas propiedades que necesitaremos son
+Comencemos con
+$$
+P^{(\alpha,\beta)}_{n}(1) = \frac{(\alpha+1)_{n}}{n!} ,
+\quad\text{donde}\quad
+(\alpha+1)^{n} = \frac{\Gamma(\alpha+n+1)}{\Gamma(\alpha+1)},
+$$
+$$
+P^{(\alpha,\beta)}_{n}(-x) = (-1)^{n}P^{(\beta,\alpha)}_{n}(x).
+$$
+El coeficiente director del polinomio $P^{(\alpha,\beta)}_{n}$ es
+$$
+k^{(\alpha,\beta)}_{n} = \frac{2^{-n} \Gamma(2n+\alpha+\beta+1)}{\Gamma(n+1)\Gamma(n+\alpha+\beta+1)},
+$$
+y su norma al cuadrado vale
+\begin{align*}
+h^{(\alpha,\beta)}_{n} &= \int_{-1}^{1} [P^{(\alpha,\beta)}_{n}(x)]^{2} 
+(1-x)^{\alpha}(1+x)^{\beta} \,dx \\
+&= \frac{2^{\alpha+\beta+1}\Gamma(n+\alpha+1)\Gamma(n+\beta+1)}
+  {(2n+\alpha+\beta+1)\Gamma(n+1)\Gamma(n+\alpha+\beta+1)}.
+\end{align*}
+F\'{o}rmula de Rodrigues:
+$$
+P^{(\alpha,\beta)}_{n}(x) 
+= (-2)^{-n}(n!)^{-1} (1-x)^{-\alpha}(1+x)^{-\beta} \, \frac{d^{n}}{dx^{n}} 
+[(1-x)^{n+\alpha}(1+x)^{n+\beta}].
+$$
+Finalmente, es conocida~\cite{Mu} la acotaci\'{o}n
+$$
+(h^{(\alpha,\beta)}_{n})^{-1/2} |P^{(\alpha,\beta)}_{n}(x)| 
+\leq K \left(1-x + \frac{1}{n^{2}} \right)^{-\alpha/2-1/4}
+\left(1+x + \frac{1}{n^{2}} \right)^{-\beta/2-1/4}.
+$$
+
+Sean ahora $M,N \geq 0$ y
+$$
+d\mu(x) = \frac{\Gamma(\alpha+\beta+2)}
+  {2^{\alpha+\beta+1}\Gamma(\alpha+1)\Gamma(\beta+1)}
+(1-x)^{\alpha} (1+x)^{\beta} \,dx + M \delta_{-1}(x) + N \delta_{1}(x)
+$$
+sobre el intervalo $[-1,1]$, donde $\delta_{\pm1}$ 
+es la delta de Dirac sobre el punto~$\pm1$. El prop\'{o}sito 
+de este trabajo es obtener las mismas acotaciones para los polinomios 
+ortonormales con respecto a~$d\mu$.
+
+Sea
+\begin{equation}
+\label{eq:1}
+\begin{aligned}
+&P^{(\alpha,\beta,M,N)}_{n}(x) =
+\left[\frac{(\alpha+\beta+1)_{n}}{n!}\right]^{2} 
+\bigg\{ \frac{n+\alpha+\beta+1}{2(\alpha+\beta+1)} \\
+&\qquad\null\times [B_{n}M(1-x)-A_{n}N(1+x)] P^{(\alpha+1,\beta+1)}_{n-1}(x) 
++ A_{n}B_{n}P^{(\alpha,\beta)}_{n}(x) \bigg\},
+\end{aligned}
+\end{equation}
+donde
+$$
+A_{n} = \frac{(\alpha+1)_{n} n!}{(\beta+1)_{n}(\alpha+\beta+1)_{n}}
++ \frac{n(n+\alpha+\beta+1)M}{(\beta+1)(\alpha+\beta+1)}
+$$
+y
+$$
+B_{n} = \frac{(\beta+1)_{n} n!}{(\alpha+1)_{n}(\alpha+\beta+1)_{n}} 
++ \frac{n(n+\alpha+\beta+1)N}{(\alpha+1)(\alpha+\beta+1)}
+$$
+(el caso $\alpha+\beta+1 = 0$ debe ser entendido por continuidad 
+en $\alpha$ y~$\beta$). Koornwinder~\cite{Ko} demuestra que estos 
+polinomios son ortogonales en $[-1,1]$ con respecto a la medida~$d\mu$.
+
+Llamaremos $k^{(\alpha,\beta,M,N)}_{n}$ al 
+coeficiente director de $P^{(\alpha,\beta,M,N)}_{n}$ 
+y $h^{(\alpha,\beta,M,N)}_{n}$ al cuadrado 
+de su norma:
+$$
+h^{(\alpha,\beta,M,N)}_{n}
+= \int_{-1}^{1} [P^{(\alpha,\beta,M,N)}_{n}(x)]^{2}\,d\mu(x).
+$$
+Usaremos asimismo la notaci\'{o}n $r_{n} \sim s_{n}$ 
+cuando $r_{n}/s_{n} \limtoenorme_{n\to\infty} 1$,
+siendo $\{r_{n}\}$ y $\{s_{n}\}$ sucesiones de t\'{e}rminos no nulos. 
+Mediante la f\'{o}rmula de Stirling puede probarse, a partir de~\eqref{eq:1}:
+\begin{equation}
+k^{(\alpha,\beta,M,N)}_{n} \sim 
+\begin{cases}
+2^{n+\alpha+\beta} \pi^{-1/2} n^{-1/2} &\text{si } M=N=0, \\[3pt]
+\frac{N \Gamma(\beta+1)}{\pi^{1/2}\Gamma(\alpha+\beta+2)\Gamma(\alpha+2)} 
+\, 2^{n+\alpha+\beta} n^{2+2\alpha-1/2} &\text{si } N>M=0, \\[4pt]
+\frac{M \Gamma(\alpha+1)}{\pi^{1/2}\Gamma(\alpha+\beta+2)\Gamma(\beta+2)} 
+\, 2^{n+\alpha+\beta} n^{2+2\beta-1/2} &\text{si } M>N=0, \\[3pt]
+\frac{M N}{\pi^{1/2}(\alpha+1)(\beta+1)\Gamma(\alpha+\beta+2)^{2}} 
+\, 2^{n+\alpha+\beta} n^{4+2\alpha+2\beta-1/2} &\text{si } M,N>0, 
+\end{cases}
+\label{eq:2}
+\end{equation}
+\begin{equation}
+P^{(\alpha,\beta,M,N)}_{n}(1) \sim 
+\frac{1}{\Gamma(\alpha+1)} \, n^{\alpha}
++ \frac{M}{\Gamma(\beta+2)\Gamma(\alpha+\beta+2)} \, n^{2\beta+\alpha+2},
+\label{eq:3}
+\end{equation}
+\begin{equation}
+(-1)^{n}P^{(\alpha,\beta,M,N)}_{n}(-1) \sim 
+\frac{1}{\Gamma(\beta+1)} \, n^{\beta}
++ \frac{N}{\Gamma(\alpha+2)\Gamma(\alpha+\beta+2)} \, n^{2\alpha+\beta+2}.
+\label{eq:4}
+\end{equation}
+Para el c\'{a}lculo de $h^{(\alpha,\beta,M,N)}_{n}$ 
+necesitamos algunos resultados previos:
+
+\begin{lemma}
+\label{lem:1}
+$$
+\int_{-1}^{1} P^{(\alpha+1,\beta+1)}_{n-1}(x) (1-x)^{\alpha+1}(1+x)^{\beta} \,dx 
+\sim (-1)^{n-1} 2^{\alpha+\beta+2} \Gamma(\beta+1) n^{-(\beta+1)}.
+$$
+\end{lemma}
+
+\begin{proof}
+Se deduce integrando por partes, despu\'{e}s 
+de sustituir la f\'{o}rmula de Rodrigues.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2}
+\begin{multline*}
+\int_{-1}^{1} P^{(\alpha+1,\beta+1)}_{n-1}(x)
+[(1-x)^{n}-2^{n}](1-x)^{\alpha+1}(1+x)^{\beta} \,dx \\
+= -\int_{-1}^{1} P^{(\alpha+1,\beta+1)}_{n-1}(x)
+(1-x)^{n-1}(1-x)^{\alpha+1}(1+x)^{\beta} \,dx 
+\sim \frac{(-1)^{n}\pi^{1/2}}{2^{n-1}} \, n^{-1/2}.
+\end{multline*}
+\end{lemma}
+
+\begin{proof}
+Se sigue de la igualdad
+$(1-x)^{n}-2^{n} = -(1+x) \sum_{k=0}^{n-1} 2^{k}(1-x)^{n-1-k}$.
+\end{proof}
+
+Utilizando \eqref{eq:1}, \eqref{eq:2}, \eqref{eq:3}, \eqref{eq:4}
+y los lemas~\ref{lem:1} y~\ref{lem:2}, se puede ahora 
+demostrar:
+
+\begin{theorem}
+\label{th:1}
+$$
+h^{(\alpha,\beta,M,N)}_{n} \sim
+\begin{cases}
+\frac{\Gamma(\alpha+\beta+2)}{2\Gamma(\alpha+1)\Gamma(\beta+1)} 
+\, n^{-1} & \text{si } M=N=0, \\[3pt]
+\frac{N^{2} \Gamma(\beta+1)}{2\Gamma(\alpha+1)\Gamma(\alpha+2)^{2} \Gamma(\alpha+\beta+2)} 
+\, n^{3+4\alpha} & \text{si } N>M=0, \\[3pt]
+\frac{M^{2} \Gamma(\alpha+1)}{2\Gamma(\beta+1)\Gamma(\beta+2)^{2} \Gamma(\alpha+\beta+2)} 
+\, n^{3+4\beta} & \text{si } M>N=0, \\[3pt]
+\frac{M^{2}N^{2}}{2(\alpha+1)(\beta+1)\Gamma(\alpha+2)\Gamma(\beta+2) \Gamma(\alpha+\beta+2)^{3}} 
+\, n^{7+4\alpha+4\beta} & \text{si } M,N>0.
+\end{cases}
+$$
+\end{theorem}
+
+\begin{corollary*}
+Si llamamos $p_{n}(x)$ a los polinomios ortonormales 
+con respecto a~$d\mu$, entonces
+$$
+p_{n}(1) \sim
+\begin{cases}
+\frac{2^{1/2}\Gamma(\beta+1)^{1/2}}{\Gamma(\alpha+1)^{1/2} \Gamma(\alpha+\beta+2)^{1/2}} 
+\, n^{\alpha+1/2} & \text{si } N=0, \\[4pt]
+\frac{2^{1/2}(\alpha+1)\Gamma(\alpha+1)^{1/2} \Gamma(\alpha+\beta+2)^{1/2}}
+{N \Gamma(\beta+1)^{1/2}} \, n^{-\alpha-3/2} & \text{si } N>0.
+\end{cases}
+$$
+Un resultado an\'{a}logo se obtiene para $(-1)^{n}p_{n}(-1)$.
+\end{corollary*}
+
+Finalmente, obtenemos para los polinomios $P^{(\alpha,\beta,M,N)}_{n}$ 
+la cota que busc\'{a}bamos:
+
+\begin{theorem}
+Sean $\alpha, \beta > -1$, $M,N \geq 0$.
+Existe una constante $K$ tal que $\forall x \in [-1,1]$, $\forall n \geq 0$:
+\begin{multline*}
+(h^{(\alpha,\beta,M,N)}_{n})^{-1/2} |P^{(\alpha,\beta,M,N)}_{n}(x)| \\
+\leq K \left(1-x + \frac{1}{n^{2}} \right)^{-\alpha/2-1/4}
+\left(1+x + \frac{1}{n^{2}} \right)^{-\beta/2-1/4}.
+\end{multline*}
+\end{theorem}
+
+\begin{proof}
+Por simetr\'{\i}a, basta demostrar que $\forall x \geq 0$
+el miembro de la izquierda est\'{a} acotado por
+$K (1-x + {1}/{n^{2}} )^{-\alpha/2-1/4}$. Como en el caso de 
+los polinomios de Jacobi~\cite{Mu}, ello ser\'{a} cierto si se tiene
+$$
+(h^{(\alpha,\beta,M,N)}_{n})^{-1/2} |P^{(\alpha,\beta,M,N)}_{n}(\cos \theta)|
+=
+\begin{cases}
+\calO(\theta)^{-\alpha-1/2}) & \text{si } c/n \leq \theta \leq \pi/2, \\
+\calO(n^{\alpha+1/2}) & \text{si } 0 \leq \theta \leq c/n, 
+\end{cases}
+$$
+donde $c$ es una constante positiva prefijada cualquiera. Como 
+esta expresi\'{o}n es v\'{a}lida para los polinomios de
+Jacobi~\cite[T.~7.32.2]{Sz}, el problema puede reducirse,
+por~\eqref{eq:1}, a la acotaci\'{o}n de
+\begin{multline*}
+(h^{(\alpha,\beta,M,N)}_{n})^{-1/2} 
+\left[\frac{(\alpha+\beta+1)_{n}}{n!}\right]^{2}
+A_{n} \bigg\{B_{n}P^{(\alpha,\beta)}_{n}(x) \\
+- N \frac{n+\alpha+\beta+1}{2(\alpha+\beta+1)} (1+x) 
+P^{(\alpha+1,\beta+1)}_{n-1}(x) \bigg\}.
+\end{multline*}
+Utilizando ahora el teorema~\ref{th:1}, estimaciones para $A_{n}$
+y $(\alpha+\beta+1)_{n}/{n!}$, las igualdades
+$$
+(1+x) P^{(\alpha+1,\beta+1)}_{n-1}(x) 
+= \frac{2(n+\beta)}{2n+\alpha+\beta+1}  P^{(\alpha+1,\beta)}_{n-1}(x) 
++ \frac{2n}{2n+\alpha+\beta+1}  P^{(\alpha+1,\beta)}_{n}(x) 
+$$
+(\cite[4.5.4]{Sz}), y
+$$
+P^{(\alpha,\beta)}_{n}(x) = \frac{n+\alpha+\beta+1}{2n+\alpha+\beta+1} 
+P^{(\alpha+1,\beta)}_{n}(x) - \frac{n+\beta}{2n+\alpha+\beta+1} 
+P^{(\alpha+1,\beta)}_{n-1}(x) ,
+$$
+y la f\'{o}rmula de tipo Hilb \cite[T.~8.21.12]{Sz}
+\begin{multline*}
+\left(\sen \frac{\theta}{2}\right)^{\alpha+1}
+\left(\cos \frac{\theta}{2}\right)^{\beta} 
+ P^{(\alpha+1,\beta)}_{n}(\cos \theta) = \\
+D^{-(\alpha+1)} \frac{\Gamma(n+\alpha+2)}{n!}
+\left(\frac{\theta}{\sen \theta}\right)^{1/2} J_{\alpha+1}(D\theta) \\
++
+\begin{cases}
+\theta^{1/2} \calO(n^{-3/2}) & \text{si } c/n \leq \theta \leq \pi/2, \\
+\theta^{\alpha+3}\calO(n^{\alpha+1}) & \text{si } 0 \leq \theta \leq c/n,
+\end{cases}
+\end{multline*}
+donde $D = n + (\alpha+\beta+2)/2$ y $J_{\alpha+1}(z)$ 
+es la funci\'{o}n de Bessel, puede verse que el teorema est\'{a} 
+probado si se demuestra que las dos expresiones
+\begin{equation}
+\label{eq:5}
+\begin{aligned}
+&D^{-2\alpha-2} \, \frac{(n+\alpha+1)(n+\alpha+\beta+1)}{n} 
+\bigg[ \frac{(\beta+1)_{n} n!}{(\alpha+1)_{n}(\alpha+\beta+1)_{n}} \\
+&\quad\null+ N \frac{n(n+\beta)}{(\alpha+1)(\alpha+\beta+1)} \bigg]
+\left| D^{\alpha+1} J_{\alpha+1}(D\theta) - 
+(D-1)^{\alpha+1} J_{\alpha+1}((D-1)\theta)) \right|
+\end{aligned}
+\end{equation}
+y
+\begin{equation}
+\label{eq:6}
+\begin{aligned}
+&D^{-2\alpha-2} \Bigg| \frac{(n+\alpha+{1})(n+\alpha+\beta+1)}{n}
+(D-1)^{\alpha+1} \\
+&\qquad\qquad\null \times
+\bigg[ \frac{(\beta+1)_{n} n!}{(\alpha+1)_{n}(\alpha+\beta+1)_{n}} 
++ N \frac{n(n+\beta)}{(\alpha+1)(\alpha+\beta+1)} \bigg] \\
+&\qquad\qquad\qquad\null- (n+\beta)\frac{D^{2\alpha+2}}{(D-1)^{\alpha+1}} 
+\bigg[ \frac{(\beta+1)_{n}n!}{(\alpha+1)_{n}(\alpha+\beta+1)_{n}} \\
+&\qquad\qquad\qquad\qquad\null+ N \frac{(n+\alpha+1)(n+\alpha+\beta+1)}
+{(\alpha+1)(\alpha+\beta+1)} \bigg]
+\Bigg| J_{\alpha+1}((D-1)\theta)
+\end{aligned}
+\end{equation}
+son ambas
+$$
+n^{3/2-\alpha} \theta^{\alpha+1}
+\begin{cases}
+\calO(\theta^{-\alpha-1/2}) & \text{si } c/n \leq \theta \leq \pi/2, \\
+\calO(n^{\alpha+1/2}) & \text{si } 0 \leq \theta \leq c/n.
+\end{cases}
+$$
+Para lograr estas estimaciones, empleamos algunas propiedades 
+de las funciones de Bessel:
+\begin{gather*}
+[z^{\nu}J_{\nu}(z)]' = z^{\nu}J_{\nu-1}(z); \\
+J_{\nu}(z) = \calO(z^{\nu}) \quad\text{cuando}\quad z \to 0;
+\qquad
+J_{\nu}(z) = \calO(z^{-1/2}) \quad\text{cuando}\quad z \to \infty.
+\end{gather*}
+De estas propiedades y del teorema del valor medio, puede deducirse 
+que
+\begin{multline*}
+\left| (D\theta)^{\alpha+1} J_{\alpha+1}(D\theta) - ((D-1)\theta)^{\alpha+1}
+J_{\alpha+1}((D-1)\theta)) \right| \\
+= n^{\alpha+1/2} \theta^{2\alpha+2}
+\begin{cases}
+\calO(\theta^{-\alpha-1/2}) & \text{si } c/n \leq \theta \leq \pi/2, \\
+\calO(n^{\alpha+1/2}) & \text{si } 0 \leq \theta \leq c/n,
+\end{cases}
+\end{multline*}
+y, de aqu\'{\i}, la estimaci\'{o}n asint\'{o}tica~\eqref{eq:5}. Por \'{u}ltimo, 
+\eqref{eq:6} se logra mediante las expresiones asint\'{o}ticas citadas de 
+$J_{\nu}$ y utilizando la f\'{o}rmula
+\begin{multline*}
+\frac{(\beta+1)_{n} n!}{(\alpha+1)_{n}(\alpha+\beta+1)_{n}} \\
+= \frac{\Gamma(\alpha+1)\Gamma(\alpha+\beta+1)}{\Gamma(\beta+1)} 
+\, n^{-2\alpha} \left[1 - \frac{\alpha(\alpha+\beta+1)}{n} 
++ \calO(n^{-2}) \right],
+\end{multline*}
+que puede deducirse de la expresi\'{o}n~\cite{Er}:
+$$
+\frac{\Gamma(n+a)}{\Gamma(n+b)} 
+= n^{a-b} \left[1 + \frac{(a-b)(a+b-1)}{2n} + \calO(n^{-2}) \right].
+$$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\refname}{Bibliograf\'{\i}a}
+
+\frenchspacing
+
+\begin{thebibliography}{4}
+
+\frenchspacing
+
+\bibitem{Er}
+%[1]\tab 
+\textsc{A. Erd\'{e}lyi y otros},
+``Higher transcendental functions'', 
+McGraw-Hill Book Co., New York, vol.~I, 1953.
+
+\bibitem{Ko}
+%[2]\tab 
+\textsc{T. H. Koornwinder},
+Orthogonal polynomials with weight function 
+$(1-x)^{\alpha} (1+x)^{\beta} + M \delta(x+1) + N \delta(x-1)$,
+\textit{Canad. Math. Bull.} \textbf{27} (1984), 205--214.
+
+\bibitem{Mu}
+%[3]\tab 
+\textsc{B. Muckenhoupt}, Mean convergence of Jacobi series,
+\textit{Proc. Amer. Math. Soc.} \textbf{23} (1969), 306--310.
+
+\bibitem{Sz}
+%[4]\tab 
+\textsc{G. Szeg\H{o}}, ``Orthogonal Polynomials'', 3.\textsuperscript{a}~ed.,
+Amer. Math. Soc. Colloq. Publ., vol. 23, Amer. Math. Soc., 
+Providence, R.I., 1967.
+
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
+\noindent
+\begin{tabular}{@{}l}
+Mario P\'{e}rez Riera\\
+Dpto. de Matem\'{a}ticas\\
+Facultad de Ciencias\\
+Univ. de Zaragoza\\
+50009 Zaragoza (Espa\~{n}a)
+\end{tabular}\hfill
+\begin{tabular}{l@{}}
+Juan Luis Varona Malumbres\\
+Dpto. de Matem\'{a}ticas\\
+Col. Univ. de La Rioja\\
+Univ. de Zaragoza\\
+26001 Logro\~{n}o (La Rioja, Espa\~{n}a)
+\end{tabular}
+
+
+\end{document}

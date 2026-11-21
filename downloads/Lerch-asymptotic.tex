@@ -1,0 +1,803 @@
+%------------------------------------------------------------------
+% Asymptotic behavior of the Lerch transcendent function,
+% by
+% L. M. Navas, F. J. Ruiz and J. L. Varona
+%
+% Date of first version: January 11, 2011
+% Date of last modification: February 10, 2012
+%
+%------------------------------------------------------------------
+
+
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+\usepackage{url}
+%\usepackage{hyperref}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+
+
+%\date{February 10, 2012}
+\renewcommand{\datename}{\textbf{THIS PAPER HAS BEEN PUBLISHED IN:}}
+\date{\textit{J.\@ Approx.\@ Theory} \textbf{170} (2013), 21--31.}
+
+%--------------------------------------
+%% ONLY FOR DRAFTS:
+%\usepackage[notcite,notref]{showkeys}
+%--------------------------------------
+
+%--------------------------------------
+%% ONLY FOR THE SPANISH DRAFTS:
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+%--------------------------------------
+
+
+%--------------------------------------
+%% ONLY FOR DRAFTS:
+%\usepackage[svgnames]{xcolor}
+%\newcommand{\repasar}[1]{\textcolor{red}{#1}}
+%\newcommand{\comentario}[1]{\textcolor{Green}{#1}}
+%\newcommand{\quitar}[1]{\textcolor{blue}{#1}}
+%\newcommand{\nuevo}[1]{\color{DarkViolet}{#1}\color{black}}
+%--------------------------------------
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+%\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dom}{\mathbb{C}} % Domain (to change it if necessary)
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\E}{\mathcal{E}}
+
+%\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+%\newcommand{\re}{\operatorname{Re}}
+%\newcommand{\im}{\operatorname{Im}}
+\newcommand{\Li}{\operatorname{Li}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}%[section]
+%\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+
+%--------------------------------------
+\title[Asymptotic behavior of the Lerch transcendent function]%
+{Asymptotic behavior of the Lerch transcendent function}
+
+%\author{L.~M.~Navas, F.~J.~Ruiz and J.~L.~Varona}
+
+\author[L.~M.~Navas]{Luis M. Navas}
+\address{%
+        Departamento de Matem\'aticas,
+        Universidad de Salamanca,
+        Plaza de la Merced 1-4,
+        37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author[F.~J.~Ruiz]{Francisco J. Ruiz}
+\address{%
+        Departamento de Matem\'aticas,
+        Universidad de Zaragoza,
+        Campus de la Plaza de San Francisco,
+        50009 Zaragoza, Spain}
+\email{fjruiz@unizar.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address{%
+        Departamento de Matem\'aticas y Computaci\'on,
+        Universidad de La Rioja,
+        Calle Luis de Ulloa s/n,
+        26004 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/welcome.html}
+
+\thanks{The research of the second and third authors was supported by grant MTM2009-12740-C03-03 of the~DGI}
+
+\keywords{Lerch transcendent function, asymptotic estimates,
+Fourier series}
+
+\subjclass[2010]{Primary 41A60; Secondary 11M35, 42A10}
+%--------------------------------------
+
+%--------------------------------------
+\begin{document}
+%--------------------------------------
+
+%--------------------------------------
+\begin{abstract}
+    For complex parameters $\lambda$ and $s$, consider the Lerch transcendent
+  $\Phi(\lambda,s,z) = \sum_{k=0}^\infty \lambda^k (k+z)^{-s}$
+  as a function of the complex variable~$z$.
+  We analyze the asymptotic behavior of this function as
+  $\operatorname{Re} s \to -\infty$.
+\end{abstract}
+%--------------------------------------
+
+%--------------------------------------
+\maketitle
+%--------------------------------------
+
+\section{Introduction}
+
+The Lerch transcendent is given by the series
+\begin{equation}
+\label{eq:Lerch}
+  \Phi(\lambda,s,z) = \sum_{k=0}^\infty\frac{\lambda^k}{(k+z)^s};
+\end{equation}
+see \cite[\S1.11, p.~27]{Bate} or \cite[\S25.14]{Ap-NIST}, for example.
+This function, defined by Mathias Lerch in 1887 in his paper \cite{Le},
+includes as special cases of the parameters the Hurwitz and Riemann zeta functions
+and the polylogarithms, among others, and therefore
+has applications ranging from number theory to physics.
+It is often used to obtain new identities; see, for instance, \cite{BaSa, Boy, GuiS, SC-book}.
+Several kinds of asymptotic estimates for $\Phi$ have been studied; see~\cite{FL} and the references therein.
+
+Here we shall consider $\Phi$ as a function of the complex variable $z$, with
+$\lambda$ and $s$ as parameters. We shall assume that the summands
+\[
+  \frac{1}{(k+z)^s} = e^{-s\log(k+z)},
+  \quad k\in\N\cup\{0\},
+\]
+are evaluated using the principal branch of the logarithm, and thus are holomorphic
+on $\C\setminus({-\infty}, 0]$.
+
+We are interested in the behavior as $|s| \to \infty$ in a region with bounded imaginary part and with real part $\Re s \to -\infty$.
+Since
+\begin{equation}
+\label{eq:sreal}
+  \left|(k+z)^{-s}\right| = |k+z|^{-\Re s}e^{\Im s \arg(z+k)},
+\end{equation}
+the fact that $\Im s$ remains bounded means that this modulus is controlled
+by $\Re s$. This restriction will often allow us to reduce to the case of negative real~$s$ when obtaining estimates.
+
+As far as the parameter $\lambda$ is concerned, since $\Phi(0,s,z) = z^{-s}$, we may
+exclude $\lambda = 0$ as a trivial case. If $|\lambda| < 1$ then, for any $s \in \C$, the series~\eqref{eq:Lerch} converges uniformly in $z$ on compact subsets of $\C\setminus ({-\infty},0]$, and hence defines a holomorphic function in this region.
+We may enlarge the domain to allow $z \in \C\setminus \{0,-1,-2,\dots\}$ by including the branch discontinuity of the principal argument, at the cost of losing holomorphy.
+This is standard in the mathematical literature, see for example the above mentioned~\cite{Ap-NIST,Bate}.
+
+In addition, for $\Re s < 0$, the summand $(k+z)^{-s}$ in~\eqref{eq:Lerch} can be continuously extended to $z = -k$ by defining $0^{-s} = 0$.
+In what follows, when $\Re s < 0$, we shall assume that $\Phi(\lambda,s,z)$ has been defined for all $z \in \C$ in this way.
+
+Given the previous remarks, one sees that, for $|\lambda| < 1$ and $\Re s < 0$,
+$\Phi(\lambda,s,x)$ extends to a continuous function of $x \in [0,1]$ and, in particular, it is absolutely integrable. In fact, absolute integrability holds for
+$\Re s < 1$, since, although we lose continuity at $x = 0$, we still have
+\[
+  \int_0^1 |\Phi(\lambda,s,x)|\,dx
+  \leq \sum_{k=0}^\infty |\lambda|^k \int_0^1 \frac{dx}{(k+x)^{\Re s}} < +\infty
+\]
+and for fixed $a > 0$, the series $\sum_k\lambda^k\,k^a$, considered as a power series in $\lambda$, has radius of convergence equal to~$1$.
+
+The paper is structured as follows. In Section~\ref{sec:SF}, we find the Fourier series of $\lambda^x \Phi(\lambda,s,x)$ for $x\in[0,1]$, which is essentially the Lindel\"of-Wirtinger expansion of $\Phi$ (Theorem~\ref{th:serieFourier}); this approach follows~\cite{NRV-JAT, NRV-MC} and gives an alternative to the classical complex analytic methods as found for instance in~\cite[formula 1.11\,(6), p.~28]{Bate}. It is then shown that the Fourier series gives an asymptotic expansion for
+$\Phi(\lambda,s,z)$ as $s \to -\infty$, valid for $z = x\in[0,1]$ (see Corollary~\ref{cor:FS-admissible}). In Section~\ref{sec:extension}, we prove the validity of this asymptotic expansion for arbitrary complex-valued $z$, and we show that it is uniform on compact subsets of~$\C$; this is expressed in Theorem~\ref{th:FS-admissible}, which is the main result of the paper. Finally, in Sections~\ref{sec:asymptotic} and~\ref{sec:polylog}, we consider some consequences of the main theorem and its application to special cases of the Lerch transcendent, such as the polylogarithm functions.
+
+
+\section{The Fourier series and asymptotics of $\Phi$ on $[0,1]$}
+\label{sec:SF}
+
+
+Let us begin by noting that Fourier analysis provides an easy and direct way of obtaining the Lindel\"of-Wirtinger expansion (Theorem \ref{th:serieFourier}) for the Lerch transcendent. This important result is the starting point of our study. It can be found for instance in \cite[p.~28]{Bate} or \cite[p.~34]{MOS}, and a special case already appears in ~\cite{Wir}. For completeness and in order to focus attention on the use of Fourier analytic methods, we include a brief overview of the main results, detailing precisely the domains of validity.
+
+
+We only need a few simple facts, the first of which is the well-known formula
+%
+%\begin{lemma}
+%\label{lem:integral}
+% If % <-- al quitar el "Lema" lo cambio por "for"
+\begin{equation}
+\label{eq:integral}
+  \int_0^\infty e^{-ta}\,t^{-s}\,dt = a^{s-1}\Gamma(1-s),
+  \qquad
+  \Re s < 0, \ \Re a > 0
+\end{equation}
+%\end{lemma}
+(this is \cite[formula 1.5.1\,(33), p.~12]{Bate}); for $a > 0$ it is immediate by changing variables in the definition of $\Gamma(1-s)$, and follows for $\Re a > 0$ in general by analytic continuation.
+% \begin{proof}
+% If $a \in \R$, $a>0$, simply change variables in
+% $\Gamma(1-s) = \int_{0}^{\infty} t^{-s} \, e^{-t} \, dt$.
+% The general case of $\Re a>0$ follows by analytic continuation.
+% \end{proof}
+With this, obtaining the Fourier coefficients of $\lambda^{x} \Phi(\lambda,s,x)$ is an immediate computation.
+
+\begin{lemma}
+Let $\lambda$ and $s$ be complex parameters with $0<|\lambda|<1$ and $\Re s<0$.
+For every $n\in\Z$, we have
+\[
+  \int_0^1 \lambda^x\,\Phi(\lambda,s,x)\,e^{-2\pi inx}\,dx
+  = (2n\pi i-\log\lambda)^{s-1} \Gamma(1-s).
+\]
+\end{lemma}
+
+\begin{proof}
+Using~\eqref{eq:Lerch} and~\eqref{eq:integral}, we have
+\begin{multline*}
+  \int_0^1 \lambda^x\,\Phi(\lambda,s,x)\,e^{-2\pi inx}\,dx
+  = \sum_{k=0}^\infty \int_0^1 \frac{\lambda^{k+x}}{(k+x)^s}e^{-2\pi in(k+x)}\,dx
+  \\
+  =\int_0^\infty \lambda^t\,e^{-2\pi int}t^{-s}\,dt
+  = \int_0^\infty e^{-t(2\pi in-\log\lambda)}t^{-s}\,dt
+\end{multline*}
+and applying \eqref{eq:integral} finishes the proof.
+One easily verifies that the exchange of sum and integral is justified.
+Note that we need $\log|\lambda|<0$, which is indeed the case.
+\end{proof}
+
+Finally, our hypotheses on the parameters imply that
+\[
+  \Phi(\lambda,s,0) = \sum_{k=1}^\infty \frac{\lambda^k}{k^s} = \lambda \Phi(\lambda,s,1),
+\]
+hence $\lambda^x \Phi(\lambda,s,x)$ extends to a continuous function on $[0,1]$, and since it is of class $\mathcal{C}^{(1)}$ on $(0,1)$, by Dirichlet's basic theorem on the convergence of Fourier series, we obtain:
+
+\begin{theorem}[Lindel\"of-Wirtinger expansion]
+\label{th:serieFourier}
+Let $\lambda$ and $s$ be complex parameters with $0<|\lambda|<1$ and $\Re s<0$. Then
+\[
+  \Phi(\lambda,s,x)
+  = \lambda^{-x}\,\Gamma(1-s) \sum_{n\in\Z} (2n\pi i-\log\lambda)^{s-1}e^{2n\pi i x},
+  \quad x\in[0,1],
+\]
+uniformly on $[0,1]$.
+\end{theorem}
+
+\begin{remark}
+When $s=1-k$ with $k\in\N$, the series defining $\Phi(\lambda,s,z)$
+actually sums to a polynomial in $z$ of degree $k-1$, with coefficients that are rational functions in $\lambda$ with a unique pole at $\lambda=1$. In this case,
+$\Phi(\lambda,s,z)$ extends to all values of $\lambda\neq 0,1$. The relation
+\[
+  \Phi(\lambda,1-k,z) = -\frac{\B_k(z;\lambda)}{k}
+\]
+defines the Apostol-Bernoulli polynomials $\B_{k}(z;\lambda)$
+(see~\cite{Ap}). Thus we obtain, in particular, for $k \geq 2$,
+\[
+  \B_k(x;\lambda) = -\lambda^{-x}\,k! \sum_{n\in\Z} \frac{e^{2n\pi i x}}{(2n\pi i-\log\lambda)^k},
+  \quad x\in[0,1],
+\]
+under the restriction $|\lambda|<1$. In fact the formula is valid for all
+$\lambda\neq 0,1$, as was shown in~\cite{NRV-MC} using certain algebraic properties of this polynomial family.
+\end{remark}
+
+\begin{remark} The Fourier series in Theorem~\ref{th:serieFourier} has two alternative forms, which we shall use in what follows:
+\begin{equation}
+\label{eq:FS-Lambda}
+  \frac{\lambda^x ({-\log\lambda})^{1-s}\Phi(\lambda,s,x)}{\Gamma(1-s)}
+  = \sum_{n\in\Z}(1-\Lambda n)^{s-1} e^{2n\pi i x},
+  \quad \Lambda=\frac{2\pi i}{\log\lambda},
+\end{equation}
+and the more compact
+\begin{equation}
+\label{eq:FS-poles}
+  \frac{1}{\Gamma(1-s)}\Phi(\lambda,s,x) = \sum_{a \in S} a^{s-1}e^{a x},
+\end{equation}
+where $S = \{ a_{n} = 2 \pi i n - \log \lambda : n \in \Z \}$ (this also the set of poles of the generating function of the Apostol-Bernoulli polynomials). It is worth noting that the set $S$ does not depend on which branch of the logarithm is chosen and, therefore, the Lindel\"of-Wirtinger expansion is also independent of this choice, provided that the same branch is used for the term $\lambda^{-x}$ and the $\log \lambda$ in the sum. Indeed, varying the branch is equivalent to shifting the index $n$ in both the pole set $S$ and the expansion.
+\end{remark}
+
+In order to obtain asymptotic estimates, we need to order the poles $S$ by their modulus. This ordering varies depending on~$\lambda$. The details are given in the following lemma, which is proved in~\cite{NRV-MC}.
+
+
+\begin{lemma}
+\label{lem:pole-ordering}
+Let $a_{n} = 2 \pi i n - \log \lambda$ with $n \in \Z$,
+$\lambda \in \C$, $\lambda \ne 0$.
+\begin{enumerate}
+%
+  \item[(a)] If $\Im\lambda > 0$, then for $n \ge 1$, we have
+  \[
+    0 < |a_{0}| < |a_{1}| < |a_{-1}| < \cdots < |a_{n}| < |a_{-n}| < \cdots
+  \]
+  \item[(b)] If $\Im\lambda < 0$, then for $n \ge 1$, we have
+  \[
+    0 < |a_{0}| < |a_{-1}| < |a_{1}| < \cdots < |a_{-n}| < |a_{n}| < \cdots
+  \]
+  \item[(c)] If $\lambda > 0$, then for $n \ge 1$, we have
+  \[
+    |a_{0}| < |a_{1}| = |a_{-1}| < \cdots < |a_{n}| = |a_{-n}| < \cdots
+  \]
+% (note that $a_0 =0$ if and only if $\lambda=1$, in which case it is not a pole,
+% hence is excluded in this chain).
+  \item[(d)] If $\lambda < 0$, then for $n \ge 1$, we have
+  \[
+    0 < |a_{0}| = |a_{1}| < |a_{-1}| = |a_{2}| < \cdots < |a_{-n}| = |a_{n+1}| < \cdots
+  \]
+%
+\end{enumerate}
+In addition, $|a_{n}| \geq 2\pi (|n| - \frac{1}{2}) \geq \pi$ if $|n| \geq 1$.
+\end{lemma}
+
+From here on, we shall only consider partial sums of the series~\eqref{eq:FS-poles},
+$\sum_{a\in F}$, over subsets $\emptyset \ne F\subset S$ such that
+\begin{equation}
+\label{eq:admissible}
+  \max\{ |a| : a \in F \} < \min\{ |a| : a \in S \setminus F \}
+  \stackrel{\text{\tiny def}}{=} \mu_F.
+\end{equation}
+This is necessary in order to have the partial sum be of greater order than the tail.
+Let us call such subsets \emph{admissible}. The admissible sets vary depending on the cases established in the lemma. Note also that $\mu_{F} > 1$ as mentioned in the last line of the lemma.
+
+The Fourier series of $\lambda^{x} \Phi(\lambda,s,x)$ can be expressed in these terms as follows.
+
+\begin{corollary}
+\label{cor:FS-admissible}
+Let $\lambda \in \C$ with $0<|\lambda|<1$, $F$ an admissible set in the sense of~\eqref{eq:admissible},
+and $s \in \C$ with $\Re s < \alpha < 0$ and $|\Im s| \le \beta$. Then,
+\begin{equation*}
+  \frac{1}{\Gamma(1-s)}\Phi(\lambda,s,x) = \sum_{a \in F} a^{s-1}e^{a x} + O(\mu_F^{\Re s-1})
+\end{equation*}
+holds uniformly in $x\in[0,1]$, where the constant implicit in the order term depends only on
+$F$, $\alpha$ and $\beta$.
+\end{corollary}
+
+\begin{proof}
+For simplicity, let us assume that $s \in \R$, with $s<\alpha<0$ (and consequently
+$\beta=0$). Taking into account~\eqref{eq:sreal}, the proof of the general case only requires small modifications.
+
+We need to bound the remainder in~\eqref{eq:FS-poles}. Now, if $a\in S\setminus F$,
+then $|e^{a x}| = |\lambda^x e^{2\pi i n x}| \le 1$ for $0<|\lambda|<1$, $x \ge 0$, $n\in\Z$,
+hence
+\[
+  \left|\sum_{a\in S\setminus F}a^{s-1}e^{a x}\right| \leq C \mu_F^{s-1}
+  \sum_{a\in S\setminus F} \left(\frac{|a|}{\mu_F}\right)^{s-1},
+\]
+and, since $|a_{n}| \geq 2\pi (|n| - \frac{1}{2}) \geq |n|$, the latter series is bounded by the constant
+\begin{equation*}
+  C_{\alpha,F} = \sum_{|n|\geq 1} \left(\frac{|n|}{\mu_F}\right)^{\alpha-1} < +\infty.
+\qedhere
+\end{equation*}
+\end{proof}
+
+Using the language of special functions, we have proved that the Fourier series is
+a uniformly asymptotic series for $\Phi$ over $x \in [0,1]$, under the stated conditions of $\Re s \to -\infty$ with $\Im s$ bounded.
+
+A priori, the Fourier series need not converge or even be an asymptotic series outside of $[0,1]$, and even if it is, it need not converge or be asymptotic to $\Phi$. We shall prove that in fact the result of Corollary~\ref{cor:FS-admissible} is still valid, uniformly over compact subsets of~$\dom$.
+
+
+\section{Extension to compact subsets of~$\C$}
+\label{sec:extension}
+
+In the case of the Apostol-Bernoulli polynomials, the fact that, in the language of the ``umbral calculus,'' they are a polynomial sequence of binomial type, can be used to prove that the Fourier series is an asymptotic series on arbitrary compact subsets of~$\dom$ (see~\cite{NRV-MC}). This point of view exploits connections between the algebraic and combinatorial properties of polynomial families and their analytic expansions, such as asymptotic series.
+
+Here we adapt the method used in~\cite{NRV-MC} to express the values of
+$\Phi(\lambda,s,z)$ in terms of the values at $z=0$, at the cost of having to vary~$s$. Since we are no longer dealing with polynomials, the analytic estimates are more complicated.
+
+\begin{lemma}
+\label{lemma:sep}
+Let $N\in\N$, $s \in \C$ with $\Re s < 0$ and $\lambda \in \C$ with $0<|\lambda|<1$.
+Then, for $z\in\dom$ and $|z|<N$,
+\begin{multline*}
+  \quad
+  \Phi(\lambda,s,z)
+  = \sum_{k=0}^{N-1}\frac{\lambda^k}{(k+z)^s}
+  + \sum_{n \geq -\Re s-1/2}\binom{-s}{n}z^n\sum_{k=N}^\infty \frac{\lambda^k}{k^{n+s}}
+  \\
+  + \sum_{n < -\Re s-1/2} \binom{-s}{n} z^n \Biggl(\Phi(\lambda,n+s,0)
+  - \sum_{j=1}^{N-1} \frac{\lambda^j}{j^{n+s}}\Biggr).
+  \quad
+\end{multline*}
+\end{lemma}
+
+\begin{proof}
+For simplicity, let us assume again that $s \in \R$ and $s < 0$. The general case is taken care of similarly by~\eqref{eq:sreal} (this affects only the justification for changing the order of summation in the infinite series).
+
+We begin by separating the series defining $\Phi$ into a partial sum and a tail:
+\[
+  \Phi(\lambda,s,z) = \sum_{k=0}^{N-1}\frac{\lambda^k}{(k+z)^s}
+  + \sum_{k=N}^\infty\frac{\lambda^k}{(k+z)^s}.
+\]
+Observe that if $|z|<N$ and $k\geq N$, we may expand the denominators as
+\[
+  (z+k)^{-s} = k^{-s} \sum_{n=0}^\infty \binom{-s}{n} \frac{z^n}{k^n}
+  = \sum_{n<-s-1/2} \binom{-s}{n} \frac{z^n}{k^{n+s}}
+  + \sum_{n\geq -s-1/2} \binom{-s}{n} \frac{z^n}{k^{n+s}}.
+\]
+Then
+\begin{align*}
+  \sum_{k=N}^\infty\frac{\lambda^k}{(k+z)^s}
+  &= \sum_{k=N}^\infty \lambda^k \sum_{n<-s-1/2} \binom{-s}{n} \frac{z^n}{k^{n+s}}
+  + \sum_{k=N}^\infty \lambda^k \sum_{n\geq -s-1/2} \binom{-s}{n} \frac{z^n}{k^{n+s}}
+  \\
+  &= \sum_{n<-s-1/2} \binom{-s}{n}z^n \sum_{k=N}^\infty \frac{\lambda^k}{k^{n+s}}
+  + \sum_{n\geq -s-1/2} \binom{-s}{n}z^n \sum_{k=N}^\infty \frac{\lambda^k}{k^{n+s}}.
+\end{align*}
+The first change in the order of summation is trivial, since one of the series is finite. For the second, we apply Fubini's theorem, noting that if $n\geq -s-1/2$ (which implies $-s\leq n+1$), then $|\binom{-s}{n}|\leq n+1$ and
+\begin{multline*}
+  \quad
+  \sum_{k=N}^\infty |\lambda|^k\,k^{-s}
+  \sum_{n\geq -s-1/2} \left|\binom{-s}{n}\right| \frac{|z|^n}{|k|^n}
+  \leq \sum_{k=N}^\infty |\lambda|^k\,k^{-s} \sum_{n=0}^\infty (n+1)\frac{|z|^n}{|k|^n}
+    \\
+  = \sum_{k=N}^\infty |\lambda|^k\,k^{-s} \frac{k^2}{(k-|z|)^2}
+  < +\infty,
+  \quad
+\end{multline*}
+since $|\lambda|<1$ (if $s$ is complex and $|\Im s|\leq \beta \in \N$, then an easy bound for $|\binom{-s}{n}|$ is $(n+1)(n+2)\cdots (n+\beta+1)$, and the justification is similar).
+
+Finally, if $s+n<-1/2\ $ ($<0$), then
+\[
+  \sum_{k=N}^\infty\frac{\lambda^k}{k^{n+s}}
+  = \Phi(\lambda,n+s,0) - \sum_{j=1}^{N-1} \frac{\lambda^j}{j^{n+s}}
+\]
+(since the sum corresponding to $j=0$ is null).
+Note that this does not work if $s+n> 0$ since in that case $\Phi(\lambda,n+s,z)$ does not extend continuously to $z=0$.
+\end{proof}
+
+We can now state the main theorem.
+
+\begin{theorem}
+\label{th:FS-admissible}
+Let $\lambda$ and $s$ be complex parameters with $0<|\lambda|<1$ and $\Re s<0$,
+$F$~an admissible set in the sense of~\eqref{eq:admissible}, and $K$ a compact set in~$\dom$.
+Then, for $z \in K$ and $\Re s\to-\infty$ with $|\Im s|$ bounded,
+\begin{equation*}
+  \frac{1}{\Gamma(1-s)}\Phi(\lambda,s,z) = \sum_{a \in F} a^{s-1}e^{a z} + O(\mu_F^{\Re s-1}),
+\end{equation*}
+where the constant implicit in the order term depends only on $F$, $K$, the bound for $|\Im s|$ and~$\lambda$.
+\end{theorem}
+
+\begin{proof}
+As before, let us assume that $s \in \R$ and $s\to-\infty$. The general case can be proved in a similar way by applying~\eqref{eq:sreal}, and using the complex version of Stirling's Formula, namely
+\[
+  \Gamma(w) = e^{-w} e^{(w-1/2)\log w} (2\pi)^{1/2} \left(1 + O(w^{-1})\right),
+  \ |\arg w| \le \pi-\varepsilon,\ \varepsilon>0,\ |w| \to \infty
+\]
+to bound the $\Gamma(1-s)$ factors which appear (see, for instance, \cite[\S1.18, p.~47]{Bate}).
+
+
+Given a compact subset $K$ of $\dom$, fix $N$ such that $|z|< N$ for $z\in K$. Define
+\[
+  R_F(\lambda,s,z) = \frac{\Phi(\lambda,s,z) }{\Gamma(1-s)}
+  - \sum_{a \in F} a^{s-1}e^{a z}.
+\]
+We shall show that, given a large negative number $s_0$, there exists a constant $C$ depending only on $F$, $K$ and $s_0$, such that
+\[
+  |R_F(\lambda,s,z)| \leq C \mu_F^{s-1},
+  \quad s\leq s_0.
+\]
+By Lemma~\ref{lemma:sep}, we may separate $R_F(\lambda,s,z)$ into the following four terms:
+\begin{align*}
+  R_F(\lambda,s,z)
+  &= \left(\frac{1}{\Gamma(1-s)} \sum_{k=0}^{N-1}\frac{\lambda^k}{(k+z)^s}\right)
+  \\
+  &\qquad + \left(\frac{1}{\Gamma(1-s)} \sum_{n\geq -s-1/2}\binom{-s}{n}z^n
+  \sum_{k=N}^\infty \frac{\lambda^k}{k^{n+s}}\right)
+  \\
+  &\qquad - \left(\frac{1}{\Gamma(1-s)} \sum_{n<-s-1/2}\binom{-s}{n}z^n
+  \sum_{j=1}^{N-1}\frac{\lambda^j}{j^{n+s}}\right)
+  \\
+  &\qquad + \left(\frac{1}{\Gamma(1-s)} \sum_{n<-s-1/2} \binom{-s}{n}z^n\Phi(\lambda,n+s,0)
+  - \sum_{a \in F} a^{s-1}e^{a z}\right)
+  \\
+  &= \mathit{(I)} + \mathit{(II)} + \mathit{(III)} + \mathit{(IV)}.
+\end{align*}
+The finite sum in $\mathit{(I)}$ is easily seen to be uniformly bounded for $z\in K$ by a factor of the form $\gamma^{-s}$ with $\gamma>0$. The presence of $\Gamma(1-s)$ in the denominator implies that $\mathit{(I)}$ is actually $O(\delta^{s-1})$ for \emph{any} $\delta>1$, not just for $\delta=\mu_F$.
+
+
+For the sum that appears in $\mathit{(II)}$, since $|\binom{-s}{n}| \leq n+1$ and $|z| \leq r < N$ for $z\in K$, with $r$ depending only on the compact set $K$, we get the bound
+\[
+  \sum_{k=N}^\infty \frac{|\lambda|^k}{k^s} \sum_{n\geq -s-1/2}   (n+1)\frac{r^n}{k^n}.
+\]
+Noting that, for $b<1$ and $m$ an integer,
+\[
+  \sum_{n=m}^\infty (n+1)b^n = \frac{b^{m}}{(1-b)^2}(1+m(1-b)),
+\]
+and since $\sum_{n\geq -s-1/2} = \sum_{n=m}^\infty$ with $-s-2\leq m\leq -s+1$, we have, for any $k\geq N$, the bound
+\[
+  \sum_{n\geq -s-1/2}^{} (n+1)\frac{r^n}{k^n}
+  \leq \left(\frac{r}{k}\right)^{-s-2}\frac{1+(-s+1)(1-r/k)}{(1-r/k)^2}
+  \leq \frac{k^4N^{-s-2}(2-s)}{k^{-s}(N-r)}.
+\]
+Thus the sum in $\mathit{(II)}$ is bounded for
+\[
+  \frac{N^{-s-2}(2-s)}{N-r} \sum_{k=N}^\infty k^4|\lambda|^k = C(2-s)N^{-s-1}
+\]
+where the constant $C$ depends only on $N$, $N-r$ and $\lambda$, and hence only on the compact set $K$ and~$\lambda$.
+Again, the $\Gamma(1-s)$ term in the denominator shows that $\mathit{(II)}$ has order
+$O(\delta^{s-1})$ for any $\delta>1$.
+
+In $\mathit{(III)}$, since the sum in $j$ is finite, we consider each such summand separately and
+study the behavior as $s \to -\infty$ of the expressions
+\[
+  \frac{1}{\Gamma(1-s)} \sum_{n<-s-1/2} \binom{-s}{n} \frac{|z|^n}{a^{n+s}},
+\]
+where $a=1,2,\dots, N-1$ and $|z|<N$.
+Note that $a^n\geq 1$. Dividing and multiplying by $N^{-s}$ and noting that
+$0 < \binom{-s}{n} < 2\cdot 2^{-s}$, we get the following bound for the modulus of~$\mathit{(III)}$:
+\begin{align*}
+  \frac{N^{-s}}{a^{s}\Gamma(1-s)}
+  & \sum_{n<-s-1/2}\binom{-s}{n}\frac{|z|^n}{N^{-s}}
+  \leq \frac{N^{-s}}{a^{s}\Gamma(1-s)} \sum_{n<-s-1/2}\binom{-s}{n} \frac{|z|^n}{N^{n+1/2}}
+  \\
+  &\leq 2 \, \frac{N^{-s-1/2}2^{-s}}{a^{s}\Gamma(1-s)} \left(1-\frac{|z|}{N}\right)^{-1}
+  \leq  C_K \, \frac{N^{-s-1/2}2^{-s}}{a^{s}\Gamma(1-s)}.
+\end{align*}
+Once again, the $\Gamma(1-s)$ term in the denominator makes $\mathit{(III)}$ of the order $O(\delta^{s-1})$ for any $\delta>1$.
+
+The only subtlety in obtaining the bound stated above lies with~$\mathit{(IV)}$.
+Observe that $n+s<-1/2<0$. Then, by Corollary~\ref{cor:FS-admissible} with $\alpha=-1/2$ and $x=0$, there is a constant $C$ depending only on $F$ such that
+\begin{equation}
+\label{eq:asintoticaen0}
+  |R_F(\lambda,n+s,0)| = \left|\frac{\Phi(\lambda,n+s,0)}{\Gamma(1-n-s)}
+  - \sum_{a \in F} a^{s+n-1}\right| \leq C \mu_F^{{n+}s-1}.
+\end{equation}
+Substituting
+\[
+  \Phi(\lambda,n+s,0) = \Gamma(1-n-s) \biggl(R_F(\lambda,n+s,0)+\sum_{a \in F} a^{s+n-1}\biggr)
+\]
+into $\mathit{(IV)}$ and noting that
+\[
+  \binom{-s}{n} \frac{\Gamma(1-s-n)}{\Gamma(1-s)}=\frac{1}{n!},
+\]
+we see that $\mathit{(IV)}$ may be rewritten as
+\begin{gather} \nonumber
+  \sum_{n<-s-1/2} \frac{z^n}{n!} \biggl( R_F(\lambda,n+s,0)
+  + \sum_{a \in F} a^{s+n-1} \biggr) - \sum_{a \in F} a^{s-1}e^{az}
+  \\
+  \label{eq:IVrewritten}
+  = \sum_{n<-s-1/2} \frac{z^n}{n!} R_F(\lambda,n+s,0) +
+  \sum_{a \in F}a^{s-1} \left( \sum_{n<-s-1/2}\frac{(az)^n}{n!}-e^{az} \right).
+\end{gather}
+By~\eqref{eq:asintoticaen0}, the first of these summands in~\eqref{eq:IVrewritten} is bounded by
+\[
+  C\sum_{n<-s-1/2} \frac{|z|^n}{n!} \mu_F^{n+s-1} \leq C\mu_F^{s-1}e^{|z|\mu_F}
+  \leq C_{K,F}\mu_F^{s-1}.
+\]
+
+For the second summand in~\eqref{eq:IVrewritten}, we note that, for any $z\in K$ and any $a\in F$, there is a constant $C=C_{K,F}$ such that
+\[
+  \left| \sum_{n<-s-1/2}\frac{(az)^n}{n!}-e^{az} \right|
+  \leq \sum_{n\geq -s-1/2}\frac{|az|^n}{n!}\leq \sum_{n\geq -s-1/2}\frac{C^n}{n!}.
+\]
+To bound this tail of the exponential series, recall that $\sum_{n\geq -s-1/2} = \sum_{n=m}^\infty$ with $-s-2\leq m\leq -s+1$. For the sum over $n \geq m$, the Lagrange form of the remainder for Taylor series gives a bound of the form $e^{C} {C^{m}}/{m!}$, from which the bound $C^{-s+1}/\Gamma(-s-2)$, for a suitable new constant, now follows.
+This is once again of order $O(\delta^{s-1})$ for any $\delta>1$; thus, in the entire process of bounding the different terms in $\mathit{(I)} + \mathit{(II)} + \mathit{(III)} + \mathit{(IV)}$, the limitation given by $\mu_F^{s-1}$ is due exclusively to the first term in~\eqref{eq:IVrewritten}.
+\end{proof}
+
+\section{Asymptotic behavior of $\Phi(\lambda,s,z)$ on $\C$ when $s\to-\infty$}
+\label{sec:asymptotic}
+
+We note here two simple consequences of our main theorem.
+
+\begin{corollary}
+\label{cor:lambdanonneg}
+Let $0<|\lambda|<1$ and $\lambda \notin ({-1},0)$. Then,
+\begin{equation}
+\label{eq:lambdanonneg}
+  \lim_{\R\ni s\to-\infty} \frac{({-\log\lambda})^{1-s}\Phi(\lambda,s,z)}{\Gamma(1-s)} = \lambda^{-z}
+\end{equation}
+uniformly for $z$ on compact subsets of~$\dom$.
+\end{corollary}
+
+\begin{proof}
+The restriction on $\lambda$ implies that $F = \{a_0=-\log \lambda\}$ is an admissible set.
+Then, by Theorem~\ref{th:FS-admissible},
+\begin{equation*}
+  \frac{\Phi(\lambda,s,z)}{\Gamma(1-s)} = ({-\log\lambda})^{s-1}\lambda^{-z}+ O(\mu_F^{\Re s-1}).
+\end{equation*}
+Dividing both sides of this equation by $({-\log\lambda})^{s-1}$ and noting that $\mu_F/|{-\log\lambda}|>1$, we obtain the result.
+\end{proof}
+
+\begin{corollary}
+\label{cor:lambdaneg}
+Let $\lambda \in ({-1},0)$. Then,
+\begin{equation}
+\label{eq:lambdaneg}
+  \lim_{\R\ni s\to-\infty} \left(\frac{(-\log|\lambda|-i\pi)^{1-s}
+  \Phi(\lambda,s,z)}{\Gamma(1-s)}\lambda^{z}
+  - \frac{(-\log|\lambda|-i\pi)^{1-s}}{(-\log|\lambda|+i\pi)^{1-s}}e^{2\pi iz} \right) = 1
+\end{equation}
+uniformly for $z$ on compact subsets of~$\dom$.
+\end{corollary}
+
+\begin{proof}
+In this case, $F = \{a_0=-\log\lambda,\,a_1=2\pi i-\log\lambda\}$ is an admissible set
+(note that $|{-\log\lambda}| = |2\pi i-\log\lambda|$ and therefore there is no admissible set with a single point). By Theorem~\ref{th:FS-admissible}, we have
+\begin{equation*}
+  \frac{\Phi(\lambda,s,z)}{\Gamma(1-s)}
+  = ({-\log \lambda})^{s-1}\lambda^{-z} + (2\pi i-\log\lambda)^{s-1}\lambda^{-z}e^{2\pi iz}
+  + O(\mu_F^{\Re s-1}),
+\end{equation*}
+and some simple manipulations lead to the result.
+\end{proof}
+
+
+Observe that the term $\frac{\log|\lambda|+i\pi}{\log|\lambda|-i\pi}$ in the last corollary has modulus one and therefore the Lerch function exhibits oscillatory behavior. Let us examine a simple case.
+With $\lambda=-e^{-\pi}$, we have
+\begin{equation*}
+  \frac{\log|\lambda|+i\pi}{\log|\lambda|-i\pi}=-i.
+\end{equation*}
+Fixing $\alpha\in[0,1)$ and setting $s=1-n-\alpha$, $n\in\N$,
+for $n$ a multiple of~$4$, Corollary~\ref{cor:lambdaneg} says that
+\begin{equation*}
+  \frac{({-1})^\alpha e^{\alpha i\pi/4}(-\pi+i\pi)^{n+\alpha}\Phi(\lambda,n+\alpha,z)} {\Gamma(n+\alpha)}
+  \longrightarrow 2e^{\pi z} \cos\left(\pi z-\frac{\alpha\pi}{4}\right),
+  \quad n\to \infty,
+\end{equation*}
+while if $n$ is congruent to $2$ modulo $4$, we have
+\begin{equation*}
+  \frac{({-1})^\alpha e^{\alpha i\pi/4}({-\pi}+i\pi)^{n+\alpha}\Phi(\lambda,n+\alpha,z)} {\Gamma(n+\alpha)}
+  \longrightarrow 2ie^{\pi z} \sin\left(\pi z-\frac{\alpha\pi}{4}\right),
+\quad n\to \infty.
+\end{equation*}
+For $\alpha=0$, we obtain the Apostol-Bernoulli polynomials, whose oscillatory behavior has been studied in~\cite{NRV-MC}.
+
+\begin{remark}
+For negative $\lambda$, we have the straightforward relation
+\begin{equation*}
+  \Phi(\lambda,s,z) = 2^{-s} \left(\Phi\Bigl(\lambda^2,s,\frac{z}{2}\Bigr)
+  + \lambda \Phi\Bigl(\lambda^2,s,\frac{z+1}{2}\Bigr)\right),
+\end{equation*}
+which implies that
+\begin{multline*}
+  \frac{({-\log\lambda})^{1-s}\Phi(\lambda,s,z)}{\Gamma(1-s)}
+  \\
+  = \frac12 \frac{({-\log\lambda^2})^{1-s}\Phi(\lambda^2,s,\frac{z}{2})}{\Gamma(1-s)}
+  + \frac12 \lambda \frac{({-\log\lambda^2})^{1-s} \Phi(\lambda^2,s,\frac{z+1}{2})}{\Gamma(1-s)}.
+\end{multline*}
+However, if we apply Corollary~\ref{cor:lambdanonneg}, then we only obtain
+\begin{equation*}
+  \lim_{\R\ni s\to-\infty} \frac{({-\log\lambda})^{1-s}\Phi(\lambda,s,z)}{\Gamma(1-s)}
+  = \frac12\left(|\lambda|^{-z}+ \lambda |\lambda|^{-z-1}\right) = 0
+\end{equation*}
+which does not yield the asymptotic behavior of the Lerch function.
+\end{remark}
+
+
+\section{A nice application: polylogarithms}
+\label{sec:polylog}
+
+Recall that the polylogarithm functions are defined by the series
+\[
+  \Li_{s}(\lambda) = \sum_{k=1}^{\infty} \frac{\lambda^{k}}{k^{s}},
+\]
+and thus $\Li_{s}(\lambda) = \lambda \Phi(\lambda,s,1)$. For $\Re s < 0$, we also have $\Li_{s}(\lambda) = \Phi(\lambda,s,0)$.
+
+Setting $z = 0$ in Corollaries~\ref{cor:lambdanonneg} and~\ref{cor:lambdaneg},
+and letting $\lambda = e^{\mu}$ with $\Re \mu < 0$ and $\Im \mu \in (-\pi,\pi]$
+(the boundary case $\Im \mu = \pi$ now corresponds to Corollary~\ref{cor:lambdaneg}),
+we have $\log \lambda = \mu$ and hence
+\begin{equation*}
+%\label{eq:polylog1}
+  \lim_{\R \ni s \to -\infty}
+  \frac{(-\mu)^{1-s} \Li_{s}(e^{\mu})}{\Gamma(1-s)} = 1,
+  \qquad
+  \Im \mu \in (-\pi,\pi),
+\end{equation*}
+and
+\begin{equation*}
+%\label{eq:polylog2}
+  \lim_{\R \ni s \to -\infty}
+  \left(
+      \frac{(-\mu)^{1-s} \Li_{s}(e^{\mu})}{\Gamma(1-s)}
+    - \frac{(-\mu)^{1-s}}{(-\mu + 2 \pi i)^{1-s}}
+  \right)
+    = 1,
+  \qquad
+  \Im \mu = \pi.
+\end{equation*}
+Thus one also obtains the asymptotic behavior of the polylogarithm functions in the stated cases.
+
+\subsection*{Acknowledgement.}
+We wish to thank the referee for the careful reading of the paper and for suggesting various corrections and improvements.
+
+
+%--------------------------------------
+\begin{thebibliography}{00}
+%--------------------------------------
+
+\bibitem{Ap}
+T. M. Apostol,
+On the Lerch zeta function,
+\textit{Pacific J. Math.}
+\textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+\bibitem{Ap-NIST}
+T. M. Apostol,
+Zeta and related functions,
+\textit{NIST handbook of mathematical functions}
+(edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+601--616,
+National Institute of Standards and Technology, Washington, DC, and
+Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/25}
+
+\bibitem{BaSa}
+E. P. Balanzario and J. S\'{a}nchez-Ortiz,
+Riemann-Siegel integral formula for the Lerch zeta function,
+\textit{Math. Comp.},
+to appear.
+DOI: \url{http://dx.doi.org/10.1090/S0025-5718-2011-02566-4}
+
+\bibitem{Boy}
+K. N. Boyadzhiev,
+Apostol-Bernoulli functions, derivative polynomials and Eulerian polynomials,
+\textit{Adv. Appl. Discrete Math.}
+\textbf{1} (2008), 109--122.
+
+% \cite[\S1.11, p.~27]{Bate}
+\bibitem{Bate} % Bateman project
+A. Erd\'{e}lyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+\textit{Higher Transcendental Functions}, Volume I,
+McGraw-Hill, New York, 1953.
+
+%% http://dlmf.nist.gov/25.14
+%% (el cap\'itulo 25, ``Zeta and related functions'', es de Tom M. Apostol)
+%% \cite[\S25.14]{DLMF-online}
+%\bibitem{DLMF-online}
+%NIST,
+%\textit{Digital Library of Mathematical Functions},
+%National Institute of Standards and Technology, 2010, % Release date 2010-05-07
+%\url{http://dlmf.nist.gov/}
+
+%%% El anterior en papel:
+%\bibitem{DLMF-printed}
+%\textit{NIST Handbook of Mathematical Functions}
+%(edited by F. W. F. Olver, D. W. Lozier, R. F. Boisvert and C. W. Clark),
+%National Institute of Standards and Technology and
+%Cambridge University Press, 2010.
+
+\bibitem{FL}
+C. Ferreira and J. L. L\'{o}pez,
+Asymptotic expansions of the Hurwitz-Lerch zeta function,
+\textit{J. Math. Anal. Appl.}
+\textbf{298} (2004), no. 1, 210--224.
+
+\bibitem{GuiS}
+J. Guillera and J. Sondow,
+Double integrals and infinite products for some classical constants via analytic continuations of Lerch's transcendent,
+\textit{Ramanujan J.}
+\textbf{16} (2008), 247--270.
+% Preprint in \url{http://arxiv.org/abs/math.NT/0506319}
+
+\bibitem{Le}
+M. Lerch,
+Note sur la fonction $\mathfrak{K}(w,x,s) = \sum_{k=0}^{\infty} e^{2\pi ikx}(w+k)^{-s}$,
+\textit{Acta Math.}
+\textbf{11} (1887), 19--24.
+% \url{http://www.springerlink.com/content/bpn8104100w31667/}
+% http://www.springerlink.com/content/0001-5962/11/1-4/
+
+\bibitem{MOS}
+W. Magnus, F. Oberhettinger and R. P. Soni,
+\textit{Formulas and Theorems for the Special Functions of Mathematical Physics},
+3rd ed., Springer, New York, 1966.
+
+\bibitem{NRV-JAT}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+The M\"obius inversion formula for Fourier series
+applied to Bernoulli and Euler polynomials,
+\textit{J. Approx. Theory}
+\textbf{163} (2011), 22--40.
+
+\bibitem{NRV-MC}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Asymptotic estimates for Apostol-Bernoulli and Apostol-Euler polynomials,
+\textit{Math. Comp.},
+to appear.
+DOI: \url{http://dx.doi.org/10.1090/S0025-5718-2012-02568-3}
+% Preprint in \url{http://arxiv.org/abs/1102.1493}
+
+\bibitem{SC-book}
+H. M. Srivastava and J. Choi,
+\textit{Series associated with the zeta and related functions},
+Kluwer Academic, Dordrecht, 2001.
+
+\bibitem{Wir}
+W. Wirtinger,
+\"Uber eine besondere Dirichletsche Reihe,
+\textit{J. Reine Angew. Math.} \textbf{129} (1905), 214--219.
+% % Journal f\"ur die Reine und Angewandte Mathematik
+
+%--------------------------------------
+\end{thebibliography}
+%--------------------------------------
+
+%--------------------------------------
+\end{document}
+%--------------------------------------

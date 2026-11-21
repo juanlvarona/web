@@ -1,0 +1,1005 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% How to define the Riesz transform for Fourier-Neumann expansions?  %
+%                                                                    %
+% CONTRIBUCIONES CIENT\'IFICAS EN HONOR DE MIRIAN ANDR\'ES G\'OMEZ,  %
+% Laureano Lamb\'an, Ana Romero y Julio Rubio (Editores),            %
+% Servicio de Publicaciones, Universidad de La Rioja.                %
+% Logro\~no, 2010                                                    %
+% ISBN 978-84-96487-50-5                                             %
+%                                                                    %
+% DATE: first version, 2-February-2004                               %
+% DATE: last modification, 29-March-2010                             %
+%                                                                    %
+% Written with AMS-LaTeX 2.0                                         %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{amsart}
+%\documentclass[11pt,a4paper]{amsart}
+
+\usepackage[twoside, 
+paperwidth=17cm, paperheight=24cm,
+textheight=19cm, textwidth=12.5cm,
+top=3.0cm, centering]{geometry}
+
+\usepackage[spanish, english]{babel}
+
+%% S\'olo se usa si el art\'{\i}culo est\'a en espa\~nol:
+%\input{libroMirianAndres.sty}
+%% Si est\'a en ingl\'es basta esto:
+\def\publname{CONTRIBUCIONES CIENT\'IFICAS\\ 
+EN HONOR DE MIRIAN ANDR\'ES G\'OMEZ\\
+(Laureano Lamb\'an, Ana Romero y Julio Rubio, editores),\\
+Servicio de Publicaciones, Universidad de La Rioja,\\
+Logro\~no, Spain, 2010.}
+%%% CON ESTO LO LOGRO QUITAR TODO SALVO EL \publname
+\copyrightinfo{}{} %%% {copyright year}{copyright holder}
+\issueinfo{}{}{}{} %%% {vol}{number}{month}{year}
+\PII{\null}        %%% ISSN and reference% (Sin el \null, da siempre error de underfull)
+\setcounter{page}{203}
+
+%\usepackage[latin1]{inputenc}
+
+%\usepackage{amsmath,amsthm} %%% amsthm necesario para usar el entorno proof
+
+\usepackage{amssymb}
+
+%%% FOR DRAFTS:
+% \overfullrule=5pt
+% \usepackage[notcite,notref]{showkeys} 
+%\date{August 20, 2009}
+
+%%%%%%%% A LOT OF BIG SEVERAL-LINE EQUATIONS (aligns, etc.).
+%%%%%%%% THUS, WE ALLOW TO BREAK THEM IN PAGES.
+%\allowdisplaybreaks
+
+%\theoremstyle{definition}
+%\newtheorem*{rem*}{Remark}
+
+\newcommand{\spa}{\operatornamewithlimits{span}} %%%% \span already exists in TeX
+%\newcommand{\supp}{\operatornamewithlimits{supp}}
+%\newcommand{\iden}{\operatorname{Id}}
+%\renewcommand{\Re}{\operatorname{Re}}
+%\renewcommand{\Im}{\operatorname{Im}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[How to define the Riesz transform?]{How to define the Riesz transform for Fourier-Neumann expansions?}
+%\author[\'O. Ciaurri, L. Roncal, J. L. Torrea, and J. L. Varona]%
+%  {\'Oscar Ciaurri, Luz Roncal, Jos\'e L. Torrea, and Juan L. Varona}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on \\
+         Universidad de La Rioja \\
+         26004 Logro\~no, Spain}
+\email{oscar.ciaurri@unirioja.es}
+
+\author[L. Roncal]{Luz Roncal}
+\address{Departamento de Matem\'aticas \\
+         IES Hermanos d'Elhuyar \\
+         26003 Logro\~no, Spain}
+\email{luz.roncal@unirioja.es}
+
+\author[J. L. Torrea]{Jos\'e L. Torrea}
+\address{Departamento de Matem\'aticas \\
+         Facultad de Ciencias \\
+         Universidad Aut\'o\-no\-ma de Madrid \\
+         28049 Madrid, Spain}
+\email{joseluis.torrea@uam.es}
+\urladdr{http://www.uam.es/joseluis.torrea}
+
+\author[J. L. Varona]{Juan L. Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on \\
+         Universidad de La Rioja \\
+         26004 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona}
+
+\thanks{Research supported by grants 
+MTM2009-12740-C03-03 and % <- La Rioja \'ultimo 
+MTM2008-06621-C02-01 of the~DGI} % <- Torrea \'ultimo 
+
+\keywords{Fourier-Neumann expansions, Heat semigroup,
+Poisson semigroup, Conjugate Poisson semigroup,
+Fractional integrals, Riesz potentials, Riesz transform.}
+
+\subjclass[2000]{Primary 42C10}
+%\subjclass[2000]{Primary 42C10; Secondary 35K05, 35J05}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\dedicatory{Dedicated to the memory of our colleague Mirian}
+
+%\renewcommand{\abstractname}{Resumen}
+
+%%% ABSTRACT EN DOS IDIOMAS CON amsart
+
+%% Primero ingl\'es y luego espa\~nol:
+%\selectlanguage{english}
+%\begin{abstract}
+%This is the abstract in English. ......
+%...... ...... ...... ...... ...... ......
+%...... ...... ...... ...... ...... ......
+%...... ...... ...... ...... ...... ......
+%...... ...... ...... ...... ...... ......
+%\medskip
+%\selectlanguage{spanish}
+%\item[\hskip\labelsep\scshape\abstractname.]
+%Este es el abstract en espa\~nol. ......
+%...... ...... ...... ...... ...... ......
+%...... ...... ...... ...... ...... ......
+%...... ...... ...... ...... ...... ......
+%...... ...... ...... ...... ...... ......
+%\end{abstract}
+%\selectlanguage{english} % or \selectlanguage{spanish}
+
+% Primero espa\~nol y luego ingl\'es:
+\selectlanguage{spanish}
+\begin{abstract}
+Consideramos un operador diferencial autoadjunto $L$ con autovalores positivos.
+En este art\'{\i}culo damos una visi\'on general del m\'etodo 
+que se sigue para definir de manera espectral el semigrupo del calor $e^{-tL}$, 
+el de Poisson $e^{-t\sqrt{L}}$ y los potenciales de Riesz $L^{-a}$, 
+hasta llegar a la descomposici\'on $L = \delta^*\delta$ (con $\delta$
+y $\delta^*$ dos operadores diferenciales de primer orden adjuntos),
+y as\'{\i} definir la transformada de Riesz $R = \delta L^{-1/2}$.
+
+En particular, para el operador diferencial $L_\alpha$
+que se corresponde con los desarrollos de Fourier-Neumann de orden $\alpha>-1$,
+con la ayuda de un sistema de \'algebra computacional hemos encontrado
+una pl\'eyade de descomposiciones $L_\alpha = \delta^* \delta$ (o similares).
+Pero ninguna de ellas parece ser \'util para definir la transformada de Riesz,
+puesto que los operadores $\delta$ y $\delta^*$ son demasiado ``raros'': 
+% las funciones presentes en las expresiones de $\delta$ y $\delta^*$ 
+% tienen una cantidad infinita de polos, luego al aplicar $\delta$ no  
+% obtenemos funciones integrables.
+las expresiones de $\delta$ y $\delta^*$ contienen funciones con
+una cantidad infinita de polos, luego al aplicar $\delta$ no  
+obtenemos funciones integrables.
+\medskip
+\selectlanguage{english}
+\item[\hskip\labelsep\scshape\abstractname.]
+We consider a self-adjoint differential operator $L$ with positive eigenvalues. 
+In this paper, we provide a general view of the method followed to define, 
+in a spectral way, the heat semigroup $e^{-tL}$, 
+the Poisson semigroup $e^{-t\sqrt{L}}$ and the Riesz potentials $L^{-a}$, 
+up to arrive at the decomposition $L = \delta^*\delta$ (with $\delta$
+and $\delta^*$ two adjoint first order differential operators),
+and then define the Riesz transform $R = \delta L^{-1/2}$.
+
+In particular, for the differential operator  $L_\alpha$
+corresponding with the Fourier-Neumann expansions of order $\alpha>-1$,
+we have found, with the help of a computer algebra system, 
+a pleyade of strange decompositions $L_\alpha = \delta^* \delta$ (or similar).
+Nevertheless, none of them seems to be useful to define the Riesz transform,
+because operators $\delta$ and $\delta^*$ are too ``weird'': 
+% the functions in the expressions of $\delta$ and $\delta^*$ have 
+% an infinite quantity of poles, so we do not obtain integrable functions
+% by applying~$\delta$.
+the expressions of $\delta$ and $\delta^*$ have functions with
+an infinite quantity of poles, so we do not obtain integrable functions
+by applying~$\delta$.
+\end{abstract}
+\selectlanguage{english} % or \selectlanguage{spanish}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\selectlanguage{spanish}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A sketch of the general theory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $X$ be an open (possibly unbounded) interval on the real line,
+a weight $w \in C^1(X)$ with $w(x) > 0$ for all $x \in X$,
+and let $\langle\cdot,\cdot\rangle$ denote the natural inner
+product in $L^2(X,w(x)\,dx)$.
+
+Moreover, let $L$ be a self-adjoint second order differential operator
+defined initally on a suitable (and dense) subset of functions
+in $L^2(X,w(x)\,dx)$.
+
+Let us assume that there is an orthonormal basis $\{\varphi_n\}_{n=0}^{\infty}$
+in $L^2(X,w(x)\,dx)$ consisting of eigenfunctions of $L$ that correspond
+with the eigenvalues $\{\lambda_n\}_{n=0}^{\infty}$, that is,
+$$
+  L \varphi_n = \lambda_n \varphi_n,
+$$
+and satisfying $0 < \lambda_0 < \lambda_1 < \lambda_2 < \cdots$ and
+$\lim_n \lambda_n = +\infty$.
+
+For a function $f \in L^2(X,w(x)\,dx)$ whose Fourier expansion is
+$$
+  f = \sum_{n=0}^{\infty} c_n \varphi_n,
+  \quad c_n = \langle f,\varphi_n \rangle
+  = \int_{X} f(x) \overline{\varphi_n(x)} w(x)\,dx,
+$$
+we define in a natural way (at least formally)
+$$
+  L f = L\left(\sum_{n=0}^{\infty} c_n \varphi_n\right)
+  = \sum_{n=0}^{\infty} c_n \lambda_n \varphi_n.
+$$
+This spectral method can be used to extend to $L^2(X,w(x)\,dx)$
+many operators related to~$L$. For instance, for a function $\Phi$
+defined over the eingenvalues we would define the operator $\Phi(L)$
+as
+$$
+  \Phi(L) f = \Phi(L) \left(\sum_{n=0}^{\infty} c_n \varphi_n\right)
+  = \sum_{n=0}^{\infty} c_n \Phi(\lambda_n) \varphi_n.
+$$
+
+In particular, for $t>0$, we define the operator $e^{-tL}$ by means of
+$$
+  e^{-tL} \varphi_n = e^{-t\lambda_n} \varphi_n
+$$
+and, for $f = \sum_{n=0}^{\infty} c_n \varphi_n \in L^2(X,w(x)\,dx)$,
+$$
+  (e^{-tL} f)(x) = e^{-tL}\left(\sum_{n=0}^{\infty} c_n \varphi_n\right)(x)
+  = \sum_{n=0}^{\infty} c_ne^{-t\lambda_n} \varphi_n(x).
+$$
+(Let us notice that, here and in what follows, the derivatives of the
+differential operator $L$ are taken with respect to the variable~$x$.)
+If we denote $u(x,t) = (e^{-tL} f)(x)$, the partial derivative with respect
+to $t$ is, formally,
+$$
+  \frac{\partial}{\partial t} u(x,t) = -L e^{-tL} f(x) = -L u(x,t)
+$$
+so $u(x,t)$ is the solution of the initial value problem
+\begin{equation}
+\label{eq:heat}
+  \left\{
+  \begin{aligned}
+    &\frac{\partial}{\partial t} u(x,t) = -L u(x,t), \quad x \in X,\ t>0, \\
+    &\lim_{t\to0} u(x,t) = u(x,0) = f(x).
+  \end{aligned}
+  \right.
+\end{equation}
+In the classical case of $L$ being the ``ordinary'' Laplacian
+(with a change of sign to get a differential operator with positive eigenvalues)
+$L = - \frac{\partial^2}{\partial x^2}$,
+\eqref{eq:heat}~is the heat (or heat-diffusion) equation
+which describes the distribution of heat (i.e., variation in temperature)
+in a given interval $X$ over time\footnote{The heat equation is derived from Fourier's law and conservation of energy. The first solution technique for the heat equation was proposed by Joseph Fourier in his treatise \textit{Th\'eorie Analytique de la Chaleur}, published in 1822. Later, the solution technique was extended to many other types of equations and this led naturally to the basic ideas of the spectral theory.}
+$$
+  \left\{
+  \begin{aligned}
+    &\frac{\partial}{\partial t} u(x,t) = \frac{\partial^2}{\partial x^2} u(x,t), \quad x \in X,\ t>0 ,\\
+    &u(x,0) = f(x), \quad x \in X.
+  \end{aligned}
+  \right.
+$$
+By the reason above, and since $e^{-t_1L}e^{-t_2L}f = e^{-(t_1+t_2)L}f$ for $t_1,t_2\ge0$,
+the operator $e^{-tL}$ is known as the heat semigroup.
+
+Another useful operator is $e^{-t\sqrt{L}}$, that is defined by means of
+$$
+  e^{-t\sqrt{L}} \varphi_n = e^{-t\sqrt{\lambda_n}} \varphi_n
+$$
+and, for $f = \sum_{n=0}^{\infty} c_n \varphi_n \in L^2(X,w(x)\,dx)$,
+$$
+  (e^{-t\sqrt{L}} f)(x) = e^{-t\sqrt{L}}\left(\sum_{n=0}^{\infty} c_n \varphi_n\right)(x)
+  = \sum_{n=0}^{\infty} c_ne^{-t\sqrt{\lambda_n}} \varphi_n(x).
+$$
+This time, if we take $u(x,t) = (e^{-t\sqrt{L}} f)(x)$, we have
+$$
+  \frac{\partial^2}{\partial t^2} u(x,t) = L e^{-t\sqrt{L}} f(x) = L u(x,t),
+$$
+so $u(x,t)$ is the solution of
+\begin{equation}
+\label{eq:Poisson}
+  \left\{
+  \begin{aligned}
+    &\frac{\partial^2}{\partial t^2} u(x,t) = L u(x,t), \quad x \in X,\ t>0, \\
+    &\lim_{t\to0} u(x,t) = u(x,0) = f(x), \quad x \in X.
+  \end{aligned}
+  \right.
+\end{equation}
+In the classical case of $L = - \frac{\partial^2}{\partial x^2}$ the first
+equation in~\eqref{eq:Poisson} becomes
+$$
+  \Bigg(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial t^2} \Bigg) u(x,t) = 0,
+$$
+so it means that $u(x,t)$ is harmonic (in the classical sense).
+In general, $e^{-t\sqrt{L}}$ is known as the Poisson semigroup, and a function $u(x,t)$
+that satisfies
+\begin{equation}
+\label{eq:harmonic}
+  \Bigg(\frac{\partial^2}{\partial t^2} - L \Bigg) u(x,t) = 0
+\end{equation}
+is said to be harmonic.
+
+Under some conditions that we will not detail, the formal definitions that we have
+shown above can be rigorized on $L^2(X,w(x)\,dx)$ in a standard way; see~\cite{Stein} for details.
+Much more difficult is to extend it to functions on $L^p(X,w(x)\,dx)$ for $p \ne 2$.
+Several cases of this topic have been studied for different operators and orthogonal systems,
+starting from the seminal papers of Muckenhoupt and Stein in 1965~\cite{MuSt} and Muckenhoupt
+in 1969~\cite{Mu}. In the recent years a considerable activity can be observed; 
+see~\cite{BCiMPTV, MST, Sj, StT, Th1, Th2, Th3, T}.
+% the contributions of Thangavelu (such as~\cite{Th1, Th2, Th3}),
+% and many papers published by Sj\"ogren, Stempak, Torrea and other collaborators
+% (for instance, \cite{BCiMPTV, MST, Sj, StT, T}).
+An important part of this work is to identify the operators by means of suitable
+integral expressions with kernels, and to find precise bounds for these kernels.
+
+There is a way of relating the Poisson and heat semigroup. For that purpose, let us note the
+well known identity
+\[
+   e^{-t\sqrt{\gamma}} =
+   \frac{1}{\sqrt{4\pi}} \int_0^\infty t e^{-t^2/(4s)}e^{-s\gamma} s^{-3/2}\,ds.
+\]
+%% HECHO CON MATHEMATICA:
+% (1/Sqrt[4 Pi])*
+% Integrate[t*E^(-t^2/(4 s)) E^(-g*s) s^(-3/2), {s, 0, Infinity},
+%  Assumptions -> {t > 0, g > 0}]
+% da
+% E^(-Sqrt[g] t)
+Then, as shown in~\cite{Stein}, the Poisson and heat semigroup can be related
+by means of the subordination formula
+%\[
+%  P_tf(x)
+%  = \frac{1}{\sqrt{4\pi}} \int_0^\infty t e^{-t^2/(4s)} W_sf(x) s^{-3/2}\,ds.
+%\]
+\[
+  (e^{-t\sqrt{L}}f)(x)
+  = \frac{1}{\sqrt{4\pi}} \int_0^\infty t e^{-t^2/(4s)} (e^{-sL}f)(x) s^{-3/2}\,ds.
+\]
+
+There are other operators that can be defined by this technique.
+In particular, the formula
+%$s^{-\lambda} = \frac{1}{\Gamma(\lambda)} \int_0^\infty t^{\lambda-1} e^{-ts}\,dt$
+$$
+  s^{-a} = \frac{1}{\Gamma(a)} \int_0^{\infty} t^{a-1} e^{-ts} \,dt
+$$
+suggests the definition of the Riesz potentials (also known as fractional integrals) either  as
+\begin{equation*}
+%\label{eq:frac}
+%  L^{-\lambda}f(x) =
+%  \frac{1}{\Gamma(\lambda)}\int_0^\infty t^{\lambda-1} W_tf(x)\,dt
+  L^{-a}f(x) =
+  \frac{1}{\Gamma(a)}\int_0^\infty t^{a-1} (e^{-tL}f)(x)\,dt
+\end{equation*}
+or
+\begin{equation*}
+%\label{eq:frac/2}
+%   L^{-\lambda/2}f(x)
+%   = \frac{1}{\Gamma(\lambda)} \int_0^\infty t^{\lambda-1} P_tf(x) \,dt.
+   L^{-a/2}f(x)
+   = \frac{1}{\Gamma(a)} \int_0^\infty t^{a-1} (e^{-t\sqrt{L}}f)(x) \,dt,
+\end{equation*}
+that, in a espectral way (for $f = \sum_{n=0}^{\infty} c_n \varphi_n \in L^2(X,w(x)\,dx)$), is
+\begin{equation*}
+  L^{-a}f(x) = \sum_{n=0}^{\infty} c_n \lambda_n^{-a}  \varphi_n.
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The decomposition of the differential operator}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Now, let us suppose that we have a decomposition
+\begin{equation}
+\label{eq:decomposition}
+  L = \delta^* \delta
+\end{equation}
+where $\delta$ and $\delta^*$ are two adjoint first order differential operators, i.e., that verify
+\begin{equation}
+\label{eq:adjoint}
+  \int_X f(x) \delta g(x) w(x)\,dx
+  = \int_X g(x)\delta^*f(x) w(x)\,dx
+\end{equation}
+for functions $f$ and $g$ good enough.
+(In the classical case $L= -\frac{\partial^2}{\partial x^2}$, we have $\delta^* = -\frac{\partial}{\partial x}$,
+$\delta = \frac{\partial}{\partial x}$, and \eqref{eq:adjoint} is just the formula of integrating by parts for functions $f,g$ that vanishes in both extremes of the interval~$X$.)
+This decomposition $L = \delta^* \delta$ is the key to generalize many classical operators of the harmonic analysis under this general scheme.
+
+In particular, the operator $\delta$ in this decomposition is used to define the so-called Riesz transform
+$$
+  R = \delta L^{-1/2}
+$$
+that, again in a spectral way (recall that $\{\varphi_n\}_{n=0}^{\infty}$ is an orthonormal basis in $L^2(X,w(x)\,dx)$
+constituted by eigenfunctions of $L$, that is, $L \varphi_n = \lambda_n \varphi_n$), is given by
+$$
+  R \varphi_n = \delta L^{-1/2} \varphi_n = \lambda_n^{-1/2} \delta \varphi_n
+$$
+and, for $f = \sum_{n=0}^{\infty} c_n \varphi_n \in L^2(X,w(x)\,dx)$,
+$$
+  Rf = \delta L^{-1/2} f = \sum_{n=0}^{\infty} c_n \lambda_n^{-1/2} \delta \varphi_n.
+$$
+
+Now, let us take
+$$
+  M = \delta \delta^*
+$$
+so $M\delta = \delta\delta^*\delta = \delta L$. Besides, % remembering that
+% $\{\varphi_n\}_{n=0}^{\infty}$ is a orthonormal basis in $L^2(X,w(x)\,dx)$
+% constituted by eigenfunctions of $L$, that is $L \varphi_n = \lambda_n \varphi_n$,
+let us define
+$$
+  \psi_n = \delta \varphi_n,
+$$
+that satisfies $\delta^* \psi_n = \delta^* \delta \varphi_n = L \varphi_n = \lambda_n\varphi_n$.
+Then
+$$
+  M \psi_n = \delta \delta^* \delta \varphi_n = \delta L \varphi_n = \delta \lambda_n\varphi_n
+  = \lambda_n \delta \varphi_n = \lambda_n \psi_n,
+$$
+so $\{\psi_n\}_{n=0}^{\infty}$ are the eigenvalues of~$M$;
+in particular, the operators $L$ and $M$ have the same spectrum.
+Moreover, it is also easy to show (at least formally) that
+$\{\psi_n\}_{n=0}^{\infty}$ is an orthonormal basis in $\delta(L^2(X,w(x)\,dx))$.
+
+From the eigenfunctions $\{\psi_n\}_{n=0}^{\infty}$, we can, as with $L$, use the
+spectral method to define many operators related to~$M$.
+For instance, the semigroup $e^{-tM}$.
+An important property is that, for ``any expression'' $\Phi(L)$, we have
+\begin{equation}
+\label{eq:Phi}
+  \Phi(M) \delta = \delta \Phi(L).
+\end{equation}
+
+For any eigenvalue $\varphi_n$ it is clear that
+$$
+  \frac{\partial^2}{\partial t^2} \big( e^{-t\sqrt{M}}\delta L^{-1/2} \varphi_n)
+  = \lambda_n^{1/2} e^{-t\sqrt{\lambda_n}} \psi_n
+  = M e^{-t\sqrt{M}}\delta L^{-1/2} \varphi_n
+$$
+so, for $f \in L^2(X,w(x)\,dx)$, the function
+\begin{equation}
+\label{eq:Poissonconj}
+  v(x,t) = e^{-t\sqrt{M}}\delta L^{-1/2}f(x)
+\end{equation}
+satisfies
+\[
+  \Bigg(\frac{\partial^2}{\partial t^2} - M \Bigg) v(x,t) = 0,
+\]
+that is similar to~\eqref{eq:harmonic}.
+Actually, $v$ plays the role of the conjugate harmonic of~$u$, because
+there is something similar to the Cauchy-Riemann equations;
+indeed, by applying~\eqref{eq:Phi} and cancelling $\sqrt{L}$ with $L^{-1/2}$, we have
+\begin{align*}
+  \frac{\partial}{\partial t} v(x,t)
+  &= \frac{\partial}{\partial t} e^{-t\sqrt{M}}\delta L^{-1/2}f(x)
+  = -\sqrt{M} e^{-t\sqrt{M}}\delta L^{-1/2}f(x) \\
+  &= -\delta \sqrt{L} e^{-t\sqrt{L}} L^{-1/2}f(x)
+  = -\delta e^{-t\sqrt{L}} f(x)
+  = -\delta u(x,t)
+\end{align*}
+and
+\begin{align*}
+  \delta^* v(x,t)
+  &= \delta^* e^{-t\sqrt{M}}\delta L^{-1/2}f(x)
+  = \delta^* \delta e^{-t\sqrt{L}} L^{-1/2}f(x)
+  = L e^{-t\sqrt{L}} L^{-1/2}f(x) \\
+  &= L^{1/2} e^{-t\sqrt{L}} f(x)
+  = - \frac{\partial}{\partial t} e^{-t\sqrt{L}} f(x)
+  = - \frac{\partial}{\partial t} u(x,t).
+\end{align*}
+By this reason, \eqref{eq:Poissonconj} is called the conjugate Poisson operator.
+Finally, it is interesting to note that, in~\eqref{eq:Poisson}, instead of
+$\lim_{t\to0} u(x,t) = f(x)$, we have, for~$v$,
+$$
+  \lim_{t\to0} v(x,t) = v(x,0) = \delta L^{-1/2} f(x) = Rf(x),
+$$
+i.e., we are getting the Riesz transform of~$f$.
+
+All this theory that generalizes the classical harmonic analysis
+requires, in the first place, to find the decomposition~\eqref{eq:decomposition}.
+In practice, we also want to find decompositions such that, if we start with a ``good''
+system $\{\varphi_n\}_{n=0}^{\infty}$ and we take $\psi_n = \delta\varphi_n$, then
+the new system $\{\psi_n\}_{n=0}^{\infty}$ is ``good'' again.
+
+Here, the easiest trick is to notice that the operator $L$
+can be chosen ``except for an aditive constant'' because, if we add a constant,
+the only effect is that all the eigenvalues are increased by this constant.
+This can serve to find suitable decompositions
+$$
+  L - c = \delta^* \delta,
+$$
+where the constant $c$ must be chosen fulfilling $c<\lambda_0$ so that the
+new eigenvalues $\{\lambda_n-c\}_{n=0}^\infty$ to be positive.
+Sometimes, the useful decomposition to operate is done via two summands
+$$
+ L - c = \frac12(\delta^* \delta+\delta \delta^*),
+$$
+like for the harmonic oscillator (here $c=0$)
+$$
+  -\frac{\partial^2}{\partial x^2} + x^2
+  = \frac12 \Big( {-\frac{\partial}{\partial x}} + x \Big)
+    \Big( \frac{\partial}{\partial x} + x \Big)
+  + \frac12 \Big( \frac{\partial}{\partial x} + x \Big)
+    \Big( {-\frac{\partial}{\partial x}} + x \Big);
+$$
+this decomposition is the usual for expansions with respect to
+the orthogonal system of Hermite functions.
+% (See~\cite{StT}.)
+
+Many different techniques and tricks have been followed for different operators,
+and consequently there does not exist a standard way of defining the Riesz transform.
+We can see many of them in~\cite{NSt}, a survey devoted to studying the $L^2$-theory
+of Riesz transforms for many orthogonal expansions.
+
+In the rest of the paper we are going to show an orthogonal system related to a second
+order differential operator that is not easy to analyze with this scheme.
+Actually, we have not been able to make a definition of the Riesz transform valid
+in the corresponding $L^2$ space.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The case of Fourier-Neumann expansions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $J_\nu$ stand for the Bessel function of the first kind of order~$\nu$
+(see \cite{Wat}, the well-known Watson's treatise on Bessel functions).
+For $\alpha>-1$, the formula
+\begin{equation*}
+  \int_0^\infty J_{\alpha+2n+1}(x)J_{\alpha+2m+1}(x)\frac{dx}{x}
+  = \frac{\delta_{nm}}{2(\alpha+2n+1)},
+  \quad n,m = 0,1,2,\dots,
+\end{equation*}
+provides an orthonormal system $\{j_n^\alpha\}_{n=0}^\infty$ in
+$L^2((0,\infty),x^{2\alpha+1}\,dx)$
+% ($L^2(\mu_\alpha)$ from now on)
+given by
+\begin{equation*}
+  j_n^\alpha(x) = \sqrt{2(\alpha+2n+1)}\,J_{\alpha+2n+1}(x) x^{-\alpha-1},
+  \qquad n = 0,1,2,\dots\,.
+\end{equation*}
+For a function $f$, provided that the coefficients
+\begin{equation*}
+  c_k^\alpha(f) = \int_0^\infty f(y)j_k^\alpha(y) y^{2\alpha+1}\,dy,
+  \qquad k = 0,1,2,\dots\,,
+\end{equation*}
+exist, consider its partial sums
+\begin{equation*}
+  S_n^\alpha(f,x) = \sum_{k=0}^n c_k^\alpha(f) j_k^\alpha(x),
+  \qquad n = 0,1,2,\dots\,.
+\end{equation*}
+Series of the form $\sum_{n\ge0} a_n J_{\alpha+n}$ are usually
+called Neumann series, hence we refer to $\sum_{k=0}^\infty c_k^\alpha(f)
+j_k^\alpha(x)$ as to a Fourier-Neumann series.
+The mean and almost everywhere convergence of these series have been
+studied in~\cite{V,CiGPV,CiStV,CiV}.
+
+It is well-known that the Bessel function $J_\nu(x)$ satisfies the differential equation
+$$
+  x^2 J''_\nu(x) + x J'_\nu(x) + (x^2-\nu^2) J_\nu(x) = 0.
+$$
+Then, it is easy to check that, if we denote by $L_\alpha$ the differential operator 
+% (considered up to a constant, as seen above)
+$$
+  L_\alpha f \equiv \left(x^2\, \frac{d^2}{dx^2}
+    + (2\alpha+3)x\, \frac{d}{dx} + x^2 + (\alpha+1)^2 \right)(f),
+$$
+we have
+$$
+  L_\alpha j_n^\alpha = (\alpha+2n+1)^2 j_n^\alpha,
+$$
+i.e., $j_n^\alpha$, $n = 0, 1, 2, \dots$, are eigenfunctions of $L_\alpha$ with eigenvalues $\lambda_n = (\alpha+2n+1)^2$. (Let us note we are seeing which differential equation is satisfied by the function $j_n^\alpha$, and it is a simple change of variable on the abovementioned differential equation for the Bessel functions; even more, the precise equation that is satisfied by~$j_n^\alpha$ can be found in~\cite[\S\,5.73, p.~158]{Wat}.)
+
+The system $\{j_n^\alpha\}_{n=0}^{\infty}$ is not a basis on $L^2((0,\infty),x^{2\alpha+1}\,dx)$, but a basis in a proper subset $B_2 \varsubsetneq L^2((0,\infty),x^{2\alpha+1}\,dx)$ (with the same norm), that makes it be an interesting and peculiar system. Although it is not important in this moment, let us say by completeness that the space $B_2$ is formed by the functions $f \in L^2((0,\infty),x^{2\alpha+1}\,dx)$ such that the so-called ``modified'' Hankel transform of order~$\alpha$,
+\begin{equation}
+\label{eq:htr}
+  H_\alpha(f)(x) = \int_0^{\infty} \frac{J_{\alpha}(xy)}{(xy)^{\alpha}} f(y) y^{2\alpha+1}\,dy,\quad x>0,
+\end{equation}
+is supported on $[0,1]$; see \cite{V,CiGPV,CiStV,CiV} for details, where not only is $B_2$ identified, but also
+%$$
+%  \overline{\spa\{j_n^{\alpha}\}_{n=0}^{\infty}} = B_p 
+% \varsubsetneq L^p((0,\infty),x^{2\alpha+1}\,dx)
+%$$
+%(closure on $L^p((0,\infty),x^{2\alpha+1}\,dx)$) 
+$$
+  B_p = \overline{\spa\{j_n^{\alpha}\}_{n=0}^{\infty}} 
+ \quad \text{(closure on $L^p((0,\infty),x^{2\alpha+1}\,dx)$)}
+$$
+for some range of $p$'s.
+
+The density of $\spa\{j_n^{\alpha}\}_{n=0}^{\infty}$ in a proper subset of the whole $L^2$ (or~$L^p$) is not a handicap to use the spectral method of defining operators related to~$L_\alpha$; the only restriction is that we define these operators only for functions on the subset. In~\cite{BCiMPTV}, we have recently studied the heat and Poisson semigroups related to the differential operator~$L_\alpha$, as well as its fractional integrals. But, how to define the Riesz transform?
+
+In this paper we are going to check that it does not seem to be an easy task, and that unexpected problems arise when trying to do the decomposition of $L_\alpha$ into two adjoint differential operators.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The decomposition of the operator}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us decompose
+$$
+  L_\alpha \equiv x^2\, \frac{d^2}{dx^2}
+    + (2\alpha+3)x\, \frac{d}{dx} + x^2 + (\alpha+1)^2 = \delta^* \delta,
+$$
+with $\delta$ and $-\delta^*$ two adjoint differential opperators, i.e., that verify
+\begin{equation}
+\label{eq:adjdd}
+  \int_0^\infty f(x) \delta g(x) x^{2\alpha+1}\,dx
+  = -\int_0^\infty g(x) \delta^*f(x) x^{2\alpha+1}\,dx
+\end{equation}
+for functions $f$ and $g$ good enough. 
+%% YA LO DIGO M\'AS ABAJO:
+% (in particular, that $x^{2\alpha+1}f(x)g(x)$ ``vanishes enough'' at $0$ and $\infty$).
+%
+The reason for taking this kind of decomposition instead of 
+\eqref{eq:decomposition}--\eqref{eq:adjoint} is that the coefficient
+of $\frac{d^2}{dx^2}$ in $L_\alpha$ (with positive eigenvalues) is $x^2$,
+which is positive (otherwise, we need to use complex coefficients in 
+$\delta$ and~$\delta^*$).
+%
+In what follows, all the derivatives involved in the differential operators $L_\alpha$, $\delta$ and~$\delta^*$, are with respect to the variable~$x$.
+
+If we have two adjoint operators $\delta$ and $\delta^*$, it is easy to check whether $L_\alpha = \delta^* \delta$ or not. But the contrary is not true; that is, given $L_\alpha$, it is not easy to find adjoint operators $\delta$ and $\delta^*$ such that $L_\alpha = \delta^* \delta$. Moreover, there are many other variants that can be useful, such as $L_\alpha = \delta^* \delta + c$
+%$L_\alpha = \frac12 \left(\delta^* \delta + \delta \delta^* \right)$,
+or $L_\alpha - c = \frac12 \left(\delta^* \delta + \delta \delta^* \right)$,
+for a constant~$c$, as was seen above.
+
+The best way is to use a good computer algebra system such as Mathematica 
+(but with its cons, see~\cite{CiV-M});
+any other should be useful for the same purposes.
+Although we will not reproduce the Mathematica code, all the formulas and decompositions that we show in what follows have been found with the help of this program.
+Since $L_\alpha = x^2 \frac{d^2}{dx^2} + \cdots$, it seems reasonable to find decompositions with the form $\delta = x \frac{d}{dx} + \cdots$ and also $\delta^* = x \frac{d}{dx} + \cdots$. We have also tried operators with the more general form $\delta = x r(x) \frac{d}{dx} + \cdots$ and $\delta^* = \frac{x}{r(x)} \frac{d}{dx} + \cdots$ (for an arbitrary function $r(x)$) but nothing interesting seems to arise, so we do not show any of them in this paper. 
+
+The first idea is to look for with Mathematica functions $p(x)$ and $q(x)$ such that
+\begin{align*}
+  \delta f = x \frac{df}{dx} + q(x) f, \\
+  \delta^* f = x \frac{df}{dx} + p(x) f
+\end{align*}
+satisfy $L_\alpha = \delta^* \delta$ and \eqref{eq:adjdd} for functions $f,g$ that ``vanished enough'' in $0$ and~$\infty$ (making integrations by parts, this means that $f(x)g(x)x^{2\alpha+1}$ vanishes both in $x=0$ and when $x \to \infty$).
+
+In this way we have found the following decomposition:
+\begin{equation}
+\label{eq:J}
+\begin{aligned}
+  \delta f = x \frac{df}{dx} + \left(\alpha+1 + \frac{xJ_1(x)}{J_0(x)} \right) f, \\
+  \delta^* f = x \frac{df}{dx} + \left(\alpha+1 - \frac{xJ_1(x)}{J_0(x)} \right) f
+\end{aligned}
+\end{equation}
+(we will call it the ``$J$-decomposition'').
+This kind of decompositions $\delta^* \delta$ is very strange, because the infinity quantity of zeros of $J_0(x)$ makes the fraction $xJ_1(x)/J_0(x)$ be neither continuous nor derivable in infinitely many points, and it is not a function in~$L^p$ ($p \ge 1$).
+% (Note: The inverse decomposition does not works: $\delta \delta^* \ne L_\alpha$.)
+
+Moreover, if, as usual, $Y_\nu(x)$ denotes the Bessel function of the second kind and order~$\nu$, also the following decomposition appears:
+\begin{equation}
+\label{eq:Y}
+\begin{aligned}
+  \delta f = x \frac{df}{dx} + \left( \alpha+1 + \frac{xY_1(x)}{Y_0(x)} \right) f, \\
+  \delta^* f = x \frac{df}{dx} + \left( \alpha+1 - \frac{xY_1(x)}{Y_0(x)} \right) f
+\end{aligned}
+\end{equation}
+(we will call it the ``$Y$-decomposition''). It is also easy to get new decompositions by combining the $J$-decomposition~\eqref{eq:J} and the $Y$-decomposition~\eqref{eq:Y} by means of a process of mediation\footnote{The mediation is a very common process in diophantine approximation due to the property
+$$
+  \frac{a}{b} < \frac{c}{d} \text{\; (with denominators $b,d>0$)}
+  \;\Rightarrow\; \frac{a}{b} < \frac{a+c}{b+d} < \frac{c}{d}; 
+$$
+it is used, for instance, in the definition of Farey and Brocot sequences.
+It is funny to see that it also appears in the context of this paper.} of fractions (i.e., passing from $a/b$ and $c/d$ to $(a+c)/(b+d)$). In this way, we have the decomposition
+\begin{equation}
+\label{eq:med}
+\begin{aligned}
+  \delta f = x \frac{df}{dx} + \frac12 \left( \alpha+1 + \frac{ x J_1(x) 
+    + x Y_1(x)}{J_0(x)+Y_0(x)} \right) f, \\
+  \delta^* f = x \frac{df}{dx} + \frac12 \left( \alpha+1 - \frac{ x J_1(x) 
+    + x Y_1(x)}{J_0(x)+Y_0(x)} \right) f.
+\end{aligned}
+\end{equation}
+Even more, we can add two extra real parameters $r$ and $s$ and take
+%\begin{equation}
+%\label{eq:medrs}
+%\begin{aligned}
+%  \delta f = x \frac{df}{dx} + \left( \frac{r (\alpha J_0(x)+J_0(x)+x J_1(x))
+%    + s (\alpha Y_0(x)+Y_0(x)+x Y_1(x))}{r J_0(x)+sY_0(x)} \right) f, \\
+%  \delta^* f = x \frac{df}{dx} + \left( \frac{r (\alpha J_0(x)+J_0(x)-x J_1(x)) 
+%    + s (\alpha Y_0(x)+Y_0(x)-x Y_1(x))}{r J_0(x)+s Y_0(x)} \right) f.
+%\end{aligned}
+%\end{equation}
+\begin{equation}
+\label{eq:medrs}
+\begin{aligned}
+  \delta f = x \frac{df}{dx} + \left( \alpha+1 + \frac{r x J_1(x)
+    + s x Y_1(x)}{r J_0(x)+sY_0(x)} \right) f, \\
+  \delta^* f = x \frac{df}{dx} + \left( \alpha+1 - \frac{r x J_1(x) 
+    + s x Y_1(x)}{r J_0(x)+s Y_0(x)} \right) f.
+\end{aligned}
+\end{equation}
+But we always get $J_\nu$ or $Y_\nu$ Bessel functions in the denominator, with infinitely many zeros. Recall that, for $x$ large enough, $J_\nu(x)$ and $Y_\nu(x)$ oscillate as a cosine or a sine respectively; more precisely, they satisfy the asymptotic formulas
+\begin{align*}
+  J_\nu(x) &= \left(\frac{2}{\pi x}\right)^{1/2}\left[ \cos\left(x-\frac{\nu\pi}2
+    - \frac\pi4 \right) + O(x^{-1}) \right], \qquad x \to \infty, \\
+  Y_\nu(x) &= \left(\frac{2}{\pi x}\right)^{1/2}\left[ \sin\left(x-\frac{\nu\pi}2
+    - \frac\pi4 \right) + O(x^{-1}) \right], \qquad x \to \infty.
+\end{align*}
+
+By definition, the Riesz transform is $R = \delta (L_\alpha)^{-1/2}$, with $(L_\alpha)^{-1/2}$ being the fractional integral. Thus, if we apply this to $f = \sum_{n=0}^\infty c_n j_n^\alpha$, we get
+\begin{align*}
+  Rf(x) &= R\left(\sum_{n=0}^\infty c_n j_n^\alpha\right)(x)
+  = \delta (L_\alpha)^{-1/2} \left(\sum_{n=0}^\infty c_n j_n^\alpha\right)(x) \\
+  &= \delta \left(\sum_{n=0}^\infty
+    \frac{c_n}{((\alpha+2n+1)^2)^{1/2}} \,j_n^\alpha\right)(x)
+  = \sum_{n=0}^\infty \frac{c_n}{\alpha+2n+1} \, \delta j_n^\alpha (x).
+\end{align*}
+But (unlike other cases in which the Riesz transform is studied) it does not seem easy to find a ``good'' expression for $\delta j_n^\alpha (x)$, that in the case of~\eqref{eq:J} would be
+\begin{multline*}
+  \qquad
+  \delta j_n^\alpha (x) = \sqrt{2(\alpha+2n+1)}\,x \frac{d}{dx} 
+    \frac{J_{\alpha+2n+1}(x)}{x^{\alpha+1}} \\*
+  + \sqrt{2(\alpha+2n+1)} \left(\alpha+1 + \frac{xJ_1(x)}{J_0(x)} \right) 
+    \frac{J_{\alpha+2n+1}(x)}{x^{\alpha+1}},
+  \qquad
+\end{multline*}
+so nothing ``smart'' seems to appear. (We will not insist on it, but the same can be said for the decompositions as in \eqref{eq:c}--\eqref{eq:complex} that we will see below, and also for~\eqref{eq:sqrt} and~\eqref{eq:complex-2}.)
+
+%% ES LO MISMO QUE ANTES. NO APORTA NADA PONERLO.
+%	Another thing that can be tried is to take $R f = \delta (L_\alpha)^{-1/2} f$ 
+%	by means of the subordination formula for $(L_\alpha)^{-1/2}$, that is,
+%	taking something like
+%	$$
+%	  Rf(x) = x \frac{d}{dx}\int_0^\infty (e^{-t\sqrt{L_\alpha}}f)(x)\, dt
+%	  + \left(\alpha+1 + \frac{xJ_1(x)}{J_0(x)} \right)
+%	    \int_0^\infty (e^{-t\sqrt{L_\alpha}}f)(x)\, dt.
+%	$$
+%	But, in the same way, we can not find in which way this expression may be useful.
+
+A different idea is to use a constant $c$ and decompose
+$$
+  L_\alpha - c \equiv x^2\, \frac{d^2}{dx^2}
+    + (2\alpha+3)x\, \frac{d}{dx} + x^2 + (\alpha+1)^2 - c = \delta^* \delta.
+$$
+We have found that this can be done with
+\begin{equation}
+\label{eq:c}
+\begin{aligned}
+  \delta f &= x \frac{df}{dx} + \left( 1+\alpha
+    + \frac{x(J_{1+\sqrt{c}}(x)-J_{-1+\sqrt{c}}(x))}{2J_{\sqrt{c}}(x)} \right) f \\*
+  &= x \frac{df}{dx} + \biggl( 1+\alpha
+    - \frac{xJ'_{\sqrt{c}}(x)}{J_{\sqrt{c}}(x)} \biggr) f, \\
+  \delta^* f &= x \frac{df}{dx} + \left( 1+\alpha
+    - \frac{x(J_{1+\sqrt{c}}(x)-J_{-1+\sqrt{c}}(x))}{2J_{\sqrt{c}}(x)} \right) f \\*
+  &= x \frac{df}{dx} + \biggl( 1+\alpha
+    + \frac{xJ'_{\sqrt{c}}(x)}{J_{\sqrt{c}}(x)} \biggr) f.
+\end{aligned}
+\end{equation}
+Of course, similar $Y$-decomposition can be found, as well as combinations between the $J$-decomposition and the $Y$-decomposition by means of the mediation process as in~\eqref{eq:med} and~\eqref{eq:medrs}. We do not see marvelous improvements, but it is interesting to note that, with $c=1/4$, we get trigonometric expressions;
+and with $c=(\alpha+1)^2$, the Bessel functions in the decomposition depend on $\alpha$.
+(For us, it sounds strange that, except for the summand $1+\alpha$, the decomposition can be taken independent of~$\alpha$.) 
+
+An example of decomposition with $c=1/4$ is
+\begin{equation}
+\label{eq:tan}
+\begin{aligned}
+  \delta f &= x \frac{df}{dx} + \left( \frac32 +\alpha
+    + x \tan(x) \right) f, \\
+  \delta^* f &= x \frac{df}{dx} + \left( \frac12 +\alpha
+    - x \tan(x) \right) f.
+\end{aligned}
+\end{equation}
+Another (also with $c=1/4$):
+\begin{equation}
+\label{eq:cot}
+\begin{aligned}
+  \delta f &= x \frac{df}{dx} + \left( \frac32 +\alpha
+    - x \cot(x) \right) f, \\
+  \delta^* f &= x \frac{df}{dx} + \left( \frac12 +\alpha
+    + x \cot(x) \right) f.
+\end{aligned}
+\end{equation}
+In general (for $c=1/4$), and taking into account a mediation process as in~\eqref{eq:medrs}, we get
+\begin{equation}
+\label{eq:sincos}
+\begin{aligned}
+  \delta f &= x \frac{df}{dx} + \left( \frac{((3+2\alpha)s-2rx)\cos(x)
+    + ((3+2\alpha)r+2sx)\sin(x)}{2s\cos(x)+2r\sin(x)} \right) f, \\
+  \delta^* f &= x \frac{df}{dx} + \left( \frac{((1+2\alpha)s+2rx)\cos(x)
+    + ((1+2\alpha)r-2sx)\sin(x)}{2s\cos(x)+2r\sin(x)} \right) f
+\end{aligned}
+\end{equation}
+for arbitrary constants $r$ and~$s$. At least formally, these constants can be complex numbers;
+in this way, taking $r=i$ and $s=1$, we get
+\begin{equation}
+\label{eq:complex}
+\begin{aligned}
+  \delta f &= x \frac{df}{dx} + \left( \frac32 +\alpha + ix \right) f, \\
+  \delta^* f &= x \frac{df}{dx} + \left( \frac12 +\alpha - ix \right) f.
+\end{aligned}
+\end{equation}
+But it seems difficult to apply these decompositions in the context of real functions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Decompositions with two summands}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Decompositions of the form
+\begin{equation*}
+%\label{eq:2sum}
+    L_\alpha - c = \frac12 \left(\delta^* \delta + \delta \delta^* \right)
+\end{equation*}
+(with $\delta$ and $-\delta^*$ adjoint) can be also found. This time, completely
+different expressions appear in the decomposition 
+(without Bessel functions in a denominator!), 
+but unfortunately nothing useful seems to arise.
+
+For instance, we have checked that~ the above decomposition with two summands can be obtained with
+\begin{equation}
+\label{eq:sqrt}
+\begin{aligned}
+  \delta f &= x \frac{df}{dx} + \left( 1 +\alpha + \sqrt{c-x^2} \right) f, \\
+  \delta^* f &= x \frac{df}{dx} + \left( 1 +\alpha - \sqrt{c-x^2} \right) f.
+\end{aligned}
+\end{equation}
+But $x \in (0,\infty)$ so, now, we always get complex functions in a range of~$x$.
+In particular, with $c=0$ we get
+\begin{equation}
+\label{eq:complex-2}
+\begin{aligned}
+  \delta f &= x \frac{df}{dx} + \left( 1 +\alpha + i x \right) f, \\
+  \delta^* f &= x \frac{df}{dx} + \left( 1 +\alpha - i x \right) f.
+\end{aligned}
+\end{equation}
+% Of course, it seems difficult to apply these decompositions in the context of real functions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The ``non-modified'' case}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{rem*}
+We can wonder what would happen if we carry out the study of Riesz transforms in the Fourier-Neumann expansions setting in another way. The case studied up to now concerns the measure $x^{2\alpha+1}\,dx$, which is usually known as the ``modified'' case (because it is related with the modified Hankel transform~\eqref{eq:htr}), and that is used in~\cite{BCiMPTV, CiGPV, CiStV, CiV, V}. But we might be also interested in the case that deals with Lebesgue measure, or the ``non-modified'' case (that is related to the so-called non-modified Hankel transform, a simple variation of~\eqref{eq:htr}).
+
+In this context, we consider the space $L^2((0,\infty),dx)$ in which the system $\{\phi_n^\alpha\}_{n=0}^{\infty}$, given by
+\begin{equation*}
+  \phi_n^\alpha(x) = \sqrt{2(\alpha+2n+1)}\,J_{\alpha+2n+1}(x) x^{-1/2},
+  \qquad n = 0,1,2,\dots
+\end{equation*}
+is orthonormal. The associated second order differential operator is
+$$
+  \mathcal{L}_\alpha f \equiv \left(x^2\, \frac{d^2}{dx^2}
+    + 2x\, \frac{d}{dx} + x^2 + \frac14 \right)(f),
+$$
+and we have
+$$
+  \mathcal{L}_\alpha \phi_n^\alpha = (\alpha+2n+1)^2 \phi_n^\alpha,
+$$
+i.e., $\phi_n^\alpha$, $n = 0, 1, 2, \dots$, are eigenfunctions of $\mathcal{L}_\alpha$ with eigenvalues $\lambda_n = (\alpha+2n+1)^2$. 
+
+Again with the help of Mathematica, we have also found the corresponding expressions for the non-modified case, but as one can expect (we are making simple change of functions), nothing new appears. For instance, we get $\mathcal{L}_\alpha = \delta^* \delta$ with
+\begin{align*}
+  \delta f &= x \frac{df}{dx} + \left(\frac12 + \frac{xJ_1(x)}{J_0(x)} \right) f, \\
+  \delta^* f &= x \frac{df}{dx} + \left(\frac12 - \frac{xJ_1(x)}{J_0(x)} \right) f,
+\end{align*}
+or, analogously, with its corresponding $Y$-decomposition.
+Of course, the same can be said about the mediation process, the variation of the operator by an additive constant~$c$, as in $\mathcal{L}_\alpha - c = \delta^*\delta$ (one more time, trigonometric expressions appear for $c=1/4$), and the decompositions of the kind $\mathcal{L}_\alpha = \frac12 (\delta^* \delta + \delta \delta^*)$ or $\mathcal{L}_\alpha - c = \frac12 (\delta^* \delta + \delta \delta^*)$.
+%\end{rem*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{10}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frenchspacing
+
+%\bibitem{BMTU} \textsc{D. Buraczewski, T. Mart\'{\i}nez, J. L. Torrea, and R. Urban},
+%{On the Riesz transform associated with ultraspherical polynomials},
+%\textit{J. Anal. Math.} (to appear),
+%\texttt{http://www.uam.es/joseluis.torrea/research.html}
+
+%\bibitem{BaE} \textsc{D. Bakry and M. \'Emery},
+%{Diffusions hypercontractives},
+%S\'eminaire de probabilités (Strasbourg), tome 19,
+%1983/84, p.~177--206, Lecture Notes in Math. \textbf{1123},
+%Springer, Berlin, 1985.
+
+\bibitem{BCiMPTV} \textsc{J. J. Betancor, \'O. Ciaurri, T. Mart\'{\i}nez, M. P\'erez, J. L. Torrea, and J. L. Varona},
+{Heat and Poisson semigroups for Fourier-Neumann expansions},
+\textit{Semigroup Forum}
+\textbf{73} (2006), 129--142.
+
+\bibitem{CiGPV} \textsc{\'O. Ciaurri, J. J. Guadalupe, M. P\'erez, and J. L. Varona},
+{Mean and almost everywhere convergence of Fourier-Neumann series},
+\textit{J. Math. Anal. Appl.}
+\textbf{236} (1999), 125--147.
+
+\bibitem{CiStV} \textsc{\'O. Ciaurri, K. Stempak, and J. L. Varona},
+Mean Ces\`aro-type summability of Fourier-Neumann series,
+\textit{Studia Sci. Math. Hung.}
+\textbf{42} (2005), 413--430.
+
+\bibitem{CiV-M} \textsc{\'O. Ciaurri and J. L. Varona},
+{?`Podemos fiarnos de los c\'alculos efectuados con ordenador?},
+%% How reliable are computer calculations? (Spanish),
+\textit{Gac. R. Soc. Mat. Esp.}
+\textbf{9} (2006), 483--514.
+
+\bibitem{CiV} \textsc{\'O. Ciaurri and J. L. Varona},
+{The surprising almost everywhere convergence of Fourier-Neumann series},
+\textit{J. Comput. Appl. Math.} 
+\textbf{233} (2009), 663--666. 
+
+%\bibitem{GCMST} \textsc{J. Garc\'{\i}a-Cuerva, G. Mauceri, S. Meda, P. Sj\"{o}gren, and J. L. Torrea},
+%{Functional calculus for the Ornstein-Uhlenbeck operator},
+%\textit{J. Funct. Anal.} 
+%\textbf{183} (2001), 413--450.
+
+%\bibitem{HTVi} \textsc{E. Harboure, J. L. Torrea, and B. E. Viviani},
+%{Riesz transforms for Laguerre expansions},
+%\textit{Indiana Univ. Math. J.} 
+%\textbf{55} (2006), 999--1014.
+
+\bibitem{MST} \textsc{R. A. Mac\'{\i}as, C. Segovia, and J. L. Torrea},
+{Heat diffusion maximal operators for Laguerre semigroups with negative parameters},
+\textit{J. Funct. Anal.}
+\textbf{229} (2005), 300--316.
+
+\bibitem{Mu} \textsc{B. Muckenhoupt},
+{Poisson integrals for Hermite and Laguerre expansions},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{139} (1969), 231--242.
+
+\bibitem{MuSt} \textsc{B. Muckenhoupt and E. M. Stein},
+{Classical expansions and their relation to conjugate harmonic functions},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{118} (1965), 17--92.
+
+\bibitem{NSt} \textsc{A. Nowak and K. Stempak},
+{$L^2$-theory of Riesz transforms for orthogonal expansions},
+\textit{J. Fourier Anal. Appl.}
+\textbf{12} (2006), 675--711.
+
+\bibitem{Sj} \textsc{P. Sj\"ogren},
+{Operators associated with the Hermite semigroup---a survey},
+% Proceedings of the conference dedicated to Professor Miguel de Guzm\'an (El Escorial, 1996)
+\textit{J. Fourier Anal. Appl.}
+\textbf{3} (1997), Special Issue, 813--823.
+
+% El libro rojo de Stein
+\bibitem{Stein} \textsc{E. M. Stein},
+\textit{Topics in harmonic analysis related to the Littlewood-Paley theory},
+{Annals of Mathematics Studies} \textbf{63},
+Princeton Univ. Press,
+Princeton, NJ, 1970.
+
+%\bibitem{Stein-2} \textsc{E. M. Stein},
+%\textit{Singular integrals and differentiability properties of functions},
+%Princeton Mathematical Series \textbf{30},
+%Princeton Univ. Press,
+%Princeton, NJ, 1970.
+
+\bibitem{StT} \textsc{K. Stempak and J. L. Torrea},
+{Poisson integrals and Riesz transforms for Hermite function expansions with weights},
+\textit{J. Funct. Anal.}
+\textbf{202} (2003), 443--472.
+
+\bibitem{Th1} \textsc{S. Thangavelu},
+{Riesz transforms and the wave equation for the Hermite operator},
+\textit{Comm. Partial Differential Equations}
+\textbf{15} (1990), 1199--1215.
+
+\bibitem{Th2} \textsc{S. Thangavelu}, 
+\textit{Lectures on Hermite and Laguerre expansions},
+Princeton Univ. Press, Princeton, New Jersey, 1993.
+
+\bibitem{Th3} \textsc{S. Thangavelu},
+{On conjugate Poisson integrals and Riesz transforms for the Hermite expansions},
+\textit{Colloq. Math.}
+\textbf{64} (1993), 103--113.
+
+\bibitem{T} \textsc{J. L. Torrea},
+{Algunas observaciones sobre el semigrupo de Laguerre},
+%% {Some remarks about the Laguerre semigroup} (Spanish), 
+in
+\textit{Margarita mathematica en memoria de Jos\'e Javier (Chicho) Guadalupe Hern\'andez},
+p.~365--373, Universidad de La Rioja, Logro\~no, 2001.
+
+\bibitem{V} \textsc{J. L. Varona},
+{Fourier series of functions whose Hankel transform is supported on $[0,1]$},
+\textit{Constr. Approx.}
+\textbf{10} (1994), 65--75.
+
+\bibitem{Wat} \textsc{G. N. Watson},
+\textit{A Treatise on the Theory of Bessel Functions} (2nd edition),
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+\end{thebibliography}
+
+\selectlanguage{spanish} % <--- Afecta a los cortes de palabra en las direcciones
+
+\end{document}
+

@@ -1,0 +1,417 @@
+%&pdflatex
+\documentclass[a4paper]{article}
+
+\usepackage[english,spanish]{babel}
+
+\usepackage{amsmath,amsfonts,amsthm}
+
+\newtheorem*{theorem*}{Teorema}
+\newtheorem*{corollary*}{Corolario}
+\newtheorem*{lemma*}{Lema}
+
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\N}{\mathbb{N}}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{ESTUDIO DE LA CONVERGENCIA EN MEDIA DE LAS SERIES DE FOURIER 
+DE LOS SISTEMAS DE BESSEL Y DINI MEDIANTE TEOR\'IA $A_p$}
+
+\author{Juan Luis Varona Malumbres%
+\renewcommand\thefootnote{}
+\renewcommand\footnotemark{}
+\footnote{
+Este art\'{\i}culo se present\'o en las
+\textit{XIII Jornadas Hispano Lusas de Matem\'aticas}, Universidad de Valladolid (Valladolid, 1988).
+Contrariamente a lo anunciado ~---y dado el tiempo ya transcurrido---
+parece claro que no va a haber nunca actas de dicho congreso.
+As\'{\i}, \'este es un manuscrito sin publicar; no obstante,
+una versi\'on ampliada puede encontrarse en el art\'{\i}culo
+\textsc{J. J. Guadalupe, M. P\'erez, F. J. Ruiz y J. L. Varona},{Mean and weak convergence of Fourier-Bessel series},\textit{J.\ Math.\ Anal.\ Appl.}\textbf{173} (1993), 370--389.
+}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectlanguage{english}
+\begin{abstract}\noindent
+By means of $A_p$ theory we obtain conditions 
+that imply the uniform boundedness between $L^{p}$ type spaces of 
+partial sums of Bessel and Dini series with order greater than~$-1/2$.
+\end{abstract}
+\selectlanguage{spanish}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote}
+\textit{Clasificaci\'on A.M.S. (1980)}: 42C15, 42A50.
+\end{quote}
+\bigskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Sea $J_{\alpha}(x)$ la funci\'on de Bessel de orden $\alpha > -1$.
+Es bien conocido (ver por ejemplo el tratado de Watson~\cite{Wa}),
+que $J_{\alpha}(x)$ tiene un conjunto numerable de ceros 
+en $(0,\infty)$, todos ellos simples y cuyo \'unico punto de 
+acumulaci\'on es~$\infty$. Sean $\{\alpha_{n}\}_{n=1}^{\infty}$ 
+estos ceros ordenados en sentido creciente. Entonces, se cumple
+\begin{equation*}
+  \int_{0}^{1} J_{\alpha}(\alpha_{n}x)J_{\alpha}(\alpha_{m}x)x\,dx 
+  = \frac{\delta_{nm}J_{\alpha+1}(\alpha_{n})^2}{2},
+\end{equation*}
+luego $\{J_{\alpha}(\alpha_{n}x)\}_{n=1}^{\infty}$ 
+forma un sistema ortogonal en $L^2((0,1),x\,dx)$ que, adem\'as, 
+es completo. Sean
+\begin{equation*}
+  S_{n}(f,x) = \sum_{k=1}^n c_{k}J_{\alpha}(\alpha_{k}x),
+  \quad
+  c_{k} = c_{k}(f) = \frac{2}{J_{\alpha+1}(\alpha_{k})^2}
+  \int_{0}^{1} J_{\alpha}(\alpha_{k}y)f(y)y\,dy
+\end{equation*}
+las sumas parciales de su serie de Fourier.
+
+Dado $p \in (1,\infty)$ y dos pesos $U(x)$ y $V(x)$ en $(0,1)$ 
+($U(x) \leq CV(x)$) estudiaremos, utilizando teor\'{\i}a $A_p$ 
+de pesos, cu\'ando los operadores
+\begin{equation}
+\label{eq:1}
+\begin{aligned}
+  S_{n} : L^p((0,1),V(x)^p x\,dx) &\longto L^p((0,1),U(x)^p x\,dx)\\
+  f &\longmapsto S_{n}f
+\end{aligned}
+\end{equation}
+son uniformemente acotados (a partir de ahora todos los espacios 
+$L^p$ que consideremos ser\'an sobre el intervalo $(0,1)$ aunque 
+no lo indiquemos). Esto, junto con los adecuados resultados de 
+densidad de los que aqu\'{\i} no nos preocuparemos se traduce en 
+la convergencia en $L^p(U(x)^p x\,dx)$ de $S_{n}f$ a $f$ para cada $f \in 
+L^p(V(x)^p x\,dx)$. Usaremos $q$ para designar al conjugado de $p$, 
+es decir, $p$ y $q$ deben cumplir la relaci\'on $1/p + 1/q = 1$.
+
+Utilizando las conocidas estimaciones de las funciones de Bessel
+\begin{equation*}
+  J_{\alpha}(z) = O(z^{\alpha}),
+  \quad z \to 0,
+  \qquad \text{y} \qquad
+  J_{\alpha}(z) = O(z^{-1/2}),
+  \quad z \to \infty,
+\end{equation*}
+es claro que cuando $\alpha \geq -1/2$ existe $C$ tal que
+\begin{equation}
+\label{eq:2}
+  |J_{\alpha}(z)| \leq C z^{-1/2},
+  \qquad z \in (0,\infty),
+\end{equation}
+acotaci\'on independiente de $\alpha$ y que ser\'a muy \'util 
+para nuestros prop\'ositos.
+
+Como
+\begin{equation*}
+  S_{n}(f,x) = \int_{0}^{1} K_{n}(x,y)f(y)y\,dy,
+  \qquad
+  K_{n}(x,y) = \sum_{k=1}^n
+  \frac{2J_{\alpha}(\alpha_{k}x)J_{\alpha}(\alpha_{k}y)}{J_{\alpha+1}(\alpha_{k})^2},
+\end{equation*}
+para estudiar la acotaci\'on uniforme tendremos que utilizar 
+expresiones adecuadas de los n\'ucleos $K_{n}(x,y)$. Wing (ver~\cite{Wi}) 
+demuestra que, cuando $\alpha \geq -1/2$,
+\begin{multline*}
+  K_{n}(x,y) = F(M_{n},x,y) + F(M_{n},y,x) + G(M_{n},x,y) + G(M_{n},y,x) \\
+  \null+ O(1)(xy)^{\alpha} + \frac{O(1)(xy)^{-1/2}}{2-x-y}
+\end{multline*}
+donde $M_{n} = \dfrac{\alpha_{n} + \alpha_{n+1}}{2}$,
+\begin{align*}
+  F(M_{n},x,y) &= J_{\alpha}(M_{n}x)J_{\alpha+1}(M_{n}y) \,\frac{M_{n}}{2(y-x)}, \\
+  G(M_{n},x,y) &= J_{\alpha}(M_{n}x)J_{\alpha+1}(M_{n}y) \,\frac{M_{n}}{2(x+y)}
+\end{align*}
+y las $O(1)$ son acotadas independientemente de $x, y \in (0,1)$
+y $n \geq 1$. Por lo tanto,
+\begin{align*}
+  |S_{n}(f,x)| &= \left| \int_{0}^{1} K_{n}(x,y)f(y)y\,dy \right| \\
+  &\leq \left| \int_{0}^{1} F(M_{n},x,y)f(y)y\,dy \right| + 
+  \left|\int_{0}^{1} F(M_{n},y,x)f(y)y\,dy \right| \\ 
+  &\qquad\null+ \left| \int_{0}^{1} G(M_{n},x,y)f(y)y\,dy \right|
+  + \left|\int_{0}^{1} G(M_{n},y,x)f(y)y\,dy\right| \\
+  &\qquad\null+ C\int_{0}^{1} (xy)^{\alpha}|f(y)|y\,dy
+  + C\int_{0}^{1} \frac{(xy)^{-1/2}}{2-x-y}\,|f(y)|y\,dy \\
+  &= \sum_{i=1}^4 |W_{i,n}(f,x)| + C W_{5}(f,x) + C W_{6}(f,x)
+\end{align*}
+respectivamente. De aqu\'{\i} que para que se verifique la acotaci\'on 
+uniforme de los operadores~\eqref{eq:1} bastar\'a comprobar
+\begin{equation}
+\label{eq:3}
+  \int_{0}^{1} |W_{i,n}(f,x)U(x)|^p x\,dx
+  \leq C\int_{0}^{1} |f(x)V(x)|^p x\,dx, 
+  \qquad i = 1, 2, 3, 4
+\end{equation}
+y
+\begin{equation}
+\label{eq:4}
+  \int_{0}^{1} |W_{i}(f,x)U(x)|^p x\,dx
+  \leq C\int_{0}^{1} |f(x)V(x)|^p x\,dx, 
+  \qquad i = 5, 6.
+\end{equation}
+
+En las expresiones anteriores aparecen no s\'olo transformadas 
+de Hilbert
+\begin{equation*}
+  H(f,x) = \text{v.p.} \int_{0}^{1} \frac{f(y)}{x-y} \,dy
+\end{equation*}
+(a partir de ahora, no indicaremos el v.p.) sino tambi\'en operadores 
+del tipo
+\begin{equation*}
+  J(f,x) = \int_{0}^{1} \frac{f(y)}{2-x-y} \,dy
+  \qquad\mbox{y}\qquad
+  J'(f,x) = \int_{0}^{1} \frac{f(y)}{x+y} \,dy,
+\end{equation*}
+pero es f\'acil ver que cuando la transformada de Hilbert $H$ es 
+acotada tambi\'en lo son~$J$ y~$J'$.
+
+Para estudiar la acotaci\'on de la transformada de Hilbert emplearemos 
+la teor\'{\i}a $A_p$ de pesos, desarrollada fundamentalmente por 
+Muckenhoupt, Hunt y Wheeden (\cite{HuMuWh} y~\cite{MuWh}).
+Un par de pesos $(u,v)$  definidos en el intervalo $(0,1)$
+se dice que est\'an en $A_p(0,1)$ si existe una constante $C$
+independiente de $I \subseteq (0,1)$ 
+intervalo tal que
+\begin{equation*}
+  \left( \int_{I} u(x)\,dx \right)
+  \left( \int_{I} v(x)^{-1/(p-1)}\,dx \right)^{p-1} 
+  \leq C |I|^p,
+\end{equation*}
+donde $|I|$ denota la longitud del intervalo~$I$. Por comodidad, 
+utilizaremos s\'olo $A_p$ para designar $A_p(0,1)$.
+Tomando $I = (0,1)$ es claro que $(u,v) \in A_p$ implica que
+$u$ y $v^{-1/(p-1)}$ son integrables.
+
+El ejemplo que m\'as usaremos de pesos $A_p$ es el siguiente:
+\begin{equation}
+\label{eq:5}
+  (x^{r},x^{R}) \in A_p \iff r > -1,
+  \ R \leq r \text{ y } R < p-1,
+\end{equation}
+cuya demostraci\'on puede hacerse f\'acilmente de modo directo.
+
+La importancia de la teor\'{\i}a $A_p$ de pesos radica en que para 
+que la transformada de Hilbert
+$H : L^p(v) \longto L^p(u)$ sea acotada es condici\'on 
+necesaria que $(u,v) \in A_p$ y condici\'on suficiente que 
+exista $\delta > 1$ tal que $(u^{\delta},v^{\delta}) \in A_p$
+(esto \'ultimo se denota simplemente $(u,v) \in A_p^{\delta}$).
+Cuando $u = v$ la condici\'on $(u,v) \in A_p$ es equivalente
+a que $H$ sea acotada.
+
+\begin{lemma*}
+Bajo las condiciones
+\begin{equation*}
+  \int_{0}^{1} U(x)^p x^{\alpha p+1} \,dx < \infty
+  \qquad\mbox{y}\qquad
+  \int_{0}^{1} V(x)^{-q} x^{\alpha q+1} \,dx < \infty
+\end{equation*}
+existe $c_{n}(f)$ para cada $f \in L^p(V(x)^p x\,dx)$ y cada $n \geq 1$
+y adem\'as $S_{n}f \in L^p(U(x)^p x\,dx)$. En esas 
+mismas condiciones, el operador $W_{5}$ de~\eqref{eq:4}
+es acotado de $L^p(V(x)^p x\,dx)$ en $L^p(U(x)^p x\,dx)$.
+\end{lemma*}
+
+\begin{proof}
+Usando la desigualdad de H\"{o}lder,
+\begin{multline*}
+  \frac{J_{\alpha+1}(\alpha_{n})^2}{2}\, |c_{n}(f)|
+  = \left|\int_{0}^{1} f(y)J_{\alpha}(\alpha_{n}y)y\,dy\right| \\
+  \leq \left( \int_{0}^{1} |f(y)|^p V(y)^p y\,dy \right)^{1/p}
+  \left( \int_{0}^{1} |J_{\alpha}(\alpha_{n}y)|^{q} V(y)^{-q} y\,dy \right)^{1/q},
+\end{multline*}
+y la \'ultima integral es finita para cada $n$ por~\eqref{eq:2}. Para ver 
+ahora que $S_{n}f \in L^p(U(x)^p x\,dx)$, basta comprobar que 
+$J_{n}(\alpha_{n}x) \in L^p(U(x)^p x\,dx)$ para cada $n$, lo 
+cual es de nuevo inmediato por~\eqref{eq:2}.\\
+Comprobemos ahora la acotaci\'on de~$W_{5}$.
+Por la desigualdad de H\"{o}lder, es claro que
+\begin{multline*}
+ \int_{0}^{1} |W_{5}(f,x)U(x)|^p x\,dx \\
+ \leq \left( \int_{0}^{1} U(x)^p x^{\alpha p+1}\,dx \right)
+ \left( \int_{0}^{1} V(y)^{-q} y^{\alpha q+1}\,dy \right)^{p/q}
+ \left( \int_{0}^{1} |f(y)V(y))|^p y\,dy \right)
+\end{multline*}
+y como por hip\'otesis los dos primeros factores son finitos, 
+$W_{5}$ es acotado.
+\end{proof}
+
+A continuaci\'on, veamos el resultado principal:
+
+\begin{theorem*}
+Sea $\alpha \geq -1/2$ y $1 < p < \infty$.
+Si se verifica
+\begin{equation}
+\label{eq:6}
+  (U(x)^p x^{1-p/2},V(x)^p x^{1-p/2}) \in A_p^{\delta}
+  \quad\text{para alg\'un}\quad \delta > 1
+\end{equation}
+(basta $\delta = 1$ si $U = V$)
+entonces los operadores de~\eqref{eq:1} son uniformemente acotados.
+\end{theorem*}
+
+\begin{proof}
+Hay que comprobar que los operadores 
+de~\eqref{eq:3} y~\eqref{eq:4} son uniformemente acotados.\\
+$i = 1$) Sirvi\'endonos de~\eqref{eq:2} y~\eqref{eq:6} tenemos
+\begin{multline*}
+  \int_{0}^{1} |W_{1,n}(f,x)U(x)|^p x\,dx \\
+  = \int_{0}^{1} \left| \int_{0}^{1}
+  \frac{f(y)M_{n}^{1/2}J_{\alpha+1}(yM_{n})}{x - y} \, y\,dy \right|^p
+  |(xM_{n})^{1/2} J_{\alpha}(xM_{n})|^p U(x)^p x^{1-p/2} \,dx \\
+  \leq C\int_{0}^{1} \left| \int_{0}^{1}
+  \frac{f(y)y^{1/2}(yM_{n})^{1/2} J_{\alpha+1}(yM_{n})}{x - y} \,dy \right|^p
+  U(x)^p x^{1-p/2}\,dx \\
+  \leq C_{1} \int_{0}^{1} |f(x) x^{1/2} (xM_{n})^{1/2} J_{\alpha+1}(xM_{n})|^p
+  V(x)^p x^{1-p/2}\,dx \\
+  \leq C_{2} \int_{0}^{1} |f(x)V(x)|^p x\,dx.
+\end{multline*}
+$i = 2$) Es exactamente igual que $i = 1$ ya que las cotas de~\eqref{eq:2} 
+para $J_{\alpha}$ y $J_{\alpha+1}$ son las mismas.\\
+$i = 3$ e $i = 4$) An\'alogos a los anteriores, pero utilizando la 
+acotaci\'on de $J'$ en lugar de la de~$H$.\\
+$i = 5$) Aplicar que $u$ y $v^{-1/(p-1)}$ son integrables cuando $(u,v) 
+\in A_p$ y el lema anterior.\\
+$i = 6$) Queremos comprobar que
+\begin{align*}
+ \int_{0}^{1} |W_{6}(f,x)U(x)|^p x\,dx
+  &= \int_{0}^{1} \left|\int_{0}^{1} \frac{|f(y)|y^{1/2}}{2-x-y} \,dy \right|^p
+  U(x)^p x^{1-p/2}\,dx \\
+  &\leq C\int_{0}^{1} |f(x)x^{1/2}|^p V(x)^p x^{1-p/2}\,dx.
+\end{align*}
+Y esto, si llamamos $g(y) = |f(y)|y^{1/2}$, es lo mismo 
+que demostrar que el operador $J(g,x)$ es acotado con sus correspondientes 
+pesos, lo cual es cierto por~\eqref{eq:6}.
+\end{proof}
+
+\begin{corollary*}
+Sean $\alpha \geq -1/2$, $1 < p < \infty$ y los pesos
+\begin{equation*}
+  U(x) = x^{a}(1-x)^{b} \prod_{k=1}^{m} |x-x_{k}|^{b_k},
+  \quad
+  V(x) = x^{A}(1-x)^{B} \prod_{k=1}^{m} |x-x_{k}|^{B_k}
+\end{equation*}
+($0 < x_{1} < x_{2} < \cdots < x_{m-1} < x_{m} < 1$). Si se verifica
+\begin{gather*}
+  \left| \frac{1}{p} - \frac{1}{2} + \frac{a}{4} + \frac{A}{4}\right|
+  < \frac{1}{4} + \frac{a-A}{4}, \qquad A \leq a, \\
+  pb > -1,\quad B \leq b,\quad pB < p-1,\\
+  pb_{k} > -1,\quad B_{k} \leq b_{k},\quad pB_{k} < p-1 \quad (1 \leq k \leq m)
+\end{gather*}
+entonces los operadores de~\eqref{eq:1} son uniformemente acotados.
+\end{corollary*}
+
+\begin{proof}
+Se demuestra que la condici\'on $A_p$ de~\eqref{eq:6} puede
+estudiarse por factores y por tanto basta que exista 
+$\delta > 1$ para el cual los pares de pesos
+\begin{equation*}
+  (x^{ap+1-p/2},x^{Ap+1-p/2}),\qquad ((1-x)^{bp},(1-x)^{Bp})
+\end{equation*}
+y
+\begin{equation*}
+  \left( |x-x_{k}|^{pb_k},|x-x_{k}|^{pB_k} \right) 
+  \quad(1 \leq k \leq m)
+\end{equation*}
+est\'en en $A_p^{\delta}$. Empecemos con el primero 
+de los tres. Por~\eqref{eq:5}, es equivalente a
+\begin{equation*}
+  \delta(ap + 1 - p/2) > -1,
+  \quad \delta(Ap + 1 - p/2) \leq \delta(ap + 1 - p/2)
+\end{equation*}
+y
+\begin{equation*}
+  \delta(Ap + 1 - p/2) < p - 1.
+\end{equation*}
+Pero como la primera y la \'ultima de las desigualdades anteriores 
+son estrictas, es lo mismo que decir $p(1-2a) < 4$, $A \leq a$ y
+$p(3-2A) > 4$. Y basta dividir por $4p$ para darse cuenta 
+de que
+\begin{multline*}
+  p(1-2a) < 4 < p(3-2A) \\
+  \iff -1/4 - a/4 + A/4 < 1/p + a/4 + A/4 - 1/2 < 1/4 - A/4 + a/4.
+\end{multline*}
+Por \'ultimo, un sencillo cambio de variable a partir de~\eqref{eq:5} 
+muestra que la segunda condici\'on $A_p$ es equivalente a $pb > -1$,
+$B \leq b$, $pB < p-1$, y la tercera a $pb_{k} > -1$,
+$B_{k} \leq b_{k}$, $pB_{k} < p-1$ ($1 \leq k \leq m$).
+\end{proof}
+
+Si en el corolario anterior tomamos $U(x) = V(x) = 1$ aparece
+$4/3 < p < 4$ y si tomamos $U(x) = V(x) = x^{1/2-1/p}$ obtenemos 
+$1 < p < \infty$, resultados ambos ambos ya conocidos 
+y debidos a Wing~\cite{Wi}. Por \'ultimo, haciendo $U(x) = V(x) = x^{a}$ 
+se sigue el resultado de Benedek-Panzone~\cite{BePa}.
+
+Por \'ultimo, simplemente citar que si denotamos $\,\overline{\!S}_n$ a 
+las sumas parciales de la serie de Fourier del sistema de Dini, 
+que tambi\'en es ortogonal en $L^2((0,1),x\,dx)$ (ver Watson~\cite{Wa}), 
+y llamamos $\,\overline{\!K}_n(x,y)$ a los n\'ucleos, utilizando que para 
+cada $n \in \N$ existe $N = N(n)$ tal que
+\begin{equation*}
+  \left| K_{N}(x,y) - \,\overline{\!K}_n(x,y) \right|
+  \leq C \,\frac{x^{-1/2}y^{-1/2}}{2-x-y}
+\end{equation*}
+(ver Wing \cite{Wi}), se obtiene como consecuencia inmediata que la 
+condici\'on~\eqref{eq:6} tambi\'en es suficiente para que los operadores 
+$\,\overline{\!S}_n$ sean uniformemente acotados como en~\eqref{eq:1}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\refname}{Bibliograf\'{\i}a}
+
+\frenchspacing
+
+\begin{thebibliography}{5}
+
+\bibitem{BePa}
+%[1]\tab
+\textsc{A. Benedek y R. Panzone}, Mean convergence of series of 
+Bessel functions, \textit{Rev. Un. Mat. Arg.} \textbf{26} (1972), 42--61.
+
+\bibitem{HuMuWh}
+%[2]\tab
+\textsc{R. A. Hunt, B. Muckenhoupt y R. L. Wheeden}, Weighted norm 
+inequalities for the conjugate function and the Hilbert transform, 
+\textit{Trans. Amer. Math. Soc.} \textbf{176} (1973), 227--251.
+
+\bibitem{MuWh}
+%[3]\tab
+\textsc{B. Muckenhoupt y R. L. Wheeden}, Two weight function norm 
+inequalities for the Hardy-Littlewood maximal function and the 
+Hilbert transform, \textit{Studia Math.} \textbf{55} (1976), 279--295.
+
+\bibitem{Wa}
+%[4]\tab
+\textsc{G. N. Watson}, ``A treatise on the theory of Bessel 
+functions'', Cambridge, 1944.
+
+\bibitem{Wi}
+%[5]\tab
+\textsc{G. M. Wing}, The mean convergence of 
+orthogonal series, \textit{Amer. J. Math.} \textbf{72} (1950), 792--808.
+
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
+\noindent Juan Luis Varona Malumbres\\
+Departamento de Matem\'aticas\\
+Colegio Universitario de La Rioja\\
+26001 Logro\~{n}o, ESPA\~{N}A
+
+\end{document}

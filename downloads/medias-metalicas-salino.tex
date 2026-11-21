@@ -1,0 +1,298 @@
+% !TEX encoding = UTF-8 Unicode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             %
+% MINIATURAS MATEM\'ATICAS DE LA GACETA DE LA RSME            %
+%                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[autocontact]{gaceta}
+
+%---------------------
+% La Gaceta se har\'a con esto activado, 
+% pero no hace falta ahora si no quieres:
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Puedes usar esto (u otra codificaci\'on) si quieres:
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+%\decimalpoint
+%---------------------
+
+%---------------------
+% Esto ya lo carga el estilo de La Gaceta:
+%\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{url} % <-- Para p\'aginas web o similar: \url{...}
+%\usepackage{graphicx}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+\usepackage{wrapfig}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+\usepackage{tikz}
+%\usepackage{pgfplots}
+%---------------------
+
+%---------------------
+% <<< ESTO SE AJUSTAR\'A AL EDITAR CADA N\'UMERO DE LA GACETA >>>
+%\provisional
+\newcounter{pageforminiatura}
+\setcounter{pageforminiatura}{326} % Siempre ser\'a p\'agina par
+\setcounter{page}{1} % No se usa (dejarlo como 1)
+\journame{La Gaceta de la RSME}
+\yearofpublication{2022}
+\volume{25}
+\issuenumber{2}
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+%\belongstopart{Art\'{\i}culos} 
+%\belongstopart{Secciones} 
+%\belongstopart{Noticias de la Sociedad} 
+%\belongstopart{Actualidad} 
+\nopart
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}: 
+\supertitle{\large Miniaturas matem\'aticas de \thejourname\\[1mm]
+\hfill\footnotesize
+Vol.~\thevolume\ (\theyearofpublication), 
+N\'um.~\theissuenumber, P\'ag.~\thepageforminiatura\theprovisional}
+%
+\noeditor
+%---------------------
+
+%---------------------
+\title{La razón áurea y las medias metálicas\\en el salino de Arquímedes}
+%\author{} % Poner \author{} o no poner nada, da igual.
+% Para ahorrar espacio, el autor solo se pone en la firma:
+\contact{Juan Luis Varona, Dpto. de Matemáticas y Computación, Universidad de La Rioja}
+{jvarona@unirioja.es}
+{https://www.unirioja.es/cu/jvarona/}
+%---------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deja esto as\'{\i}: 
+\previousvspace{-1.8cm}
+\makesupertitle
+\previousvspace{-0.25cm}
+\maketitle
+\vspace*{-0.4cm}
+\thispagestyle{empty} % <<<<< Importante
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%% NOTA: realmente, que $k$ sea entero no tiene importancia
+%Para $k$ entero positivo, sean $\varphi_k$ y $\phi_k$
+%las dos raíces $({k\pm \sqrt{k^2+4}})/{2}$ de la
+%ecuación $x^2-kx-1 = 0$ (con $\varphi_k$ la positiva).
+%Con esta notación, $\varphi_k$ son las denominadas medias metálicas; % (véase~\cite{P})
+%cuando $k=1$, $\varphi_1$ es la razón áurea.
+%%% ALTERNATIVA:
+%% cuando $k=1$, $\varphi_1 = (1+\sqrt{5})/2$ es la razón áurea.
+
+% NOTA: realmente, que $k$ sea entero no tiene importancia
+Para $k$ entero positivo, sea $\varphi_k = ({k+\sqrt{k^2+4}})/{2}$ 
+la raíz positiva de la ecuación $x^2-kx-1 = 0$.
+Estas $\varphi_k$ satisfacen 
+% $\varphi_k/1 = 1/(\varphi_k-k)$ 
+% $(\varphi_k-k)\varphi_k = 1$ 
+$\varphi_k = k+1/\varphi_k$ % <--- De aquí sale la fracción continua (k;k,k...)
+y son las denominadas medias metálicas; 
+% (véase~\cite{P})
+cuando $k=1$, $\varphi_1$ es la razón áurea.
+
+%% ASÍ ES COMO LO PUSE EN EL DE PLAZA:
+%Sean $\varphi_k$ y $\phi_k$, respectivamente, las raíces positiva y negativa 
+%de la ecuación $x^2=kx+1$. Con esta notación,
+%y si $k$ es un entero positivo, $\varphi_k$ son las denominadas medias metálicas;
+%% NOTA: realmente, que $k$ sea entero no tiene importancia
+%cuando $k=1$, $\varphi_1$ es la razón áurea.
+
+\begin{wrapfigure}{r}{0.20\textwidth}%
+\vspace*{-1mm}%
+\hspace*{-2mm}%
+\newcommand{\kmedios}{1.5}% % k = 3
+\newcommand{\mediaMetalica}{3.3027756}% % (k+sqrt(4+k^2))/2
+\newcommand{\diametroEntrante}{0.3027756}% % (-k+sqrt(4+k^2))/2 = \mediaMetalica - k = 1/\mediaMetalica
+\newcommand{\radio}{1.80278}% \kmedios + \diametroEntrante = sqrt(4+k^2)/2 
+\begin{tikzpicture}[scale=0.66]
+\footnotesize % <--- Tiene influencia sobre el texto de los "node"
+\draw[thick] (0,0) -- (\kmedios,0) node[below]{$O$} -- (0,1) node[above left=-2]{$P$} -- cycle;
+% \draw[green] (\kmedios,0) circle(\radio); % <- La circunferencia entera
+\draw (\radio+\kmedios,0) arc (0:180:\radio);
+\draw (-\radio+\kmedios,0) -- (\radio+\kmedios,0);
+\draw (0,0.4) node[right]{$1$};
+\draw (0.5*\kmedios,0) node[below]{$k/2$\,};
+\end{tikzpicture}
+\end{wrapfigure}
+Sobre un triángulo rectángulo de catetos $1$ y $k/2$ se construye una semicircunferencia como muestra el gráfico adjunto.
+%
+%
+A partir de esa semicircunferencia construimos un salino de Arquímedes 
+~---\'Oscar Ciaurri nos lo presenta en su artículo «El ``Libro de los lemas'': un ejercicio de visualización»,
+\textit{La Gaceta de la RSME} \textbf{17} (2014), 221--245---
+con lóbulo central de diámetro~$k$,
+% (véase~\cite{C}), 
+y prolongamos el radio $PO$ (hipotenusa del triángulo inicial) hasta que corta al borde del lóbulo central en el punto~$Q$. 
+En esas circunstancias, la longitud de $PQ$ es~$\varphi_k$.
+Aquí mostramos los salinos correspondientes a $k=1$, $2$ y~$3$:
+\begin{center}
+\smallskip
+\newcommand{\arito}{1.2pt}
+\begin{tikzpicture}[scale=1.27]
+\footnotesize % <--- Tiene influencia sobre el texto de los "node"
+\begin{scope}[xshift=-2.5cm]
+\newcommand{\kmedios}{0.5} % k = 1
+\newcommand{\mediaMetalica}{1.61803} % (k+sqrt(4+k^2))/2
+\newcommand{\diametroEntrante}{0.61803} % % (-k+sqrt(4+k^2))/2 = \mediaMetalica - k = 1/\mediaMetalica
+\newcommand{\radio}{1.11803} % \kmedios + \diametroEntrante = sqrt(4+k^2)/2 
+\newcommand{\angulo}{63.4349} % atan(1/(k/2)) = atan(2/k) = 1.10715 = 63.4349 grados
+\newcommand{\qx}{0.447214} % cos(\angulo)
+\newcommand{\qy}{0.894427} % sin(\angulo)
+\coordinate (P) at (0,1);
+\coordinate (Q) at (\kmedios+\kmedios*\qx,-\kmedios*\qy);
+\draw[dashed] (0,0) -- (P) node[above left=-2]{$P$}; 
+\draw (0,1) -- (\kmedios,0) node[below]{$O$\,\,\,\,} -- (Q) node[below right=-1]{$Q$};
+\draw[dashed] (-\radio+\kmedios,0) -- (\radio+\kmedios,0);
+\draw[thick] (\radio+\kmedios,0) arc (0:180:\radio);
+\draw[thick] (\kmedios+\kmedios,0) arc (0:-180:\kmedios); % lóbulo central
+\draw[thick] (0,0) arc (0:180:0.5*\diametroEntrante); % lóbulo izquierdo
+\draw[thick] (\kmedios+\kmedios+\diametroEntrante,0) arc (0:180:0.5*\diametroEntrante); % lóbulo derecho
+%\draw (0,0.4) node[right]{$1$};
+%\draw (0.5*\kmedios,0) node[below]{$k/2$};
+%\draw (\kmedios,0) -- (Q) node[below right=-1]{$Q$};
+\draw[fill=white] (P) circle (\arito);
+\draw[fill=white] (Q) circle (\arito);
+\draw (0.55,0.4) node{$\varphi_k$};
+\end{scope}
+\begin{scope}[xshift=0cm]
+\newcommand{\kmedios}{1.0} % k = 2
+\newcommand{\mediaMetalica}{2.41421356} % (k+sqrt(4+k^2))/2
+\newcommand{\diametroEntrante}{0.41421356} % % (-k+sqrt(4+k^2))/2 = \mediaMetalica - k = 1/\mediaMetalica
+\newcommand{\radio}{1.41421356} % \kmedios + \diametroEntrante = sqrt(4+k^2)/2 
+\newcommand{\angulo}{45.0} % atan(1/(k/2)) = atan(2/k) = pi/4 = 45.0 grados
+\newcommand{\qx}{0.707107} % cos(\angulo)
+\newcommand{\qy}{0.707107} % sin(\angulo)
+\coordinate (P) at (0,1);
+\coordinate (Q) at (\kmedios+\kmedios*\qx,-\kmedios*\qy);
+\draw[dashed] (0,0) -- (P) node[above left=-2]{$P$}; 
+\draw (0,1) -- (\kmedios,0) node[below]{$O$\,\,} -- (Q) node[below right=-1]{$Q$};
+\draw[dashed] (-\radio+\kmedios,0) -- (\radio+\kmedios,0);
+\draw[thick] (\radio+\kmedios,0) arc (0:180:\radio);
+\draw[thick] (\kmedios+\kmedios,0) arc (0:-180:\kmedios); % lóbulo central
+\draw[thick] (0,0) arc (0:180:0.5*\diametroEntrante); % lóbulo izquierdo
+\draw[thick] (\kmedios+\kmedios+\diametroEntrante,0) arc (0:180:0.5*\diametroEntrante); % lóbulo derecho
+%\draw (0,0.4) node[right]{$1$};
+%\draw (0.5*\kmedios,0) node[below]{$k/2$};
+%\draw (\kmedios,0) -- (Q) node[below right=-1]{$Q$};
+\draw[fill=white] (P) circle (\arito);
+\draw[fill=white] (Q) circle (\arito);
+\draw (0.95,0.35) node{$\varphi_k$};
+\end{scope}
+\begin{scope}[xshift=3.2cm]
+\newcommand{\kmedios}{1.5} % k = 3
+\newcommand{\mediaMetalica}{3.3027756} % (k+sqrt(4+k^2))/2
+\newcommand{\diametroEntrante}{0.3027756} % % (-k+sqrt(4+k^2))/2 = \mediaMetalica - k = 1/\mediaMetalica
+\newcommand{\radio}{1.80278} % \kmedios + \diametroEntrante = sqrt(4+k^2)/2 
+\newcommand{\angulo}{33.6901} % atan(1/(k/2)) = atan(2/k) = 0.588003 = 33.6901 grados
+\newcommand{\qx}{0.83205} % cos(\angulo)
+\newcommand{\qy}{0.55470} % sin(\angulo)
+\coordinate (P) at (0,1);
+\coordinate (Q) at (\kmedios+\kmedios*\qx,-\kmedios*\qy);
+\draw[dashed] (0,0) -- (0,1) node[above left=-2]{$P$}; 
+\draw (0,1) -- (\kmedios,0) node[below]{$O$\,} -- (Q) node[below right=-1]{$Q$};
+\draw[dashed] (-\radio+\kmedios,0) -- (\radio+\kmedios,0);
+\draw[thick] (\radio+\kmedios,0) arc (0:180:\radio);
+\draw[thick] (\kmedios+\kmedios,0) arc (0:-180:\kmedios); % lóbulo central
+\draw[thick] (0,0) arc (0:180:0.5*\diametroEntrante); % lóbulo izquierdo
+\draw[thick] (\kmedios+\kmedios+\diametroEntrante,0) arc (0:180:0.5*\diametroEntrante); % lóbulo derecho
+\draw (0,0.4) node[right]{$1$};
+\draw (0.5*\kmedios,0) node[below]{$k/2$\,};
+\draw (1.5*\kmedios,0) node[below]{\,$k/2$};
+\draw (-0.5*\diametroEntrante,0) node[below]{$a$};
+\draw (2.0*\kmedios+0.5*\diametroEntrante,0) node[below]{$a$};
+%\draw (\kmedios,0) -- (Q) node[below right=-1]{$Q$};
+\draw (-\diametroEntrante,0) node[below left=-1pt]{$A$\!};
+\draw (0,0) node[below right=-0.5pt]{$B$};
+\draw (2.0*\kmedios,0) node[below left=-0.5pt]{$C$};
+\draw (2.0*\kmedios+\diametroEntrante,0) node[below right=-1pt]{\!$D$};
+\draw[dotted] (-\diametroEntrante,0) -- (0,1) -- (2.0*\kmedios+\diametroEntrante,0);
+\draw[fill=white] (P) circle (\arito);
+\draw[fill=white] (Q) circle (\arito);
+\draw[fill=white] (-\diametroEntrante,0) circle (\arito);
+\draw[fill=white] (0,0) circle (\arito);
+\draw[fill=white] (2.0*\kmedios,0) circle (\arito);
+\draw[fill=white] (2.0*\kmedios+\diametroEntrante,0) circle (\arito);
+\draw (1.4,0.3) node{$\varphi_k$};
+\end{scope}
+\end{tikzpicture}%
+\smallskip
+\end{center}
+
+Comprobemos que $\operatorname{long}(PQ) = \varphi_k$ fijándonos en el salino de la derecha.
+Por el teorema de Pitágoras, $\operatorname{long}(PO) = \sqrt{1+k^2/4}$; además, $\operatorname{long}(OQ) = k/2$. 
+Entonces,
+\[
+\operatorname{long}(PQ) = \operatorname{long}(PO) + \operatorname{long}(OQ)
+= \bigl({k + \sqrt{k^2+4}}\bigr)/{2} = \varphi_k.
+\]
+
+%% UNA ALTERNATIVA:
+%El diámetro $a$ de los lóbulos laterales también está relacionado con las medias metálicas.
+%El ángulo $APD$ es recto, pues abarca el diámetro de la circunferencia,
+%con lo cual los triángulos $APB$ y $PDB$ son semejantes.
+%% Con $a = \operatorname{long}(AB) = \operatorname{long}(CD)$,
+%Ahora, el teorema de Tales nos dice que $a/1 = 1/(k+a)$, luego $a^2+ka-1 = 0$ y, en consecuencia,
+%\[
+%a = \bigl({-k + \sqrt{k^2+4}}\bigr)/{2} = \varphi_k - k = {1}/{\varphi_k}. 
+%% También = -\phi_k 
+%\]
+
+% OTRA ALTERNATIVA
+El diámetro $a$ de los lóbulos laterales también está relacionado con las medias metálicas.
+El ángulo $APD$ es recto, pues abarca el diámetro de la circunferencia,
+con lo cual, por el teorema de la altura, $\operatorname{long}(AB) \cdot \operatorname{long}(BD) = 1^2$,
+es decir, $a(k+a)= 1$. 
+Pero $k+a = \operatorname{long}(BO) + \operatorname{\operatorname{long}}(OD) = \operatorname{long}(OQ) + \operatorname{long}(OP) = \varphi_k$, luego $a = {1}/{\varphi_k}$.
+
+%% Truco para que el t\'{\i}tulo ``Referencias'' no quede tan separado
+%% ni destaque tanto el tama\~no de letra:
+%\let\section\subsection
+%% (se puede hacer pues no hay secciones ni subsecciones;
+%% tambi\'en lo suelo usar en la secci\'on de "Problemas y Soluciones")
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% No me caben las referencias
+%
+%\renewcommand{\refname}{Referencia}
+%\begin{thebibliography}{1}
+%
+%\bibitem{C} 
+%\textsc{\'O. Ciaurri Ramírez},  El «Libro de los lemas»: un ejercicio de visualización,
+%\emph{La Gaceta de la RSME} \textbf{17} (2014), no.~2, 221--245.
+%
+%\bibitem{P} 
+%\textsc{\'A. Plaza}, Relación entre la $k$-ésima media metálica y $\displaystyle \arctan (2/k)$,
+%\emph{La Gaceta de la RSME} \textbf{20} (2017), no.~2, 268.
+%
+%\end{thebibliography}
+
+\medskip
+%\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

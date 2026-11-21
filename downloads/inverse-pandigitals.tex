@@ -1,0 +1,192 @@
+%MSC Primary: 40A05
+
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amsfonts}     
+%\usepackage{graphicx}
+\usepackage{url}
+%\usepackage{hyperref} 
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+
+%---------------------
+
+\allowdisplaybreaks
+
+\def\source#1{\bgroup\def\thefootnote{}\footnotetext{\strut\hspace*{-14pt}\ignorespaces#1
+\ignorespaces}\egroup}
+
+\def\MSC#1{\bgroup\def\thefootnote{}\footnotetext{\strut\hspace*{-14pt}MSC: \ignorespaces#1
+\ignorespaces}\egroup}
+
+\newcommand\biog{\list{}{\topsep15pt plus2pt minus2pt
+	\leftmargin0pt\labelwidth0pt\labelsep.3em
+	\parsep0pt\listparindent\parindent
+	\itemsep18pt plus2pt minus2pt
+	\def\makelabel##1{\hskip\labelsep\bfseries\MakeUppercase{##1}}}%
+	\footnotesize}
+\def\endbiog{\endlist}
+
+\title{\vspace*{-2cm}%
+The Sum of the Reciprocals of\\
+Pandigital Numbers}
+
+\author{Eduardo S\'aenz de Cabez\'on and Juan Luis Varona\\
+\footnotesize Universidad de La Rioja\\[-4pt]  
+\footnotesize 26006 Logro\~no, Spain\\[-3pt] 
+\footnotesize eduardo.saenz-de-cabezon@unirioja.es, jvarona@unirioja.es}
+
+\date{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We show that the sum of the reciprocals of pandigital numbers is divergent.
+\medskip
+\end{abstract}
+
+\source{\textit{Math. Mag.} \textbf{94} (2021) 213--214. 
+doi:10.1080/0025570X.2021.1926878}
+\MSC{40A05}
+  
+It is well known that the harmonic series 
+\[
+  \sum_{n=1}^{\infty} \frac{1}{n} = 1 + \frac12 + \frac13 + \frac14 + \cdots
+\]
+diverges. In 1914, A. J. Kempner \cite{Kemp} proved that if the denominators 
+include only those numbers which do not contain the digit $9$, 
+then the series converges (of course, the same can be done with any other digit, 
+and using a base of numeration different of ten). 
+This is somewhat surprising because Kempner's series seems to have ``most of the'' 
+summands of the harmonic series, and thus, at first sight, Kempner's series 
+should be also divergent. 
+
+However, the demonstration of its convergence is simple: 
+there are $8$ one digit numbers not containing the digit $9$, the smallest of which is~$1$; 
+$8 \cdot 9$ two digit numbers not containing the digit~$9$, the smallest of which is~$10$; 
+$8 \cdot 9^2$ three digit numbers not containing the digit $9$, the smallest of which is $100$; 
+and so on. Therefore the sum of the reciprocals of the positive integers not containing 
+the digit $9$ is less than
+\[
+  8 \cdot 1 + \frac{8 \cdot 9}{10} + \frac{8 \cdot 9^{2}}{10^{2}} + \cdots
+  = \frac{8}{1-\frac{9}{10}} = 80.
+\]
+A more precise estimation for the sum of Kempner's series can be found in~\cite{Bai}. 
+
+In a given base of numeration, a pandigital number is an integer 
+in which any digit used in the base appears at least once.
+At first sight and without further reflection, our patterns with small numbers 
+in the usual base ten says that ``very few'' numbers are pandigital, and thus 
+that the series of the reciprocals of pandigital numbers 
+\begin{equation}
+\label{eq:pan}
+  \sum_{p \text{ pandigital}} \frac{1}{p}
+\end{equation}
+should also be convergent. 
+
+But, again, our first intuition fails 
+(it is worth recalling the ``strong law of small numbers'', see~\cite{Guy},
+that can be formulated as ``there aren't enough small numbers to meet the
+many demands made of them'', and that focuses in the problem of ensuring if 
+a mathematical pattern observed with small positive integers will persist). 
+Actually, the divergence of \eqref{eq:pan} 
+can be proved as a consequence of the convergence of Kempner's series. 
+
+Let us take $W_j$ (for $j=0,1,\dots,9$, if we use base ten) the set of 
+positive integers without digit~$j$. If $n$ is not a pandigital number,
+then $n \in W_j$ for some~$j$. Then,
+\[
+  \sum_{n \text{ not-pandigital}} \frac{1}{n}
+  \le \sum_{n \in W_0} \frac{1}{n} 
+  + \sum_{n \in W_1} \frac{1}{n}
+  + \cdots
+  + \sum_{n \in W_9} \frac{1}{n}
+  < \infty
+\]
+due to the convergence of Kempner's series, and thus~\eqref{eq:pan} diverges.
+
+We can also give an easy proof of the divergence of \eqref{eq:pan} that
+is independent of Kempner's result.
+In base ten, take $a = 1\,234\,567\,890$. Then, all the numbers 
+\[
+n = 10^{10}r + a,
+\]
+with $r \in \mathbb{N} \cup \{0\}$, are pandigital.
+Consequently, and because $a/10^{10} \le 1$,
+%\[
+%  \sum_{n \text{ pandigital}} \frac{1}{n}
+%  \ge \sum_{r=0}^{\infty} \frac{1}{10^{10}r + a}
+%  = \frac{1}{10^{10}} \sum_{r=0}^{\infty} \frac{1}{r + a/10^{10}}
+%  \ge \frac{1}{10^{10}} \sum_{r=0}^{\infty} \frac{1}{r+1}
+%  = \infty.
+%\]
+\begin{align*}
+  \sum_{n \text{ pandigital}} \frac{1}{n}
+  &\ge \sum_{r=0}^{\infty} \frac{1}{10^{10}r + a} \\
+  &= \frac{1}{10^{10}} \sum_{r=0}^{\infty} \frac{1}{r + a/10^{10}} \\
+  &\ge \frac{1}{10^{10}} \sum_{r=0}^{\infty} \frac{1}{r+1}
+  = \infty.
+\end{align*}
+The same proof applies in any base $b$ taking the corresponding~$a$
+and using $10^{10}$ with its meaning $b^b$ in base~$b$.
+
+\begin{thebibliography}{3}
+
+%\bibitem{Bai} 
+%Baillie, R. (1979).
+%{Sums of reciprocals of integers missing a given digit}.
+%\textit{Amer. Math. Monthly} 86(5): 372--374.
+%
+%\bibitem{Guy} 
+%Guy, R. K. (1988). 
+%{The strong law of small numbers}. 
+%\textit{Amer. Math. Monthly} 95(8): 697--712.
+%
+%\bibitem{Kemp} 
+%Kempner, A. J. (1914). 
+%{A curious convergent series}. 
+%\textit{Amer. Math. Monthly} 21(2): 48--50.
+
+\bibitem{Bai} 
+R. Baillie,  
+{Sums of reciprocals of integers missing a given digit}, 
+\textit{Amer. Math. Monthly} \textbf{86} (1979) 372--374.
+
+\bibitem{Guy} 
+R. K. Guy,  
+{The strong law of small numbers}, 
+\textit{Amer. Math. Monthly} \textbf{95} (1988) 697--712.
+
+\bibitem{Kemp} 
+A. J. Kempner,  
+{A curious convergent series}, 
+\textit{Amer. Math. Monthly} \textbf{21} (1914) 48--50.
+
+\end{thebibliography}
+
+
+
+\begin{biog}
+\item[Eduardo S\'aenz de Cabez\'on] 
+(MRAuthorID: \href{http://www.ams.org/mathscinet/MRAuthorID/875028}{875028}) 
+received his Ph.D.\ from the Universidad de La Rioja (Spain) in 2008 and is an associate professor at that university. He combines research in computer algebra with an intense work in mathematics popularization. Has written several popular math books, runs the YouTube channel ``Derivando'' and is the conductor of the national television science show \textit{\'Orbita Laika}.
+%\begin{affil}
+%Departamento de Matem\'aticas y Computaci\'on, Universidad de La Rioja, 26006 Logro\~no, Spain\\
+%eduardo.saenz-de-cabezon@unirioja.es
+%\end{affil}
+\item[Juan Luis Varona] 
+(MR Author ID: \href{http://www.ams.org/mathscinet/MRAuthorID/260232}{260232}) 
+received his degree in mathematical sciences from the Universidad de Zaragoza in 1985 and his Ph.D.\ from the Universidad de Cantabria (Spain) in 1988. He is a full professor at the Universidad de La Rioja (Spain), a region that is known for its wines. He enjoys \TeX/\LaTeX\ and currently he serves as editor-in-chief of \textit{La Gaceta de la Real Sociedad Matem\'atica Espa\~nola}.
+%\begin{affil}
+%Departamento de Matem\'aticas y Computaci\'on, Universidad de La Rioja, 26006 Logro\~no, Spain\\
+%jvarona@unirioja.es
+%\end{affil}
+\end{biog}
+
+\end{document}
+
+
+

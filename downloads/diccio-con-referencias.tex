@@ -1,0 +1,236 @@
+%&pdflatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DICCIONARIO EN CASTELLANO PARA \TeX,
+% por
+% JUAN LUIS VARONA,
+% escrito para el
+% Primer Encuentro del Grupo de Usuarios de TeX Hispanohablantes,
+% EGUTH'99, Madrid, 13 y 14 de septiembre 1999.
+%     FECHA COMIENZO ESCRITURA: 12 de julio de 1999.
+%     FECHA \'ULTIMA MODIFICACI\'ON: 1 de diciembre de 1999.
+%     A\~NADIDA REFERENCIA A SU PUBLICACI\'ON: 26 DE AGOSTO DE 2004.
+% Escrito en LaTeX2e, por Juan Luis Varona (para problemas del texto,
+% contactar con jvarona@dmc.unirioja.es).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[a4paper,12pt]{article}
+
+% Para que la footnote con la referncia no a\~nada una p\'agina:
+\addtolength{\textheight}{0.5cm}
+
+\usepackage[spanish]{babel}
+
+\usepackage{hyperref}
+% Si no se usa hyperref, usar esto:
+%\usepackage{url}
+% SE PUEDE COGER EN:
+% ftp://CTAN/tex-archive/macros/latex/contrib/other/misc/url.sty
+% SE USA PARA LOGRAR CORTES DE PALABRA EN PAGINAS WEB Y SIMILARES.
+
+% SI NO SE CARGA hyperref, INCLUIR ESTO:%\def\href#1#2{\url{#2}}
+
+\date{}
+
+\title{DICCIONARIO EN CASTELLANO\\ PARA \TeX}
+
+
+\author{Juan Luis Varona%
+\renewcommand\thefootnote{}
+\renewcommand\footnotemark{}
+\footnote{Esta ponencia fue presentada en el
+Primer Encuentro del Grupo de Usuarios de TeX Hispanohablantes,
+EGUTH'99, celebrado en la Universidad Polt\'ecnica de Madrid
+los d\'{\i}as 13 y 14 de septiembre 1999.
+Fue editado en las Actas del Encuentro (distribuidas a los
+asistentes mediante fotocopias), y posteriormente publicado en
+\textit{TeXemplares} \textbf{3} (2001), n.\textsuperscript{o}~2,
+32--36.}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Se presenta un diccionario electr\'onico en castellano destinado a
+ser usado, fundamentalmente, por verificadores ortogr\'aficos de \TeX.
+
+El diccionario es una actualizaci\'on del que estaba disponible
+hasta ahora y que ya se emplea, por ejemplo, en Excalibur para
+Macintosh, en WinEdt para Windows, y en amSpell para MS-DOS.
+Consiste en una recopilaci\'on de casi 300 mil palabras.
+\end{abstract}
+
+\section{Verificadores ortogr\'aficos}
+
+Cuando escribimos un texto, sea del tipo que sea, es bastante com\'un que, por
+mucho cuidado que pongamos, cometamos alguna errata. No s\'olo es posible que
+nos equivoquemos al recordar la ortograf\'{\i}a de una palabra, sino que
+nuestra impericia escribiendo nos lleva a menudo a cambiar unas letras por otras
+al teclear. Para intentar minimizar esto en lo posible, unos programas llamados
+verificadores ortogr\'aficos vienen en nuestra ayuda.
+
+Un verificador ortogr\'afico comprueba que cada palabra de un texto es una de
+las palabras posibles en el idioma. Obviamente, un verificador nunca
+descubrir\'a un error cuando, al escribir mal una palabra, hemos escrito otra
+tambi\'en existente, incluso aunque no tenga ning\'un sentido gramatical en la
+frase en que aparece.
+
+En lo que a nosotros ---usuarios de \TeX--- respecta, es importante tener en
+cuenta que un verificador ortogr\'afico que quiera ser \'util para comprobar
+documentos escritos en \TeX{} debe comprender, al menos m\'{\i}nimamente, la
+sintaxis del lenguaje: de lo contrario, marcar\'a como errores los comandos de
+\TeX, las f\'ormulas, etc. As\'{\i} pues, deberemos utilizar un verificador
+ortogr\'afico especializado en \TeX.
+
+Por otra parte, el diccionario de palabras admisibles puede estar construido
+de dos maneras, lo que da lugar a dos tipos de verificadores ortogr\'aficos. La
+primera consiste simplemente en una enumeraci\'on de todas las palabras
+posibles. As\'{\i}, cada palabra debe aparecer con todas sus variaciones
+permitidas al a\~nadirle distintos prefijos y sufijos. Por ejemplo, los
+sustantivos y adjetivos deben aparecer en masculino, femenino, singular y
+plural; y los verbos conjugados.
+
+La segunda no es una simple lista de palabras con todas sus derivaciones
+posibles. Aqu\'{\i}, pod\'{\i}amos pensar que en el diccionario tenemos s\'olo
+la ra\'{\i}z de la palabra y, adem\'as, unas reglas de derivaci\'on. Por ejemplo,
+para cada sustantivo deben aparecer las reglas de c\'omo formar masculinos,
+femeninos y plurales; y cada verbo debe ir asociado con sus reglas de
+conjugaci\'on.
+
+Programas del primer tipo son Excalibur para Macintosh, amSpell para PC con
+MS-DOS y WinEdt para Windows. Del segundo tipo, podemos destacar ispell, que
+est\'a disponible para equipos unix.
+
+En general, los del primer tipo son m\'as sencillos, pero requieren mayores
+ficheros de palabras. Los del segundo tipo requieren un trabajo de dise\~no y
+programaci\'on m\'as importante, pero pueden llegar a ser m\'as
+efectivos. Por ejemplo, para incluir aumentativos y diminutivos s\'olo hace
+falta a\~nadir unas pocas reglas. En uno de los del primer tipo requiere
+incluir en la lista cada palabra en aumentativo y diminutivo.
+
+Por otra parte, unos idiomas se adaptan mejor que otros a utilizar verificadores
+de uno u otro tipo. Por ejemplo, en ingl\'es no hay femeninos ni plurales de
+adjetivos, y los verbos se conjugan muy poco. As\'{\i}, no merece mucho la pena
+el esfuerzo de programaci\'on que se necesita para utilizar verificadores del
+segundo tipo. El espa\~nol, en cambio, tiene gran cantidad de formas verbales
+que, en un verificador del primer tipo, es necesario incluir individualmente.
+Otros idiomas, como el alem\'an y el vasco, aun tienen m\'as mecanismos de
+formaci\'on de palabras, como la declinaci\'on y la yuxtaposici\'on
+(que puede llegar a ser bastante com\'un), lo que hace que el n\'umero de
+palabras permitidas crezca desmesuradamente. Para estos idiomas, una estrategia
+del segundo tipo parece ser bastante m\'as recomendable. El castellano
+podr\'{\i}a ser un caso intermedio.
+
+\section{La lista de palabras en castellano}
+
+En lo que a nosotros respecta, nos vamos a ocupar aqu\'{\i} \'unicamente de
+verificadores ortogr\'aficos del primer tipo, de los basados en una lista de
+palabras. Desde hace tiempo, existen diversos programas que pueden ser usados
+para comprobar la correcci\'on ortogr\'afica de textos escritos en \TeX, unos
+gratis y otros no excesivamente caros. Pero no hab\'{\i}a ninguna lista de
+palabras en espa\~nol suficientemente completa y de distribuci\'on gratuita.
+Obviamente, s\'{\i} que exist\'{\i}an implementaciones en programas comerciales
+pero que, en la pr\'actica, no serv\'{\i}an para nada si lo que quer\'{\i}amos
+era comprobar un documento \TeX. As\'{\i} pues, hace ya a\~nos, el que escribe
+se plante\'o elaborar una lista lo bastante amplia como para que pudiera ser
+usada con comodidad.
+
+Ahora se presenta una actualizaci\'on de la lista, que contiene m\'as de 40.000
+palabras nuevas. Concretamente, la lista actual consta de 292.342 palabras,
+mientras que la anterior ten\'{\i}a 247.049. Es importante hacer notar que
+incluye multitud de palabras relacionadas con la matem\'atica, f\'{\i}sica e
+inform\'atica, que son las disciplinas donde m\'as se utiliza \TeX. Muchas de
+ellas no suelen estar presentes en diccionarios de car\'acter general.
+
+Es de destacar que el usuario tiene acceso al diccionario fuente y puede
+modificarlo a su antojo para su uso personal. Aunque ser\'{\i}a deseable que la
+versi\'on que se distribuye en general permanezca unificada. As\'{\i}, las
+futuras mejoras y a\~nadidos de palabras se hacen siempre sobre la misma lista.
+El mecanismo para indicar la versi\'on de la lista es simple: basta indicar el
+n\'umero de palabras que contiene.
+
+\section{Implementaciones para diversos sistemas operativos}
+
+La lista de palabras que aqu\'{\i} se presenta puede usarse con los siguientes
+verificadores ortogr\'aficos:
+
+\begin{subsection}{Excalibur}
+
+Es un programa para Macintosh, desarrollado por Robert Gottshall y Rick Zaccone.
+Es gratuito. Su p\'agina web es
+\url{http://www.eg.bucknell.edu/~excalibr/excalibur.html}, y puede conseguirse
+tambi\'en, mediante ftp an\'onimo, en \url{ftp://ftp.eg.bucknell.edu/pub/mac/}
+(en el subdirectorio \url{Excalibur-dictionaries/} se pueden encontrar
+diccionarios en multitud de idiomas). En CTAN, se encuentra en el directorio
+\url{tex-archive/systems/mac/support/excalibur/}.
+
+Una caracter\'{\i}stica de Excalibur resulta muy \'util a los escritores en
+\TeX. Una palabra que contenga letras no inglesas (acentos o e\~nes, en el caso
+del espa\~nol) puede escribirse con notaci\'on de 7 bits o de 8 bits. No es este
+lugar para comentar las ventajas y desventajas que tiene uno y otro m\'etodo,
+puesto que cualquier usuario medianamente avanzado las conoce. Con Excalibur,
+basta tener la lista de palabras escrita con notaci\'on de 8 bits.
+As\'{\i}, si una palabra de un texto est\'a escrita con notaci\'on de 7 bits,
+Excalibur se encarga de traducir los 7 bits a 8 bits (en cualquier
+combinaci\'on entendible por \TeX) antes de comparar con las palabras de la
+lista.
+
+\end{subsection}
+
+\begin{subsection}{WinEdt}
+
+Es un potente y vers\'atil editor destinado a la creaci\'on de documentos en
+\TeX{} que funciona en Windows. Entre otras cosas, tiene un verificador
+ortogr\'afico. Su autor es Aleksander Simonic y es un programa
+\textit{shareware}. El precio de una licencia personal para uso educativo es
+de 40 d\'olares. Su p\'agina web es \url{http://home.istar.ca/~winedt} o
+\url{http://www.winedt.com}. En CTAN, puede encontrarse en el directorio
+\url{tex-archive/systems/win32/winedt/}. Asimismo, en el subdirectorio
+\url{dict/} se pueden encontrar diccionarios en bastantes idiomas.
+
+\end{subsection}
+
+\begin{subsection}{amSpell}
+
+Es un verificador ortogr\'afico para documentos \TeX{}
+que funciona bajo MS-DOS. Su autor es A.~Merckens y es gratuito. Puede
+descargarse, en CTAN, en el directorio \url{tex-archive/support/amspell/},
+aunque all\'{\i} s\'olo aparece el diccionario ingl\'es. El diccionario en
+espa\~nol, que es una adaptaci\'on del que aqu\'{\i} se presenta realizada por
+Agust\'{\i}n Mart\'{\i}n Domingo, puede conseguirse por ftp an\'onimo en
+\url{ftp://tex.unirioja.es/pub/tex/dict-pc/}.
+
+\end{subsection}
+\bigskip
+
+Para finalizar, \'unicamente a\~nadir que todos estos programas, y las
+\'ultimas versiones del diccionario espa\~nol adaptado a ellos, pueden
+obtenerse en la Universidad de La Rioja (de donde procede el que escribe esta
+nota), mediante ftp an\'onimo, en
+\url{ftp://tex.unirioja.es/pub/tex/}. Una vez ah\'{\i}, los directorios
+\url{dict-mac/}, \url{dict-win/} y \url{dict-pc/} contienen,
+respectivamente, los diccionarios para Macintosh (Excalibur), Windows (WinEdt)
+y MS-DOS (amSpell) aqu\'{\i} descritos.
+
+\bigskip
+
+\noindent\textbf{Agradecimientos:}
+Gracias a todos los que han colaborado notific\'andome erratas de la versi\'on
+anterior de la lista de palabras, o envi\'andome nuevas palabras para incluir.
+En particular, a H\'ector M.~Monacci y a Josu Zabaleta.
+
+\bigskip
+
+\begin{flushright}
+{\small Juan Luis Varona,\\
+Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,\\
+C/ Luis de Ulloa s/n, 26004 Logro\~no, ESPA\~NA.\\
+e-mail: \href{mailto:jvarona@dmc.unirioja.es}{jvarona@dmc.unirioja.es}\\
+URL: \url{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}}
+\end{flushright}
+
+\end{document}
+

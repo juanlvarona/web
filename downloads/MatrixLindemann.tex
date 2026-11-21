@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper]{article}
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+%\usepackage{color}
+%  \newcommand{\rojo}[1]{\textcolor{red}{#1}}
+%  \newcommand{\verde}[1]{\textcolor{green}{#1}}
+
+\newcommand{\C}{\mathbb{C}}
+%\newcommand{\N}{\mathbb{N}}
+%\newcommand{\Q}{\mathbb{Q}}
+%\newcommand{\R}{\mathbb{R}}
+\newcommand{\A}{\mathbb{A}}
+
+
+%\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}
+
+\title{The Lindemann theorem for matrices%
+\footnotetext{MSC: Primary 11J81, Secondary 15A16.}%
+\footnotetext{This paper has been published in: \textit{Amer. Math. Monthly} 
+\textbf{125} (2018), no.~10, 939--940.}}
+
+\author{Jos\'e Antonio Torn\'e\textsuperscript{1} and Juan Luis Varona\textsuperscript{2}\\[6pt]
+{{}\textsuperscript{1}\small Camino del Golf 16, San Miguel del Camino,}\\
+{\small 24391 Le\'on, Spain, email: jatorne@gmail.com}\\[4pt]
+{{}\textsuperscript{2}\small Departamento de Matem\'aticas y Computaci\'on, Universidad de La Rioja,}\\
+{\small 26006 Logro\~no, Spain, email: jvarona@unirioja.es}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In this note, we prove a Lindemann theorem about the transcendence of the exponential of square matrices.
+\end{abstract}
+
+In 1882, Ferdinand von Lindemann \cite{Lin} proved that, if $\alpha \in \C$ is an algebraic number, then $e^\alpha$ is algebraic if and only if $\alpha = 0$. In particular, this result implies the transcendence of $\pi$ because $e^{i\pi}=-1$. This note
+states a Lindemann theorem for the exponential of square matrices, that are defined as 
+\[
+\exp(A) = \sum_{k=0}^{\infty} \frac{1}{k!} A^k.
+\]
+(The convergence of this series is well known.) In what follows, we will use $I$ to denote the identity matrix, and $O$ the zero matrix.
+
+\begin{theorem}
+\label{teo1}
+Let $m$ be a positive integer, let $\A$ be the field of algebraic complex numbers, and let $M_{m}(\A)$ be the set of $m \times m$ square matrices whose elements are in~$\A$, and take $A \in M_m(\A)$. Then $\exp(A) \in M_{m}(\A)$ if and only if $A^{m}=O$.
+\end{theorem}
+
+\begin{proof}
+Let us define the function $F:M_{m}(\C) \to M_m(\C)$ by means of the series
+\[
+F(X) = \exp(X) = \sum_{k=0}^{\infty} \frac{1}{k!}X^{k}.
+\]
+Thus, we want to prove that $F(A) \in M_{m}(\A)$ if and only if $A^m=O$.
+The ``if'' part is clear, because $F(A)$ becomes a finite sum, so let us analyze the ``only if'' part.
+
+The eigenvalues of $A$ are the roots of the polynomial $\det(A-xI)=0$ and, being that $\A$ is an algebraically closed field, these eigenvalues are in~$\A$. On the other hand, $A^m=O$ is equivalent to saying that $0$ is the unique eigenvalue of~$A$. (It is enough to use the Cayley--Hamilton theorem.) Let us prove that $0$ is the unique eigenvalue by \emph{reductio ad absurdum}.
+
+Let us suppose that $\lambda \ne 0$ in $\A$ is an eigenvalue of~$A$. An eigenvector associated to $\lambda$ will be  a nonzero vector solution $\mathbf{v} \in \C^m$ of the linear homogeneous system $(A-\lambda I) \mathbf{x} = \mathbf{0}$.
+The existence of nonzero solutions is guaranteed because $\det(A-\lambda I)=0$.
+The general solution of the system depends on $m-r$ free parameters, with $r = \operatorname{rank}(A-\lambda I)$, and it can be obtained by means of gaussian elimination, a process that only uses algebraic operations. As $A-\lambda I$ is in $M_m(\A)$, by choosing algebraic values, not all zero, for the free parameters, we will have an eigenvector $\mathbf{v} \in \A^m$. But, by hypothesis, $F(A) \in M_m(\A)$, so also $F(A) \mathbf{v} \in \A^m$.
+
+From $A\mathbf{v}=\lambda \mathbf{v}$, it follows that $A^k \mathbf{v} = \lambda^k \mathbf{v}$ for any $k\geq 1$. Consequently,
+\[
+F(A)\mathbf{v} = \exp(A)\mathbf{v} = \sum_{k=0}^{\infty} \frac{1}{k!}A^{k}\mathbf{v}
+= \sum_{k=0}^{\infty} \frac{1}{k!}\lambda^{k}\mathbf{v}
+= (\exp(\lambda)) \mathbf{v}.
+\]
+From this equality, and because $\mathbf{v} \neq \mathbf{0}$, it follows that $\exp(\lambda) \in \A$. 
+But, by the Lindemann theorem, the unique $\lambda \in \A$ such that $\exp(\lambda)$ is in $\A$ is $\lambda=0$, so we have found a contradiction.
+\end{proof}
+
+Well-known consequences of the Lindemann theorem, or the more general Lindemann--Weierstrass theorem, are that, for $\alpha \ne 0$ an algebraic number, $\log(1+\alpha)$, $\sin(\alpha)$, $\cos(\alpha)$, $\sinh(\alpha)$, $\cosh(\alpha)$ are trascendental numbers.
+
+Moreover, it is standard to extend an analytic function $f(z) = \sum_{k=0}^{\infty} a_kz^k$ with radius of convergence $r>0$ to a matrix function $F(X) = \sum_{k=0}^{\infty} a_k X^k$ that converges for matrices $X$ whose spectral radius $\rho(X)$ (i.e., the maximum of the absolute value of the eigenvalues of~$X$) satisfies $\rho(X) < r$. In particular, this can be done with $\log$, $\sin$, $\cos$, $\sinh$ and $\cosh$. Then, with the same proof as in Theorem~\ref{teo1}, we have the following.
+
+%It is standard to extend the functions $\log$, $\sin$, $\cos$, $\sinh$, $\cosh$ 
+%to matrices by mean of a series that replicate, with matrices, the analytic expansion 
+%of the ordinary original functions (moreover, the radius of convergence of the 
+%original series becomes in the same condition for the spectral radius 
+%of the matrices in the matrix series). Then, with the same proof that 
+%in Theorem~\ref{teo1}, we have the following:
+
+%\begin{theorem}
+%For $A \in M_m(\A)$, we have: 
+%\begin{itemize}
+%\item $\log(I+A) \in M_{m}(\A)$ if and only if $A^{m}=O$.
+%\item $\sin(A) \in M_{m}(\A)$ if and only if $A^{m}=O$.
+%\item $\cos(A) \in M_{m}(\A)$ if and only if $A^{m}=O$.
+%\item $\sinh(A) \in M_{m}(\A)$ if and only if $A^{m}=O$.
+%\item $\cosh(A) \in M_{m}(\A)$ if and only if $A^{m}=O$.
+%\end{itemize}
+%\end{theorem}
+
+\begin{theorem}
+For $A \in M_m(\A)$, any of\/ $\log(I+A)$ (with $\rho(A)<1$), $\sin(A)$, $\cos(A)$,
+$\sinh(A)$ or $\cosh(A)$ is in $M_{m}(\A)$ if and only if $A^{m}=O$.
+\end{theorem}
+
+\paragraph*{Acknowledgment.}
+The research of the second author is supported by grant MTM2015-65888-C4-4-P of MINECO/FEDER (Spain).
+
+\begin{thebibliography}{1}
+
+\bibitem{Lin} 
+% F. Lindemann, \"Uber die Zahl $\pi$, \textit{Mathematische Annalen} \textbf{20}  (1882) 213--225.
+Lindemann, F. (1882). \"Uber die Zahl $\pi$, \textit{Math.\ Ann.} 20: 213--225.
+% \url{http://resolver.sub.uni-goettingen.de/purl?GDZPPN002246910}
+
+\end{thebibliography}
+
+
+\end{document}
+
+

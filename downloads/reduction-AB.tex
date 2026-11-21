@@ -1,0 +1,536 @@
+
+% !TEX TS-program = pdflatex
+
+%------------------------------------------------------------------
+% Existence and reduction of generalized Apostol-Bernoulli, 
+% Apostol-Euler and Apostol-Genocchi polynomials
+% by
+% L. M. Navas, F. J. Ruiz and J. L. Varona
+%------------------------------------------------------------------
+
+
+\documentclass[11pt,a4paper]{amsart}
+
+\usepackage{url}
+\usepackage{hyperref}
+
+%--------------------------------------
+%% ONLY FOR DRAFTS:
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{color}
+%\newcommand{\comentario}[1]{\textcolor{red}{#1}}
+%\usepackage[latin1]{inputenc}
+%--------------------------------------
+
+\allowdisplaybreaks[3]
+
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+%\newcommand{\B}{\mathcal{B}}
+%\newcommand{\E}{\mathcal{E}}
+%\newcommand{\G}{\mathcal{G}}
+\newcommand{\B}[1][]{\mathcal{B}\ifx#1\empty\else^{(#1)}\fi}
+\newcommand{\E}[1][]{\mathcal{E}\ifx#1\empty\else^{(#1)}\fi}
+\newcommand{\G}[1][]{\mathcal{G}\ifx#1\empty\else^{(#1)}\fi}
+%% Se podr\'ia usar esto:
+%% \B[\alpha]_n(x;\lambda)
+%% \B[\alpha+1]_n(x;\lambda)
+
+
+%\renewcommand{\epsilon}{\varepsilon}
+
+\theoremstyle{plain}
+\newtheorem{theor}{Theorem}
+
+\theoremstyle{plain}
+\newtheorem{definition}[theor]{Definition}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[theor]{Lemma}
+
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+\date{\textit{Archivum Mathematicum (Brno)} \textbf{55} (2019), 157--165.}
+
+%--------------------------------------
+\title[Existence and reduction of polynomials]
+{Existence and reduction of generalized Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials}
+
+%\author{L.~M.~Navas, F.~J.~Ruiz and J.~L.~Varona}
+
+\author[L.~M.~Navas]{Luis M. Navas}
+\address[L.~M.~Navas]{%
+        Departamento de Matem\'aticas,
+        Universidad de Salamanca,
+        37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author[F.~J.~Ruiz]{Francisco J. Ruiz}
+\address[F.~J.~Ruiz]{%
+        Departamento de Matem\'aticas,
+        Universidad de Zaragoza,
+        50009 Zaragoza, Spain}
+\email{fjruiz@unizar.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address[J.~L.~Varona]{%
+        Departamento de Matem\'aticas y Computaci\'on,
+        Universidad de La Rioja,
+        26006 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+
+\thanks{The authors are supported by grant MTM2015-65888-C4-4-P of the Ministerio de Econom\'ia y Competitividad (Spain). The second author has also been supported by Project E-64, D. G. Arag\'on (Spain).}
+
+\keywords{Bernoulli polynomials, N{\o}rlund polynomials, Apostol-Bernoulli polynomials, Apostol-Euler polynomials, Apostol-Genocchi polynomials, 
+generating functions, Appell sequences}
+
+\subjclass[2010]{Primary 11B68; Secondary 05A15}
+%--------------------------------------
+
+
+%--------------------------------------
+\begin{document}
+%--------------------------------------
+
+
+%--------------------------------------
+\begin{abstract}
+One can find in the mathematical literature many recent papers studying the generalized Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials, defined by means of generating functions. In this article we clarify the range of parameters in which these definitions are valid 
+and when they provide essentially different families of polynomials. In particular, we show that, up to multiplicative constants, it is enough to take as the ``main family'' those given by
+\[
+  \Big( \frac{2}{\lambda e^t+1} \Big)^\alpha e^{xt} 
+  = \sum_{n=0}^{\infty} \mathcal{E}^{(\alpha)}_{n}(x;\lambda) \frac{t^n}{n!}, 
+  \qquad \lambda \in \C \setminus \{-1\},
+\]
+and as an ``exceptional family''
+\[
+  \Big( \frac{t}{e^t-1} \Big)^\alpha e^{xt} 
+  = \sum_{n=0}^{\infty} \mathcal{B}^{(\alpha)}_{n}(x) \frac{t^n}{n!},
+\]
+both of these for $\alpha \in \C$.
+\end{abstract}
+%--------------------------------------
+
+
+%--------------------------------------
+\maketitle
+%--------------------------------------
+
+\section{Introduction}
+
+
+The generalized Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials of order $\alpha \in \N \cup \{0\}$ are defined, respectively, by means of the generating functions and series expansions
+\begin{align}
+\label{eq:Beraln}
+  \Big( \frac{t}{\lambda e^t-1} \Big)^\alpha e^{xt} &= \sum_{n=0}^{\infty} \B[\alpha]_{n}(x;\lambda) \frac{t^n}{n!}, \\
+\label{eq:Eulaln}
+  \Big( \frac{2}{\lambda e^t+1} \Big)^\alpha e^{xt} &= \sum_{n=0}^{\infty} \E[\alpha]_{n}(x;\lambda) \frac{t^n}{n!}, \\
+\label{eq:Genaln}
+  \Big( \frac{2t}{\lambda e^t+1} \Big)^\alpha e^{xt} &= \sum_{n=0}^{\infty} \G[\alpha]_{n}(x;\lambda) \frac{t^n}{n!}. 
+\end{align}
+These are valid in a suitable neigbourhood of $t=0$, where $\lambda$ is (with some exceptions) any complex number.  
+They are generalizations of the classical Bernoulli, Euler and Genocchi polynomials $B_n(x)$, $E_n(x)$ and $G_n(x)$, that correspond to the cases $\lambda=1$ and $\alpha=1$ (moreover, the so-called Bernoulli, Euler and Genocchi numbers are $B_n = B_n(0)$, $E_n = 2^n E_n(\frac12)$ and $G_n = G_n(0)$). 
+
+In the mathematical literature, 
+the parameters $\alpha$ and $\lambda$ have been included independently (we give some historical details in Subsection~\ref{sec:onepar}); once the parameters have been used together, the definitions \eqref{eq:Beraln}, \eqref{eq:Eulaln} and \eqref{eq:Genaln} 
+have been extended to $\alpha \in \C$. The goal of this paper is to clarify when this extension is possible (Subsection~\ref{sec:twopar}), and to reduce the above-mentioned definitions with complex $\lambda$ and $\alpha$ to a smaller class of polynomials that suppresses the trivial relationships between them (Section~\ref{sec:reduction}, see~\eqref{eq:EulalnC}, \eqref{eq:BeralnC} and Definition~\ref{def:reduction}).
+Except for multiplicative constants, our reduction covers every case of generalized Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials without the necessity of adding extra parameters.
+
+As usual, in this paper we will always use the principal branch for complex powers, in particular $1^\alpha = 1$ for $\alpha \in \C$ 
+(but nothing substantial changes with a different choice).
+
+\subsection{One parameter} % Traditional cases
+\label{sec:onepar}
+
+For Bernoulli polynomials, which are the ones most often discussed, the complex parameter $\lambda$ was introduced by Apostol in 1951 \cite{Ap}, in connection with the Lerch zeta function, and thus the functions $\B_{n}(x;\lambda) = \B[1]_{n}(x;\lambda)$ are called the Apostol-Bernoulli polynomials; the integer parameter $\alpha$ was introduced by N{\o}rlund in 1922 \cite{Nor}, and thus $\B[\alpha]_{n}(x;1)$ are also known as N{\o}rlund polynomials.
+Later in this paper we will give more details about the corresponding generalizations for Euler and Genocchi polynomials, 
+and the use of both the parameters $\lambda$ and~$\alpha$.
+
+In order to avoid confusion, it is important to note that, in the above definitions, the $n$th polynomial is not always a polynomial of degree~$n$ (this will no longer happen with the reduction that we give in Definition~\ref{def:reduction}). Let us analyze this, as well as some other relevant details and relations.
+
+For fixed $\alpha=1$, the value $\lambda = 1$ corresponds to the classical Bernoulli polynomials, i.e.\ $\B[1]_{n}(x;1) = B_n(x)$, but it is certainly not the case that $B_{n}(x) = \lim_{\lambda \to 1}\B[1]_{n}(x;\lambda)$.
+There \emph{is} a limiting relationship between $\B[1]_{n}(x;\lambda)$ and $B_{n}(x)$ as $\lambda \to 1$, but it is not immediately obvious. Another aspect of this discontinuity is that, although $B_{n}(x)$ is monic of degree $n$, for $\lambda \neq 1$ the degree of $\B[1]_{n}(x;\lambda)$ is $n-1$ and its leading term is $n/(\lambda-1)$.
+
+The case $\lambda = 0$ is trivial; indeed $\B[1]_{0}(x;0) = 0$ and $\B[1]_{n}(x;0) = -nx^{n-1}$ for $n \ge 1$. 
+For this reason, it is usual to assume $\lambda \neq 0$, but we do not need this restriction in what follows.
+
+Again for $\alpha=1$, the Apostol-Euler and Apostol-Genocchi polynomials do not introduce real novelties, because they can be reduced to the Apostol-Bernoulli family. Writing the generating function~\eqref{eq:Eulaln} as
+\[
+  \Big( \frac{2}{\lambda e^t+1} \Big) e^{xt}
+  = -\frac{2}{t} \Big( \frac{t}{(-\lambda) e^t-1} \Big) e^{xt} 
+\]
+and using the uniqueness of Taylor expansions, it is clear that
+\[
+  \E[1]_{n}(x;\lambda) = - \frac{2}{n+1} \B[1]_{n+1}(x;-\lambda)
+\] 
+for all $\lambda \in \C$. Apparently, this simple relation has not been noted before~\cite{NRV-MC}, because one finds previous papers which study properties of Apostol-Bernoulli and Apostol-Euler as different families of polynomials (see, for instance, \cite{Luo-MC} or~\cite{Bayad}). In the same way, for Apostol-Genocchi polynomials we have
+\[
+  \G[1]_{n+1}(x;\lambda) = (n+1) \E[1]_{n}(x;\lambda) = -2 \B[1]_{n+1}(x;-\lambda)
+\] 
+for all $\lambda \in \C$. 
+As in the case of Apostol-Bernoulli polynomials, when $\lambda \ne -1$ the polynomial $\G[1]_{n}(x;\lambda)$ has degree $n-1$, and  $\G[1]_{0}(x;\lambda) = 0$.
+
+As mentioned above, the introduction of the parameter $\alpha$ for Bernoulli polynomials (i.e., with $\lambda=1$) is due to N{\o}rlund in 1922 \cite{Nor}; they are the so-called generalized Bernoulli polynomials of order~$\alpha$, $\B[\alpha]_n(x) = \B[\alpha]_n(x;1)$. Two years later, in \cite[p.~120]{Nor-book}, N{\o}rlund defined the generalized Euler polynomials $\E[\alpha]_n(x) = \E[\alpha]_n(x;1)$. Moreover, he also studies the case when $\alpha$ is a negative integer, both for Euler and for Bernoulli polynomials (see \cite[p.~130]{Nor-book}). The generalized Genocchi polynomials of order~$\alpha$, $\G[\alpha]_n(x) = \G[\alpha]_n(x;1)$, appear much later, and can be found in~\cite{Hor}.
+
+\subsection{Two parameters}
+\label{sec:twopar}
+
+The study of both parameters $\lambda$ and~$\alpha$ simultaneously is somewhat recent. Furthermore, the restriction $\alpha \in \N \cup \{0\}$ as in \eqref{eq:Beraln}, \eqref{eq:Eulaln} and~\eqref{eq:Genaln} has not been included in the corresponding definitions. 
+The generalized Apostol-Bernoulli and Apostol-Euler polynomials of (real or complex) order $\alpha$ were defined in 2005 by Luo and Srivastava \cite{LuoSri-BeEu}, and in 2011 the same authors introduced and investigated the generalized Apostol-Genocchi polynomials of (real or complex) order~$\alpha$~\cite{LuoSri-Ge}; they can also be found in \cite[\S 1.9, p.~91]{SriCh}. 
+
+In the left hand sides of \eqref{eq:Beraln}, \eqref{eq:Eulaln} and~\eqref{eq:Genaln} we have functions $g(t)$ that (for every fixed~$x$) must be expanded in powers of~$t$. Of course, a function $g(t)$ that is not analytic in a disk around $t=0$, cannot be expanded in powers of~$t$, in the same way that, for instance, we cannot write $t^{1/2}$ or $t^{-1}$ as $\sum_{n=0}^{\infty} a_n t^n$. This is what happens with some of these very general assumptions. 
+For $\lambda \ne 1$, 
+\[
+  \frac{t}{\lambda e^t-1} \approx (\lambda-1)^{-1} \cdot t \quad \text{when } t \to 0,
+\]
+and $t^\alpha$ is not analytic around $t=0$ when $\alpha \notin \N \cup \{0\}$; consequently, the expansion~\eqref{eq:Beraln} (and hence also $\B[\alpha]_n(x;\lambda)$) does not exist for any real or complex $\alpha$, only for $\alpha \in \N \cup \{0\}$. For $\lambda = 1$, 
+$t/(e^t-1) \approx 1$ when $t \to 0$, 
+and in this case we can indeed define the N{\o}rlund polynomials $\B[\alpha]_n(x;1)$ for arbitrary $\alpha \in \C$.
+A similar behavior occurs in the expansion~\eqref{eq:Genaln}. Thus, the polynomials $\G[\alpha]_n(x;\lambda)$ only exist for $\alpha \in \N \cup \{0\}$ when $\lambda \ne -1$, and $\G[\alpha]_n(x;-1)$ can be defined for arbitrary $\alpha \in \C$. (But $\G[\alpha]_n(x;-1) = (-2)^\alpha\B[\alpha]_n(x;1)$, so nothing essentially new is introduced in this case.)
+
+The expansion \eqref{eq:Eulaln} is less restrictive, and it does accept any $\alpha \in \C$ in most cases. For $\lambda \ne -1$, 
+\[
+  \frac{2}{\lambda e^t+1} \approx 2(\lambda+1)^{-1} \ne 0 \quad \text{when } t \to 0,
+\]
+so the expansion \eqref{eq:Eulaln} and the polynomials $\E[\alpha]_n(x;\lambda)$ exist. For the case $\lambda = -1$, clearly
+$2/(-e^t+1) \approx -2t^{-1}$ when $t \to 0$, 
+so $\E[\alpha]_n(x;-1)$ can be defined only for $\alpha = 0$ (a trivial case) or a negative integer.
+
+For the authors, it is extremely surprising that some kind of discussion as in the previous paragraphs has not been included in the papers or books that define and study the generalized Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials of order $\alpha \in \C$ (the above mentioned~\cite{LuoSri-BeEu, LuoSri-Ge, SriCh} and some other that continue with the study), restricting the definition of the polynomials to the cases when they exist. Instead, many properties of nonexistent polynomials, and formal relations between them, can be found in the mathematical literature. The same can be said of many further generalizations of \eqref{eq:Beraln}, \eqref{eq:Eulaln} and~\eqref{eq:Genaln} with the addition of some extra parameters. For instance, the so-called generalized Apostol type polynomials $\mathcal{F}^{(\alpha)}_{n}(x;\lambda;\mu;\nu)$ that we can find in \cite[p.~101]{SriCh} defined via
+\[
+  \Big( \frac{2^\mu t^\nu}{\lambda e^t+1} \Big)^\alpha e^{xt} 
+  = \sum_{n=0}^{\infty} \mathcal{F}^{(\alpha)}_{n}(x;\lambda;\mu;\nu) \frac{t^n}{n!},
+\]
+whose aim is to give a unified presentation of \eqref{eq:Beraln}, \eqref{eq:Eulaln} and~\eqref{eq:Genaln}, and some others that appear in the same book, or the generalized Apostol-Bernoulli polynomials of level $m \in \N$ and order~$\alpha \in \C$ that, as we can see in~\cite{Kurt}, are defined via
+\[
+  \Big( \frac{t^m}{\lambda e^t-\sum_{l=0}^m t^l/l!} \Big)^\alpha e^{xt} 
+  = \sum_{n=0}^{\infty} \mathfrak{B}^{[m-1,\alpha]}_{n}(x;\lambda) \frac{t^n}{n!}
+\] 
+(of course, similar definitions are given for Euler or Genocchi polynomials), that are generalizations of the preexisting cases corresponding to $\lambda = 1$ and $\alpha = 1$. A recent review that deals with many of these generalizations and unifications is~\cite{Yam}. Fortunately, many of the properties and relations that appear in all these papers or books are valid when the polynomials do exist, although this requires a suitable restriction of the parameters. 
+One of the aims in this article is to ask for more rigor in future papers. 
+
+\section{Relationship and reduction}
+\label{sec:reduction}
+
+Once we have introduced the parameter $\lambda$, the three families of polynomials \eqref{eq:Beraln}, \eqref{eq:Eulaln} and~\eqref{eq:Genaln} are closely related. Let us see this, as well as what to do to avoid essentially redundant definitions.
+
+As we have explained, \eqref{eq:Beraln} and~\eqref{eq:Genaln} can be used only for $\alpha \in \N \cup \{0\}$ (except in the case $\lambda=1$ in~\eqref{eq:Beraln} or $\lambda=-1$ in~\eqref{eq:Genaln}), and that~\eqref{eq:Eulaln} is valid for general $\alpha \in \C$ (except in the case $\lambda=-1$). Now, we are going to see that the polynomials that arise in \eqref{eq:Beraln} and~\eqref{eq:Genaln} can be reduced to the generalized Apostol-Euler polynomials of order $\alpha$ in~\eqref{eq:Beraln}.
+
+
+Let $\alpha \in \N \cup \{0\}$ and the generalized Apostol-Bernoulli polynomials of order $\alpha$ be defined as in~\eqref{eq:Beraln}, with $\lambda \ne 1$. 
+We can write
+\begin{align*}
+  &\sum_{n=0}^{\infty} \B[\alpha]_{n}(x;\lambda) \frac{t^n}{n!}
+  = \Big( \frac{t}{\lambda e^t-1} \Big)^\alpha e^{xt} 
+  = (-1)^\alpha 2^{-\alpha} t^\alpha \Big( \frac{2}{(-\lambda) e^t+1} \Big)^\alpha e^{xt} \\
+  &\qquad = (-1)^\alpha 2^{-\alpha} \sum_{k=0}^{\infty} \E[\alpha]_{k}(x;-\lambda) \frac{t^{k+\alpha}}{k!} 
+  \qquad\text{(with the change $n=k+\alpha$)} \\
+  &\qquad = (-1)^\alpha 2^{-\alpha} \sum_{n=\alpha}^{\infty} \E[\alpha]_{n-\alpha}(x;-\lambda) \frac{t^{n}}{(n-\alpha)!} \\
+  &\qquad = (-1)^\alpha 2^{-\alpha} \sum_{n=\alpha}^{\infty} \E[\alpha]_{n-\alpha}(x;-\lambda) \frac{n!}{(n-\alpha)!} \frac{t^{n}}{n!}.
+\end{align*}
+Then, by using the uniqueness of Taylor expansions, we have the following relationships:
+
+\begin{theor}
+For $\alpha \in \N \cup \{0\}$ and $\lambda \ne 1$, we have
+\[
+  \B[\alpha]_{0}(x;\lambda) = \B[\alpha]_{1}(x;\lambda) = \cdots = \B[\alpha]_{\alpha-1}(x;\lambda) = 0
+\]
+and
+\begin{equation}
+\label{eq:BtoE}
+  \B[\alpha]_{n}(x;\lambda) = \frac{(-1)^\alpha n!}{2^\alpha (n-\alpha)!} \E[\alpha]_{n-\alpha}(x;-\lambda),
+  \qquad n = \alpha, \alpha+1, \alpha+2, \dots
+\end{equation}
+\end{theor}
+
+In a similar way, let $\alpha \in \N \cup \{0\}$ and the generalized Apostol-Genocchi polynomials of order $\alpha$ be defined as in~\eqref{eq:Genaln}, with $\lambda \ne -1$. 
+We state the following:
+
+\begin{theor}
+For $\alpha \in \N \cup \{0\}$ and $\lambda \ne -1$, we have
+\[
+  \G[\alpha]_{0}(x;\lambda) = \G[\alpha]_{1}(x;\lambda) = \cdots = \G[\alpha]_{\alpha-1}(x;\lambda) = 0
+\]
+and
+\begin{equation}
+\label{eq:GtoE}
+  \G[\alpha]_{n}(x;\lambda) = \frac{n!}{(n-\alpha)!} \E[\alpha]_{n-\alpha}(x;\lambda),
+  \qquad n = \alpha, \alpha+1, \alpha+2, \dots
+\end{equation}
+\end{theor}
+
+On the other hand, let us recall that the polynomials $\E[\alpha]_n(x;-1)$ can be defined only for $\alpha = 0$ or a negative integer.
+In this case, we can write
+\begin{align*}
+  &\sum_{n=0}^{\infty} \E[\alpha]_{n}(x;-1) \frac{t^n}{n!}
+  = \Big( \frac{2}{-e^t+1} \Big)^\alpha e^{xt} 
+  = (-2)^{\alpha} t^{-\alpha} \Big( \frac{t}{e^t-1} \Big)^\alpha e^{xt} \\
+  &\qquad = (-2)^\alpha \sum_{k=0}^{\infty} \B[\alpha]_{k}(x;1) \frac{t^{k-\alpha}}{k!} 
+  \qquad\text{(with the change $n=k-\alpha$)} \\
+  &\qquad = (-2)^\alpha \sum_{n=-\alpha}^{\infty} \B[\alpha]_{n+\alpha}(x;1) \frac{t^{n}}{(n+\alpha)!} \\
+  &\qquad = (-2)^\alpha \sum_{n=-\alpha}^{\infty} \B[\alpha]_{n+\alpha}(x;1) \frac{n!}{(n+\alpha)!} \frac{t^{n}}{n!},
+\end{align*}
+so we have the following:
+
+\begin{theor}
+For $\alpha = 0$ or a negative integer, we have
+\[
+  \E[\alpha]_{0}(x;-1) = \E[\alpha]_{1}(x;-1) = \cdots = \E[\alpha]_{-\alpha-1}(x;-1) = 0
+\]
+and
+\begin{equation}
+\label{eq:E1toB1}
+  \E[\alpha]_{n}(x;-1) = \frac{(-2)^\alpha n!}{(n+\alpha)!} \B[\alpha]_{n+\alpha}(x;1),
+  \qquad n = -\alpha, -\alpha+1, -\alpha+2, \dots
+\end{equation}
+\end{theor}
+
+We have seen in~\eqref{eq:BtoE} and~\eqref{eq:GtoE} that the polynomials $\B[\alpha]_{n}(x;\lambda)$ (with $\lambda\ne1$) and $\G[\alpha]_{n}(x;\lambda)$ (with $\lambda\ne-1$) can be expressed, up to a multiplicative constant, in terms of the generalized Apostol-Euler polynomials of order~$\alpha$. Moreover, the parameter $\alpha$ in~\eqref{eq:Eulaln} can be any $\alpha \in \C$ (except when $\lambda=-1$), without the restriction $\alpha \in \N \cup \{0\}$ in~\eqref{eq:Beraln} and~\eqref{eq:Genaln}. Then, we can take the generalized Apostol-Euler polynomials of order $\alpha \in \C$ 
+defined as
+\begin{equation}
+\label{eq:EulalnC}
+  \Big( \frac{2}{\lambda e^t+1} \Big)^\alpha e^{xt} = \sum_{n=0}^{\infty} \E[\alpha]_{n}(x;\lambda) \frac{t^n}{n!}, 
+  \qquad \lambda \in \C \setminus \{-1\},
+\end{equation}
+as the ``main family'', and consider $\B[\alpha]_{n}(x;\lambda)$ and $\G[\alpha]_{n}(x;\lambda)$ (for $\lambda \ne 1$ in the first case and $\lambda \ne -1$ in the second) as superfluous variations. 
+% To cover the ``exceptional cases'', 
+% Additionally, 
+To cover the ``exceptional cases'', 
+and taking into account that $\G[\alpha]_n(x;-1) = (-2)^\alpha\B[\alpha]_n(x;1)$ and~\eqref{eq:E1toB1}, we must also define
+\begin{equation}
+\label{eq:BeralnC}
+  \Big( \frac{t}{e^t-1} \Big)^\alpha e^{xt} 
+  = \sum_{n=0}^{\infty} \B[\alpha]_{n}(x;1) \frac{t^n}{n!}
+  = \sum_{n=0}^{\infty} \B[\alpha]_{n}(x) \frac{t^n}{n!},
+\end{equation}
+which are the classical Bernoulli polynomials ($\alpha=1$) or the N{\o}rlund polynomials ($\alpha \in \C \setminus \{1\}$).
+The polynomials defined in \eqref{eq:EulalnC} and \eqref{eq:BeralnC}, both for $\alpha \in \C$,
+cover the entire range of ``valid polynomials''. 
+
+%------
+
+We can highlight this classification by means of a suitable definition:
+
+\begin{definition}
+\label{def:reduction}
+Let $\lambda, \alpha \in \C$. We call the polynomials defined by~\eqref{eq:EulalnC} when $\lambda \ne -1$, and by~\eqref{eq:BeralnC} when $\lambda = -1$, the Apostol-like polynomials of order $(\lambda,\alpha)$.
+\end{definition}
+
+%------
+
+Finally, we are going to prove that, with the definitions in \eqref{eq:EulalnC} and \eqref{eq:BeralnC} of our process of reduction, it no longer happens that the $n$th polynomial can have degree different from~$n$. Actually, this is a routine argument once we establish that $\E[\alpha]_{n}(x;\lambda)$ and $\B[\alpha]_{n}(x)$ are non-null constants. Moreover, although we have very often stated all along in this paper that the coefficients $\E[\alpha]_{n}(x;\lambda)$ and $\B[\alpha]_{n}(x)$ of the analytic expansions~\eqref{eq:EulalnC} and~\eqref{eq:BeralnC} are polynomials on the variable~$x$, we have not proved it in this paper. 
+
+To achieve these goals, it is enough to give a simple result that is a well-known procedure in the theory of Appell sequences, and that we include for completeness.
+
+\begin{lemma}
+\label{lem:A(t)}
+Given an analytic function $A(t)$ in an open disk around $t=0$ such that $A(0) \ne 0$, 
+let us consider the expansion
+\begin{equation}
+\label{eq:A(t)}
+  A(t) e^{xt} = \sum_{n=0}^{\infty} f_n(x) \frac{t^n}{n!}.
+\end{equation}
+Then $f_0(x) = A(0)$ and 
+\begin{equation}
+\label{eq:der}
+  f'_{n+1}(x) = (n+1) f_n(x), \qquad n \in \N \cup \{0\}.
+\end{equation}
+Moreover, $f_n(x)$ is a polynomial of degree $n$ for every $n \in \N \cup \{0\}$.
+\end{lemma}
+
+\begin{proof}
+Firstly, by substituting $t=0$ in~\eqref{eq:A(t)} we get $A(0) \cdot 1 = f_0(x) + 0$, so $f_0(x) = A(0)$, a non-null constant.
+Secondly, if we differentiate~\eqref{eq:A(t)} with respect to $x$, we obtain
+\[
+  A(t) t e^{xt} = \sum_{n=1}^{\infty} f'_n(x) \frac{t^n}{n!},
+\]
+so
+\begin{align*}
+  \sum_{k=0}^{\infty} f_k(x) \frac{t^k}{k!} 
+  &= A(t) e^{xt} = \sum_{n=1}^{\infty} f'_n(x) \frac{t^{n-1}}{n!} \\
+  &= \sum_{k=0}^{\infty} f'_{k+1}(x) \frac{t^{k}}{(k+1)!}
+  = \sum_{k=0}^{\infty} \frac{1}{k+1} f'_{k+1}(x) \frac{t^{k}}{k!},
+\end{align*}
+and \eqref{eq:der} follows by the uniqueness of the analytic expansions.
+Finally, that $f_n(x)$ is always a polynomial of degree~$n$ is a direct
+consequence of $f_0(x) = \text{constant} \ne 0$ and~\eqref{eq:der}.
+\end{proof}
+
+Actually, another standard way to prove that $f_n(x)$ is a polynomial of degree $n$
+is as follows. As $A(t)$ is analytic around $t=0$ and $A(0) \ne 0$, also
+$1/A(t)$ is analytic around $t=0$, so we will have $1/A(t) = \sum_{n=0}^{\infty} b_n t^n/n!$,
+with $b_0 \ne 0$. Then, we can write~\eqref{eq:A(t)} as
+\[
+  \sum_{n=0} x^n \,\frac{t^n}{n!} 
+  = \bigg(\sum_{n=0}^{\infty} b_n \frac{t^n}{n!}\bigg) \bigg(\sum_{n=0}^{\infty} f_n(x) \frac{t^n}{n!}\bigg)
+  = \sum_{n=0}^{\infty} \bigg(\sum_{k=0}^n \binom{n}{k} b_{n-k} f_{k}(x) \bigg) \frac{t^n}{n!}.
+\]
+Consequently,
+\[
+  x^n = \sum_{k=0}^n \binom{n}{k} b_{n-k} f_{k}(x),
+\]
+which, moreover, provides a recurrence relation to get the polynomials.
+
+
+Let us apply Lemma~\ref{lem:A(t)} to both \eqref{eq:EulalnC} and~\eqref{eq:BeralnC}.
+In~\eqref{eq:EulalnC}, the analytic function $A(t)$ is
+\[
+  A(t) = \Big( \frac{2}{\lambda e^t+1} \Big)^\alpha 
+\]
+so, in particular, 
+\[
+  \E[\alpha]_{0}(x;\lambda) = \Big( \frac{2}{\lambda e^0+1} \Big)^\alpha  
+  = \Big( \frac{2}{\lambda+1} \Big)^\alpha \ne 0.
+\]
+Similarly, the analytic function in~\eqref{eq:BeralnC} is
+\[
+  A(t) = \Big( \frac{t}{e^t-1} \Big)^\alpha = \Big( \frac{1}{1 + t/2 + t^2/3! + \cdots} \Big)^\alpha
+\]
+and thus 
+\[
+  \B[\alpha]_{0}(x) = \Big( \frac{1}{1 + 0} \Big)^\alpha = 1.
+\]
+
+In this way, we have proved the following:
+
+\begin{theor}
+For $\alpha \in \C$, let us define $\E[\alpha]_{n}(x;\lambda)$ (for $\lambda \in \C \setminus \{-1\}$) and
+$\B[\alpha]_{n}(x)$ as in \eqref{eq:EulalnC} and \eqref{eq:BeralnC}, respectively.
+Then,
+\[
+  \E[\alpha]_{0}(x;\lambda)  
+  = \Big( \frac{2}{\lambda+1} \Big)^\alpha \ne 0,
+  \quad
+  \B[\alpha]_{0}(x)  
+  = 1,
+\]
+and
+\[
+  \frac{d}{dx} \E[\alpha]_{n+1}(x;\lambda) = (n+1) \E[\alpha]_{n}(x;\lambda),
+  \quad
+  \frac{d}{dx} \B[\alpha]_{n+1}(x) = (n+1) \B[\alpha]_{n}(x),
+\]
+for every $n \in \N \cup \{0\}$.
+In particular, $\E[\alpha]_{n}(x;\lambda)$ and $\B[\alpha]_{n}(x)$ are polynomials of degree~$n$ on the variable~$x$.
+\end{theor}
+
+\begin{thebibliography}{00}
+
+\bibitem{Ap} 
+T. Apostol, 
+{On the Lerch Zeta function},
+\textit{Pacific J. Math.} \textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+% Usa Apostol-Euler (sin alpha) sin reducirlo a Apostol-Bernoulli
+\bibitem{Bayad}
+A. Bayad, 
+Fourier expansions for Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials,
+\textit{Math. Comp.}
+\textbf{80} (2011), 2219--2221. 
+
+\bibitem{Yam}
+P. Hern\'andez-Llanos, Y. Quintana and A. Urieles,
+About extensions of generalized Apostol-type polynomials,
+\textit{Results Math.} % Results in Mathematics
+\textbf{68} (2015), 203--225. 
+% DOI: 10.1007/s00025-014-0430-2
+% http://link.springer.com/article/10.1007/s00025-014-0430-2
+
+% Primeros Genocchi de orden alpha (entero positivo)
+\bibitem{Hor}
+A. F. Horadam, 
+Genocchi polynomials, 
+in
+\textit{Applications of Fibonacci Numbers}
+(G. E. Bergum, A. N. Philippou and A. F. Horadam, eds.),
+% Volume 4, Proceedings of ``The Fourth International Conference on Fibonacci Numbers and Their Applications'', 
+% Wake Forest University, N.C., U.S.A., July 30--August 3, 1990
+Vol. 4, pp. 145--166, Kluwer, 1991.
+% http://link.springer.com/chapter/10.1007%2F978-94-011-3586-3_18
+
+\bibitem{Kurt}
+B. Kurt,
+Some relationships between the generalized Apostol-Bernoulli and Apostol-Euler polynomials,
+\textit{Turk. J. Anal. Number Theory}
+\textbf{1} (2013), 54--58.
+% DOI: 10.12691/tjant-1-1-11
+
+%% "Casi primeros" Apostol-Euler de orden alpha complejo.
+%% No es el primero. Es posterior a {LuoSri-Ge}
+%\bibitem{Luo-Eu} 
+%Q.-M. Luo, 
+%{Apostol-Euler polynomials of higher order and Gaussian hypergeometric functions}, 
+%\textit{Taiwanese J. Math.} \textbf{10} (2006), 917--925.
+
+% Usa Apostol-Euler (sin alpha) sin reducirlo a Apostol-Bernoulli
+\bibitem{Luo-MC} 
+Q.-M. Luo, % Qiu-Ming Luo
+Fourier expansions and integral representations for the Apostol-Bernoulli and Apostol-Euler polynomials,
+\textit{Math. Comp.} 
+\textbf{78} (2009), 2193--2208. 
+
+% Primeros Apostol-Bernoulli de orden alpha y Apostol-Euler de orden alpha (complejo)
+\bibitem{LuoSri-BeEu}
+Q.-M. Luo and H. M. Srivastava,
+{Some generalizations of the Apostol-Bernoulli and Apostol-Euler polynomials},
+\textit{J. Math. Anal. Appl.} 
+\textbf{308} (2005), 290--302.
+
+% Primeros Apostol-Genocchi de orden alpha
+\bibitem{LuoSri-Ge}
+Q.-M. Luo and H. M. Srivastava,
+{Some generalizations of the Apostol-Genocchi polynomials and the Stirling numbers of the second kind},
+\textit{Appl. Math. Comput.} 
+\textbf{217} (2011), 5702--5728.
+
+% Reduce Apostol-Euler a Apostol-Bernoulli 
+\bibitem{NRV-MC}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Asymptotic estimates for Apostol-Bernoulli and Apostol-Euler polynomials,
+\textit{Math. Comp.}
+\textbf{81} (2012), 1707--1722.
+
+% Primeros Bernoulli de orden alpha (entero positivo)
+\bibitem{Nor} 
+% N. E. N\"orlund, % <--- In the paper, this is the name of the author.
+N. E. N{\o}rlund, % <--- The correct name in Danish
+M\'emoire sur les polyn\^omes de Bernoulli,
+\textit{Acta. Math.} 
+\textbf{43} (1922), 121--196.
+
+% Primeros Euler de orden alpha (entero positivo y negativo)
+\bibitem{Nor-book}
+% N. E. N\"orlund, % <--- In the book, this is the name of the author.
+N. E. N{\o}rlund, % <--- The correct name in Danish
+\textit{Vorlesungen \"uber Differenzenrechnung}, 1st ed., 
+Springer-Verlag, Berlin-Heidelberg, 1924.
+
+%% ESTO ES LA COMO SI FUESE LA PRIMERA EDICI\'ON DEL SIGUIENTE:
+%\bibitem{SriCh}
+%H. M. Srivastava and J. Choi, 
+%\textit{Series associated with the zeta and related functions},
+%Kluwer Academic, Dordrecht, 2001.
+
+%% ESTO ES COMO SI FUESE LA SEGUNDA EDICI\'ON DEL ANTERIOR:
+\bibitem{SriCh}
+H. M. Srivastava and J. Choi, 
+\textit{Zeta and $q$-zeta functions and associated series and integrals},
+Elsevier, 2012.
+
+\bibitem{SKS}
+H. M. Srivastava, B. Kurt and Y. Simsek, 
+{Corrigendum: Some families of Genocchi type polynomials and their interpolation functions},
+\textit{Integral Transforms Spec. Funct.} 
+\textbf{23} (2012), 939--940.
+% http://www.tandfonline.com/doi/full/10.1080/10652469.2012.690950
+
+\end{thebibliography}
+
+\end{document}
+

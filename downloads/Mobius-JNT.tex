@@ -1,0 +1,2519 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMIENZO ESCRITURA: 26-febrero-2002
+% ULTIMA MODIFICACION: 2007-04-12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+% \usepackage[notcite,notref]{showkeys}
+\usepackage{url}
+
+% \usepackage{setspace} 
+% \doublespacing
+
+% There are some formulas very big
+\usepackage[top=4cm, left=3.5cm, right=3.5cm, bottom=3cm,
+  headsep=1cm]{geometry}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+%\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+\newcommand{\conv}[1][]{\odot_{#1}}
+
+\newcommand{\ip}[1]{\lfloor #1 \rfloor} % integer part
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\ab}{\operatorname{ab}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\f}{\mathfrak{f}}
+\newcommand{\m}{\mathfrak{m}}
+
+\newcommand{\M}{\mathcal{M}}
+
+\newcommand{\id}{\iota}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[M\"obius Inversion Formulas for Flows of Arithmetic Semigroups]{M\"obius Inversion Formulas for Flows\\ of Arithmetic Semigroups}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{Manuel Benito}
+\address{
+        Instituto Sagasta                   \\
+        Glorieta del Doctor Zub\'{\i}a s/n  \\
+        26003 Logro\~no, Spain}
+\email{mbenit8@palmera.pntic.mec.es}
+
+\author{Luis M. Navas}
+\address{
+        Departamento de Matem\'aticas  \\
+        Universidad de Salamanca       \\
+        Plaza de la Merced 1-4         \\
+        37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author{Juan L. Varona}
+\address{
+        Departamento de Matem\'aticas y Computaci\'on \\
+        Universidad de La Rioja                       \\
+        Calle Luis de Ulloa s/n                       \\
+        26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+
+\thanks{Research of the second author supported by grant SA30/00B of the~JCyL, and research of the third author supported by grant MTM2006-13000-C03-03 of the~DGI}
+
+\keywords{M\"obius function, M\"obius transform,
+Dirichlet convolution, inversion formula}
+
+\subjclass[2000]{Primary 11A25}
+
+\date{April 12, 2007}
+\renewcommand\datename{\textbf{THIS PAPER HAS BEEN PUBLISHED IN: }}
+\date{\textit{J.\ Number Theory} \textbf{128} (2008), 390--412.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{abstract}
+	We define a convolution-like operator which transforms functions on a
+	space $X$ via functions on an arithmetical semigroup $S$, when there 
+	is an action or flow of $S$ on $X$.
+	This operator includes the well-known classical M\"obius transforms
+	and associated inversion formulas as special cases.
+	It is defined in a sufficiently general context so as to emphasize
+	the universal and functorial aspects of arithmetical M\"obius
+	inversion.
+	We give general analytic conditions guaranteeing the existence of
+	the transform and the validity of the corresponding inversion
+	formulas, in terms of operators on certain function spaces.
+	A number of examples are studied that illustrate the advantages of
+	the convolutional point of view for obtaining new inversion formulas.
+\end{abstract}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+Few subjects in number theory seem as prone to rediscovery and reinvention as that of M\"obius inversion. A survey of the literature will convince one not only of the ubiquitousness but also of the multiplicity of ``M\"obius inversion formulas'', and that without considering the more exotic generalizations of Dirichlet convolution, or venturing into less number-theoretical realms such as combinatorics or poset theory and incidence algebras. Recently, there has also been increased interest from physicists, resulting in formulas new and old
+(see for example \cite{Chen, ChenShenDing, Li, Ren}).
+
+
+An instructive historical survey of the original work of M\"obius, as well as
+Chebyshev and Ces\`aro, is \cite{Baz}.
+M\"obius' original inversion formula is not the one inverting finite divisor sums, but rather infinite sums $\sum_{n} a_{n} f(x^{n})$ transforming a power series $f$ (see \cite{Mob} and our Example~\ref{ex:fps}). Many of these 
+``M\"obius transforms'' are formal or finite series. 
+The most widely known are series of the form
+$\sum_{n} a_{n} f(nx)$ or $\sum_{n} a_{n} f(x/n)$
+(\cite[\S\,16.5, Th.~270]{Ha-Wr} or \cite[\S\,20]{Schr}).
+One of the more famous analytic ones is that introduced by Riemann to approximate $\pi(x)$, the number of primes less than or equal to~$x$:
+$
+	\pi(x) \approx 
+	R(x) = \sum_{n=1}^{\infty} \frac{\mu(n)}{n} \operatorname{Li}(x^{1/n}).
+$
+These classical transforms involve multiplicative convolution on $\N$,
+but the range of arithmetical functions can be any commutative ring.
+For instance, M\"obius inversion in $\Q[z]$ yields the expression
+$
+	\prod_{n \mid m} (z^{n} - 1)^{\mu(m/n)}
+$
+for the $m$th cyclotomic polynomial.
+More recently, in \cite{Li} we find $\sum_{n=1}^{\infty} f(n^a x)$ with
+$a \in \R$. The corresponding inversion formula is called ``Chen's modified 
+M\"obius inversion formula'' and is applied in physics.
+
+
+Clearly a transform of the form $\sum_{n=1}^{\infty} a_{n} f(\varphi(n,x))$
+is in the offing. Furthermore, what makes inversion work is that these $\varphi$ satisfy $\varphi(n,\varphi(m,x)) = \varphi(nm,x)$, namely, they involve an action or ``flow'' of $\N$, in the sense of dynamical systems.
+This very type of general transform and its inversion formula goes back to Ces\`aro \cite{Ces}, for $\N$-flows on $\R$ and ignoring questions of convergence. The result, implicit in the multitude of classical inversion formulas, is not explicitly named, and has been rediscovered in \cite{Br}, independently by the second author, and quite probably by others. 
+Ces\`aro's insight, coming long before the development of the theory of arithmetical dynamical systems, was neglected.
+Such generality was not needed in light of the predominance in elementary and analytic number theory of the four ``standard'' flows $nx$, $x/n$, $x^{n}$, $x^{1/n}$, corresponding to the basic arithmetic operations, although they are not the only ones. In fact, these four are conjugate (see Example~\ref{ex:classical}), which already suggests the classification problem for arithmetical flows.
+
+
+Given that the most widely used inversion formulas are all special cases, and that it is no more difficult to prove the general formula than a given particular one, at least for finite sums, it seems logical to merely cite which flow we are using in a given situation, rather that list a number of
+separate inversion formulas (see for instance \cite{Ap, Ha-Wr, Schr}).
+If nothing else, one gains economy of resources.
+
+
+In this paper we hope to show the usefulness of the dynamical point of view
+in elucidating the universal or functorial nature of M\"obius inversion
+(see for instance Examples \ref{ex:flow-on-arith-fns}, \ref{ex:directSums} and \ref{ex:words}). We study inversion formulas derived from flows on general arithmetical semigroups $S$, showing how the interaction of analytic, algebraic and dynamical considerations unifies and simplifies disparate results, providing general conditions for the  validity of inversion formulas and incorporating examples that at first sight do not quite seem to fit into the framework
+(e.g.\ Example~\ref{ex:IsekiTatuzawa}), and illustrating the use of convolutional algebraic methods in interesting special cases
+(Examples \ref{ex:dirichletSeries}, \ref{ex:cyclicSgp}, \ref{ex:directSums},
+\ref{ex:fps}, or~\ref{ex:fourier}).
+
+
+Our chief aim is to make explicit and create awareness of the role that semigroup flows have been implicitly playing in inversion formulas since the very beginning. We wish to focus attention on those ideas closest to analytic number theory, hence our choice of arithmetical semigroups, though generalizations will be suggested by our results. We do this both for the sake of brevity and because there are already enough compelling examples in the field.
+
+
+We shall begin by defining the general setting we work in, and proceed to study
+the main analytical tool in the theory of M\"obius transforms, which is a  convolution-like action of arithmetical functions on certain function spaces. For $\N$ and finite series, this point of view is introduced, e.g., in~\cite{Ap}.
+We study the technical conditions required for its extension to convergent series. Algebraically, the formulation of the inversion principle is essentially functorial and hence allows for great generality. We may vary the underlying semigroup as well as the space the flow acts on, the range of arithmetical functions and the function spaces the inversion formulas apply to. One should keep in mind that the general principle of M\"obius inversion is the structure of the Dirichlet convolution algebra of arithmetical functions, which is a ring of formal power series (\cite{CashEver, Lu}).
+The less studied aspect in this theory up to now has been the dynamical ingredient of the flow, whose role we will attempt to point out both in the general results and in our examples. No doubt this is the area where the most work remains to be done.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definitions}
+\label{sec:defs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+In order to produce more general inversion formulas without straying too far
+from the spirit of the original classical number-theoretic ones, we will work
+with semigroups that preserve the essence of $\N$ yet allow enough generality
+that they cover examples essentially unrelated to it. This is provided by
+the concept of arithmetical semigroup, whose definition we now recall.
+
+%:	def. arithmetical semigroup
+\begin{definition}
+	\label{df:arithSgp}
+	An \emph{arithmetical semigroup} is a commutative semigroup $S$ such that
+	\begin{enumerate}
+
+		\item $S$ has a neutral element, $1_{S}$ (so one could call it an 
+			  arithmetical monoid, although the term semigroup has prevailed).
+
+		\item There is a finite or countably infinite subset $\P$ of 
+		      \emph{primes} such that $S$ has unique factorization with respect
+		      to $\P$, i.e., every element $n \ne 1_{S}$ of $S$ can be written 
+		      uniquely, up to reordering, in the form
+			  $
+				  n = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k},
+			  $
+			  where the $p_i$ are distinct elements of $\P$, and the $e_i$ are 
+			  positive integers. 
+	
+		\item There is a real-valued \emph{norm} mapping $\mathbf{N}$ on $S$ 
+			  satisfying
+			
+			  \begin{enumerate}
+
+				  \item $\mathbf{N}(1_{S}) = 1$ and $\mathbf{N}(p) > 1$ for
+				        $p \in \P$,
+				  
+				  \item $\mathbf{N}(st) = \mathbf{N}(s)\mathbf{N}(t)$ for 
+				        all $s,t \in S$,
+				  
+				  \item for each $x > 0$ there are only finitely many $s \in S$
+				        with $\mathbf{N}(s) \leq x$.
+
+			\end{enumerate}
+	\end{enumerate}
+\end{definition}
+
+
+\begin{remark}
+	In particular, $S$ must be finite or countably infinite. Also, note that
+	$d|n$ implies $\mathbf{N}(d) \leq \mathbf{N}(n)$, and that the value 
+	semigroup $\mathbf{N}(S)$ is a discrete subsemigroup of 
+	$\R^{*} = \R \setminus \{0\}$, the multiplicative group of real numbers.
+	It is also often useful and convenient to consider an equivalent 
+	\emph{degree} or \emph{dimension} map $\partial$, rather than the norm, 
+	related to it via exponentiation, $\mathbf{N}(s) = c^{\partial(s)}$ for a 
+	fixed $c > 1$. We then require of $\partial$ that $\partial(1_{S})=0$,
+	$\partial(p) > 0$, $\partial(st)=\partial(s)+\partial(t)$, and that there
+	are only finitely many $s \in S$ of bounded degree.
+
+	Such semigroups provide a context for studying abstract analytic number 
+	theory: e.g.\ the distribution of primes. $(\N,\cdot,1)$ is the prototype. 
+	Other examples vary from the number-theoretical, such as the Gaussian 
+	integers or $\Z[\sqrt{2}]$, each modulo units or, more generally, the 
+	multiplicative semigroup of nonzero integral ideals in a number field, to 
+	categorical ones, such as semisimple finite rings, compact simply connected 
+	Lie groups, finite topological spaces and finite graphs. See~\cite{Kn} for 
+	the development of this theory and ample references.
+\end{remark}
+
+Next, we review the main facts about general Dirichlet convolution.
+
+
+%:	arithmetical functions
+Fix a commutative ring $R$. An \emph{arithmetical function} on $S$ is a function $\alpha : S \to R$. The set $\A = \A(S,R)$ of $R$-valued arithmetical functions on $S$ is a commutative $R$-algebra with respect to pointwise sum and Dirichlet convolution, defined by $(\alpha * \beta)(n) = \sum_{ab=n} \alpha(a)\beta(b)$
+(the finiteness condition on the norm function of $S$ implies this is a finite sum). The unit is the function $\delta(1_{S})=1_{R}$, $\delta(s)=0$ if $s \neq 1_{S}$. 
+As usual, we use $\A^*$ to denote the set of invertible functions of~$\A$.
+The arithmetical functions with finite support, i.e.\ $f(s) = 0$ except for finitely many $s,$ form the \emph{monoid ring} $R[S]$, which is a subalgebra of~$\A$.
+
+The order function
+$
+	\mathop{\text{ord}}(\alpha) = \min\{ \mathbf{N}(s) : \alpha(s) \neq 0 \}
+$
+for $\alpha \neq 0$ and $\mathop{\text{ord}}(0)=\infty$ defines a 
+complete non-Archimedean (submultiplicative) norm
+$
+	\|\alpha\| = 1/\mathop{\text{ord}}(\alpha)
+$
+which is multiplicative if $R$ is a domain.
+In fact, $\A$ is isomorphic to the power series algebra over $R$ in as many indeterminates as the cardinality of the set of primes $\P$ in~$S$. 
+Additionally, if $R$ is a unique factorization domain, so is $\A$ (see \cite{CashEver, Kn, Lu}).
+
+As usual, an arithmetical function $\alpha$ is said to be \emph{multiplicative} if $\alpha(nm) = \alpha(n) \alpha(m)$ when $n,m$ are coprime, and \emph{completely multiplicative} if this holds for every $n,m \in S$. The convolution of multiplicative functions is multiplicative.
+We shall frequently use the fact that $f \cdot (g * h) = fg * fh$ if $f$ is completely multiplicative, where $\cdot$ or juxtaposition denote the pointwise product.
+
+An arithmetical function $\alpha$ is invertible with respect to~$*$ if and only if $\alpha(1_{S}) \in R^{*}$ (units of $R$). Every nonzero multiplicative function satisfies $\alpha(1_{S})=1_{R}$, hence is invertible.
+The M\"obius function $\mu$ of an arithmetical semigroup is defined just as for
+$\N$ in terms of prime decomposition. It is multiplicative, with 
+$
+	1 * \mu = \mu * 1 = \delta
+$
+where $1$ denotes the constant function with value $1_{R}$
+(from here on, we shall drop subscripts and let the context make clear what structure we are referring to). 
+If $g$ is invertible and $f$ is completely multiplicative, then
+$(fg)^{-1} = f g^{-1}$.
+
+
+The dynamical aspect of inversion formulas is contained in the following
+
+%:	def. flow
+\begin{definition}
+	
+	For a semigroup $S$ and a nonempty set $X$, an \emph{$S$-flow} on $X$ or
+	\emph{action} of $S$ on $X$ is a map $\varphi : S \times X \to X$
+	satisfying $\varphi(m,\varphi(n,x)) = \varphi(mn,x)$. If $S$ has a unit $1$
+	then we also require $\varphi(1,x)=x$ (e.g.\ for $S$ an arithmetical 
+	semigroup).
+
+	Let $\E(X)$ be the monoid of functions mapping $X$ to itself, under 
+	composition. Then a flow may be equivalently defined as a monoid 
+	homomorphism $\varphi : S \to \E(X)$, denoting the image of 
+	$s \in S$ by~$\varphi_{s}$. This is the transformational or 
+	representational point of view.
+	The relation between both is of course $\varphi_{s}(x) = \varphi(s,x)$.
+	We shall use both notations.
+
+	If $S$ is a topological semigroup and $X$ is a topological space one also 
+	requires joint continuity. In this case $\E(X)$ denotes the continuous
+	self-mappings of~$X$. Here the countable semigroup $S$ will be given the 
+	discrete topology and often $X$ will be merely a set on which we may also
+	assume given the discrete topology.
+
+\end{definition}
+
+
+\begin{remark}
+	\label{rk:flowArithSgp}
+	Clearly, in an arithmetical semigroup $S$ a flow is determined by the
+	action of the primes. In other words, a flow may also be regarded as a
+	collection $\{\varphi_{p} : p \in \P \}$ of commuting self-mappings
+	of $X$, in addition to the trivial map $\varphi_{1}=\id$, the identity.
+	It will then be understood that $\varphi_{n}$	 for $n \in S$ having the
+	factorization $n = \prod_{i=1}^{r} p_{i}^{e_{i}}$, is the map obtained as 	
+	the composition
+	$
+		\varphi_{n} = \varphi_{p_{1}}^{\circ e_{1}}
+		              \circ \cdots \circ
+		              \varphi_{p_{r}}^{\circ e_{r}}.
+	$
+\end{remark}
+
+Let us briefly recall the algebraic methods whereby flows may be transferred from one semigroup and space to another, thus providing us with
+standard ways of both generating new examples from given ones and also of classifying them.
+
+If $(S,X,\varphi)$ and $(S,Y,\psi)$ are $S$-flows, a \emph{flow homomorphism} is a map $h:X \to Y$ such that $h(\varphi(s,x)) = \psi(s,h(x))$. In other words,
+$h \circ \varphi_{s} = \psi_{s} \circ h$ for all $s \in S$. When $X,Y$ are topological spaces, continuity is also required. A \emph{flow isomorphism} thus establishes the conjugacy relation $\psi_{s} = h \circ \varphi_{s} \circ h^{-1}$ between the maps $\psi_{s}, \varphi_{s}$. Conversely, this relation serves to transfer the flow from $X$ to $Y$ via a homeomorphism $h: X \to Y$.
+
+If $\eta : T \to S$ is a semigroup homomorphism, then an $S$-flow on $X$ may be pulled back to a $T$-flow on $X$ by defining
+$
+	(\eta^{*}\varphi)(t,x) = \varphi(\eta(t),x)
+$.
+Equivalently, viewing the flow as a map $\varphi : S \to \E(X)$, this is just the composition $\varphi \circ \eta$.
+
+We next turn to the context we wish to formulate inversion formulas in.
+
+Let $M$ be an $R$-module and consider the space of functions 
+$f : X \to M$. Now, in order to be able to ``do analysis'', which for our purpose means taking infinite sums, we require $(R,|\cdot|)$ to be a complete valued ring, and $(M,\|\cdot\|)$ a complete normed $R$-module. In the case of finite sums we can just assume the discrete topologies. The exact nature of 
+$M,R$ is not essential to the inversion principle. What we need is that the definitions make sense and that convergence is good enough to justify the exchange of sums involved in the proofs.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Generalized convolution with respect to a flow}
+\label{sec:generalconv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+We will generalize the method given in~\cite[\S\,2.14]{Ap} to arithmetical semigroups and incorporate an $S$-flow $\varphi$ into the convolution operator.
+
+
+%:	def. flow convolution
+\begin{definition}
+\label{df:generalConvolution}
+	Given an $R$-valued arithmetical function $\alpha$ on $S$, an $S$-flow
+	$\varphi$ on $X$, and a function $f: X \to M$, the
+	\emph{$\varphi$-convolution of $\alpha$ and $f$} is the function
+	$\alpha \conv[\varphi] f : X \to M$ defined by
+	%
+	\begin{equation}
+	\label{eq:flowConvolution}
+		  (\alpha \conv[\varphi] f)(x)
+		= \sum_{n \in S} \alpha(n) f(\varphi(n,x))
+		= \sum_{n \in S} \alpha(n) f(\varphi_{n}(x)),
+	\end{equation}
+	%
+	provided the series converges. We shall drop the subscript $\varphi$
+	if the flow is fixed.
+\end{definition}
+
+
+Dynamically, this involves summing $f$ along the orbit of $x$ under the
+flow~$\varphi$. The arithmetical function $\alpha$ often serves as a convergence factor. Hence, like all convolutions, this too is a kind of ``averaging'' of the function. The algebraic justification of the name
+``convolution'' is given in Section \ref{sec:applications},
+Example~\ref{ex:flow-on-arith-fns}.
+
+
+Summation over the arithmetical semigroup $S$ means, by definition, taking
+the limit of the finite partial sums $\sum_{n \in S, \mathbf{N}(n)\leq x}$ 
+as $x \to \infty$. Note that for any function $f:X \to M$, we have
+$$
+	  (\delta \conv f) (x)
+	= \sum_{n \in S} \delta(n) f(\varphi(n,x))
+	= 1 \cdot f(\varphi(1,x))
+	= f(x).
+$$
+
+
+Since we assume a complete valuation and norm, the criterion of absolute convergence holds. This leads to the following considerations: given an $R$-valued arithmetical function $\alpha$ on $S$, the valuation on $R$ defines the real-valued non-negative arithmetical function $|\alpha|$ on $S$ by $|\alpha|(n)=|\alpha(n)|$. In general, let us call a real-valued non-negative arithmetical function $w$ a \emph{weight} and denote the set of weights by $\mathbb{W}_{S}$. It satisfies the following properties:
+\begin{enumerate}
+
+	\item It is closed under Dirichlet convolution.
+
+	\item For any $R$-valued arithmetical functions $\alpha,\beta$, we have
+	      $|\alpha*\beta| \leq |\alpha|*|\beta|$.
+	
+	\item Given a weight $w$, we have $w \in \A(S,\R)^{*}$ if and only if 
+	      $w(1)>0$. Note however, that
+		  $w^{-1} \in \mathbb{W}_{S}$ if and only if $w = k\delta$ for some 
+		  $k > 0$, where $\delta$ is the (real-valued) delta function at~$1$.
+
+	\item For $w,w_{1},w_{2} \in \mathbb{W}_{S}$, if $w_{1} \leq w_{2}$, then
+	      $w * w_{1} \leq w * w_{2}$.
+	      
+	\item If $v,w \in \mathbb{W}_{S}$ then $v(1)w \leq v * w$.
+
+\end{enumerate}
+
+\begin{definition}
+\label{df:Lspace}
+	For a weight $w$, let $L_{\varphi}(X,w)$ denote the set of functions 
+	$f : X \to M$ for which
+	$$
+		\sum_{n \in S} w(n) \, \|f(\varphi(n,x))\| < \infty
+		\qquad
+		\forall x \in X.
+	$$
+\end{definition}
+Note that we do not require uniform convergence in $x$, although in practice
+this may be more convenient.
+Absolute convergence states that $\alpha \conv f$ is defined for $f \in L_{\varphi}(X,|\alpha|)$. Clearly, for a given weight $w$, the space $L_{\varphi}(X,w)$ is an $R$-submodule of the set of all functions $f:X \to M$, and the comparison test holds: if $w_{1},w_{2} \in \mathbb{W}_{S}$ with 
+$w_{1} \leq w_{2}$, then $L_{\varphi}(X,w_{2}) \subseteq L_{\varphi}(X,w_{1})$.
+Furthermore, if $\varphi : S \to \E(X)$ is an $S$-flow on $X$,
+$\tau : X \to Y$ is a homeomorphism, and $\psi : S \to \E(Y)$ is the
+$S$-flow on $Y$ conjugate to $\varphi$ under $\tau$, then
+$
+	f \in L_{\varphi}(X,w)
+$
+if and only if
+$
+	f \circ \tau^{-1} \in L_{\psi}(Y,w).
+$
+
+
+
+The following lemma is useful as a criterion for determining the order of
+growth of $\varphi$-convolutions. Note its resemblance to a cancellation property.
+
+\begin{lemma}
+	\label{l:convolutionOrder}
+	Let $\alpha \in \A(S,R)$ and $v,w \in \mathbb{W}_{S}$, with 
+	$|\alpha| \leq w$.
+	%be real-valued 	nonnegative arithmetical functions on $S$ 
+	If $f \in L_{\varphi}(X,w) \cap L_{\varphi}(X,w * v)$, then
+	$g = \alpha \conv[\varphi] f \in L_{\varphi}(X,v)$.
+\end{lemma}
+
+\begin{proof}
+	Clearly $g = \alpha \conv f$ is defined and satisfies
+	$
+		\| g(y) \| \leq \sum_{n \in S} w(n) \, \| f(\varphi(n,y)) \|.
+	$
+	Since all summands are positive, we may reorder:
+	\begin{align*}
+			  \sum_{m \in S} v(m) \, \| g(\varphi(m,x)) \| 
+		 &\leq \sum_{m \in S} v(m) \,
+		      \sum_{n \in S} w(n) \,
+		      \| f(\varphi(n,\varphi(m,x))) \| 
+		 \\
+		 &=    \sum_{m,n \in S} v(m) w(n) \, \| f(\varphi(nm,x)) \| 
+		 \\
+		 &=    \sum_{l \in S}
+		      \sum_{mn = l} v(m) w(n) \, \| f(\varphi(l,x)) \| 
+		 \\
+		 &=    \sum_{l \in S} (w * v)(l) \, \| f(\varphi(l,x)) \|
+		 <    \infty. 
+		 \qedhere
+	\end{align*}
+\end{proof}
+
+
+Removing the absolute values we get the following ``mixed associative property''
+of Dirichlet and $\varphi$-convolution, which forms the basis of the inversion principle.
+
+
+\begin{theorem}
+	\label{th:flowConvolutionThm}
+	Let $\alpha, \beta \in \A$ and $f : X \to M$.
+	If $f \in L_{\varphi}(X,|\beta|) \cap L_{\varphi}(X,|\alpha|*|\beta|)$,
+	then $f \in L_{\varphi}(X,|\alpha * \beta|)$ and
+	$\beta \conv f \in L_{\varphi}(X,|\alpha|)$, with
+	$$
+		  \alpha \conv (\beta \conv f)
+		= (\alpha * \beta) \conv f.
+	$$
+\end{theorem}
+
+\begin{proof}
+	Let us check first that all parts of this equation are defined. 
+	Since $|\alpha*\beta|\leq |\alpha|*|\beta|$, we have
+	$f \in L_{\varphi}(X,|\alpha*\beta|)$ and hence the convolution
+	$(\alpha * \beta) \conv f$ is defined.
+	Next, since $f \in L_{\varphi}(X,|\beta|)$, the convolution 
+	$\beta \conv f$ is defined and, by Lemma~\ref{l:convolutionOrder},
+	$\beta \conv f \in L_{\varphi}(X,|\alpha|)$ so that
+	$\alpha \conv (\beta \conv f)$ is defined.
+	That they are equal follows from reordering just as in the lemma:
+	\begin{align*}
+	     (\alpha \conv (\beta \conv f))(x)
+	  &= \sum_{n \in S} \alpha(n) (\beta \conv f)(\varphi_{n}(x))
+	   = \sum_{n \in S} \alpha(n)
+	     \sum_{m \in S} \beta(m) f(\varphi_{m}(\varphi_{n}(x)))
+	  \\
+	  &= \sum_{n,m \in S} \alpha(n) \beta(m) f(\varphi_{mn}(x))
+	   = \sum_{l \in S}
+	     \biggl(\sum_{mn = l} \alpha(n) \beta(m) \biggr)
+	     f(\varphi_{l}(x))
+	  \\
+	  &= \sum_{l \in S} (\alpha*\beta)(l) f(\varphi_{l}(x))
+	   = ((\alpha * \beta) \conv f)(x).
+	\end{align*}
+	The reordering is justified by the absolute convergence of the 
+	intermediate double sum:
+	\begin{align*}
+		   \sum_{n,m \in S} |\alpha(n) \beta(m)| \, \|f(\varphi_{nm}(x))\|
+		 &= \sum_{l \in S} \sum_{nm=l} |\alpha(n)| \, |\beta(m)|
+		   \, \|f(\varphi_{l}(x))\|
+		 \\
+		 &= \sum_{l \in S} (|\alpha| * |\beta|)(l)
+		   \, \|f(\varphi_{l}(x))\| < \infty.
+		 \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{remark}
+	Note that it is necessary to assume hypotheses that imply $\beta \conv f$
+	is defined. Taking $\alpha = 0$ would make the double sum trivially 
+	convergent regardless of whether the series defining $\beta \conv f$
+	converged or not.
+	
+	Given that $f \in L_{\varphi}(X,|\beta|)$, the convergence of the double 
+	sum, i.e., the condition $f \in L_{\varphi}(X,|\alpha|*|\beta|)$,
+	implies by Lemma~\ref{l:convolutionOrder} that
+	$\beta \conv f \in L_{\varphi}(X,|\alpha|)$, and hence
+	the first two equalities in the above proof hold.
+\end{remark}
+
+\begin{remark}
+	If we denote the transform by $T_{\alpha}f = \alpha \conv f$,
+	then Theorem \ref{th:flowConvolutionThm} says that
+	$T_{\alpha}T_{\beta} = T_{\alpha * \beta}$ on appropriate functions.
+	Clearly also $T_{\alpha} + T_{\beta} = T_{\alpha + \beta}$.
+	Thus, $T$ represents the ring $\A(S,R)$ in spaces of functions $X \to M$.
+\end{remark}
+
+	Next, let us discuss inversion.
+
+\begin{theorem}
+\label{th:inversionThm}
+	Let $\alpha \in \A(S,R)^{*}$ have inverse~$\alpha^{-1}$. If
+	$
+		f \in L_{\varphi}(X,|\alpha|) \cap L_{\varphi}(X,|\alpha|*|\alpha^{-1}|),
+	$
+	then $g = \alpha \conv f \in L_{\varphi}(X,|\alpha^{-1}|)$
+	and $f = \alpha^{-1} \conv g$.
+	Conversely, if	
+	$
+		g \in      L_{\varphi}(X,|\alpha^{-1}|) 
+		      \cap L_{\varphi}(X,|\alpha|*|\alpha^{-1}|),
+	$
+	then $f = \alpha^{-1} \conv g \in L_{\varphi}(X,|\alpha|)$
+	and $g = \alpha \conv f$.
+\end{theorem}
+
+
+\begin{proof}
+	Immediate from Theorem~\ref{th:flowConvolutionThm}.
+\end{proof}
+
+
+The following special case is the general M\"obius inversion formula for a flow. 
+
+
+\begin{theorem}
+\label{th:flowMobiusInversion}
+	Let $\alpha \in \A(S,R)$ be nonzero and completely multiplicative,
+	and $\varphi$ an $S$-flow on~$X$. 
+	Let $d$ be the divisor function on the arithmetical semigroup $S$. 
+	If $f \in L_{\varphi}(X,d|\alpha|)$, then the transform
+	%
+	\begin{equation}
+	\label{eq:a-mu-transform}
+		g(x) = \sum_{n \in S} \alpha(n) f(\varphi(n,x))
+	\end{equation}
+	%
+	is defined, and the inversion formula
+	%
+	\begin{equation}
+	\label{eq:a-mu-inversion}
+		f(x) = \sum_{n \in S} \mu(n) \alpha(n) g(\varphi(n,x))
+	\end{equation}
+	%
+	holds. Conversely, if $g \in L_{\varphi}(X,d|\alpha|)$, then 
+	\eqref{eq:a-mu-inversion} is defined and \eqref{eq:a-mu-transform} holds.
+\end{theorem}
+
+
+\begin{proof}
+	Since $\alpha$ is completely multiplicative, $\alpha^{-1}=\mu\alpha$.
+	Now, $|\alpha|$ is completely multiplicative and non-negative, hence
+	$$
+		  |\alpha|*|\alpha^{-1}|
+		= |\alpha|*|\mu||\alpha|
+		= |\alpha|(|1|*|\mu|)
+%		= |\alpha| \sum_{d|n} |\mu(d)|
+		= |\alpha| 2^{\omega}
+		\leq |\alpha| d,
+	$$
+	where $\omega(n)$ counts the number of distinct prime factors of $n$.
+	Thus
+	$$
+		|\alpha^{-1}| =    |\mu| \, |\alpha|
+		              \leq |\alpha|
+		              \leq |\alpha| 2^{\omega}
+		              =    |\alpha|*|\alpha^{-1}|
+		              \leq d |\alpha|
+	$$
+	and therefore
+	$$
+		          L_{\varphi}(X,d|\alpha|)
+		\subseteq L_{\varphi}(X,|\alpha|*|\alpha^{-1}|)
+		\subseteq L_{\varphi}(X,|\alpha|)
+		\subseteq L_{\varphi}(X,|\alpha^{-1}|).
+	$$
+	The result now follows from Theorem~\ref{th:inversionThm}.
+\end{proof}
+
+
+A straightforward modification of the proof in~\cite[\S\,18.1]{Ha-Wr}
+shows that in any arithmetical semigroup, $d(n) = O(\mathbf{N}(n)^{\delta})$
+for every $\delta > 0$. 
+Given the irregular variation of $d$, it is more practical to try to determine 
+convergence by weighing against the norm function. Thus, when studying the
+``$\alpha$-M\"obius transform'' of Theorem~\ref{th:flowMobiusInversion}, 
+we might consider one of the subspaces
+$
+	          L_{\varphi}(X,|\alpha|\mathbf{N}^{\delta})
+	\subseteq L_{\varphi}(X,d|\alpha|)
+$
+with $\delta > 0$.
+The functions in $L_{\varphi}(X,|\alpha|\mathbf{N}^{\delta})$ are such that when weighted by $\alpha$, they decay ``at infinity'' along the flow as the
+$-\delta$th power of the norm:
+$$
+	\exists \, c_{\delta}(x) > 0 :
+	     |\alpha(n)| \, \| f(\varphi(n,x)) \|
+	\leq \frac{c_{\delta}(x)}{\mathbf{N}(n)^{\delta}}
+	\quad \forall x \in X, \ n \in S,
+$$
+where $c_{\delta}(x)$ is independent of $n \in S$.
+As remarked before, we do not require uniformity in $x$.
+The next result estimates the growth of the M\"obius transform.
+
+
+\begin{theorem}
+	\label{th:growthOfTransform}
+	If $\alpha \in \A$ is a nonzero completely multiplicative
+	arithmetical function and 
+	$f \in L_{\varphi}(X,|\alpha|\mathbf{N}^{2\delta})$
+	for some $\delta > 0$, then both $\alpha \conv f$ and 
+	$\alpha^{-1} \conv f$ are defined and belong to 
+	$L_{\varphi}(X,|\alpha|\mathbf{N}^{\delta})$.
+\end{theorem}
+
+\begin{proof}
+	First note that since $|\alpha^{-1}| = |\mu \alpha| \leq |\alpha	|$,
+	we have
+	$$
+		L_{\varphi}(X,|\alpha|) \cap L_{\varphi}(X,|\alpha|*w)
+		\subseteq
+		L_{\varphi}(X,|\alpha^{-1}|) \cap L_{\varphi}(X,|\alpha^{-1}|*w)
+	$$
+	for any weight $w \in \mathbb{W}_{S}$. This inclusion and Lemma~\ref
+	{l:convolutionOrder} imply that for
+	$f \in L_{\varphi}(X,|\alpha|) \cap L_{\varphi}(X,|\alpha|*w)$,
+	both $\alpha \conv f$ and $\alpha^{-1} \conv f$
+	are defined and belong to $L_{\varphi}(X,w)$.
+%	Take $w = |\alpha| \mathbf{N}^{2\delta}$.
+	Since
+	$
+		          L_{\varphi}(X,|\alpha|\mathbf{N}^{2\delta})
+		\subseteq L_{\varphi}(X,d|\alpha|)
+		\subseteq L_{\varphi}(X,|\alpha|),
+	$
+	it suffices to show that
+	$
+		          L_{\varphi}(X,|\alpha|\mathbf{N}^{2\delta})
+		\subseteq L_{\varphi}(X,|\alpha|*|\alpha| \mathbf{N}^{\delta})
+	$
+	for any $\delta > 0$. Now,
+	$
+		  |\alpha|*|\alpha| \mathbf{N}^{\delta}
+		= |\alpha| (1 * \mathbf{N}^{\delta}),
+	$
+	so the inclusion follows from the estimate
+	$
+		     (1 * \mathbf{N}^{\delta})(n)
+		=    \sum_{m|n} \mathbf{N}(m)^{\delta}
+		\leq d(n) \mathbf{N}(n)^{\delta}
+		\leq c_{\delta} \mathbf{N}(n)^{2\delta}.
+	$
+\end{proof}
+
+
+Next, consider the space
+$$
+	      \mathcal{L}_{\varphi}(X,|\alpha|)
+        = \bigcap_{\delta > 0} L_{\varphi}(X,|\alpha| \mathbf{N}^{\delta}).
+$$
+These functions decay at infinity along the flow, faster than \emph{any} power of the norm.
+For most ``interesting'' arithmetical semigroups, including the classical 
+number-theoretic ones, we have $\sum_{n \in S} \mathbf{N}(n)^{-k} < \infty$ 
+for $k \gg 0$. This condition implies that $\mathcal{L}_{\varphi}(X,|\alpha|)$ is in 
+fact equal to the space of functions with such decay.
+Theorem~\ref{th:growthOfTransform} immediately implies the following result:
+
+
+\begin{corollary}
+	If $\alpha \in \A$ is nonzero and completely multiplicative
+	and $f \in \mathcal{L}_{\varphi}(X,|\alpha|)$, then both
+	$\alpha \conv f$ and $\alpha^{-1} \conv f$
+	are defined and again belong to $\mathcal{L}_{\varphi}(X,|\alpha|)$.
+\end{corollary}
+
+In other words, $\mathcal{L}_{\varphi}(X,|\alpha|)$ is closed under both the 
+$\alpha$-M\"obius transform and the $\alpha^{-1}$-M\"obius transform. 
+This is analogous to what happens with the classical Fourier transform
+and the space of rapidly decreasing functions.
+
+
+\begin{remark}
+	\label{rk:supports}
+
+	If $X$ is a topological space, we may consider functions $f : X \to M$ whose 
+	support $Z$ is such that for each $x \in X$ there are only finitely many 
+	$n \in S$ with $\varphi(n,x) \in Z$. Equivalently, the point
+	$\varphi_{n}(x)$ of the orbit of $x$ escapes $Z$ as $\mathbf{N}(n) \to
+	\infty$. Thus there is a bound $\nu(x)$ such that
+	$\mathbf{N}(n) > \nu(x)$ implies $\varphi_{n}(x) \notin Z$, and then the sum 
+	defining the convolution $\alpha \conv f$ is finite:
+	$
+		  \sum_{n \in S} \alpha(n) \, f(\varphi_{n}(x))
+		= \sum_{\mathbf{N}(n) \leq \nu(x)} \alpha(n) \, f(\varphi_{n}(x)).
+	$
+	Such a finiteness condition will be satisfied for functions with compact 
+	support if for fixed $x \in X$, the point $\varphi_{n}(x)$ ``escapes to 
+	infinity'', i.e., escapes any fixed compact set, as
+	$\mathbf{N}(n) \to \infty$. This is satisfied for the flows $x/n$ and $nx$ on 
+	$(0,+\infty)$. In fact, in these examples, compact support is stronger than 
+	what is needed.
+
+\end{remark}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sums Over Primes}
+\label{sec:sumsOverPrimes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+The transform $T_{\alpha}f = \alpha \conv f$ involves summation 
+over all elements $n \in S$. We might ask what can be said about the 
+operator
+%
+\begin{equation}
+\label{eq:primeOperator}
+	P_{\alpha}f(x) = \sum_{p \in \P} \alpha(p) \, f(\varphi(p,x)).
+\end{equation}
+%
+A moment's thought shows it is not invertible. However, a function
+$\alpha : \P \to R$ has a unique extension to a completely multiplicative
+function on $S$, which we may continue to denote by $\alpha$.
+Then the operator $P_{\alpha}$ is the same as $T_{\alpha\beta} - I$,
+where $I$ is the identity operator and $\beta$ is the arithmetical function
+such that $\beta(1)=1$, $\beta(p)=1$ for primes $p$, and $\beta(s)=0$ in all
+other cases. From this point of view, we can study $P_{\alpha}$ by studying
+$T_{\alpha\beta} = I + P_{\alpha}$.
+
+
+On the other hand, $P_{\alpha}$ can also be studied in its own right,
+applying the techniques of analytic functional calculus to obtain series expansions of $T_{\alpha\beta}$-transforms in terms of the iterates of 
+$P_{\alpha}$, which we may call ``$P$-expansions.''
+Namely, if $F(T) = \sum_{r=0}^{\infty} a_{r} T^{r} \in R[[T]]$,
+then an operator $F(P_{\alpha})$ will be defined on functions $f$ for
+which the $r$-fold iterates $P^{r}_{\alpha}f$ are defined and satisfy
+$\sum_{r=0}^{\infty} |a_{r}| \|P^{r}_{\alpha}f(x)\| < \infty$.
+On suitable functions, $(FG)(P_{\alpha})=F(P_{\alpha})G(P_{\alpha})$,
+and thus if $F \in R[[T]]^{*}$, with $G=1/F$, we will get an inversion 
+relation
+$$
+	g = G(P_{\alpha})f \iff f = F(P_{\alpha})g.
+$$
+Now by induction one formally has, for any arithmetical functions
+$\alpha_{1},\ldots,\alpha_{r}$,
+%
+\begin{equation}
+\label{eq:primeIterateDifferent}
+	  P_{\alpha_{1}} P_{\alpha_{2}} \cdots P_{\alpha_{r}} f(x)
+	= \sum_{(p_{1},p_{2},\ldots,p_{r}) \in \P^{r}}
+	  \alpha_{1}(p_{1}) \cdots \alpha_{r}(p_{r})
+	  f(\varphi(p_{1} \cdots p_{r},x))
+\end{equation}
+%
+and therefore
+%
+\begin{equation}
+\label{eq:primeIterate}
+	  P^{r}_{\alpha}f(x)
+	= \sum_{(p_{1},p_{2},\ldots,p_{r}) \in \P^{r}}
+	  \alpha(p_{1}) \cdots \alpha(p_{r})
+	  f(\varphi(p_{1} \cdots p_{r},x)).
+\end{equation}
+%
+If $\alpha$ is completely multiplicative, then one may gather terms
+by the value of $\Omega(n)$, the total number of prime factors of $n$,
+counted with multiplicity, to obtain
+%
+\begin{equation}
+\label{eq:primeIterateCM}
+	  P^{r}_{\alpha}f(x)
+	= \sum_{\Omega(n) = r} B(n) \alpha(n) \, f(\varphi(n,x)),
+\end{equation}
+%
+where $B(n)$ is the number of different decompositions of $n$ into primes,
+counting order. $B(n)$ corresponds to the multinomial coefficient counting 
+the number of different vectors of length $r=\Omega(n)$ formed from 
+$k=\omega(n)$ different objects (the primes $p$ dividing $n$), each 
+appearing with a prescribed multiplicity, namely $v_{p}(n)$, the
+valuation of $n$ at~$p$. One has
+%
+\begin{equation}
+\label{eq:binomialFunction}
+	B(n) = \frac{\Omega(n)!}{\prod_{p \in \P} v_{p}(n)!}
+	     = \frac{\bigl(\sum_{p \in \P} v_{p}(n)\bigr) !}
+	            {\prod_{p \in \P} v_{p}(n)!}
+	     \in [1,\Omega(n)!].
+\end{equation}
+%
+Hence, for completely multiplicative $\alpha$, we formally obtain
+%
+\begin{equation}
+\label{eq:P-expansion}
+	\begin{aligned}
+	 	  F(P_{\alpha})f
+    &= \sum_{r=0}^{\infty} a_{r} P^{r}_{\alpha}f
+	 = \sum_{r=0}^{\infty} a_{r} 
+	       \sum_{\Omega(n) = r} B(n) \, \alpha(n) \, f \circ \varphi_{n}
+	\\
+	&= \sum_{n \in S} a_{\Omega(n)} B(n) \, \alpha(n) \, f \circ \varphi_{n}
+	 = T_{a_{\Omega} B \alpha} f,
+	\end{aligned}
+\end{equation}
+%
+which we may call the $P$-expansion of the convolution transform~$T$.
+Let us briefly consider the problem of convergence.
+
+\begin{lemma}
+	\label{l:primeConvergence}
+	Let $w : S \to [0,+\infty)$ satisfy
+	$w(p_{1}) \cdots w(p_{r}) \leq w(p_{1} \cdots p_{r})$ for
+	all primes $p_{i}$. Given $\alpha : S \to R$ with $|\alpha| \leq w$,
+	and $f \in L_{\varphi}(X,w)$, the series defining the iterates 
+	$P^{r}_{\alpha}f(x)$ are absolutely convergent for all $r \geq 0$ and 
+	we have the estimates
+	$$
+	\begin{aligned}
+		      \| P^{r}_{\alpha}f(x) \|
+		&\leq \sum_{\Omega(n)=r}
+			  \sum_{\begin{smallmatrix}
+			  	    (p_1,\dots,p_r)\in \mathbb{P}^r\\p_1\cdots p_r=n
+				    \end{smallmatrix}
+				   }
+			  w(p_1) \cdots w(p_r) \, \|f(\phi(n,x))\|
+		\\
+		&\leq \sum_{\Omega(n)=r} B(n) w(n) \, \| f(\varphi(n,x)) \|
+		 \leq r! \sum_{\Omega(n)=r} w(n) \, \| f(\varphi(n,x)) \|
+		 <     \infty.
+	\end{aligned}
+	$$
+\end{lemma}
+
+\begin{proof}
+	Induction on $r$.
+\end{proof}	
+
+Examples of weights $w$ satisfying the hypotheses of Lemma \ref{l:primeConvergence} include
+completely multiplicative $w$, e.g.\ $w = |\alpha|$ for completely
+multiplicative $\alpha$, but also functions such as $w(n)=B(n)$ or,
+over $\N$, the function $w(n) = 2^{n}$, which are far from being
+completely multiplicative.
+
+\begin{corollary}
+	\label{cor:geomP-expansion}
+	If $\alpha$ is completely multiplicative and
+	$f \in L_{\varphi}(X,B|\alpha|)$, then
+	%
+	\begin{equation}
+	\label{eq:geomP}
+		\begin{aligned}
+		   (I-P_{\alpha})^{-1}f(x)
+		&= \sum_{r=0}^{\infty} P^{r}_{\alpha}f(x)
+		 = \sum_{n \in S} B(n) \alpha(n) f(\varphi_{n}(x))
+		 = T_{B\alpha}f(x),
+		\\
+		   (I+P_{\alpha})^{-1}f(x)
+		&= \sum_{r=0}^{\infty} (-1)^{r} P^{r}_{\alpha}f(x)
+		 = \sum_{n \in S} (-1)^{\Omega(n)} B(n) \alpha(n) f(\varphi_{n}(x))
+		\\
+		&= T_{B\lambda\alpha}f(x),
+		\end{aligned}
+	\end{equation}
+	%
+  where $\lambda(n)=(-1)^{\Omega(n)}$ is the Liouville function.
+\end{corollary}
+
+\begin{proof}
+	Consider the operator $F(P_{\alpha})$ corresponding to $F(T) = 1 \pm T$.
+	Its inverse will be $G(P_{\alpha})$, given by the geometric series 
+	$G(T) = \sum_{r=0}^{\infty} (\pm T)^{r}$.
+	If $f \in L_{\varphi}(X,B|\alpha|)$, then by Lemma \ref{l:primeConvergence},
+	the iterates $P^{r}_{\alpha}f$ are all defined and satisfy
+	$
+		     \sum_{r=0}^{\infty} \| P^{r}_{\alpha}f(x) \|
+		\leq \sum_{n \in S} B(n) |\alpha(n)| \, \|f(\varphi(n,x))\|
+		< \infty.
+	$
+	It is straightforward to check that this also implies the absolute 
+	convergence of all the series involved in defining both
+	$
+		g = F(P_{\alpha})f = f \pm P_{\alpha}f
+	$
+	as well as the inverse transform $G(P_{\alpha})g$, and guarantees that the 
+	inversion formula $f = G(P_{\alpha})g$ holds. In addition, if $\alpha$ is
+	completely multiplicative, the formal $P$-expansions \eqref{eq:P-expansion}
+	are true operator equalities.
+\end{proof}
+
+The Liouville function $\lambda$ is completely multiplicative. The inversion relation given by the functional calculus is equivalent to that for the transform $T$, namely
+$$
+	T_{B\alpha}^{-1}=T_{B^{-1}\alpha} = I - P_{\alpha},
+	\qquad
+	T_{B\lambda\alpha}^{-1}=T_{B^{-1}\lambda\alpha} = I + P_{\alpha}.
+$$
+We can deduce from the first relation that the inverse of 
+$B$ is $B^{-1}(1)=1$, $B^{-1}(p)=-1$ if $p$ is prime and $B^{-1}(n)=0$ if 
+$n$ is composite, for example by applying the formula in the case $X=S$
+with the product flow, to the delta functions $\delta_{a}$ for $a \in S$
+(see below for a full description of the notation).
+This can also be proved formally in $\A$ by expanding $(\delta - 1_{\P})^{-1}$ in a geometric series, where $1_{\P}$ denotes the characteristic function of the primes, revealing the arithmetical formula behind \eqref{eq:geomP}.
+Thus $B^{-1}\lambda = B^{-1}\mu$ is the function we called $\beta$ at the beginning of this section.
+Note that $P_{\alpha^{-1}} = P_{\alpha\mu} = -P_{\alpha}$ since
+$\mu=-1$ on primes. Hence also $T_{B\lambda\alpha}=(I-P_{\alpha\mu})^{-1}$
+and $T_{B\alpha}=(I+P_{\alpha\mu})^{-1}$, with the corresponding
+$P$-expansions valid for the same $f$ since $|\alpha\mu| \leq |\alpha|$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Applications}
+\label{sec:applications}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%:	notation
+We now turn to a survey of interesting applications of inversion formulas, old and new, from the point of view of flows on arithmetical semigroups $S$.
+Let us establish some notation and review frequently used
+properties. $\id$ will denote the identity function in various contexts.
+For $a \in S$, $\delta_{a}$ is the delta function at $a$, that is,
+$\delta_{a}(a)=1$ and $\delta_{a}(n)=0$ if $n \neq a$. We write
+$\delta = \delta_{1}$, which is the convolution unit. Recall that
+$
+	\delta_{a} * \delta_{b} = \delta_{ab}
+$
+($a \mapsto \delta_{a}$ embeds $S$ in the monoid ring $R[S]$).
+In general $f*\delta_{a}(n)$ is $0$ unless $a|n$, in which case it is $f(n/a)$.
+For a subset $A \subseteq S$, $1_{A}$ is the characteristic function of $A$, that is, $1_{A} = 1$ on $A$ and $1_{A} = 0$ on the complement $S \setminus A$. Thus $\delta_{a} = 1_{\{a\}}$ and $1 = 1_{S}$.
+One has $1_{A} * \delta_{a} = 1_{aA}$ where $aA = \{a x : x \in A\}$.
+For $a \in S$, let $\<a\>=\{a^{k} : k \geq 0\}$ be the submonoid
+of $S$ generated by $a$. By unique factorization, $\<a\>$ is infinite,
+isomorphic to $\Z^{+}$, for $a \neq 1$. 
+
+
+%:	example: the classical formulas
+\begin{example}[The classical inversion formulas]
+	\label{ex:classical}
+	The M\"obius inversion formula most often receiving that name is
+	the relation $g = 1*f$, $f=\mu*g$ in $\A(\N,R)$:
+	%
+	\begin{equation}
+	\label{eq:classicalFormula}
+	    g(m) = \sum_{n \mid m} f(n)
+		\iff
+		f(m) = \sum_{n \mid m} \mu(n) g\left(\frac mn\right).
+	\end{equation}
+	%
+	It may also be deduced from the case
+	$S = \N, X = \R^{+}, \varphi(x,n) = x/n, \alpha = 1$
+	of \eqref{th:flowMobiusInversion},
+	%
+	\begin{equation}
+	\label{eq:divisionFormula}
+	    g(x) = \sum_{n=1}^{\infty} f\left(\frac xn\right)
+	    \iff
+	    f(x) = \sum_{n=1}^{\infty} \mu(n) g\left(\frac xn\right).
+	\end{equation}
+	%
+	Remark~\ref{rk:supports} is relevant here. Since under the flow $x/n$, the 
+	orbit of any $x>0$ has limit $0$, functions with support bounded away from 
+	$0$ yield finite sums.
+	Thus \eqref{eq:classicalFormula} follows from \eqref{eq:divisionFormula} by
+	restricting to functions on $\R^{+}$ with support in~$\N$.
+	
+	As mentioned in the Introduction, the most commonly encountered $\N$-flows 
+	on $\R$ or $\R^{+}$, $n x$,  $x/n$, $x^{n}$, $x^{1/n}$, are all conjugate. 
+	For example, $nx$ and $x/n$ are conjugate via $h(x)=1/x$ and $nx$ and
+	$x^{n}$ are conjugate via $h(x)=\exp(x)$.
+
+	These examples may all be considered as variants of the action $\pi$ 
+	of the semigroup $(\R,\cdot,1)$ on itself by multiplication, 
+	$\pi_{a}(x)=a x$, pulled back to $\N$ by a completely multiplicative 
+	arithmetical function $\alpha : \N \to \R$ and conjugated by a
+	real function $h$, resulting in the flow $h(\alpha(n) h^{-1}(x))$.
+	Taking $\alpha(n) = n^{b}$ for $b \in \R^{*}$ results in the flow $n^{b} x$ 
+	and its exponential conjugate $x^{n^{b}}$, which for $b=1,-1$ comprise the 
+	classical ones above.
+
+	
+	Ces\`aro \cite{Ces2} noted similar variations of the flow on $X = \R$ given 
+	by $\varphi(n,x)=x + b\log \alpha(n)$, which is the logarithmic conjugate of 
+	the flow $n^{b} x$ pulled back by a completely multiplicative function 
+	$\alpha$. These do not form part of the usual repertoire of classical
+	inversion formulas.
+
+\end{example}
+
+
+
+
+%:	example: Flows on the ring of arithmetical functions.
+\begin{example}[Flows on arithmetical functions]
+	\label{ex:flow-on-arith-fns}
+	If we give the commutative ring $R$ the trivial valuation, the
+	ring $\A=\A(S,R)$ of $R$-valued arithmetical functions on $S$
+	becomes a complete normed $R$-algebra, and we can take $M=\A$
+	as $R$-module. An example of an $S$-flow on $\A$ is
+	$
+		\varphi_{s}(f) = \delta_{s} * f.
+	$
+	Thus if $\alpha \in \A$ and $\Phi : \A \to \A$, we have
+	$
+		\alpha \conv[\varphi] \Phi : \A \to \A
+	$
+	defined by
+	$
+		  (\alpha \conv[\varphi] \Phi)(g)
+		= \sum_{s \in S} \alpha(s) \, \Phi(\delta_{s} * g).
+	$
+	Convergence is ``formal'', with respect to the order function on $\A$.
+	Now, any function $f \in \A$ defines a function $f_{*} : \A \to \A$
+	by $f_{*}(g) = f*g$ (this is the regular representation).
+	Thus
+	$$
+		  (\alpha \conv[\varphi] f_{*})(g)
+		= \sum_{s \in S} \alpha(s) \, f* \delta_{s} * g
+		= \biggl(\sum_{s \in S} \alpha(s) \, f* \delta_{s}\biggr) * g
+	$$
+	and hence for functions $f \in \A$, the $\varphi$-convolution
+	restricts to the action
+	$
+		\alpha \conv f = \sum_{s \in S} \alpha(s) \, f* \delta_{s},
+	$
+	which is exactly $\alpha * f$, given that $(f*\delta_{s})(x)=0$
+	unless $s|x$, when it is $f(x/s)$.
+	This justifies calling $\conv$ a convolution operation,
+	as well as generalizing the comment made in Example~\ref{ex:classical}.
+\end{example}
+
+
+
+
+%:	example: Multiplicative Inversion Formulas
+\begin{example}[Multiplicative inversion formulas]
+	\label{ex:multInv}
+	The multiplicative version of \eqref{eq:classicalFormula},
+	$	
+		g(m) = \prod_{n \mid m} f(n)
+	$
+	if and only if
+	$
+		f(m) = \prod_{n\mid m} g(n)^{\mu(m/n)},
+	$
+	makes sense in a ``multiplicative'' abelian group $M$ considered as a 
+	$\Z$-module. For example, in $M=\C^{*}$ or, when computing the $n$th 
+	cyclotomic polynomial, in the multiplicative group $M=\Q(z)^{*}$,
+	yielding
+	$
+		\Phi_{m}(z) = \prod_{n \mid m} (z^{n} - 1)^{\mu(m/n)}.
+	$
+	
+	In general, using the exponential notation $m^{r}$ instead of the
+	additive notation $r m$ for the $R$-module $M$ will give us formulas
+	involving infinite products of the form 
+	$\prod_{n \in S} f(\varphi(n,x))^{\alpha(n)}$.
+	When there is an exponential map, such as for $\exp : \C \to \C^{*}$, we
+	can relate the convergence of such infinite products to infinite sums
+	(see for instance M\"obius' product expansion of the complex exponential 
+	in Example~\ref{ex:fps}).
+\end{example}	
+
+
+
+
+%:	example: Iterative flows
+\begin{example}[Iterative flows]
+	\label{eq:iterative}
+	Let $\beta$ be a nonnegative completely \emph{additive} function
+	(i.e.\ $\beta(nm)=\beta(n)+\beta(m)$), and $h : X \to X$ any function.
+	Then the iterates of $h$ by $\beta$ define a flow
+	$\varphi(n,x) = h^{\circ\beta(n)}(x)$.
+	If $h$ is invertible, we may drop the requirement that $\beta$ be 
+	nonnegative. Using $\Omega(n)$ we have $\varphi_{1}=\iota$ and 
+	$\varphi_{p} = h$ for all primes $p$. Thus this is the general type of
+	\emph{prime-independent} flow, where the functions $\varphi_{p}$ do not
+	depend on~$p$. 
+	The corresponding transform is
+	$
+		  (\alpha \conv f)(x)
+		= \sum_{n \in S} \alpha(n) \, f(h^{\circ \Omega(n)}(x))
+	$.
+	Such a sum, when absolutely convergent, may be grouped according to the 
+	value of $\Omega(n)$, dividing it into other (infinite) sums, as in
+	Section~\ref{sec:sumsOverPrimes}.
+\end{example}	
+
+
+
+
+%:	example: Dirichlet Series
+\begin{example}[Dirichlet series]
+	\label{ex:dirichletSeries}
+	For $R=\C$ with the usual absolute value, taking 
+	$
+		\alpha(n) = \mathbf{N}(n)^{-s}
+	$
+	$(s \in \C)$ in Theorem~\ref{th:flowMobiusInversion} gives parametric
+  families of Dirichlet series over the arithmetical semigroup $S$.
+	If $\Delta > 0$ is such that 
+	$
+		\sum_{n \in S} \mathbf{N}(n)^{-\sigma} < \infty$
+	for $\sigma > \Delta$, and $f: X \to \C$ is such that
+	$
+		|f(\varphi(n,x))| \leq c_{k}(x) \mathbf{N}(n)^{k}
+	$
+	for some real $k$ and $c_{k}(x) \geqÊ0$, then the Dirichlet series
+	$
+		  D_{f}(x,s)	
+		= (\mathbf{N}^{-s} \conv f)(x)
+		= \sum_{n \in S} \mathbf{N}(n)^{-s} \, f(\varphi(n,x))
+	$ 
+	will converge absolutely for $\Re(s)>k+\Delta$.
+	
+	
+	The well-known property that the pointwise product of the Dirichlet series 
+	of two arithmetical functions is the Dirichlet series of their convolution 
+	generalizes as follows: for $f: X \to M$ and a fixed $x \in X$, the map
+	$n \mapsto f(\varphi(n,x))$ defines an arithmetical function
+	$f_{x} : S \to M$. The $\varphi$-convolution of $\alpha$ with $f$ is
+	$$
+		  (\alpha \conv f)(x)
+		= \< \alpha, f_{x} \>
+	$$
+	where $\<\,,\>$ is the pairing between $R$ and $M$-valued functions given by
+	%
+	\begin{equation}
+	\label{df:pairing}
+		\<\,,\> : \A(S,R) \times \A(S,M) \to M,
+		\qquad
+		\< \alpha, f \> = \sum_{n \in S} \alpha(n) f(n),
+	\end{equation}
+	%
+	defined whenever this sum is convergent.
+	If $M$ is a complete normed $R$-algebra with product denoted by
+	$\cdot$ and $\alpha : S \to R$ is completely multiplicative, then 
+	for functions $f,g \in L_{\varphi}(X,|\alpha|)$ we have
+	$$
+	\begin{aligned}
+		   (\alpha \conv f)(x) \cdot (\alpha \conv g)(x)
+		&= \sum_{n \in S} \alpha(n) f_{x}(n)
+		   \cdot
+		   \sum_{m \in S} \alpha(m) g_{x}(m)
+		 = \sum_{l \in S}\alpha(l) (f_{x} * g_{x})(l)
+	\end{aligned}
+	$$
+	where the right-hand side converges absolutely. Equivalently,
+	\begin{equation}
+		\label{eq:prodConvPair}
+		  \< \alpha, f_{x} \> \cdot \< \alpha, g_{x} \>
+		= \< \alpha, f_{x} * g_{x} \>.
+	\end{equation}
+	When $X=S$ and the flow is the action $\pi$ of $S$ on itself by left
+	multiplication, $\pi(s,t)=st$, then we are considering arithmetical
+	functions $f : S \to M$, and we have $f_{x}(n) = f(nx)$, so that
+	$f_{1} = f$ and \eqref{eq:prodConvPair} at $x=1$ reduces to
+	$\< \alpha, f \> \cdot \< \alpha, g \> = \< \alpha, f * g \>$.
+	For $S = \N$, $R = M = \C$ and $\alpha(n) = n^{-s}$, we 
+	recover the classical property, which is the source of many interesting
+	identities involving the Riemann zeta function.
+	
+
+%	A useful example of a Dirichlet series using the multiplication flow $nx$ 
+%	on $\R$ arises from transforming $f(x)=e^{2 \pi i x}$, thus giving
+%	$F(x,s) = \sum_{n=1}^{\infty} n^{-s} e^{2 \pi i x}$. This is related to
+%	Gauss sums and $L$-series via the formula
+%	$G(1,\bar{\chi}) L(s,\chi) = \sum_{k=1}^{m} \bar{\chi}(k)F(k/m,s)$
+%	when $\chi$ is a primitive character mod $m$.
+%	%cite Theorem 12.10 Apostol
+	An example of inversion of such parametric Dirichlet series is the
+	transform pair
+	$
+		g(x) = \sum_{n \le x^{1/s}} n^{-s} \, 
+		       f( n^{-s} x )
+		,\ 
+		f(x) = \sum_{n \le x^{1/s}} \mu(n) n^{-s} \,
+		       g( n^{-s} x )
+	$
+	and its variants using other completely multiplicative functions
+	(\cite[\S\,6.3, pp.~222--223]{Nat}).
+	A different kind arises from the $\N$-flow on $X=[-1,1]$ given by
+	conjugating multiplication by the cosine. One obtains the Chebyshev 
+	polynomials, $\varphi_{n}(x) = \cos(n \arccos x) = T_{n}(x)$.
+	The transform pair
+	$$
+		g(x) = \sum_{n=1}^\infty n^{-s} f(T_n(x)),
+		\qquad
+		f(x) = \sum_{n=1}^\infty \mu(n) n^{-s} g(T_n(x))
+	$$
+	has been studied first, to our knowledge, in \cite{CiNaVa}.
+	A simple condition guaranteeing convergence for $\Re(s) > 1$
+	is the boundedness of $f$ and $g$.
+	Chebyshev \cite{Cheb} himself studied inversion of Fourier series, which we
+	mention in Example~\ref{ex:fourier}.
+\end{example}
+
+
+
+
+%:	example: one prime
+\begin{example}[One prime]
+	\label{ex:cyclicSgp}
+	If $S = \<p\> = \{ p^{n} : n \geq 0 \}$, it is isomorphic to $(\Z^{+},+,0)$.
+	The ring of arithmetical functions $\A(S,R)$ is isomorphic to the ring of
+	formal power series $R[[T]]$, where $\alpha : S \to R$ corresponds to
+	$F = \sum_{n=0}^{\infty} \alpha(p^{n}) T^{n}$. Thus Dirichlet convolution
+	in $\A$ is the standard Cauchy product of series, and $\alpha^{-1}$ 
+	corresponds to $1/F$.
+	A flow is determined by choosing any function $h : X \to X$ and declaring 
+	$\varphi_{p}=h$. Then $\varphi_{p^{n}}$ is the $n$-fold iterate of $h$, 
+	which we will denote by $h^{\circ n}$. The inversion formula then is
+	%
+	\begin{equation}
+	\label{eq:onePrime}
+		  g(x)
+		= \sum_{n=0}^{\infty} a_{n} \, f(h^{\circ n}(x)),
+		\qquad
+		  f(x)
+		= \sum_{n=0}^{\infty} b_{n} \, f(h^{\circ n}(x))
+	\end{equation}
+	%
+	where $\sum_{n} a_{n} T^{n} \cdot \sum_{n} b_{n} T^{n} = 1$.
+	This is quite close to M\"obius' original idea (see also Example~\ref
+	{ex:fps}).
+	Furthermore, a completely multiplicative arithmetical function $\alpha$
+	corresponds to a sequence of the form $a_{n} = a^{n}$, i.e.\ to the series
+	$F = (1-aT)^{-1}$, and since the M\"obius function of $S$ is $\mu(1)=1$, 
+	$\mu(p)=-1$ and $\mu(p^{n}) = 0$ for $n > 1$, inversion amounts to 
+	recovering $f$ from $g$ as a telescoping series: $f(x) = g(x) - a g(h(x))$.
+	For example, \eqref{eq:classicalFormula} in $\Z^{+}$, where the ``divisors''
+	of $n$ are the integers $0 \leq k \leq n$,  is $g(n)=\sum_{k=0}^{n} f(k)$,
+	$f(n)=g(n)-g(n-1)$.
+
+
+%	Essentially the same situation occurs if we take a prime $p$ in \emph{any}
+%	arithmetical semigroup $S$ and define a flow by declaring $\varphi_{1}=i$,
+%	$\varphi_{p}=h$ and $\varphi_{q}$ to be constant for primes $q \neq p$.
+%	Since the $\varphi_{q}$ must commute, the constant must be independent of
+%	$q$ and must be a fixed point $a$ of $h$. Then $\varphi_{n} = a$ when
+%	$n \notin \<p\>$.
+	
+
+	The case $h(x)=bx$ for $X=\R$ and $b \neq 0,\pm 1$, where
+	$h^{\circ n}(x)=b^{n}x$, is mentioned in \cite{Li} as a special case of
+	another formula. In general, $h$ can have finite (compositional) order
+	$m$. The transform $\sum_{n} a_{n} \rho^{n} f(h^{\circ n}(x))$ where
+	$|\rho| < 1$, $a_{n}$ is periodic of period $m$, and $h$ has order $m$,
+	corresponds to a series of the form $F = (1-\rho^{m}T^{m})^{-1} P(T)$
+	where $P$ is a polynomial of degree less than $m$.
+	If the $m$th roots of unity act on $X$, the inversion formula for 
+	$a_{n} = 1$, $h(x)=\omega x$, where $\omega^{m}=1$, is equivalent to
+	$
+		g(x) = \sum_{n=0}^{m-1} \rho^{n} f(\omega^{n} x)
+	$
+	and
+	$
+		f(x) = (1 - \rho^{m})^{-1} \,
+		       \left(g(x) - \rho g(\omega x)\right).
+	$
+
+	These convolutions have long been used to generate ``pathological''
+	functions. For example,
+	$
+		f(x) = \sum_{n=1}^{\infty} b^{n} \, \cos(\pi a^{n} x)
+	$
+	is Weierstrass' nowhere differentiable function.
+%	who also gave
+%	$
+%		\sum_{n=1}^{\infty} \frac{\sin{\pi n^{a} x}}{\pi n^{a}}.
+%	$
+	Similarly, $h(x)=x^{b}$, when this makes sense in $X$,
+	gives $h^{\circ n}(x)=x^{b^{n}}$. For $X = \C$ the transform
+	$
+		g(z) = \sum_{n=0}^\infty f(z^{2^n}), \,
+		f(z) = g(z) - g(z^{2})
+	$
+	for $f(z)=z$ is familiar as an example of a power series whose 
+	natural boundary is the unit circle.
+	What makes both these examples work are the density of orbits under the 
+	flow. 
+%	For instance, in the latter example,
+%	density of the roots of $1$ whose order is a power of $2$ in the unit
+%	circle, and density of the orbit $\{z^{n}\}$ when $|z|=1$ and $z$ is not
+%	of finite order.
+
+
+	For any finite or countable set $\P$ of primes, we have the analogous
+	interpretation with formal power series in the same number of
+	indeterminates. Classifying flows is more complicated since each prime can
+	act via a different self-map of $X$, as long as they commute.
+	Nevertheless, this interpretation provides a universal algebraic model
+	of M\"obius inversion (see also Examples~\ref{ex:directSums} and
+	~\ref{ex:words}).
+\end{example}
+
+
+
+
+%:	example: Iseki-Tatuzawa
+\begin{example}[The Iseki and Tatuzawa inversion formula]
+	\label{ex:IsekiTatuzawa}
+	The following inversion formula due to K. Iseki and T. Tatuzawa, is used to 
+	prove Selberg's asymptotic formula, which is a central point in the 
+	Erd\H{o}s-Selberg elementary proof of the prime number theorem
+	(\cite[Ch.~1, p.~3]{Ch} or \cite[\S\,4.11, Th.~4.17]{Ap}):
+	$$
+		  g(x)
+		= \sum_{n \leq x} f\left(\frac{x}{n}\right) \log(x)
+		\implies
+		  f(x) \log(x) + \sum_{n \leq x} f\left(\frac{x}{n}\right) \Lambda(n)
+		= \sum_{n \leq x} \mu(n) g\left(\frac{x}{n}\right)
+	$$
+	where $\supp(f)\subseteq [1,+\infty)$ and
+	$
+		\Lambda(n) = \sum_{d \mid n} \mu(d) \log \frac{n}{d}
+		           = \mu * \log(n)
+	$.
+	Theorem~\ref{th:flowConvolutionThm} provides a quick proof of this.
+	Simply observe that for the $\N$-flow $\varphi(n,x)=x/n$ on $\R^{+}$
+	we have $g = \log \conv f + 1 \conv (\log \cdot f)$,
+	where $\cdot$ denotes the pointwise product. Then
+	$$
+	\begin{aligned}
+		     \mu \conv g
+		&=   \mu \conv (\log \conv f)
+		   + \mu \conv (1 \conv (\log \cdot f))
+		 =   (\mu * \log) \conv f
+		   + (\mu * 1) \conv (\log \cdot f)
+		\\
+		&=   \Lambda \conv f
+		   + \delta \conv (\log \cdot f)
+		 =   \Lambda \conv f
+		   + \log \cdot f,
+	\end{aligned}
+	$$
+	which is the Iseki-Tatuzawa formula.
+\end{example}
+
+
+%:	example: direct sums
+\begin{example}[Direct sums]
+	\label{ex:directSums}
+	The finite or countably infinite algebraic direct sum of arithmetical 
+	semigroups is again an arithmetical semigroup. Indeed, let
+	$\{S_{i}\}_{i=1}^{\infty}$ be a family of arithmetical semigroups,
+	where $S_{i}$ has unit $1_{i}$, primes $\P_{i}$, norm $\mathbf{N}_{i}$
+	and degree map $\partial_{i}$.
+	Identify $S=\bigoplus_{i} S_{i}$ with the space of sequences
+	$s = (s_{i})$ such that $s_{i}=1_{i}$ for all $i \gg 0$.
+	Define the primes $\P$ of $S$ to be the sequences $s$ such that for some
+	$j$, $s_{j} = p_{j}	\in \P_{j}$ and $s_{i}=1_{i}$ for all $i \neq j$.
+	Then it is easy to check that $S$ has unique factorization into primes.
+	Furthermore, if $\delta_{i} = \min_{p_{i} \in \P_{i}}\partial_{i}(p_{i})$
+	then
+	$
+		   \partial(s)
+		 = \sum_{i=1}^{\infty} i \delta_{i}^{-1} \partial_{i}(s_{i})
+	$
+	defines a degree map on $S$ as in the remark following
+	Definition~\ref{df:arithSgp}.
+	Note that in the simpler case of finite direct sums, equivalent with direct 
+	products, one can take as norm $\mathbf{N}$ on $S$ the product of the norms
+	$\mathbf{N}(s) = \prod_{i}\mathbf{N}_{i}(s_{i})$.
+	
+	Regarding $S_{i}$ as embedded in $S$, the different $S_{i}$ are coprime.
+	Thus, a multiplicative (respectively, completely multiplicative)
+	arithmetical function $\alpha : S \to R$ is a product of the form
+	$\alpha(s)=\prod_{i}\alpha_{i}(s_{i})$, where $\alpha_{i} : S_{i} \to R$
+	is multiplicative (completely multiplicative).
+	In particular, the M\"obius function $\mu$ of $S$ is
+	$\mu(s)=\prod_{i} \mu_{i}(s_{i})$, where $\mu_{i}$ is the M\"obius
+	function of $S_{i}$.
+	For arithmetical functions which are products,
+	$\alpha=\prod_{i}\alpha_{i}$, $\beta=\prod_{i}\beta_{i}$, one can
+	easily check that $\alpha*\beta = \prod_{i} (\alpha_{i}*\beta_{i})$.
+	
+
+	Similarly, the coprimality of the $S_{i}$ in $S$ implies that
+	an $S$-flow $\varphi$ on $X$ is of the form
+	$
+		  \varphi_{s}
+		= \varphi^{(1)}_{s_{1}} \circ \varphi^{(2)}_{s_{2}}
+		  \circ \cdots \circ \varphi^{(i)}_{s_{i}} \circ \cdots
+	$,
+	where $\varphi^{(i)}$ is an $S_{i}$-flow on $X$, and the
+	self-mappings $\varphi^{(i)}_{s_{i}}$ commute for all $i,s_{i}$.
+	The composition is finite since
+	$
+		\varphi^{(i)}_{s_{i}} = \varphi^{(i)}_{1_{i}}
+	$
+	is the identity for $i \gg 0$. We shall say that $\varphi$ is the direct sum 
+	of the flows $\varphi^{(i)}$ and write $\varphi = \oplus_{i} \varphi^{(i)}$.
+	
+	Given an arithmetical semigroup $S$ and an $S$-flow $\varphi$
+	on $S$, on the finite direct product $S^{r}$ we have the direct product 
+	flow $\varphi^{\times r} = \varphi \times \cdots \times \varphi$ of $r$
+	copies of $\varphi$. If $\{\alpha_{i}\}_{i=1}^{r}$ is a collection of 
+	arithmetical functions on $S$, their product $\prod_{i} \alpha_{i}$ is an 
+	arithmetical function on $S^{r}$ and one has, gathering by product 
+	$s_{1} \cdots s_{r} = s$,
+	%
+	\begin{equation}
+	\label{eq:collapsingProduct}
+		  \prod_{i=1}^{r} \alpha_{i} \conv[\varphi^{\times r}] f
+		= (\alpha_{1} * \cdots * \alpha_{r}) \conv[\varphi] f.
+	\end{equation}
+	%
+	Extending this to countably infinite sums requires defining convolutions 
+	$*_{i=1}^{\infty} \alpha_{i}$. Whereas the product 
+	$\prod_{i=1}^{\infty} \alpha_{i}(s_{i})$ is actually finite for
+	$s = (s_{i})_{i=1}^{\infty}$, the sums defining such infinite convolutions 
+	are infinite since there are infinitely many $(s_{i})$ whose product is
+	a given $s$. Apart from this added difficulty, needing extra convergence
+	hypotheses, \eqref{eq:collapsingProduct} extends to the countable case.
+
+	An example of an inversion formula arising from the direct product
+	$\N \times \N$ is the transform pair
+	$
+		g(x) = \sum_{m,n=1}^{\infty} f(n^{\alpha}m^{\beta}x),
+	$
+	$
+		f(x) = \sum_{m,n=1}^{\infty} \mu(m) \mu(n) \, g(n^{\alpha}m^{\beta}x),
+	$
+	where $\alpha,\beta > 0$. This is found in \cite{Ren} along with many other 
+	such formulas which fit into our framework, providing examples where one 
+	needs to consider different semigroups (in this case direct products) in
+	order to properly understand them.
+	
+%:		Ren's formulas
+	As an illustration of the methods we have described,
+	let us show how to derive formulas (8)--(13) in \cite{Ren}
+	(denoted here by (viii)--(xiii), respectively).
+	They use the product flow $\varphi(n,x)=nx$, and
+	are all of the type in \eqref{eq:collapsingProduct}, namely, they 
+	``collapse'' to the one-variable case:
+	\begin{alignat*}{2}
+		g(x) &= \sum_{n=1}^{\infty} (-1)^{n+1}f(nx),
+		&\quad
+		f(x) &= \sum_{k=1}^{\infty} \sum_{r=1}^{\infty}
+		        \mu(k) 2^{r-1} g(2^{r-1} k x);
+		\tag{viii}\\
+		&&
+		f(x) &= \sum_{n=1}^{\infty} \sum_{m=1}^{\infty} \sum_{k=0}^{\infty}
+		        \mu(n) (-1)^{m+1} 2^{k} f(2^{k} mn x);
+		\tag{ix}\\
+		g(x) &= \sum_{k=0}^{\infty} f(2^{k} x),
+		&\quad
+		f(x) &= \sum_{n=1}^{\infty} \sum_{m=1}^{\infty}
+		        \mu(n) (-1)^{m+1} \frac{1}{mn} g(mnx);
+		\tag{x}\\
+		f(x) &= \sum_{n=1}^{\infty} \frac{\mu(n)}{n} g(nx),
+		&\quad
+		g(x) &= \sum_{m=1}^{\infty} \sum_{k=0}^{\infty}
+		        (-1)^{m+1} \frac{1}{m} f(2^{k} m x);
+		\tag{xi}\\
+		g(x) &= \sum_{k=0}^{\infty} 2^{k} f(2^{k} x),
+		&\quad
+		f(x) &= \sum_{n=1}^{\infty} \sum_{m=1}^{\infty}
+		        \mu(n) (-1)^{m+1} g(mnx);
+		\tag{xii}\\
+		f(x) &= \sum_{n=1}^{\infty} \mu(n) g(nx),
+		&\quad
+		g(x) &= \sum_{m=1}^{\infty} \sum_{k=0}^{\infty}
+		        (-1)^{m+1} 2^{k} f(2^{k} m x).
+		\tag{xiii}
+	\end{alignat*}
+	We begin by listing some convolutional identities satisfied by
+	$\epsilon(n)=(-1)^{n+1}$ (with notation as declared at the beginning of this 
+	section). First, 
+	$
+		\epsilon = 1 - 2 \cdot 1_{2\N}
+		         = 1 * (\delta - 2\delta_{2})
+	$	
+	so that $\epsilon^{-1} = \mu * (\delta - 2\delta_{2})^{-1}$.
+	Expanding in a geometric series shows
+	$
+		  (\delta - 2\delta_{2})^{-1} 
+		= \sum_{\ell=0}^{\infty} 2^{\ell} \delta_{2}^{*\ell}
+		= \sum_{\ell=0}^{\infty} 2^{\ell} \delta_{2^{\ell}}
+		= \id \cdot 1_{\<2\>}
+	$.
+	Hence $\epsilon^{-1} = \mu * \id 1_{\<2\>}$.
+	Now, for any arithmetical function $f$, and $n= 2^{r} k$ with 
+	$r \geq 0$ and $k$ odd, we have
+	$f * (\delta - 2\delta_{2})(n) = f(n)$ if $n$ is odd and
+	$f(n) - 2 f(n/2)$ if $n$ is even, and
+	$(f * \id 1_{\<2\>})(n) = \sum_{s=0}^{r} 2^{r-s} f(2^{s}k)$.
+	From these observations we deduce that $\epsilon^{-1}(n) = \mu(n)$ if $n$ is 
+	odd and $2^{r-1}\mu(n)$ if $n$ is even, and any number of similar relations.
+	One we shall need later is
+	$
+		   \id*\epsilon(n)
+		 = (\sigma * (\delta - 2\delta_{2}))(n) 
+		 = \sigma(n) - 2\sigma(n/2)
+		 = \sigma(k).
+	$
+	Similar ones include
+	$(1 * \epsilon)(n) = (1-r) d(k)$ and
+	$(\id * \epsilon^{-1})(n) = \phi(n)$ for odd $n$ and $(r+2)\phi(n)$ for
+	even $n$, where $\phi$ is Euler's function.
+
+	Let us see how the formulas all follow from the relation
+	$
+		\epsilon * \mu * \id 1_{\<2\>} = \delta.
+	$
+	In our notation,
+	(viii) says
+	$g = \epsilon \conv f$, and by \eqref{eq:collapsingProduct},
+	$f = (\mu * \id 1_{\<2\>}) \conv g$.
+	(ix) states $(\epsilon * \mu * \id 1_{\<2\>}) \conv f = \delta \conv f = f$.
+	(x) says $g = 1_{\<2\>} \conv f$ and by \eqref{eq:collapsingProduct},
+	$f = ((\mu * \epsilon) \cdot (1/\id)) \conv g$. This follows from
+	$
+	     ((\mu * \epsilon) \cdot (1/\id))^{-1}
+	   = (\delta - 2\delta_{2})^{-1} \cdot (1/\id)
+	   = \id 1_{\<2\>} \cdot (1/\id)
+	   = 1_{\<2\>}.
+	$
+	In this case also $f(x) = g(x) - g(2x)$ as in Example~\ref{ex:cyclicSgp}, or 
+	directly from $\mu * \epsilon = \delta - 2\delta_{2}$.
+	(xi) is
+	$g(x) = \sum_{m} \sum_{n} (\epsilon(m)/m) \cdot 1_{\<2\>}(n) f(mn x)$,
+	so by \eqref{eq:collapsingProduct},
+	$g = ((\epsilon/\id) * 1_{\<2\>}) \conv f$ and the formula follows from 
+	$
+		  ((\epsilon/\id) * 1_{\<2\>})^{-1}
+		= ((\epsilon * \id 1_{\<2\>})/\id)^{-1}
+		= (\epsilon * \id 1_{\<2\>})^{-1}/\id
+		= \mu/\id.
+	$
+	(xii) says $g = \id 1_{\<2\>} \conv f$ and by \eqref{eq:collapsingProduct}, 
+	$f = (\mu * \epsilon) \conv g$.
+	Finally, (xiii) is 
+	$f = \mu \conv g$ and by \eqref{eq:collapsingProduct},
+	$g = (\epsilon * \id 1_{\<2\>}) \conv f$.
+	
+\end{example}
+
+
+
+
+%:	example: Formal Power Series
+\begin{example}[Formal Power Series]
+	\label{ex:fps}
+	Let $R$ be any commutative domain, with the trivial valuation,
+	$M = R[[x]]$ the algebra of formal power series over $R$, which
+	is complete with respect to the norm $\|F\| = e^{-\ord_{x}(F)}$, and
+	$X=\m$ the maximal ideal, $\m = xM$.
+	As in Example~\ref{ex:flow-on-arith-fns}, a series $F \in M$ may be 
+	identified with a function $F_{*} : X=\m \to M$, in this case
+	given by formal composition: $F_{*}(\Phi) = F(\Phi)$ for $\Phi \in \m$.
+	A special class of $\N$-flows $\varphi$ on $\m$ are those
+	given for primes $p$ by $\varphi_{p} = {\Phi_{p}}_{*}$ for commuting series 
+	$\Phi_{p} \in \m$. For example, the exponential flow 
+	$\varphi_{n}(\Psi)=\Psi^{n}$ is given by $\Phi_{p} = x^{p}$
+	and the product flow $\varphi_{n}(\Psi)=n\Psi$ is given by $\Phi_{p} = p x$.
+	We can then use the identification of series with functions
+	to define the generalized convolution of $\alpha : \N \to R$ 
+	and $F \in M$; namely, as a function on $\m$, it is
+	$$
+		  (\alpha \conv F_{*})(\Psi)
+		= \sum_{n=1}^{\infty} \alpha(n) \, F_{*}(\varphi_{n}(\Psi))
+		= \sum_{n=1}^{\infty} \alpha(n) \, (F(\Phi_{n}))_{*}(\Psi)
+		\qquad
+		(\Psi \in \m),
+	$$
+	which is the function corresponding to the formal power series
+	$\sum_{n=1}^{\infty} \alpha(n) \, F(\Phi_{n})$, assuming
+	this converges in the formal topology, which essentially means
+	either $\alpha(n)=0$ for all $n \gg 0$ or $F \in \m$ and
+	$\Phi_{n} \to 0$, as is the case for the exponential flow.
+	Thus one can consider the relation
+	$G(x) = \sum_{n=1}^{\infty} \alpha(n) \, F(x^{n})$
+	as $G = \alpha \conv F$.
+	
+
+	A nice application, from M\"obius' original paper \cite{Mob}, 
+	is the inversion of the logarithm over 
+	$\C$,
+	$
+		-\log(1-z) = \sum_{n=1}^{\infty} n^{-1} z^{n}
+	$
+	to obtain
+	$
+		z = -\sum_{n=1}^{\infty} n^{-1} \mu(n)\, \log(1-z^{n}).
+	$	
+	Exponentiating yields
+	$
+		e^{z} = \prod_{n=1}^{\infty} (1 - z^{n})^{-\mu(n)/n}.
+	$
+	These are all convergent for $|z| < 1$.
+	Substituting $z=p^{-s}$, where $p$ is prime and $\Re(s) > 1$, gives 
+	$
+		e^{p^{-s}} = \prod_{n=1}^{\infty} (1 - p^{-ns})^{-\mu(n)/n}.
+	$
+	Using the product expansion of the Riemann zeta function and taking 
+	logarithms then gives a formula for the ``prime zeta function''
+	due to Glaisher:
+	$$
+		  \sum_{p} \frac{1}{p^{s}}
+		= \sum_{n=1}^{\infty} \frac{\mu(n)}{n} \log\zeta(ns)
+		\qquad
+		(\Re s > 1).
+	$$
+	
+	Another useful example is the theory of Lambert series. Here we
+	consider $L=\frac{x}{1-x} = \sum_{n=1}^{\infty} x^{n}$, thus
+	$L = 1 \conv I$, where now $I$ denotes the identity series $I(x)=x$.
+	The Lambert series of $\alpha$ is 
+	$\sum_{n=1}^{\infty} \alpha(n) \, L(x^{n})$, which is precisely the 
+	convolution $\alpha \conv L$ with respect to the exponential flow.
+	We shall denote $L_{n}=L(x^{n})$.
+	The basic relationship expressing a Lambert series in powers of $x$,
+	namely, identities of the form $\alpha \conv L = \beta \conv I$, 
+	is succinctly given by Theorem \ref{th:flowConvolutionThm} as
+	$\alpha \conv (1 \conv I) = (\alpha * 1) \conv I = \beta \conv I$,
+	equivalent to $\alpha * 1 = \beta$, the standard relation.
+
+	Let us show how Theorem \ref{th:flowConvolutionThm} gives quick unified 
+	proofs of some elliptic function identities (in Lambert series form) used
+	to derive Jacobi's formulas on representations as sums of four squares.
+%	For instance, we have
+%	$$
+%			\sum_{n=1}^{\infty} r_{2}(n) x^{n}
+%			= 4 (L_{1} - L_{3} + L_{5} - \cdots),
+%	$$
+%	corresponding to $r_{2} = 4(1 * \chi)$, where $r_{2}(n)$ is the number of 
+%	representations of  $n$ as a sum of two squares and $\chi$ is the Dirichlet 
+%	character mod $4$ given by $\chi(n) = (-1)^{(n-1)/2}$ for odd $n$. 
+	We have the pair of identities, due to Ramanujan
+	(\cite[\S\,3.7 and 3.8]{Gross} or \cite[\S\,20.11--12]{Ha-Wr}):
+	$$
+	    \sum_{n=1}^{\infty} L_{n}(1+L_{n}) = \sum_{n=1}^{\infty} n L_{n},
+	    \qquad
+	    \sum_{n=1}^{\infty} (-1)^{n+1} L_{n}(1 + L_{n})
+	  = \sum_{n=1}^{\infty} (2n-1) L_{2n-1}.
+	$$
+	Since $L(1+L) = \id \conv I$, the first identity follows from
+	$
+		1 \conv (\id \conv I) = (1*\id) \conv I
+							   = \id \conv (1 \conv I) 
+	                          = \id \conv L
+	$.
+	The second states that
+	$
+		\epsilon \conv (\id \conv I) = \id\chi \conv L
+	$
+	where $\epsilon(n) = (-1)^{n+1}$ and $\chi$ is the Dirichlet character 
+	modulo $2$, i.e.\ the characteristic function of the odd positive integers.
+	This is equivalent to $\epsilon * \id = \id\chi * 1$.
+	The right hand side evaluated at $n$ is obviously the sum of the odd 
+	divisors of $n$, which we denote by $\sigma'(n)$.
+	In Example~\ref{ex:directSums}, we proved that the left hand side is also 
+	equal to $\sigma'$.
+	Similarly, Jacobi's identity (\cite[\S\,3.7 and 3.8]{Gross})
+	$$
+		  \sum_{n=1}^{\infty} \frac{n x^{n}}{1 + (-x)^{n}}
+		= \sum_{n \not\equiv 0 \bmod 4} n L_{n}
+	$$
+	can be proved by setting $L^{*} = x(1+x)^{-1} = \epsilon \conv I$.
+	The left side is
+	$
+		  \id\chi \conv L + \id(1-\chi) \conv L^{*}
+		= (\id\chi * 1 + (\id - \id\chi ) * \epsilon) \conv I
+	$
+	and since $\epsilon = 2\chi - 1$ and 
+	$
+		\epsilon * \id = \id\chi * 1 = \sigma',
+	$ 
+	this reduces to $(3\sigma' - 2\chi\sigma) \conv I$.
+	The right hand side is $\alpha \conv L = (\alpha * 1) \conv I$
+	for $\alpha(n) = 0$ if $4|n$ and $1$ otherwise. Thus $(\alpha * 1)(n)$
+	is the sum of the divisors of $n$ not divisible by $4$, which we denote
+	by $\sigma''$. Jacobi's identity then reduces to
+	$3\sigma' - 2\chi\sigma = \sigma''$, which is easily verified by
+	considering odd and even $n$ separately.
+\end{example}
+
+
+
+
+%:	example: Mobius Inversion of Fourier Series
+\begin{example}[M\"obius Inversion of Fourier Series]
+	\label{ex:fourier}
+	Let $S=\N, R=M=\C$ and $X=\R/\Z$, represented by $[0,1]$.
+	Let $e(x) = e^{2 \pi i x}$. The Fourier series of an arithmetical function
+	$\alpha : \N \to \C$ is $\widehat{\alpha} = \alpha \conv e$ where the flow
+	is $\varphi(n,x) = nx$.
+	However, the natural setting for Fourier series is the \emph{additive}
+	semigroup $\Z^{+}$, since $e_{x}(n)=e(nx)$ satisfies
+    $e_{x}(n+m) = e_{x}(n) e_{x}(m)$ and, in the notation of Example~
+    \ref{ex:dirichletSeries}, $\widehat{\alpha}(x) = \<e_{x},\alpha_{0}\>$,
+    hence by \eqref{eq:prodConvPair},
+	$\widehat{\alpha} \cdot \widehat{\beta} = \widehat{\alpha \circledast \beta}$
+	where $\circledast$ denotes convolution on $\Z^{+}$,
+	$(\alpha \circledast \beta)(n) = \sum_{l+m=n} \alpha(l)\beta(m)$.
+	One can also extend this to the additive group $\Z$, i.e.\ 
+	$\alpha,\beta$ can be ``doubly infinite'' sequences $\Z \to \C$,
+	but then care must be taken with convergence, as $\Z$ is no longer
+	an arithmetical semigroup and the sum defining the convolution is infinite.
+	The interplay between the multiplicative and additive structures on
+	$\N$ is expressed by Theorem~\ref{th:flowConvolutionThm}, which says
+	in this case that
+	$$
+		  \alpha \conv \widehat{\beta}
+		= \alpha \conv (\beta \conv e)
+		= (\alpha * \beta) \conv e
+		= \widehat{\alpha * \beta}
+	$$
+	where $*$ continues to denote multiplicative convolution.
+	Thus $\widehat{\delta} = e$ and M\"obius inversion expresses the exponential
+	as $e = \alpha^{-1} \conv \widehat{\alpha}$.
+
+	Analogous results hold for $q$-expansions, taking $q = e^{2\pi i z}$ and
+	$z \in X = \{ z \in \C : \Im z > 0\}$. For instance, using the notation 
+	of Example~\ref{ex:fps}, since
+	$
+		\widehat{1}(z) = L(q),
+	$
+	the $q$-Lambert series of a function $\alpha$ is $\alpha \conv \widehat{1}$, 
+	which is the Fourier transform of $\alpha * 1$.
+	Thus, the relation $e = \mu \conv \widehat{1}$ is the well-known expansion
+	$
+		q = \sum_{n=1}^{\infty} \mu(n) L(q^{n}),
+	$
+	as an analytic function. The formal result dates at least as far back
+	as M\"obius~\cite{Mob}.
+	
+	
+	Recently, in \cite{ChenShenDing} M\"obius inversion of the Fourier transform 
+	on the $n$-dimensional torus is studied and related to lattice problems in
+	physics.
+	Chebyshev \cite{Cheb} originally considered M\"obius inversion of the 
+	Fourier series of the square and triangular waves, obtaining the value of 
+	some arithmetical sums.
+	Much later, the Fourier series of the square wave was used in \cite{Mos} to 
+	prove there are more quadratic residues than non-residues between $1$ and 
+	$(p-1)/2$ when $p \equiv 3 \bmod 4$.
+	Thinking along these lines, we have obtained a curious factorization for 
+	the real part of a Dirichlet $L$-series. Namely, let $S$ and $T$ denote the 
+	period $1$ extensions from $[0,1)$ to $\R$ of the functions
+	$
+		S = 1_{(0,1/2)}-1_{(1/2,1)}
+	$
+	and
+	$
+		T(x) =   4 x \, 1_{[0,1/4)}
+		       + (2 - 4x) \, 1_{[1/4,3/4)}
+		       + (4 x - 4) \, 1_{[3/4,1)}.
+	$
+	Their Fourier series are
+	\begin{equation}
+	\label{eq:sq-tri-waves}
+		\begin{aligned}
+		S(x) &= \frac{4}{\pi} \sum_{\text{odd $n$}} \frac{\sin(2 \pi n x)}{n}
+		      = \frac{4}{\pi} \, \rho\chi_{2} \conv \sin(2\pi x),
+		     \\
+		T(x) &= \frac{8}{\pi^{2}}
+		        \sum_{n=0}^{\infty} (-1)^{n} 
+		        \frac{\sin(2 \pi (2n+1) x)}{(2n+1)^{2}}
+		      = \frac{8}{\pi^{2}} \, \rho^{2}\chi_{4} \conv \sin(2\pi x),
+	    \end{aligned}
+	\end{equation}	
+	%
+	where $\rho(n)=1/n$,
+	$\chi_{2}(n) = \chi_{4}(n) = 0$ if $n$ is even and
+	$\chi_{2}(n) = 1$, $\chi_{4}(n) = (-1)^{(n-1)/2}$ if $n$ is odd.
+	$\chi_{2}$ and $\chi_{4}$ are Dirichlet characters.
+	Inverting gives
+	%
+	\begin{equation}
+	\label{eq:sq-tri-waves-inv}
+		  \sin(2 \pi x)
+		= \frac{\pi}{4}
+		  \sum_{n=1}^{\infty} \frac{\mu\chi_{2}(n)}{n} S(nx)
+		= \frac{\pi^{2}}{8}
+		  \sum_{n=1}^{\infty} \frac{\mu\chi_{4}(n)}{n^{2}} T(nx).
+	\end{equation}	
+	%
+	Substituting rational values $x=k/m$ yields sums reminiscent of Dirichlet
+	$L$-series. However, $\chi_{2}(n)S(n/m)$ is only a Dirichlet character 
+	modulo $m$ for $m=3,4,6,8$ (complete multiplicativity fails in all 
+	other cases), and $T(n/m)$ is not constant in absolute value.
+	There is a relation with Dirichlet $L$-series, but it is not quite 
+	so straightforward. Let us illustrate what happens for $m=5$.
+	Denote the Dirichlet series of $f : \N \to \C$ by $D_{f}(s)$.
+	Letting
+	$
+		  \lambda 
+		= \sin \frac{2\pi}{5}
+		= \surd{((5+\sqrt{5})/8)}
+	$
+	and
+	$
+		  \lambda^{*}
+		= \sin \frac{4\pi}{5}
+		= \surd{((5-\sqrt{5})/8)}
+	$,
+	by substituting $x=1/5,2/5$ in \eqref{eq:sq-tri-waves} 
+	and \eqref{eq:sq-tri-waves-inv}, one obtains
+	%
+	\begin{equation}
+	\label{eq:mu5}
+	\begin{aligned}
+		&   D_{\alpha}(1)
+		= \frac{2\pi}{5} \lambda^{*},
+		\qquad
+		   D_{\alpha^{*}}(1)
+		= \frac{2\pi}{5} \lambda,
+		\qquad
+		   D_{\mu\alpha}(1)
+		= \frac{4}{\pi} \lambda,
+		\qquad
+		   D_{\mu\alpha^{*}}(1)
+		= \frac{4}{\pi} \lambda^{*},
+		\\
+		&   D_{\beta}(2)
+		= \frac{\pi^{2}}{25} (4 \lambda^{*} + 3 \lambda),
+		\qquad
+		   D_{\beta^{*}}(2)
+		= \frac{\pi^{2}}{25} (4 \lambda - 3 \lambda^{*}),
+		\\
+		&   D_{\mu\beta}(2)
+		= \frac{20}{\pi^{2}} \lambda,
+		\qquad
+		   D_{\mu\beta^{*}}(2)
+		= \frac{20}{\pi^{2}} \lambda^{*},
+	\end{aligned}
+	\end{equation}	
+%
+%	\begin{equation}
+%	\label{eq:mu5}
+%	\begin{alignedat}{4}
+%		   D_{\alpha}(1)
+%		&= \frac{2\pi}{5} \lambda^{*},
+%		&\quad
+%		   D_{\alpha^{*}}(1)
+%		&= \frac{2\pi}{5} \lambda,
+%		&\quad
+%		   D_{\mu\alpha}(1)
+%		&= \frac{4}{\pi} \lambda,
+%		&\quad
+%		   D_{\mu\alpha^{*}}(1)
+%		&= \frac{4}{\pi} \lambda^{*},
+%		\\
+%		   D_{\beta}(2)
+%		&= \frac{\pi^{2}}{25} (4 \lambda^{*} + 3 \lambda),
+%		&\quad
+%		   D_{\beta^{*}}(2)
+%		&= \frac{\pi^{2}}{25} (4 \lambda - 3 \lambda^{*}),
+%		&\quad
+%		   D_{\mu\beta}(2)
+%		&= \frac{20}{\pi^{2}} \lambda,
+%		&\quad
+%		   D_{\mu\beta^{*}}(2)
+%		&= \frac{20}{\pi^{2}} \lambda^{*},
+%		\\
+%	\end{alignedat}
+%	\end{equation}	
+	%
+	where $\alpha,\alpha^{*},\beta,\beta^{*}$	are the arithmetical
+	functions given by $\alpha(n) = \alpha^{*}(n)=0$ if $\gcd(n,10)>1$,
+	$\beta(n) = \beta^{*}(n)=0$ if $\gcd(n,20)>1$, and
+	$$
+	\begin{alignedat}{2}
+		   \alpha(n)
+		&= \begin{pmatrix}
+		   1 &  3 & -3 & -1
+		   \\
+		   1 & -1 &  1 & -1
+		   \end{pmatrix}
+		   \bmod 10,
+		&\quad
+		   \alpha^{*}(n)
+		&= \begin{pmatrix}
+		   1 &  3 & -3 & -1
+		   \\
+		   1 &  1 & -1 & -1
+		   \end{pmatrix}
+		   \bmod 10,
+		\\
+		   \beta(n)
+		&= \begin{pmatrix}
+		   \pm 1 & \pm 3 & \pm 7 & \pm 9
+		   \\
+		       2 &     1 &    -1 &    -2
+		   \end{pmatrix}
+		   \bmod 20,
+		&\quad
+		   \beta^{*}(n)
+		&= \begin{pmatrix}
+		   \pm 1 & \pm 3 & \pm 7 & \pm 9
+		   \\
+		       1 &    -2 &     2 &    -1
+		   \end{pmatrix}
+		   \bmod 20,
+	\end{alignedat}
+	$$	
+	with residue classes on the first row and the corresponding values on the 
+	second.
+	These are clearly not multiplicative, although
+	$
+		\alpha(n) \, \alpha^{*}(n) = \left(\frac{n}{5}\right) \epsilon_{10}(n)
+	$
+	and
+	$
+		\beta(n) \, \beta^{*}(n) = 2 \left(\frac{n}{5}\right) \epsilon_{10}(n),
+	$
+	where $\left(\frac{n}{5}\right)$ is the Kronecker symbol and
+	$\epsilon_{10}$ is the principal character modulo $10$.
+	The explanation of \eqref{eq:mu5} lies in the convolution properties 
+	of these functions. By factoring modulo $10$ one can show that 
+	for any arithmetical function $f$ one has $(f\alpha * f\alpha^{*})(n) = 0$ 
+	unless $n \equiv \pm 1 \bmod 10$, in which case it is respectively
+	$\pm (f * f)(n)$.
+	In terms of the Dirichlet character
+	$$
+		  \xi(n)
+		= \begin{pmatrix}
+			0 & 1 & 2 &  3 & 4
+			\\
+			0 & 1 & i & -i & -1
+		  \end{pmatrix}
+		  \bmod 5
+	$$
+	(which satisfies $\xi(n)^{2} = \left(\frac{n}{5}\right)$),
+	this means that if $f$ is real-valued, then
+%	since Dirichlet characters are completely multiplicative,
+	$$
+		  f \alpha * f \alpha^{*}
+		= (f * f) \cdot \Re( \xi \epsilon_{10} )
+		= \Re((f * f) \cdot \xi \epsilon_{10} )
+		= \Re (f \xi \epsilon_{10} * f \xi \epsilon_{10}),
+	$$
+	which translates into the following identity of Dirichlet series
+	%
+	\begin{equation}
+	\label{eq:alphaDirichlet}
+		  D_{f \alpha}(s) \cdot D_{f \alpha^{*}}(s)
+		= \Re D_{f \xi \epsilon_{10}}(s)^{2}
+		\qquad
+		(s \in \R)
+	\end{equation}
+	%
+	when these series are convergent. Thus
+	%
+	\begin{equation}
+	\label{eq:alphaLSeries}
+	\left\{
+	\begin{aligned}
+		   D_{\alpha}(s) \cdot D_{\alpha^{*}}(s)
+		&= \Re L(\xi \epsilon_{10},s)^{2},
+		\\
+		   D_{\mu \alpha}(s) \cdot D_{\mu \alpha^{*}}(s)
+		&= \Re L(\xi \epsilon_{10},s)^{-2}
+	\end{aligned}
+	\right.
+	\qquad
+	(s \in \R, s \geq 1),
+	\end{equation}
+	%
+	which may be verified for $s=1$ using \eqref{eq:mu5} and computing
+	$L(\xi \epsilon_{10},1)^{2} = \frac{\pi^{2}(2-i)}{10 \sqrt{5}}$.
+%	using any number of well-known formulas for $L$-values.
+	Similar (though lengthier) computations yield
+	%
+	\begin{equation}
+	\label{eq:betaDirichlet}
+	\begin{aligned}
+		&  D_{f \beta}(s) \cdot D_{f \beta^{*}}(s)
+		 = \frac{1}{2} \Re (4 + 3i) D_{f \chi}(s)^{2}
+		   \qquad
+		   (s \in \R)
+		\\
+		&
+		\left\{
+		\begin{aligned}
+		   D_{\beta}(s) \cdot D_{\beta^{*}}(s)
+		&= \frac{1}{2} \Re (4 + 3i) L(\chi,s)^{2},
+		\\
+		   D_{\mu \beta}(s) \cdot D_{\mu \beta^{*}}(s)
+		&= \frac{1}{2} \Re (4 + 3i) L(\chi,s)^{-2}
+		\end{aligned}
+		\right.
+	   	   \qquad
+		   (s \in \R, s \geq 1)
+	\end{aligned}
+	\end{equation}
+	%
+	for the Dirichlet character $\chi$ modulo 20 given by
+	$$
+		  \chi(n)
+		= \begin{pmatrix}
+			\pm 1 & \pm 3 & \pm 7 & \pm 9
+			\\
+			    1 &     i &    -i & -1
+		  \end{pmatrix}
+	$$
+	which may be verified for $s=2$ using \eqref{eq:mu5} and
+	$L(\chi,2) = \frac{\pi^{2}}{25}(2-i)(\lambda + i \lambda^{*})$.
+	
+\end{example}
+
+
+
+
+%:	example: Inversion on words
+\begin{example}[Prime sums in the monoid of words]
+	\label{ex:words}
+
+	Let $W(\Sigma)$ denote the free monoid over a set $\Sigma$, realized
+	as the set of finite ``words'' or ``strings'' in the ``alphabet'' $\Sigma$, 
+	that is, finite sequences of elements of $\Sigma$, with product given by 
+	juxtaposition and neutral element the null string or empty word
+	$\emptyset$. Its abelianization $W(\Sigma)^{\ab}$ is the free abelian monoid 
+	over $\Sigma$, which is isomorphic to the direct sum of $|\Sigma|$ copies of 
+	$(\Z^{+},+,0)$. The abelianization homomorphism is the map that counts 
+	letter frequencies, namely for a word $w$ we let $\f_{w}(s)=\ord_{s}(w)$ be 
+	the number of times the letter $s \in \Sigma$ appears in~$w$. 
+
+	
+	If $\Sigma$ is countable, $W(\Sigma)^{\ab}$ is an arithmetical semigroup 
+	with set of primes equal to $\Sigma$, the letters.
+	Using this model, we may also think of $W(\Sigma)^{\ab}$ as the set of 
+	sequences $\f : \Sigma \to \Z^{+}$ with $\f(s)=0$ for all but finitely many
+	$s \in \Sigma$, representing the possible letter frequencies. The primes
+	are the delta functions $\delta_{s}, s \in \Sigma$. Unique factorization is 
+	the representation $\f = \sum_{s} \f(s) \delta_{s}$.
+	The M\"obius function $\mu$ is $0$ on words with a repeated letter and 
+	$(-1)^{\ell(w)}$ otherwise, where $\ell(w)$ denotes the length of a word.
+	Equivalently, on frequencies, $\mu(\f)=0$ if some $\f(s) > 1$ and otherwise 
+	$\mu(\f)=(-1)^{|\f|}$ where $|\f| = \sum_{s} \f(s)$. 
+	Clearly $|\f_{w}| = \sum_{s} \ord_{s}(w) = \Omega(w) = \ell(w)$.
+	Note however that if $\Sigma$ is infinite, $|\f|$ is \emph{not} a degree map 
+	in the sense of Definition~\ref{df:arithSgp}, since it does not satisfy the 
+	finiteness condition. Indeed $|\delta_{s}|=1$ for all $s.$ Instead, we need 
+	a weighted degree such as $\partial \f = \sum_{i=1}^{\infty} i \f(s_{i})$,
+	if $\Sigma=\{s_{i}\}_{i=1}^{\infty}$ (see Example~\ref{ex:directSums}).
+
+
+	Let $\M$ be any commutative monoid, written multiplicatively. Any function 
+	$a : \Sigma \to \M$ extends uniquely to a homomorphism
+	$A: W(\Sigma) \to \M$. For a word $w = (s_{1},\ldots, s_{\ell})$ of length
+	$\ell \geq 1$, we have $A(w) = a(s_{1}) \cdots a(s_{\ell})$, and
+	$A(\emptyset)=1$. In terms of frequencies, $A(\f) = \prod_{s} a(s)^{\f(s)}$.
+	Since $\M$ is abelian, $A$ factors through the abelianization
+	$W(\Sigma)^{\ab}$.
+	
+	
+	Now, suppose $\psi$ is an $\M$-flow on a space $X$, which we will denote by
+	$\psi(t,x) = t \otimes x$. Pulling back via $A$ gives the flow 
+	$\varphi(w,x) = A(w) \otimes x$ of $W(\Sigma)^{\ab}$ on $X$.
+	Consider the ``sum over primes'' operator $P_{\alpha}$ of Section
+	\ref{sec:sumsOverPrimes}, for the arithmetical semigroup $W(\Sigma)^{\ab}$
+	and an arithmetical function $\alpha : W(\Sigma)^{\ab} \to R$.
+	Since the primes of $W(\Sigma)^{\ab}$ are the elements of $\Sigma$, 
+	the transform pair \eqref{eq:geomP} for $I+P_{\alpha}$ is
+	%
+	\begin{equation}
+	\label{eq:P-expansion-on-words}
+		\begin{aligned}
+		g(x) &= (I+P_{\alpha})f(x)
+		      = f(x) + \sum_{s \in \Sigma} \alpha(s) \, f(a(s) \otimes w),
+		     \\
+		f(x) &= (I+P_{\alpha})^{-1}g(x)
+		      = \sum_{\ell=0}^{\infty} (-1)^{\ell} P_{\alpha}^{\ell}g(x)
+		\end{aligned}
+	\end{equation}
+	%
+	where we have, by \eqref{eq:primeIterate},
+	%
+	\begin{equation}
+	\label{eq:P-iterate-on-words}
+	\begin{aligned}
+	       P_{\alpha}^{\ell}g(x)
+	    &= \sum_{(s_{1},\ldots,s_{\ell}) \in \Sigma^{\ell}}
+	       \alpha(s_{1}) \cdots \alpha(s_{\ell}) \,
+	       g((a(s_{1}) \cdots a(s_{\ell})) \otimes x).
+	\end{aligned}
+	\end{equation}
+	%
+	Note also that an arbitrary function $\alpha : \Sigma \to R$ is a function 
+	on the primes of $W(\Sigma)^{\ab}$ and hence has a unique completely 
+	multiplicative extension to an arithmetical function on $W(\Sigma)^{\ab}$.
+	Hence we do not lose much generality if we suppose $\alpha$ to be completely 
+	multiplicative.
+	In that case grouping words by length, i.e.\ by the value of $\Omega(w)$, as 
+	in \eqref{eq:primeIterateCM}, which for frequencies means grouping by the 
+	degree $|\f|$, results in the expression
+	%
+	\begin{equation}
+	\label{eq:grouped-word-P-expansion}
+		  P_{\alpha}^{\ell}g(x) 
+		= \sum_{|\f|=\ell} \frac{|\f|!}{\f!} \, \alpha(\f) \, g(A(\f) \otimes x)
+	\end{equation}
+	%
+	where $\f! = \prod_{s} \f(s)!$. Recall then \eqref{eq:geomP}, namely
+	$(I + P_{\alpha})^{-1} = T_{B\lambda\alpha}$ where 
+	$\lambda = (-1)^{\Omega}$.
+
+	This example was inspired by the following inversion formula from~\cite{Li}:
+	%
+	\begin{equation}
+	\label{eq:bo-zang}
+	\begin{gathered}
+		g(x) = \sum_{n=1}^{\infty} f(a_{n}x)
+		\iff
+		f(x) = g(x/a_{1}) + \sum_{n=1}^{\infty} g_{n}(x/a_{1}^{n+1}),
+		\\	
+		g_{n}(x) = (-1)^{n} 
+		           \sum_{m_{1}=2}^{\infty} \cdots \sum_{m_{n}=2}^{\infty}
+		           g(a_{m_{1}} \cdots a_{m_{n}} x),
+	\end{gathered}
+	\end{equation}
+	%
+	where $\{a_{n}\} \subset \R^{*}$ is any sequence with $a_{n} \neq a_{m}$ for 
+	$n \neq m$. Reindexed and normalized with $a_{0}=1$, it is the case
+	$\Sigma=\N, \, \M=\R^{*}, \, \psi(t,x)=tx, \, \alpha=1$
+	of \eqref{eq:P-expansion-on-words}, with
+	$g_{\ell} = (-1)^{\ell} P_{1}^{\ell}g$.
+	
+
+	It may happen that $\Sigma = S$ is itself an arithmetical semigroup, and 
+	$a : S \to \M$ is a monoid homomorphism. In that case the map $\pi$
+	sending a word $w = (s_{1}, \ldots, s_{\ell})$ to the $S$-product
+	$s_{1} \cdots s_{\ell} \in S$ is a monoid homomorphism
+	$\pi : W(S)^{\ab} \to S$, and the extension $A$ factors through it:
+	$A = a \circ \pi$. The restriction of the flow $\varphi$ to $S$ is 
+	a flow of $S$ on $X$. However, now $a(1)=1$, hence all words of the 
+	form $w=(1,\ldots,1)$ and any length act as the identity. 
+	Thus $\sum_{\ell} (-1)^{\ell} \alpha(1)^{\ell} g(x)$ is a subseries 
+	of the total series $\sum_{\ell} (-1)^{\ell} P_{\alpha}^{\ell}g(x)$, 
+	which makes absolute convergence impossible when $|\alpha(1)|\geq 1$,
+	except in the trivial case $f=g=0$. This happens for completely
+	multiplicative functions $\alpha$.
+	One way to restore non-triviality is to eliminate the redundancy
+	$A(\emptyset)=a(1)=1$. We may do this by considering the set 
+	$\Sigma = S \setminus \{1\}$ and applying \eqref{eq:P-expansion-on-words} to 
+	$\Sigma$ instead of $S$ (compare this to \eqref{eq:bo-zang} with the 
+	summations over integers greater than or equal to~$2$). 
+	Assuming only $\alpha(1)=1$,
+	$$
+		\begin{aligned}
+		        (I+P_{\alpha})f(x)
+		     &= f(x) + \sum_{s \in \Sigma} \alpha(s) \, f(a(s) \otimes x)
+		      = \sum_{s \in S} \alpha(s) f(a(s) \otimes x)
+		      = T_{\alpha} f(x)
+		\end{aligned}
+	$$
+	where $P_{\alpha}$ is the operator with respect to $W(\Sigma)^{\ab}$ but
+	$T_{\alpha}$ is the operator with respect to $S$ and the restricted
+	flow $\varphi(s,x)=a(s) \otimes x$. Its inversion formula must then be
+	$T_{\alpha}^{-1} = T_{\alpha^{-1}}$.
+	Thus the method of $P$-expansions detailed in Section 
+	\ref{sec:sumsOverPrimes} yields the same inversion formulas as in
+	Section \ref{sec:generalconv}.
+	
+	Actually, to fully prove the equivalence, we need to be able to recover the
+	inversion formula via $P$-expansions. This can be done as follows.
+	Since $a$ is a homomorphism, we can group words $w$ with the same 
+	$S$-product together in \eqref{eq:P-iterate-on-words}, which becomes
+	$
+		P^{\ell}g(x) 
+	  = \sum_{s \in S}
+		\bigl(
+		\sum_{s_{1} \cdots s_{\ell} = s, s_{i} \neq 1}
+		\alpha(s_{1}) \cdots \alpha(s_{\ell})
+		\bigr)
+		\, g(a(s) \otimes x).
+	$
+	The inner sum, without the restrictions $s_{i} \neq 1$, would be
+	the $\ell$-fold convolution $\alpha^{*\ell}$. With the restrictions,
+	by the inclusion-exclusion formula, since $\alpha(1)=1$, it is
+	$
+		  \sum_{k=0}^{\ell} (-1)^{k} \binom{\ell}{k} \alpha^{*(\ell-k)}
+		= (\alpha - \delta)^{*\ell}
+	$
+	(this is also easily checked directly by observing that
+	$\prod_{i=0}^{\ell} (\alpha(s_{i}) - \delta(s_{i})) = 0$ unless all 
+	$s_{i} \neq 1$, in which case it is $\prod_{i=0}^{\ell} \alpha(s_{i})$).
+	Hence
+	$
+		  g_{\ell}(x)
+		= (-1)^{\ell} P^{\ell}g(x)
+		= \sum_{s \in S} (\delta - \alpha)^{*\ell}(s) \, g(a(s) \otimes x)
+	$
+	and so inversion reduces to exchanging sums:
+	$
+		   f(x)
+		 = \sum_{\ell = 0}^{\infty} \sum_{s \in S}
+		   (\delta - \alpha)^{*\ell}(s) \, g(a(s) \otimes x)
+		 = \sum_{s \in S} \sum_{\ell = 0}^{\infty} 
+		   (\delta - \alpha)^{*\ell}(s) \, g(a(s) \otimes x)
+		 = \sum_{s \in S} (\delta - (\delta - \alpha))^{-1}(s) \,
+		   g(a(s) \otimes x)
+		 = \sum_{s \in S} \alpha^{-1}(s) \, g(a(s) \otimes x)
+	$
+	provided, as usual, that the appropriate convergence conditions hold.
+
+	\begin{remark}
+
+	Grouping words $w = (s_{1},\ldots,s_{\ell})$ with equal $S$-product
+	$\pi(w)$ is stronger than grouping by letter frequencies as
+	in~\eqref{eq:grouped-word-P-expansion}. This is so due to choosing
+	$\Sigma = S \setminus \{1\}$, which makes these elements primes in
+	$W(\Sigma)^{\ab}$, whereas $S$ retains its own primes~$\P$.
+%	For example, over $\N$ $(4,3,3)$ and $(2,3,6)$ have the same product
+%	but the words do not have the same frequencies.
+	If we choose $\Sigma = \P_{S}$, the primes of the arithmetical semigroup
+	$S$, then $W(\Sigma)^{\ab}$ is isomorphic to $S$ via the map $\pi$. Indeed, 
+	this statement is equivalent to unique factorization in~$S$. 
+%	Furthermore, specifying a function $a : \P_{S} \to \M$ simply means 
+%	specifying elements $a(p) \in \M$ for each $p \in \P_{S}$. The pullback flow 
+%	$\varphi$ restricted to $\P_{S}$ gives maps
+%	$\varphi_{p}(x) = a(p) \otimes x$. 
+%	They commute since $\M$ is abelian, and hence generate an $S$-flow 
+%	$\varphi_{s}(x) = a(s) \otimes x$ where $a$ is extended to a homomorphism 
+%	$S \to \M$ by requiring complete multiplicativity.
+	Hence this example is also universal, in the sense that $W^{\ab}$ represents 
+	any arithmetical semigroup. Note however that the specific arithmetic 
+	information carried by $S$ is lost in this more abstract point of view, 
+	especially the enumeration and distribution data on primes contained in the 
+	norm or degree functions, which is precisely the object of study in abstract 
+	analytic number theory.
+
+	\end{remark}
+	
+\end{example}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%:Bibliography
+\begin{thebibliography}{99}
+
+%\frenchspacing
+
+\bibitem{Ap}
+T.M. Apostol,
+\textit{Introduction to Analytic Number Theory},
+Springer-Verlag,
+1976.
+
+
+\bibitem{Baz}
+M. Bazant,
+\textrm{M\"obius, Chebyshev and Ces\`aro on series inversion}
+(course notes),
+\url{http://www-math.mit.edu/~bazant/teach/IAP99-mobius/mobius-1832.ps}
+
+
+\bibitem{Br}
+H. Breitenfellner,
+\textrm{A unified M\"obius inversion formula},
+\textit{C. R. Math. Rep. Acad. Sci. Canada}
+\textbf{13}
+(1991),
+39--42.
+
+
+\bibitem{CashEver}
+E.D. Cashwell and C.J. Everett,
+\textrm{The ring of number theoretic functions,}
+\textit{Pacific J. Math.}
+\textbf{9}
+(1959),
+975--985.
+
+
+\bibitem{Ces}
+E. Ces\`aro,
+\textrm{Sur l'inversion de certaines s\'eries,}
+\textit{Ann. Mat. Pura Appl. (2)}
+%\textit{Annali di Matematica Pura ed Applicata (2)} % "Matematiche" is a missprint
+\textbf{13}
+(1885),
+339--351.
+
+
+\bibitem{Ces2}
+E. Ces\`aro,
+\textrm{Fonctions \'enum\'eratrices,}
+\textit{Ann. Mat. Pura Appl. (2)}
+%\textit{Annali di Matematica Pura ed Applicata (2)} % "Matematiche" is a missprint
+\textbf{14}
+(1887),
+141--158.
+
+
+\bibitem{Ch}
+K. Chandrasekharan,
+\textit{Arithmetical Functions},
+Springer-Verlag,
+1970.
+
+
+\bibitem{Cheb}
+P.L. Chebyshev,
+\textrm{Note sur diff\'erentes s\'eries,}
+\textit{J. Math. Pures Appl. (1)}
+%\textit{Journal de Math\'ematiques Pures et Appliqu\'ees, S\'er. I,}
+\textbf{16}
+(1851),
+337--346.
+
+\bibitem{Chen}
+B. Chen,
+\textrm{Parametric M\"obius inversion formulas,}
+\textit{Discrete Math.} % \textit{Discrete Mathematics}
+\textbf{169}
+(1997),
+211--215.
+
+
+\bibitem{ChenShenDing}
+Z. Chen, Y. Shen, and J. Ding,
+\textrm{The M\"obius inversion and Fourier coefficients,}
+\textit{Appl. Math. Comput.}
+\textbf{117 (2-3)}
+(2001),
+161--176. 
+
+
+\bibitem{CiNaVa}
+\'O. Ciaurri, L.M. Navas, and J.L. Varona,
+\textrm{A transform involving Chebyshev polynomials and its inversion formula},
+\textit{J. Math. Anal. Appl.}
+\textbf{323}
+(2006),
+57--62.
+
+
+\bibitem{Gross}
+E. Grosswald,
+\textit{Representations of Integers As Sums of Squares,}
+Springer Verlag,
+1985.
+
+
+\bibitem{Ha-Wr}
+G.M. Hardy and E.M. Wright,
+\textit{An Introduction to the Theory of Numbers}, 5th ed.,
+Oxford University Press,
+1979.
+
+
+\bibitem{Kn}
+J. Knopfmacher,
+\textit{Abstract Analytic Number Theory,}
+North-Holland, 1975.
+Reprint: Dover, 1990.
+
+
+\bibitem{Li}
+Li Bo-zang,
+\textrm{A further generalization of the modified M\"obius inversion formula},
+\textit{Chinese Sci. Bull.}
+\textbf{37}
+(1992),
+1220--1223.
+
+
+\bibitem{Lu}
+C.-P. Lu,
+\textrm{On the unique factorization theorem in the ring of number theoretic functions,}
+\textit{Illinois J. Math.}
+\textbf{9}
+(1965),
+40--46.
+
+
+\bibitem{Mob}
+A.F. M\"obius,
+\textrm{\"Uber eine besondere art von umkehrung der reihen,}
+\textit{J. Reine Angew. Math.}
+%\textit{Journal f\"ur die Reine und Angewandte Mathematik}
+\textbf{9}
+(1832),
+105--123.
+
+
+\bibitem{Mos}
+L. Moser,
+\textrm{A theorem on quadratic residues,}
+\textit{Proc. Amer. Math. Soc.}
+\textbf{2}
+(1951),
+503--504.
+
+
+\bibitem{Nat}
+M.B. Nathanson,
+\textit{Elementary Methods in Number Theory},
+Springer,
+2000.
+
+
+\bibitem{Schr}
+M.R. Schroeder,
+\textrm{Number Theory in Science and Communication,}
+Springer-Verlag, 1986.
+
+
+\bibitem{Ren}
+S.Y. Ren,
+\textrm{New M\"obius inversion formulas},
+\textit{Phys. Lett. A}
+\textbf{164 (1)}
+(1992),
+1--5.
+
+
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

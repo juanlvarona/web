@@ -1,0 +1,844 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = IsoLatin
+%--------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                     %
+%     INTERVENCIONES SANITARIAS EFICIENTES EN LA EMPRESA RIOJANA:     % 
+%     LA VACUNACIÓN ANTIGRIPAL                                        %
+% por                                                                 %
+%     R. Pradas, F. Antoñanzas M. R. Lorente y J. L. Varona           %
+%                                                                     %
+% Comunicación presentada por el primer autor en el                   %
+%     II Foro Internacional de Economía Regional                      %
+%     «Foro Económico de La Rioja»,                                   %
+% celebrado en Logroño los días 9, 10 y 11 de mayo de 2006.           %                                                                    %                                                                     %
+% CELEBRADO EN:                                                       %
+% Riojaforum - Palacio de Congresos y Auditorio de La Rioja           %
+%                                                                     %
+% Escrito en LaTeX2e con varios paquetes                              %
+% (entre ellos, tikz para hacer los gráficos)                         %
+%                                                                     %
+% For problems with this file, write to                               %
+%    jvarona@dmc.unirioja.es                                          %
+%                                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[a4paper,twoside]{article}
+
+\addtolength{\textwidth}{2cm} % Hacer el texto (la mancha de papel) 2 cm más ancho
+\setlength{\hoffset}{-1cm} % Mover la mancha de papel 1 cm a la izquierda
+\addtolength{\textheight}{1cm} % Hacer el texto (la mancha de papel) 1 cm más alto
+\setlength{\voffset}{-0.5cm} % Mover la mancha de papel 0.5 cm hacia arriba
+
+
+\parskip = 3pt plus 1.5 pt minus 1pt
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+%% PROBLEMILLA: EL MECANISMO DE "\a" PARA PONER AUTOMÁTICAMENTE ESPACIOS 
+%% CADA TRES DÍGITOS NO FUNCIONA EN CONJUNCIÓN CON EL MECANISMO DE 
+%% SUSTITUIR "." POR "," DECIMAL DE spanish.
+%% ESTO ES, NO FUNCIONA $\a{123456.78}$ NI \a{$123456.78$}.
+%% ------ LA SOLUCIÓN ES USAR $\a{123456}.78$ ------
+
+
+\usepackage{amsmath} % Para usar \begin{cases} ... \end{cases}
+\usepackage{txfonts} % Esta letra (Times) es más estrecha y va bien con T1 y con \bm
+% Otra muy parecida, pero no funciona el \texteuro de textcomp:
+%\usepackage{mathptmx} % Esta letra (Times) es más estrecha y va bien con T1 y con \bm
+\usepackage{bm} % Letras matemáticas negritas (\S 8.8.2, p. 510, del LaTeX Companion, 2nd)
+
+% Otra opción posible para las letras:
+%\usepackage{fourier}
+
+\usepackage{textcomp} % Para \texteuro
+%\def\texteuro{Euro}
+
+\usepackage{soul} % Subrayado que se corta entre líneas (comando \ul)
+
+\usepackage{fancyhdr} % Cabecera un una línea debajo 
+
+%\usepackage{hyperref} % Sólo se usa \url 
+\usepackage{url}
+
+
+\usepackage{multirow} % Permite que una entrada de una tabla
+% ocupe varias columnas. Véase la sección 5.7.1 (p. 273)
+% del LaTeX Comanion, 2nd ed.
+\renewcommand\multirowsetup{\centering}
+
+\usepackage{dcolumn} % Permite que las columnas de número de tablas
+% estén alineadas en el "punto decimal". Véase la sección 5.7.2 (p. 274)
+% del LaTeX Companion, 2nd ed.
+\newcolumntype{.}{D{.}{,}{2}}
+
+% Para poner color en las "table", pero prefiero dejarlas sin colores:
+% \usepackage{colortbl} % Color en las "table"
+
+\def\textsubscriptbm#1{\ensuremath{_{\bm{#1}}}} %%%% QUEDA RAZONABLEMENTE BIEN
+
+
+%\usepackage{graphicx}
+\usepackage{tikz}
+\addto\shorthandsspanish{\spanishdeactivate{<>}} % <= Si no, conflicto con tikz/pgf
+
+%-----------------------------------------------
+% "Shapes" para tikz definidos a partir del ejemplo de la p. 272 
+%  del manual de Tikz 1.10 (al final de la sección 39.5.3)
+\makeatletter
+\pgfdeclareshape{curvedrectangle}{ 
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle 
+  \inheritanchorborder[from=rectangle] 
+  \inheritanchor[from=rectangle]{center} 
+  \inheritanchor[from=rectangle]{north} 
+  \inheritanchor[from=rectangle]{south} 
+  \inheritanchor[from=rectangle]{west} 
+  \inheritanchor[from=rectangle]{east} 
+  % ... and possibly more 
+  \backgroundpath{% this is new 
+    % store lower right in xa/ya and upper right in xb/yb 
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y % (abajo,izquierda)
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y % (arriba,derecha)
+    % computar la longitud y la anchura del rectángulo: 
+    \pgf@xc=\pgf@xb \advance\pgf@xc by-\pgf@xa % longitud del rectángulo 
+    \pgf@yc=\pgf@yb \advance\pgf@yc by-\pgf@ya % altura del rectángulo 
+    % construct main path 
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}} 
+    % Línea curvada de abajo:
+    \pgfpathsine{\pgfpoint{0.25\pgf@xc}{-0.12\pgf@yc}} % El 0.12 debería ser un parámetro
+    \pgfpathcosine{\pgfpoint{0.25\pgf@xc}{0.12\pgf@yc}}
+    \pgfpathsine{\pgfpoint{0.25\pgf@xc}{0.12\pgf@yc}}
+    \pgfpathcosine{\pgfpoint{0.25\pgf@xc}{-0.12\pgf@yc}} 
+    % Lado derecho:
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}} 
+    % Línea curvada de arriba (recorrida hacia atrás):
+    \pgfpathsine{\pgfpoint{-0.25\pgf@xc}{0.12\pgf@yc}} 
+    \pgfpathcosine{\pgfpoint{-0.25\pgf@xc}{-0.12\pgf@yc}} 
+    \pgfpathsine{\pgfpoint{-0.25\pgf@xc}{-0.12\pgf@yc}} 
+    \pgfpathcosine{\pgfpoint{-0.25\pgf@xc}{0.12\pgf@yc}}
+    % Cerrar el rectánculo curvado (lado izquierdo):
+    \pgfpathclose 
+  } 
+}
+%---------%
+\pgfdeclareshape{longtriangle}{ 
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle 
+  \inheritanchorborder[from=rectangle] 
+  \inheritanchor[from=rectangle]{center} 
+  \inheritanchor[from=rectangle]{north} 
+  \inheritanchor[from=rectangle]{south} 
+  \inheritanchor[from=rectangle]{west} 
+  \inheritanchor[from=rectangle]{east} 
+  % ... and possibly more 
+  \backgroundpath{% this is new 
+    % store lower right in xa/ya and upper right in xb/yb 
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y % (abajo,izquierda)
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y % (arriba,derecha)
+    % computar la longitud y la anchura del rectángulo:
+    \@tempdima=\pgf@xb \advance\@tempdima by-\pgf@xa % longitud del rectángulo 
+    \@tempdimb=\pgf@yb \advance\@tempdimb by-\pgf@ya % altura del rectángulo 
+    % computar la longitud y la anchura del rectángulo: 
+    \pgf@xc=\pgf@xa \advance\pgf@xc by -0.9\@tempdima % Nuevo punto de la izquierda -> En "c"
+    \pgf@yc=\pgf@ya \advance\pgf@yc by 0.5\@tempdimb  % ...
+    \pgf@xa=\pgf@xb                                   % Nuevo (abajo,derecha) -> En "a" 
+    \advance\pgf@ya by -0.2\@tempdimb % ...
+    \advance\pgf@yb by 0.2\@tempdimb                  % Nuevo (arriba,derecha) -> En "b"
+    % construct main path 
+    \pgfpathmoveto{\pgfpoint{\pgf@xc}{\pgf@yc}} 
+    \pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@ya}} 
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}} 
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}} 
+    % Cerrar el triángulo:
+    \pgfpathclose 
+  } 
+  \anchor{west} % Esta parte no la entiendo, pero funciona para lograr
+    %%   que las líneas anclen bien en las esquinas que tenen que anclar.
+  {
+    % store lower right in xa/ya and upper right in xb/yb 
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y % (abajo,izquierda)
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y % (arriba,derecha)
+    % Computar la longitud y la anchura del rectángulo:
+    \@tempdima=\pgf@xb \advance\@tempdima by-\pgf@xa % longitud del rectángulo 
+    \@tempdimb=\pgf@yb \advance\@tempdimb by-\pgf@ya % altura del rectángulo 
+    % Modificar el lugar de anclaje:
+    \advance\pgf@x by -1.9\@tempdima
+    \advance\pgf@y by -0.5\@tempdimb
+  }
+}
+\makeatother
+%-----------------------------------------------
+
+
+
+
+%-----------------------------------------------
+% Solución de Enrique Melendez Asensio <ema@csn.es>
+% para conseguir que los números muy grandes se separen
+% automáticamente de 3 en 3 cifras con un espacio
+% pequeñito (como \,). Se usa \a{12345678901234567890}.
+% UN MÉTODO ALTERNATIVO ES USAR EL PAQUETE fancynum.
+\makeatletter
+\def\a#1{\def\@b{}\def\@num{}\@a#1!\expandafter\@unidad\@b!\@num}
+\def\@a#1#2!{\edef\@k{#2}\edef\@b{#1\@b}\ifx\@k\@empty\else\@a#2!\fi}
+\def\@unidad#1#2!{%
+   \def\@u{#1}%
+   \edef\@k{#2}%
+   \ifx\@num\@empty\edef\@num{\@u}\else\edef\@num{\@u\protect\,\@num}\fi%
+   \ifx\@k\@empty%
+   \else%
+       \@decena#2!%
+   \fi%
+}
+\def\@decena#1#2!{%
+   \edef\@num{#1\@num}%
+   \edef\@k{#2}%
+   \ifx\@k\@empty\else\@centena#2!\fi}%
+\def\@centena#1#2!{%
+    \edef\@num{#1\@num}%
+    \edef\@k{#2}%
+    \ifx\@k\@empty\else\@unidad#2!\fi}
+\makeatother
+%% NO SE POR QUÉ, TENGO QUE PONERLO DESPUÉS DEL \begin{document} SI USO SPANISH
+%-----------------------------------------------
+                                                                                                   
+
+
+\title{\large \bfseries INTERVENCIONES SANITARIAS EFICIENTES\\ EN LA EMPRESA RIOJANA:\\ 
+LA VACUNACIÓN ANTIGRIPAL\thanks{Comunicación presentada por el primer autor en 
+el \textsf{II~Foro Internacional de Economía Regional «Foro Económico de La Rioja»}, celebrado en Logroño los días~9, 10 y~11 de mayo de 2006.}}
+%% http://www.foroeconomico.info/
+
+% Por si no queremos usar el paquete "fancyhdr"
+\pagestyle{headings}
+\markboth{\sffamily {\footnotesize Roberto Pradas, Fernando Antoñanzas, 
+M.\textsuperscript{a} Reyes Lorente, Juan Luis Varona}\hfil}%
+{\hfil\sffamily {\footnotesize INTERVENCIONES 
+SANITARIAS EFICIENTES EN LA EMPRESA RIOJANA: LA VACUNACIÓN ANTIGRIPAL}}
+
+% Con el paquete "fancyhdr"
+\pagestyle{fancy} % Cabecera un una línea debajo
+\fancyhf{} % clear header and foots fields
+\fancyhead[CE]{\sffamily {\footnotesize Roberto Pradas, Fernando Antoñanzas, 
+M.\textsuperscript{a} Reyes Lorente, Juan Luis Varona}}
+\fancyhead[CO]{\sffamily {\footnotesize INTERVENCIONES 
+SANITARIAS EFICIENTES EN LA EMPRESA RIOJANA: LA VACUNACIÓN ANTIGRIPAL}}
+\fancyhead[RO,LE]{\sffamily {\footnotesize\thepage}}
+\fancyfoot[C]{\sffamily {\footnotesize II~FORO INTERNACIONAL DE ECONOMÍA REGIONAL, 
+MAYO DE 2006}}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\makeatletter
+%%% Esto que sigue estaba donde define \ps@plain en latex.ltx. 
+%%% Lo modifico, añadiendo \sffamily, para que ponga 
+%%% el número de página en letra "sansserif" y tamaño "footnotesize" 
+%%% en la primera página (que, automáticamente, usa \pagestyle{plain})
+\def\ps@plain{\let\@mkboth\@gobbletwo
+   \let\@oddhead\@empty\def\@oddfoot{\reset@font\hfil\footnotesize
+     \sffamily\thepage\hfil}\let\@evenhead\@empty\let\@evenfoot\@oddfoot}
+\makeatother
+
+
+\author{\normalsize
+Roberto Pradas$^{1,2}$, Fernando Antoñanzas$^{1}$, 
+M.\textsuperscript{a} Reyes Lorente$^{1}$, Juan Luis Varona$^{1}$\\
+\normalsize
+\textit{$^{1}$Universidad de La Rioja, $^{2}$Centro Sagrado Corazón}%
+}
+
+% Email: pradas.martinez@knet.es
+
+\date{4 de noviembre de 2006}
+\date{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------------------
+%% NO SE POR QUÉ, TENGO QUE PONERLO AQUÍ SI USO SPANISH
+\makeatletter
+\def\a#1{\def\@b{}\def\@num{}\@a#1!\expandafter\@unidad\@b!\@num}
+\def\@a#1#2!{\edef\@k{#2}\edef\@b{#1\@b}\ifx\@k\@empty\else\@a#2!\fi}
+\def\@unidad#1#2!{%
+   \def\@u{#1}%
+   \edef\@k{#2}%
+   \ifx\@num\@empty\edef\@num{\@u}\else\edef\@num{\@u\protect\,\@num}\fi%
+   \ifx\@k\@empty%
+   \else%
+       \@decena#2!%
+   \fi%
+}
+\def\@decena#1#2!{%
+   \edef\@num{#1\@num}%
+   \edef\@k{#2}%
+   \ifx\@k\@empty\else\@centena#2!\fi}%
+\def\@centena#1#2!{%
+    \edef\@num{#1\@num}%
+    \edef\@k{#2}%
+    \ifx\@k\@empty\else\@unidad#2!\fi}
+\makeatother
+%-----------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{RESUMEN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+ \textbf{Agradecimientos:} Esta investigación se ha realizado gracias 
+a una ayuda del Instituto de Estudios Riojanos.
+
+\medskip
+
+\noindent
+ \textbf{Palabras clave:} Evaluación económica, salud laboral, 
+efecto rebaño, productividad.
+
+\medskip
+
+\noindent
+ \textbf{Introducción:} Numerosos son los estudios que muestran 
+la efectividad de la vacunación antigripal (VA) para la prevención 
+de la gripe. Uno de los agentes económicos que más se puede 
+beneficiar de este hecho es la empresa. Sin embargo, en los estudios 
+realizados hasta el momento se desestima el efecto indirecto 
+que sobre las personas no vacunadas tiene esta intervención 
+y, por consiguiente, se omiten importantes resultados de carácter 
+epidémico y económico.
+
+\medskip
+
+\noindent
+ \textbf{Objetivo:} Desarrollar un modelo que permita valorar las 
+consecuencias epidemiológicas y económicas de la implantación 
+de un programa de VA en la población ocupada de la Comunidad 
+Autónoma de La Rioja (CAR).
+
+\medskip
+
+\noindent
+ \textbf{Material y método:} Diseño de un modelo matemático 
+capaz de replicar la evolución epidemiológica de la gripe 
+y las consecuencias de la VA. Aplicarlo a la cifra de población 
+ocupada en la CAR e integrar los resultados en otro modelo capaz 
+de medir la eficiencia empresarial de la medida.
+
+\medskip
+
+\noindent
+ \textbf{Resultados:} Vacunando al $20$\,\% de la población diana se 
+podrían evitar, aproximadamente, $\a{8069}$ casos de gripe. Esto 
+implicaría un ahorro para la empresa riojana (costes evitados) 
+de $\a{4045425}$\,\texteuro, derivado de los días improductivos 
+evitados (días de baja y días con menor productividad). 
+La implantación de la medida sanitaria supondría un coste 
+que ascendería a $\a{380110}$\,\texteuro\ (dosis vacunal + administración), 
+lo cual significa un índice de retorno de $10.64$\,\texteuro\ por 
+cada euro invertido en el programa de vacunación.
+
+\medskip
+
+\noindent
+ \textbf{Conclusiones:} La VA de la población ocupada en la CAR 
+puede resultar eficiente y contribuir a la mejora de la productividad 
+y rentabilidad de la empresa riojana.
+
+\newpage %% ALTERNATIVA MENOS FUERTE: \pagebreak[3]
+%\pagebreak[3] %% CONSEJO MUY FUERTE PARA CORTAR PÁGINA AQUÍ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Introducción}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+La efectividad (efecto epidemiológico) y la eficiencia (efecto 
+económico) de la vacunación antigripal de trabajadores sanos 
+ha sido estudiada por diversos autores a nivel internacional 
+(Nichol, 1995, 2001 y 2003; Nichol \textit{et al.}, 2003; Campbell 
+y Rumley, 1997; Kumpulainem y Makela, 1997; Burckel, 1999; Bridges \textit{et 
+al.}, 2000; Wood \textit{et al.}, 2000; Colombo \textit{et al.,} 2001; Das 
+Gupta y Guest, 2002; Akazawa \textit{et al.}, 2003); también podemos 
+encontrar estudios de este tipo en España (Pradas \textit{et al.}, 
+2004 y 2005; Pradas y Antoñanzas, 2005). Sin embargo, salvo 
+en el trabajo de Pradas y Antoñanzas (2005), en ninguno de 
+ellos se ha estimado el efecto indirecto que sobre las personas 
+no vacunadas tiene esta intervención y, por consiguiente, omiten 
+importantes resultados de carácter epidémico y económico.
+
+La mayor parte de los trabajos analizados apuntan a la vacunación 
+antigripal de trabajadores sanos como una medida eficiente, es 
+decir, que los ahorros derivados de la intervención superan 
+a los costes soportados. Uno de los agentes económicos que 
+más se puede beneficiar de este hecho es la empresa. La finalidad 
+de este trabajo es doble: facilitar un instrumento de información 
+para la adopción de decisiones acerca de la inmunización 
+antigripal en el medio laboral; y justificar el interés que 
+la empresa puede tener en la implantación de la vacunación 
+antigripal en el medio laboral. Para ello, nos hemos propuesto 
+los siguientes objetivos: 
+
+\begin{itemize}
+\item[\textbf{\textit{1)}}]
+Estimar las repercusiones epidemiológicas de la vacunación 
+antigripal en el medio laboral, empleando un modelo matemático 
+dinámico que recoja las interacciones entre los individuos 
+enfermos y los que pueden llegar a ser contagiados.
+
+\item[\textbf{\textit{2)}}]
+Diseñar un modelo económico que permita valorar la eficiencia 
+de la implantación de un programa de vacunación antigripal 
+sobre la población ocupada de la Comunidad Autónoma de La 
+Rioja (CAR).
+
+\item[\textbf{\textit{3)}}]
+Medir la efectividad y la eficiencia de la vacunación antigripal 
+para la empresa riojana.
+\end{itemize}
+
+\pagebreak[3] %% CONSEJO MUY FUERTE PARA CORTAR PÁGINA AQUÍ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Material y método}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Si queremos tratar el desarrollo epidemiológico de la gripe 
+con un modelo matemático, tenemos que considerar su desarrollo 
+epidemiológico según el patrón 
+\ul{\textbf{\textit{Susceptible -- Infectivo -- Resistente (SIR)}}}.
+Según este patrón, el individuo presenta resistencia 
+frente a un agente infeccioso determinado al recuperarse de la 
+enfermedad o al quedar inmunizado por un programa de inmunización; 
+esto es lo que ocurre cada temporada gripal (Gestal, 1994). Matemáticamente 
+podemos modelar este desarrollo epidemiológico; para ello hemos 
+empleando el siguiente sistema no lineal de ecuaciones diferenciales 
+ordinarias:
+$$
+  \begin{cases}
+  S'(t) = -\beta \cdot I(t) \cdot S(t), &\null \\
+  I'(t) = \beta \cdot I(t) \cdot S(t) - \gamma \cdot I(t), 
+    & \qquad\quad\mbox{siendo \ $N = S(t) + I(t) + R(t)$,} \\
+  R'(t) = \gamma \cdot I(t), &\null
+  \end{cases}
+$$
+donde: $\bm{t}$ es el momento de tiempo, medido en semanas; $\bm{N}$, 
+el tamaño de la población considerada; $\bm{S(t)}$, $\bm{I(t)}$ 
+y $\bm{R(t)}$, el número de susceptibles, infectivos y resistentes 
+en cada instante de tiempo $\bm{t}$, respectivamente; $\bm{\beta}$, 
+el coeficiente de transmisión; y $\bm{\gamma}$,
+el coeficiente de retiro natural, es decir, es un indicador del 
+ritmo con que los individuos contagiados dejan de ser infectivos. 
+Las derivadas respecto a $\bm{t}$ de primer orden $\bm{S'(t)}$, 
+$\bm{I'(t)}$ y $\bm{R'(t)}$ indican las tasas de variación instantánea 
+en el tiempo de las variables asociadas a los colectivos considerados 
+(susceptibles, infectivos y resistentes).
+
+Este sistema lo idearon Kermack y McKendrick (1927). Después 
+de un tiempo en el olvido, Anderson y May, desde la década 
+de los setenta del siglo pasado comenzaron a emplearlo de forma 
+regular y a adaptarlo a varias enfermedades infecciosas; en 1999 
+también lo propusieron para el estudio de la gripe. De hecho, 
+este método ha sido retomado en diversos estudios de carácter 
+epidemiológico (Hethcote, 2000; Thieme y Yang, 2002; Lavenu 
+\textit{et al.,} 2004; Boni \textit{et al.,} 2004), pero hasta el momento 
+no ha sido integrado en un modelo de evaluación económica 
+para el estudio de la gripe en España. Una vez estimados los 
+coeficientes del modelo $(\bm{\beta},\bm{\gamma})$ a partir de series temporales 
+españolas de varios años epidemiológicos, considerando 
+como población el número de personas ocupadas en la CAR el 
+primer trimestre de 2005 ~---según la Encuesta de Población 
+Activa~---; hemos recogido el efecto de la vacunación reduciendo 
+el número de susceptibles según el número de individuos 
+vacunados eficazmente, es decir, aquellos vacunados a los que 
+les ha hecho efecto la vacuna según la eficacia considerada. 
+Con la vacunación se consigue disminuir el número de contactos 
+entre susceptibles e infectivos y con ello el número de contagios. 
+
+\begin{figure}[!htb]
+\begin{center}
+\caption{IMPACTO DE LA VACUNACIÓN ANTIGRIPAL EN LA EMPRESA}
+\end{center}
+\par\medskip
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+  \begin{scope}[shape=longtriangle, inner sep=1.0ex, thick]
+  \tikzstyle{every node}=[draw, top color=white, bottom color=gray!70] % ,inner sep=1.0ex
+    \node (1) at (0,0) {1};
+    \node (2) at (0,-2) {2};
+    \node (3) at (0,-4) {3};
+    \node (4) at (0,-6) {4};
+    \node (5) at (0,-8) {5};
+    \node (6) at (0,-10) {6};
+    \node (7) at (0,-12) {7};;
+  \end{scope}
+  \begin{scope}
+  \tikzstyle{every node}=[ball color=white, draw, circle, inner sep=1.0ex, thick]
+    \node (C) at (-5,-3) {C};
+    \node (D) at (-5,-11) {D};
+  \end{scope}
+  \begin{scope}
+  \tikzstyle{every node}=[top color=white, bottom color=gray!70, draw, 
+    curvedrectangle, inner sep=1.5ex, thick]
+    \node (A) at (-10.5,-3) {A};
+    \node (B) at (-10.5,-9.5) {B};
+  \end{scope} 
+  \begin{scope} %  fill=gray!15
+  \tikzstyle{every node}=[top color=white, bottom color=gray!70, 
+      draw, rectangle, inner sep=1.5ex, very thick]
+    \node (decision) at (-15,-6.25) {DECISIÓN};
+  \end{scope}
+  \begin{scope}
+  \tikzstyle{every node}=[font=\scriptsize] % \footnotesize es demasiado grande
+    \node[below] (1down) at (-6.5,0) {$N_1 = S^V(51)$}; 
+    \node[above] (1up) at (-6.5,0) {Susceptibles sanos};
+    \node[below] (2down) at (-2.5,-2) {$N_2 = N_C \cdot a$}; 
+    \node[above] (2up) at (-2.5,-2) {Ausentes del trabajo};
+    \node[below] (3down) at (-2.5,-4) {$N_3 = N_C \cdot (1-a)$}; 
+    \node[above] (3up) at (-2.5,-4) {Presentes en el trabajo};
+    \node[below] (4down) at (-6.5,-6) {$N_4 = \overline{V}(51)$}; 
+    \node[above] (4up) at (-6.5,-6) {Susceptibles vacuados eficazmente};
+    \node[below] (5down) at (-6.5,-8) {$N_5 = S(51)$}; 
+    \node[above] (5up) at (-6.5,-8) {Susceptibles sanos};
+    \node[below] (6down) at (-2.5,-10) {$N_6 = N_D \cdot a$}; 
+    \node[above] (6up) at (-2.5,-10) {Ausentes del trabajo};
+    \node[below] (7down) at (-2.5,-12) {$N_7 = N_D \cdot (1-a)$}; 
+    \node[above] (7up) at (-2.5,-12) {Presentes en el trabajo};
+    \node[below] (Cdown) at (-7.8,-3) {$N_C = I^V(51) + R^V(51) - \overline{V}(51)$}; 
+    \node[above] (Cup) at (-7.8,-3) {Casos generados};
+    \node[below] (Ddown) at (-7.8,-11) {$N_D = I(51) + R(51)$}; 
+    \node[above] (Dup) at (-7.8,-11) {Casos generados};
+    \node[above] (Aup) at (-12.75,-3) {Efectuar vacunación};
+    \node[above] (Bup) at (-12.75,-9.5) {No efectuar vacunación};
+  \end{scope}
+  \draw (decision) |- (Aup.south) -- (A);
+  \draw (decision) |- (Bup.south) -- (B);
+  \draw (A) |- (1up.south) -- (1down.north) -- (1.west);
+  \draw (A) -- (Cup.south) -- (Cdown.north) -- (C);
+  \draw (A) |- (4up.south) -- (4down.north) -- (4.west);
+  \draw (B) |- (5up.south) -- (5down.north) -- (5.west);
+  \draw (B) |- (Dup.south) -- (Ddown.north) -- (D);
+  \draw (C) |- (2up.south) -- (2down.north) -- (2.west);
+  \draw (C) |- (3up.south) -- (3down.north) -- (3.west);
+  \draw (D) |- (6up.south) -- (6down.north) -- (6.west);
+  \draw (D) |- (7up.south) -- (7down.north) -- (7.west);
+\end{tikzpicture}
+\end{center}
+\noindent {\footnotesize\sffamily\itshape
+\hspace*{1cm}\textbf{LEYENDA:}\\
+\hspace*{1cm}$\bm{S^V(51)}$ = 
+  Número de susceptibles al final del año epidemiológico, efectuando la vacunación\\
+\hspace*{1cm}$\bm{S(51)}$ = 
+  Número de susceptibles al final del año epidemiológico, sin efectuar vacunación\\
+\hspace*{1cm}$\bm{I^V(51)}$ = 
+  Número de infectivos al final del año epidemiológico, efectuando la vacunación\\
+\hspace*{1cm}$\bm{I(51)}$ = 
+  Número de infectivos al final del año epidemiológico, sin efectuar la vacunación\\
+\hspace*{1cm}$\bm{R^V(51)}$ = 
+  Número de resitentes al final del año epidemiológico, efectuando la vacunación\\
+\hspace*{1cm}$\bm{R(51)}$ = 
+  Número de resitentes al final del año epidemiológico, sin efectuar la vacunación\\
+\hspace*{1cm}$\bm{\overline{V}(51)}$ = 
+  Número de vacunados efciazmente al final del año epidemiológico\\
+\hspace*{1cm}$\bm{a}$ = 
+  Índice de absentismo laboral asociado a la gripe, expresado en tanto por 1
+\par}
+\medskip
+\begin{center}
+Fuente: Elaboración propia.
+\end{center}
+\end{figure}
+
+
+El árbol de la figura~1, que se lee de izquierda a 
+derecha, está compuesto por vértices donde confluyen aristas 
+(ramas), y se consideran tres tipos de vértices: deterministas, 
+dinámicos y aleatorios. Los \textit{\ul{vértices deterministas}}, 
+representados con cuadrados o rectángulos, están asociados 
+a las decisiones alternativas que puede adoptar el decisor en 
+un momento concreto; los \textit{\ul{vértices dinámicos}}, representados 
+con rectángulos mixtilíneos ondulados, simbolizan al modelo 
+dinámico de transmisión (SIR) que reproducirá el efecto 
+epidémico de la decisión adoptada; y finalmente los \textit{\ul{vértices 
+aleatorios}}, representados con círculos, están asociados 
+a acontecimientos que escapan del control del decisor, por ello 
+las aristas que parten de éstos tienen asociadas probabilidades 
+(frecuencias relativas esperadas) estimadas mediante frecuencias 
+relativas observadas del índice del absentismo laboral asociado 
+a la patología~($a$). Las salidas del diagrama se representan 
+mediante triángulos, convenientemente numerados para su identificación, 
+serán las que tengamos en cuenta para el cálculo de los indicadores 
+que aparecen el cuadro~1.
+
+
+\begin{table}[!htb]
+\begin{center}
+\caption{RESUMEN DE PARÁMETROS Y RESULTADOS}
+\par\medskip
+\def\conbarra#1{\multicolumn{1}{|l|}{#1}}
+\begin{small}
+%\renewcommand\multirowsetup{\centering} % <- DEBERÍA FUNCIONAR, PERO NO LO HACE
+\begin{tabular}{cl|.|.|.}
+\hline
+%\multirow{2}{0mm}{} % <- NO HACE FALTA
+& \multirow{2}{50mm}{\hspace{1.3cm}\textbf{CONCEPTO}} & %% <- CENTRADO A MANO
+  \multicolumn{3}{c}{\textbf{VALORES EN CADA ESCENARIO}} \\
+\cline{3-5} 
+&&  \multicolumn{1}{c}{\textbf{Pesimista}} & 
+  \multicolumn{1}{|c|}{\textbf{Base}} & 
+  \multicolumn{1}{c}{\textbf{Optimista}} \\
+\hline
+\multirow{11}{0.9em}{\bfseries P A R Á M E T R O S}
+%%% CON LETRA OT1 PONER ESTO OTRO: {\bfseries P A R Á \null\hspace{0pt} M E T R O S}
+& \conbarra{Índice de cobertura vacunal (\textit{tanto por 1})} &
+  0.07 & 0.20 & 0.56 \\
+& \conbarra{Número de empleados diana} &
+  \a{134600} & \a{134600} & \a{134600} \\
+& \conbarra{Número de casos generados con vacunación} &
+  \a{1033} & \a{2820} & \a{6012} \\
+& \conbarra{Número de casos generados sin vacunación} &
+  \a{2692} & \a{10889} & \a{26920} \\
+& \conbarra{Índice de eficacia de la vacuna (\textit{tanto por 1})} &
+  0.40 & 0.67 & 0.90 \\
+& \conbarra{Índice de absentismo laboral  (\textit{tanto por 1})} &
+  0.57 & 0.84 & 0.95 \\
+& \conbarra{Duración de la baja (\textit{días})} &
+  \a{5} & \a{7} & \a{8} \\
+& \conbarra{Duración de la enfermedad (\textit{días})} &
+  7.00 & 10.50 & 14.00 \\
+& \conbarra{Coste laboral medio diario (\texteuro)} &
+  67 & 69 & 79 \\
+& \conbarra{Índice de reducción de la productividad (\textit{tanto por 1})} &
+  0.22 & 0.30 & 0.50 \\
+& \conbarra{Coste unitario por vacunación (\texteuro)} &
+  15.70 & 14.12 & 12.54 \\ %[0.3cm]
+\multicolumn{5}{c}{}\\ %% <- TRUCO PARA LOGRAR UNA VACÍA LÍNEA SIN RAYAS
+\multirow{15}{0.9em}{\bfseries R E S U L T A D O S}
+& \conbarra{Casos Evitados, \textbf{\textit{CE}}} &
+  \a{1659} & \a{8069} & \a{20908} \\
+& \conbarra{Días de Baja Evitados, \textbf{\textit{DBE}}} &
+  \a{4728} & \a{47446} & \a{158901} \\
+& \conbarra{Días de Readaptación Evitados, \textbf{\textit{DRE}}} &
+  \a{1891} & \a{23723} & \a{119176} \\
+& \conbarra{Días de Coexistenica Evitados, \textbf{\textit{DCE}}} &
+  \a{4994} & \a{13556} & \a{14636} \\
+& \conbarra{Días Improductivos Evitados, \textbf{\textit{DIE}}} &
+  \a{6243} & \a{58629} & \a{225806} \\
+& \conbarra{Coste ahorrado por DBE, \textbf{\textit{C\textsubscriptbm{B}}}} &
+  \a{316786} & \a{3273755} & \a{12553163} \\
+& \conbarra{Coste ahorrado por DRE, \textbf{\textit{C\textsubscriptbm{R}}}} &
+  \a{27877} & \a{491063} & \a{4707436} \\
+& \conbarra{Coste ahorrado por DCE, \textbf{\textit{C\textsubscriptbm{C}}}} &
+  \a{73606} & \a{280608} & \a{578106} \\
+& \conbarra{Ahorro Empresarial Bruto, \textbf{\textit{AEB}}} &
+  \a{418269} & \a{4045425} & \a{17838706} \\
+& \conbarra{Coste hipotético de vacuación, \textbf{\textit{C\textsubscriptbm{V}}}} &
+  \a{147925} & \a{380110} & \a{945215} \\
+& \conbarra{Ahorro Empresarial Neto, \textbf{\textit{AEN}}} &
+  \a{270343} & \a{3665315} & \a{16893491} \\
+& \conbarra{Ahorro Empresarial Neto por Vacunación, \textbf{\textit{AENV}}} &
+  28.69 & 136.16 & 224.12 \\
+& \conbarra{Ahorro Empresarial Neto por Caso Evitado, \textbf{\textit{AENC}}} &
+  162.96 & 454.25 & 807.99 \\
+& \conbarra{Índice Empresarial de Retorno, \textbf{\textit{IER}}} &
+  2.83 & 10.64 & 18.87 \\
+& \conbarra{Coste por DIE, \textbf{\textit{CDIE}}} &
+  23.70 & 6.48 & 4.19 \\
+\hline
+\end{tabular}
+\end{small}
+\par\medskip
+Fuente: Elaboración propia.
+\end{center}
+\end{table}
+
+
+%\newpage %% ALTERNATIVA MENOS FUERTE: \pagebreak[3]
+\pagebreak[3] %% CONSEJO MUY FUERTE PARA CORTAR PÁGINA AQUÍ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Resultados}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+El cuadro~1 es un resumen de los valores paramétricos 
+empleados en la implementación del modelo económico y de 
+los resultados obtenidos. En él se muestran tres combinaciones 
+de valores paramétricos a las que denominamos «escenarios». 
+Los valores adoptados por los parámetros son el resultado de 
+actualizar los publicados por Pradas \textit{et al.} (2004). La denominación 
+de cada escenario hace referencia a la relación existente entre 
+los valores que toman los parámetros y la eficiencia de la 
+vacunación; por ejemplo, reducir el valor de la incidencia 
+de la enfermedad es adoptar una visión «pesimista» 
+(desfavorable), ya que implica una reducción de la eficiencia 
+de la vacunación. Podemos comprobar que los índices de retorno 
+para el empresario son mayores que $1$ en los $3$ escenarios, es 
+decir, que los costes ahorrados con la intervención sanitaria, 
+materializados en días improductivos evitados, son superiores 
+a los soportados. Los resultados están en la línea de la 
+mayor parte de los trabajos realizados a nivel internacional.
+
+
+\pagebreak[3] %% CONSEJO MUY FUERTE PARA CORTAR PÁGINA AQUÍ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Conclusiones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Centrándonos en los resultados del supuesto base podemos concluir 
+que la vacunación de la población ocupada en la CAR puede 
+reducir los días improductivos asociados al absentismo laboral 
+por gripe y a la presencia de trabajadores enfermos con esta 
+misma enfermedad en su puesto de trabajo. Se evitarían $\a{8069}$ 
+casos de gripe como consecuencia de la protección directa de 
+los individuos vacunados eficazmente y de la indirecta asociada 
+a la disminución del número de posibilidades de contagio. 
+Para la empresa riojana, el impacto epidemiológico de la intervención 
+sanitaria supondría evitar $\a{58629}$ días improductivos que 
+se traducirían en un ahorro (coste laboral sin contraprestación) 
+de $\a{4045425}$\,\texteuro, que si lo dividimos entre el coste de 
+implantación de la vacunación ($\a{380110}$\,\texteuro) resulta 
+un índice de retorno de $10.64$\,\texteuro\ por euro invertido 
+en la intervención.
+
+
+%\newpage %% ALTERNATIVA MENOS FUERTE: \pagebreak[3]
+\pagebreak[3] %% CONSEJO MUY FUERTE PARA CORTAR PÁGINA AQUÍ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Bibliografía}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\bibitem{}
+\textsc{Akazawa, M.; Sindelar, J.L.; Paltiel, A.D.} (2003): «Economic 
+costs of influenza-related work absenteeism». \textit{Value 
+in Health: the journal of the International Society for Pharmacoeconomics 
+and Outcomes Research}, 6 (2): 107--15.
+
+%\bibitem{}
+\textsc{Anderson, R.M.; May, R.M.} (1999): \textit{Infectious Diseases of 
+Humans: Dynamics and Control}. New York (Estados Unidos): Oxford 
+University Press.
+
+%\bibitem{}
+\textsc{Boni, M.F.; Gog, J.R.; Andreasen, V.; Christiansen, F.B.} (2004): 
+«Influenza drift and epidemic size: the race between generating 
+and escaping immunity». \textit{Theoretical Population Biology}, 
+65: 179--91.
+
+%\bibitem{}
+\textsc{Bridges, C.B.; Thompson, W.W.; Meltzer, M.I.; Reeve, G.R.; Talamonti, 
+W.J.; Cox, N.J.; Lilac, H.A.; Hall, H.; Klimov, A.; Fukuda, K.} 
+(2000): «Effectiveness and cost-benefit of influenza vaccination 
+of healthy working adults: a randomized controlled trial». \textit{The 
+Journal of the American Medical Association}, 284 (13): 
+1655--63.
+
+%\bibitem{}
+\textsc{Burckel, E.; Ashraf, T.; Galvao De Sousa Filho, J.P.; Neto, E.F.; 
+Guarino, H.; Yauti, C.; De Barros Barreto, F.; Champion, L.} (1999): 
+«Economic impact of providing workplace influenza vaccination: 
+a model and cause study application at a Brazilian pharma-chemical 
+company». \textit{Pharmaco\-Economics}, 16 (5, part.~2): 563--76.
+
+%\bibitem{}
+\textsc{Campbell, D.S.; Rumley, M.H.} (1997): «Cost-effectiveness 
+of the influenza vaccine in a healthy, working-age population». \textit{Journal 
+of Occupational Environmental Medicine}, 39 (5): 408--14.
+
+%\bibitem{}
+\textsc{Colombo, G.L.; Nicosia, V.; Lesma, A.; Madera, A.; Caruggi, M.; 
+Serra, G.} (2001): «A cost-benefit analysis of anti-influenza 
+vaccination in a company in Italy (Snamprogetti)». \textit{Pharmaco\-Economics}, 
+3 (2): 71--80.
+
+%\bibitem{}
+\textsc{Das Gupta, R.; Guest, J.F.} (2002): «A Model to Estimate 
+the Cost Benefit of an Occupational Vaccination Programme for 
+Influenza with Influvac\textsuperscript{\textregistered} in the UK». 
+\textit{Pharmaco\-Economics}, 
+20 (7): 475--84.
+
+%\bibitem{}
+\textsc{Gestal, J.J.} (1994): «Infecciones Respiratorias Agudas. Gripe». 
+En: Piédrola G.; Del Rey, J.; Domínguez, M.; Cortina, P.; 
+Gálvez, R.; Sierra, A. \textit{et al.} \textit{Medicina preventiva y 
+salud pública}, 9.\textsuperscript{a}~edición. Barcelona: Ediciones Científicas 
+y Técnicas, S.A.; 491--516.
+
+%\bibitem{}
+\textsc{Hethcote, H.W.} (2000): «The mathematics of Infectious 
+Diseases». \textit{Society for Industrial and Applied Mathematics 
+Review}, 42 (4): 599--653. \url{http://www.catunesco.upc.es/ads/contagio.doc}.
+
+%\bibitem{}
+\textsc{Kermack W.O.; McKendrick, A.G.} (1927): «A contribution 
+to the mathematical theory of epidemics». \textit{Proceedings 
+of the Royal Society of London}, 115 (A): 700--21. Posteriormente, 
+reimpreso en: \textit{Bulletin of Mathematical Biology}. 1991; 53 (1-2): 33--55.
+
+%\bibitem{}
+\textsc{Kumpulainen, V.; Makela, M.} (1997): «Influenza vaccination 
+among healthy employees: a cost-benefit analysis». \textit{Scandinavian 
+Journal of Infectious Diseases}, 29 (2): 181--85.
+
+%\bibitem{}
+\textsc{Lavenu, A.; Valleron, A.J.; Carrat, F.} (2004): «Exploring 
+cross-protection between influenza strains by an epidemiological 
+model». \textit{Virus Research}, 103 (1-2): 101--5.
+
+%\bibitem{}
+\textsc{Nichol, K.L.} (2001): «Cost-Benefit Analysis of a Strategy 
+to Vaccinate Healthy Working Adults Against Influenza». \textit{Archives 
+of Internal Medicine}, 161 (5): 749--59.
+
+%\bibitem{}
+\textsc{Nichol, K.L.} (2003): «Cost effectiveness of influenza 
+vaccination in healthy adults: the case for routine immunization 
+of working populations». \textit{Vacunas. Investigación 
+y práctica}, 4 (supl.~1): 42--53.
+
+%\bibitem{}
+\textsc{Nichol, K.L.; Lind, A.; Margolis, K.L.; Murdoch, M.; McFadden, 
+R.; Hauge, M.; Magnan, S.; Drake, M.} (1995): «The effectiveness 
+of vaccination against influenza in healthy, working adults». 
+\textit{The New England Journal of Medicine}, 333 (14): 889--93.
+
+%\bibitem{}
+\textsc{Pradas, R.; Antoñanzas, F.} (2005): «Modelos para las 
+evaluaciones económicas de medidas profilácticas: lo que 
+nos perdemos al omitir los contagios». XXV Jornadas de 
+Economía de la Salud [CD-ROM]. Barcelona: Asociación de 
+Economía de la Salud.
+
+%\bibitem{}
+\textsc{Pradas, R.; Antoñanzas, F.; Zoellner, Y.} (2004): «Evaluación 
+económica de la vacunación antigripal por los servicios médicos 
+de empresa». \textit{Revista Española de Economía de la 
+Salud}, 3 (4): 227--233.
+
+%\bibitem{}
+\textsc{Pradas, R.; Antoñanzas, F; Zoellner, Y.} (2005): «Evaluación 
+económica de la vacunación antigripal por los servicios médicos 
+de empresa: una perspectiva sanitaria». \textit{Pharmaco\-Economics 
+- Spanish Research Articles}, 2 (2): 55--63.
+
+%\bibitem{}
+\textsc{Thieme, H.R.; Yang, J.} (2002): «An endemic model with 
+variable re-infection rate and applications to influenza». \textit{Mathematical 
+Biosciences}, 180: 207--35.
+
+%\bibitem{}
+\textsc{Wood, S.C.; Nguyen, V. H.; Schmidt, C.} (2000): «Economic 
+evaluations of influenza vaccination in healthy working-age adults. Employer 
+and society perspective». \textit{Pharmaco\-Economics}, 18 (2): 
+173--83.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

@@ -1,0 +1,666 @@
+%&pdftex
+
+\def\proof{{\it Proof.} }
+\font\msym=msbm10
+\def\R{\hbox{\msym R}}
+\def\N{\hbox{\msym N}}
+%\def\R{\hbox{\bf R}}
+%\def\N{\hbox{\bf N}}
+\magnification=1200
+\outer\def\art #1;#2;#3;#4;#5;#6;#7\par{\item {\bf [#1]} {\rm #2,{\it
+#3},#4{\bf #5} (#6),#7}}
+
+\centerline{\bf ASYMPTOTIC BEHAVIOUR OF ORTHOGONAL POLYNOMIALS}
+\centerline{\bf RELATIVE TO MEASURES WITH MASS POINTS}
+
+\bigskip
+
+\centerline{Jos\'e J. Guadalupe
+   \footnote{$^1$}{Dpto. de Matem\'aticas. Universidad de Zaragoza. 50009
+             Zaragoza. Spain.},
+Mario P\'erez $^1$,  Francisco J. Ruiz $^1$ and  Juan L. Varona
+   \footnote{$^2$}{Dpto. de Matem\'atica Aplicada. Colegio Universitario de La
+Rioja. 26001 Logro\~no. Spain.}}
+\footnote{}{A.M.S. Classification: 42C05, 42C10.}
+\footnote{}{The authors were partially supported by CAICYT, PB85--0338}
+\bigskip
+
+\footnote{}{AN UPDATED VERSION OF THIS MANUSCRIPT WERE PUBLISHED IN:
+Mathematika {\bf 40} (1993), 331--344.}
+
+{\narrower\narrower{\bf Abstract. }{\sl General expressions are found for the
+orthonormal polynomials and the kernels relative to measures on the real line of
+the form $d\mu+M\delta_c$, in terms of those of the measures $d\mu$ and
+$(x-c)^2d\mu$. In particular, these relations allow to obtain several bounds for
+the polynomials and kernels relative to a generalized Jacobi weight with a
+finite number of mass points.}\smallskip}
+
+\beginsection \S 0. Introduction.
+
+Let $\mu$ be a positive measure on $\R$ with infinitely many points of increase
+and such that all the moments
+$$
+   \int_{\R} x^nd\mu \qquad (n = 0,1,\dots)
+$$
+exist. Then, there exists a unique sequence $\{P_n\}_{n \geq 0}$ of orthogonal
+polynomials
+$$
+   P_n(x) = k_n x^n + \dots, \qquad k_n>0
+$$
+such that
+$$
+   \int_{\R} P_n P_m d\mu = \cases{0,&if $n \not= m$; \cr 1, &if $n=m$.}
+$$
+
+As usual, $\{K_n(x,y)\}_{n \geq 0}$ denotes the sequence of kernels associated
+to $\mu$, that is,
+$$
+   K_n(x,y) = \sum_{j=0}^n P_j(x) P_j(y).
+$$
+
+An interesting problem in the theory of orthogonal polynomials is that of
+finding asymptotic estimates for $\{P_n\}$, their leading coefficients
+$\{k_n\}$, the sequence $\{K_n(x,x)\}$ $(x \in {\rm supp }\mu)$, etc. (see, for
+example, [8] and [4] for Jacobi polynomials, [2] and [6] for generalized Jacobi
+polynomials, [1] and [5] for Laguerre and Hermite; general results can be
+found in [7], [6], etc.).
+
+Let $M$ be a positive constant and let $\delta_c$ denote a Dirac measure on a
+point $c \in \R$, that is,
+$$
+   \int_{\R} f \delta_c = f(c)
+$$
+for every function $f$. Then, associated to the measure $d\nu = d\mu + M
+\delta_c$ there exists a sequence $\{Q_n\}_{n \geq 0}$ of orthogonal
+polynomials. We are interested in finding expressions which relate the sequences
+$\{Q_n\}$ and $\{P_n\}$ in order to deduce estimates for $\{Q_n\}$ whenever
+they are known for $\{P_n\}$. We will prove some relations which also involve
+the polynomials orthonormal with respect to the measure $(x-c)^2d\mu(x)$. The
+following notation will be used from now on:
+$$
+   d\mu^c = (x-c)^2d\mu(x);
+$$
+
+$\{P_n^c\}$ is the sequence of orthonormal polynomials relative to $d\mu^c$;
+$$
+   P_n^c(x) = k_n^c x^n + \dots, \qquad k_n^c > 0;
+$$
+
+$\{K_n^c(x,y)\}$ is the sequence of kernels relative to $d\mu^c$.
+
+\beginsection \S 1. General results.
+
+The following lemma gives a first relation among the sequences $\{K_n\}$,
+$\{P_n\}$ and $\{P_n^c\}$:
+
+\proclaim {Lemma 1}. With the above notation,
+$$
+   K_n(x,c) = {k_n \over {k_n^c}} P_n(c) P_n^c(x) - {k_{n-1}^c \over {k_{n+1}}}
+   P_{n+1}(c) P_{n-1}^c (x) \qquad \forall n \geq 1.
+$$
+
+\proof We can put
+$$
+   K_n(x,c) = \sum_{j=0}^n \alpha_j P_j^c(x),
+$$
+with
+$$
+   \alpha_j = \int_{\R} K_n(x,c) P_j^c(x) (x-c)^2 d\mu(x).
+$$
+Therefore, we only need to show that
+
+\centerline {a) $\alpha_n = {k_n \over k_n^c} P_n(c)$;\qquad\quad
+             b) $\alpha_{n-1}=-{k_{n-1}^c \over k_{n+1}} P_{n+1}(c)$;\qquad\quad
+             c) $\alpha_j=0$, $j=0,1,\dots,n-2$.}
+
+Part a) can be obtained by a direct observation of the leading coefficients. As
+to c), it is an easy consequence of a well-known property of the kernels $K_n$:
+if $R_n$ is a polynomial of degree at most $n$, then
+$$
+   \int_{\R} K_n(x,c) R_n(x) d\mu(x) = R_n(c).
+$$
+In order to prove equation b), we use Christoffel-Darboux formula (see [8], for
+example) and the orthonormality of $\{P_n\}$ with respect to $d\mu$:
+$$ \eqalign{
+   \alpha_{n-1} &= \int_{\R} K_n(x,c) P_{n-1}^c(x) (x-c)^2 d\mu(x) =
+   \int_{\R} [K_n(x,c) (x-c)] [P_{n-1}^c(x) (x-c)] d\mu(x)
+   \cr
+   &= \int_{\R} {k_n \over k_{n+1}} [P_n(c)P_{n+1}(x) - P_{n+1}(c)P_n(x)]
+   [P_{n-1}^c(x) (x-c)] d\mu(x)
+   \cr
+   &= -{k_n \over k_{n+1}}P_{n+1}(c) \int_{\R} P_n(x)[P_{n-1}^c(x) (x-c)] d\mu(x)
+   = - {k_{n-1}^c \over k_{n+1}} P_{n+1}(c),
+   \cr}
+$$
+and the lemma is proved.
+
+\medskip
+
+In order to find bounds for the orthogonal polynomials and the kernels, it is
+important to know the size of the coefficients which appear in the formulae we
+are going to deal with. Frequently, we will restrict ourselves to the case of
+measures of compact support and absolutely continuous part almost everywhere
+positive.
+
+\proclaim {Lemma 2}. Assume ${\rm supp\ } d\mu = [-1,1]$, $\mu ' > 0$ a.e..
+Let $c \in [-1,1]$. Then
+$$
+   \lim_{n \to \infty} {k_n \over k_n^c} = {1 \over 2},
+   \qquad \qquad
+   \lim_{n \to \infty} {k_{n-1}^c \over k_{n+1}} = {1 \over 2},
+   \qquad \qquad
+   \lim_{n \to \infty} {k_n \over k_{n-1}^c} = 1.
+$$
+
+\proof The first limit is a consequence of a result of M\'at\'e, Nevai and
+Totik (see [3], theorem 11), from which it follows
+$$
+   \lim_{n \to \infty} {k_n \over k_n^c}
+   = \exp (-{1 \over 4\pi}\int_0^{2\pi} \log(\cos t - a)^2 dt).
+$$
+It is not difficult to see that the integral equals $-4\pi \log 2$, $\forall a
+\in [-1,1]$.
+
+The other limits can be obtained from the first one, since from our hypothesis
+it follows
+$$
+   \lim_{n \to \infty} {k_n \over k_{n+1}} = {1 \over 2}
+$$
+(see [7], pag.~212 or [3], theorem 10). The lemma is proved.
+
+\proclaim {Lemma 3}. Let $d\mu$ be a measure on $\R$ and $n \geq 1$. With the
+above notation,
+$$
+   \int_{\R} P_{n-1}^c(x) (x-c) d\mu(x) =
+   - {k_{n-1}^c \over k_n} {P_n(c) \over K_{n-1}(c,c)}
+$$
+
+\proof We can write
+$$
+   P_{n-1}^c(x) (x-c) = \sum_{j=0}^n \alpha_j P_j(x).
+$$
+By a direct observation of leading coefficients, $\alpha_n = {k_{n-1}^c \over
+k_n}$. If $j=1,2,\dots,n-1$, the orthonormality properties of $\{P_n\}$ and
+$\{P_n^c\}$ yield
+$$ \eqalign{
+   \alpha_j &= \int_{\R} P_{n-1}^c(x) (x-c) P_j(x) d\mu(x)
+   \cr
+   &= \int_{\R} P_{n-1}^c(x) {P_j(x)-P_j(c) \over x-c} (x-c)^2 d\mu(x)
+   + \int_{\R} P_{n-1}^c(x) P_j(c) (x-c) d\mu(x)
+   \cr
+   &= P_j(c) \int_{\R} P_{n-1}^c(x) (x-c) d\mu(x).
+   \cr}
+$$
+For $\alpha_0$ we obtain the same expression, because $P_0(x)$ is a constant:
+$$
+   \alpha_0 = \int_{\R} P_{n-1}^c(x) (x-c) P_0(x) d\mu(x)
+   = P_0(c) \int_{\R} P_{n-1}^c(x) (x-c) d\mu(x).
+$$
+Therefore
+$$ \eqalign{
+   P_{n-1}^c(x) (x-c) &= {k_{n-1}^c \over k_n} P_n(x)
+   + \sum_{j=0}^{n-1} P_j(c) [\int_{\R} P_{n-1}^c(u) (u-c) d\mu(u)] P_j(x)
+   \cr
+   &= {k_{n-1}^c \over k_n} P_n(x)
+   + K_{n-1}(x,c) \int_{\R} P_{n-1}^c(u) (u-c) d\mu(u).
+   \cr}
+$$
+The lemma follows immediately taking $x=c$ in this equality.
+
+\medskip
+
+We can now obtain an expression for the polynomials orthonormal with respect to
+the measure $d\mu + M \delta_c$ in terms of the polynomials $\{P_n\}$ and
+$\{P_n^c\}$.
+
+\proclaim {Proposition 4}. Let $d\mu$ be a measure on $\R$, $c \in \R$, $M>0$.
+Let $\{Q_n\}_{n\geq 0}$ be the polynomials orthonormal with respect to $d\mu + M
+\delta_c$. Then, for each $n \in \N$ there exist two constants $A_n, B_n \in
+(0,1)$ such that
+$$
+   Q_n(x) = A_n P_n(x) + B_n (x-c) P_{n-1}^c(x) \eqno (1)
+$$
+Furthermore, if ${\rm supp\ }d\mu = [-1,1]$, $\mu ' > 0$ a.e. and $c \in
+[-1,1]$, then
+$$
+   \lim_{n \to \infty} A_n K_{n-1}(c,c) = {1 \over \lambda(c)+M}
+$$
+and
+$$
+   \lim_{n \to \infty} B_n = {M \over \lambda(c)+M},
+$$
+where
+$$
+   \lambda(c) = \lim_{n \to \infty} {1 \over K_n(c,c)}.
+$$
+
+\proof We will find firstly a constant $C_n$ such that $P_n(x) + C_n (x-c)
+P_{n-1}^c(x)$ is orthogonal to the polynomials of degree at most $n-1$ with
+respect to the measure $d\mu + M \delta_c$. We only need to obtain
+$$
+   \int_{\R} [P_n(x) + C_n (x-c) P_{n-1}^c(x)] (x-c)^j [d\mu(x) + M \delta_c(x)]
+   =0,\quad j=0,1,\dots,n-1. \eqno (2)
+$$
+Let $j \geq 1$. Then
+$$ \eqalign{
+   &\int_{\R} [P_n(x) + C_n (x-c) P_{n-1}^c(x)] (x-c)^j [d\mu(x) + M \delta_c(x)]
+   \cr
+   &= \int_{\R} [P_n(x) + C_n (x-c) P_{n-1}^c(x)] (x-c)^j d\mu(x)
+   \cr
+   &= \int_{\R} P_n(x) (x-c)^j d\mu(x)
+   + C_n \int_{\R} P_{n-1}^c(x) (x-c)^{j-1} d\mu^c(x) = 0.
+   \cr}
+$$
+Therefore, all we have to do is to find a constant $C_n$ for which $(2)$ is
+verified with $j=0$. In this case, we can calculate the integral in $(2)$:
+$$ \eqalign{
+   &\int_{\R} [P_n(x) + C_n (x-c) P_{n-1}^c(x)] [d\mu(x) + M \delta_c(x)]
+   \cr
+   &= M P_n(c) + \int_{\R} [P_n(x) + C_n (x-c) P_{n-1}^c(x)] d\mu(x)
+   \cr
+   &= M P_n(c) + C_n \int_{\R} (x-c) P_{n-1}^c(x) d\mu(x)
+   = P_n(c) [M - C_n {k_{n-1}^c \over k_n} {1 \over K_{n-1}(c,c)}],
+   \cr}
+$$
+according to lemma $3$. If we take
+$$
+   C_n = M {k_n \over k_{n-1}^c} K_{n-1}(c,c),
+$$
+then $P_n(x) + C_n (x-c) P_{n-1}^c(x)$ is orthogonal to every polynomial of
+degree at most $n-1$. As $C_n>0$, it is a polynomial of degree $n$ and leading
+coefficient positive. Thus, we will obtain the orthonormal polynomial $Q_n$ by
+dividing it by its $L^2(d\mu +M\delta_c)$--norm.
+$$ \eqalign{
+   &\Vert P_n(x) + C_n (x-c) P_{n-1}^c(x) \Vert ^2_{L^2(d\mu +M\delta_c)}
+   \cr
+   &= M P_n(c)^2 + \int_{\R} [P_n(x) + C_n (x-c) P_{n-1}^c(x)]^2 d\mu(x)
+   \cr
+   &= M P_n(c)^2 + \int_{\R} P_n(x)^2 d\mu(x)
+   + C_n^2 \int_{\R} P_{n-1}^c(x)^2 (x-c)^2 d\mu(x)
+   \cr
+   &\phantom{= M P_n(c)^2}\;+ 2 C_n \int_{\R} P_n(x) (x-c) P_{n-1}^c(x) d\mu(x)
+   \cr
+   &= M P_n(c)^2 + 1 + C_n^2 + 2 C_n {k_{n-1}^c \over k_n}.
+   \cr}
+$$
+If we denote
+$$
+   D_n = [M P_n(c)^2 + 1 + C_n^2 + 2 C_n {k_{n-1}^c \over k_n}]^{1/2},
+$$
+then we have
+$$
+   Q_n(x) = {1 \over D_n} P_n(x) + {C_n \over D_n} (x-c) P_{n-1}^c(x),
+$$
+that is, equation $(1)$ with $A_n = 1/D_n$ and $B_n = C_n/D_n$. From its
+definition, it is clear that $D_n > 1$ and $D_n > C_n$, so $A_n, B_n \in (0,1)$.
+
+For the second part, let us assume supp $d\mu = [-1,1]$, $\mu'>0$ a.e. and $c
+\in [-1,1]$. From the above definitions for $A_n$, $C_n$ and $D_n$, we have
+$$
+   {1 \over A_n K_{n-1}(c,c)}
+   = [M {P_n(c)^2 \over K_{n-1}(c,c)^2} +
+   {1 \over K_{n-1}(c,c)^2} + M^2 ({k_n \over k_{n-1}^c})^2 
+   + {2M \over K_{n-1}(c,c)}]^{1/2}.
+   \eqno (3)
+$$
+It can be shown (see [6], theorem $3$, pag.~$26$ and [7], pag.~212 or [3],
+theorem 10) that
+$$
+   \lim_{n \to \infty} {P_n(x)^2 \over K_{n-1}(x,x)} = 0
+   \qquad \forall x \in [-1,1].
+$$
+Since $K_{n-1}(c,c) \geq P_0^2$ this also implies
+$$
+   \lim_{n \to \infty} {P_n(c)^2 \over K_{n-1}(c,c)^2} = 0.
+$$
+From this and lemma $2$ we obtain
+$$
+   \lim_{n \to \infty}{1 \over A_n K_{n-1}(c,c)} = \lambda(c) + M.
+$$
+Finally,
+$$
+   \lim_{n \to \infty} B_n
+   = \lim_{n \to \infty} A_n M {k_n \over k_{n-1}^c} K_{n-1}(c,c)
+   = {M \over \lambda(c) + M}
+$$
+and the proposition is completely proved.
+
+\medskip
+
+{\noindent \bf Remark.} If $P_n(c)=0$, it is easy to show directly that
+$Q_n=P_n$. This is not in contradiction with our proposition, since in this case
+it can also be proved that $P_n(x)=(x-c)P_{n-1}^c$ and $A_n + B_n =1$.
+
+\medskip
+
+We can also find some relations which involve the kernels.
+
+\proclaim {Proposition 5}. Let $d\mu$ be a measure on $\R$, $c \in \R$ and
+$M>0$. Let $\{L_n\}_{n\geq 0}$ be the kernels relative to $d\mu + M\delta_c$.
+Then $\forall n \in \N$
+$$
+   L_n(x,y) = {1 \over 1 + M K_n(c,c)} K_n(x,y)
+   + {M K_n(c,c) \over 1 + M K_n(c,c)} (x-c)(y-c) K_{n-1}^c(x,y)
+$$
+
+\proof If $y \in \R$, it is a well-known fact that the kernels $\{K_n^c\}$ verify
+$$
+   \int_{\R} R_n(x) K_n^c(x,y) (x-c)^2 d\mu(x) = R_n(y)
+$$
+for every polynomial $R_n$ of degree at most $n$. Actually, this property
+characterizes the kernels relative to any measure.
+
+If we write
+$$
+   (x-c)(y-c)K_{n-1}^c(x,y) = \sum_{j=0}^n \alpha_j(y) P_j(x), \eqno (4)
+$$
+then it is easy to show that $\forall j \geq 1$
+$$
+   \alpha_j(y) = (y-c) \int_{\R} K_{n-1}^c(x,y) {P_j(x)-P_j(c) \over x-c}
+   (x-c)^2 d\mu(x)
+$$
+$$
+   + (y-c) P_j(c) \int_{\R} K_{n-1}^c(x,y) (x-c) d\mu(x).
+$$
+By the above property, we obtain
+$$
+   \alpha_j(y) = P_j(y) - P_j(c)
+   + (y-c) P_j(c) \int_{\R} K_{n-1}^c(x,y) (x-c) d\mu(x)
+$$
+and it is immediate to see that $\alpha_0$ also verifies this formula.
+
+From this formula and $(4)$ it follows
+$$ \eqalign{
+   (x&-c)(y-c)K_{n-1}^c(x,y)
+   \cr
+   = K_n(x,y) - K_n(x,c)
+   + &(y-c)K_n(x,c)\int_{\R} K_{n-1}^c(u,y) (u-c) d\mu(u)
+   \cr}
+$$
+If we let $x=c$, we obtain
+$$
+   (y-c) \int_{\R} K_{n-1}^c(x,y) (x-c) d\mu(x) = 1 - {K_n(c,y) \over K_n(c,c)},
+$$
+and, replacing this equation into the previous one,
+$$
+   {1 \over 1 + M K_n(c,c)} K_n(x,y) + {M K_n(c,c) \over 1 + M K_n(c,c)}
+   (x-c)(y-c) K_{n-1}^c(x,y)
+$$
+$$
+   = K_n(x,y) - {M K_n(c,y) \over 1 + M K_n(c,c)} K_n(x,c).
+$$
+Therefore, it will be enough to prove that
+$$
+   \int_{\R} [K_n(x,y) - {M K_n(c,y) \over 1+M K_n(c,c)} K_n(x,c)] R_n(x)
+   [d\mu(x) + M \delta_c(x)] = R_n(y)
+$$
+whenever $R_n$ is a polynomial of degree at most $n$. This an easy consequence
+of the fact that the kernels $\{K_n\}$ verify the analogous property with
+respect to the measure $d\mu$. The proposition is proved.
+
+\beginsection \S 2. Generalized Jacobi weights with mass points.
+
+Let $\omega$ be a generalized Jacobi weight, that is:
+$$
+   \omega (x) =h(x)  (1-x)^\alpha(1+x)^\beta\prod_{i=1}^N| x-t_i|^{\gamma_i}\ ,\ 
+   x\in [-1,1]
+$$
+where:
+
+a) $\alpha$,$\beta$,$\gamma_i>-1$, $t_i \in (-1,1)$, $t_i \not= t_j$ $\forall
+i \not= j$;
+
+b) $h$ is a positive, continuous function on $[-1,1]$ and
+$\omega (h,\delta)\delta^{-1} \in L^1(0,2)$, $\omega (h,\delta)$ being the
+modulus of continuity of~$h$.
+
+If we define
+$$
+   d(x,n) = (1-x+n^{-2})^{-(2\alpha+1)/4}(1+x+n^{-2})^{-(2\beta+1)/4}
+   \prod_{i=1}^N (\vert x-t_i \vert + n^{-1})^{-\gamma_i/2},
+$$
+then the polynomials $\{P_n\}$ orthonormal with respect to the measure $w(x)dx$
+on the interval $[-1,1]$ verify the estimate
+$$
+   \vert P_n(x) \vert \leq C d(x,n) \qquad \forall x \in [-1,1],
+   \ \forall n \geq 1, \eqno (5)
+$$
+where $C$ is a constant independent of $n$ and $x$ (see [2]). In the sequel $C$
+will denote a constant independent of $n$ and $x$, but possibly different in
+each occurrence.
+
+As to the kernels, it can be shown (see [6], pag.~120 and pag.~4) that
+$$
+   K_n(x,x) \sim n (1-x+n^{-2})^{-(2\alpha+1)/2} (1+x+n^{-2})^{-(2\beta +1)/2}
+   \prod_{i=1}^N (\vert x-t_i \vert+n^{-1})^{-\gamma_i} \eqno (6)
+$$
+uniformly in $\vert x \vert \leq 1$, $n \geq 1$, where by $f \sim g$ in a domain
+$D$ we mean that there exist some positive constants $C_1$ and $C_2$ such that
+$C_1 f(y) \leq g(y) \leq C_2 f(y)$ $\forall y \in D$.
+
+Our aim is to prove similar bounds for the polynomials and the kernels relative
+to a measure which consists of a generalized Jacobi weight and a finite number
+of mass points on the interval $[-1,1]$. So, let $k \in \N$, $a_i \in [-1,1]$ and
+$M_i > 0$, $i=1,\dots,k$. We will denote
+$$
+   d\nu = w(x)dx + \sum_{i=1}^k M_i\delta_{a_i}
+$$
+on the interval $[-1,1]$. By $\{Q_n\}$ and $\{L_n\}$ we mean, respectively,
+their orthonormal polynomials and kernels. Without loss of generality we can
+assume $a_i \in \{1,-1,t_1,\dots,t_N\}$, since in the definition of $w$ we can
+allow some of the exponents to be $0$. Furthermore, for every $t \in [-1,1]$ we
+can speak of its exponent in $w$, referring to the exponent of the factor
+$\vert x-t \vert ^\gamma$ in $w$. Obviously, there are only finitely many points
+with an exponent different from~$0$.
+
+With this notation, we can deduce some bounds from the results of the previous
+section.
+
+\proclaim {Proposition 6}. There exists a constant $C$ such that $\forall n \geq
+1$, $\forall x \in [-1,1]$
+$$
+   \vert Q_n(x) \vert \leq C (1-x+n^{-2})^{-(2\alpha+1)/4}
+   (1+x+n^{-2})^{-(2\beta+1)/4} 
+   \prod_{i=1}^N (\vert x-t_i \vert+n^{-1})^{-\gamma_i/2},
+$$
+$$
+   \vert L_n(x,x) \vert \leq C (1-x+n^{-2})^{-(2\alpha+1)/2}
+   (1+x+n^{-2})^{-(2\beta+1)/2} 
+   \prod_{i=1}^N (\vert x-t_i \vert+n^{-1})^{-\gamma_i}.
+$$
+
+\proof a) We are going to prove the bound for $Q_n$ by induction on the number
+$k$ of mass points. If $k=0$, the measure is a generalized Jacobi weight and we
+already know the formula $(5)$. Let $k>0$ and assume the property holds for
+$k-1$ mass points.
+
+Let $\{P_n\}$ be the orthonormal polynomials with respect to the measure
+$$
+   d\mu = w(x)dx + \sum_{i=1}^{k-1} M_i\delta_{a_i}
+$$
+so that, according to the notation we used in section $1$, $\{P_n^{a_k}\}$ are
+the polynomials orthonormal with respect to
+$$
+   (x-a_k)^2d\mu(x) = (x-a_k)^2w(x)dx
+   + \sum_{i=1}^{k-1} (a_i-a_k)^2 M_i\delta_{a_i}.
+$$
+Since $d\nu = d\mu + M_k\delta_{a_k}$, from proposition $4$ it follows
+$$
+   Q_n(x) = A_n P_n(x) + B_n (x-a_k) P_{n-1}^{a_k},
+$$
+with $A_n, B_n \in (0,1)$. Taking into account that both $d\mu$ and
+$(x-a_k)^2d\mu(x)$ are generalized Jacobi weights with $k-1$ mass points, they
+satisfy the boundedness in the statement. Now, it is easy to see that $Q_n$
+satisfies that boundedness.
+
+Therefore, part a) is proved. As to b), proposition $5$ yields
+$$
+   L_n(x,x) = C_n K_n(x,x) + (1-C_n) (x-a_k)^2 K_{n-1}^{a_k}(x,x)
+$$
+with $C_n \in (0,1)$. Similar arguments and formula $(6)$ lead to this bound
+and the proposition is completely proved.
+
+\medskip
+
+The previous result establishes only upper bounds, which sometimes is not
+enough. In some applications (for example, in the study of the convergence
+of the Fourier series) it is necessary to estimate more exactly the rate of
+growth of $L_n(x,x)$, at least at some points. In the case of a generalized
+Jacobi weight, with no point masses, we have even uniform estimates (formula
+$(6)$). This estimates cannot hold when the measure has mass points, since there
+the kernels $L_n(x,x)$ are bounded (see [6], pag.~4, for example). However, we
+can obtain such estimates for each point with no mass.
+
+\proclaim {Proposition 7}. a) Let $t \in (-1,1)$, $t \not= a_i$
+$(i=1,\dots,N)$ and let $\gamma$ be its exponent in $w$. Then $L_n(t,t) \sim
+n^{1+\gamma}$. \hfil \break
+b) Suppose $a_i \not= 1$ $(i=1,\dots,N)$. Then $L_n(1,1) \sim n^{2\alpha
++2}$. \hfil \break
+c) Suppose $a_i \not= -1$ $(i=1,\dots,N)$. Then $L_n(-1,-1) \sim n^{2\beta +2}$.
+
+\proof By induction, making use of similar arguments to that of part b) of
+proposition~$6$.
+
+\medskip
+
+As an application of the results of section $1$, some bounds for $L_n(x,a_i)$ can
+also be obtained. These bounds can be used to study the convergence of the
+Fourier series with respect to this type of measure.
+
+\proclaim {Proposition 8}. a) Let $1 \leq i \leq k$ and suppose $a_i \not= \pm
+1$. Then there exists a constant $C$ such that $\forall x \in [-1,1]$ and
+$\forall n \geq 1$
+$$
+   \vert L_n(x,a_i) \vert \leq C (1-x+n^{-2})^{-(2\alpha+1)/4}
+   (1+x+n^{-2})^{-(2\beta+1)/4} 
+   \prod_{t_j \not= a_i} (\vert x-t_j \vert+n^{-1})^{-\gamma_j/2}.
+$$
+b) If $1$ is a mass point, then there exists a constant $C$ such that $\forall x
+\in [-1,1]$ and $\forall n \geq 1$
+$$
+   \vert L_n(x,1) \vert \leq C (1+x+n^{-2})^{-(2\beta+1)/4} 
+   \prod_{i=1}^N (\vert x-t_i \vert+n^{-1})^{-\gamma_i/2}.
+$$
+c) If $-1$ is a mass point, then there exists a constant $C$ such that $\forall x
+\in [-1,1]$ and $\forall n \geq 1$
+$$
+   \vert L_n(x,-1) \vert \leq C (1-x+n^{-2})^{-(2\alpha+1)/4}
+   \prod_{i=1}^N (\vert x-t_i \vert+n^{-1})^{-\gamma_i/2}.
+$$
+
+\proof a) Assume $1 \leq i \leq k$ and $a_i \not= \pm 1$. Let $\gamma$ be the
+exponent of $\vert x-a_i \vert$ en $w$. If we denote
+$$
+   d\mu = w(x)dx + \sum_{j=1,j\not= i}^k M_j\delta_{a_j},
+$$
+then $d\nu = d\mu + M_i\delta_{a_i}$. Let $\{P_n\}$ and $\{K_n\}$ be the
+orthonormal polynomials and the kernels relative to $d\mu$ and $k_n$ the
+leading coefficient of $P_n$. Analogously, $\{P_n^{a_i}\}$, $\{K_n^{a_i}\}$ and
+$\{k_n^{a_i}\}$ with respect to $(x-a_i)^2d\mu$.
+
+If we write
+$$
+   \Psi_n(x) = (1-x+n^{-2})^{-(2\alpha+1)/4} (1+x+n^{-2})^{-(2\beta +1)/4}
+   \prod_{t_j \not= a_i} (\vert x-t_j \vert+n^{-1})^{-\gamma_j/2}
+$$
+what we have to proof is $\vert L_n(x,a_i) \vert \leq C \Psi_n(x)$. Now, from
+proposition $5$ and lemma $1$ we obtain
+$$
+   L_n(x,a_i) = {k_n \over k_n^{a_i}} {P_n(a_i) \over 1+M_iK_n(a_i,a_i)}
+   P_n^{a_i}(x) - {k_{n-1}^{a_i} \over k_{n+1}} {P_{n+1}(a_i) \over
+   1+M_iK_n(a_i,a_i)} P_{n-1}^{a_i}(x).
+$$
+We only need to estimate the right hand side. From proposition $6$ we get
+$$ \eqalign{
+   \vert P_n(a_i) \vert &\leq C n^{\gamma/2};
+   \cr
+   \vert P_{n+1}(a_i) \vert &\leq C n^{\gamma/2};
+   \cr
+   \vert P_n^{a_i}(x) \vert
+   &\leq C (\vert x-a_i \vert + n^{-1})^{-(\gamma+2)/2} \Psi_n(x);
+   \cr
+   \vert P_{n-1}^{a_i}(x) \vert
+   &\leq C (\vert x-a_i \vert + n^{-1})^{-(\gamma+2)/2} \Psi_n(x).
+   \cr}
+$$
+Since $a_i$ is not a mass point for $d\mu$, proposition $7$ yields
+$$
+   K_n(a_i,a_i) \sim n^{1+\gamma}.
+$$
+Finally, by lemma 2
+$$
+   \lim_{n \to \infty} {k_n \over k_n^{a_i}} = {1 \over 2}; \qquad
+   \lim_{n \to \infty} {k_{n-1}^{a_i} \over k_{n+1}} = {1 \over 2}.
+$$
+It is now easy to deduce
+$$
+   \vert L_n(x,a_i) \vert \leq C n^{-1-\gamma/2}(\vert x-a_i \vert +
+   n^{-1})^{-1-\gamma/2} \Psi_n(x) \leq C \Psi_n(x).
+$$
+
+b) Assume $1$ is a mass point. We define now
+$$
+   d\mu = w(x)dx + \sum_{i=1,a_i \not= 1}^k M_i\delta_{a_i},
+$$
+so $d\nu = d\mu + M\delta_1$, $M>0$. If, according to our usual notation,
+$\{P_n\}$, $\{K_n\}$ and $\{k_n\}$ refer to $d\mu$ and $\{R_n\}$ are the
+orthonormal polynomials relative to the measure $(1-x)d\mu$, $\{r_n\}$ being
+their leading coefficients, it is not difficult to show that
+$$
+   K_n(x,1) = {k_n \over r_n} P_n(1) R_n(x)
+$$
+(only standard properties of $K_n(x,1)$ are needed). Thus, proposition $5$
+leads to
+$$
+   L_n(x,1) = {k_n \over r_n} {P_n(1) \over 1+M K_n(1,1)} R_n(x).
+$$
+We proceed now analogously to part a), since $d\mu$ and $(1-x)d\mu$ are
+generalized Jacobi weights with masses at points different from $1$. Notice
+that, by H\"older's inequaltiy
+$$ \eqalign{
+   {k_n \over r_n} &= \int_{-1}^1 R_n(x) P_n(x) (1-x) d\mu(x)
+   \cr
+   &\leq (\int_{-1}^1 R_n(x)^2 (1-x)^2 d\mu(x))^{1/2}
+   (\int_{-1}^1 P_n(x)^2 d\mu(x))^{1/2}
+   \cr
+   &\leq \sqrt 2 (\int_{-1}^1 R_n(x)^2 (1-x)d\mu(x))^{1/2}
+   (\int_{-1}^1 P_n(x)^2 d\mu(x))^{1/2} = \sqrt 2.
+   \cr}
+$$
+
+Part c) is similar to b). Thus, the result is proved.
+
+\bigskip
+
+\centerline {\bf REFERENCES}
+
+\bigskip
+
+\frenchspacing
+
+\art 1;R. Askey and S. Wainger; Mean convergence of expansions in Laguerre and
+Hermite series; Amer. J. Math.; 87;1965; 695--708.
+
+\art 2;V. M. Badkov; Convergence in the mean and almost everywhere of Fourier
+series in polynomials orthogonal on an interval; Math. USSR Sb.; 24;1974;
+223--256.
+
+\art 3;A. M\'at\'e, P. Nevai and V. Totik; Extensions of Szeg\H o's
+Theory of Orthogonal Polynomials. II; Constr. Approx.; 3;1987; 51--72.
+
+\art 4;B. Muckenhoupt; Mean convergence of Jacobi series; Proc. Amer. Math.
+Soc.; 23;1969; 306--310.
+
+\art 5;B. Muckenhoupt; Mean convergence of Hermite and Laguerre series. II;
+Trans. Amer. Math. Soc.; 147;1970; 433--460.
+
+\item {\bf [6]} {\rm P. Nevai, {\it \lq \lq Orthogonal Polynomials"}, Memoirs of
+the Amer. Math. Soc., vol.~18, n.~213, Providence, RI, U.S.A., 1979.}
+
+\art 7;E. A. Rahmanov; On the asymptotics of the ratio of orthogonal
+polynomials; Math. USSR. Sb.; 32;1977; 199--213.
+
+\item {\bf [8]} {\rm G. Szeg\H o, {\it \lq \lq Orthogonal Polynomials"}, Amer.
+Math. Soc. Colloq. Publ., vol.~23, Providence, RI, U.S.A., 1959.}
+
+\bye

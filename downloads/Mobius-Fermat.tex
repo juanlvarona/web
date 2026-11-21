@@ -1,0 +1,1700 @@
+\documentclass[11pt, a4paper]{article}
+
+%----------
+%% Highly recommended when not writing in English:
+%\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % modern Knuth fonts
+
+%----------
+% To automatically save paper and trees (at least, for preprints):
+\usepackage{fullpage} % or \usepackage[headings]{fullpage}
+%----------
+
+%----------
+% To load external graphics:
+%\usepackage{graphicx}
+%----------
+
+%----------
+% AMS packages, very recommended for maths:
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\allowdisplaybreaks[3]
+%----------
+
+%----------
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+%----------
+
+%----------
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\calF}{\mathcal{F}}
+%\newcommand{\p}{\mathcal{P}} % \P ya existe
+\newcommand{\manF}{\Lambda_{\mathcal{F}}} 
+%\newcommand{\uF}{u_\mathcal{F}} 
+%\newcommand{\muF}{\mu_\mathcal{F}} 
+\newcommand{\Fp}{\mathcal{F}_{\mathcal{P}}} 
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\manM}{\Lambda_{\calM}} 
+\newcommand{\uM}{u_\calM} 
+\newcommand{\muM}{\mu_\calM} 
+\newcommand{\Mp}{\calM_{\mathcal{P}}} 
+\newcommand{\IF}{\operatorname{IF}} 
+\newcommand{\mum}{\operatorname{mum}}
+\newcommand{\mug}{\operatorname{mug}}
+%----------
+
+%----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+%----------
+
+%----------
+% To automatically include internal hyperlinks 
+% and internet links with \url{http://....} 
+\usepackage{hyperref}
+%----------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ONLY FOR DRAFTS:
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{refcheck} 
+%\usepackage[hyperpageref]{backref} 
+%\usepackage{backref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%----------
+%% %%% For DRAFTS:
+%\usepackage{color}
+%% \usepackage[svgnames,x11names,dvipsnames]{xcolor}
+%\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+%\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+%% \newcommand{\verde}[1]{\textcolor{green}{#1}}
+%%----------
+
+%----------
+%\title{The M\"obius and the von Mangoldt-type functions\\
+%of the Fermat zeta function\thanks{%
+%This research was partially supported by grant PID2024-155593NB-C22
+%(Minis\-te\-rio de Cien\-cia, Inno\-va\-ci\'on y Uni\-ver\-si\-da\-des, Spain).}}
+%---
+%\title{The M\"obius and the von Mangoldt-type functions\\
+%of the Fermat zeta function}
+\title{The M\"obius and the von Mangoldt-type functions\\
+of the Fermat zeta function\thanks{\textbf{This paper has been published in:}
+\textit{Integers} \textbf{26} (2026), Paper No.~A106, 25~pp.\\ 
+DOI: 10.5281/zenodo.22082065}}
+\author{Juan Luis Varona\\[4pt]
+\small Departamento de Matem\'aticas y Computaci\'on,\\ 
+\small Universidad de La Rioja, Logro\~no, Spain\\
+\small \textsf{jvarona@unirioja.es}}
+\date{}     % Activate to display a given date or no date
+%----------
+
+%----------
+\begin{document}
+%----------
+
+%----------
+\maketitle
+%----------
+
+\begin{abstract}
+Following \'Edouard Lucas, the numbers $M_n = 2^n-1$, with $n \ge 1$, 
+are known as the Fermat sequence.
+Related to the ordinary zeta function $\zeta(s) = \sum_{n=1}^{\infty} n^{-s}$,
+the M\"obius function $\mu(n)$ and the von Mangoldt function $\Lambda(n)$ are defined such that, among other properties, they satisfy
+\[
+\frac{1}{\zeta(s)} = \sum_{n=1}^{\infty} \mu(n)n^{-s},
+\quad
+\frac{\zeta'(s)}{\zeta(s)} = -\sum_{n=1}^{\infty} \Lambda(n)n^{-s},
+\qquad s\in \C, \quad \Re s>1.
+\]
+In this article, we study two arithmetic functions $\mu_{\calM}(n)$ and $\Lambda_{\calM}(n)$ that play a similar role, this time associated with the Fermat zeta function $\zeta_{\calM}(s) = \sum_{n=1}^{\infty} M_n^{-s}$. 
+In particular, we see how to define these functions using Dirichlet products (convolution of arithmetic functions), similar to how it is done with $\mu(n)$ and $\Lambda(n)$, and we analyze their role as coefficients of Dirichlet series.
+Using combinatorial tools, we find the values of $\mu_{\calM}(n)$ and $\Lambda_{\calM}(n)$ for any positive integer $n$, and identify these values in terms of the hypergeometric function~${}_3F_2$.
+
+\medskip
+
+\textbf{MSC2020:} Primary 11A25; Secondary 11B39, 11M41, 05A10, 33C90.
+%11A25 - Arithmetic functions; related numbers; inversion formulas
+%11B37 - Recurrences
+%11B39 - Fibonacci and Lucas numbers and polynomials and generalizations
+%11M41 - Other Dirichlet series and zeta functions
+%30B50 - Dirichlet series, exponential series and other series in one complex variable
+%05A10 - Factorials, binomial coefficients, combinatorial functions
+%05A15 - Exact enumeration problems, generating functions
+%33C20 - Generalized hypergeometric series, pFq
+%33C90 - Applications of hypergeometric functions
+
+\smallskip
+
+\textbf{Keywords:} Fermat numbers, M\"obius-Fermat function, von Mangoldt-Fermat function, Fermat zeta function, Dirichlet series, Delannoy numbers.
+\end{abstract}
+
+%----------
+\smallskip
+\begin{flushright}
+\itshape
+\parbox{0.66\textwidth}{-- Dedicated to the memory of Florian Luca,
+an exceptional mathematician and a great person.}
+\end{flushright}
+\smallskip
+%----------
+
+%----------
+\section{Introduction}
+%----------
+
+The so-called \textit{Lucas sequences} \cite{Lucas} have the form
+\begin{equation}
+\label{eq:Lucas}
+  D_n = (\alpha^n-\beta^n)/(\alpha-\beta), \qquad n=1,2,3,\dots,
+\end{equation}
+where $\alpha$ and $\beta$ are distinct roots of the polynomial $f(z) = z^2 - Lz + M$, 
+%% IN THE PUBLISHED VERSION, I FORGOT TO WRITE ``coprime''
+and $L$ and $M$ are nonzero coprime integers (clearly, $L=\alpha+\beta$ and $M=\alpha\beta$). 
+These numbers satisfy $D_1 = 1$, $D_2 = \alpha+\beta$
+and the recurrence relation
+\[
+  D_{n+2} = L D_{n+1} - M D_{n}, \qquad n=1,2,3,\dots.
+\]
+If two sequences $D_n$ and $D'_n$ are generated, respectively, by the polynomials $z^2 - Lz + M$ and $z^2 + Lz + M$,
+then $D_n = (-1)^{n-1} D'_n$, so only the case $L>0$ is considered.
+Moreover, a Lucas sequence is called real if $L^2 > 4M$ because, in this case, $\alpha$ and $\beta$ are real numbers.
+
+Given a Lucas sequence, a prime $p$ is called a \textit{primitive divisor} of $D_n$ if $p$ divides $D_n$ but does not divide $D_m$ for $0<m<n$. 
+% Carmichael [2] calls it a characteristic factor and Ward [9] an intrinsic divisor
+In 1913, Carmichael \cite{Car} established the following important result.
+
+\begin{theorem}[Carmichael, 1913]
+If $\alpha$ and $\beta$ are real and $n \ne 1,2,6$, then $D_n$ contains at least one primitive divisor except when
+$n = 12$ in the case $L = 1$ and $M = -1$ (which corresponds to the Fibonacci numbers $F_1=F_2=1$, $F_{n+2}=F_{n+1}+F_{n}$).
+\end{theorem}
+
+% Notice that the exceptional case $L = 1$ and $M = -1$ corresponds to the Fibonacci numbers.
+
+In 2001, Yabuta \cite{Ya} gave a simple proof of Carmichael's theorem. In his proof, Yabuta reduces the study of the Lucas sequences to discussing two special sequences, namely, the Fibonacci sequence $\{F_n\}_{n=1}^{\infty}$ and the numbers
+\[
+  2^n - 1 = \frac{2^n-1^n}{2-1}, \qquad n=1,2,3,\dots,
+\]
+generated by the polynomial $z^2 - 3z + 2$. Lucas \cite{Lucas} referred to these numbers as the Fermat sequence, a name also used by Yabuta. 
+In reality, it is more common to refer to numbers of the form $2^{2^n}+1$ as Fermat numbers, and numbers of the form $2^p - 1$ (although with $p$ prime) are usually called Mersenne numbers; this is not the only confusion in nomenclature in this field, given that what is usually known as the Lucas sequence, which is $\{L_n\}_{n=1}^{\infty}$ defined by the recurrence $L_1=1$, $L_2=3$ and $L_{n+2} = L_{n+1} + L_{n}$, is not a Lucas sequence in the sense of~\eqref{eq:Lucas} (what holds is $L_n = \alpha^n+\beta^n$, where $\alpha$ and $\beta$ are the roots of the polynomial $z^2-z-1$).
+
+% Sin tomar partido por esta discusión sin importancia, 
+%% Sin tomar partido por esta discusión sobre la nomenclatura, 
+%% y dado que $F_n$ ya lo estamos usando para los números de Fibonacci, 
+%% adoptaremos una postura salomónica y mantendremos el nombre de sucesión de Fermat, 
+%% pero la denotaremos mediante 
+Without taking a position in this nomenclature discussion, and given that we are already using $F_n$ for Fibonacci numbers, we will adopt a Solomonic stance and keep the name \textit{Fermat sequence}, but we will denote it by 
+\begin{equation*}
+%\label{eq:Fermat}
+  M_n = 2^n - 1, \qquad n=1,2,3,\dots;
+\end{equation*}
+the recurrence relation they satisfy is $M_{n+2}=3M_{n+1}-2M_{n}$, with $M_1=1$, $M_2=3$.
+
+If we define 
+\[
+  \mathcal{D}_\mathcal{P} := \{\text{finite products of powers of numbers $D_n$}\}
+\]
+% sub\'indice ``$\mathcal{P}$'' alude a ``producto''
+the multiplicative semigroup generated by a Lucas sequence,
+Carmichael's theorem ensures that the factorization of $l \in \mathcal{D}_\mathcal{P}$
+as a product of numbers $D_n$ is ``almost unique''; the uniqueness fails only in the case of the numbers $D_1$, $D_2$ and~$D_6$ (and $D_{12}$ in the case of the Fibonacci numbers).
+
+Associated with the ordinary zeta function 
+\begin{equation*}
+  \zeta(s) := \sum_{l=1}^{\infty} l^{-s},
+  \quad s\in \C, \quad \Re s>1
+\end{equation*}
+(i.e., the Riemann zeta function), the von Mangoldt function 
+\[
+  \Lambda(l) := 
+  \begin{cases}
+    \log p, & \text{ if } l = p^{k}, \ p\text{ prime, }k\geq 1, 
+    \\ 
+    0, & \text{ otherwise,}
+  \end{cases}
+\]
+satisfies
+\begin{equation*}
+  \frac{\zeta'(s)}{\zeta(s)} = -\sum_{l=1}^{\infty} \Lambda(l)l^{-s},
+  \quad s \in \C, \quad \Re s>1;
+\end{equation*}
+see \cite{Ap} or \cite{HaWr} for the general theory concerning the arithmetic functions related to $\zeta(s)$.
+In \cite{MoNaVa}, we study the von Mangoldt-type function $\manF(l)$ associated with the \textit{Fibonacci zeta function}
+\begin{equation*}
+%\label{eq:phiFib}
+  \zeta_{\calF}(s) := \sum_{n=1}^{\infty} F_{n}^{-s},
+  \quad s\in \C, \quad \Re s>0,
+\end{equation*}
+% (the convergence for $\Re(s)>0$ is clear from the asymptotic relation $F_{n} \approx \phi^{n}/\sqrt{5}$ when $n\to\infty$). 
+that satisfies
+\begin{equation}
+\label{eq:ManDir}
+  \frac{\zeta_{\calF}'(s)}{\zeta_{\calF}(s)} = -\sum_{l=1}^{\infty} \manF(l)l^{-s}
+\end{equation} 
+when the series converges
+(actually, in \cite{MoNaVa}, following \cite{Na, Mo}, we use $\varphi(s)$ in the place of $\zeta_{\calF}(s)$). In particular, and although an explicit expression for $\manF(l)$ valid for every $l$ is not available, \cite{MoNaVa} provides formulas for $\manF(l)$ valid for certain values of~$l$, and we study the convergence of~\eqref{eq:ManDir}.
+
+The purpose of this paper is to study the von Mangoldt-type function associated with the Fermat sequence (which is the other sequence involved in Yabuta's proof of Carmichael's theorem) and its corresponding \textit{Fermat zeta function}
+\begin{equation*}
+  \zeta_{\calM}(s) := \sum_{n=1}^{\infty} M_n^{-s},
+  \quad s\in \C,
+  \quad \Re s>0.
+\end{equation*}
+%(and that can be meromorphically continued to the whole $s$-plane, 
+%as we can see in \cite[Theorem~4]{Ka}).
+
+%%%%
+%Although it is not the subject of this article, it is worth noting that this series
+%that can be meromorphically continued to the whole $s$-plane as 
+%\[
+%\zeta_{\calM}(s) 
+%= \sum_{k=0}^{\infty} \binom{-s}{k} (-1)^k \frac{1}{2^{s+k}-1}
+%\]
+%%%%
+
+%%%%
+%%% With the notation z^2 - Pz + Q = 0, the meromorphic continuation is
+%%% $$D^{s/2} \sum_{k=0}^{\infty} \binom{-s}{k} (-1)^k \frac{Q^k}{a^{s+2k}-Q^k}$$
+%%% In our case, $P=3$, $Q=2$, $D = P^2-4Q = 9-8 = 1$, $a=\alpha=2$
+%\[
+%\zeta_{\calM}(s) 
+%% = D^{s/2} \sum_{k=0}^{\infty} \binom{-s}{k} (-1)^k \frac{Q^k}{a^{s+2k}-Q^k},
+%= \sum_{k=0}^{\infty} \binom{-s}{k} (-1)^k \frac{2^k}{2^{s+2k}-2^k}
+%= \sum_{k=0}^{\infty} \binom{-s}{k} (-1)^k \frac{1}{2^{s+k}-1},
+%\]
+%see \cite[Theorem~4]{Ka} (it analyzes the continuation of all series arising from 
+%Lucas sequences $\sum_{n=1}^{\infty} D_n^{-s}$)
+%($P=3$, $Q=2$, $D=P^2-4Q=9-8=1$, $a=2$).
+%In \cite{SeNa} is done more generally, for recurrence sequences of any order.
+%%%%
+
+Coming back to Carmichael's theorem, the Fibonacci number $F_{12}$ plays a special role;
+but, in the case of Fermat numbers, $M_{12}$ is not an exception.
+%In the case of Fermat numbers, $M_{12}$ is not a ``special number'', 
+%but $F_{12}$ plays a special role in the case of Fibonacci numbers. 
+Then, the study of the von Mangoldt-type function associated with the Fermat sequence becomes easier, and we can go further than in~\cite{MoNaVa}. Moreover, we also study the corresponding M\"obius-type function associated with the Fermat sequence; let us recall that, in the classical case, the M\"obius function is
+\[
+  \mu(l) := 
+  \begin{cases}
+    1, & \text{ if } l = 1, 
+    \\
+    (-1)^k, & \text{ if } l = p_1 p_2 \cdots p_k, \text{ where } p_1, p_2, \dots, p_k \text{ are distinct primes,}
+    \\
+    0, & \text{ if } l \text{ has a squared factor,}
+  \end{cases}
+\]
+and satisfies
+\[
+  \frac{1}{\zeta(s)} = \sum_{l=1}^{\infty} \mu(l)l^{-s},
+  \quad s \in \C, \quad \Re s>1.
+\]
+Our goal, therefore, is to study both the M\"obius-type function and the von Mangoldt-type function associated with the Fermat sequence $\{M_n\}_{n=1}^\infty$ and the Fermat zeta function $\zeta_{\calM}(s)$, and we will start with the M\"obius-type function.
+
+The paper is organized as follows. In Section~\ref{sec:MoManFer}, we study the multiplicative semigroup $\Mp$ associated with the Fermat sequence $\{M_n\}_{n=1}^\infty$, and define the M\"obius-type function $\muM(l)$ and the von Mangoldt-type function $\manM(l)$. 
+The results of the paper are stated in Sections~\ref{sec:easy} and~\ref{sec:valores}; the main results are Theorems~\ref{teo:mu(3m7nprod)} and~\ref{teo:Man(3m7nprod)}, where explicit closed expressions are given for the functions $\muM(l)$ and~$\manM(l)$.
+Finally, Sections~\ref{sec:prod} to~\ref{sec:main} contain the proofs of the results;
+in the proofs, we use several different techniques, which show the interrelationship of the various arithmetic and combinatorial structures involved.
+
+%----------
+% Definitions: 
+\section{The Fermat semigroup and the M\"o\-bius-Fer\-mat and the von Man\-goldt-Fer\-mat functions}
+\label{sec:MoManFer}
+%----------
+
+In the multiplicative structure generated by Fermat numbers $M_n=2^n-1$, we only need those greater than $1$, that is, 
+\[
+  \calM = \{ M_{n} : n\ge2 \} = \{ 3, 7, 15, 31, 63, 127, 255, 511, 1023,\dots \}.
+\]
+Moreover, let us denote the multiplicative semigroup generated by $\calM$ by
+\begin{equation}
+\label{eq:Mpbasic}
+  \Mp := \{\text{finite products of powers of numbers in $\calM$}\};
+\end{equation}
+% subindex ``$\mathcal{P}$'' refers to ``product''
+and we assume $1 \in \Mp$, by thinking of it as the empty product. In particular, $\calM \subseteq \Mp$.
+
+To generate all the numbers in \eqref{eq:Mpbasic}, it is not necessary to use $M_6=63$, because it can be written as a product of other Fermat numbers, namely $M_6 = 63 = 3^2 \cdot 7 = M_2^2 M_3$. 
+
+As explained above, Carmichael's theorem 
+%(see \cite[Theorem~23, p.~61]{Car} or, for a simpler proof, \cite[Theorem 4]{Ya}) 
+states that, if $n \ne 1,2,6$, the Fermat number $M_{n}$ contains at least one primitive divisor, that is, a prime divisor $p$ such that $p$ does not divide any $M_m$ for $0<m<n$. Hence, $M_{6}=63$ is the only Fermat number that can be expressed as a product of powers of smaller Fermat numbers, so that
+\begin{equation}
+\label{eq:Mp}
+  \Mp = \Big\{
+  l = M_{n_1}^{m_1}M_{n_2}^{m_2} \cdots M_{n_{k_l}}^{m_{k_l}} :
+  m_{j}>0, \ 2 \le n_1<n_2<\cdots<n_{k_l}, \ n_{j}\neq 6 \Big\}, 
+\end{equation}
+where $k_{l}$ is the number of different Fermat numbers in $\calM \setminus \{63\}$ that appear in the decomposition of $l$; again, we assume $1 \in \Mp$ is the product of zero factors. At least in some cases, the notation will be easier if we take
+\begin{equation}
+\label{eq:Mpalt}
+\begin{aligned}
+  \Mp = \Big\{
+  l = 3^{m_1}7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}} &:
+  m_1, m_2 \ge 0,\ m_{j}>0 \text{ otherwise}, \\ 
+  &\qquad\quad
+  4 \le n_3<\cdots<n_{k_l}, \ n_{j}\neq 6 \Big\},
+\end{aligned}
+\end{equation}
+so we will sometimes use this description.
+
+By imitating the standard proof of unique factorization of natural numbers, it is easy to verify that Carmichael's theorem implies unique factorization in~$\Mp$. When we talk about ``the'' factorization of a number in~$\Mp$, this is exactly what we mean.
+
+Let us recall that, if $a(n)$ and $b(n)$ are two arithmetic functions, their \textit{Dirichlet convolution} (or \textit{Dirichlet product}) is 
+\[
+  c(n) = (a*b)(n) = \sum_{rs=n} a(r)b(s).
+\]
+Then, the formal product of two Dirichlet series $f(s) = \sum_{n=1}^\infty a(n)n^{-s}$ and $g(s) = \sum_{n=1}^\infty b(n)n^{-s}$ is the new series $h(s) = f(s)g(s) = \sum_{n=1}^\infty c(n)n^{-s}$ whose coefficients are the Dirichlet convolution $c(n) = (a*b)(n)$ of the coefficients of $f$ and~$g$ (and moreover, if $f(s)$ is absolutely convergent for $\Re(s)>\sigma_f$ and $g(s)$ for $\Re(s)>\sigma_g$, then $h(s)$ is absolutely convergent for $\Re(s) > \max\{\sigma_f, \sigma_g\}$); see, for instance, \cite[Chapter~11]{Ap}. 
+
+The \textit{neutral element} of the Dirichlet convolution is the function $\delta(n)$ defined as $\delta(1)=1$ and $\delta(n)=0$ for $n>1$. We say that two arithmetic functions $a(n)$ and $b(n)$ are \textit{inverse} if $a*b=\delta$.
+
+For natural numbers, we have the \textit{unit function} $u$ defined as $u(l)=1$ for all $l \in \N$, and its inverse, with respect to the Dirichlet convolution, is the M\"obius function $\mu(l)$. Since $\zeta(s) = \sum_{l=1}^{\infty} u(l)l^{-s}$, we want to express 
+\begin{equation}
+\label{eq:uMDir}
+  \zeta_{\calM}(s) = \sum_{n=1}^{\infty} M_n^{-s} = \sum_{l=1}^{\infty} \uM(l) l^{-s},
+  \quad s \in \C, \quad \Re s>0,
+\end{equation}
+so the ``\textit{Fermat unit function}'' must be
+\begin{equation}
+\label{eq:uM}
+  \uM(l) = 
+  \begin{cases}
+    1, & \text{ if } l=1,\\
+    1, & \text{ if } l=M_j \text{ for some } M_j \in \calM,\\
+    0, & \text{ otherwise}
+  \end{cases}
+\end{equation}
+(we take $\uM(1)=1$ because there is one Fermat number whose value is $1$, namely $M_1=1$).
+
+Then, the \textit{M\"obius-Fermat function} is the function $\muM$ that is the inverse of $\uM$
+with respect to the Dirichlet convolution, i.e., that satisfies
+\begin{equation}
+\label{eq:muMuMconv}
+  \muM * \uM (l) = \sum_{k \mid l} \muM\Big(\frac{l}{k}\Big)\uM(k) 
+  = \delta(l) = 
+  \begin{cases}
+  1, & \text{if } l=1,\\
+  0, & \text{if } l>1.
+  \end{cases}
+\end{equation}
+For $l=1$, this is $1 = \muM(1)\uM(1) = \muM(1)$, so $\muM(1)=1$. 
+For $l>1$, and taking into account that $\uM$ defined in \eqref{eq:uM} vanishes outside $\calM \cup \{1\}$, we have
+% (recall that in $\calM$ are all Fermat numbers except $M_1=1$)
+\begin{equation}
+\label{eq:muMuM}
+  0 = \muM(l)\uM(1) + \sum_{M_j \mid l, M_j \in \calM} \muM\Big(\frac{l}{M_j}\Big)\uM(M_j),
+  \quad l > 1.
+\end{equation}
+In this series, the last summand is $\muM({l}/{l})\uM(l) = \muM(1)\uM(l) = 1$ if $l \in \calM$. 
+Then, isolating the summand $\muM(l)\uM(1) = \muM(l)$, \eqref{eq:muMuM} gives rise to these possibilities:
+\begin{equation}
+\label{eq:mu(l)rec}
+\muM(l) = 
+  \begin{cases}
+    -\big( \muM({l}/{M_{d_1}}) + \cdots + \muM({l}/{M_{d_{p_l}}}) + 1 \big),
+    & \text{ if } l\in \calM, \quad p_{l} \geq 1, \\ 
+    -\big( \muM({l}/{M_{d_1}}) + \cdots + \muM({l}/{M_{d_{p_l}}}) ),
+    & \text{ if } l\notin \calM, \quad p_{l} \geq 1, \\
+    -1,
+    & \text{ if } l\in \calM, \quad p_{l} = 0, \\ 
+    0,
+    & \text{ if } l\notin \calM, \quad p_{l} = 0,
+  \end{cases}
+\end{equation}
+where $M_{d_1},\dots, M_{d_{p_l}}$ are the Fermat numbers that are proper divisors of~$l$
+(as usual, we call \textit{proper divisors} of a number the divisors that are not the number itself).
+%Notice that this recurrence formula is analogous to \eqref{eq:Man(l)rec},
+%so compute $\muM(l)$ is similar to compute $\Lambda_F(l)$.
+%%%%% But it's much more convenient because you don't have to carry logarithms around with you.
+
+%In Table~\ref{table:muM} we can see the values of $\muM(l)$ for $l \in \Mp$, $1 \le l \le 1000$,
+%that can be computed using~\eqref{eq:mu(l)rec}.
+For $l \in \Mp$, $1 \le l \le 400$, their decompositions as in \eqref{eq:Mp},
+which are unique, 
+as well as the values of $\muM(l)$, 
+can be seen in Table~\ref{table:mumanM}
+(as we will see in Proposition~\ref{prop:fun(l)=0}, $\muM(l) = 0$ when $l \notin \Mp$);
+of course, they can be computed using~\eqref{eq:mu(l)rec}.
+Note that, unlike $\mu$, the function $\muM$ is not multiplicative: 
+$\muM(63) = -4 \ne \muM(7) \muM(9) = -1\cdot 1$;
+also, $\muM(15) = -1 \ne \muM(3) \muM(5) = -1\cdot0$.
+
+%\begin{table}
+%\centering
+%\begin{tabular}{cccc}
+%\hline
+%$\muM(1) = 1$
+%& $\muM(3) = -1$
+%& $\muM(7) = -1$
+%& $\muM(9) = 1$
+%\\
+%$\muM(15) = -1$
+%& $\muM(21) = 2$
+%& $\muM(27) = -1$
+%& $\muM(31) = -1$
+%\\
+%$\muM(45) = 2$
+%& $\muM(49) = 1$
+%& $\muM(63) = -4$
+%& $\muM(81) = 1$
+%\\
+%$\muM(93) = 2$
+%& $\muM(105) = 2$
+%& $\muM(127) = -1$
+%& $\muM(135) = -3$
+%\\
+%$\muM(147) = -3$
+%& $\muM(189) = 6$
+%& $\muM(217) = 2$
+%& $\muM(225) = 1$
+%\\
+%$\muM(243) = -1$
+%& $\muM(255) = -1$
+%& $\muM(279) = -3$
+%& $\muM(315) = -6$
+%\\
+%$\muM(343) = -1$
+%& $\muM(381) = 2$
+%& $\muM(405) = 4$
+%& $\muM(441) = 8$
+%\\
+%$\muM(465) = 2$
+%& $\muM(511) = -1$
+%& $\muM(567) = -8$
+%& $\muM(651) = -6$
+%\\
+%$\muM(675) = -3$
+%& $\muM(729) = 1$
+%& $\muM(735) = -3$
+%& $\muM(765) = 2$
+%\\
+%$\muM(837) = 4$
+%& $\muM(889) = 2$
+%& $\muM(945) = 14$
+%& $\muM(961) = 1$
+%\\
+%\hline
+%\end{tabular}
+%\caption{The values of $\muM(l)$, $1 \le l \le 1000$, when $l \in \Mp$ (otherwise, $\muM(l)=0$).}
+%\label{table:muM}
+%\end{table}
+
+The above arithmetic expressions are translated into the form of Dirichlet series.
+Indeed, from \eqref{eq:uMDir}, and because $\muM * \uM = \delta$, we have
+\begin{equation}
+\label{eq:MuMp}
+  \frac{1}{\zeta_{\calM}(s)} = \sum_{l=1}^{\infty} \muM(l) l^{-s},
+\end{equation}
+when the series converges.
+
+Returning once again to the classical case, and using the usual notation $u'(l) = u(l) \log(l)$, the von Mangoldt function is defined as $\Lambda = \mu * u'$. Then,
+\begin{align*}
+  -\sum_{l=1}^{\infty} \Lambda(l)l^{-s} 
+  &= - \left( \sum_{l=1}^\infty \mu(l) l^{-s} \right)
+  \left( \sum_{l=1}^\infty (\log l) u(l) l^{-s} \right) \\*
+  &= \left( \sum_{l=1}^\infty \mu(l) l^{-s} \right)
+  \left( {-}\sum_{l=1}^\infty (\log l) l^{-s} \right) 
+  = \frac{1}{\zeta(s)} \zeta'(s).
+\end{align*}
+Let us see how to define an arithmetic function $\manM$ that reproduces this behavior when using the Fermat sequence $\{M_n\}_{n=1}^\infty$ instead of $\N$, and the Fermat zeta function \eqref{eq:uMDir} instead of~$\zeta(s)$.
+
+Similarly to the classical case, we define the \textit{von Mangoldt-Fermat function} as $\manM = \muM * u'_\calM$,
+with the notation $u'_\calM(l) = \uM(l) \log(l)$.
+In addition, from $\manM = \muM * u'_\calM$ we also deduce $u'_\calM = \manM * \uM$, i.e.,
+\begin{equation}
+\label{eq:loguM}
+  \log(l) \uM (l) = \sum_{k \mid l} \manM\Big(\frac{l}{k}\Big)\uM(k).
+\end{equation}
+For $l=1$, and using $\log(1)=0$, this becomes $0 = \manM(1) \uM(1)$, so $\manM(1)=0$.
+Moreover, because $\uM$ vanishes outside $\calM \cup \{1\}$, \eqref{eq:loguM} implies that
+\begin{equation}
+\label{eq:Man(l)rec}
+  \manM(l) = 
+  \begin{cases}
+    -(\manM({l}/{M_{d_1}}) + \cdots + \manM({l}/{M_{d_{p_l}}}) - \log l),
+    & \text{ if } l\in \calM, \quad p_{l} \geq 1, \\ 
+    -(\manM({l}/{M_{d_1}}) + \cdots + \manM({l}/{M_{d_{p_l}}})),
+    & \text{ if } l\notin \calM, \quad p_{l} \geq 1, \\ 
+    \log l,
+    & \text{ if } l\in \calM, \quad p_{l} = 0, \\ 
+    0,
+    & \text{ if } l\notin \calM, \quad p_{l} = 0,
+  \end{cases}
+\end{equation}
+where $M_{d_1},\dots, M_{d_{p_l}}$ are the Fermat numbers that are proper divisors of~$l$.
+%In Table~\ref{table:manM} we can see the values of $\manM(l)$ for $l \in \Mp$, $1 \le l \le 1000$,
+%that can be computed using~\eqref{eq:Man(l)rec}.
+As in the case of $\muM(l)$, 
+Table~\ref{table:mumanM} shows the values of $\manM(l)$ for $l \in \Mp$, $1 \le l \le 400$,
+that can be computed using~\eqref{eq:Man(l)rec}.
+
+%\begin{table}
+%\centering\small
+%\begin{tabular}{cccc}
+%\hline
+%$\manM(1) = 0$
+%& $\manM(3) = \log (3)$
+%& $\manM(7) = \log (7)$
+%& $\manM(9) = -\log (3)$
+%\\[2pt]
+%$\manM(15) = \log (15)$
+%& $\manM(21) = -\log (21)$
+%& $\manM(27) = \log (3)$
+%& $\manM(31) = \log (31)$
+%\\[2pt]
+%$\manM(45) = -\log (45)$
+%& $\manM(49) = -\log (7)$
+%& $\manM(63) = 2\log (63)$ % 63^2 = 3969
+%& $\manM(81) = -\log (3)$
+%\\[2pt]
+%$\manM(93) = -\log (93)$
+%& $\manM(105) = -\log (105)$
+%& $\manM(127) = \log (127)$
+%& $\manM(135) = \log (135)$
+%\\[2pt]
+%$\manM(147) = \log (147)$
+%& $\manM(189) = -2 \log (189)$
+%& $\manM(217) = -\log (217)$
+%& $\manM(225) = -\log (15)$
+%\\[2pt]
+%$\manM(243) = \log (3)$
+%& $\manM(255) = \log (255)$
+%& $\manM(279) = \log (279)$
+%& $\manM(315) = 2\log (315)$ % 315^2 = 99225
+%\\[2pt]
+%$\manM(343) = \log (7)$
+%& $\manM(381) = -\log (381)$
+%& $\manM(405) = -\log (405)$
+%& $\manM(441) = -5 \log (21)$
+%\\[2pt]
+%$\manM(465) = -\log (465)$
+%& $\manM(511) = \log (511)$
+%& $\manM(567) = 2 \log (567)$
+%& $\manM(651) = 2 \log (651)$
+%\\[2pt]
+%$\manM(675) = \log (675)$
+%& $\manM(729) = -\log (3)$
+%& $\manM(735) = \log (735)$
+%& $\manM(765) = -\log (765)$
+%\\[2pt]
+%$\manM(837) = -\log (837)$
+%& $\manM(889) = -\log (889)$
+%& $\manM(945) = -4 \log (945)$
+%& $\manM(961) = -\log (31)$
+%\\
+%\hline
+%\end{tabular}
+%\caption{The values of $\manM(l)$, $1 \le l \le 1000$, when $l \in \Mp$ (otherwise, $\manM(l)=0$).}
+%\label{table:manM}
+%\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{ccc@{\qquad\quad}ccc}
+\hline
+$l \in \Mp$ & $\muM(l)$ & $\manM(l)$
+& $l \in \Mp$ & $\muM(l)$ & $\manM(l)$
+\\
+\hline
+1 & $1$ & $0$
+& $3 = 3$ & $-1$ & $\log (3)$
+\\
+$7$ & $-1$ & $\log (7)$
+& $9 = 3^2$ & $1$ & $-\log (3)$
+\\
+$15$ & $-1$ & $\log (15)$
+& $21 = 7\cdot 3$ & $2$ & $-\log (21)$
+\\
+$27 = 3^3$ & $-1$ & $\log (3)$
+& $31$ & $-1$ & $\log (31)$
+\\
+$45 = 15\cdot 3$ & $2$ & $-\log (45)$
+& $49 = 7^2$ & $1$ & $-\log (7)$
+\\
+$63 = 7\cdot 3^2$ & $-4$ & $2\log (63)$ % 63^2 = 3969
+& $81 = 3^4$ & $1$ & $-\log (3)$
+\\
+$93 = 31\cdot 3$ & $2$ & $-\log (93)$
+& $105 = 15\cdot 7$ & $2$ & $-\log (105)$
+\\
+$127$ & $-1$ & $\log (127)$
+& $135 = 15\cdot 3^2$ & $-3$ & $\log (135)$
+\\
+$147 = 7^2\cdot 3$ & $-3$ & $\log (147)$
+& $189 = 7\cdot 3^3$ & $6$ & $-2 \log (189)$
+\\
+$217 = 31\cdot 7$ & $2$ & $-\log (217)$
+& $225 = 15^2$ & $1$ & $-\log (15)$
+\\
+$243 = 3^5$ & $-1$ & $\log (3)$
+& $255$ & $-1$ & $\log (255)$
+\\
+$279 = 31\cdot 3^2$ & $-3$ & $\log (279)$
+& $315 = 15\cdot 7\cdot 3$ & $-6$ & $2\log (315)$ % 315^2 = 99225
+\\
+$343 = 7^3$ & $-1$ & $\log (7)$
+& $381 = 127\cdot 3$ & $2$ & $-\log (381)$
+\\
+\hline
+\end{tabular}
+\caption{The values of $\muM(l)$ and $\manM(l)$, $1 \le l \le 400$, when $l \in \Mp$ 
+(otherwise, $\muM(l)=\manM(l)=0$).}
+%\caption{For numbers less than $400$, the factorization of $l \in \Mp$ and the values of $\muM(l)$ 
+%and~$\manM(l)$ (otherwise, $\muM(l)=\manM(l)=0$).}
+\label{table:mumanM}
+\end{table}
+
+Note that this is a ``more arithmetic approach'' than that of \cite{MoNaVa}, since we have defined the arithmetic functions $\muM$ and $\manM$ before the Dirichlet series, and the series are defined from the functions, which is the opposite of what is done in~\cite{MoNaVa}. Of course, the functions obtained are the same regardless of the path taken.
+
+As for the translation of these arithmetic expressions into expressions with Dirichlet series, 
+by using $\manM = \muM * u'_\calM$, we have
+\[
+  \sum_{l=1}^{\infty} \manM(l)l^{-s} = \sum_{l=1}^{\infty} \muM * u'_\calM (l)l^{-s},
+\]
+when the series converges.
+Then, from \eqref{eq:MuMp} and \eqref{eq:uMDir} we can write
+\begin{align*}
+  -\sum_{l=1}^{\infty} \manM(l)l^{-s} 
+  &= - \left( \sum_{l=1}^\infty \muM(l) l^{-s} \right)
+  \left( \sum_{l=1}^\infty (\log l) \uM(l) l^{-s} \right) \\
+  &= \left( \sum_{l=1}^\infty \muM(l) l^{-s} \right)
+  \left( {-}\sum_{n=1}^\infty (\log M_n) M_n^{-s} \right) 
+  = \frac{1}{\zeta_{\calM}(s)} \zeta_{\calM}'(s).
+\end{align*}
+
+Once the behavior of the functions $\muM(l)$ and $\manM(l)$ has been explained, our goal is to be able to compute them conveniently. Our first result about the values of $\muM(l)$ and $\manM(l)$ is the following.
+
+\begin{proposition}
+\label{prop:fun(l)=0}
+Let $\muM(l)$ and $\manM(l)$ be the arithmetic functions defined in~\eqref{eq:muMuMconv} and~\eqref{eq:loguM}, respectively. Then, 
+$\muM(1) = 1$, $\manM(1) = 0$,
+and $\muM(l)= \manM(l) = 0$ when $l \notin \Mp$.
+\end{proposition}
+
+\begin{proof} 
+We have already seen that $\muM(1) = 1$ and $\manM(1) = 0$.
+We will now prove that $\muM(l) = \manM(l) = 0$ when $l \notin \Mp$ by complete induction on~$l$.
+We start with~$\muM$. 
+
+The first $l$ that does not belong to $\Mp$ is $l=2$, and $\muM(2)=0$ by \eqref{eq:mu(l)rec} (the case $l \notin \calM$ and $p_l=0$). 
+Let us now assume that $\muM(l') = 0$ for any $l'<l$ such that  $l' \notin \Mp$. We want to prove that also $\muM(l) = 0$.
+Isolating the summand corresponding to $k=1$, let us write \eqref{eq:muMuMconv} as
+\[
+  \muM(l) = - \sum_{1 \ne k \mid l} \muM\Big(\frac{l}{k}\Big)\uM(k).
+\]
+If $k \notin \calM$, then $\uM(k) = 0$, so the summand $\muM({l}/{k})\uM(k)$ is zero.
+If $k \in \calM$, then $l' = l/k \notin \Mp$ (because $k \in \calM$ and $l' \in \Mp$ implies $l = kl' \in \Mp$, which is a contradiction); then, also $\muM({l}/{k})\uM(k) = 0$ by the inductive hypothesis. Consequently, $\muM(l)=0$.
+
+The proof for $\manM$ is similar using $\manM(2)=0$ and isolating the summand corresponding to $k=1$ in~\eqref{eq:loguM}.
+\end{proof}
+
+%% ENGLISH CHANGED SO THAT IT DOES NOT RESEMBLE RACSAM TOO CLOSELY
+\begin{remark}
+\label{rem:nota}
+It is worth noting the following remarks concerning the practical use of \eqref{eq:mu(l)rec} and~\eqref{eq:Man(l)rec}.
+Let $l \in \Mp$ have the factorization
+\[
+  l = M_{n_1}^{m_1}M_{n_2}^{m_2} \cdots M_{n_{k_l}}^{m_{k_l}}
+\]
+as in \eqref{eq:Mp} (that is, with $M_{n_i} \ne 63$), which is unique.
+If a Fermat number $M_d > 1$ divides $l$, we cannot guarantee that $M_d$ is among the factors $M_{n_i}$ appearing in the above decomposition. This situation occurs frequently; for example, $l = 3^2 \cdot 5^2 \cdot 7 = M_3 M_4^2$ is divisible by $M_2 = 3$, but $M_2$ does not appear in the unique factorization given by~\eqref{eq:Mp}.
+However, if a proper divisor $M_d$ of $l$ is neither $M_6 = 63$ nor one of the factors $M_{n_i}$, then $l / M_d \notin \Mp$. Indeed, if $l' = l / M_d \in \Mp$, and its factorization is
+\[
+  \frac{l}{M_d} = l' = M_{n_1'}^{m_1'} M_{n_2'}^{m_2'} \cdots M_{n_{k_{l'}}'}^{m_{k_{l'}}'},
+\]
+this leads to two different factorizations of $l$,
+\[
+  l = M_{n_1}^{m_1}M_{n_2}^{m_2} \cdots M_{n_{k_l}}^{m_{k_l}}
+  = M_d \cdot M_{n_1'}^{m_1'} M_{n_2'}^{m_2'} \cdots M_{n_{k_{l'}}'}^{m_{k_{l'}}'},
+\]
+contradicting the uniqueness of the factorization. Hence, by Proposition~\ref{prop:fun(l)=0}, we have $\muM(l/M_d) = \manM(l/M_d) = 0$ since $l / M_d \notin \Mp$; therefore, the corresponding terms in \eqref{eq:mu(l)rec} or~\eqref{eq:Man(l)rec} vanish.
+
+Furthermore, by the same uniqueness property, $l/63 \notin \Mp$ if $M_d = 63$ is a proper divisor of $l$ and the factorization of $l$ does not include $M_{n_1} = 3$ with $m_1 \ge 2$ and $M_{n_2} = 7$ with $m_2 \ge 1$.
+Consequently, when applying \eqref{eq:mu(l)rec} and \eqref{eq:Man(l)rec}, it is unnecessary to consider all divisors $M_d$ of $l$; it suffices to take the proper divisors that are either $M_6 = 63$ (when $M_{n_1} = 3$ with $m_1 \ge 2$ and $M_{n_2} = 7$ with $m_2 \ge 1$) or one of the Fermat numbers $M_{n_i}$ appearing in the factorization of $l$ in~$\Mp$.
+Otherwise, the corresponding terms $\muM(l/M_d)$ and $\manM(l/M_d)$ are zero. This observation will be tacitly used several times in the proofs that follow.
+\end{remark}
+
+%----------
+%\section{The computation of the M\"o\-bius-Fer\-mat 
+% and the von Man\-goldt-Fer\-mat functions in the easy cases}
+\section{Computation of $\muM$ and $\manM$ in the easy cases}
+\label{sec:easy}
+%----------
+
+Recall that the uniqueness of the factorization of $l \in \Mp$ as a product of Fermat numbers is not true because $M_6 = 63 = 3^2 \cdot 7 = M_2^2M_3$, and that is why we do not use $M_6$ in decompositions such as \eqref{eq:Mp} or~\eqref{eq:Mpalt}, which are unique.
+If, in these decompositions, $l \in \Mp$ does not have the factor $M_2^2M_3$, evaluating $\muM(l)$ and $\manM(l)$ is relatively straightforward.
+Thus, following the notation in~\eqref{eq:Mpalt}, we will begin by studying the case
+\[
+  l = 3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}} \in \Mp
+\] 
+as in \eqref{eq:Mpalt}, with $m_1\le1$ or $m_2=0$. 
+%% However, the notation in the proof becomes complicated if we write it as in \eqref{eq:Mpalt};
+%% for the proof, it is best to use \eqref{eq:Mp}.
+
+Under these conditions, the following holds. The proofs of these two results, the first for $\muM(l)$ and the second for $\manM(l)$, are postponed to Section~\ref{sec:prod}.
+
+\begin{proposition}
+\label{prop:mu(l)prod}
+Let $\muM(l)$ be the arithmetic function defined in~\eqref{eq:muMuMconv}. 
+Then, if 
+\[
+  l = M_{n_1}^{m_1} M_{n_2}^{m_2} \cdots M_{n_{k_l}}^{m_{k_l}} \in \Mp
+\] 
+(with a factorization as in \eqref{eq:Mp}, which is in fact unique) 
+with $(M_{n_1},M_{n_2}) \ne (3,7)$ or $(M_{n_1},M_{n_2}) = (3,7)$ and $m_1=1$,
+one has 
+\begin{equation}
+\label{eq:mu(l)prod}
+  \muM(l) =
+  (-1)^{r_l} \, \frac{r_l!}{m_1!\, m_2! \cdots m_{k_l}!}, 
+\end{equation}
+where $r_l := m_1 + m_2 + \cdots + m_{k_l}$.
+\end{proposition}
+
+\begin{proposition}
+\label{prop:Man(l)prod}
+Let $\manM(l)$ be the arithmetic function defined in~\eqref{eq:loguM}. 
+Then, if 
+\[
+  l = M_{n_1}^{m_1} M_{n_2}^{m_2} \cdots M_{n_{k_l}}^{m_{k_l}} \in \Mp
+\] 
+(with a factorization as in \eqref{eq:Mp}, which is in fact unique) 
+with $(M_{n_1},M_{n_2}) \ne (3,7)$ or $(M_{n_1},M_{n_2}) = (3,7)$ and $m_1=1$,
+one has 
+\begin{equation}
+\label{eq:Man(l)prod}
+  \manM(l) =
+  (-1)^{r_l-1} \, \frac{(r_l-1)!}{m_1!\, m_2! \cdots m_{k_l}!} \log(l), 
+\end{equation}
+where $r_l := m_1 + m_2 + \cdots + m_{k_l}$.
+\end{proposition}
+
+For $l$ under the hypotheses of Propositions~\ref{prop:mu(l)prod} and~\ref{prop:Man(l)prod}, it is clear that
+\begin{equation}
+\label{eq:relmanmu}
+  \manM(l) = -\frac{1}{r_l} \muM(l) \log(l).
+\end{equation}
+This is not true in general, but it provides a clue for finding another expression for $\manM(l)$ once an expression for $\muM(l)$ has been found in general. Later on, we will use this to guess the statement of Theorem~\ref{teo:Man(3m7nprod)}, based on Theorem~\ref{teo:mu(3m7nprod)}, before proving~it.
+
+Before continuing, let us note that if we take $m_1 \ge 0$, $m_2 \ge 0$, and different Fermat numbers $M_{n_j}\ge 15$, also different from $63$,
+then 
+\[
+  \muM\Big(3^{m_1} 7^{m_2} \prod_{j=1}^{J} M_{n_j}\Big)
+\]
+is independent of the Fermat numbers $M_{n_j}$, and it depends only on its number~$J$, which is obvious from~\eqref{eq:mu(l)rec}.
+Then, we have the following (which in turn is analogous to \cite[Section 2.6]{MoNaVa}), whose proof can be seen in Section~\ref{sec:prod}.
+
+\begin{proposition}
+\label{prop:mu(3m7nprods)}
+For $m_1 \ge 0$, $m_2 \ge 0$, and $J$ different Fermat numbers $M_{n_j}\ge 15$, also different from $63$, let us denote
+\[
+  \widetilde{\muM}(m_1,m_2,J) = \muM\Big(3^{m_1} 7^{m_2} \prod_{j=1}^{J} M_{n_j}\Big)
+\]
+(as we have just mentioned, this is independent of what the specific $M_{n_j}$ values are).
+Then, for $l = 3^{m_1} 7^{m_2} M_{n_3}^{m_3} M_{n_4}^{m_4} \cdots M_{n_{k_l}}^{m_{k_l}}$ (decomposition as in \eqref{eq:Mpalt}, which is unique), one has
+\[
+  \muM(3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}) 
+  = \frac{1}{m_3!\,m_4!\cdots m_{k_l}!} 
+  \, \widetilde{\muM}(m_1,m_2,m_3+m_4+\cdots+m_{k_l}).
+\]
+\end{proposition}
+
+%----------
+%\section{Computation of the M\"o\-bius-Fer\-mat and the von Man\-goldt-Fer\-mat functions}
+\section{Closed-form expressions for $\muM$ and $\manM$}
+\label{sec:valores}
+%----------
+
+The next step is to try to evaluate $\muM(3^m7^n)$ for $m,n \in \N$.
+For numbers $l$ of the form $l=3^m7^n$ with $m \ge 2$ and $n \ge 1$, the recurrence \eqref{eq:mu(l)rec} becomes 
+\[
+  \muM(3^m7^n) = -\Big( \muM(3^{m-1}7^n) + \muM(3^m7^{n-1}) + \muM(3^{m-2}7^{n-1}) \Big).
+\]
+Thus, if we denote $a_{m,n} = \muM(3^m7^n)$, we have 
+\begin{equation*}
+%\label{eq:amn}
+  a_{m,n} = -a_{m-1,n}-a_{m,n-1}-a_{m-2,n-1},
+%  \qquad m \ge 2,\ n \ge 1,
+\end{equation*}
+which is a partial difference equation involving unknown functions $a_{m,n}$ of two discrete variables; it is linear with constant coefficients.
+%% linear difference equations involving unknown functions of two discrete variables
+Moreover, the initial conditions (that follow from Proposition~\ref{prop:mu(l)prod}) are
+\begin{equation*}
+  a_{0,n} = (-1)^n, \quad
+  a_{1,n} = (-1)^{n+1}(n+1), \quad
+  a_{m,0} = (-1)^m.
+\end{equation*}
+
+Unlike ordinary linear difference equations, there are not many textbooks that cover the solution of linear partial difference equations; two examples are \cite[Chapter~5]{Mick} and \cite[Section 2.3]{PeWil}. In any case, it is a cumbersome process, and one hopes to be able to rely on the help of computer algebra systems. However, Mathematica 14.3 (the current version at the time of writing) cannot solve this recurrence equation; neither can Maple, SymPy, nor SageMath solve~it.
+
+But, if we instead have $a'_{m,n} = (-1)^{m+n} a_{m,n}$, the recurrence becomes
+\begin{equation}
+\label{eq:a'}
+\begin{gathered}
+  a'_{m,n} = a'_{m-1,n}+a'_{m,n-1}+a'_{m-2,n-1}, \\
+  a'_{0,n} = 1, \quad
+  a'_{1,n} = n+1, \quad
+  a'_{m,0} = 1,
+\end{gathered}
+\end{equation}
+that resembles the recurrence of Delannoy numbers, that count the number of walks from $(0,0)$ to $(m,n)$ using only the steps $(1,0)$, $(0,1)$ and $(1,1)$ (namely, $d_{m,n} = d_{m-1,n}+d_{m,n-1}+d_{m-1,n-1}$ with $d_{0,n}=d_{m,0}=1$). 
+In the case of $a'_{m,n}$, it counts the number of walks from $(0,0)$ to $(m,n)$ using the steps $(1,0)$, $(0,1)$ and $(2,1)$. 
+Therefore, to solve the recurrence of the $a'_{m,n}$ (or the $a_{m,n}$), combinatorial procedures similar to those used with Delannoy numbers or their generalizations can be used (some of these generalizations, which do not cover the case that concerns us here, can be found in \cite{EdGr} or~\cite{GOV}).
+
+In this way, we have arrived at the following result, whose proof, which is based on the use of generating functions, can be found in Section~\ref{sec:mu(3m7n)}.
+
+\begin{proposition}
+\label{prop:mu(3m7n)}
+Let $\muM(l)$ be the arithmetic function defined in~\eqref{eq:muMuMconv}. 
+Then, 
+\begin{align}
+\label{eq:mu(3m7n)previo}
+  \muM(3^m7^n) &=
+  (-1)^{m+n} \sum_{j=0}^{\min\{\lfloor m/2\rfloor, n\}} 
+  \binom{n}{j} \binom{m+n-2j}{m-2j} \\
+\label{eq:mu(3m7n)}
+  &= (-1)^{m+n} \sum_{j=0}^{\min\{\lfloor m/2\rfloor, n\}} 
+  \frac{(m+n-2j)!}{(m-2j)!\,(n-j)!\,j!} \\
+\label{eq:mu(3m7n)hyper}
+  &= (-1)^{m+n} \binom{m+n}{n}\,
+  {}_3F_2 \! \left(\begin{matrix}
+  -n,\, -\lfloor\tfrac{m}{2}\rfloor,\, -\lfloor\tfrac{m+1}{2}\rfloor + \tfrac{1}{2} \\[4pt]
+  -\tfrac{n}{2} - \lfloor\tfrac{m}{2}\rfloor,\, -\tfrac{n}{2} - \lfloor\tfrac{m+1}{2}\rfloor + \tfrac{1}{2}
+  \end{matrix}; -1 \right)
+\end{align}
+for $m,n\ge0$. 
+\end{proposition}
+%% Observe that $\binom{m+n-2j}{m-2j} = \binom{m+n-2j}{n}$ and perhaps it looks nicer,
+%% but $\binom{m+n-2j}{m-2j}$ is better to see the limit $\lfloor m/2\rfloor$ for $j$
+
+Note that the hypergeometric function
+\begin{equation}
+\label{eq:3F2}
+  {}_3F_2 \! \left(\begin{matrix}
+  a_1, a_2, a_3 \\[4pt]
+  b_1, b_2
+  \end{matrix}; x \right) 
+  = \sum_{k=0}^{\infty} \frac{{(a_1)}_k\, {(a_2)}_k\, {(a_3)}_k}{{(b_1)}_k\,{(b_2)}_k} \frac{x^k}{k!},
+% \qquad (c)_0=1, 
+% \quad (c)_k = \prod_{j=0}^{k-1} (c+j),
+  \qquad (c)_k = c(c+1) \cdots (c+k-1),
+%% (c)_k = \Gamma(c+k)/\Gamma(c)
+\end{equation}
+is a series which, in \eqref{eq:mu(3m7n)hyper}, has only a finite number of non-zero summands (due to the negative integer parameters $-n$ and $-\lfloor\tfrac{m}{2}\rfloor$), so the series reduces to a finite sum and is exactly equivalent to the previous combinatorial expression. 
+This will also happen in the other hypergeometric expressions that we will see later on.
+
+To try to evaluate $\muM(l)$ in general, 
+that is, with $l = 3^m 7^n M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}$ as in~\eqref{eq:Mpalt}, 
+we will first address a particular case. Given $q$ a Fermat number other than $3$, $7$, or $63$, we take the $l$'s of the form $l = 3^m7^n q^k$.
+Then, for $m \ge 2$, $n \ge 1$ and $k \ge 1$,
+\[
+  \muM(3^m7^n q^k) = -\Big( \muM(3^{m-1}7^n q^k) + \muM(3^m7^{n-1} q^k) 
+  + \muM(3^{m-2}7^{n-1} q^k) + \muM(3^m7^n q^{k-1}) \Big),
+\]
+which becomes a linear partial difference equation with constant coefficients. From there, perhaps we can easily move on to the formula for $\muM(3^m 7^nM_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}})$ using Proposition~\ref{prop:mu(3m7nprods)} (which in turn is analogous to \cite [Section 2.6]{MoNaVa}); at least, it provides clues as to what it should be like, since all the $M_{n_j}$ (with $j \ge 3$) must play the same role.
+
+If we denote $c_{m,n,k} = \muM(3^m 7^n q^k)$, the recurrence formula is
+\begin{equation*}
+%\label{eq:cmnk}
+  c_{m,n,k} = -\Big( c_{m-1,n,k} + c_{m,n-1,k} + c_{m-2,n-1,k} + c_{m,n,k-1} \Big);
+%  \qquad m \ge 2,\ n \ge 1,\ k \ge 1
+\end{equation*}
+moreover, by Proposition~\ref{prop:mu(l)prod},
+\begin{align*}
+%\label{eq:c0nk}
+  c_{0,n,k} &= (-1)^{n+k} \,\frac{(n+k)!}{n!}, & n,k \ge 0,\\
+%\label{eq:c1nk}
+  c_{1,n,k} &= (-1)^{n+k+1} \,\frac{(n+k+1)!}{n!}, & n,k \ge 0,\\
+%\label{eq:cm0k}
+  c_{m,0,k} &= (-1)^{m+k} \,\frac{(m+k)!}{m!}, & m,k \ge 0,
+\end{align*}
+and, by Proposition~\ref{prop:mu(3m7n)},
+\begin{equation*}
+%\label{eq:cmn0}
+  c_{m,n,0} 
+%  = (-1)^{m+n} \sum_{j=0}^{\min\{\lfloor m/2\rfloor, n\}} 
+%  \binom{n}{j} \binom{m+n-2j}{m-2j}
+  = (-1)^{m+n} \sum_{j=0}^{\min\{\lfloor m/2\rfloor, n\}} 
+  \frac{(m+n-2j)!}{(m-2j)!\,(n-j)!\,j!},
+  \qquad m,n \ge 0.
+\end{equation*}
+
+Solving this recurrence yields the following result. The corresponding proof (showing several alternative ways to do it) can also be found in Section~\ref{sec:mu(3m7n)}.
+
+\begin{proposition}
+\label{prop:mu(3m7nqk)}
+Let $\muM(l)$ be the M\"obius-Fermat arithmetic function defined in~\eqref{eq:muMuMconv}, with $q\ne3,7,63$ a Fermat number.
+Then, 
+\begin{align}
+\label{eq:mu(3m7nqk)}
+  &\muM(3^m7^nq^k) =
+  (-1)^{m+n+k} \sum_{j=0}^{\min\{\lfloor m/2\rfloor, n\}} 
+  \frac{(m+n-2j+k)!}{(m-2j)!\,(n-j)!\,j!\,k!} \\
+  \nonumber
+  &\qquad = (-1)^{m+n+k} \frac{(m+n+k)!}{m!\,n!\,k!}\,
+  {}_3F_2 \! \left(\begin{matrix}
+  -n,\, -\lfloor\tfrac{m}{2}\rfloor,\, -\lfloor\tfrac{m+1}{2}\rfloor + \tfrac{1}{2} \\[4pt]
+  -\tfrac{n+k}{2} - \lfloor\tfrac{m}{2}\rfloor,\, -\tfrac{n+k}{2} - \lfloor\tfrac{m+1}{2}\rfloor + \tfrac{1}{2}
+  \end{matrix}; -1 \right)
+\end{align}
+for $m,n,k\ge0$. 
+\end{proposition}
+
+In view of Proposition~\ref{prop:mu(3m7nprods)}, it seems that, for generic $l = 3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}} \in \Mp$, the general expression of $\muM(l)$ could be as shown in~\eqref{eq:mu(3m7nprod)}.
+% And it sis true!: I have tested this experimentally and it works. 
+In fact, once the formula has been guessed, it is not difficult to prove it by induction on $r_l$, as in the case of the proofs of Propositions~\ref{prop:mu(l)prod} and~\ref{prop:Man(l)prod}. The proof can be seen in Section~\ref{sec:main}.
+
+\begin{theorem}
+\label{teo:mu(3m7nprod)}
+Let $\muM(l)$ be the M\"obius-Fermat arithmetic function defined in~\eqref{eq:muMuMconv}. 
+Then, for $l = 3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}$ (factorization as in \eqref{eq:Mpalt}, which is unique),
+\begin{align}
+\label{eq:mu(3m7nprod)}
+  &\muM(3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}) 
+  = (-1)^{r_l} \sum_{j=0}^{\min\{\lfloor m_1/2\rfloor, m_2\}} 
+  \frac{(r_l-2j)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \\
+\nonumber
+  &\qquad= \frac{(-1)^{r_l}\, r_l!}{m_1!\,m_2!\,m_3!\cdots m_{k_l}!}\,
+  {}_3F_2 \! \left(\begin{matrix}
+  -m_2,\, -\lfloor\tfrac{m_1}{2}\rfloor,\, -\lfloor\tfrac{m_1+1}{2}\rfloor + \tfrac{1}{2} \\[4pt]
+  -\tfrac{r_l-m_1}{2} - \lfloor\tfrac{m_1}{2}\rfloor,\, -\tfrac{r_l-m_1}{2} - \lfloor\tfrac{m_1+1}{2}\rfloor + \tfrac{1}{2}
+  \end{matrix}; -1 \right),
+\end{align}
+where $r_l := m_1 + m_2 + m_3 + \cdots + m_{k_l}$. 
+\end{theorem}
+
+If we compare \eqref{eq:mu(l)prod} with \eqref{eq:Man(l)prod} (as explained in the discussion surrounding~\eqref{eq:relmanmu}), we can guess that the formula for $\manM(l)$ with generic $l \in \Mp$ is as in~\eqref{eq:Man(3m7nprod)}. 
+% And it is true!: I have tested it experimentally and it works. 
+Also, as in the case of some other results in this paper, once the formula has been discovered, it can be tested by induction on~$r_l$.
+However, this time we will not do a proof by induction, but rather we will provide a rigorous proof based on Theorem~\ref{teo:mu(3m7nprod)} using $\manM = \muM * \uM'$ (see also Section~\ref{sec:main}).
+
+\begin{theorem}
+\label{teo:Man(3m7nprod)}
+Let $\manM(l)$ be the von Mangoldt-Fermat arithmetic function defined in~\eqref{eq:loguM}. 
+Then, for $l = 3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}$ (factorization as in \eqref{eq:Mpalt}, which is unique),
+\begin{align}
+\label{eq:Man(3m7nprod)}
+  &\manM(3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}) 
+  = (-1)^{r_l-1} \sum_{j=0}^{\min\{\lfloor m_1/2\rfloor, m_2\}} 
+  \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \log(l)\\
+\nonumber
+  &\qquad= \frac{(-1)^{r_l-1}\, (r_l-1)!}{m_1!\,m_2!\,m_3!\cdots m_{k_l}!}\,
+  {}_3F_2 \! \left(\begin{matrix}
+  -m_2,\, -\lfloor\tfrac{m_1}{2}\rfloor,\, -\lfloor\tfrac{m_1+1}{2}\rfloor + \tfrac{1}{2} \\[4pt]
+  -\tfrac{r_l-m_1}{2} - \lfloor\tfrac{m_1}{2}\rfloor +  \tfrac{1}{2},\, 
+    -\tfrac{r_l-m_1}{2} - \lfloor\tfrac{m_1+1}{2}\rfloor + 1
+  \end{matrix}; -1 \right) \log(l),
+\end{align}
+where $r_l := m_1 + m_2 + m_3 + \cdots + m_{k_l}$. 
+\end{theorem}
+
+%----------
+\section{Proofs of Propositions~\ref{prop:mu(l)prod}, \ref{prop:Man(l)prod} and~\ref{prop:mu(3m7nprods)}}
+\label{sec:prod}
+%----------
+
+The proofs of Propositions~\ref{prop:mu(l)prod} and~\ref{prop:Man(l)prod} are adaptations of the one given in \cite[Proposition~2]{MoNaVa} for $\manF(l)$.
+We will only prove the result for $\muM(l)$ (Proposition~\ref{prop:mu(l)prod}); the proof for $\manM(l)$ (Proposition~\ref{prop:Man(l)prod}) is similar.
+
+\begin{proof}[Proof of Proposition~\ref{prop:mu(l)prod}]
+If $l$ is a member of $\Mp$ with $r_l=1$ that fulfills the hypothesis, 
+$l$ is necessarily a Fermat number distinct from $M_{6}=63$.
+% (observe that $r_{63}=3$). 
+Then, directly by \eqref{eq:mu(l)rec} one has 
+\[
+  \muM(l) = -1, 
+\]
+so formula \eqref{eq:mu(l)prod} is true if $r_l=1$. 
+
+To prove the general validity of \eqref{eq:mu(l)prod}, we use complete induction on~$r_l$. 
+Let $l = M_{n_1}^{m_1} M_{n_2}^{m_2} \cdots M_{n_{k_l}}^{m_{k_l}}$ be a member of $\Mp$ 
+(with $(M_{n_1},M_{n_2}) \ne (3,7)$ or $(M_{n_1},M_{n_2})=(3,7)$ and $m_1=1$)
+with $r_l>1$ and assume that \eqref{eq:mu(l)prod} is true for any 
+\[
+  l' = M_{n_1'}^{m_1'} M_{n_2'}^{m_2'} 
+  \cdots M_{n_{k_{l'}}'}^{m_{k_{l'}}'} \in \Mp
+\]
+with 
+$r_{l'} := m_1' + m_2' + \cdots + m_{k_{l'}}' < r_l$
+(and such that $(M_{n_1'},M_{n_2'}) \ne (3,7)$ or $(M_{n_1'},M_{n_2'}) = (3,7)$ and $m_1'=1$).
+By Carmichael's theorem, $l\notin \calM$ and $l/M_j \notin \Mp$ 
+if $M_j$ is a Fermat proper divisor of $l$ that is not one of the $M_{n_{i}}$
+(recall Remark~\ref{rem:nota}).
+Then, by applying \eqref{eq:mu(l)rec} and Proposition~\ref{prop:fun(l)=0}, we have 
+\begin{equation}
+\label{eq:mu(l)demo}
+  \muM(l) = -\left(  \muM(M_{n_1}^{m_1-1} \cdots M_{n_{k_l}}^{m_{k_l}})
+  + \muM(M_{n_1}^{m_1}M_{n_2}^{m_2-1} \cdots M_{n_{k_l}}^{m_{k_l}})
+  + \cdots + \muM(M_{n_1}^{m_1} \cdots M_{n_{k_l}}^{m_{k_l}-1}) \right) .
+\end{equation}
+Since the sum of exponents of each summand of the right-hand side of \eqref{eq:mu(l)demo}
+is $r_l-1$, the induction hypothesis applies, and then we get 
+\begin{align*}
+  \muM(l) &= -(-1)^{r_l-1} 
+  \left( \frac{(r_l-1)!}{(m_1-1)! \cdots m_{k_l}!} 
+  + \frac{(r_l-1)!}{m_1!\,(m_2-1)! \cdots m_{k_l}!} + \cdots 
+  + \frac{(r_l-1)!}{m_1! \cdots (m_{k_l}-1)!} \right) \\
+  &= (-1)^{r_l}
+  \left( \frac{(r_l-1)!\,m_1}{m_1! \cdots m_{k_l}!} 
+  + \frac{(r_l-1)!\,m_2}{m_1!\,m_2! \cdots m_{k_l}!} + \cdots 
+  + \frac{(r_l-1)!\,m_{k_l}}{m_1! \cdots m_{k_l}!} \right) \\
+  &= (-1)^{r_l} \frac{r_l!}{m_1! \cdots m_{k_l}!}, 
+\end{align*}
+which completes the proof of~\eqref{eq:mu(l)prod}. 
+\end{proof}
+
+Now, let us see the proof of Proposition~\ref{prop:mu(3m7nprods)}.
+
+\begin{proof}[Proof of Proposition~\ref{prop:mu(3m7nprods)}]
+We use induction on $r_l = m_1 + m_2 + m_3 + m_4 + \cdots + m_{k_l}$.
+The result is trivial if $s_l := m_3 + m_4 + \cdots + m_{k_l} = 0$,
+so we just have to prove the induction step.
+
+To allow us to express summands which do not actually form part of some expressions, we will use the following notation:
+\begin{equation}
+\label{eq:IF}
+  \IF_{\mathrm{condition}}(a) =
+  \begin{cases}
+  a & \text{if ``condition'' is true},\\
+  0 & \text{if ``condition'' is false}.
+  \end{cases}
+\end{equation}
+We will use three different ``conditions'', namely
+\[
+  (m_1 \ge 1),  \quad (m_2 \ge 1)
+  \quad\text{and}\quad (m_1 \ge 2 \text{ and } m_2 \ge 1)
+\]
+which, for simplicity, will be denoted by $\IF_{3}$, $\IF_{7}$ and $\IF_{63}$ 
+(recall that $m_1$ is the exponent in $3^{m_1}$ and $m_2$ is the exponent in $7^{m_2}$).
+Observe that if they do not hold, the corresponding summand $\muM(l/3)$, $\muM(l/7)$ or $\muM(l/63)$ in~\eqref{eq:mu(l)rec} is absent. 
+
+Furthermore, to easily take advantage of the fact that $\widetilde{\muM}(m_1,m_2,J)$ is independent of the specific $M_{n_j}$ values in $\prod_{j=1}^J M_{n_j}$, we can assume that these $M_{n_j}$ are $M_4=15$, $M_5=31$, $M_7=127$, $M_8=255$, and so on, and we will denote them as $\widetilde{M}_{k}$, $k \ge 1$, in that order.
+
+For the induction step, let us assume that the result is true for $r_{l'} < r_l$, and let us prove it for~$r_l$.
+Take $l = 3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}$ (decomposition as in~\eqref{eq:Mpalt}),
+with $r_l = m_1 + m_2 + m_3 + m_4 + \cdots + m_{k_l}$ and $s_l := m_3 + m_4 + \cdots + m_{k_l}$.
+By \eqref{eq:mu(l)rec},
+\begin{align*}
+  \muM(l) &= -\IF_3\Bigl(\muM(3^{m_1-1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}})\Bigr)
+  - \IF_7\Bigl(\muM(3^{m_1} 7^{m_2-1} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}})\Bigr) \\
+  &\qquad - \IF_{63}\Bigl(\muM(3^{m_1-2} 7^{m_2-1} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}})\Bigr) \\
+  &\qquad - \muM(3^{m_1} 7^{m_2} M_{n_3}^{m_3-1} \cdots M_{n_{k_l}}^{m_{k_l}})
+  - \cdots - \muM(3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}-1}).
+\end{align*}
+By the induction hypothesis,
+\begin{align*}
+  &\muM(3^{m_1-1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}) \\
+  &\qquad = \frac{1}{m_3!\cdots m_{k_l}!} \,\widetilde{\muM}(m_1-1,m_2,s_l)
+  = \frac{1}{m_3!\cdots m_{k_l}!} \,\muM(3^{m_1-1}7^{m_2} \widetilde{M}_{1} \cdots \widetilde{M}_{s_l}),
+\end{align*}
+and similarly for the second and third summands, with 
+$\widetilde{\muM}(m_1,\allowbreak m_2-1,\allowbreak s_l)$ and $\widetilde{\muM}(m_1-2,\allowbreak m_2-1,\allowbreak s_l)$, respectively.
+For the rest of the summands, we have 
+\begin{align*}
+  \muM(3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_j}^{m_j-1} \cdots M_{n_{k_l}}^{m_{k_l}}) 
+  &= \frac{1}{m_3!\cdots (m_j-1)! \cdots m_{k_l}!} \,\widetilde{\muM}(m_1,m_2,s_l-1) \\
+  &= \frac{m_j}{m_3! \cdots m_{k_l}!} \,\widetilde{\muM}(m_1,m_2,s_l-1)
+\end{align*}
+for every $n_j$, and $\widetilde{\muM}(m_1,m_2,s_l-1)$ is independent of the $s_l-1$ factors 
+of $\widetilde{M}_{1} \cdots \widetilde{M}_{s_l}$ that we take. 
+Then,
+\begin{align*}
+  \muM(l) &= \frac{-1}{m_3! \cdots m_{k_l}!} \Big(
+  \IF_3\Bigl(\muM(3^{m_1-1} 7^{m_2} \widetilde{M}_{1} \cdots \widetilde{M}_{s_l})\Bigr)
+  + \IF_7\Bigl(\muM(3^{m_1} 7^{m_2-1} \widetilde{M}_{1} \cdots \widetilde{M}_{s_l})\Bigr) \\
+  &\qquad + \IF_{63}\Bigl(\muM(3^{m_1-2} 7^{m_2-1} \widetilde{M}_{1} \cdots \widetilde{M}_{s_l})\Bigr) \\
+  &\qquad + \muM(3^{m_1}7^{m_2} \widetilde{M}_{2} \cdots \widetilde{M}_{s_l})
+  + \cdots + \muM(3^{m_1}7^{m_2} \widetilde{M}_{1} \cdots \widetilde{M}_{s_l-1})
+  \Big) \\
+  &= \frac{1}{m_3! \cdots m_{k_l}!} \muM(3^{m_1} 7^{m_2} \widetilde{M}_{1} \cdots \widetilde{M}_{s_l})
+  = \frac{1}{m_3! \cdots m_{k_l}!} \widetilde{\muM}(m_1,m_2,s_l),
+\end{align*}
+where, in the step to the last line, we have used~\eqref{eq:mu(l)rec}.
+% where, in the penultimate equality, we have used~\eqref{eq:mu(l)rec}.
+% Thus, the proof is complete.
+\end{proof}
+
+%----------
+\section{Proof of Propositions~\ref{prop:mu(3m7n)} and \ref{prop:mu(3m7nqk)}}
+\label{sec:mu(3m7n)}
+%----------
+
+We begin with a proof of Proposition~\ref{prop:mu(3m7n)}. 
+
+\begin{proof}[Proof of Proposition~\ref{prop:mu(3m7n)}]
+Interpreting the recurrence \eqref{eq:a'} combinatorially 
+as a walk from $(0,0)$ to $(m,n)$ with steps $(1,0)$, $(0,1)$ and $(2,1)$,
+one finds that the closed-form expression for $a'_{m,n}$ is
+\begin{equation*}
+  a'_{m,n} = \sum_{j=0}^{\min\{\lfloor m/2\rfloor,n\}}
+  \frac{(m+n - 2j)!}{(m - 2j)!\,(n - j)!\,j!},
+\end{equation*}
+and consequently $a_{m,n} = (-1)^{m+n} a'_{m,n}$ satisfies~\eqref{eq:mu(3m7n)}.
+However, we are going to provide a detailed proof based on generating functions.
+
+Let us take $a_{m,n} = \muM(3^m7^n)$ and define the generating function
+\begin{equation*}
+  A(x,y) = \sum_{m\ge0} \sum_{n\ge0} a_{m,n} x^m y^n.
+\end{equation*}
+Also, let us denote
+\begin{equation*}
+  A_0(y) = \sum_{n\ge0} a_{0,n}y^n, \quad
+  A_1(y) = \sum_{n\ge0} a_{1,n}y^n, \quad
+  B_0(x) = \sum_{m\ge0} a_{m,0}x^m.
+\end{equation*}
+In this way, 
+\begin{align*}
+  A(x,y) % &= \sum_{m=0}^{\infty} \sum_{n=0}^{\infty} a_{m,n} x^m y^n
+  &= \sum_{n=0}^{\infty} a_{0,n} y^n
+  + \sum_{n=0}^{\infty} a_{1,n} x y^n
+  + \sum_{m=0}^{\infty} a_{m,0} x^m
+  - (a_{0,0} + a_{1,0}x)
+  + \sum_{m=2}^{\infty} \sum_{n=1}^{\infty} a_{m,n} x^m y^n 
+  \\
+  &= A_0(y) + xA_1(y) + B_0(x) - (a_{0,0} + a_{1,0}x)
+  + \sum_{m=2}^{\infty} \sum_{n=1}^{\infty} a_{m,n} x^m y^n
+\end{align*}
+(subtracting $a_{0,0} + a_{1,0}x$ is done because those terms are in both $B_0$ and the~$A_j$).
+By applying the recurrence 
+\begin{equation*}
+%\label{eq:amn}
+  a_{m,n} = -a_{m-1,n} - a_{m,n-1} - a_{m-2,n-1}, 
+  \quad m\ge2,\ n\ge1,
+\end{equation*}
+the double summation at the end can be written as
+\begin{align*}
+  \sum_{m=2}^{\infty} \sum_{n=1}^{\infty} a_{m,n} x^m y^n
+  &= -\sum_{m=2}^{\infty} \sum_{n=1}^{\infty} a_{m-1,n} x^m y^n
+  - \sum_{m=2}^{\infty} \sum_{n=1}^{\infty} a_{m,n-1} x^m y^n
+  - \sum_{m=2}^{\infty} \sum_{n=1}^{\infty} a_{m-2,n-1} x^m y^n
+  \\
+  &= -x \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} a_{m,n} x^m y^n
+  - y \sum_{m=2}^{\infty} \sum_{n=0}^{\infty} a_{m,n} x^m y^n
+  - x^2 y \sum_{m=0}^{\infty} \sum_{n=0}^{\infty} a_{m,n} x^m y^n.
+\end{align*}
+In the third double summation, what appears there is $x^2 y A(x,y)$.
+In the other two,
+\begin{align*}
+  \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} a_{m,n} x^m y^n
+  &= \sum_{m=0}^{\infty} \sum_{n=0}^{\infty} a_{m,n} x^m y^n
+  - \sum_{n=0}^{\infty} a_{0,n} y^n
+  - \sum_{m=0}^{\infty} a_{m,0} x^m
+  + a_{0,0} \\
+  &= A(x,y) - A_0(y) - B_0(x) + a_{0,0},
+  \\
+  \sum_{m=2}^{\infty} \sum_{n=0}^{\infty} a_{m,n} x^m y^n
+  &= \sum_{m=0}^{\infty} \sum_{n=0}^{\infty} a_{m,n} x^m y^n
+  - \sum_{n=0}^{\infty} a_{0,n} y^n
+  - \sum_{n=0}^{\infty} a_{1,0} xy^n \\
+  &= A(x,y) - A_0(y) - x A_1(y).
+\end{align*}
+% (the $a_{0,0}$ must be added because it has been subtracted twice).
+With all this,
+\begin{align*}
+  A(x,y) &= 
+  A_0(y) + xA_1(y) + B_0(x) - (a_{0,0} + a_{1,0}x) 
+  - x \Big( A(x,y) - A_0(y) - B_0(x) + a_{0,0} \Big) \\
+  &\qquad 
+  - y \Big( A(x,y) - A_0(y) - x A_1(y) \Big)
+  - x^2 y A(x,y) \\
+  &= -A(x,y) (x + y + x^2y) + A_0(y) (1 + x + y) + x A_1(y) (1 + y) 
+  + B_0(x) ( 1 + x ) \\
+  &\qquad - (a_{0,0} + a_{1,0}x) - x a_{0,0}
+\end{align*}
+and, consequently,
+\begin{equation}
+\label{eq:A(x,y)}
+  A(x,y) = \frac{(1+x+y)A_0(y) + x(1+y)A_1(y) + (1+x)B_0(x) - (1+x)a_{0,0} - x a_{1,0}}{1+x+y+x^2y}.
+\end{equation}
+
+In our case, the initial conditions are
+\begin{equation*}
+  a_{0,n} = (-1)^n, \quad
+  a_{1,n} = (-1)^{n+1}(n+1), \quad
+  a_{m,0} = (-1)^m.
+\end{equation*}
+Then, $a_{0,0} = 1$, $a_{1,0} = -1$ and
+\begin{equation*}
+  A_0(y) = \frac{1}{1+y}, \quad
+  A_1(y) = -\frac{1}{(1+y)^2}, \quad
+  B_0(x) = \frac{1}{1+x}.
+\end{equation*}
+Substituting in the general expression \eqref{eq:A(x,y)} yields 
+\begin{equation}
+\label{eq:genA} 
+  A(x,y) = \frac{1}{1+x+y+x^2y}.
+\end{equation}
+% Checked with Mathematica
+
+Now, rewriting
+\begin{equation*}
+  1+x+y+x^2y = (1+x)\left(1+y\,\frac{1+x^2}{1+x}\right)
+\end{equation*}
+and applying the geometric expansion gives
+\begin{equation*}
+  A(x,y) = \frac{1}{1+x} \sum_{n\ge0} \left(-y\,\frac{1+x^2}{1+x}\right)^n
+  = \sum_{n\ge0} (-1)^n y^n\,\frac{(1+x^2)^n}{(1+x)^{n+1}}.
+\end{equation*}
+Therefore, the coefficient of $x^m y^n$ is
+\begin{equation*}
+  a_{m,n} = (-1)^n [x^m]\left((1+x^2)^n(1+x)^{-n-1}\right)
+\end{equation*}
+(as usual, $[x^m](f(x))$ denotes the coefficient of $x^m$ in the expansion of $f(x)$ in powers of~$x$).
+Then, by multiplying the binomial expansions of $(1+x^2)^n$ and $(1+x)^{-n-1}$, we get
+\begin{equation*}
+  a_{m,n} = (-1)^{m+n} \sum_{j=0}^{\min\{\lfloor m/2\rfloor, n\}} \binom{n}{j} \binom{m+n-2j}{m-2j},
+\end{equation*}
+which is~\eqref{eq:mu(3m7n)previo}.
+
+Finally, the sum above can be expressed using terminating hypergeometric functions as in~\eqref{eq:mu(3m7n)hyper}. This can be easily verified by simply considering the definition of the hypergeometric function ${}_3F_2$, which can be seen in~\eqref{eq:3F2}. 
+As the Pochhammer symbol (or rising factorial) 
+% $(c)_k = c(c+1) \cdots (c+k-1) = \Gamma(c+k)/\Gamma(c)$ 
+$(c)_k = c(c+1) \cdots (c+k-1)$ 
+vanishes from a certain $k$ when $c$ is a negative integer, the series \eqref{eq:mu(3m7n)hyper} has a finite number of summands.
+\end{proof}
+
+Now, let us see the proof of Proposition~\ref{prop:mu(3m7nqk)}.
+
+\begin{proof}[Proof of Proposition~\ref{prop:mu(3m7nqk)}]
+Firstly, we can give a combinatorial proof similar to what happens with Delannoy numbers.
+Define
+\begin{equation*}
+  c'_{m,n,k} = (-1)^{m+n+k} c_{m,n,k}.
+\end{equation*}
+Then, $c'_{m,n,k}$ satisfies the recurrence relation
+\begin{equation}
+\label{eq:recc'}
+  c'_{m,n,k} = c'_{m-1,n,k} + c'_{m,n-1,k} + c'_{m-2,n-1,k} + c'_{m,n,k-1}
+\end{equation}
+with the initial conditions
+\begin{align*}
+  c'_{0,n,k} &= \frac{(n+k)!}{n!}, & n,k\ge0,\\
+  c'_{1,n,k} &= \frac{(n+k+1)!}{n!}, & n,k\ge0,\\
+  c'_{m,0,k} &= \frac{(m+k)!}{m!}, & m,k\ge0,\\
+  c'_{m,n,0} &= \sum_{j=0}^{\min\{\lfloor m/2\rfloor, n\}}
+  \frac{(m+n - 2j)!}{(m - 2j)!\,(n - j)!\,j!}, & m,n\ge0.
+\end{align*}
+This is a purely additive, linear recurrence with constant coefficients
+that can be interpreted as a walk from $(0,0,0)$ to $(m,n,k)$
+with steps $(1,0,0)$, $(0,1,0)$, $(2,1,0)$ and $(0,0,1)$.
+Then, one finds that 
+\begin{equation}
+\label{eq:c'}
+  c'_{m,n,k} = \sum_{j=0}^{\min\{\lfloor m/2\rfloor,n\}}
+  \frac{(m+n - 2j + k)!}{(m - 2j)!\,(n - j)!\,j!\,k!},
+\end{equation}
+which clearly satisfies the initial conditions.
+Consequently, the closed-form expression for $c_{m,n,k}$ is~\eqref{eq:mu(3m7nqk)}.
+
+In fact, we can easily verify that $c'_{m,n,k}$ defined as in \eqref{eq:c'} satisfies~\eqref{eq:recc'}, which directly proves that this is the correct solution to the recurrence. 
+Write $c'_{m,n,k} = \sum_{j \ge 0} T_{m,n,k}(j)$ (the summands are null from a certain $j$, so we can use $\sum_{j \ge 0}$ without specifying the end) with
+\begin{equation*}
+  T_{m,n,k}(j) = \frac{(m+n - 2j + k)!}{(m - 2j)!\,(n - j)!\,j!\,k!}
+  = \frac{(m+n - 2j + k-1)!\,(m+n - 2j + k)}{(m - 2j)!\,(n - j)!\,j!\,k!}.
+\end{equation*}
+Decomposing
+\begin{equation*}
+  (m+n - 2j + k) = (m - 2j) + (n - j) + j + k,
+\end{equation*}
+we have 
+\begin{align*}
+  T_{m,n,k}(j)
+  &= \frac{(m+n - 2j + k-1)!\,(m - 2j)}{(m - 2j)!\,(n - j)!\,j!\,k!}
+  + \frac{(m+n - 2j + k-1)!\,(n - j)}{(m - 2j)!\,(n - j)!\,j!\,k!} \\
+  &\qquad + \frac{(m+n - 2j + k-1)!\,j}{(m - 2j)!\,(n - j)!\,j!\,k!} 
+  + \frac{(m+n - 2j + k-1)!\,k}{(m - 2j)!\,(n - j)!\,j!\,k!} \\
+  &= \frac{((m-1)+n - 2j + k)!}{((m-1) - 2j)!\,(n - j)!\,j!\,k!}
+  + \frac{(m+(n-1) - 2j + k-1)!}{(m - 2j)!\,((n-1) - j)!\,j!\,k!} \\
+  &\qquad + \frac{((m-2)+(n-1) - 2(j-1) + k)!\,j}{((m-2) - 2(j-1))!\,((n-1) - (j-1))!\,(j-1)!\,k!} \\
+  &\qquad + \frac{(m+n - 2j + (k-1))!\,k}{(m - 2j)!\,(n - j)!\,j!\,(k-1)!} \\
+  &= T_{m-1,n,k}(j) + T_{m,n-1,k}(j) + T_{m-2,n-1,k}(j-1) + T_{m,n,k-1}(j).
+\end{align*}
+Summing over the index $j$, we get~\eqref{eq:recc'}.
+
+Additionally, we can give a proof of~\eqref{eq:mu(3m7nqk)} based on generating functions. Take
+\begin{equation*}
+  C(x,y,z) = \sum_{m,n,k\ge0} c_{m,n,k}\,x^m y^n z^k.
+\end{equation*}
+Proceeding as in the case of $A(x,y)$ in Section~\ref{sec:mu(3m7n)}, 
+it is not difficult, but cumbersome, to find that the generating function is
+\begin{equation}
+\label{eq:genC}
+  C(x,y,z) = \frac{1}{1 + x + y + x^2 y + z},
+\end{equation}
+and this again leads to~\eqref{eq:mu(3m7nqk)}.
+It seems surprising that, in both $A(x,y)$ and $C(x,y,z)$ (i.e., \eqref{eq:genA} and~\eqref{eq:genC}), the numerator is~$1$.
+
+In any case, and to finish the proof, the expression of $c_{m,n,k}$ as a hypergeometric function ${}_3F_2$ is a simple consequence of~\eqref{eq:3F2}.
+\end{proof}
+
+%----------
+\section{Proof of the main results}
+\label{sec:main}
+%----------
+
+We now present the proofs of Theorems~\ref{teo:mu(3m7nprod)} and~\ref{teo:Man(3m7nprod)}.
+
+\begin{proof}[Proof of Theorem~\ref{teo:mu(3m7nprod)}]
+For $l = 3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}$ as in \eqref{eq:Mpalt}, we take $r_l = m_1 + m_2 + m_3 + \cdots m_{k_l}$. With this notation, we are going to prove \eqref{eq:mu(3m7nprod)} by induction on $r_l$.
+Before continuing, note that, although \eqref{eq:mu(3m7nprod)} is a finite sum, we can write $\sum_{j=0}^{\infty}$, since the summands are zero from a certain~$j$ (the factorial of a negative integer is infinite; we will implicitly use this several times in what follows).
+
+The cases $r_l = 0,1,2$ are true by $\muM(1)=1$ and Proposition~\ref{prop:mu(l)prod}. 
+%% NO NEED FOR SO MUCH DETAIL:
+%Then, let us assume that the result is true with any 
+%$l' = 3^{m_1'} 7^{m_2'} M_{n_3'}^{m_3'} \cdots M_{n_{k_{l'}}'}^{m_{k_l'}'}$ 
+%with $r_{l'} = m_1' + m_2' + m_3' + \cdots m_{k_{l'}}' < r_l$, and let us prove it for~$r_l$.
+For the induction step, let us assume that the result is true for $r_{l'} < r_l$, and let us prove it for~$r_l$.
+
+If we use the notation $\IF_{3}$, $\IF_{7}$ and $\IF_{63}$ with the same meaning as in~\eqref{eq:IF}, the recurrence \eqref{eq:mu(l)rec} can be written as
+\begin{align*}
+  \muM(l) &= \IF_3\bigl({-\muM(l/3)}\bigr) + \IF_7\bigl({-\muM(l/7)}\bigr) + \IF_{63}\bigl({-\muM(l/63)}\bigr) \\
+  &\qquad - \muM(l/M_{n_3}) - \cdots - \muM(l/M_{n_{k_l}});
+\end{align*}
+however, from now on, and to avoid overloading the notation, we will do without those~$\IF$ (in these cases, the corresponding summand should not appear, but we will not worry about it as it only requires minor adjustments). 
+
+In all the cases $l' = l/3$, $l' = l/7$, $l' = l/63$ and $l' = l/M_{n_j}$, the corresponding $r_{l'}$ satisfies $r_{l'} < r_l$, so we can apply the induction hypothesis. Consequently,
+\begin{align*}
+\muM(l) % &= -\muM(l/3) - \muM(l/7) - \muM(l/63)
+  % - \muM(l/M_{n_3}) - \cdots - \muM(l/M_{n_{k_l}}) \\
+  &= (-1)^{r_l} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j-1)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \\
+  &\quad+ (-1)^{r_l} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j-1)!\,j!\,m_3! \cdots m_{k_l}!} \\
+  &\quad+ (-1)^{r_l-2} \sum_{j=0}^{\infty} \frac{(r_l-2j-3)!}{(m_1-2j-2)!\,(m_2-j-1)!\,j!\,m_3! \cdots m_{k_l}!} \\
+  &\quad+ (-1)^{r_l} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,(m_3-1)! \cdots m_{k_l}!} \\
+  &\quad+ \cdots 
+  + (-1)^{r_l} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots (m_{k_l}-1)!}.
+\end{align*}
+To shorten the notation, let us denote
+\[
+  \mum(j) :=
+  \mum(r_l,m_1,m_2,j) = \frac{(m_1-2j)(m_1-2j-1)(m_2-j)}{(r_l-2j)(r_l-2j-1)(r_l-2j-2)}.
+\]
+Then,
+\begin{align*}
+  \muM(l)
+  &= (-1)^{r_l} \sum_{j=0}^{\infty} \frac{(r_l-2j)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \\*
+  &\qquad\times \bigg( \frac{m_1-2j}{r_l-2j} + \frac{m_2-j}{r_l-2j} + \mum(j) 
+  + \frac{m_3}{r_l-2j} + \cdots + \frac{m_{k_l}}{r_l-2j} \bigg) \\ 
+  &= (-1)^{r_l} \sum_{j=0}^{\infty} \frac{(r_l-2j)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} 
+% \\*
+% &\qquad\times 
+  \bigg( 1 + \frac{-j}{r_l-2j} + \mum(j) \bigg) \\
+  &= (-1)^{r_l} \sum_{j=0}^{\infty} \frac{(r_l-2j)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \\
+  & \quad+ (-1)^{r_l} \sum_{j=0}^{\infty} \frac{(r_l-2j)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!}
+  \bigg( \frac{-j}{r_l-2j} + \mum(j) \bigg),
+\end{align*}
+and the result follows if we see that the expression of the last line is zero.
+But this is equivalent to proving that
+\[
+  \sum_{j=0}^{\infty} \frac{(r_l-2j)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \frac{j}{r_l-2j}
+  = \sum_{j=0}^{\infty} \frac{(r_l-2j)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \mum(j).
+\]
+In the series on the left-hand side, the summand corresponding to $j=0$ vanishes; then, we must prove that
+\[
+  \sum_{j=1}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,(j-1)!\,m_3! \cdots m_{k_l}!} 
+  = \sum_{j=0}^{\infty} \frac{(r_l-2j-3)!}{(m_1-2j-2)!\,(m_2-j-1)!\,j!\,m_3! \cdots m_{k_l}!}.
+\]
+But these series are the same, because the change $j \mapsto j+1$ transforms the series on the left-hand side into the series on the right-hand side, which concludes the proof of the theorem.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{teo:Man(3m7nprod)}]
+Let us now see how to obtain \eqref{eq:Man(3m7nprod)} from \eqref{eq:mu(3m7nprod)} using $\manM = \muM * \uM'$.
+Let us recall that this means
+\begin{equation}
+\label{eq:conv}
+  \manM(l) = \sum_{k \mid l} \muM(l/k) \uM(k) \log(k).
+\end{equation}
+If $l$ is a Fermat number other than $M_6$, \eqref{eq:Man(l)prod} implies $\manM(l) = \log(l)$,
+which coincides with the expression on the right-hand side in~\eqref{eq:Man(3m7nprod)}, so there is nothing to prove. 
+% In this case, \eqref{eq:mu(l)prod} gives $\muM(l) = -1$.
+If $l = M_6 = 63 = 3^2 \cdot 7 = M_2^2M_3$, then, by \eqref{eq:Man(l)rec} (or by Table~\ref{table:mumanM}),
+\begin{align*}
+  \manM(63) &= - \manM(21) - \manM(9) + \log(63)
+  = -(-\manM(3)-\manM(7)) - ({-\manM(3)}) + \log(63) \\
+  &= \log(3) + \log(7) + \log(3) + \log(63) = 2\log(63);
+\end{align*}
+this again coincides with the right-hand side in~\eqref{eq:Man(3m7nprod)}, so there is no need to worry about this case either.
+% Also $\muM(63) = -4$
+Therefore, we can assume that $l \in \Mp$ and it is not a Fermat number; 
+moreover, $r_l > 1$.
+
+In \eqref{eq:conv}, $\uM(k)=0$ unless $k$ is a Fermat number; in particular, for $k=l$, $\uM(l) = 0$. Likewise, for $k=1$, $\log(1)=0$. Then, for $l = 3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}}$, 
+and if we use the notation $\IF_{3}$, $\IF_{7}$ and $\IF_{63}$ with the same meaning as in~\eqref{eq:IF},
+we have
+%% MISPRINT IN THE PUBLISHED PAPER: \uM should be \muM
+%\begin{align*}
+%  \manM(l) &= \IF_3\bigl(\uM(l/3)\log(3)\bigr) + \IF_7\bigl(\uM(l/7)\log(7)\bigr) 
+%  + \IF_{63}\bigl(\uM(l/63)\log(63)\bigr) \\
+%  &\qquad + \uM(l/M_{n_3})\log(M_{n_3}) + \cdots + \uM(l/M_{n_{k_l}})\log(M_{n_{k_l}});
+%\end{align*}
+%% CORRECTED:
+\begin{align*}
+  \manM(l) &= \IF_3\bigl(\muM(l/3)\log(3)\bigr) + \IF_7\bigl(\muM(l/7)\log(7)\bigr) 
+  + \IF_{63}\bigl(\muM(l/63)\log(63)\bigr) \\
+  &\qquad + \muM(l/M_{n_3})\log(M_{n_3}) + \cdots + \muM(l/M_{n_{k_l}})\log(M_{n_{k_l}});
+\end{align*}
+however, from now on, in order not to overload the notation, we will do without those~$\IF$.
+Note also that, although \eqref{eq:mu(3m7nprod)} and \eqref{eq:Man(3m7nprod)} only have a finite number of summands, we can put $\sum_{j=0}^{\infty}$ on both sides, because the summands are zero starting from a certain~$j$. 
+
+By applying \eqref{eq:mu(3m7nprod)}, 
+\begin{align*}
+  \manM(l) % &= \muM(l/3)\log(3) + \muM(l/7)\log(7) + \muM(l/63)\log(63)
+%   + \muM(l/M_{n_3})\log(M_{n_3}) + \cdots + \muM(l/M_{n_{k_l}})\log(M_{n_{k_l}}) \\
+  &= (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j-1)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \log(3) \\
+  &\quad+ (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j-1)!\,j!\,m_3! \cdots m_{k_l}!} \log(7) \\
+  &\quad+ (-1)^{r_l-3} \sum_{j=0}^{\infty} \frac{(r_l-2j-3)!}{(m_1-2j-2)!\,(m_2-j-1)!\,j!\,m_3! \cdots m_{k_l}!} \log(63) \\
+  &\quad+ (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,(m_3-1)! \cdots m_{k_l}!} \log(M_{n_3}) \\
+  &\quad+ \cdots 
+  + (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots (m_{k_l}-1)!} \log(M_{n_{k_l}}).
+\end{align*}
+For convenience, let us denote
+\[
+  \mug(j) := 
+  \mug(r_l,m_1,m_2,j) = \frac{(m_1-2j)(m_1-2j-1)(m_2-j)}{(r_l-2j-2)(r_l-2j-1)}.
+\]
+Thereby, we have
+\begin{align*}
+  \manM(l) % &= \uM(l/3)\log(3) + \uM(l/7)\log(7) + \uM(l/63)\log(63)
+%   + \uM(l/M_{n_3})\log(M_{n_3}) + \cdots + \uM(l/M_{n_{k_l}})\log(M_{n_{k_l}}) \\
+  &= (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} 
+  \log(3^{m_1-2j}) \\
+  &\quad+ (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} 
+  \log(7^{m_2-j}) \\
+  &\quad+ (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} 
+  \log({(3^2\cdot7)}^{\mug(j)}) \\
+  &\quad+ (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} 
+  \log(M_{n_3}^{m_3}) \\
+  &\quad+ \cdots 
+  + (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} 
+  \log(M_{n_{k_l}}^{m_{k_l}}) \\
+  &= (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \\*
+  &\qquad \times \Big( \log(3^{m_1} 7^{m_2} M_{n_3}^{m_3} \cdots M_{n_{k_l}}^{m_{k_l}})
+  + \log(3^{-2j+2\mug(j)} \cdot 7^{-j+\mug(j)}) \Big) \\
+%% TOO WIDE:
+%&= (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \log(l) \\
+%&\quad+ (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} 
+%\Big ({-j} + \frac{(m_1-2j)(m_1-2j-1)(m_2-j)}{(r_l-2j-2)(r_l-2j-1)}\Big) \log(63),
+  &= (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} \log(l) \\
+  &\quad+ (-1)^{r_l-1} \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!} 
+  \big ({-j} + \mug(j) \big) \log(63),
+\end{align*}
+and the result will be proven if we see that the series on the last line is zero.
+But this is equivalent to proving that
+\[
+  \sum_{j=0}^{\infty} \frac{(r_l-2j-1)!\,j}{(m_1-2j)!\,(m_2-j)!\,j!\,m_3! \cdots m_{k_l}!}
+  = \sum_{j=0}^{\infty} \frac{(r_l-2j-3)!}{(m_1-2j-2)!\,(m_2-j-1)!\,j!\,m_3! \cdots m_{k_l}!}.
+\]
+This equality is true: in the series on the left-hand side, the summand corresponding to $j=0$ vanishes (and, otherwise, $j/j! = 1/(j-1)!$); then, the change $j \mapsto j+1$ transforms the series on the left-hand side into the series on the right-hand side,
+which concludes the proof of the theorem.
+\end{proof}
+%% FURTHERMORE, Mathematica SHOWS THAT BOTH SERIES ADD UP TO THIS,
+%% ALTHOUGH IT IS NOT IMPORTANT:
+%Actually, it is easy to see that both expressions are equal to the hypergeometric series
+%\[
+%  \frac{(r_l-3)!}{(m_1-2)!\,(m_2-1)!} \,{}_3F_2 \! \left(\begin{matrix}
+%  1-\tfrac{m_1}{2},\, \tfrac{3}{2}-\tfrac{m_1}{2},\, 1-m_2 \\[4pt]
+%  2-\tfrac{r_l}{2},\, \tfrac{3}{2}-\tfrac{r_l}{2} 
+%  \end{matrix}; {-1} \right),
+%\]
+%which concludes the proof of the theorem.
+
+\paragraph{Acknowledgments.}
+The author would like to thank Gaspar Mora and Luis Navas 
+for their comments and fruitful discussions on this topic.
+%I also thank the Selecci\'on Espa\~nola de F\'utbol for the wonderful days 
+%they gave me by winning the FIFA World Cup 2026 in the United States of America, 
+%which helped me to compensate for the bitter efforts of correcting, 
+%at the same time, the English grammar in this article.
+This research was partially supported by Grant PID2024-155593NB-C22
+(Minis\-te\-rio de Cien\-cia, Inno\-va\-ci\'on y Uni\-ver\-si\-da\-des, Spain).
+
+%----------
+\begin{thebibliography}{99}
+%----------
+
+\bibitem{Ap} 
+T. M. Apostol,  
+\textit{Introduction to Analytic Number Theory}, 
+Springer, New York, 1976.
+
+%\bibitem{Ash} 
+%Ash, R. B.: 
+%\textit{Complex Variables}, 
+%Academic Press, New York, 1971.
+
+%\bibitem{Ber}
+%V. Bernstein, % Vladimir Bernstein
+%\textit{Le\c{c}ons sur les progr\`es r\'ecents de la th\'eorie des s\'eries 
+%de Dirichlet profess\'ees au Coll\`ege de France},
+%Gauthier-Villars, Paris, 1933.
+%% 320 pages
+%% https://books.google.es/books?id=UnB2oAEACAAJ
+%% https://zbmath.org/0008.11503
+
+%% MR2399185 
+%\bibitem{BuLuMiSi} 
+%% Bugeaud, Y., Luca, F., Mignotte, M., Siksek, S.: 
+%Y. Bugeaud, F. Luca, M. Mignotte and S. Siksek, 
+%{Fibonacci numbers at most one away from a perfect power}, 
+%\textit{Elem. Math.} \textbf{63} (2008), 65--75.
+
+%% MR2215137
+%\bibitem{BMS}
+%Y. Bugeaud, M. Mignotte and S. Siksek,
+%Classical and modular approaches to exponential Diophantine equations I. 
+%Fibonacci and Lucas perfect powers, 
+%\textit{Ann. of Math. (2)} \textbf{163} (2006), 969--1018.
+
+% MR1502458 and MR1502459 
+\bibitem{Car}
+R. D. Carmichael, 
+On the numerical factors of the arithmetic forms $\alpha^n\pm \beta^n$,
+\textit{Ann. of Math. (2)} \textbf{15} (1913/14), 30--48 and 49--80.
+
+% MR4105865 
+%% It is NOT the same generalization that we use here.
+\bibitem{EdGr}
+S. Edwards and W. Griffiths, % Edwards, Steven; Griffiths, William
+On generalized Delannoy numbers,
+\textit{J. Integer Seq.} \textbf{23} (2020), Art.~20.3.6, 13~pp. % no.~3
+
+%% MR1744904
+%\bibitem{Ega} 
+%S. Egami, % Egami, Shigeki
+%{Some curious Dirichlet series} (English Summary), 
+%\textit{Analytic number theory and its interactions with other
+%parts of number theory} (Japanese) (Kyoto, 1998),
+%\textit{S\={u}rikaisekikenky\={u}sho K\={o}ky\={u}roku} \textbf{1091} (1999), 172--174.
+
+%% MR3589830
+%\bibitem{GoSh}
+%H. W. Gould and T. Shonhiwa,
+%A catalog of interesting Dirichlet series,
+%\textit{Missouri J. Math. Sci.} \textbf{20} (2008), 1--17. % no. 1 
+%% https://doi.org/10.35834/mjms/1316032830
+
+\bibitem{GOV}
+J. M. Grau, A. M. Oller-Marc\'en and J. L. Varona, 
+A class of weighted Delannoy numbers, 
+\textit{Filomat} \textbf{36} (2022), 5985--6007. % no.~17
+% https://doi.org/10.2298/FIL2217985G
+
+\bibitem{HaWr}
+G. H. Hardy and E. M. Wright,
+\textit{An Introduction to the Theory of Numbers},
+5th~ed., Oxford University Press, 1979.
+
+%% MR0792089 and MR1994094
+%\bibitem{Ivic} 
+%% Ivi\'c, Aleksandar
+%A. Ivi\'c,  
+%\textit{The Riemann zeta-function}, John Wiley \& Sons,
+%New York, 1985. Reprinted, Dover, 2003.
+
+%% MR3064567
+%\bibitem{Ka} 
+%K. Kamano, 
+%Analytic continuation of the Lucas zeta and $L$-functions, 
+%\textit{Indag. Math. (N.S.)} \textbf{24} (2013), 637--646. % no. 3
+%% https://doi.org/10.1016/j.indag.2013.04.002
+
+%\bibitem{Kno}
+%J. Knopfmacher, % John Knopfmacher
+%\textit{Abstract Analytic Number Theory}, Dover, 2015.
+%% Corrected and enlarged republication of the edition originally published 
+%% by North-Holland Publishing Company, Amsterdam, 
+%% and the American Elsevier Publishing Company, Inc., New York, 1975.
+
+\bibitem{Lucas}
+E. Lucas, % Edouard Lucas
+Th\'eorie des fonctions num\'eriques simplement p\'eriodiques, 
+\textit{Amer. J. Math.} \textbf{1} (1878), 184--240 and 289--321.
+
+\bibitem{Mick}
+R. E. Mickens,
+\textit{Difference Equations. Theory, Applications and Advanced Topics},
+3rd~ed., Chapman and Hall (CRC Press), 2015.
+% Monographs and Research Notes in Mathematics
+
+\bibitem{Mo}
+G. Mora,
+On the zeros of the partial sums of the Fibonacci zeta function,
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM} 
+\textbf{117} (2023), Paper No.~139, 18~pp. % no.~4
+% https://doi.org/10.1007/s13398-023-01471-1
+
+\bibitem{MoNaVa}
+G. Mora, L. M. Navas and J. L. Varona,
+On the von Mangoldt-type function of the Fibonacci zeta function,
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM} 
+\textbf{119} (2025), Paper No.~126, 19 pp. 
+% https://doi.org/10.1007/s13398-025-01792-3
+
+%% MR3156859
+%\bibitem{Mur} 
+%% Murty, M. Ram
+%M. R. Murty, 
+%{The Fibonacci zeta function}, 
+%\textit{Automorphic representations and $L$-functions} (Mumbai, 2012), 409--425, 
+%Tata Inst. Fundam. Res. Stud. Math., {22}, Hindustan Book Agency, Gurgaon, 2013.
+
+%% MR2279934
+%\bibitem{MurSin} 
+%% Murty, M. Ram; Sinha, Kaneenika
+%M. R. Murty and K. Sinha,  
+%{Multiple Hurwitz zeta functions}, 
+%\textit{Multiple Dirichlet Series, Automorphic Forms and Analytic Number Theory}, 
+%135--156, Proc. Sympos. Pure Math., {75}, Amer. Math. Society, Providence, RI, 2006.
+
+\bibitem{Na}
+L. M. Navas, 
+Analytic continuation of the Fibonacci Dirichlet series, 
+\textit{Fibonacci Quart.} \textbf{39} (2001), 409--418.
+% https://www.fq.math.ca/Scanned/39-5/
+
+\bibitem{PeWil}
+R. Pemantle and M. C. Wilson, % Robin Pemantle and Mark C. Wilson 
+\textit{Analytic Combinatorics in Several Variables},
+Cambridge University Press, 2013.
+% 
+% https://math.stackexchange.com/questions/162010/linear-multivariate-recurrences-with-constant-coefficients
+
+%\bibitem{Rob}
+%H. Robbins, 
+%A remark on Stirling's formula, 
+%\textit{Amer. Math. Monthly} \textbf{62} (1955), no.~1, 26--29.
+%% https://www.jstor.org/stable/2308012
+%% https://doi.org/10.2307%2F2308012
+
+%% MR4594520 
+%\bibitem{SeNa}
+%% \'A. Serrano Holgado and L. M. Navas,
+%\'A. Serrano and L. M. Navas,
+%The zeta function of a recurrence sequence of arbitrary degree,
+%\textit{Mediterr. J. Math.} \textbf{20} (2023), no.~4, Paper No.~224, 18~pp.
+%% https://doi.org/10.1007/s00009-023-02427-w
+
+\bibitem{Ya}
+% Yabuta, Minoru
+M. Yabuta, 
+A simple proof of Carmichael's theorem on primitive divisors,
+\textit{Fibonacci Quart.} \textbf{39} (2001), 439--443. % no.~5
+% https://www.fq.math.ca/Scanned/39-5/
+
+%----------
+\end{thebibliography}
+%----------
+
+%----------
+\end{document}
+%----------

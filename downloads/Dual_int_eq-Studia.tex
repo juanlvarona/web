@@ -1,0 +1,1152 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                           %
+% BEGINNING DATE: 22 - October - 1998                       %
+% LAST MODIFICATION DATE: 11 - abril - 2000                 %
+%                                                           %
+% Written with LaTeX2e                                      %
+% AMS package version 2.0                                   %
+%                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,leqno]{amsart}
+\textwidth=30cc
+\baselineskip=16pt
+
+\theoremstyle{plain}
+\newtheorem{Thm}{Theorem}[section]
+\newtheorem{Cor}[Thm]{Corollary} % Same numbering sequence that Thm
+\newtheorem{Pro}[Thm]{Proposition}
+\newtheorem{Lem}[Thm]{Lemma}
+
+\newcommand{\supp}{\operatorname{supp}} % support
+\newcommand{\lpnorm}[3]{\|{#1}\|_{L^{#2}({#3})}} % L^p-norm of a function
+
+\newcommand{\Id}{\operatorname{Id}} % identity map
+\newcommand{\spa}{\operatorname{span}} % span
+\newcommand{\htr}{\mathcal{H}} % Hankel transform
+\newcommand{\htra}{\mathcal{H}_\alpha} % Hankel transform of order \alpha
+\newcommand{\hab}{\mathcal{H}_{\alpha,\beta}}
+\newcommand{\hf}{\mathop{{}_2F_1}} % hypergeometric function
+\newcommand{\ab}{{(\alpha,\beta)}} % An alias
+
+\date{PUBLISHED IN \textit{Studia Math.}
+\textbf{142} (2000), no.~2, 253--267.}
+
+%% A fix (suggested by tech-support@ams.org) to avoid that
+%% an overfull appears in the heading of every even page
+%% when we have an accent in the name of an author.
+%% (Put it before \begin{document})
+%\makeatletter
+%\renewcommand{\leftmark}{%
+%  \vbox to\headheight{\vss
+%    \hbox{\expandafter \@firstoftwo \topmark {}{}}%
+%  }%
+%}
+%\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title[Solving Dual Integral Equations on Lebesgue Spaces]{Solving Dual
+Integral Equations on Lebesgue Spaces}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{osciaurr@dmc.unirioja.es}
+%\thanks{Research of the first author supported by a grant of the UR}
+
+\author[J. J. Guadalupe]{Jos\'e J. Guadalupe}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{joguadal@dmc.unirioja.es}
+
+\author[M. P\'erez]{Mario P\'erez}
+\address{Departamento de Matem\'aticas,
+Universidad de Zaragoza, Edificio de Matem\'aticas,
+Ciudad Universitaria s/n, 50009 Zaragoza, Spain}
+\email{mperez@posta.unizar.es}
+
+\author[J. L. Varona]{Juan~L.~Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+\thanks{Research supported by grants of the DGES and UR}
+
+\thanks{On April 1, 2000, while this paper was being revised, Jos\'e
+J.~Guadalupe unexpectedly died. We still can not say how deep is our sorrow}
+
+\subjclass[2000]{Primary 45F10; Secondary 42C10}
+
+\keywords{Dual integral equations, Bessel functions, Fourier series, 
+Hankel transform.}
+
+\begin{abstract}
+We study dual integral equations associated with Hankel transforms, that is,
+dual integral equations of Titchmarsh's type.  We reformulate these equations
+giving a better description in terms of continuous operators on $L^p$ spaces,
+and we solve them in these spaces. The solution is given both as an operator
+described in terms of integrals and as a series $\sum_{n=0}^\infty c_n
+J_{\mu+2n+1}$ which converges in the $L^p$-norm and almost everywhere, where
+$J_\nu$ denotes the Bessel function of order $\nu$. Finally, we study the
+uniqueness of the solution.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In some physical problems related with potential and electromagnetic or
+acoustic radiation theory, sometimes the unknown function satisfies an
+integral equation over part of the range $(0,\infty)$ and a different integral
+equation over the rest of the range. These equations are known as
+dual integral equations. An important case is the so-called dual
+integral equations of Titchmarsh's type:
+\begin{equation}
+    \label{ec:DIEorig}
+    \left\{
+      \begin{array}{ll}
+      \displaystyle
+      \int_0^\infty t^\beta f(t) J_\alpha(xt)\,dt = g(x)&
+        \text{if $0<x<1$,} \\[8pt]
+      \displaystyle
+      \int_0^\infty f(t)J_\alpha(xt)\,dt = 0&
+        \text{if $x>1$,}
+      \end{array}
+    \right.
+\end{equation}
+where $J_\alpha$ stands for the Bessel function of order $\alpha$ (see
+\cite{Wat} or \cite[Ch.~VII]{E-HTF}), $g$ is a given function and $f$ is the
+unknown function. For a function~$h$,
+\begin{equation*}
+    \int_0^\infty h(t)J_\alpha(xt) (xt)^{1/2} \,dt, \quad x > 0,
+\end{equation*}
+is usually known as the Hankel transform of~$h$; so, the second equation
+in~(\ref{ec:DIEorig}) means that the Hankel transform of~$t^{-1/2} f(t)$ is
+supported on $[0,1]$, and the first one imposes a condition on the Hankel
+transform of~$t^{\beta-1/2} f(t)$.
+
+There are different methods to solve these equations, most of them only formal. 
+For instance, they can be solved by using Mellin transforms or some other
+integral transforms. Also, they can be reduced to Fredholm integral equations.
+Usually, these methods allow to find the solution $f$ as an explicit
+expression with integrals; we can see some of them in the
+books~\cite[p.~337]{Tit}, \cite[\S~12, p.~65]{Sne}, \cite[\S~5.11]{Hoc}
+and~\cite[p.~76]{E-HTF}. Another method consists of solving the equation as a
+series $\sum_{n=0}^\infty c_n J_{\mu+2n+1}$; see~\cite{Tra1} and~\cite{Tra2},
+the first one with a large bibliography. But, as long as the authors know, it
+is only studied as a formal method.
+
+In this paper we pursuit a rigorous approach to solve dual integral equations.
+We reformulate~(\ref{ec:DIEorig}) so as to obtain a better description in
+terms of operators on $L^p$ spaces, and we find the solution in these
+spaces. Also, we identify the solution as a Fourier-Neumann series whose $L^p$
+and almost everywhere convergence is studied.
+
+The paper is organised as follows: in section~\ref{sec:die} we state the dual
+integral equation in a more convenient form and define some associated
+operators. Section~\ref{sec:BfJp} collects some properties of Bessel functions
+and Jacobi polynomials. We describe a solution to the dual integral equation
+in section~\ref{sec:solution}, and section~\ref{sec:uniq} is devoted to the
+uniqueness of the solution. Sections~\ref{sec:proofHTjn}
+and~\ref{sec:proofLab} contain some of the proofs.
+
+Throughout this paper, unless otherwise stated, we will use $C$ to denote a
+positive constant independent of $f$ (and all other variables), which can
+assume different values in different occurrences.
+
+Also, for any function $g$ defined on $[0,1]$, the extension given by $g(x) =
+0$ at each $x > 1$ will be denoted by $\chi_{[0,1]} g$, with a small abuse of
+notation. Strictly speaking, $\chi_{[0,1]}$ could be understood either as a
+characteristic function or as an operator taking functions defined on $[0,1]$
+to functions defined on $[0,\infty)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The dual integral equation}
+\label{sec:die}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us define, for $\alpha > -1$, the integral operator $\htra$ as
+\begin{equation*}
+    \htra(f,x) = \frac{x^{-\alpha/2}}{2}
+     \int_0^\infty {f(t)J_\alpha (\sqrt {xt})t^{\alpha/2}\,dt},
+     \quad x > 0,
+\end{equation*}
+for suitably integrable functions $f$. For instance, $\htra$ is an
+isomorphism from the Schwartz class
+\begin{equation*}
+    S^+ = \{ f \in C^\infty((0,\infty)) : \forall k,j \ge 0,
+    \ |t^kf^{(j)}(t)| < C_{k,j} \}
+\end{equation*}
+onto itself and $\htra^2$ is the identity map. This operator is a modified
+Hankel transform. For $\alpha \geq -1/2$, $1 \leq p \leq 2$, and $1/p + 1/p'
+= 1$, $\htra$ extends to a bounded operator from
+$L^p([0,\infty),x^\alpha\,dx)$ into $L^{p'}([0,\infty),x^\alpha\,dx)$, i.e.
+\begin{equation*}
+    \lpnorm{\htra f}{p'}{[0,\infty),x^\alpha dx}
+      \le C \lpnorm{f}p{[0,\infty),x^\alpha dx},
+      \quad f \in L^p([0,\infty),x^\alpha\,dx).
+\end{equation*}
+However, the Hankel transform does not extend to
+$L^p([0,\infty),x^\alpha\,dx)$ if $2 < p$ (see~\cite{Dur, St-Tr, Var}).
+
+Another operator will be used: the multiplier of the Hankel transform
+associated to $\chi_{[0,1]}$, that is, the operator $M_\alpha$ given by
+$\htra(M_\alpha f) =  \chi_{[0,1]} \htra f$. This multiplier plays an
+important role in the study of orthogonal Fourier expansions (see~\cite{Var}
+in connection with Fourier-Neumann series, and~\cite{Ste} for Laguerre
+series).
+
+Herz's classical result determines the range of $p$ such that $M_\alpha$ is a
+well defined, bounded operator from $L^p([0,\infty), x^\alpha \, dx)$ into
+itself (\cite{Her}; see also~\cite{Ste, Var}):
+
+\begin{Pro}
+\label{pro:acotMa}
+Let $\alpha \ge -1/2$ and $1<p<\infty$. Then
+\begin{equation*}
+    \lpnorm{M_{\alpha}f}p{[0,\infty),x^{\alpha}dx}
+      \le C \lpnorm{f}p{[0,\infty),x^{\alpha}dx} 
+    \iff
+    \tfrac{4(\alpha+1)}{2\alpha+3} < p < \tfrac{4(\alpha+1)}{2\alpha+1}.
+\end{equation*}
+\end{Pro}
+
+For more general results on Hankel multipliers, see~\cite{St-Tr} and the
+references therein.
+
+In a dense subset of $L^p([0,\infty),
+x^\alpha
+\, dx)$ (for instance, $S^+$)
+\begin{equation*}
+    M_{\alpha}f = \htra(\chi_{[0,1]}\htra f)
+\end{equation*}
+and $\htra^2 = \Id$. Whenever $\htra$ is well defined, it follows that $\htra
+f$ is supported on $[0,1]$ if and only if $M_\alpha f = f$.
+
+Now, let us reformulate the dual integral equations.
+With a simple change of notation, we can write~(\ref{ec:DIEorig}) as
+\begin{equation}
+    \label{ec:DIEmodi}
+    \left\{
+      \begin{array}{ll}
+      \displaystyle \frac{x^{-\alpha/2}}{2} \int_0^\infty t^{\beta} f(t)
+        J_\alpha(\sqrt{xt}) t^{\alpha/2}\,dt = g(x)&
+          \text{if $0<x<1$,} \\[9pt]
+      \displaystyle \frac{x^{-\alpha/2}}{2} \int_0^\infty f(t)
+        J_\alpha(\sqrt{xt}) t^{\alpha/2}\,dt = 0&
+          \text{if $x>1$}.
+      \end{array}
+    \right.
+\end{equation}
+The second equation in (\ref{ec:DIEmodi}) means that $\supp (\htra f)
+\subseteq [0,1]$; in other words, $M_{\alpha}f = f$, provided that $f$
+belongs to a convenient $L^p$ space.
+
+The first equation in~(\ref{ec:DIEmodi}) can be read as $\htra(t^\beta f)
+\chi_{[0,1]} = \chi_{[0,1]}g$. Under certain conditions, $\htra$ is an
+inversible operator. Then, we obtain the equivalent equation
+$M_{\alpha}(t^{\beta}f,x) = \htra(\chi_{[0,1]}g,x)$. It will be convenient to
+multiply both sides by $x^{-\beta}$, so we get
+$x^{-\beta}M_{\alpha}(t^{\beta}f,x) = x^{-\beta}\htra(\chi_{[0,1]}g,x)$.
+
+To sum up, we are interested in solving in $L^p([0,\infty),x^{\alpha}\,dx)$
+the equation
+\begin{equation}
+    \label{ec:DIEoper}
+    \left\{
+      \begin{array}{l}
+         x^{-\beta}M_{\alpha}(t^{\beta}f,x)
+           = x^{-\beta}\htra(\chi_{[0,1]}g,x), \\[3pt]
+         M_{\alpha}f = f. 
+      \end{array}
+    \right.
+\end{equation}
+
+In a strict sense,~(\ref{ec:DIEmodi}) and~(\ref{ec:DIEoper}),
+are not exactly equivalent if we do not assume that the functions belong to a
+convenient $L^p$ space. However, it is interesting to note that, for any
+practical physical application, the interpretation of a dual integral
+equation and its solution as in~(\ref{ec:DIEmodi}) is equivalent to its
+interpretation as in~(\ref{ec:DIEoper}).
+
+Together with $\htra$ and $M_{\alpha}f = \htra(\chi_{[0,1]}\htra f)$, let us
+consider the operators $M_{\alpha,\beta}$ and $\hab$ given by
+\begin{align*}
+    M_{\alpha,\beta}f &= x^{-\beta}M_{\alpha}(t^{\beta}f),\\
+    \hab g &= x^{-\beta}\htra(\chi_{[0,1]}g).
+\end{align*}
+With this notation, the dual integral equation~(\ref{ec:DIEoper}) can be
+written as
+\begin{equation}
+    \label{ec:DIEfinal}
+    \left\{
+      \begin{array}{l}
+         M_{\alpha,\beta}f = \hab g, \\[3pt]
+         M_{\alpha}f = f.
+      \end{array}
+    \right.
+\end{equation}
+Those operators are well defined, for instance, if $f \in S^+$ and $g \in
+C^\infty([0,1])$. We see below that $M_{\alpha,\beta}$ is bounded with the
+$L^p([0,\infty), x^\alpha \, dx)$-norm, under some conditions on $\alpha$,
+$\beta$, and $p$. Therefore, it extends to a bounded operator on
+$L^p([0,\infty), x^\alpha \, dx)$. With a similar argument, $\hab$ extends to
+a bounded operator from $L^p([0,1], x^\alpha \, dx)$ into $L^p([0,\infty),
+x^\alpha \, dx)$.
+
+\begin{Pro}
+\label{pro:acotMab}
+Let $\alpha \ge -1/2$, $\beta \ge 0$ and $1<p<\infty$. Then
+\begin{equation*}
+    \lpnorm{M_{\alpha,\beta}f}p{[0,\infty),x^{\alpha}dx}
+      \le C \lpnorm{f}p{[0,\infty),x^{\alpha}dx} 
+    \iff
+    \tfrac{4(\alpha+1)}{2\alpha+4\beta+3} < p
+      < \tfrac{4(\alpha+1)}{2\alpha+4\beta+1}.
+\end{equation*}
+\end{Pro}
+\begin{proof}
+We give only a sketch of the proof. It follows the proof for $M_\alpha$
+in~\cite{Var}. Actually, this is a particular case of weighted versions of
+Herz's classical result (with power weights).
+
+Let us take $p_0 = \tfrac{4(\alpha+1)}{2\alpha+4\beta+3}$ and
+$p_1 = \tfrac{4(\alpha+1)}{2\alpha+4\beta+1}$. For each $f \in S^+$, Fubini's
+theorem applies to $M_{\alpha,\beta}f =
+x^{-\beta}\htra(\chi_{[0,1]}\htra(t^{\beta}f))$, then Lommel's
+formula
+\begin{equation*}
+    \int_0^1 J_\alpha(yt)J_\alpha(yx) y\,dy
+    = \frac1{t^2-x^2} (tJ_{\alpha+1}(t)J_{\alpha}(x)
+      - xJ_{\alpha}(t)J_{\alpha+1}(x))
+\end{equation*}
+gives
+\begin{align*}
+   M_{\alpha,\beta}(f,x) &=
+     \tfrac12 x^{-\alpha/2-\beta+1/2} J_{\alpha+1}(x^{1/2})
+     H(t^{\alpha/2+\beta}J_{\alpha}(t^{1/2})f(t),x)
+    \\
+        &- \tfrac12 x^{-\alpha/2-\beta} J_{\alpha}(x^{1/2})
+     H(t^{\alpha/2+\beta+1/2}J_{\alpha+1}(t^{1/2})f(t),x)
+   \\
+    &= W_1(f,x) - W_2(f,x),
+\end{align*}
+where $H$ is the Hilbert transform $H(f,x) = \int_0^\infty
+\frac{f(t)}{x-t}\,dt$. The Hilbert transform is a bounded operator from
+$L^p([0,\infty),x^\lambda\,dx)$ into itself if and only if $-1<\lambda<p-1$.
+Fix $1 < p < \infty$; then, by using the bound $|J_{\alpha}(x)| \le C
+x^{-1/2}$, it is easy to check that $W_1$ and $W_2$ are bounded operators on
+$L^p([0,\infty),x^\alpha\,dx)$ if
+\begin{equation*}
+   p_0 < p < \tfrac{4(\alpha+1)}{2\alpha+4\beta-1}
+\end{equation*}
+(disregard the right hand side inequality if $2\alpha+4\beta-1 \leq 0$)
+and
+\begin{equation*}
+   \tfrac{4(\alpha+1)}{2\alpha+4\beta+5} < p < p_1,
+\end{equation*}
+respectively. Then, $M_{\alpha,\beta}$ is bounded if $p_0 < p < p_1$.
+
+In fact, $p_0<p<p_1$ is a necessary condition for the boundedness of
+$M_{\alpha,\beta}$. By interpolation, we only need to observe that
+$M_{\alpha,\beta}$ is not bounded for $p=p_0$ (if $p_0 > 1$) and $p=p_1$. If
+$p = p_0 > 1$, $W_2$ is bounded; however, more precise estimates for the
+Bessel functions near infinity and a clever election of $f$ show that $W_1$
+is not bounded. Then, $M_{\alpha,\beta}$ is not bounded. The case of $p =
+p_1$ is analogous.
+\end{proof}
+
+Regarding the Hankel transform $\htra$, we have the following theorem of
+Rooney (\cite[p.~1100]{Roo},~\cite{H-R}, after a change of notation):
+
+\begin{Thm}[Rooney]
+\label{th:Rooney}
+Let $\alpha>-1$, $1 < p \leq q < \infty$, $\max\{\tfrac1p,1-\tfrac1{q}\} \le
+\nu < \alpha+\tfrac32$. Then
+\begin{equation*}
+    \Big( \int_0^{\infty} |x^{-\nu/2+\alpha/2+3/4}\htra(h,x)|^q
+        \, \frac{dx}x \Big)^{1/q}
+      \le C \Big( \int_0^{\infty} |x^{\nu/2+\alpha/2+1/4}h(x)|^p \,\frac{dx}x
+        \Big)^{1/p}.
+\end{equation*}
+\end{Thm}
+
+The boundedness of $\hab$ follows as a consequence:
+
+\begin{Pro}
+\label{pro:acotHab}
+Let $\alpha \ge -1/2$, $\beta \ge 0$, $1<p<\infty$ and assume
+\begin{equation*}
+    \frac{2(\alpha+1)}{\alpha+\beta+1} \le p < \frac{\alpha+1}{\beta}.
+\end{equation*}
+Then $\lpnorm{\hab g}p{[0,\infty),x^{\alpha}dx} \le C
+\lpnorm{g}p{[0,1],x^{\alpha}dx}$.
+\end{Pro}
+
+\begin{proof} Take $\nu = 2 \beta + \alpha + \tfrac32 - \tfrac{2(\alpha+1)}p$
+and $p=q$. It is easy to see that we can apply Theorem~\ref{th:Rooney} and get
+\begin{align*}
+   \lpnorm{\hab g}p{[0,\infty),x^{\alpha}dx}
+   &= \lpnorm{x^{-\beta+(\alpha+1)/p}
+   \htra(\chi_{[0,1]}g)}p{[0,\infty),\frac{dx}x}
+   \\
+   &\le C
+   \lpnorm{x^{\beta+(\alpha+1)(1-1/p)}\chi_{[0,1]}g}p{[0,\infty),\frac{dx}x}
+   \\
+    &= C
+  \lpnorm{x^{\beta+(\alpha+1)(1-2/p)}\chi_{[0,1]}g}p{[0,\infty),x^{\alpha}dx}
+   \\
+    &\le C \lpnorm{g}p{[0,1],x^{\alpha}dx},
+\end{align*}
+where the last inequality follows from $\beta+(\alpha+1)(1-2/p) \ge 0$.
+\end{proof}
+
+Then, our dual integral equation~(\ref{ec:DIEfinal}) is well posed and the
+question we try to solve is the following: given any $g \in
+L^p([0,1],x^{\alpha}\,dx)$, is there a (unique) solution $f \in
+L^p([0,\infty),x^{\alpha}\,dx)$?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bessel functions and Jacobi polynomials}
+\label{sec:BfJp}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If $\alpha>-1$, the Bessel functions satisfy the orthogonality relation
+\begin{equation*}
+   \int_0^\infty  J_{\alpha +2n+1}(x) J_{\alpha +2m+1}(x)\,\frac{dx}{x}
+     = \frac{\delta _{nm}}{2(2n+\alpha +1)},
+   \quad n,m=0,1,2,\ldots
+\end{equation*}
+After a change of variable, the system $\{j_n^\alpha\}_{n=0}^\infty$ given by
+\begin{equation*}
+    j_n^\alpha(x)
+      = \sqrt{\alpha+2n+1} J_{\alpha+2n+1}(\sqrt{x})
+        x^{-\alpha/2-1/2}
+\end{equation*}
+is orthonormal on $L^2([0,\infty),x^\alpha\,dx)$. There is a tight relation
+between Bessel functions and Jacobi polynomials $P^\ab_n$ and the following
+lemma is relevant for our purposes; the first part was proved in~\cite{CGPV}
+and the second part will be proved in section~\ref{sec:proofHTjn}. Of
+course, these formulas hold in Lebesgue spaces, that is, almost everywhere.
+
+\begin{Lem}
+\label{lem:HTjn}
+Let $\alpha, \beta>-1$ with $\alpha+\beta>-1$. Then
+\begin{equation}
+    \label{ec:HTjnab}
+    \htra(j_n^{\alpha+\beta},x)
+      = 2^{-\beta} \tfrac{\sqrt{\alpha+\beta+2n+1} \, \Gamma(n+1)}
+        {\Gamma(\beta+n+1)}
+        (1-x)^\beta P^\ab_n(1-2x) \chi_{[0,1]}(x).
+\end{equation}
+Assume further $\beta<1$. Then
+\begin{equation}
+    \label{ec:HTbjnab}
+     \chi_{[0,1]}(x) \htra(t^{\beta}j_n^{\alpha+\beta},x)
+      = 2^\beta \tfrac{\sqrt{\alpha+\beta+2n+1} \, \Gamma(\alpha+\beta+n+1)}
+        {\Gamma(\alpha+n+1)} P^\ab_n(1-2x) \chi_{[0,1]}(x).
+\end{equation}
+\end{Lem}
+
+In particular, $\supp (\htra(j^{\alpha+\beta}_n)) \subseteq [0,1]$.
+However, note that~(\ref{ec:HTbjnab}) refers only to the Hankel transform
+of $t^{\beta}j_n^{\alpha+\beta}$ at $x \in [0,1]$; nothing is claimed for
+$x>1$.
+
+
+The Jacobi polynomials $\{P^\ab_n(x)\}_{n=0}^\infty$ of order $\alpha,
+\beta$ (see \cite[Ch.~X]{E-HTF} or \cite[Ch.~IV]{Sze}) are orthogonal
+on $[-1,1]$ with respect to the weight $(1-x)^\alpha(1+x)^\beta$,
+$\alpha,\beta>-1$.
+
+After a change of variable, the system $\{P_n^\ab(1-2x)\}_{n=0}^\infty$ is
+orthogonal on $[0,1]$ with respect to the weight $x^\alpha(1-x)^\beta$,
+$\alpha,\beta>-1$. To be precise, the orthogonality relation for these
+polynomials is
+\begin{equation*}
+    \int_0^1 P_n^\ab(1-2x) P_m^\ab(1-2x) x^\alpha (1-x)^\beta \,dx
+      = h_n^{\ab}\delta_{nm}
+\end{equation*}
+with 
+\begin{equation*}
+    h_n^{\ab} = \frac{\Gamma(\alpha+n+1) \Gamma(\beta+n+1)}
+        {(\alpha+\beta+2n+1) \Gamma(\alpha+\beta+n+1) n!}\ .
+\end{equation*}
+Let us take
+\begin{equation}
+    \label{ec:newja}
+    p_n^\ab(x) = (h_n^{\ab})^{-1/2}P_n^{\ab}(1-2x),\quad n=0,1,2,\ldots
+\end{equation}
+This is an orthonormal system on $[0,1]$ with respect to the weight $w(x)
+= x^{\alpha}(1-x)^{\beta}$. For any suitable function~$g$ defined on $[0,1]$,
+its Fourier-Jacobi series is the formal expansion
+\begin{equation*}
+    g \sim \sum_{n=0}^{\infty}a_n(g)p_n^\ab,
+    \quad
+    a_n(g) = \int_0^1 g(x)p_n^\ab(x)x^{\alpha}(1-x)^{\beta}\,dx.
+\end{equation*}
+
+The following result by Muckenhoupt gives conditions for the uniform
+boundedness and the mean convergence of $S_n g$ (actually, both are
+equivalent, by the Banach-Steinhaus theorem):
+
+\begin{Thm}[Muckenhoupt~\cite{Muc}]
+Assume that $\alpha > -1$, $\beta > -1$, $1 < p < \infty$ and let $S_n g$
+denote the $n$th partial sum of the Jacobi polynomial series for $g$ with
+parameters $\alpha$ and $\beta$. Assume that
+\begin{gather*}
+   \left| a + (\alpha+1) \Big( {\frac1p-\frac12} \Big) \right|
+   < \min\left\{\frac14, \frac{\alpha+1}2\right\},
+   \\
+   \left| b + (\beta+1) \Big( {\frac1p-\frac12} \Big) \right|
+   < \min\left\{\frac14, \frac{\beta+1}2\right\}.
+\end{gather*}
+Then, there exists a constant $C$ such that
+\begin{equation*}
+    \lpnorm{x^a (1-x)^b S_ng}p{[0,1],x^\alpha (1-x)^\beta\,dx}
+    \leq C \lpnorm{x^a (1-x)^b g}p{[0,1],x^\alpha (1-x)^\beta\,dx}
+\end{equation*}
+for every $n \in \mathbb{N}$, and
+\begin{equation*}
+   \lim_n \lpnorm{x^a (1-x)^b (S_ng - g)}p{[0,1],x^\alpha (1-x)^\beta\,dx}
+   = 0
+\end{equation*}
+for every $g$ with $\lpnorm{x^a (1-x)^b g}p{[0,1],x^\alpha (1-x)^\beta\,dx} <
+\infty$.
+\end{Thm}
+
+For our purposes, we will only need the following:
+
+\begin{Cor}
+\label{cor:convja}
+Let $\alpha \ge -1/2$, $\beta \ge 0$, $1<p<\infty$ and
+\begin{equation*}
+    \max{\left\{ \frac{4(\alpha+1)}{2\alpha+3}, \frac4{2\beta+3} \right\}}
+    < p <
+    \min{\left\{ \frac{4(\alpha+1)}{2\alpha+1}, \frac4{2\beta+1} \right\}}.
+\end {equation*}
+Then,
+\begin{equation*}
+    \lim_{n\to \infty}S_ng = g
+\end{equation*}
+in the $L^p([0,1],x^{\alpha}\,dx)$-norm, for any $g \in
+L^p([0,1],x^\alpha\,dx)$.
+\end{Cor}
+\begin{proof}
+Take $a = 0$ and $b = -\beta/p$ in the previous result.
+\end{proof}
+
+The scheme we use to solve the dual equation~(\ref{ec:DIEfinal}) goes as
+follows: expand $g$ as a Fourier-Jacobi series, that is, $g =
+\sum_{n=0}^\infty a_n p_n^\ab$; then, the solution is $f =
+\sum_{n=0}^\infty b_n j_n^{\alpha+\beta}$, where $b_n$ is explicitely given
+in terms of $a_n$ and the series converges both in $L^p$ and almost
+everywhere.
+
+Series of the form $\sum_{n=0}^\infty c_n J_{\mu+n}$ are usually known as
+Neumann series. Thus, we are describing the solution of the dual integral
+equation as a Fourier-Neumann series.
+
+The operator that takes $g$ into $f$ will be proved to be bounded
+on $L^p$. It can also be written in terms of integral operators.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Main results: The solution of the equation}
+\label{sec:solution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we introduce the operator $L_{\alpha,\beta}$
+and state some of its properties. This operator solves
+the dual integral equation~(\ref{ec:DIEfinal}).
+
+Let $g$ a suitable function on $[0,1]$. We define $L_{\alpha,\beta}g$ by
+\begin{equation*}
+    L_{\alpha,\beta}(g,x) = \frac{1}{2^{\beta+1}\Gamma(\beta)}
+    \int_0^1 \frac{J_{\alpha+\beta}(\sqrt{xt})}{(xt)^{{\alpha/2+\beta}/2}}
+    \int_0^t g(u)(t-u)^{\beta-1}u^{\alpha}\,du \,dt,
+    \quad x>0,
+\end{equation*}
+if $\beta > 0$ and $L_{\alpha,0}g = \htra(\chi_{[0,1]} g)$. Our first result
+states that $L_{\alpha,\beta}$ is a bounded operator from $L^p([0,1],
+x^\alpha \, dx)$ into $L^p([0,\infty), x^\alpha \, dx)$:
+
+\begin{Thm}
+\label{th:acotLab}
+Let $\alpha \ge -1/2$, $\beta \ge 0$, $1 < p < \infty$ and
+\begin{equation*}
+    \frac{2(2\alpha+3)}{2(\alpha+\beta)+3} \le p < \infty.
+\end{equation*}
+Then
+\begin{equation*}
+    \lpnorm{L_{\alpha,\beta}g}p{[0,\infty),x^{\alpha}dx}
+    \le C \lpnorm{g}p{[0,1],x^{\alpha}dx},
+    \quad g \in L^p([0,1],x^\alpha\,dx).
+\end{equation*}
+\end{Thm}
+
+In what follows, we write $P^\uparrow \le Q$ with the meaning $P < Q$. In
+this way, we have
+\begin{equation*}
+    \max\{A,B^\uparrow\} \le M \ \iff \ A \le M \text{ and } B < M.
+\end{equation*}
+This will keep the notation a bit shorter.
+
+\begin{Cor}
+\label{cor:seriesol}
+Let $\alpha \ge -1/2$, $\beta \ge 0$, $1 < p < \infty$ and assume
+\begin{equation*}
+    \max\left\{ \frac{2(2\alpha+3)}{2(\alpha+\beta)+3},
+        \Big(\frac{4(\alpha+1)}{2\alpha+3}\Big)^\uparrow \right\}
+    \le p <\min\left\{ \frac{4(\alpha+1)}{2\alpha+1},
+        \frac4{2\beta+1} \right\}.
+\end{equation*}
+Then, for any $g \in L^p([0,1],x^\alpha\,dx)$,
+we have
+\begin{equation*}
+    g = \sum_{n=0}^{\infty}a_n(g)p_n^\ab,
+    \quad
+    a_n(g) = \int_0^1 g(x) p_n^\ab(x) x^\alpha (1-x)^\beta \, dx 
+\end{equation*}
+in the $L^p([0,1], x^\alpha \, dx)$-norm and
+\begin{equation*}
+    L_{\alpha,\beta} g = \sum_{n=0}^{\infty}b_{n}j_{n}^{\alpha+\beta},
+    \quad
+    b_n = 2^{-\beta} \tfrac{\Gamma(\alpha+n+1)^{1/2} (n!)^{1/2}}
+        {\Gamma(\alpha+\beta+n+1)^{1/2} \Gamma(\beta+n+1)^{1/2}} a_n(g)
+\end{equation*}
+in the $L^p([0,\infty),x^\alpha\,dx)$-norm and almost everywhere.
+\end{Cor}
+
+For the proof of Theorem~\ref{th:acotLab} and Corollary~\ref{cor:seriesol},
+see section~\ref{sec:proofLab}.
+
+Before going on, let us write Lemma~\ref{lem:HTjn} in terms of $M_\alpha$,
+$M_{\alpha,\beta}$, and $\hab$. It is clear from~(\ref{ec:HTjnab}) that
+$\htra j_n^{\alpha+\beta}$ is supported on $[0,1]$, so that
+\begin{equation}
+     \label{ec:Majnab}
+     M_{\alpha}(j_n^{\alpha+\beta}) = j_n^{\alpha+\beta}.
+\end{equation}
+And, taking~(\ref{ec:newja}) into account,~(\ref{ec:HTbjnab}) reads as
+\begin{align}
+    \label{ec:Mabjnab}
+    M_{\alpha,\beta}(j_n^{\alpha+\beta})
+    &= x^{-\beta} M_\alpha(t^\beta j_n^{\alpha+\beta})
+       = x^{-\beta} \htra(\chi_{[0,1]}\htra (t^\beta
+                          j_n^{\alpha+\beta})) \\
+    &= x^{-\beta} \htra(\chi_{[0,1]} d_n p_n^\ab)
+     = d_n \hab p_n^\ab
+    \notag
+\end{align}
+with
+$d_n = 2^\beta \tfrac{\Gamma(\alpha+\beta+n+1)^{1/2} \Gamma(\beta+n+1)^{1/2}}
+{\Gamma(\alpha+n+1)^{1/2} (n!)^{1/2}}$.
+
+Our main result is the following:
+
+\begin{Thm}
+\label{th:solDIE}
+Let $\alpha \ge -1/2$, $0\le\beta<1$, $1<p<\infty$ and 
+\begin{equation*}
+    \max\left\{ \frac{2(2\alpha+3)}{2(\alpha+\beta)+3},
+      \Big(\frac{4(\alpha+1)}{2\alpha+3}\Big)^\uparrow \right\}
+    \le p <
+    \min\left\{\frac{4(\alpha+1)}{2\alpha+4\beta+1},
+                \frac{4}{2\beta+1}\right\}.
+\end{equation*}
+For each $g \in L^p([0,1], x^\alpha \, dx)$, $f = L_{\alpha,\beta}g$ is
+a solution in $L^p([0,\infty),x^{\alpha}\,dx)$ of the dual integral
+equation
+\begin{equation*}
+    \left\{
+      \begin{array}{l}
+         M_{\alpha,\beta}f = \hab g, \\[3pt]
+         M_{\alpha}f = f.
+      \end{array}
+    \right.
+\end{equation*}
+\end{Thm}
+
+\begin{proof}
+Let $g \in L^p([0,1], x^\alpha \, dx)$ and $f = L_{\alpha,\beta}g$. It is
+easy to see that we can apply Propositions~\ref{pro:acotMa}, \ref{pro:acotMab}
+and~\ref{pro:acotHab}. Since $L_{\alpha,\beta}$ is bounded (by
+Theorem~\ref{th:acotLab}), Corollary~\ref{cor:seriesol}
+and~(\ref{ec:Mabjnab}) give
+\begin{align*}
+    M_{\alpha,\beta}f
+    &= \lim_{n \to \infty} M_{\alpha,\beta}
+        \Big(\sum_{k=0}^n b_kj_k^{\alpha+\beta}\Big) \\
+    &= \lim_{n \to \infty} \hab
+         \Big(\sum_{k=0}^n b_kd_kp_k^\ab\Big)
+       = \hab g,
+\end{align*}
+while Corollary~\ref{cor:seriesol} and~(\ref{ec:Majnab}) yield
+\begin{equation*}
+    M_{\alpha}f
+    = \lim_{n \to \infty}
+      M_{\alpha}\Big(\sum_{k=0}^nb_kj_k^{\alpha+\beta}\Big)
+    = \lim_{n \to \infty} \sum_{k=0}^n b_k j_k^{\alpha+\beta}
+    = f.
+   \qedhere
+\end{equation*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Uniqueness of the solution}
+\label{sec:uniq}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us consider the $L^p$ subspaces
+\begin{equation*}
+	  B_{p,\alpha,\beta} = \overline{\spa} \{j_n^{\alpha+\beta}(x)\}_{n=0}^\infty
+   \quad (\text{closure in } L^p([0,\infty),x^\alpha\,dx)),
+\end{equation*}
+\begin{equation*}
+    E_{p,\alpha} = \left\{ f\in L^p([0,\infty),x^{\alpha}\,dx)
+    : M_{\alpha}f=f \right\}.
+\end{equation*}
+The following results about the mean convergence of Fourier-Neumann series
+were proved in~\cite{CGPV}:
+
+\begin{Thm}
+\label{th:convBp}
+Let $\alpha > -1$, $\alpha+\beta > -1$, $4/3 < p < 4$, and
+\begin{equation*}
+    \max\left\{-\frac{\alpha+\beta+1}2, -\frac14\right\}
+    < (\alpha+1) \left( \frac12 - \frac1p \right) + \frac\beta2 < \frac14.
+\end{equation*}
+Then, for any $f\in B_{p,\alpha,\beta}$ there exists a unique expansion
+\begin{equation*}
+    f = \sum_{n=0}^\infty b_n(f)j_n^{\alpha+\beta}
+\end{equation*}
+which holds
+in the $L^p([0,\infty),x^{\alpha}\,dx)$-norm. This expansion also holds
+almost everywhere.
+\end{Thm}
+
+\begin{Thm}
+\label{th:Bp=Ep}
+Let $\alpha \ge -1/2$, $\beta>-1/2$, $4/3<p$ with
+\begin{equation*}
+    \frac{-1}4 < (\alpha+1) \left( \frac12-\frac1p \right) < \frac14.
+\end{equation*}
+If $p<2$, assume further
+\begin{equation*}
+    \frac{-1}4 < (\alpha+1)\left( \frac12-\frac1p \right)-\frac{|\beta|}2.
+\end{equation*}
+Then $B_{p,\alpha,\beta} = E_{p,\alpha}$.
+\end{Thm}
+
+Using these results, we can prove
+
+\begin{Thm}
+Let $\alpha \ge -1/2$, $0\le\beta<1$, $1<p<\infty$ and
+\begin{equation*}
+    \max\left\{ \frac{2(2\alpha+3)}{2(\alpha+\beta)+3},
+      \Big(\frac{4(\alpha+1)}{2\alpha-2\beta+3}\Big)^\uparrow \right\}
+    \le p <
+    \min\left\{\frac{4(\alpha+1)}{2\alpha+4\beta+1},
+      \frac{4}{2\beta+1}\right\}.
+\end{equation*}
+Then, $f = L_{\alpha,\beta}g$ is the unique solution in
+$L^p([0,\infty),x^{\alpha}\,dx)$ of the dual equation
+\begin{equation*}
+    \left\{
+      \begin{array}{l}
+         M_{\alpha,\beta}f = \hab g, \\[3pt]
+         M_{\alpha}f = f.
+      \end{array}
+    \right.
+\end{equation*}
+\end{Thm}
+
+\begin{proof}
+It is not difficult to check that, under the hypothesis of this theorem,
+we can deduce the ones of Theorems~\ref{th:convBp} and~\ref{th:Bp=Ep} and
+Theorem~\ref{th:solDIE}. For instance, $\tfrac43 < p$ follows from
+\begin{equation*}
+    \frac43 <
+    \max\left\{ \frac{2(2\alpha+3)}{2(\alpha+\beta)+3},
+                 \frac{4(\alpha+1)}{2\alpha-2\beta+3} \right\}.
+\end{equation*}
+Indeed, if this inequality failed we would have
+\begin{equation*}
+   \frac{2(2\alpha+3)}{2(\alpha+\beta)+3} \leq \frac43,
+   \qquad
+   \frac{4(\alpha+1)}{2\alpha-2\beta+3} \leq \frac43,
+\end{equation*}
+which yield $2\alpha + 3 \leq 4\beta$ and $\alpha + 2\beta \leq 0$,
+respectively. Then $\alpha \leq -3/4$, which contradicts $\alpha \geq
+-1/2$.
+
+According to Theorem~\ref{th:solDIE}, $L_{\alpha,\beta}g$ is a solution of the
+dual equation. Let us see that it is unique. Let $f$ be a solution, that
+is, $f \in  L^p([0,\infty),x^{\alpha}\,dx)$, $M_\alpha f = f$ and
+$M_{\alpha,\beta}f = \hab g$. In particular, $f \in E_{p,\alpha}$. By
+Theorems~\ref{th:Bp=Ep} and~\ref{th:convBp}, we can expand~$f$ as a
+Fourier-Neumann series
+\begin{equation*}
+    f = \sum_{n=0}^{\infty} b_n(f) j_n^{\alpha+\beta}
+\end{equation*}
+which converges in the $L^p([0,\infty),x^\alpha\,dx)$-norm. Proving that each
+$b_n(f)$ is uniquely determined will suffice.
+
+{}From~(\ref{ec:Mabjnab}) and the fact that $M_{\alpha,\beta}$ is a
+continuous (bounded) operator in $L^p$, we get
+\begin{equation*}
+   \hab g = M_{\alpha,\beta}f
+    = \sum_{n=0}^{\infty} b_n(f)d_n \hab p_n^\ab.
+\end{equation*}
+Our assumptions on $\alpha$, $\beta$, and $p$, togehter with the estimates
+\begin{equation*}
+    J_\alpha(x) = O(x^\alpha), \quad x\to0^+,
+    \qquad\text{and}\qquad
+    J_\alpha(x) = O(x^{-1/2}), \quad x\to\infty,
+\end{equation*}
+yield $x^\beta j_k^{\alpha+\beta} \in L^{p'}([0,\infty),x^\alpha\,dx)$, where
+$1/p+1/p'=1$. Hence, the map $h \mapsto \int_0^\infty x^\beta
+j_k^{\alpha+\beta}(x)h(x)x^\alpha\,dx$ is a continuous operator from
+$L^p([0,\infty),x^\alpha\,dx)$ into $\mathbb{R}$. Then,
+\begin{multline*}
+    \int_0^\infty x^\beta j_k^{\alpha+\beta}(x) \hab(g,x) x^\alpha\,dx
+    \\
+    = \sum_{n=0}^\infty b_n(f) d_n
+    \int_0^\infty x^\beta j_k^{\alpha+\beta}(x) \hab(p_n^\ab,x) x^\alpha\,dx.
+\end{multline*}
+Now, recall the multiplication formula for the Hankel transform, which is
+valid for $h_1, h_2 \in L^2([0,\infty),x^\alpha\,dx)$:
+\begin{equation*}
+    \int_0^\infty h_1(x) \htra(h_2,x) x^\alpha\,dx
+    = \int_0^\infty \htra(h_1,x) h_2(x)x^\alpha\,dx.
+\end{equation*}
+Indeed, in $S^+$ this follows from Fubini's theorem, then it extends to the
+whole $L^2([0,\infty),x^\alpha\,dx)$ by continuity.
+
+Thus, the definition of $\hab$, together with (\ref{ec:HTjnab}) and the
+orthogonality of Jacobi polynomials, yield
+\begin{gather*}
+    \int_0^\infty x^\beta j_k^{\alpha+\beta}(x) \hab(p_n^\ab,x) x^\alpha\,dx
+    = \int_0^\infty j_k^{\alpha+\beta}(x) \htra(\chi_{[0,1]}p_n^\ab,x)
+          x^\alpha\,dx \\
+    = r_k \int_0^1 (1-x)^\beta p_k^\ab(x) p_n^\ab(x) x^\alpha\,dx
+    = r_k \delta_{kn}
+\end{gather*}
+with a constant $r_k\ne0$ (actually, $r_k = 1/d_k$, where $d_k$
+comes from~(\ref{ec:Mabjnab}), as before). Therefore,
+\begin{equation*}
+    \int_0^\infty x^\beta j_n^{\alpha+\beta}(x) \hab g(x) x^\alpha\,dx
+   = b_n(f).
+   \qedhere
+\end{equation*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Lemma~\ref{lem:HTjn}}
+\label{sec:proofHTjn}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As we already mentioned, the first part of Lemma~\ref{lem:HTjn} was proved
+in~\cite{CGPV}, so we only prove now the second part. Let $\hf$ denote, as
+usual, the hypergeometric function. We use the formula
+\begin{multline*}
+    \int_0^\infty t^{-\lambda} J_\mu(at) J_\nu(bt)\,dt
+    \\
+    = \tfrac{2^{-\lambda} \Gamma(\frac12(\mu+\nu-\lambda+1))b^\nu}
+       {a^{\nu-\lambda+1} \Gamma(\nu+1)\Gamma(\frac12(\lambda+\mu-\nu+1))}
+     \hf\left( \tfrac{\mu+\nu-\lambda+1}2,
+       \tfrac{\nu-\lambda-\mu+1}2; \nu+1; \tfrac{b^2}{a^2} \right),
+     \ 0<b<a,
+\end{multline*}
+valid when $\mu+\nu-\lambda>-1$ and $\lambda>-1$ (see~\cite[8.11 (9),
+p.~48]{E-TIT} or~\cite[13.4 (2), p. 401]{Wat}). Take $a=1$ and $x=b^2$, with
+parameters $\lambda=-\beta$, $\mu=\alpha+\beta+2n+1$ and $\nu=\alpha$. Then,
+for $\beta<1$, $\alpha+\beta>-1$, and $0 < x < 1$ we get, after a change of
+variable,
+\begin{multline*}
+   \frac{x^{-\alpha/2}}{2} \int_0^\infty y^\beta j_n^{\alpha+\beta}(y)
+   J_\alpha(\sqrt{xy}) y^{\alpha/2} \, dy
+   \\
+    = \tfrac{2^\beta \sqrt{\alpha+\beta+2n+1}\,\Gamma(\alpha+\beta+n+1)}
+      {\Gamma(\alpha+1) \Gamma(n+1)}
+      \hf(\alpha+\beta+n+1,-n;\alpha+1;x).
+\end{multline*}
+Taking into account that
+\begin{equation*}
+    P_n^{(\alpha,\beta)}(x) =
+      \tfrac{\Gamma(\alpha+n+1)}{\Gamma(\alpha+1)\Gamma(n+1)}
+      \hf(\alpha+\beta+n+1, -n ; \alpha+1; \tfrac{1-x}{2})
+\end{equation*}
+whenever $\alpha, \beta > -1$ and $-1 < x < 1$, it follows
+\begin{multline*}
+   \frac{x^{-\alpha/2}}{2} \int_0^\infty y^\beta j_n^{\alpha+\beta}(y)
+   J_\alpha(\sqrt{xy}) y^{\alpha/2} \, dy
+   \\
+    = \tfrac{2^\beta \sqrt{\alpha+\beta+2n+1}\,\Gamma(\alpha+\beta+n+1)}
+      {\Gamma(\alpha+n+1)}
+      P_n^{(\alpha,\beta)}(1-2x),
+\end{multline*}
+if $x \in (0,1)$. We have not finished yet, because this integral must be
+understood as an improper Riemann integral, not a Lebesgue integral. In other
+words, this means
+\begin{equation*}
+   \lim_{R\to\infty} \htra(t^\beta j_n^{\alpha+\beta} \chi_{[0,R]},x)
+    = \tfrac{2^\beta \sqrt{\alpha+\beta+2n+1}\,\Gamma(\alpha+\beta+n+1)}
+      {\Gamma(\alpha+n+1)}
+      P_n^{(\alpha,\beta)}(1-2x),
+\end{equation*}
+pointwisely on $(0,1)$. Now, $\htra$ is a bounded operator, so that
+\begin{equation*}
+   \lim_{R\to\infty} \htra(t^\beta j_n^{\alpha+\beta} \chi_{[0,R]})
+   = \htra(t^\beta j_n^{\alpha+\beta})
+\end{equation*}
+in the $L^p$-norm. It follows that
+\begin{equation*}
+   \htra(t^\beta j_n^{\alpha+\beta},x)
+    = \tfrac{2^\beta \sqrt{\alpha+\beta+2n+1}\,\Gamma(\alpha+\beta+n+1)}
+      {\Gamma(\alpha+n+1)}
+      P_n^{(\alpha,\beta)}(1-2x),
+\end{equation*}
+almost everywhere on $[0,1]$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{th:acotLab} and Corollary~\ref{cor:seriesol}}
+\label{sec:proofLab}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{Lem}
+\label{lem:acotopG}
+Let $\alpha \geq {-1/2}$, $\beta\ge0$, and $1 < p < \infty$, with
+$\tfrac{2(2\alpha+3)}{2(\alpha+\beta)+3} \leq p$.
+Then
+\begin{equation*}
+  \|\htr_{\alpha+\beta}(\chi_{[0,1]} h)\|_{L^p([0,\infty),x^\alpha\,dx)}
+   \leq C \| h \|_{L^p([0,1],x^\alpha\,dx)},
+   \quad h \in L^p([0,1],x^\alpha\,dx).    
+\end{equation*}
+\end{Lem}
+
+\begin{proof}
+Take $\nu = \alpha + \beta + \tfrac32 - 2\tfrac{\alpha+1}p$. Then
+\begin{equation*}
+  \|\htr_{\alpha+\beta}(\chi_{[0,1]} h)\|_{L^p([0,\infty),x^\alpha\,dx)}
+   = \| x^{-\nu/2 + (\alpha+\beta)/2 + 3/4}
+   \htr_{\alpha+\beta}(\chi_{[0,1]} h)\|_{L^p([0,\infty),\tfrac{dx}x)}.
+\end{equation*}
+With our assumptions on $\alpha$, $\beta$, and $p$ we can apply
+Theorem~\ref{th:Rooney} and get
+\begin{align*}
+  \|\htr_{\alpha+\beta}(\chi_{[0,1]} h)\|_{L^p([0,\infty),x^\alpha\,dx)}
+  &\leq C \| x^{\nu/2 + (\alpha+\beta)/2 + 1/4}
+   \chi_{[0,1]} h\|_{L^p([0,\infty),\tfrac{dx}x)}
+   \\
+  &= C 
+  \| x^{\alpha+\beta+1-2(\alpha+1)/p} h\|_{L^p([0,1],x^\alpha \, dx)}.
+\end{align*}
+The easy observation that $\alpha+\beta+1-2\tfrac{\alpha+1}p \geq 0$ finishes
+the proof.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{th:acotLab}]
+Lemma~\ref{lem:acotopG} proves Theorem~\ref{th:acotLab} in the case $\beta =
+0$, since $L_{\alpha,0}g = \htra(\chi_{[0,1]} g)$. Now, observe that
+$L_{\alpha,\beta} g = 2^{-\beta} \htr_{\alpha+\beta} (\chi_{[0,1]}
+I_{\alpha,\beta}g)$ if $\beta > 0$, where
+\begin{equation*}
+    I_{\alpha,\beta}(g,x)
+    = \frac{x^{-(\alpha+\beta)}}{\Gamma(\beta)}
+      \int_{0}^x g(t)(x-t)^{\beta-1}t^{\alpha}\,dt,
+    \quad 0 < x < 1
+\end{equation*}
+is the Erd\'elyi-Kober operator. It is well known that this operator is
+bounded in $L^p([0,1], x^\alpha \, dx)$ if $\alpha > -1$, $\beta > 0$, and $1
+< p < \infty$. Indeed, after a change of variable we obtain
+\begin{equation*}
+    I_{\alpha,\beta}(g,x)
+    = \frac1{\Gamma(\beta)}\int_0^1(1-z)^{\beta-1}z^{\alpha}g(xz)\,dz
+\end{equation*}
+and, by Minkowski's integral inequality,
+\begin{align*}
+    \lpnorm{I_{\alpha,\beta}g}p{[0,1],x^{\alpha}dx}
+    &\le \frac1{\Gamma(\beta)} \int_0^1(1-z)^{\beta-1}z^{\alpha} 
+       \lpnorm{g(xz)}p{[0,1],x^{\alpha}dx}\,dz \\
+    &\le \lpnorm{g}p{[0,1],x^{\alpha}dx} \frac1{\Gamma(\beta)}
+       \int_0^1(1-z)^{\beta-1}z^{\alpha-{(\alpha+1)}/p}\,dz \\
+    &= C \lpnorm{g}p{[0,1],x^{\alpha}dx},
+\end{align*}
+where we have used that $\lpnorm{g(xz)}p{[0,1],x^{\alpha}dx} \le
+z^{-(\alpha+1)/p}\lpnorm{g}p{[0,1],x^{\alpha}dx}$ and
+\begin{equation*}
+    \int_0^1(1-z)^{\beta-1}z^{\alpha-{(\alpha+1)}/p}\,dz
+    = B(\beta,(\alpha+1)(1-1/p)) < \infty.
+\end{equation*}
+Thus, $I_{\alpha,\beta}$ is bounded and again Lemma~\ref{lem:acotopG} proves
+the theorem.
+\end{proof}
+
+\begin{proof}[Proof of~Corollary~\ref{cor:seriesol}]
+Let $g \in L^p([0,1], x^\alpha \, dx)$. Under our assumptions on $\alpha$,
+$\beta$, and $p$, it is easy to check that we can apply
+Corollary~\ref{cor:convja}. Therefore,
+\begin{equation*}
+    g = \sum_{n=0}^{\infty}a_n(g)p_n^\ab,
+    \quad
+    a_n(g) = \int_0^1 g(x) p_n^\ab(x) x^\alpha (1-x)^\beta \, dx,
+\end{equation*}
+in the $L^p([0,1], x^\alpha \, dx)$-norm.
+By Theorem~\ref{th:acotLab}, $L_{\alpha,\beta}$ is a continuous (i.e. bounded)
+operator from $L^p([0,1], x^\alpha \, dx)$ into $L^p([0,\infty), x^\alpha \,
+dx)$. Then,
+\begin{equation*}
+   L_{\alpha,\beta} g = \sum_{n=0}^{\infty}a_n(g) L_{\alpha,\beta} p_n^\ab,
+\end{equation*}
+where the convergence holds in the $L^p$-norm. Now, consider the following
+formula (see~\cite[13.1 (43), p.~191]{E-TIT}):
+\begin{equation*}
+    I_{\alpha,\beta}(P_n^\ab(1-2t),x)
+    = \tfrac{\Gamma(\alpha+n+1)}{\Gamma(\alpha+\beta+n+1)}
+      P_n^{(\alpha+\beta,0)}(1-2x).
+\end{equation*}
+Lemma~\ref{lem:HTjn} (with parameters $\alpha+\beta$ and $0$ instead of
+$\alpha$ and $\beta$, respectively) gives
+$\htr_{\alpha+\beta}(j_n^{\alpha+\beta},x) = \sqrt{\alpha+\beta+2n+1}
+P_n^{(\alpha+\beta,0)}(1-2x) \chi_{[0,1]}(x)$, so that
+\begin{equation}
+   \label{ec:Ha+bPa+b0}
+   \htr_{\alpha+\beta}( \chi_{[0,1]} P_n^{(\alpha+\beta,0)}(1-2t))
+   = (\alpha+\beta+2n+1)^{-1/2} j_n^{\alpha+\beta}
+\end{equation}
+(since $\htr_{\alpha+\beta}^2 = \Id$ in $L^2$). Thus,
+\begin{equation}
+    \label{ec:Labja}
+    L_{\alpha,\beta}(P_n^{(\alpha,\beta)}(1-2t))
+    = 2^{-\beta}
+  \frac{\Gamma(\alpha+n+1)}{\sqrt{\alpha+\beta+2n+1} \Gamma(\alpha+\beta+n+1)}
+   j_n^{\alpha+\beta}
+\end{equation}
+if $\beta > 0$. In the case $\beta = 0$, (\ref{ec:Ha+bPa+b0}) and
+$L_{\alpha,0}g = \htra(\chi_{[0,1]} g)$ give (\ref{ec:Labja}), as well.
+In terms of the normalised polynomials $p_n^{(\alpha,\beta)}$, this means
+\begin{equation*}
+    L_{\alpha,\beta} p_n^\ab =
+      2^{-\beta} \tfrac{\Gamma(\alpha+n+1)^{1/2} (n!)^{1/2}}
+        {\Gamma(\alpha+\beta+n+1)^{1/2} \Gamma(\beta+n+1)^{1/2}}
+      j_n^{\alpha+\beta},
+\end{equation*}
+so that
+\begin{equation*}
+    L_{\alpha,\beta} g =
+    \sum_{n=0}^\infty a_n(g)
+      2^{-\beta} \tfrac{\Gamma(\alpha+n+1)^{1/2} (n!)^{1/2}}
+        {\Gamma(\alpha+\beta+n+1)^{1/2} \Gamma(\beta+n+1)^{1/2}}
+      j_n^{\alpha+\beta}
+\end{equation*}
+in the $L^p$-norm and, by Theorem~\ref{th:convBp}, almost everywhere.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{99}
+
+\bibitem{CGPV} \'O. Ciaurri, J. J. Guadalupe, M. P\'erez and J. L. Varona,
+\textit{Mean and almost everywhere convergence of Fourier-Neumann series},
+{J. Math. Anal. Appl.}
+{236} (1999), 125--147.
+ 
+\bibitem{Dur} A. J. Dur\'an,
+\textit{On Hankel transform},
+{Proc. Amer. Math. Soc.}
+{110} (1990), 417--424.
+
+\bibitem{E-HTF} A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+\textit{Higher Transcendental Functions,} Vol.~II,
+McGraw-Hill, New York, 1953.
+
+\bibitem{E-TIT} A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+\textit{Tables of Integral Transforms,} Vol.~II,
+McGraw-Hill, New York, 1954.
+
+\bibitem{Her} C. S. Herz,
+\textit{On the mean inversion of Fourier and Hankel transforms},
+{Proc. Nat. Acad. Sci. U.S.A.}
+{40} (1954), 996--999.
+
+\bibitem{H-R} P. Heywood and P. G. Rooney,
+\textit{A weighted norm inequality for the Hankel transformation},
+{Proc. Roy. Soc. Edinburgh Sect. A}
+{99} (1984), 45--50.
+
+\bibitem{Hoc} H. Hochstadt,
+\textit{Integral equations,}
+Wiley, New York, 1973.
+
+\bibitem{Muc} B. Muckenhoupt,
+\textit{Mean convergence of Jacobi series},
+{Proc. Amer. Math. Soc.}
+{23} (1969), 306--310.
+
+\bibitem{Roo} P. G. Rooney,
+\textit{A technique for studying the boundedness and extendability of certain
+types of operators},
+{Canad. J. Math.}
+{25} (1973), 1090--1102.
+
+\bibitem{Sne} I. N. Sneddon,
+\textit{Fourier Transforms,}
+McGraw-Hill, New York, 1951.
+Republication: Dover, New York, 1995.
+
+\bibitem{Ste} K. Stempak,
+\textit{Transplanting maximal inequalities between Laguerre and Hankel
+multipliers},
+{Monatsh. Math.}
+{122} (1996), 187--197.
+
+\bibitem{St-Tr} K. Stempak and W. Trebels,
+\textit{Hankel multipliers and transplantation operators},
+{Studia Math.}
+{126} (1997), 51--66.
+
+\bibitem{Sze} G. Szeg\H{o},
+\textit{Orthogonal Polynomials} (4th edition),
+Amer. Math. Soc. Colloq. Publ.
+{23}, Amer. Math. Soc.,
+Providence, RI, 1975.
+
+\bibitem{Tit} E. C. Titchmarsh,
+\textit{Introduction to the Theory of Fourier Integrals,}
+Oxford, New York, 1937.
+
+\bibitem{Tra1} C. J. Tranter,
+\textit{Integral Transforms in Mathematical Physics} (3th edition),
+Methuen, London, 1966.
+
+\bibitem{Tra2} C. J. Tranter,
+\textit{Bessel Functions with Some Physical Applications,}
+English Univ. Press, London, 1968.
+
+\bibitem{Var} J. L. Varona,
+\textit{Fourier series of functions whose Hankel transform is supported on
+$[0,1]$},
+{Constr. Approx.}
+{10} (1994), 65--75.
+
+\bibitem{Wat} G. N. Watson,
+\textit{A Treatise on the Theory of Bessel Functions,}
+Cambridge Univ. Press, 1966.
+
+\end{thebibliography}
+
+\end{document}

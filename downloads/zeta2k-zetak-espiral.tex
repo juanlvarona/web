@@ -1,0 +1,229 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                  %
+% MINIATURAS MATEM\'ATICAS DE LA GACETA DE LA RSME                 %
+%                                                                  %
+% $\zeta(2k)$ versus $\zeta(k)$: una relación geométrica en una espiral  %
+% by                                                               %
+% Juan Luis Varona                                                 %
+%                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[autocontact]{gaceta}
+
+%---------------------
+% La Gaceta se har\'a con esto activado, 
+% pero no hace falta ahora si no quieres:
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Puedes usar esto (u otra codificaci\'on) si quieres:
+%\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+%\decimalpoint
+%---------------------
+
+%---------------------
+% Esto ya lo carga el estilo de La Gaceta:
+%\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{url} % <-- Para p\'aginas web o similar: \url{...}
+%\usepackage{graphicx}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+% \usepackage{wrapfig}
+%---------------------
+
+%---------------------
+\usepackage{tikz}
+\usetikzlibrary{calc}
+%---------------------
+
+%---------------------
+% <<< ESTO SE AJUSTAR\'A AL EDITAR CADA N\'UMERO DE LA GACETA >>>
+%\provisional
+\newcounter{pageforminiatura}
+\setcounter{pageforminiatura}{352} % Siempre ser\'a p\'agina par
+\setcounter{page}{1} % No se usa (dejarlo como 1)
+\journame{La Gaceta de la RSME}
+\yearofpublication{2015}
+\volume{18}
+\issuenumber{2}
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+%\belongstopart{Art\'{\i}culos} 
+%\belongstopart{Secciones} 
+%\belongstopart{Noticias de la Sociedad} 
+%\belongstopart{Actualidad} 
+\nopart
+%---------------------
+
+
+% Esto controla el n\'umero de l\'ineas que salen desde el centro
+\newcounter{lineas}
+\setcounter{lineas}{23}
+
+%---------------------
+% Deja esto as\'{\i}: 
+\supertitle{\large Miniaturas matem\'aticas de \thejourname\\[1mm]
+\hfill\footnotesize
+Vol.~\thevolume\ (\theyearofpublication), 
+N\'um.~\theissuenumber, P\'ag.~\thepageforminiatura\theprovisional}
+%
+\noeditor
+%---------------------
+
+%---------------------
+\title{$\zeta(2k)$ versus $\zeta(k)$: una relación geométrica en una espiral}
+%\author{} % Poner \author{} o no poner nada, da igual.
+\contact{Juan Luis Varona, 
+Departamento de Matem\'aticas y Computaci\'on, 
+Universidad de La Rioja}{jvarona@unirioja.es}
+{http://www.unirioja.es/cu/jvarona/}
+%---------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deja esto as\'{\i}: 
+\previousvspace{-1.8cm}
+\makesupertitle
+\previousvspace{-0.25cm}
+\maketitle
+\vspace*{-0.4cm}
+\thispagestyle{empty} % <<<<< Importante
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\begin{flushleft}
+Función zeta de Riemann:
+\quad
+$\displaystyle \zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s},
+\quad s \in [1,\infty)$ %% s \ge 1 no refleja que pueda no ser entero
+%\end{flushleft}
+
+
+\smallskip
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{center}
+\begin{tikzpicture}[scale=3.6] 
+%\clip (-1.3,-0.6666666) rectangle (1.3,1.3); % <-- PARA QUE QUEPA EN UNA P\'AGINA
+\coordinate (origin) at (0,0);
+\draw[very thin, gray!80] (origin) circle (1);
+
+\coordinate (h1) at (1,0);
+% Uso \path en vez de \draw para que no pinte, y pintar al final la espiral
+% de una sola vez, pues las esquinas quedan mejor
+\path[ultra thick, black] (origin) -- (h1) node[black, midway, below] {$c_1=h_1=1$}; % midway es lo mismo que pos=0.5
+\draw (h1) node[above=6pt, left=-2pt] {{\scriptsize $90^\circ$}}; % poner \footnotesize size a 10pt
+
+\coordinate (h2) at ($ (h1) ! 0.5 ! -90:(origin) $); % p. 58
+\draw (origin) -- (h2) node[pos=0.5, inner sep=1.5pt, below right] {$h_2$}; % midway es lo mismo que pos=0.5 (p. 193)
+\draw (h2) node[above=2.5pt, left=0.5pt] {{\scriptsize $90^\circ$}}; % poner \footnotesize size a 10pt
+
+% \draw (h1) -- (h2) node[midway, right] {$c_2=\dfrac{1}{2^k}$}; % esto pinta la l\'inea
+\path (h1) -- (h2) node[midway, right] {$c_2=\dfrac{1}{2^k}$}; % esto no la pinta
+% \node [inner sep=1pt, label=right:${c_2=\dfrac{1}{2^k}}$] (c2) at ($ (h1)!.5!(h2) $) {}; % esto no pinta pero define c2
+
+% NOTA: SIN "cm" ES RELATIVO A LA DISTANCIA (h2)--(h3)
+\coordinate (h3) at ($ (h2) ! 1cm/3 ! -90:(origin) $); 
+\draw (origin) -- (h3) node[pos=0.65, inner sep=1.5pt, below right] {$h_3$}; 
+\draw (h3) node[above=0pt, left=0.5pt] {{\scriptsize $90^\circ$}}; % poner \footnotesize size a 10pt
+
+\path (h2) -- (h3) node[midway, right] {$c_3=\dfrac{1}{3^k}$}; % esto no pinta la l\'inea
+% \node [inner sep=1pt, label=right:${c_3=\dfrac{1}{3^k}}$] (c3) at ($ (h2)!.5!(h3) $) {}; % esto no pinta pero define c3
+
+\coordinate (h4) at ($ (h3) ! 0.25cm ! -90:(origin) $); 
+\draw (origin) -- (h4); 
+
+\newcounter{nmenosuno}
+\foreach \n in {5,...,\value{lineas}}
+{ %\def\nmenosuno{\n-1} % <------ Esta es la idea
+  \pgfmathparse{\n-1}
+  \pgfmathsetcounter{nmenosuno}{\pgfmathresult} 
+  \coordinate (h\n) at ($ (h\thenmenosuno) ! 1cm/\n ! -90:(origin) $); 
+  \draw (origin) -- (h\n);
+}
+
+\draw[ultra thick, black] (origin) -- (h1) -- (h2) -- (h3) -- (h4) -- (h5) 
+\foreach \n in {5,...,\value{lineas}}
+{ 
+  -- (h\n)
+};
+
+% ...
+
+\newcounter{lineasmasuno}
+\newcounter{lineasmastres}
+
+\setcounter{lineasmasuno}{\value{lineas}}
+\addtocounter{lineasmasuno}{1} %% o \stepcounter{lineasmasuno} 
+
+\setcounter{lineasmastres}{\value{lineas}}
+\addtocounter{lineasmastres}{3}
+
+\foreach \n in {\thelineasmasuno,...,\value{lineasmastres}}
+{ 
+  \pgfmathparse{\n-1}
+  \pgfmathsetcounter{nmenosuno}{\pgfmathresult} 
+  \coordinate (h\n) at ($ (h\thenmenosuno) ! 1cm/\n ! -90:(origin) $); 
+  \fill[black] (h\n) circle (0.28pt); % (0.25) si la espiral es very thick, y (0.28) si es ultra thick
+  \fill ($(origin) ! 0.88 ! (h\n)$) circle (0.2pt);
+}
+
+\draw[thin, dotted] (origin) circle ({pi/sqrt(6)});
+\end{tikzpicture}
+\end{center} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\vspace*{-4mm}
+
+\[
+\left\{
+\begin{aligned}
+  &c_n = \dfrac{1}{n^k}, \quad n \ge 1\\
+  &h_1 = 1, \quad h_{n}^2 = h_{n-1}^2  + c_{n}^2, \quad n \ge 2
+\end{aligned}
+\right.
+\quad\Rightarrow\quad
+h_n = \sqrt{1 + \dfrac{1}{2^{2k}} + \dfrac{1}{3^{2k}} + \cdots + \dfrac{1}{n^{2k}}}
+\]
+
+%\[
+%  \operatorname{Length}(\text{spiral}) = \zeta(k)
+%\]
+%\[
+%  \operatorname{Radius}(\text{asymptotic circle}) = \sqrt{\zeta(2k)}
+%\]
+
+\medskip
+
+\begin{large}
+\[
+\boxed{%
+\begin{gathered}
+  \operatorname{Longitud}(\text{espiral}) = \zeta(k) \\
+  \operatorname{Radio}(\text{circunferencia asint\'otica exterior}) = \sqrt{\zeta(2k)}\, %%% asymptotic circle
+\end{gathered}%
+}%
+\]
+\end{large}
+
+
+El caso $k=1$ es especialmente llamativo, dado que $\zeta(1)=\infty$ y la espiral da infinitas vueltas acerc\'andose a la circunferencia.
+
+\enlargethispage{2mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

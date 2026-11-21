@@ -1,0 +1,801 @@
+%------------------------------------------------------------------
+%
+% Old and new identities for Bernoulli polynomials 
+% via Fourier series,
+% by
+% L. M. Navas, F. J. Ruiz and J. L. Varona
+%
+% Date of last modification: May 5, 2012
+%
+%------------------------------------------------------------------
+
+
+%\documentclass[11pt,a4paper,reqno]{amsart}
+\documentclass[a4paper,reqno]{amsart}
+
+%\usepackage{amsmath, amssymb, amsthm}
+
+%%% \allowdisplaybreaks es una orden de amsmath que permite cortes de
+%%% p\'agina dentro de una f\'ormula de varias l\'{\i}neas (align, multline, gather, ...)
+\allowdisplaybreaks[2] %%% Escala de 1 (permite algo) a 4 (ninguna traba para cortar).
+%%% Si en alg\'un sitio queremos impedir un posible corte, usar \\* en vez de \\
+
+%\usepackage{fullpage}
+
+%\usepackage{url}
+\usepackage{hyperref}
+
+% For drafts:
+%\usepackage[notcite,notref]{showkeys}
+
+
+% For drafts:
+%\usepackage{setspace}
+%\doublespacing % <------ Double spacing in LaTeX
+%\singlespacing
+%\onehalfspacing
+%% For other sizes use the \setstretch command like this:
+%\setstretch{1.75}
+
+
+\newcommand{\N}{\mathbb{N}}
+%\newcommand{\Z}{\mathbb{Z}}
+%\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\theoremstyle{plain}
+\newtheorem{Teor}{Theorem}[section]
+\newtheorem{Lema}[Teor]{Lemma}
+\newtheorem{Prop}[Teor]{Proposition}
+\newtheorem{Cor}[Teor]{Corollary}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{remark}
+\newtheorem*{Nota}{Remark}
+\newtheorem*{Notas}{Remarks}
+
+
+\title[Bernoulli polynomials via Fourier series]%
+{Old and new identities for Bernoulli polynomials via Fourier series}
+
+%\author{L.~M.~Navas, F.~J.~Ruiz, and J.~L.~Varona}
+
+\author{Luis M. Navas}
+\address[Luis M. Navas]{%
+        Departamento de Matem\'aticas  \\
+        Universidad de Salamanca       \\
+%        Plaza de la Merced 1-4         \\
+        37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author{Francisco J. Ruiz}
+\address[Francisco J. Ruiz]{%
+        Departamento de Matem\'aticas       \\
+        Universidad de Zaragoza             \\
+%        Campus de la Plaza de San Francisco \\
+        50009 Zaragoza, Spain}
+\email{fjruiz@unizar.es}
+
+\author{Juan L. Varona}
+\address[Juan L. Varona]{%
+        Departamento de Matem\'aticas y Computaci\'on \\
+        Universidad de La Rioja                       \\
+%        Calle Luis de Ulloa s/n                       \\
+        26004 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+
+\thanks{Research of the second and third authors supported
+by grant MTM2009-12740-C03-03 of the~DGI}
+
+\keywords{Bernoulli polynomials, Euler polynomials, 
+Legendre polynomials, Gegenbauer polynomials, 
+Fourier series}
+
+\subjclass[2000]{Primary 11B68; Secondary 33C45, 42A10}
+
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+
+\date{\textit{Int.\@ J.\@ Math.\@ Math.\@ Sci.\@} \textbf{2012}, Art.\@ ID 129126, 14 pages
+(Received 20 March 2012; Accepted 4 May 2012).}
+
+
+\begin{document}
+
+
+%-------------------------------
+\begin{abstract}
+The Bernoulli polynomials $B_k$ restricted to $[0,1)$ and extended by periodicity have $n$th sine and cosine Fourier coefficients of the form $C_k/n^k$. In general, the Fourier coefficients of any polynomial restricted to $[0,1)$ are linear combinations of terms of the form $1/n^k$. If we can make this linear combination explicit for a specific family of polynomials then by uniqueness of Fourier series, we get a relation between the given family and the Bernoulli polynomials. 
+
+Using this idea, we give new and simpler proofs of some known identities involving Bernoulli, Euler and Legendre polynomials. The method can also be applied to certain families of Gegenbauer polynomials. As a result, we obtain new identities for Bernoulli polynomials and Bernoulli numbers. 
+\end{abstract}
+%-------------------------------
+
+\maketitle
+
+%\textbf{Running head:} Bernoulli polynomials via Fourier series.
+ 
+%-------------------------------
+\section{Introduction}
+\label{sec:intro}
+%-------------------------------
+
+The Bernoulli polynomials $B_k(x)$ (with $k\in\N\cup\{0\}$) are defined via the generating function
+\begin{equation}
+\label{defber}
+  \frac{t\,e^{tx}}{e^t-1} = \sum_{k=0}^\infty B_k(x)\, \frac{t^k}{k!},
+\end{equation}
+from which one also obtains the Bernoulli numbers as the values $B_k = B_k(0)$.
+Although it does not immediately yield their explicit form, the manipulation of~\eqref{defber}, along with the uniqueness theorem for power series expansions, leads to many properties of these polynomials. For instance, the following properties concerning derivation and symmetry are easily obtained in this way:
+\begin{gather}
+\label{derivacion}
+  B'_k(x) = k B_{k-1}(x),
+  \qquad k\geq 1,
+  \\
+\label{simetria}
+  B_k(1-x) = (-1)^k B_k(x),
+  \qquad k\geq 0.
+\end{gather}
+
+These two properties are all that is needed to obtain the Fourier series of the $1$-periodic functions which coincide with $B_k(x)$ on the interval $[0,1)$,
+\begin{align}
+\label{fourierpar}
+  B_{2k}(x) &= \frac{2 (-1)^{k-1} (2k)!}{(2\pi)^{2k}}
+    \sum_{n=1}^\infty \frac{\cos(2\pi n x)}{n^{2k}},
+  \qquad k \ge 1,
+  \\*
+\label{fourierimpar}
+  B_{2k+1}(x) &= \frac{2 (-1)^{k-1} (2k+1)!}{(2\pi)^{2k+1}}
+    \sum_{n=1}^\infty \frac{\sin(2\pi n x)}{n^{2k+1}},
+  \qquad k \ge 0.
+\end{align}
+In fact, \eqref{fourierpar} and \eqref{fourierimpar} are equivalent to the statements that the sine and cosine Fourier coefficients of the polynomials
+\begin{align*}
+ \mathring{B}_{2k}(x) &= (-1)^{k-1} \frac{(2\pi)^{2k}}{(2k)!}\,B_{2k}(x), 
+ \qquad k\geq 1,
+  \\*
+  \mathring{B}_{2k+1}(x) &= (-1)^{k-1} \frac{(2\pi)^{2k+1}}{(2k+1)!}\,B_{2k+1}(x),
+  \qquad k\geq 0,
+\end{align*}
+are
+\begin{gather}
+\label{parcos}
+  \int_0^1 \mathring{B}_{2k}(x) \cos(2\pi mx)\,dx = 
+  \begin{cases}
+   1/m^{2k}, & {m>0,} \\
+    0, & {m = 0,}
+  \end{cases}
+  \\
+\label{parsin}
+  \int_0^1 \mathring{B}_{2k}(x) \sin(2\pi mx)\,dx = 0,\quad m>0,
+  \\
+\label{imparsin}
+  \int_0^1 \mathring{B}_{2k+1}(x) \sin(2\pi mx)\,dx = \frac{1}{m^{2k+1}},\quad m>0,
+  \\
+\label{imparcos}
+\int_0^1 \mathring{B}_{2k+1}(x) \cos(2\pi mx)\,dx = 0,\quad m\geq 0,
+\end{gather}
+and properties \eqref{parcos}--\eqref{imparcos} can be deduced easily using only induction and \eqref{derivacion},~\eqref{simetria}.
+
+On the other hand, as we show in the following lemma, the sine and cosine coefficients on $[0,1)$ of any polynomial of degree $n$ are a linear combination of the terms $1/m^k$, $k\leq n$. Therefore, every polynomial of degree $n$ is a linear combination of the normalized polynomials $\mathring{B}_{k}$, $k\leq n$. Of course, this last assertion is also obvious without the use of Fourier series. The point here is that in many cases we can obtain the coefficients of the linear combination more quickly and easily by computing the Fourier coefficients of the polynomial.
+
+We will illustrate the method with a very simple example: the monomial $x^n$. First, we compute its Fourier coefficients.
+
+
+\begin{Lema} 
+\label{Lema:xn}
+Let $n, m \in\N$. Then,
+\begin{align*}
+  \int_0^1 x^{n} \cos(2\pi mx)\,dx 
+  &= \sum_{k=1}^{[n/2]}(-1)^{k-1} \dfrac{n!}{(n-2k+1)!} \dfrac{1}{(2\pi m)^{2k}},
+  \\*
+  \int_0^1 x^{n} \sin(2\pi mx)\,dx 
+  &= \sum_{k=1}^{[n/2]}(-1)^{k-1} \dfrac{n!}{(n-2k+2)!} \dfrac{1}{(2\pi m)^{2k-1}}.
+\end{align*}
+\end{Lema}
+
+\begin{proof} 
+This is a straightforward computation using integration by parts and induction.
+\end{proof}
+
+Now, as an application of the method, we give a proof of a well-known theorem.
+
+\begin{Teor} 
+For $n\in\N$, we have
+\[
+  \sum_{j=0}^n \dbinom{n+1}{j} B_j(x) = (n+1) x^n.
+\]
+\end{Teor}
+
+\begin{proof}
+Let us suppose that $n$ is even (the odd case is entirely similar), and use $2n$ instead. We define
+\begin{align*}
+  V_n(x) &= \sum_{k=1}^n (-1)^{k-1} \dfrac{(2n)!}{(2n-2k+1)!} \dfrac{1}{(2\pi)^{2k}}\, \mathring{B}_{2k}(x)
+  \\*
+  &= \sum_{k=1}^n \dfrac{(2n)!}{(2n-2k+1)!\,(2k)!}\,B_{2k}(x)
+\end{align*}
+and
+\begin{align*}
+  W_n(x) &= \sum_{k=1}^n (-1)^{k} \dfrac{(2n)!}{(2n-2k+2)!} \dfrac{1}{(2\pi)^{2k-1}}\,\mathring{B}_{2k-1}(x)
+  \\*
+  &= \sum_{k=1}^n \dfrac{(2n)!}{(2n-2k+2)!\,(2k-1)!}\,B_{2k-1}(x).
+\end{align*}
+By the lemma and formulas \eqref{parcos}--\eqref{imparcos}, it is immediate that $V_n+W_n$ and $x^{2n}$ have the same sine and cosine Fourier coefficients, except for the constant term, which is $0$ for the first polynomial and $1/(2n+1)$ for the second one. Therefore, by uniqueness of Fourier series,
+\[
+  V_n(x)+W_n(x) = x^{2n}-\dfrac{1}{2n+1}.
+\]
+Finally, observe that
+\[
+  V_n(x)+W_n(x) = \sum_{j=1}^{2n} \dfrac{(2n)!}{(2n-j+1)!\,j!}\,B_{j}(x)
+\]
+hence the result follows now from a couple of simple manipulations.
+\end{proof}
+
+\begin{Nota} 
+The identities extend from $[0,1)$ to $\C$ by analytic continuation.
+\end{Nota}
+
+The classical proof of this theorem uses the formulas
+\[
+  B_n(1+x) = n\,x^{n-1}+B_n(x)
+\]
+and
+\[
+  B_n(1+x) = \sum_{k=0}^n \dbinom{n}{k} B_k(x),
+\]
+which can be easily deduced from the defining relation~\eqref{defber}. 
+
+In this specific case, the difficulties of the above proof and the classical one are comparable. However, in more complicated situations, we believe that our method is simpler. It is the purpose of this paper to provide evidence for this claim, by obtaining, via the use of Fourier series, identities between polynomial families, some of which are new while others are well-known, but are given simpler proofs. 
+
+In addition, properties of one family are carried over to another and hence we
+obtain new recurrence relations for Bernoulli polynomials and Bernoulli numbers.
+It should be mentioned that new relations between classical and generalized
+Bernoulli polynomials and numbers are still obtainable through the use of
+different types of expansions (see~\cite{AgDil, GesVien, LiLu, Sh} and the
+references cited within). These identities are similar in appearance to ours but not identical to them. Power series expansions are the most often used, due to the natural starting point given by the generating series~\eqref{defber}, but it is not the only one, for instance the related power series for the cosecant is used in~\cite{Dil}. We believe that, for the purpose of proving these types of identities, Fourier expansion is also a useful tool, and one that is not typically used in the mainstream. The authors have previously employed this method to prove some facts about Bernoulli and Euler polynomials in~\cite{NRV}, and for Apostol-Bernoulli polynomials in~\cite{NRV-MC}.
+
+The organization of the paper is as follows. In Section~\ref{sec:BerLeg}, we obtain a relationship between Legendre and Bernoulli polynomials, which was already proved in~\cite{VuNg-Z,VuNg-B}, but with longer and more complicated proofs. 
+In Section~\ref{sec:BerGen}, which we have separated from the previous one for the sake of clarity, we extend the results to Gegenbauer polynomials with \emph{polynomial} weight; the results here are new and lead us also to some new identities for Bernoulli polynomials which are developed in Section~\ref{sec:consequences}. 
+In Section~\ref{sec:BerEu}, we show how to use the Fourier coefficients to obtain a known formula relating Euler and Bernoulli polynomials in a very simple way.
+
+\begin{Nota} 
+The formulas appearing in this paper were checked with Maple to avoid possible mistakes in their transcription, especially the longer ones.
+\end{Nota}
+
+%-------------------------------
+\section{Bernoulli and Legendre polynomials}
+\label{sec:BerLeg}
+%-------------------------------
+
+We denote the classical Legendre polynomials by $P_n(x)$. Recall that they are orthogonal on the interval $[-1,1]$ and have the same parity as $n.$ It is straightforward to prove, by substituting $2x-1 = y$, that
+\[
+  \int_0^1 P_{2n}(2x-1) \sin(2\pi mx)\,dx = 0,
+  \qquad n,m\in\N,
+\]
+and
+\[
+  \int_0^1 P_{2n}(2x-1)\,dx = 0,
+  \qquad n\in\N.
+\]
+The key point here is that it is also possible to explicitly find the cosine coefficients by applying classical integral formulas.
+
+\begin{Lema} 
+\label{Lema:Legpar}
+Let $n,m\in\N$. Then
+\[
+  \int_0^1 P_{2n}(2x-1) \cos(2\pi mx)\,dx 
+  = \sum_{k=1}^n \frac{(-1)^{k-1}}{2^{2k-1}} \frac{(2n+2k-1)!}{(2k-1)!\,(2n-2k+1)!} \frac{1}{(\pi m)^{2k}}.
+\]
+\end{Lema}
+
+\begin{proof}
+By substituting $2x-1 = y$, the proof is immediate if we take into account the two following classical formulas relating Bessel functions:
+\[
+  \int_0^1 P_{2n}(y) \cos(\pi my)\,dy 
+  = (-1)^n \sqrt{\frac{1}{2m}} J_{2n+\frac{1}{2}}(\pi m) 
+% = (-1)^n j_{2n}(\pi m)
+\]
+(see \cite[formula 2.17.7-1, p.~433]{PBM}) and
+\[
+% j_{2n}(\pi m) = 
+  \sqrt{\frac{1}{2m}} J_{2n+\frac{1}{2}}(\pi m) =
+  \frac{1}{\pi m}\cos(\pi(m-n)) 
+  \sum_{k=0}^{n-1}(-1)^k \frac{(2n+2k+1)!}{(2k+1)!\,(2n-2k-1)!} \frac{1}{(2\pi m)^{2k+1}}
+\]
+(see \cite[formula 10.1.8, p.~437]{AS}).
+\end{proof}
+
+This lemma and the uniqueness of Fourier series is all that we need to state the following theorem.
+
+\begin{Teor} 
+Let $n\in\N$. Then
+\begin{equation}
+\label{Legendrepar}
+  \frac{1}{2}P_{2n}(2x-1) = \sum_{k=1}^n \frac{(2n+2k-1)!}{(2k-1)!\,(2k)!\,(2n-2k+1)!}\,B_{2k}(x).
+\end{equation}
+\end{Teor}
+
+\begin{proof}
+The previous lemma and \eqref{parcos}, \eqref{parsin} show that the polynomials on both sides of~\eqref{Legendrepar} have the same sine and cosine Fourier coefficients on $[0,1]$. Therefore, the formula is true on $[0,1)$ and, by analytic continuation, on~$\R$.
+\end{proof}
+
+In the odd case the same references,~\cite{AS} and~\cite{PBM}, serve to show the following result.
+
+\begin{Lema} 
+Let $n,m\in\N$. Then
+\begin{description}
+  \item[(i)] $\displaystyle \int_0^1 P_{2n+1}(2x-1) \sin(2\pi mx)\,dx
+  = - \sum_{k=0}^{n} \frac{(-1)^{k}}{2^{2k}} \frac{(2n+2k+1)!}{(2k)!\,(2n-2k+1)!} \frac{1}{(\pi m)^{2k+1}}.
+$
+  \item[(ii)] $\displaystyle \int_0^1 P_{2n+1}(2x-1) \cos(2\pi mx)\,dx
+  = \int_0^1 P_{2n+1}(2x-1)\,dx = 0.
+$
+\end{description}
+\end{Lema}
+
+We then have the corresponding consequence.
+
+\begin{Teor} 
+Let $n\in\N$. Then
+\begin{equation}
+\label{Legendreimpar}
+  \frac{1}{2}P_{2n+1}(2x-1) = \sum_{k=0}^{n} \frac{(2n+2k+1)!}{(2k)!\,(2k+1)!\,(2n-2k+1)!}\,B_{2k+1}(x).
+\end{equation}
+\end{Teor}
+
+As we said in Section~\ref{sec:intro}, the same formulas for Legendre polynomials were obtained in~\cite{VuNg-Z,VuNg-B} by much more complicated techniques.
+% by a much more complicated technique.
+
+%-------------------------------
+\section{Bernoulli and Gegenbauer polynomials}
+\label{sec:BerGen}
+%-------------------------------
+
+We now consider the classical Gegenbauer polynomials $G_n^\lambda(x)$, which are orthogonal on $[-1,1]$ with respect to the weight $\omega_\lambda(x) = (1-x^2)^{\lambda-1/2}$, when $\lambda-1/2\in\N \cup \{0\}$, with $G_n^{1/2}(x) = P_n(x)$ being a particular case. We recall that $G_n^\lambda(x)$ also has the same parity as $n$. The following identities are straightforward to prove by substituting $2x-1 = y$. For $n,m\in\N$,
+\begin{gather*}
+  \int_0^1 (x(1-x))^{\lambda-1/2}\,G_{n}^\lambda (2x-1)\,dx = 0,
+  \\
+  \int_0^1 (x(1-x))^{\lambda-1/2}\,G_{2n}^\lambda (2x-1) \sin(2\pi mx)\,dx = 0,
+  \\
+  \int_0^1 (x(1-x))^{\lambda-1/2}\,G_{2n+1}^\lambda (2x-1) \cos(2\pi mx)\,dx = 0.
+\end{gather*}
+
+We can extend the results of the Section~\ref{sec:BerLeg} since there are also classical formulas which permit us to compute the remaining Fourier coefficients of such polynomials. The formulas are slightly different according to whether $\lambda$ is of the form $2j+ \frac{1}{2}$ or $2j-\frac{1}{2}$, with $j\in\N,$ and whether the degree of the polynomial is odd or even. Thus we present them separately.
+
+%-------------------------------
+\subsection{The case $2j+\frac{1}{2}$ and even degree}
+%-------------------------------
+
+The cosine Fourier coefficients of the polynomial $(x(1-x))^{2j}\,G_{2n}^\lambda (2x-1)$ are given by following lemma.
+
+\begin{Lema} 
+Let $\lambda = 2j+ \frac{1}{2}$, $j\in \N\cup\{0\}$. Then for $n,m\in\N$, we have
+\begin{multline*}
+  \int_0^1 (x(1-x))^{2j}\,G_{2n}^\lambda (2x-1) \cos(2\pi mx)\,dx
+  = \frac{(-1)^j}{2^{6j}} \frac{\sqrt{\pi}}{\Gamma(2j+ \frac{1}{2})} \frac{(4j+2n)!}{(2n)!}
+  \\*
+  \times
+  \sum_{k=1}^{n+j} \frac{(-1)^{k-1}}{2^{2k-1}} \frac{(2n+2j+2k-1)!}{(2k-1)!\,(2n+2j-2k+1)!} 
+  \frac{1}{(\pi m)^{2k+2j}}.
+\end{multline*}
+\end{Lema}
+
+\begin{proof}
+We apply \cite[formula 2.21.7-1, p.~534]{PBM} and \cite[formula 10.1.8, p.~437]{AS} in the same way as in Lemma~\ref{Lema:Legpar}.
+\end{proof}
+
+This is enough to prove the next relation.
+
+\begin{Teor} 
+\label{Teor:gegen2j+par}
+Let $\lambda = 2j+ \frac{1}{2}$, $j\in \N\cup\{0\}$. For $n\in\N$, we have
+\begin{multline}
+\label{gegen2j+par}
+  (x(1-x))^{2j}\,G_{2n}^\lambda(2x-1)
+  = \frac{1}{2^{4j-1}} \frac{\sqrt{\pi}}{\Gamma(2j+ \frac{1}{2})} \frac{(4j+2n)!}{(2n)!}
+  \\*
+  \times
+  \sum_{k=1}^{n+j} \frac{(2n+2j+2k-1)!}{(2k-1)!\,(2k+2j)!\,(2n+2j-2k+1)!}\,B_{2k+2j}(x).
+\end{multline}
+\end{Teor}
+
+The same references cited in the last lemma contain the formulas necessary for the remaining cases, which we present without further comments.
+
+%-------------------------------
+\subsection{The case $2j-\frac{1}{2}$ and even degree}
+%-------------------------------
+
+\begin{Lema} 
+Let $\lambda = 2j-\frac{1}{2}$, $j\in \N$. Then for $n,m\in\N$, we have
+\begin{multline*}
+  \int_0^1 (x(1-x))^{2j-1}\,G_{2n}^\lambda (2x-1) \cos(2\pi mx)\,dx
+  = \frac{(-1)^j}{2^{6j-3}} \frac{\sqrt{\pi}}{\Gamma(2j-\frac{1}{2})} \frac{(4j+2n-2)!}{(2n)!}
+  \\
+  \times
+  \sum_{k=0}^{n+j-1} \frac{(-1)^{k}}{2^{2k}} \frac{(2n+2j+2k-1)!}{(2k)!\,(2n+2j-2k-1)!} 
+  \frac{1}{(\pi m)^{2k+2j}}.
+\end{multline*}
+\end{Lema}
+
+\begin{Teor} 
+Let $\lambda = 2j-\frac{1}{2}$, $j\in \N$. For $n\in\N$, we have
+\begin{multline}
+\label{gegen2j-par}
+  (x(1-x))^{2j-1}\,G_{2n}^\lambda(2x-1)
+  = -\frac{1}{2^{4j-3}} \frac{\sqrt{\pi}}{\Gamma(2j-\frac{1}{2})} \frac{(4j+2n-2)!}{(2n)!}
+  \\
+  \times
+  \sum_{k=0}^{n+j-1} \frac{(2n+2j+2k-1)!}{(2k)!\,(2k+2j)!\,(2n+2j-2k-1)!}\,B_{2k+2j}(x).
+\end{multline}
+\end{Teor}
+
+%-------------------------------
+\subsection{The case $2j+\frac{1}{2}$ and odd degree}
+%-------------------------------
+
+\begin{Lema} 
+Let $\lambda = 2j+ \frac{1}{2}$, $j\in \N\cup\{0\}$. Then for $n,m\in\N$, we have
+\begin{multline*}
+  \int_0^1 (x(1-x))^{2j}\,G_{2n+1}^\lambda (2x-1) \sin(2\pi mx)\,dx
+  \\
+  \begin{aligned}
+  &= \frac{(-1)^{j+1}}{2^{6j}} \frac{\sqrt{\pi}}{\Gamma(2j+ \frac{1}{2})} \frac{(4j+2n+1)!}{(2n+1)!}
+  \\*
+  &\qquad\quad \times
+  \sum_{k=0}^{n+j} \frac{(-1)^{k}}{2^{2k}} \frac{(2n+2j+2k+1)!}{(2k)!\,(2n+2j-2k+1)!} 
+  \frac{1}{(\pi m)^{2k+2j+1}}.
+  \end{aligned}
+\end{multline*}
+\end{Lema}
+
+\begin{Teor} 
+Let $\lambda = 2j+ \frac{1}{2}$, $j\in \N\cup\{0\}$. For $n\in\N$, we have
+\begin{multline}
+\label{gegen2j+impar}
+  (x(1-x))^{2j}\,G_{2n+1}^\lambda(2x-1)
+  = \frac{1}{2^{4j-1}} \frac{\sqrt{\pi}}{\Gamma(2j+ \frac{1}{2})} \frac{(4j+2n+1)!}{(2n+1)!}
+  \\*
+  \times
+  \sum_{k=0}^{n+j} \frac{(2n+2j+2k+1)!}{(2k)!\,(2k+2j+1)!\,(2n+2j-2k+1)!}\,B_{2k+2j+1}(x).
+\end{multline}
+\end{Teor}
+
+%-------------------------------
+\subsection{The case $2j-\frac{1}{2}$ and odd degree}
+%-------------------------------
+
+\begin{Lema} 
+Let $\lambda = 2j-\frac{1}{2}$, $j\in \N$. Then, for $n,m\in\N$, we have
+\begin{multline*}
+  \int_0^1 (x(1-x))^{2j-1}\,G_{2n+1}^\lambda (2x-1) \sin(2\pi mx)\,dx
+  \\
+\begin{aligned}
+  &= \frac{(-1)^{j}}{2^{6j-3}} \frac{\sqrt{\pi}}{\Gamma(2j-\frac{1}{2})} \frac{(4j+2n-1)!}{(2n+1)!}
+  \\*
+  &\qquad\quad \times
+  \sum_{k=1}^{n+j} \frac{(-1)^{k-1}}{2^{2k-1}} \frac{(2n+2j+2k-1)!}{(2k-1)!\,(2n+2j-2k+1)!} 
+  \frac{1}{(\pi m)^{2k+2j-1}}.
+\end{aligned}
+\end{multline*}
+\end{Lema}
+
+\begin{Teor} 
+\label{Teor:gegen2j-impar}
+Let $\lambda = 2j-\frac{1}{2}$, $j\in \N$. For $n\in\N$, we have
+\begin{multline}
+\label{gegen2j-impar}
+  (x(1-x))^{2j-1} \, G_{2n+1}^\lambda(2x-1)
+  = \frac{-1}{2^{4j-3}} \frac{\sqrt{\pi}}{\Gamma(2j-\frac{1}{2})} \frac{(4j+2n-1)!}{(2n+1)!}
+  \\*
+  \times
+  \sum_{k=1}^{n+j} \frac{(2n+2j+2k-1)!}{(2k-1)!\,(2k+2j-1)!\,(2n+2j-2k+1)!}\,B_{2k+2j-1}(x).
+\end{multline}
+\end{Teor}
+
+%-------------------------------
+\section{New identities for Bernoulli polynomials and numbers}
+\label{sec:consequences}
+%-------------------------------
+
+Using the results of the previous sections we can transfer formulas for various orthogonal polynomials to the Bernoulli polynomials and vice versa. We are mainly interested in the first direction. For example, a simple (and very easy to prove) property which relates Legendre and Gegenbauer polynomials is
+\begin{equation}
+\label{derLegendre}
+  \frac{d^m}{dx^m} P_n(x) = 1\cdot 3\cdots(2m-1)\,G_{n-m}^{m+1/2}(x),
+  \qquad m\leq n
+\end{equation}
+(see, for instance, \cite[formula 22.5.37, p.~779]{AS}). Now, if we differentiate in formulas~\eqref{Legendrepar} or \eqref{Legendreimpar} and use~\eqref{derLegendre} and Theorems~\ref{Teor:gegen2j+par}--\ref{Teor:gegen2j-impar}, we obtain some identities between Bernoulli polynomials. Let us carry out the details in the case of even Legendre polynomials and an even number of derivatives.
+
+From~\eqref{derLegendre} we have, for $n,j\in\N$,
+\begin{equation}
+\label{derparpar}
+  \frac{d^{2j}}{dx^{2j}} P_{2n+2j}(x) = 1\cdot 3\cdots(4j-1)\,G_{2n}^{2j+1/2}(x).
+\end{equation}
+Differentiating~\eqref{Legendrepar} $2j$ times and applying \eqref{derparpar}, we get
+\begin{multline}
+\label{parpar1}
+  2^{2j-1}\cdot 1\cdot 3\cdots (4j-1)\,G_{2n}^{2j+1/2}(2x-1) = 2\, \frac{d^{2j}}{dx^{2j}}P_{2n+2j}(2x-1)
+  \\*
+  = \sum_{k=j}^{n+j} \frac{(2n+2j+2k-1)!}{(2k-1)!\,(2k)!\,(2n+2j-2k+1)!}\, \frac{d^{2j}}{dx^{2j}} B_{2k}(x).
+\end{multline}
+%
+We multiply both sides of~\eqref{parpar1} by $x^{2j} (1-x)^{2j}$ and use~\eqref{gegen2j+par}, along with the (easily proved) formula
+\[
+  2^{2j-1}\cdot 1\cdot 3\cdots (4j-1) \frac{\sqrt{\pi}}{2^{4j-1}\Gamma(2j+\frac{1}{2})} = 1,
+  \qquad j\in\N.
+\]
+Next we recall the expression for the derivative of a Bernoulli polynomial,
+\[
+  \frac{d^{2j}}{dx^{2j}} B_{2k}(x) = \dfrac{(2k)!}{(2k-2j)!}\,B_{2k-2j}(x),
+  \qquad k\geq j.
+\]
+Denoting
+\[
+  \alpha(k,j,n) = \frac{(2n+2j+2k-1)!}{(2k-1)!\,(2n+2j-2k+1)!},
+\]
+we have then proved the identity:
+
+\begin{Prop} 
+\label{Prop:diamanteparpar}
+Let $n,j\in\N$. Then
+\begin{equation*}
+%\begin{multline*}
+%\label{diamanteparpar}
+  \frac{(2n+4j)!}{(2n)!} \sum_{k=1}^{n+j} \frac{\alpha(k,j,n)}{(2k+2j)!}\,B_{2k+2j}(x)
+% \\*
+  = \sum_{k=j}^{n+j} \frac{\alpha(k,j,n)}{(2k-2j)!} \, x^{2j} (1-x)^{2j} B_{2k-2j}(x).
+%\end{multline*}
+\end{equation*}
+\end{Prop}
+
+In the same way, if we repeat the above argument with even polynomials and an odd number of derivatives (using now~\eqref{Legendreimpar} and~\eqref{gegen2j-par}), and we denote
+\[
+  \beta(k,j,n) = \frac{(2n+2j+2k-1)!}{(2k)!\,(2n+2j-2k-1)!},
+\]
+then we obtain 
+
+
+\begin{Prop} 
+\label{Prop:diamanteparimpar}
+Let $n,j\in\N$. Then
+\begin{multline*}
+%\label{diamanteparimpar}
+  \quad
+  \frac{(2n+4j-2)!}{(2n)!} \sum_{k=0}^{n+j-1} \frac{\beta(k,j,n)}{(2k+2j)!}\,B_{2k+2j}(x)
+  \\* 
+  = -\sum_{k=j-1}^{n+j-1} \frac{\beta(k,j,n)}{(2k-2j+2)!} \, x^{2j-1} (1-x)^{2j-1} B_{2k-2j+2}(x).
+  \quad
+\end{multline*}
+\end{Prop}
+
+By differentiating odd Legendre polynomials an even number of times, and using the notation
+\[
+  \gamma(k,j,n) = \frac{(2n+2j+2k+1)!}{(2k)!\,(2n+2j-2k+1)!},
+\]
+we get the following.
+
+\begin{Prop} 
+\label{Prop:diamanteimparpar}
+Let $n,j\in\N$. Then
+\begin{multline*}
+%\label{diamanteimparpar}
+  \quad
+  \frac{(2n+4j+1)!}{(2n+1)!} \sum_{k=0}^{n+j} \frac{\gamma(k,j,n)}{(2k+2j+1)!}\,B_{2k+2j+1}(x)
+  \\*
+  = \sum_{k=j}^{n+j} \frac{\gamma(k,j,n)}{(2k-2j+1)!} \, x^{2j} (1-x)^{2j} B_{2k-2j+1}(x).
+  \quad
+\end{multline*}
+\end{Prop}
+
+Finally, with odd Legendre polynomials and an odd number of derivatives, we have the following proposition:
+
+\begin{Prop} 
+\label{Prop:diamanteimparimpar}
+Let $n,j\in\N$. Then
+\begin{multline*}
+%\label{diamanteimparimpar}
+  \quad
+  \frac{(2n+4j-1)!}{(2n+1)!} \sum_{k=1}^{n+j} \frac{\alpha(k,j,n)}{(2k+2j-1)!}\,B_{2k+2j-1}(x)
+  \\*
+  = -\sum_{k=j}^{n+j} \frac{\alpha(k,j,n)}{(2k-2j+1)!} \, x^{2j-1} (1-x)^{2j-1} B_{2k-2j+1}(x).
+  \quad
+\end{multline*}
+\end{Prop}
+
+As a consequence of these results, we also obtain some identities for Bernoulli numbers. For instance: 
+
+\begin{Cor} 
+Let $j,n\in\N$. Then
+\begin{gather*}
+  \sum_{k=1}^{n+j} \dbinom{2n+4j+1}{2k+2j} \dbinom{2n+2j+2k-1}{2k-1}B_{2k+2j} = 0,
+  \\
+  \sum_{k=1}^{n+j} \dbinom{2n+2j}{2k-1} \dbinom{2n+2j+2k-1}{2k+2j}B_{2k+2j} = 0,
+  \\
+  \sum_{k=0}^{n+j-1} \dbinom{2n+4j-1}{2k+2j} \dbinom{2n+2j+2k-1}{2k}B_{2k+2j} = 0,
+  \\
+  \sum_{k=0}^{n+j-1} \dbinom{2n+2j-1}{2k} \dbinom{2n+2j+2k-1}{2k+2j}B_{2k+2j} = 0.
+\end{gather*}
+\end{Cor}
+
+\begin{proof}
+Taking $x = 0$ in Proposition~\ref{Prop:diamanteparpar}, we obtain
+\[
+  \sum_{k=1}^{n+j} \frac{\alpha(k,j,n)}{(2k+2j)!}\,B_{2k+2j} = 0.
+\]
+If we multiply both sides by the term $\frac{(2n+4j+1)!}{(2n+2j)!}$, which is independent of $k$, 
+we obtain the first identity. If we multiply by $\frac{(2n+2j)!}{(2n-1)!}$, we obtain the second one. The two remaining identities are obtained using Proposition~\ref{Prop:diamanteparimpar} and a similar argument.
+\end{proof}
+
+\begin{Notas}\quad
+\begin{enumerate}
+\item[(i)] We do not think that Propositions~\ref{Prop:diamanteparpar}--\ref{Prop:diamanteimparimpar} can be easily obtained directly from formulas for the Bernoulli polynomials. For instance, there can be no direct relation between $x^{2j} (1-x)^{2j} B_{2k-2j}(x)$ and $B_{2k+2j}(x)$ because the even Bernoulli polynomials have no roots at neither $0$ nor~$1$. For the same reasons, we do not see that formula~\eqref{parpar1} together with~\eqref{Legendrepar} directly imply~\eqref{gegen2j+par}. For this reason, we believe that our results above for Bernoulli and Gegenbauer polynomials are new. They are neither an easy consequence nor a generalization of the results in~\cite{VuNg-Z,VuNg-B}.
+
+\item[(ii)] Similarly, observe that Propositions~\ref{Prop:diamanteimparpar} and~\ref{Prop:diamanteimparimpar} cannot be obtained directly from Propositions~\ref{Prop:diamanteparpar} and~\ref{Prop:diamanteparimpar} by differentiation in a simple way, because of the presence of the factors $x^r (1-x)^r$. Thus we believe that these propositions give new identities for Bernoulli polynomials, which are essentially different for each~$j$.
+
+\item[(iii)] We have seen in the proof that the first two identities in the corollary are equivalent, in fact proportional. However, we do not see whether the last two properties are equivalent to the first ones. In any case, they remind us of other known formulas for Bernoulli numbers which can be obtained by methods involving hypergeometric functions. For instance, the Gessel-Viennot identity (see~\cite{GesVien}), of which the following is a special case:
+\begin{multline*}
+\qquad\qquad
+  \sum_{k=0}^{m} \dbinom{4m-2k+2}{2m+2} \dbinom{2n+1}{2k+1} \frac{B_{2n-2k}}{2m-k+1}
+  \\*
+  = \frac{2n+1}{4m-2n+3} \dbinom{4m-2n+3}{2m+2},
+  \quad m\leq n<2m+1
+\end{multline*}
+(see also~\cite{LiLu} and the references there). We have not gotten around to deducing some of our formulas from others such as these. Anyway, our proofs via Fourier series are still much easier than those based on hypergeometric functions.
+\end{enumerate}
+\end{Notas}
+
+%-------------------------------
+\section{A remark on Euler polynomials}
+\label{sec:BerEu}
+%-------------------------------
+
+The Euler polynomials $E_n(x)$, which are defined by means of the generating function
+\begin{equation}
+\label{defeul}
+  \frac{2\,e^{tx}}{e^{t}+1} = \sum_{n=0}^\infty E_n(x)\, \frac{t^n}{n!},
+\end{equation}
+also have readily handled expressions for their Fourier coefficients. Indeed, from~\eqref{defeul} we can easily get the properties
+\begin{equation}
+\label{propeul}
+  E_n(1-x) = (-1)^n E_n(x), \qquad E'_n(x) = n E_{n-1}(x).
+\end{equation}
+Now, from~\eqref{propeul} the proof of the following lemma is straightforward.
+
+\begin{Lema} 
+Let $n,m \in\N$. Then one has the following:
+\begin{description}
+  \item[(i)] $\displaystyle \int_0^1 E_{2n}(x) \sin(2\pi mx)\,dx = 0$.
+  \item[(ii)] $\displaystyle \int_0^1 E_{2n}(x) \,dx = -\frac{2}{2n+1}E_{2n+1}(0)$.
+  \item[(iii)] $\displaystyle \int_0^1 E_{2n}(x) \cos(2\pi mx)\,dx
+  = 2 \sum_{k=1}^n (-1)^k E_{2n-2k+1}(0)\, \frac{(2n)!}{(2n-2k+1)!} \frac{1}{(2\pi m)^{2k}}.$
+\end{description}
+\end{Lema}
+
+Consequently, by uniqueness of the Fourier series, we obtain the following theorem:
+
+\begin{Teor} 
+Let $n\in\N$. Then
+\[
+  E_{2n}(x) + \frac{2}{2n+1}E_{2n+1}(0) = 
+  -2 \sum_{k=1}^n E_{2n-2k+1}(0)\, \frac{(2n)!}{(2n-2k+1)!\,(2k)!}\,B_{2k}(x)
+\]
+or, equivalently,
+\[
+  E_{2n}(x) = -2 \sum_{k=0}^n E_{2n-2k+1}(0)\, \frac{(2n)!}{(2n-2k+1)!\,(2k)!}\,B_{2k}(x).
+\]
+\end{Teor}
+
+We proceed in the same way for the odd Euler polynomials.
+
+\begin{Lema} 
+Let $n,m\in\N$. Then we have the following:
+\begin{description}
+  \item[(i)] $\displaystyle \int_0^1 E_{2n-1}(x) \cos(2\pi mx)\,dx = 0$.
+  \item[(ii)] $\displaystyle \int_0^1 E_{2n-1}(x) \,dx = 0$.
+  \item[(iii)] $\displaystyle \int_0^1 E_{2n}(x) \cos(2\pi mx)\,dx
+  = 2\sum_{k=0}^{n-1} (-1)^k E_{2n-2k-1}(0) \, \frac{(2n-1)!}{(2n-2k-1)!} \frac{1}{(2\pi m)^{2k+1}}.$
+\end{description}
+\end{Lema}
+
+\begin{Teor} 
+For $n\in\N$, we have
+\[
+  E_{2n-1}(x) = -2 \sum_{k=0}^{n-1} E_{2n-2k-1}(0) \, \frac{(2n-1)!}{(2n-2k-1)!\,(2k+1)!}\,B_{2k+1}(x).
+\]
+\end{Teor}
+
+If we use the identities
+\[
+  E_n(0) = -\frac{2}{n+1} (2^{n+1}-1) B_{n+1}, \qquad n\in\N,
+\]
+(which have immediate proofs) and we put together the even and odd cases, we obtain the following result.
+
+\begin{Cor} 
+Let $n\in\N$ and $\sigma\in\{0,1\}$. Then
+\begin{multline}
+\label{bereul}
+  E_{2n-\sigma}(x)
+  \\*
+  = 4 \sum_{k=0}^{n-\sigma} \frac{(2n-\sigma)!}{(2n-2k+2-2\sigma)!\,(2k+\sigma)!} 
+  (2^{2n-2k+2-2\sigma}-1) B_{2n-2k+2-2\sigma}\,B_{2k+\sigma}(x).
+\end{multline}
+\end{Cor}
+
+This formula is also well-known (see, for instance \cite[formula 23.1.28, p.~806]{AS}). However, we have obtained it in a very simple and natural way.
+
+
+%-------------------------------
+\begin{thebibliography}{00}
+%-------------------------------
+
+\bibitem{AS} M. Abramowitz and I. A. Stegun,
+\textit{Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables},
+9th printing, New York, Dover, 1972.
+Electronic copy available in \url{http://www.math.sfu.ca/~cbm/aands/}
+% Abramowitz, M. and Stegun, I. A. (Eds.).
+% ``Bernoulli and Euler Polynomials and the Euler-Maclaurin Formula.''
+% {\S}23.1 in Handbook of Mathematical Functions with Formulas, Graphs,
+% and Mathematical Tables, 9th printing. New York: Dover, pp.~804-806, 1972.
+
+\bibitem{AgDil} T. Agoh and K. Dilcher,
+\textrm{Shortened recurrence relations for Bernoulli numbers},
+\textit{Discrete Math.} \textbf{309} (2009), 887--898.
+
+\bibitem{Dil} K. Dilcher,
+\textrm{Asymptotic behaviour of Bernoulli, Euler, and generalized Bernoulli polynomials},
+\textit{J. Approx. Theory}
+\textbf{49} (1987), 321--330.
+
+\bibitem{GesVien} I. Gessel and G. Viennot,
+\textrm{Binomial determinants, paths, and hook length formulae},
+\textit{Adv. in Math.} 
+\textbf{58} (1985), 300--321.
+
+\bibitem{NRV} L. M. Navas, F. J. Ruiz, and J. L. Varona, 
+\textrm{The M\"{o}bius inversion formula for Fourier series applied to Bernoulli and Euler polynomials},
+\textit{J. Approx. Theory}
+\textbf{163} (2011), 22--40. 
+% \url{doi:10.1016/j.jat.2010.02.005}
+
+\bibitem{NRV-MC}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Asymptotic estimates for Apostol-Bernoulli and Apostol-Euler polynomials,
+\textit{Math. Comp.},
+\textbf{81} (2012), 1707--1722. 
+%\url{http://dx.doi.org/10.1090/S0025-5718-2012-02568-3}
+%Preprint in \url{http://arxiv.org/abs/1102.1493}
+
+% Liu, Guodong; Luo, Hui % <-- Citation in MathSciNet
+\bibitem{LiLu} Liu, Guodong and Luo, Hui,
+\textrm{Some identities involving Bernoulli numbers},
+\textit{Fibonacci Quart.}
+\textbf{43} (2005), 208--212.
+
+\bibitem{PBM} A. P. Prudnikov, Yu. A. Brychkov, and O. I. Marichev,
+\textit{Integrals and Series. Vol.~2: Special Functions},
+Gordon and Breach, 1986.
+Reprinted by Taylor \&\ Francis, London, 2002.
+
+% Vu Kim Tuan; Nguyen Thi Tinh % <-- Citation in MathSciNet
+\bibitem{VuNg-Z} Vu Kim Tuan and Nguyen Thi Tinh,
+\textrm{Expressions of Legendre polynomials through Bernoulli polynomials},
+\textit{Rev. T\'ecn. Fac. Ingr. Univ. Zulia} % <--- Citation in MathSciNet
+\textbf{18} (1995), 285--290.
+
+% Vu Kim Tuan; Nguyen Thi Tinh % <-- Citation in MathSciNet
+\bibitem{VuNg-B} Vu Kim Tuan and Nguyen Thi Tinh,
+\textrm{Legendre, Euler and Bernoulli polynomials},
+\textit{C. R. Acad. Bulgare Sci.}
+\textbf{49} (1996), 19--21.
+
+% Yang, Sheng-liang % <-- Citation in MathSciNet
+\bibitem{Sh} Yang, Sheng-liang, 
+\textrm{An identity of symmetry for the Bernoulli polynomials},
+\textit{Discrete Math.} \textbf{308} (2008), 550--554.
+
+%-------------------------------
+\end{thebibliography}
+%-------------------------------
+
+\end{document}

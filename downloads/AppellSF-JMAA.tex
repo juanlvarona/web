@@ -1,0 +1,1239 @@
+% !TEX TS-program = pdflatex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% Appell Polynomials as Values of Special Functions
+% (Polinomios de Appell como valores particulares de funciones especiales),
+% by
+% L. M. Navas, F. J. Ruiz and J. L. Varona
+%
+% Date of last modification: 2017-09-15
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{amsart}
+
+%\usepackage{amssymb}
+
+%%% \allowdisplaybreaks is a command from amsmath that allow page breaks
+%%% inside a multi-line formula (align, multline, gather, ...)
+\allowdisplaybreaks[3] %%% Scale from 1 (weak allow) to 4 (complete allow).
+%%% If a break can be avoided, we can use \\* instead of \\ 
+
+\usepackage[inline]{enumitem}
+\setlist[enumerate,itemize]{font=\bfseries,wide=0pt}
+
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\AB}{\mathcal{B}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\bell}{\mathbf{B}}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\newcommand{\pochhammer}[2]{(#1)_{#2}}
+%\newcommand{\factorialdown}[2]{[#1]_{#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Appell Polynomials as Special Functions]%
+{Appell Polynomials as Values of Special Functions}
+
+\author[L.~M.~Navas]{Luis M. Navas}
+\address{%
+       Departamento de Matem\'aticas,
+       Universidad de Salamanca,
+       37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author[F.~J.~Ruiz]{Francisco J. Ruiz}
+\address{%
+       Departamento de Matem\'aticas,
+       Universidad de Zaragoza,
+       50009 Zaragoza, Spain}
+\email{fjruiz@unizar.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address{%
+       Departamento de Matem\'aticas y Computaci\'on,
+       Universidad de La Rioja,
+       26006 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+
+\thanks{The research of the authors is supported by Grant MTM2015-65888-C4-4-P (MINECO/FEDER)}
+
+%\subjclass[2010]{Primary 11B83; Secondary 30B40, 11B68, 11M35}
+\subjclass[2010]{Primary 30B40; Secondary 11B83, 11B68, 11M35}
+\keywords{Appell sequences, special functions, Mellin transforms, Lerch transcendent}
+
+% -----------------------
+\renewcommand{\datename}{\textbf{This paper has been published in}:}
+\date{\textit{J.\@ Math.\@ Anal.\@ Appl.\@} \textbf{459} (2018), 419--436.}
+% -----------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Class amsart Warning: 
+%% Abstract should precede \maketitle in AMS document classes
+\begin{abstract}
+We show that there is a large class of Appell sequences $\{P_{n}(x)\}_{n=0}^{\infty}$ for which there is a function $F(s,x)$, entire in $s$ for fixed $x$ with $\Re x > 0$ and satisfying $F(-n,x) = P_{n}(x)$ for $n=0,1,2,\dots$. For example, in the case of Bernoulli and Apostol-Bernoulli polynomials, $F$ is essentially the Hurwitz zeta function and the Lerch transcendent, respectively. We study a subclass of these Appell sequences for which the corresponding special function has a form more closely related to the classical zeta functions, and give some interesting examples of these general constructions.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+A fundamental result regarding the Riemann zeta function $\zeta(s)$ is its analytic continuation, with its value at negative integers given by $\zeta(1-n) = - B_{n}/n$ for $n \in \N$, where $B_{n}$ is the $n$th Bernoulli number. This relation is generalized by the Hurwitz zeta function, where $\zeta(1-n,x) = -B_{n}(x)/n$ and $B_{n}(x)$ is now the $n$th Bernoulli polynomial.
+As we shall show in this paper, such special values are a general feature of Appell polynomials satisfying some mild analytic conditions. In other words, for a wide class of Appell sequences, we will prove the existence of a transcendental function whose values at the negative integers are the given polynomials, and study some interesting special cases of such functions.
+
+As may be expected, the associated special function may be expressed as the Mellin transform of the generating function (with a sign change). A special case is found in~\cite[Theorem 4.1]{BaChi} for polynomial families such as the generalized Bernoulli and Euler polynomials (first defined in \cite{Nor,Nor-book}), and the generalized Apostol-Euler polynomials (these families are called Bernoulli-N{\o}rlund and Apostol-Euler-N{\o}rlund polynomials in~\cite{BaChi}). In the present paper, we extend these ideas to a large class of Appell sequences, which we call Appell-Mellin sequences, containing these previously studied cases. We point out the common mechanism behind these special cases, encompassing other families, such as the Hermite polynomials, as well as obtaining some interesting new examples.
+We would also like to mention that Mellin transforms of generating functions have been used in the recent papers~\cite{CGale-I} and~\cite{CGale-II} for other purposes.
+
+
+The article is organized as follows. In Section~\ref{sec:Appell-Mellin} we introduce the class of Appell-Mellin sequences. For these, the Mellin transform of their generating function extends to an entire function which when restricted to negative integer values yields the original polynomials. In Section~\ref{sec:Appell_Bernoulli} we define the Appell-Lerch subclass, for which the Mellin transform has a form more closely related to that of the Lerch (also called Hurwitz-Lerch) zeta function. In Section~\ref{sec:Appell-Bernoulli_examples} we study specific examples of Appell-Bernoulli sequences, reviewing the classical cases as well as some new ones that illustrate our framework, focusing on specific applications such as deriving new formulas or extending old ones. In Section~\ref{sec:Mellin_non-Bernoulli}, we give some notable examples of Appell-Mellin sequences which are not of Appell-Bernoulli type.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Appell-Mellin sequences and their associated special functions}
+\label{sec:Appell-Mellin}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Setup and main theorem}
+\label{subsec:setup_and_main_theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+An Appell sequence $\{P_{n}(x)\}_{n=0}^{\infty}$ is defined formally by an exponential generating function of the form
+\[
+	G(x,t) = A(t) \, e^{xt} = \sum_{n=0}^\infty P_{n}(x)\frac{t^n}{n!},
+\]
+where $x,t$ are indeterminates and $A(t)$ is a formal power series. We will not require that $A(0) \neq 0$, although this is usually part of the definition. Dropping this assumption avoids excluding several important examples for what are essentially trivial reasons as far as our purposes are concerned.
+
+It is straightforward to verify that any such generating function has polynomial coefficients, satisfying $P_{n}'(x) = n P_{n-1}(x)$ for all $n \geq 1$, and that this condition on a polynomial sequence is equivalent to having a generating function of the given form. The members of an Appell sequence are called Appell polynomials. In the following definition, we restrict our attention to an ample subclass of Appell sequences for which the Mellin transform of $G(x,-t)$ converges.
+
+
+\begin{definition}
+\label{D:Appell-Mellin} 
+An \emph{Appell-Mellin sequence} is a sequence $\{P_{n}(x)\}_{n=0}^{\infty}$ defined by a generating function of the form
+\begin{equation}
+\label{E:Appell_GF}
+    G(x,t) := A(t) \, e^{xt} = \sum_{n=0}^\infty P_{n}(x)\frac{t^n}{n!},
+\end{equation}
+where $A(t)$ is a function defined on the union of a complex neighborhood of the origin with $(-\infty,0)$, satisfying
+%%
+\begin{enumerate}[label=\normalfont(\alph*)]
+  \item $A(t)$ is non-constant and analytic around~$0$.
+  \item $A(-t)$ is continuous on $[0,+\infty)$ and has polynomial growth at~$+\infty$.
+\end{enumerate}
+%%
+\end{definition}
+
+In what follows we let $R$ denote the radius of convergence of the Taylor series of $A(t)$ at $0$. Since $e^{xt}$ is entire, the generating series in~\eqref{E:Appell_GF} converges for all $x \in \C$ and $|t| < R$. In particular, its radius of convergence does not depend on~$x$.
+
+
+It is easily seen that~\eqref{E:Appell_GF} implies $P_{n}(x)$ is a polynomial of the form
+%
+\begin{equation*}
+  P_{n}(x)=A(0)x^n+\cdots.
+\end{equation*}
+%
+Thus, the assumption $A(0) \neq 0$ means that $P_{n}(x)$ has degree $n$. However, in order to deal with examples such as the Apostol-Bernoulli sequence, where $P_{n}(x)$ has degree $n-1$, we do \emph{not} make this assumption. In general, if $k$ is the order of $A(t)$ at $t=0$, then $P_{n}(x) = 0$ for $0 \leq k < n$ and $P_{n}(x)$ has degree $n-k$ for $n \geq k$. We shall come back to this point in greater detail after our main theorem.
+
+
+Consider, for a fixed $x > 0$, the Mellin transform in $t$ of the generating function $G(x,-t)$ (note the sign):
+\begin{equation}
+\label{E:Mellin_GF_def}
+    F(s,x) = \frac{1}{\Gamma(s)}\int_{0}^{\infty} G(x,-t)\,t^{s-1}\,dt 
+	       = \frac{1}{\Gamma(s)} \int_{0}^{\infty} A(-t) e^{-xt} t^{s-1}\,dt.
+\end{equation}
+This is a special case of a parametric integral with holomorphic integrand in the $s$-domain. The assumption that $x > 0$ may be replaced in most of the results by $x \in \C$ with $\Re x > 0$, but we restrict to real $x$ for simplicity. In the rest of the paper, we use the common notational convention $\sigma = \Re s$ for $s \in \C$.
+% and $\tau = \Im(s)$.
+
+The following theorem gives the details of how~\eqref{E:Mellin_GF_def} defines an entire function of $s$. Integration over a Hankel contour would serve much the same purpose, but instead we employ a simple method that achieves the analytic continuation step by step. We use the integral version of Weierstrass' criterion, obtained via the Dominated Convergence Theorem, namely, that the integrand be dominated on compact subsets of the $s$-domain, to show that the integral is holomorphic over that domain.
+
+
+
+\begin{theorem}
+\label{T:general_Appell-Mellin_relation}
+Let $\{P_{n}(x)\}_{n=0}^{\infty}$ be an Appell-Mellin sequence with generating function $G(x,t) = A(t) e^{xt}$. If $A(t)$ has a zero of order $k$ at $t = 0$ then, for each fixed $x > 0$, the integral
+\begin{equation}
+\label{E:Mellin}
+    F(s,x) = \frac{1}{\Gamma(s)}\int_{0}^{\infty} G(x,-t)\,t^{s-1}\,dt 
+	       = \frac{1}{\Gamma(s)} \int_{0}^{\infty} A(-t) e^{-xt} t^{s-1}\,dt
+\end{equation}
+converges in the right half-plane $\sigma > -k$ to a holomorphic function, which may be  analytically continued to an entire function of $s$ satisfying
+\begin{equation*}
+%\label{E:sinCeros}
+	F(-n,x)=P_{n}(x),\quad n=0,1,2,\dots.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+The conditions in Definition~\ref{D:Appell-Mellin} ensure that the integrand is $O(t^{\sigma+k-1})$ at $t = 0$ and exponentially decreasing at $\infty$, hence the integral converges in the half-plane $\sigma > -k$. The integrand is an entire function of $s$ which is dominated on closed vertical substrips of finite width $-k < \alpha \leq \sigma \leq \beta$ in this half-plane, and thus the integral is a holomorphic function of $s$ for $\sigma > -k$.
+
+Given $N \in \N \cup \{0\}$ with $N \geq k$, the Mellin integral can be analytically continued to the  half-plane $\sigma > -N-1$ as follows. Fix $r$ with $0 < r < R$ and separate the complete integral into three parts:
+%%
+\begin{align*}
+  F(s,x) &= \frac{1}{\Gamma(s)} \int_r^\infty A(-t) e^{-xt}t^{s-1}\,dt \\
+  & \qquad + \frac{1}{\Gamma(s)} \int_0^{r} \left( A(-t)e^{-xt} 
+  - \sum_{n=0}^N P_{n}(x)\frac{(-t)^n}{n!} \right)t^{s-1}\,dt \\
+  & \qquad + \frac{1}{\Gamma(s)} \sum_{n=0}^N (-1)^n\, \frac{P_{n}(x)}{n!}\frac{r^{n+s}}{n+s}.
+\end{align*}
+%%
+In the first part, the integrand is an entire function of $s$, dominated on arbitrary closed vertical strips of finite width, hence the integral is an entire function of~$s$.
+
+In the second part, the integrand is the product of $t^{s-1}$ with the tail of the generating series, $\sum_{n=N+1}^{\infty} P_{n}(x) (-t)^{n}/n!$, which, since $|t| \leq r < R$, is $O(t^{N+1})$ at $t=0$. Thus, for $\sigma > -N-1$, the complete integrand is $O(t^{N+\sigma})$ at $t=0$ (with the order constant depending only on $x$) and hence is integrable on $[0,r]$ and dominated on closed vertical sub-strips of finite width of this half-plane. Therefore the second integral is a holomorphic function of $s$ for $\sigma > -N-1$.
+
+In the third part, we have considered the product of the partial sum $\sum_{n=0}^{N} P_{n}(x) (-t)^{n}/n!$ with $t^{s-1}$. For $\sigma > 0$, this is integrable on $[0,r]$ and its integral is precisely this third term, without the $1/\Gamma(s)$ factor. With the factor, we obtain an entire function of $s$, because the simple pole of $\Gamma(s)$ at $s = -n$ cancels the simple zero of $n+s$ for $n=0,1,2,\dots$, leaving the non-zero residue $(-1)^{n}/n!$.
+
+Finally, if $s = -n$ with $0 \leq n \leq N$, the $1/\Gamma(s)$ factors in front of the first two terms vanish, as well as every term in the sum except that corresponding to $n$, where the remaining value is $P_{n}(x)$. Thus $F(-n,x) = P_{n}(x)$ for these $n$ and, as $N \geq k$ was arbitrary, this completes the proof.
+\end{proof}
+
+
+
+\begin{remark}
+According to Definition~\ref{D:Appell-Mellin}, it is clear that the Appell-Mellin sequence $\{P_{n}(x)\}_{n=0}^{\infty}$ depends only on the value of the function $A(t)$ in a neighborhood around~$0$, i.e., on the germ of $A(t)$ at $t=0$, which is assumed to have a positive radius of convergence. However, the Mellin transform $F(s,x)$ defined in~\eqref{E:Mellin} also depends on the values of $A(-t)$ along the ray $(0,\infty)$, and, for $t$ sufficiently far from $0$, these are not uniquely determined since we only require that $A(-t)$ be continuous. Thus, it may seem odd that the property $F(-n,x) = P_n(x)$ is independent of these values.
+
+A quick explanation of this phenomenon, requiring only some parts of the proof of Theorem~\ref{T:general_Appell-Mellin_relation}, is as follows. Consider the Mellin integral without the Gamma factor, $I(s,x) = \int_{0}^{\infty} A(-t) e^{-xt} t^{s-1}\,dt$. This has (at most) simple poles at the negative integers $s=-n$, with residues determined by the Appell sequence $P_{n}(x)$. Since $I(s,x)$ is linear in $A(t)$, any function satisfying the conditions in Definition~\ref{D:Appell-Mellin} and coinciding with $A(t)$ around $0$ perturbs the integral $I(s,x)$ by an integral along some ray $(r,\infty)$ with $r>0$, which is an entire function of $s$. Division by $\Gamma(s)$ removes the poles and renders irrelevant whatever the values of the resulting perturbation are at the negative integers, thus the values $F(-n,x)$ are not changed.
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The assumption $A(0) \neq 0$}
+\label{subsec:a(0)_neq_0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+If $k$ is the order of $A(t)$ at $t = 0$, then $A(t) = t^{k} A^{*}(t)$ with $A^{*}(0) \neq 0$. It is clear that $A^{*}(t)$ also satisfies the hypotheses in Definition~\ref{D:Appell-Mellin}, and hence we have another Appell-Mellin sequence $\{P_{n}^{*}(x)\}_{n=0}^{\infty}$, generated by $G^{*}(x,t) = A^{*}(t) e^{xt}$, with Mellin transform $F^{*}(s,x)$. It is easy to establish the relations between the data associated to $A(t)$ and $A^{*}(t)$. Multiplication of the generating function by~$t^{k}$,
+\[
+	G(x,t) = t^{k} \, G^{*}(x,t)
+\]
+means, by~\eqref{E:Mellin_GF_def} and Theorem~\ref{T:general_Appell-Mellin_relation}, that for all $s \in \C$,
+%
+\begin{equation}
+\label{E:shifted_Mellin}
+	F(s,x) = (-1)^k \, \frac{\Gamma(s+k)}{\Gamma(s)} F^{*}(s+k,x)
+	       = (-1)^{k} \, \pochhammer{s}{k} \, F^{*}(s+k,x)
+\end{equation}
+%
+where we use the standard notation $(s)_{\alpha} = \Gamma(s+\alpha)/\Gamma(s)$ for the general Pochhammer symbol on $s,\alpha \in \C$. For $k \in \N$,
+\[
+	\pochhammer{s}{k} = s(s+1)(s+2) \cdots (s+k-1) 
+% = \frac{\Gamma(s+k)}{\Gamma(s)}
+\]
+is the rising factorial. On the other hand, multiplication by $t^{k}$ also corresponds to shifting indices in the generating  series~\eqref{E:Appell_GF} by $k$, so that $P_{n}(x)/n! = 0$ if $0 \leq n < k$ and $P_{n}(x)/n! = P^{*}_{n-k}(x)/(n-k)!$ if $n \geq k$, i.e.,
+%
+\begin{equation}
+\label{E:shifted_Pn}
+	P_{n}(x) = \begin{cases}
+	           0,                                   &\text{if $0 \leq n < k$,}
+	           \\[1ex]
+			     \dfrac{n!}{(n-k)!} \, P^{*}_{n-k}(x)  
+			   = (-1)^{k} \pochhammer{-n}{k} P^{*}_{n-k}(x), &\text{if $n \geq k$.}
+	           \end{cases}
+\end{equation}
+%
+Of course one could also use Theorem~\ref{T:general_Appell-Mellin_relation} to deduce~\eqref{E:shifted_Pn} from~\eqref{E:shifted_Mellin}.
+
+
+These simple observations show that there is really no loss of generality in assuming $A(0) \neq 0$ as part of the definition of an Appell sequence. Nevertheless, as we mentioned before, it is more convenient to allow any order $k$ since this permits the inclusion of well-known polynomial families without having to redefine them.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Appell-Bernoulli sequences}
+\label{sec:Appell_Bernoulli}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Appell-Bernoulli generating functions}
+\label{subsec:Appell-Bernoulli_GF}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+We now turn our attention to a special type of Appell-Mellin sequences, which is nevertheless sufficiently general to include the classical polynomial families, while allowing the corresponding special function given by Theorem~\ref{T:general_Appell-Mellin_relation} to be explored in greater detail.
+
+The main result of this section is Theorem~\ref{T:specific_Appell-Lerch_relation}, which shows that certain key aspects of the relation between the Apostol-Bernoulli polynomials and the Lerch zeta function generalize to this subclass of Appell-Mellin sequences, hence justifying our referring to them as Appell-Bernoulli sequences and to the corresponding Mellin transforms as Appell-Lerch functions.
+
+Throughout the paper, all complex powers use the principal branch of the complex logarithm, that is, with arguments in $(-\pi,\pi]$.
+
+
+\begin{lemma}
+\label{L:Appell-Bernoulli_h}
+Let $h(z)$ be analytic on the open unit disk, not identically zero, with Taylor series at $z = 0$ given by
+\[
+	h(z)=\sum_{n=0}^\infty h_{n} z^n.
+\]
+If for some $\alpha \in \C$, the function
+%%
+\begin{equation*}
+% \label{E:Appell-Bernoulli_A}
+	A_{h,\alpha}(t) = t^\alpha h(e^{t}), \quad t \in (-\infty,0),
+\end{equation*}
+%%
+can be analytically continued to a neighborhood of $0$, then the extended function defines an Appell-Mellin sequence.
+\end{lemma}
+
+
+\begin{proof}
+Denote the extended function also by $A_{h,\alpha}$. The analyticity of $h$ on the unit disk implies $A_{h,\alpha}(-t) = (-t)^{\alpha} h(e^{-t})$ is continuous on $(0,\infty)$, and since it continues to $0$, it is continuous on $[0,\infty)$. To show that it has polynomial growth at $\infty$, we may drop the factor $(-t)^{\alpha}$ and consider $h(e^{-t})$. This is actually bounded for $t > 1$, since for $t = 1 + \delta$ with $\delta > 0$, we have
+\[
+	h(e^{-t}) = \sum_{n=0}^{\infty} h_{n} e^{-n}e^{-n\delta},
+	\quad
+	|h(e^{-t})| \leq \sum_{n=0}^{\infty} |h_{n}|| e^{-1}|^n < \infty
+\]
+since $|e^{-1}| < 1$.
+\end{proof}
+
+
+
+In what follows, given a function $h(z)$ as in Lemma~\ref{L:Appell-Bernoulli_h}, we will denote by $R_{h}$ the radius of convergence of its Taylor series of at $0$. By hypothesis, $R_{h} \geq 1$. The case $R_{h} > 1$ leads to further properties which are studied in Section~\ref{subsec:R>1}.
+
+
+
+\begin{remark}
+The existence of the analytic continuation of $t^{\alpha} h(e^{t})$ from $(-\infty,0)$ to a neighborhood of $t=0$ is equivalent to that of $(\log z)^{\alpha} h(z)$ from $(0,1)$ to a neighborhood of $z=1$. Since $t^{\alpha} = (-1)^{\alpha} (-t)^{\alpha}$ for $t < 0$, it is also equivalent to that of $(-\log z)^{\alpha} h(z)$. Now, $(-\log z)^{\alpha}$ is analytic on $\C \setminus ((-\infty,0] \cup [1,\infty))$, thus the hypothesis implies that $h(z)$ itself has an analytic continuation to $D(0,1) \cup D(1,\varepsilon) \setminus [1,1+\varepsilon)$ for some $\varepsilon \in (0,1)$. 
+
+In particular, if $h(z)$ satisfies the hypothesis of Lemma~\ref{L:Appell-Bernoulli_h} for $\alpha \in \C$, and $h(z)$ itself can be analytically continued to a reduced neighborhood of $z=1$, then $(-\log z)^{\alpha}$ can also, which forces any possible such $\alpha$ to be an integer.
+
+The need for a factor $t^{\alpha}$ arises with the Bernoulli polynomials, where $h(z) = 1/(z-1)$, which has a pole at $z=1$, but choosing $\alpha = 1$, the product $t h(e^{t}) = t/(e^{t}-1)$ is analytic in a neighborhood of $t=0$.
+
+The additional flexibility of considering non-integer $\alpha$ is used when studying the generalized Bernoulli polynomials (Section~\ref{subsec:BernoulliGen}) and similar families. In these cases, special care must be taken with branch cuts, since identities such as $(st)^{\alpha} = s^{\alpha} t^{\alpha}$ or even $(-t)^{\alpha} = (-1)^{\alpha} t^{\alpha}$ no longer hold universally with principal complex powers.
+\end{remark}
+
+
+
+\begin{theorem}
+\label{T:specific_Appell-Lerch_relation} 
+Let $A_{h,\alpha}(t) = t^{\alpha} h(e^{t})$ be as in Lemma~\ref{L:Appell-Bernoulli_h}, and assume that the Taylor coefficients $h_{n}$ have polynomial growth (or decay), namely $|h_{n}| \leq C n^{r}$ for some constants $C > 0$ and $r \in \R$ and $n \in \N$. Then the Mellin transform~\eqref{E:Mellin} has the following series representation:
+%%
+\begin{equation}
+\label{E:Appell-Lerch_function_and_series}
+	F(s,x) = (-1)^\alpha \pochhammer{s}{\alpha} \sum_{n=0}^\infty \frac{h_{n}}{(n + x)^{s+\alpha}},
+	\quad \sigma> r + 1 - \Re \alpha.
+\end{equation}
+%%
+In particular if $h_{n}$ has exponential decay, the relation is valid for all~$s$.
+\end{theorem}
+
+
+
+\begin{proof}
+We merely need to exchange the sum and the integral,
+\begin{align*}
+  F(s,x) &= \frac{(-1)^\alpha}{\Gamma(s)}\int_{0}^{\infty} h(e^{-t})\,e^{-xt}\,t^{s+\alpha-1}\,dt
+\\
+  &=\frac{(-1)^\alpha}{\Gamma(s)}\sum_{n=0}^\infty h_{n} \int_{0}^{\infty} e^{-(n + x)t}\,t^{s+\alpha-1}\,dt
+\\
+  &= (-1)^\alpha \, \frac{\Gamma(s+\alpha)}{\Gamma(s)}\sum_{n=0}^\infty \frac{h_{n}}{(n + x)^{s+\alpha}}.
+\end{align*}
+For $\sigma+\alpha-r>1$, these steps are justified by the Dominated Convergence Theorem, since
+\[
+    \sum_{n=0}^\infty |h_{n}| \int_{0}^{\infty} \left|e^{-(n + x)t} t^{s+\alpha-1}\right|\,dt
+  = \Gamma(\sigma + \Re \alpha)
+    \sum_{n=0}^\infty \frac{|h_{n}|}{(n + x)^{\sigma+ \Re \alpha}}<+\infty,
+\]
+due to the growth condition on~$|h_{n}|$.
+\end{proof}
+
+
+\begin{remark}
+Note that when $\alpha = k = 0,1,2,\dots$ is the order of (the analytic continuation of) $A(t) = t^{k} h(e^{t})$ at $t = 0$, namely, $h(1) \neq 0$ for the extended function, then by~\eqref{E:shifted_Mellin}, the relation~\eqref{E:Appell-Lerch_function_and_series} is equivalent to
+\[
+	L(s,x) = F^{*}(s+k,x),
+\]
+where $F^{*}$ denotes the Mellin transform of the Appell sequence $P_{n}^{*}(x)$ corresponding to $A^{*}(t) e^{xt}$ where $A(t) = t^{k} A^{*}(t)$, which satisfies $A^{*}(0) \neq 0$.
+\end{remark}
+
+
+The form of the relation~\eqref{E:Appell-Lerch_function_and_series}, which generalizes both the Hurwitz and Hurwitz-Lerch zeta functions (see Sections~\ref{subsec:Bernoulli} and~\ref{subsec:ApostolBernoulli}),
+suggests the following terminology, in part already introduced in~\cite{BaChi}.
+
+
+\begin{definition} 
+\label{D:AppellBernoulli_data}	
+An \emph{Appell-Bernoulli sequence} is an Appell sequence corresponding to a function of the form $A_{h,\alpha}(t)$ as in Lemma~\ref{L:Appell-Bernoulli_h}, with $h$ satisfying a polynomial growth condition on its Taylor coefficients $h_{n}$ at~$0$. Thus
+\begin{equation}
+\label{E:Appell-Bernoulli_GF}
+    G(x,t) = t^\alpha h(e^t) e^{xt}
+	       = \sum_{n=0}^\infty P_{n}(x) \frac{t^n}{n!},
+		     \quad x\in \C,\quad |t| < R,
+\end{equation}
+where the radius of convergence $R$ does not depend on $x$.
+% \comentario{Este $R$ no es el mismo que el de $h$.}
+The \emph{associated Appell-Lerch function} is the Mellin transform $F(s,x)$ of $G(x,-t)$ which, by Theorem~\ref{T:general_Appell-Mellin_relation} is an entire function of $s$ satisfying $F(-n,x) = P_{n}(x)$, $x>0$, $n=0,1,2,\dots$, and by Theorem~\ref{T:specific_Appell-Lerch_relation} is also given by
+% 
+\begin{equation}
+\label{E:MellinLerch}
+    F(s,x) = (-1)^\alpha \, \pochhammer{s}{\alpha}
+	\, L(s,x),
+	\quad
+	L(s,x) = \sum_{n=0}^\infty \frac{h_{n}}{(n + x)^{s+\alpha}}
+\end{equation}
+% 
+on sufficiently small right half-planes. We call $L(s,x)$ the \emph{associated Appell-Lerch series.}
+\end{definition}
+
+
+
+
+\begin{remark}
+It is not hard to give interesting examples of functions $h(z)$ which do \emph{not} satisfy the hypoteheses of Lemma~\ref{L:Appell-Bernoulli_h} or Theorem~\ref{T:specific_Appell-Lerch_relation}. For instance, the generating function of the harmonic numbers $H_{0} = 0$, $H_{n} = 1 + 1/2 + \cdots + 1/n$ for $n \geq 1$, is
+\[
+	h(z) := \frac{-\log(1-z)}{1-z} = \sum_{n=0}^{\infty} H_{n} z^n,
+\]
+with radius of convergence $R_{h}=1$. However, $t^\alpha h(e^t)$ does not define an analytic function around $t=0$ for any $\alpha \in \C$, since $\log(1-e^t) = \log (-t + O(t^{2}))$ near $t = 0$, and a logarithmic singularity cannot be removed by multiplying by a power~$t^\alpha$.
+
+The number of partitions $p_{n}$ of a positive integer $n$ into a sum of other positive integers (ignoring ordering) is generated by Euler's function
+\[
+	h(z) = \frac{1}{(1-z)(1-z^2)(1-z^3) \cdots} = \sum_{n=0}^{\infty} p_{n} z^n
+\]
+(defining $p_{0} = 1$). The radius of convergence is $R_{h}=1$. However, $t^{\alpha} h(e^{t})$ cannot be continued to $0$ because the Taylor series has the unit circle as its natural boundary, with essential singularities at roots of unity, and on top of that, Hardy and Ramanujan's famous asymptotic estimate for $p_{n}$ says that the Taylor coefficients have greater than polynomial growth.
+
+Even without these important but analytically pathological examples, there remain plenty of interesting Appell-Mellin sequences which are not of Appell-Bernoulli type. We shall see some examples in Section~\ref{sec:Mellin_non-Bernoulli}, but first, we shall concentrate in Section~\ref{sec:Appell-Bernoulli_examples} on the many better-behaved examples which \emph{are} of this type, including those giving rise to the classical zeta functions.
+\end{remark}
+
+
+
+The requirement of polynomial growth on the Taylor coefficients, $|h_{n}| \leq C n^{r}$, is not very restrictive. Indeed, as we observe below, it is superfluous if the radius of convergence $R_{h}$ is greater than $1$. In any case, the exponent $r$ shifts the half-plane of convergence of the Appell-Lerch series $L_{h,\alpha}$. However, by Theorem~\ref{T:general_Appell-Mellin_relation}, the Appell-Lerch function $F_{h,\alpha}$ can always be analytically continued to an entire function, regardless.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The case $R_{h} > 1$}
+\label{subsec:R>1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Consider a function as in Lemma~\ref{L:Appell-Bernoulli_h}, namely, $h(z)$ is analytic and not identically null in a neighborhood of $0$, with Taylor series $h(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ having radius of convergence $R_{h} \geq 1$, and such that for some $\alpha \in \C$, the continuous function $t \mapsto t^{\alpha} h(e^{t})$ on $(-\infty,0)$ extends to an analytic function $A_{h,\alpha}(t)$ in a complex neighborhood of $0$. When $R_{h} > 1$, more can be said about the relation between the Appell-Bernoulli polynomials and the associated Appell-Lerch function and series.
+
+The first thing to note is that if $R_{h} > 1$, then $h(z)$ can be analytically continued to $z=1$. As we remarked after Lemma~\ref{L:Appell-Bernoulli_h}, this implies that $\alpha \in \Z$ since this forces $t^{\alpha}$ to be meromorphic at~$0$.
+
+Recall from Section~\ref{subsec:a(0)_neq_0} that a factor of $t^{\alpha}$ with $\alpha \in \Z$ amounts to a shift in indices in the Appell sequence along with some easily determined factors.
+
+
+\begin{theorem}
+\label{T:R>1_properties}
+Let $h(z)$ be as in Lemma~\ref{L:Appell-Bernoulli_h}, with radius $R_{h} > 1$, so that $\alpha \in \Z, $ and assume $\alpha \geq 0$. Then 
+%%
+\begin{enumerate}[label=\normalfont(\alph*)]
+%
+\item The associated Appell-Lerch series $L(s,x) = \sum_{m=0}^{\infty} h_{m} (m+x)^{-(s+\alpha)}$ converges for all $s$ and defines an entire function of~$s$.
+%
+\item The corresponding Appell polynomials have coefficients expressible by infinite series of the form
+%
+\begin{equation}
+\label{E:polynomial_series_form}
+	  P_{n}(x)
+	= \sum_{k=0}^{n-\alpha} \frac{(n-k)!}{(n-k-\alpha)!} \binom{n}{k}
+      \left( \sum_{m=0}^{\infty} h_{m} m^{n-k-\alpha} \right) x^{k}.
+\end{equation}
+%
+\end{enumerate}
+%%
+\end{theorem}
+
+
+
+\begin{proof}
+Since $R_{h} > 1$, the Taylor coefficients $h_{n}$ decay exponentially to $0$, namely, if $R_{h}^{-1} < \lambda < 1$, then $|h_{n}| \leq \lambda^{n}$ for $n \gg 0$. This implies that the Appell-Lerch series $L(s,x) = \sum_{m=0}^{\infty} h_{m} (m+x)^{-(s+\alpha)}$ is dominated by the everywhere convergent clasical Lerch series $\sum_{n=0}^{\infty} \lambda^{n}/(n+x)^{\sigma + \alpha}$. Since the convergence is uniform on compact subsets of the $s$-plane, it defines an entire function of~$s$. 
+
+By Theorem~\ref{T:specific_Appell-Lerch_relation}, the associated Appell-Lerch function $F(s,x)$ is given by $F(s,x) = (-1)^{\alpha} \pochhammer{s}{\alpha} L(s,x)$ for all $s \in \C$. Hence, by Theorem~\ref{T:general_Appell-Mellin_relation},
+%%
+\begin{align*}
+	   P_{n}(x)
+	 = F(-n,x)
+	&= \frac{n!}{(n-\alpha)!} \sum_{m=0}^{\infty} h_{m} (m+x)^{n-\alpha}
+	\\
+	&= \frac{n!}{(n-\alpha)!} 
+	   \sum_{m=0}^{\infty} h_{m}
+	   \sum_{k=0}^{n-\alpha} \binom{n-\alpha}{k} m^{n-\alpha-k} x^{k}
+	\\
+	&= \sum_{k=0}^{n-\alpha} \frac{n!}{(n-\alpha)!} \binom{n-\alpha}{k}
+	   \left(\sum_{m=0}^{\infty} h_{m} m^{n-\alpha-k} \right) x^{k}
+	\\
+	&= \sum_{k=0}^{n-\alpha} \frac{(n-k)!}{(n-k-\alpha)!} \binom{n}{k}
+	   \left(\sum_{m=0}^{\infty} h_{m} m^{n-\alpha-k} \right) x^{k}.
+\end{align*}
+%%
+The exchange in the order of summation is justified by the absolute converhence of the double series, which is dominated as above by the corresponding positive series with $h_{m} = \lambda^{m}$ for $R_{h}^{-1} < \lambda < 1$.
+\end{proof}
+
+
+
+\begin{remark}
+When $R_{h} > 1$, we can manipulate infinite series to obtain the result of Theorem~\ref{T:general_Appell-Mellin_relation}, namely, the existence of an entire function $F(s,x)$ with $F(-n,x) = P_{n}(x)$ for $n=0,1,2,\dots$, thus avoiding the Mellin transform. Indeed, for $t$ in a neighborhood of $0$, we have
+\begin{align*}
+	G(x,t) &= t^{\alpha} h(e^{t}) e^{xt}
+	        = t^{\alpha} \sum_{m=0}^{\infty} h_{m} e^{mt} e^{xt}
+		    = t^{\alpha} \sum_{m=0}^{\infty} h_{m} e^{(m + x)t}
+		   \\
+		   &= \sum_{m=0}^{\infty} h_{m} \sum_{n=0}^{\infty} \frac{(m+x)^{n} t^{n+\alpha}}{n!}
+		    = \sum_{m=0}^{\infty} h_{m} \sum_{n=\alpha}^{\infty} \frac{(m+x)^{n} t^{n}}{(n-\alpha)!}
+		   \\
+		   &= \sum_{n=\alpha}^{\infty} \frac{n!}{(n-\alpha)!}
+			  \left(\sum_{m=0}^{\infty} h_{m} (m+x)^{n-\alpha} \right)       
+			  \frac{t^{n}}{n!},
+\end{align*}
+%%
+so that
+\[
+	P_{n}(x) = (-1)^{\alpha} \pochhammer{-n}{\alpha} \sum_{m=0}^{\infty} h_{m} (m+x)^{n-\alpha}.
+\]
+% which as in the above proof of Theorem~\ref{T:R>1_properties}, leads to~\eqref{E:polynomial_series_form}.
+Now, if we \emph{define}
+\[
+	L(s,x) := \sum_{m=0}^{\infty} \frac{h_{m}}{(m+x)^{s+\alpha}},
+	\quad
+	F(s,x) := (-1)^{\alpha} \pochhammer{s}{\alpha} L(s,x),
+\]
+then $L(s,x)$ and $F(s,x)$ are entire functions and $F(-n,x) = P_{n}(x)$ for $n=0,1,2,\dots$.
+\end{remark}
+
+In spite of the previous remark, the results of this section should by no means  be interpreted as meaning that the really interesting cases correspond to $R_{h} = 1$. Instead, they should be regarded from the point of view of the Appell-Lerch series as the initial object, which, though it is only convergent on a half-plane in general, has, under the hypotheses given, and after introducing the appropriate Gamma factors if necessary, an analytic continuation to an entire function.
+
+Of course, as the theory of the classical zeta functions shows, knowing that $F(s,x)$ has an integral representation as a Mellin transform is a great advantage which serves many purposes other than evaluating at negative integers, among them, proving functional equations. These are the motivating examples we have in mind, and which we survey in the following section.
+
+
+
+\begin{remark}
+For completeness, let us mention that if $h(z)$ is analytic in a neighborhood of $0$, with Taylor series $h(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ having radius of convergence $R_{h}$ where $0 < R_{h} < 1$, then we can always try to renormalize to $h(R_{h}z)$, whose Taylor series at $0$ now has radius of convergence equal to $1$, and check if Theorem~\ref{T:specific_Appell-Lerch_relation} applies to the renormalized function. See Sections~\ref{subsec:Fibonacci} and~\ref{subsec:double_Bernoulli} for examples of this.
+
+Note that in the case of the classical Lerch transcendent $L(\lambda,s,x)$, defined initially by the infinite series $\sum_{m=0}^{\infty} \lambda^{m} (m+x)^{-s}$, the modulus of the $\lambda$ parameter is the reciprocal of the radius $R_{h}$ for the corresponding $h$, so that there are certainly cases where we do not want to normalize.
+\end{remark}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Examples of Appell-Bernoulli sequences}
+\label{sec:Appell-Bernoulli_examples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+We begin by reviewing the well-known classical examples for completeness and to point out some slight differences due mostly to trivial changes of variables.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Monomials} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+This may be considered the trivial case of the theory. The generating function
+\[
+	e^{xt} = \sum_{n=0}^\infty x^n \, \frac{t^n}{n!}
+\]
+corresponds to $A_{h,0}$ with $h(z) = 1$. The associated Appell-Lerch function is
+\[
+	F(s,x) = x^{-s},
+\]
+which of course is an entire function of $s$ satisfying $F(-n,x)=x^{n}$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Bernoulli polynomials}
+\label{subsec:Bernoulli}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Their generating function
+\begin{equation*}
+  \frac{t}{e^t-1}\,e^{xt} = \sum_{n=0}^\infty B_{n}(x)\frac{t^n}{n!}
+\end{equation*}
+corresponds to $A_{h,1}$ where
+\[
+	h(z) = \frac{1}{z-1} = -\sum_{n=0}^\infty z^n, \quad |z|<1.
+\]
+The associated Appell-Lerch function is given by the series
+% 
+\begin{equation*}
+	F(s,x) = s\sum_{n=0}^\infty \frac{1}{(n + x)^{s+1}},\quad \sigma>0,
+\end{equation*}
+% 
+and by Theorem~\ref{T:general_Appell-Mellin_relation} has an analytic continuation to an entire function satisfying $F(-n,x)=B_{n}(x)$. Clearly $F(s,x) = s \zeta(s+1,x)$, where $\zeta(s,x)$ is the Hurwitz zeta function, usually defined as the analytic continuation of the series $\sum_{k=0}^{\infty} (k + x)^{-s}$, convergent for $\sigma > 1$. Hence we recover the classical relation
+% 
+\begin{equation}
+\label{E:Bernoulli_Zeta}
+	B_{n}(x) = -n\zeta(1-n,x).
+\end{equation}
+
+
+The Bernoulli polynomials may be generalized in many directions. Let us consider two important ones.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generalized Bernoulli polynomials}
+\label{subsec:BernoulliGen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+For $\alpha \in \C$, the generating function
+% 
+\begin{equation*}
+\left(\frac{t}{e^t-1}\right)^\alpha e^{xt} = \sum_{n=0}^\infty B^\alpha_{n}(x)\frac{t^n}{n!}
+\end{equation*}
+% 
+also corresponds to a function of the form $A_{h,\alpha}$ as in Lemma~\ref{L:Appell-Bernoulli_h}, with 
+\[
+	  h(z) 
+	= \frac{(1-z)^{-\alpha}}{(-1)^\alpha}
+	= \frac{1}{(-1)^\alpha} \sum_{n=0}^\infty \binom{-\alpha}{n}(-1)^nz^n, \quad |z|<1.
+\]
+Indeed, for $t<0$, handling the signs and principal powers with a little care,
+\[
+      t^{\alpha} h(e^{t}) 
+    = \frac{t^{\alpha}}{(-1)^{\alpha}} (1 - e^{t})^{-\alpha}
+    = \frac{(-t)^{\alpha}}{(1 - e^{t})^{\alpha}}
+	= \left(\frac{-t}{1-e^{t}}\right)^{\alpha}
+	= \left(\frac{t}{e^{t}-1}\right)^{\alpha},
+\]
+with the latter function analytic in a neighborhood of $0$.
+It is easy to see that the binomial coefficients have polynomial growth, in fact $\binom{-\alpha}{n} \sim (-1)^{n} n^{\alpha - 1} / \Gamma(\alpha)$ as $n \to \infty$. By Theorem~\ref{T:specific_Appell-Lerch_relation}, the corresponding Appell-Lerch function is given by
+\[
+	  F(s,x) 
+	= \frac{\Gamma(s+\alpha)}{\Gamma(s)}
+	\sum_{n=0}^\infty \binom{-\alpha}{n} \frac{(-1)^n}{(n + x)^{s+\alpha}},\quad \sigma>0,
+\]
+and its analytic continuation satisfies
+\[
+	F(-n,x) = B^\alpha_{n}(x),\quad n=0,1,2,\dots.
+\]
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Apostol-Bernoulli polynomials}
+\label{subsec:ApostolBernoulli}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Their generating function is
+% 
+\begin{equation*}
+	\frac{t}{\lambda e^t-1}\,e^{xt} = \sum_{n=0}^\infty \AB_{n}(x;\lambda)\frac{t^n}{n!},
+\end{equation*}
+% 
+which for $|\lambda|\leq 1$ corresponds to $A_{h,1}$, where
+\[
+  h(z)=\frac{1}{\lambda z-1}=-\sum_{n=0}^\infty \lambda^n z^n,\quad |z|<1/|\lambda|.
+\]
+The associated Appell-Lerch function is given by the series
+% 
+\begin{equation*}
+  F(s,x) = s\sum_{n=0}^\infty \frac{\lambda^n}{(n + x)^{s+1}},
+\end{equation*}
+% 
+convergent everywhere if $|\lambda| < 1$ and for $\sigma>0$ if $|\lambda| = 1$. It
+satisfies
+$
+	F(-n,x) = \AB_{n}(x;\lambda)
+$
+for $n = 0,1,2,\dots$. The classical Lerch transcendent (see~\cite{Ap}) is defined as the analytic continuation of the series
+% 
+\begin{equation}
+\label{E:Lerch}
+	L(\lambda,s,x) = \sum_{n=0}^\infty \frac{\lambda^n}{(n + x)^{s}}.
+\end{equation}
+% 
+Thus $F(s,x)=s L(\lambda,s+1,x)$ and we recover the relation (proved in~\cite{Ap}) between the Lerch transcendent and the Apostol-Bernoulli polynomials,
+\[
+	\AB_{n}(x;\lambda) = -n L(\lambda,1-n,x),
+\]
+which is analogous to~\eqref{E:Bernoulli_Zeta}. In addition, when $|\lambda| < 1$, we have the representation~\eqref{E:polynomial_series_form}, which in this case specializes to
+\[
+	  \AB_{n}(x;\lambda) 
+	% = \sum_{k=0}^{n-1} \binom{n}{k} \AB_{n-k}(0;\lambda) x^{k}
+	= \sum_{k=0}^{n-1} (n-k) \binom{n}{k} \left(- \sum_{m=0}^{\infty} \lambda^{m} m^{n-1-k}\right)  x^{k}
+\]
+and recovers the relation between the Apostol-Bernoulli \emph{numbers} $\AB_{n}(\lambda) := \AB_{n}(0;\lambda)$ and the polylogarithm, namely $\AB_{n}(\lambda) = -n \operatorname{Li}_{1-n}(\lambda)$ for $n \geq 2$.
+
+\begin{remark}
+The Apostol-Bernoulli polynomials are defined even if $|\lambda| > 1$, although in this case the Appell-Lerch series diverges. In fact, they are rational functions in $\lambda$ with a pole only at $\lambda = 1$.
+\end{remark}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generalized Apostol-Euler polynomials}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+For $\kappa \in \C$ and $\lambda \neq 0,-1$, consider the generating function 
+\begin{equation*}
+    \left(\frac{2}{\lambda e^t+1}\right)^\kappa\,e^{xt}
+  = \sum_{n=0}^\infty \mathcal{E}^{\kappa}_{n}(x;\lambda)\frac{t^n}{n!}.
+\end{equation*}
+For special values of the parameters these reduce to the Apostol-Euler or Apostol-Genocchi families (see for example \cite{NRV-MC}). For $|\lambda|\leq 1$, they correspond to $A_{h,0}$ (i.e.\ $\alpha = 0$ in the notation of Lemma~\ref{L:Appell-Bernoulli_h}, not to be confused with the parameter we call $\kappa$ here), where
+\[
+	  h(z)
+	= \left(\frac{2}{\lambda z+1}\right)^{\kappa}
+	= 2^\kappa\sum_{n=0}^\infty \binom{-\kappa}{n}\lambda^nz^n,\quad |z|<1/|\lambda|.
+\]
+The associated Appell-Lerch function has the series expansion
+\[
+	  F(x,\lambda,\kappa,s)
+	= 2^\kappa \sum_{n=0}^\infty \binom{-\kappa}{n} \frac{\lambda^n}{(n + x)^{s}}.
+\]
+It converges everywhere if $|\lambda| < 1$ and for $\sigma > \Re(\kappa)$ if $|\lambda| = 1$.
+
+
+Next we turn to some examples which, as far as we know, have not been considered in the present context of polynomials given as special values of transcendental functions. In several of these examples, we are choosing $h(z)$ such that the Taylor coefficients $h_{n}$ are some well-known numerical sequences, to showcase the kind of results one may expect to obtain by this method.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Bell numbers}
+\label{subsec:Bell}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The Bell numbers are generated by
+\[
+ 	h(t) = e^{e^t-1} = \sum_{n=0}^{\infty} \bell_{n} \frac{t^n}{n!}.
+\]
+Consider then $h(z) = e^{z-1} = e^{-1} \sum_{n=0}^{\infty} z^n/n!$, $\alpha = 0$, and the corresponding function $A_{h,0}(t) = h(e^{t})$, generating the Appell-Mellin sequence
+% 
+\begin{equation*}
+	  e^{e^t - 1}e^{xt}
+	= \sum_{n=0}^\infty D_{n}(x)\frac{t^n}{n!},
+\end{equation*}
+% 
+with $D_{m}(0) = \bell_{m}$. Note that, somewhat confusingly, these polynomials $D_{n}(x)$ are \emph{not} what are commonly called Bell polynomials. The differential equation $h'(z) = h(z)$ translates into the following relation:
+\[
+	D_{n+1}(x) = x D_{n}(x) + D_{n}(x+1).
+\]
+Since $D_{0}(x) = 1$, the above relation shows by induction that $D_{n}(x)$ is a polynomial with positive integer coefficients. Since $R_{h} = \infty$, the associated Appell-Lerch function is given by the everywhere convergent series
+\[
+  F(s,x) = \frac{1}{e} \sum_{n=0}^\infty \frac{1}{n!(n + x)^{s}},\quad s \in \C.
+\]
+The general relation $F(-m,x) = D_{m}(x)$ for $m=0,1,2,\dots$ of Theorem~\ref{T:general_Appell-Mellin_relation}, and the series expansion~\eqref{E:polynomial_series_form}, which holds when $R_{h} > 1$, give
+\[
+	  D_m(x)
+	= \frac{1}{e} \sum_{n=0}^{\infty} \frac{(n+x)^{m}}{n!}
+	= \frac{1}{e} \sum_{k=0}^m \left(\binom{m}{k}\sum_{n=0}^\infty\frac{n^{m-k}}{n!}\right) x^k.
+	% = \sum_{k=0}^m \binom{m}{k} \bell_{m-k} x^k.
+\]
+In particular, we obtain, for $m=0,1,2,\dots$,
+\[
+	D_{m}(0) = \bell_{m}
+	         = \frac{1}{e} \sum_{n=0}^{\infty} \frac{n^{m}}{n!},
+	\quad
+	D_{m}(x) = \sum_{k=0}^{m} \binom{m}{k} \bell_{m-k} x^{k}.
+\]
+The former is known as \emph{Dobi\'{n}ski's Formula}, sometimes given in the more general form
+\[
+	  \frac{1}{e} \sum_{n=a}^{\infty} \frac{n^{m}}{(n-a)!} 
+	= \sum_{k=0}^{m} \binom{m}{k} \bell_{k} a^{m-k},
+	\quad
+	a,m = 0,1,2,\dots,
+\]
+which, we now see, is itself the special case corresponding to $x = a = 0,1,2,\dots$ of the general relation $F(-m,x) = D_{m}(x)$, which \emph{a posteriori} holds for all complex $x$ by analytic continuation.
+
+A polynomial sequence of binomial type somewhat related to this example is given by the \emph{Touchard polynomials}, generated by
+\[
+	e^{x(e^{t}-1)} = \sum_{n=0}^{\infty} T_{n}(x) \frac{t^{n}}{n!}
+\]
+and also given by $T_{m}(x) = e^{-x} \sum_{n=0}^{\infty} x^{n} n^{m}/n!$, with $T_{m}(1) = \bell_{m}$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Logarithms}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+For $|\lambda|\leq 1$, $\lambda \neq 1$, $\alpha = 0$ and $h(z)=\log(\lambda z-1)$,
+the generating function
+% 
+\begin{equation*}
+  \log(\lambda e^t-1)\,e^{xt} = \sum_{n=0}^\infty L_{n}(x;\lambda)\frac{t^n}{n!},\quad \lambda \neq 1,
+\end{equation*}
+% 
+gives rise to the Appell-Lerch function represented by the series
+\[
+	F(s,x) = -\sum_{n=1}^\infty\frac{\lambda^n}{n(n + x)^{s}},\quad \sigma>0.
+\]
+Since $h'(z) = \lambda/(\lambda z - 1)$, 
+% Lemma~\ref{L:derivative_Appell} shows that
+the polynomials $L_{n}(x;\lambda)$ are closely related to the Apostol-Bernoulli polynomials. Via their generating functions, one sees that
+% \[
+% 	\frac{1}{n} \AB_{n}(x;\lambda) = L_{n}(x;\lambda) - x L_{n-1}(x;\lambda) - x^{n-1},
+% 	\quad
+% 	n \geq 1
+% \]
+% and also
+\[
+	  \frac{\lambda}{n}\, \AB_{n}(x+1;\lambda)
+	= \frac{1}{n}\, \AB_{n}(x;\lambda) + x^{n-1}
+	= L_{n}(x;\lambda) - x L_{n-1}(x;\lambda),
+	\quad
+	n \geq 1.	
+\]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Fibonacci sequence}
+\label{subsec:Fibonacci}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The generating function of the Fibonacci numbers $F_{n}$ is
+\[
+	h(z) := \frac{z}{1-z-z^2} 
+	      = \sum_{n=0}^{\infty} F_{n} z^{n}
+	      = z + z^{2} + 2 z^{3} + 3 z^{4} + 5 z^{5} + 8 z^{6} + \cdots.
+\]
+The radius of convergence of this series is $R_{h} = 1/\phi = (\sqrt{5}-1)/2$, where $\phi$ is the golden ratio. Since $R_{h} < 1$, we cannot apply Lemma~\ref{L:Appell-Bernoulli_h} directly. However, we can renormalize, considering $h(z/\phi)$ instead, which has radius of convergence $1$ and bounded coefficients. Since $h(z/\phi)$ has a simple pole at $z=1$, we choose $\alpha = 1$, so that $A(t) = t h(e^{t})$. The Appell-Lerch function is given by the series
+\[
+	F(s,x) = -s \sum_{n=0}^{\infty} \frac{\phi^{-n} F_{n}}{(n+x)^{s+1}},
+	\quad
+	\sigma > 0,
+\]
+and, by Theorem~\ref{T:general_Appell-Mellin_relation}, may be analytically continued to an entire function whose values at $s=-n=0,-1,-2,\dots$ are the corresponding Appell polynomials $\Phi_{n}(x)$ given by the generating function
+\[
+	\frac{\phi t e^{(x + 1)t}}{\phi^{2} - \phi e^{t} - e^{2t}} 
+	= \sum_{n=0}^{\infty} \Phi_{n}(x) \frac{t^{n}}{n!}.
+\]
+Note that these are not the \emph{Fibonacci polynomials} $F_{n}(x)$ referred to usually in the literature. Those are generated by $t/(1-xt-t^2)$, which is not of Appell type.
+
+When $h(z)$ is rational with simple poles, as is the case here, the partial fraction decomposition of $h(z)$ shows that the Appell-Lerch function is a linear combination of the Lerch transcendent with various parameters, and the corresponding Appell polynomials will therefore be the corresponding combination of Apostol-Bernoulli polynomials (possibly reducing to Bernoulli polynomials). In this example,
+\[
+	F(s,x) = \frac{s}{\sqrt{5}} \left( L(-\phi^{-2},s+1,x) - \zeta (s+1,x) \right)
+\]
+and
+\[
+	\Phi_{n}(x) = \frac{1}{\sqrt{5}} \left( \AB_{n}(x; -\phi^{-2}) - B_{n}(x) \right).
+\]
+In particular, since $\Phi_{0}(x) = -1/\sqrt{5}$, we have, by Theorem~\ref{T:general_Appell-Mellin_relation},
+\[
+	\lim_{s \to 1} (s-1) \sum_{n=0}^{\infty} \frac{\phi^{-n} F_{n}}{(n+x)^{s}} = \frac{1}{\sqrt{5}},
+	\quad
+	\Re x > 0,
+\]
+which is not at all surprising, since $\lim_{n} \phi^{-n} F_{n} = 1/\sqrt{5}$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{``Double'' Bernoulli polynomials}
+\label{subsec:double_Bernoulli}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The generating function of the Bernoulli numbers, $z/(e^{z}-1)$, is analytic at $0$ and its Taylor series there has radius of convergence~$2\pi$. If we renormalize it by $2\pi$, Euler's formula for the values $\zeta(2n)$ of Riemann's zeta function at $n=1,2,3\dots$ gives
+\[
+	h(z) = \frac{2 \pi z}{e^{2 \pi z} - 1}
+	     = \sum_{n=0}^{\infty} \frac{B_{n}}{n!} (2\pi)^{n} z^{n}
+		 = 1 - \pi z + 2 \sum_{n=1}^{\infty} (-1)^{n+1} \zeta(2n) z^{2n}.
+\]
+Since $\zeta(s) \to 1$ as $s \to \infty$, the Taylor coefficients  are bounded. Thus, in the notation of Section~\ref{sec:Appell_Bernoulli}, we can use $h(z)$, with $\alpha = 0$, to generate an Appell-Bernoulli sequence with a double exponential in the generating function,
+\[
+	  h(e^{t}) e^{xt}
+	= \frac{2 \pi e^{(x+1) t}}{e^{2 \pi e^{t}} - 1}
+	= \sum_{n=0}^{\infty} \mathbb{B}_{n}(x) \frac{t^{n}}{n!},
+\]
+whose members we will call double Bernoulli polynomials. The corresponding Appell-Lerch series
+%
+\begin{equation}
+\label{E:double_Bernoulli_Lerch}
+	L(s,x) = \frac{1}{x^{s}} - \frac{\pi}{(x + 1)^{s}} 
+	+ 2 \sum_{n=0}^{\infty} \frac{(-1)^{n+1} \zeta(2n)}{(2n + x)^{s}},
+	\quad
+	\sigma > 1,
+\end{equation}
+%
+extends to an entire function $F(s,x)$ such that $F(-n,x) = \B_{n}(x)$ for $n=0,1,2,\dots$. This fact has the following application. Rewrite~\eqref{E:double_Bernoulli_Lerch} as
+\[
+	L(s,x) =   \frac{1}{x^{s}}
+	         - \frac{\pi}{(x + 1)^{s}} 
+	         + 2 \sum_{n=0}^{\infty} \frac{(-1)^{n+1}}{(2n + x)^{s}}
+	         + 2 \sum_{n=0}^{\infty} \frac{(-1)^{n+1} (\zeta(2n) - 1)}{(2n + x)^{s}},
+\]
+and observe that we can express the first infinite sum on the right in terms of the Hurwitz zeta function as
+\[
+	  \sum_{n=0}^{\infty} \frac{(-1)^{n+1}}{(2n + x)^{s}}
+	= 4^{-s} \left( \zeta\left(s,\frac{x+2}{4}\right) - \zeta\left(s,1+\frac{x}{4}\right) \right)
+\]
+(this may be seen easily either by manipulating the series or observing that is corresponds to $h(z) = z^{2}/(1 + z^{2})$). Now, since $\zeta(2n) - 1 = O(4^{-n})$, the second series actually converges for all $s \in \C$. Hence
+%%
+\begin{multline*}
+\quad
+	  \sum_{n=0}^{\infty} \frac{(-1)^{n+1} (\zeta(2n) - 1)}{(2n + x)^{s}}
+	= - \frac{1}{2 x^{s}}
+	  + \frac{\pi}{2(x+1)^{s}}
+	  \\
+	  + \frac{1}{4^{s}}\zeta\left(s,1+\frac{x}{4}\right)
+	  - \frac{1}{4^{s}}\zeta\left(s,\frac{x+2}{4}\right)
+	  + \frac{1}{2} F(s,x)
+\quad
+\end{multline*}
+%%
+holds for all $s \in \C$ (the simple poles at $s=1$ in the Hurwitz zeta terms cancel). In particular, setting $s=-k$ with $k=0,1,2,\dots$ in the above equation, 
+recalling that $\zeta(-k,x) = -B_{k+1}(x)/(k+1)$, where $B_{k}(x)$ is the ordinary Bernoulli polynomial, we have
+%%
+\begin{multline}
+\label{E:zeta_2n-1_sum_k}
+	  \sum_{n=0}^{\infty} (-1)^{n+1} (\zeta(2n) - 1) (2n + x)^{k}
+	= - \frac{1}{2} x^{k}
+	  + \frac{\pi}{2} (x+1)^{k}
+	  \\
+	  - 4^{k} \, \frac{B_{k+1}(1+\frac{x}{4})}{k+1}
+	  + 4^{k} \, \frac{B_{k+1}(\frac{x+2}{4})}{k+1}
+	  + \frac{1}{2} \B_{k}(x),
+	  \quad
+	  k=0,1,2,\dots.
+\end{multline}
+%%
+Finally, letting $x \to 0^{+}$ in~\eqref{E:zeta_2n-1_sum_k}, and using well-known identities for the Bernoulli polynomials and numbers, we obtain
+%%
+\begin{equation}
+\label{E:zeta_2n-1_sum_k_x=0}	
+	  \sum_{n=0}^{\infty} (-1)^{n+1} n^{k} (\zeta(2n) - 1)
+	= \frac{\pi}{2^{k+1}} + \frac{1 + (-2)^{k} - 2^{k}}{k+1} B_{k+1} + \frac{1}{2^{k+1}} \B_{k}(0),
+\end{equation}
+%%
+for $k=1,2,3,\dots$, and for $k=0$ the term $x^{k}$ adds an extra $-1/2$, namely
+\[
+	  \sum_{n=1}^{\infty} (-1)^{n+1} (\zeta(2n) - 1)
+	= \frac{\pi}{2} \coth(\pi) - 1.
+\]
+Formula~\eqref{E:zeta_2n-1_sum_k_x=0} is recognized by \emph{Mathematica v.11} for $k=0,1,2$, but apparently not for $k \geq 3$. Like all Appell polynomials, $\B_{k}(x)$ can be easily computed by recurrence. The general expression is a rational linear combination of powers of $\pi$, $\coth(\pi)$ and $\operatorname{csch}(\pi)$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Examples of Appell-Mellin sequences not of Appell-Bernoulli type}
+\label{sec:Mellin_non-Bernoulli}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+We shall now give some examples of numerical sequences of numbers that cannot be incorporated into the framework of generating functions of the form $G(x,t) = A_{h,\alpha}(t) \, e^{xt}$ outlined in Section~\ref{sec:Appell_Bernoulli}, which we have termed Appell-Bernoulli sequences, but which are nevertheless of the general Appell-Mellin type, and hence Theorem~\ref{T:general_Appell-Mellin_relation} applies to them.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hypergeometric Bernoulli polynomials} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+For $N \in \N$, Howard \cite{Ho1, Ho2} defined the hypergeometric Bernoulli polynomials $B_{N,n}(x)$ by the generating function
+\[
+  \frac{t^N/N!}{e^t-T_{N-1}(t)}\,e^{xt} = \sum_{n=0}^{\infty} B_{N,n}(x) \frac{t^n}{n!},
+\]
+where $T_{N-1}(t)$ is the Taylor polynomial of order $N-1$ for the exponential function. In particular, when $N=1$, we recover the standard Bernoulli polynomials, i.e.\ $B_{1,n}(x) = B_{n}(x)$. The name hypergeometric Bernoulli polynomials is used because the generating function can also be written as
+\[
+  \frac{1}{M(1,N+1,t)}\,e^{xt} = \sum_{n=0}^{\infty} B_{N,n}(x) \frac{t^n}{n!},
+\]
+where $M(a,b,t)$ is Kummer's confluent hypergeometric function
+\[
+  M(a,b,t) = {}_1F_1(a,b;t) = \sum_{n=0}^{\infty} \frac{(a)_{n}}{(b)_{n}} \frac{t^n}{n!}
+\]
+and $(\cdot)_{n}$ is the Pochhammer symbol.
+% \[
+%   (a)_{n} = \frac{\Gamma(a+n)}{\Gamma(a)}
+%   = \begin{cases}
+%   a(a+1) \cdots (a+n-1), & n \ge 1,\\
+%   1, & n=0.
+% \end{cases}
+% \]
+This generating function is not of the form $A_{h,\alpha}$, and therefore not an Appell-Bernoulli sequence, but does satisfy the polynomial growth condition of Definition~\ref{D:Appell-Mellin} and therefore defines an Appell-Mellin sequence. This may be deduced from the asymptotic relation $M(1,N+1,t) \sim t/N$ for $t \to \infty$. The Mellin transform is
+\begin{equation*}
+  F_{N}(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} \frac{e^{-xt}}{M(1,N+1,-t)}\, t^{s-1}\,dt.
+\end{equation*}
+Since $M(1,N+1,0) = 1$, the integral is holomorphic in the half-plane $\sigma>0$ and, as we have seen in Theorem~\ref{T:general_Appell-Mellin_relation}, may be continued to an entire function of $s$ satisfying
+\begin{equation*}
+	F_{N}(-n,x) = B_{N,n}(x),\quad n=0,1,2,\dots.
+\end{equation*}
+For $N=1$, since $M(1,2,-t) = (1-e^{-t})/t$, we find $F_{1}(s,x) = s \zeta(s+1,x)$, which is indeed entire and satisfies $F_{1}(-n,x) = B_{n}(x)$ for $n=0,1,2,\dots$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hermite polynomials}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The sequence of Hermite polynomials, generated by
+% 
+\begin{equation*}
+  e^{-t^2} e^{2xt} = \sum_{n=0}^\infty H_{n}(x)\frac{t^n}{n!}
+\end{equation*}
+%
+is not an Appell sequence, albeit due only to the factor of $2$ in the second exponential. In many situations, the Hermite \emph{functions} $\mathcal{H}_{n}(x) = e^{-x^2}H_{n}(x)$ are better behaved. These are generated by
+% 
+\begin{equation*}
+  e^{-(x-t)^2} = \sum_{n=0}^\infty \mathcal{H}_{n}(x)\frac{t^n}{n!},
+\end{equation*}
+% 
+but are not even a polynomial sequence. On the other hand, the so-called \emph{probabilistic} Hermite polynomials $\{\operatorname{He}_{n}(x)\}_{n=0}^{\infty}$ do form an Appell sequence, because their generating function is
+\[
+	e^{-t^2/2} e^{xt} = \sum_{n=0}^\infty \operatorname{He}_{n}(x)\frac{t^n}{n!}.
+\]
+However, it is not an Appell-Bernoulli sequence. They are related to the ordinary Hermite polynomials via $H_{n}(x) = 2^{n/2} \operatorname{He}_{n}(\sqrt{2}\,x)$. 
+
+In spite of not being Appell sequences, the corresponding Mellin transforms of the Hermite polynomials and functions,
+% 
+\[
+  H(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} e^{-t^2}e^{2xt} t^{s-1}\,dt,
+	\quad
+  \mathcal{H}(s,x)  = \frac{1}{\Gamma(s)} \int_{0}^{\infty} e^{-(x+t)^2} t^{s-1}\,dt,
+\]
+% 
+may be analytically continued to entire functions coinciding with the respective polynomials and functions at $s = -n$ for $n=0,1,2,\dots$, since Theorem~\ref{T:general_Appell-Mellin_relation} is obviously still valid with these trivial modifications to the generating functions.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Laguerre polynomials} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+A generating function related to the Laguerre polynomials is
+\[
+	(1-t)^{\alpha} e^{xt} = \sum_{n=0}^{\infty} (-1)^{n} L_{n}^{(\alpha - n)}(x) t^{n}
+\]
+(see, for instance, \cite[p.~242 in Section 5.5.2]{MOS}). 
+This is an Appell-Mellin sequence but not an Appell-Bernoulli sequence.
+The corresponding Mellin transform of Theorem~\ref{T:general_Appell-Mellin_relation} may be written as 
+\[
+	F_{\alpha}(s,x) = U(s,\alpha +s+1,x),
+\]
+where $U$ is Tricomi's confluent hypergeometric function
+\[
+	  U(a,b,t)
+	 =  \frac{\Gamma(1-b)}{\Gamma(a+1-b)} \, {}_{1}F_{1}(a,b;t)
+	  + \frac{\Gamma(b-1)}{\Gamma(a)} t^{1-b} \, {}_{1}F_{1}(a+1-b,2-b;t).
+\]
+Indeed, $U(a,b,z)$ is often defined precisely as the Mellin transform
+\[
+	U(a,b,z) = \frac{1}{\Gamma(a)} \int_{0}^{\infty} (1 + t)^{b - a - 1} e^{-zt} t^{a-1} \, dt
+\]
+on the right half-planes $\Re a > 0$ and $\Re z > 0$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{00}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{Ap} 
+T. Apostol, 
+{On the Lerch Zeta function},
+\textit{Pacific J. Math.} \textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+%% NO SE CITA
+%% Usa Apostol-Euler (sin alpha) sin reducirlo a Apostol-Bernoulli
+%\bibitem{Ba}
+%A. Bayad, 
+%Fourier expansions for Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials,
+%\textit{Math. Comp.}
+%\textbf{80} (2011), 2219--2221. 
+
+\bibitem{BaChi}
+A. Bayad and J. Chikhi,
+Reduction and duality of the generalized Hurwitz-Lerch zetas,
+\textit{Fixed Point Theory Appl.} 
+\textbf{2013} (2013), article 82, 14 pp.
+% vol. 2013, article 82, 2013.
+% 2013, 2013:82, 14 pp.
+% http://www.fixedpointtheoryandapplications.com/content/2013/1/82
+
+
+\bibitem{CGale-I}
+J. S. Campos-Orozco and J. E. Gal\'e,
+Continuous Sheffer families I,
+\textit{J. Math. Anal. Appl.} 
+\textbf{405} (2013), 286--296.
+% http://www.sciencedirect.com/science/article/pii/S0022247X13003144
+
+\bibitem{CGale-II}
+J. S. Campos-Orozco and J. E. Gal\'e,
+Continuous Sheffer families II,
+\textit{J. Math. Anal. Appl.} 
+\textbf{412} (2014), 381--390.
+% http://www.sciencedirect.com/science/article/pii/S0022247X13009815
+
+\bibitem{Ho1}
+F. T. Howard, 
+A sequence of numbers related to the exponential function, 
+\textit{Duke Math. J.} 
+\textbf{34} (1967), 599--615.
+
+\bibitem{Ho2}
+F. T. Howard, 
+Some sequences of rational numbers related to the exponential function, 
+\textit{Duke Math. J.} 
+\textbf{34} (1967), 701--716.
+
+%% NO SE CITA
+%\bibitem{Le}
+%N. N. Lebedev, 
+%\textit{Special functions and its applications}, 
+%Dover, New York, 1972.
+
+\bibitem{MOS}
+W. Magnus, F. Oberhettinger and R. P. Soni,
+\textit{Formulas and Theorems for the Special Functions of Mathematical Physics},
+third edition, Springer-Verlag, Berlin-Heidelberg, 1966.
+
+% Reduce Apostol-Euler a Apostol-Bernoulli 
+\bibitem{NRV-MC}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Asymptotic estimates for Apostol-Bernoulli and Apostol-Euler polynomials,
+\textit{Math. Comp.}
+\textbf{81} (2012), 1707--1722.
+
+%% NO SE CITA
+%\bibitem{NRV-JMAA}
+%L. M. Navas, F. J. Ruiz and J. L. Varona, 
+%The Lerch transcendent from the point of view of Fourier Analysis, 
+%\textit{J. Math. Anal. Appl.} 
+%\textbf{431} (2015), 186--201. 
+
+% Primeros Bernoulli de orden alpha (entero positivo)
+\bibitem{Nor} 
+% N. E. N\"orlund, % <--- In the paper, this is the name of the author.
+N. E. N{\o}rlund, % <--- The correct name in Danish
+M\'emoire sur les polyn\^omes de Bernoulli,
+\textit{Acta. Math.} 
+\textbf{43} (1922), 121--196.
+
+% Primeros Euler de orden alpha (entero positivo y negativo)
+\bibitem{Nor-book}
+% N. E. N\"orlund, % <--- In the book, this is the name of the author.
+N. E. N{\o}rlund, % <--- The correct name in Danish
+\textit{Vorlesungen \"uber Differenzenrechnung}, 1st ed., 
+Springer-Verlag, Berlin-Heidelberg, 1924.
+
+%% NO SE CITA.
+%% ESTO ES LA COMO SI FUESE LA PRIMERA EDICI\'ON DEL SIGUIENTE:
+%\bibitem{SriCh}
+%H. M. Srivastava and J. Choi, 
+%\textit{Series associated with the zeta and related functions},
+%Kluwer Academic, Dordrecht, 2001.
+
+%% NO SE CITA.
+%% ESTO ES COMO SI FUESE LA SEGUNDA EDICI\'ON DEL ANTERIOR:
+%\bibitem{SriCh}
+%H. M. Srivastava and J. Choi, 
+%\textit{Zeta and $q$-zeta functions and associated series and integrals},
+%Elsevier, 2012.
+
+\end{thebibliography}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

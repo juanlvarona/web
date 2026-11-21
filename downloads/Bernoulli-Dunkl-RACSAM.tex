@@ -1,0 +1,1622 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Bernoulli-Dunkl polynomials,
+% by
+% \'O. Ciaurri, J. M\'inguez and J. L. Varona
+%
+% email: oscar.ciaurri@unirioja.es,
+%        judit.minguez@unirioja.es, jvarona@unirioja.es
+%
+% COMIENZO DE ESCRITURA: 2018/03/20
+% LAST MODIFICATION: 2019/03/13
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass[10pt,leqno]{article}
+\documentclass[10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+%\usepackage{amssymb} % For \varsubsetneq
+
+\usepackage{hyperref}
+%\usepackage[colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+
+%%% ONLY FOR DRAFTS:
+%\usepackage[latin1]{inputenc}
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{color}
+%\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+%\newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+%\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+
+%%% ONLY FOR DRAFTS (put it after hyperref)
+%\usepackage{backref}
+%\usepackage{refcheck}
+
+%%% \allowdisplaybreaks es una orden de amsmath que permite cortes de
+%%% p\'agina dentro de una f\'ormula de varias l\'ineas (align, multline, gather, ...)
+\allowdisplaybreaks[3]
+%%% Escala de 1 (permite algo) a 4 (ninguna traba para cortar).
+%%% Si en alg\'un sitio queremos impedir un posible corte, usar \\* en vez de \\
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}{Remark}
+
+\numberwithin{equation}{section} % To include the number of section
+
+\newcommand{\Ea}{E_{\alpha}}
+\newcommand{\La}{\Lambda_{\alpha}}
+%\newcommand{\Fa}{\mathcal{F}_{\alpha}} % Dunkl transform of order \alpha
+\newcommand{\mua}{\mu_{\alpha}}
+\newcommand{\binoma}[2]{\binom{#1}{#2}_{\!\alpha}}
+
+\newcommand{\I}{\mathcal{I}}
+
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\E}{\mathfrak{E}}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+
+\newcommand{\cc}{\gamma}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+
+%%%%%%%%%
+\title{Bernoulli-Dunkl and Euler-Dunkl polynomials and their generalizations%
+\footnote{Partially supported by MTM2015-65888-C4-4-P (Minis\-te\-rio de Eco\-no\-m\'ia y Com\-pe\-ti\-ti\-vi\-dad) and Feder Funds (European Union).}
+\textsuperscript{,}\thanks{\textbf{This paper has been published in:} \textit{Rev.\ R.\ Acad.\ Cienc.\ Exactas\ F\'is.\ Nat.\ Ser.\ A Mat.\ RACSAM} \textbf{113} (2019), 2853--2876, \url{https://doi.org/10.1007/s13398-019-00662-z}}}
+%%%%%%%%%
+
+%%%%%%%%%
+\author{\'Oscar Ciaurri, Judit M\'inguez Ceniceros, and Juan L. Varona\\[6pt]
+\small Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,\\[-2pt]
+\small 26006 Logro\~no, Spain\\[6pt]
+ \bfseries E-mail addresses:\\
+ \normalsize {oscar.ciaurri@unirioja.es}, {judit.minguez@unirioja.es}, {jvarona@unirioja.es}}
+%%%%%%%%%
+
+\date{March 13, 2019}
+%\date{}
+
+%%%%%%%%%
+\begin{document}
+%%%%%%%%%
+
+% To completely avoid underfulls and overfulls in this manuscript:
+%\sloppy
+
+%%%%%%%%%
+\maketitle
+%%%%%%%%%
+
+\begin{abstract}
+Bernoulli-Dunkl and Euler-Dunkl polynomials are generalizations of the classical Bernoulli and Euler polynomials, using the Dunkl operator instead of the differential operator. In this paper, we study properties of these polynomials that extend some of the well-known identities in the classical case, such as the Euler-Maclaurin or the Boole summation formulas in the Dunkl context.
+
+2010 Mathematics Subject Classification: Primary 11B68; Secondary 42C10, 33C10, 11M41.
+
+Keywords: Appell-Dunkl sequences, Bernoulli-Dunkl polynomials, Euler-Dunkl polynomials.
+\end{abstract}
+
+%%%%%%%%%
+%\tableofcontents
+%%%%%%%%%
+
+%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%
+
+An Appell sequence, $\{P_n(x)\}_{n=0}^{\infty}$, is defined by means of a Taylor generating expansion
+\begin{equation}
+\label{eq:As}
+  A(t) e^{xt} = \sum_{n=0}^{\infty} P_n(x) \frac{t^n}{n!},
+\end{equation}
+where $A(t)$ is an analytic function in a neighborhood around $t=0$ and $A(0) \ne 0$.
+It is easy to prove that, under these circumstances, $P_n(x)$ is a polynomial of degree $n$ and $P'_n(x) = nP_{n-1}(x)$.
+Typical examples of Appell sequences are the Bernoulli polynomials $\{B_n(x)\}_{n=0}^{\infty}$, 
+the Euler polynomials $\{E_n(x)\}_{n=0}^{\infty}$,
+and the probabilists' Hermite polynomials $\{\operatorname{He}_n(x)\}_{n=0}^{\infty}$, that are defined taking
+$A(t) = t/(e^t-1)$,  $2/(e^t+1)$ or $e^{-t^2/2}$, respectively
+%\[
+%  \frac{te^{xt}}{e^t-1} = \sum_{n=0}^{\infty} B_n(x) \frac{t^n}{n!},
+%  \quad
+%  \frac{2e^{xt}}{e^t+1} = \sum_{n=0}^{\infty} E_n(x) \frac{t^n}{n!},
+%  \quad
+%  e^{-t^2/2} e^{xt} = \sum_{n=0}^{\infty} \operatorname{He}_n(x) \frac{t^n}{n!}
+%\]
+(a slight variation are the physicists' Hermite polynomials $\{H_n(x)\}_{n=0}^{\infty}$ defined by $e^{-t^2} e^{2xt} = \sum_{n=0}^{\infty} H_n(x) {t^n}/{n!}$).
+
+An interesting generalization of Appell sequences arises if, instead of $e^{xt}$ in~\eqref{eq:As}, we use $\Ea(xt)$, where $\Ea(\cdot)$ is certain function that generalizes the exponential function, in the sense that $E_{-1/2}(x) = e^x$ (we will see the definition of $\Ea(\cdot)$ in the next section). Note that the exponential function $e^x$ is invariant under the differential operator $\frac{d}{dx}$, and this implies that $P'_n(x) = nP_{n-1}(x)$; instead, the new function $\Ea(x)$ should be invariant under a new operator $\La$, called Dunkl operator, that should play the role of $\frac{d}{dx}$ in the new context.
+
+In the mathematical literature, this has been studied in the case corresponding to Hermite polynomials, what leads to the so called generalized Hermite polynomials $\{H_n^\mu(x)\}_{n=0}^{\infty}$; this can be seen, for instance, in~\cite{Ros}. In the world of orthogonal polynomials, this has a lot of interest, in particular studying uniqueness properties, as we can see in~\cite{AlS}.
+
+The extension to the Dunkl context of polynomials that are common in number theory, such as the Bernoulli polynomials, was recently introduced in~\cite{CDPV}.
+In particular, that paper defines the Bernoulli-Dunkl polynomials and shows their use to sum the series that, in the new context, plays the role of $\sum_{j=1}^{\infty} 1/j^{2n}$, whose sum in terms of Bernoulli numbers (i.e., Bernoulli polynomials evaluated at~$1$) were obtained by Euler. Actually, only the properties of Bernoulli-Dunkl polynomials that are useful to sum that series are studied in~\cite{CDPV} (among them, their expansions on the Fourier-Dunkl orthogonal system, see~\cite{CPRV,CV}), so a wider analysis of the properties of Bernoulli-Dunkl polynomials is yet necessary.
+
+The present paper is devoted to study the properties of Bernoulli-Dunkl polynomials, Euler-Dunkl polynomials, and some of their generalizations. These Appell-Dunkl sequences are extensions to the Dunkl context of the corresponding classical Appell sequences by means of a process that is described in Table~\ref{tab:scheme}; the details will be explained along the paper.
+In Section~\ref{sec:DT-AD}, we introduce the Dunkl operator and define the Appell-Dunkl sequences of polynomials. Section~\ref{sec:BD} is devoted to study Bernoulli-Dunkl polynomials, as a particular case of Appell-Dunkl polynomials, and some specific properties of them. In Section~\ref{sec:Dtau}, we give the Dunkl translation, an operator which generalizes the Taylor expansion in the classical case, and we obtain some properties of the Bernoulli-Dunkl polynomials related to this translation. Section~\ref{sec:Dprim} is focused on defining Dunkl primitives and, with that, in Section~\ref{sec:EML}, we are able to give an Euler-Maclaurin summation formula with Bernoulli-Dunkl polynomials. Section~\ref{sec:ED} is devoted to study Euler-Dunkl polynomials; in particular, we give the Boole summation formula in the Dunkl context. Finally, in Section~\ref{sec:Gen-BE-D}, some properties for generalized Bernoulli-Dunkl and generalized Euler-Dunkl polynomials are given.
+
+\begin{table}[!tb]
+%\small
+\newcommand{\suml}{\sum\limits}
+\centering
+\hspace*{-1cm}%
+\begin{tabular}{ccc}
+\hline
+\rule[-4pt]{0pt}{14pt} & Bernoulli $\mapsto$ Bernoulli-Dunkl & Euler $\mapsto$ Euler-Dunkl 
+\\
+\hline
+\rule{0pt}{15pt}
+Classical % definitions
+& $\frac{te^{xt}}{e^t-1} = \suml_{n=0}^{\infty} B_n(x) \frac{t^n}{n!}$
+& $\frac{2e^{xt}}{e^t+1} = \suml_{n=0}^{\infty} E_n(x) \frac{t^n}{n!}$
+\\[9pt]
+$x \mapsto \frac{x+1}{2}$
+& $\frac{te^{xt/2}e^{t/2}}{e^t-1} = \suml_{n=0}^{\infty} B_n(\frac{x+1}{2}) \frac{t^n}{n!}$
+& $\frac{2e^{xt/2}e^{t/2}}{e^t+1} = \suml_{n=0}^{\infty} E_n(\frac{x+1}{2}) \frac{t^n}{n!}$
+\\
+$t \mapsto 2t$
+& $\frac{2te^{xt}e^{t}}{e^{2t}-1} = \suml_{n=0}^{\infty} B_n(\frac{x+1}{2}) \frac{2^n t^n}{n!}$
+& $\frac{2e^{xt}e^{t}}{e^{2t}+1} = \suml_{n=0}^{\infty} E_n(\frac{x+1}{2}) \frac{2^n t^n}{n!}$
+\\[9pt]
+rewrite
+& $\frac{2te^{xt}}{e^{t}-e^{-t}} = \suml_{n=0}^{\infty} B_n(\frac{x+1}{2}) \frac{2^n t^n}{n!}$
+& $\frac{2e^{xt}}{e^t+e^{-t}} = \suml_{n=0}^{\infty} E_n(\frac{x+1}{2}) \frac{2^n t^n}{n!}$
+\\[9pt]
+$\exp \mapsto \Ea$ %, $n! \mapsto \cc_{n,\alpha}$
+& $\frac{2t\Ea(xt)}{\Ea(t)-\Ea(-t)} 
+= \suml_{n=0}^{\infty} B_{n}^{*}(\frac{x+1}{2}) \frac{2^n t^n}{\cc_{n,\alpha}}$
+& $\frac{2\Ea(xt)}{\Ea(t)+\Ea(-t)} 
+= \suml_{n=0}^{\infty} E_{n}^{*}(\frac{x+1}{2}) \frac{2^n t^n}{\cc_{n,\alpha}}$
+\\[9pt]
+rewrite
+& $\frac{2(\alpha+1)\Ea(xt)}{\I_{\alpha+1}(t)} 
+= \suml_{n=0}^{\infty} B_{n}^{*}(\frac{x+1}{2}) \frac{2^n t^n}{\cc_{n,\alpha}}$
+& $\frac{\Ea(xt)}{\I_{\alpha}(t)}
+= \suml_{n=0}^{\infty} E_{n}^{*}(\frac{x+1}{2}) \frac{2^n t^n}{\cc_{n,\alpha}}$
+\\[9pt]
+Dunkl % definition
+& $\frac{\Ea(xt)}{\I_{\alpha+1}(t)} 
+= \suml_{n=0}^{\infty} \B_{n,\alpha}(x) \frac{t^n}{\cc_{n,\alpha}}$
+& $\frac{\Ea(xt)}{\I_{\alpha}(t)}
+= \suml_{n=0}^{\infty} \E_{n,\alpha}(x) \frac{t^n}{\cc_{n,\alpha}}$
+\\[9pt]
+Generalized % definition
+& $\frac{\Ea(xt)}{(\I_{\alpha+1}(t))^r} 
+= \suml_{n=0}^{\infty} \B_{n,\alpha}^{(r)}(x) \frac{t^n}{\cc_{n,\alpha}}$
+& $\frac{\Ea(xt)}{(\I_{\alpha}(t))^r}
+= \suml_{n=0}^{\infty} \E_{n,\alpha}^{(r)}(x) \frac{t^n}{\cc_{n,\alpha}}$
+\\[9pt]
+\hline
+\end{tabular}%
+\hspace*{-1cm}
+\caption{Scheme that describes the process to transform the definition of the classical Bernoulli and Euler polynomials into the definition of the Bernoulli-Dunkl and Euler-Dunkl polynomials (and their generalizations of order~$r$).
+In the classical case, we use the ``basic'' interval $[0,1]$, the function $\exp$ and the factorial~$n!$; in the Dunkl case  with $\alpha>-1$, we must use the ``basic'' interval $[-1,1]$, the function $\Ea$ and~$\cc_{n,\alpha}$.}
+\label{tab:scheme}
+\end{table}
+
+%%%%%%%%%
+\section{The Dunkl transform on the real line and the Appell-Dunkl polynomials}
+\label{sec:DT-AD}
+%%%%%%%%%
+
+Prior to introduce Appell-Dunkl sequences we need some preliminary notations.
+
+For $\alpha > -1$, let $J_\alpha$ denote the Bessel function of order $\alpha$ and,
+for complex values of the variable $z$, let
+\[
+  \I_\alpha(z)
+  = 2^\alpha \Gamma(\alpha+1)\, \frac{J_\alpha(iz)}{(iz)^\alpha}
+  = \Gamma(\alpha+1) \sum_{n=0}^\infty \frac{(z/2)^{2n}}{n!\,\Gamma(n+\alpha+1)}
+  = {}_0F_1(\alpha+1,z^2/4)
+\]
+(the function $\I_\alpha$ is a small variation of the so-called modified Bessel function of the first kind and order~$\alpha$, usually denoted by $I_\alpha$; see~\cite{Wat} or~\cite{OlMa-NIST}).
+Also, take % us take
+\[
+  \Ea(z) = \I_\alpha(z) + \frac{z}{2(\alpha+1)}\,
+  \I_{\alpha+1}(z),
+  \qquad z \in \CC.
+\]
+
+Following~\cite{Du} for $\alpha\ge-1/2$ and~\cite{Ros} for $\alpha>-1$, in the real line and with the reflection group~$\ZZ_2$, the Dunkl operator $\La$ is defined as
+\begin{equation}
+\label{eq:Duop}
+  \La f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{2}
+  \left(\frac{f(x)-f(-x)}{x}\right),
+\end{equation}
+where $f$ is a suitable function on~$\RR$.
+For any $\lambda \in \CC$, we have
+\begin{equation}
+\label{eq:LDu}
+  \La \Ea(\lambda x) = \lambda \Ea(\lambda x).
+\end{equation}
+Let us note that, when $\alpha = -1/2$, we have $\Lambda_{-1/2} = d/dx$ and $E_{-1/2}(\lambda x) = e^{\lambda x}$.
+
+From the definition, it is easy to check that
+\[
+  \Ea(z) = \sum_{n=0}^\infty \frac{z^n}{\cc_{n,\alpha}}
+\]
+with 
+\begin{equation}
+\label{eq:ccna}
+\cc_{n,\alpha} =
+\begin{cases} 
+  2^{2k}k!\,(\alpha+1)_k, & \text{if $n=2k$},\\
+  2^{2k+1}k!\,(\alpha+1)_{k+1}, & \text{if $n=2k+1$},
+\end{cases}
+\end{equation}
+and where $(a)_n$ denotes the Pochhammer symbol
+\[
+  (a)_n = a(a+1)(a+2) \cdots (a+n-1) = \frac{\Gamma(a+n)}{\Gamma(a)}
+\]
+(with $a$ a non-negative integer); of course, $\cc_{n,-1/2} = n!$.
+From~\eqref{eq:ccna}, we have
+\begin{equation}
+\label{eq:coccc}
+  \frac{\cc_{n,\alpha}}{\cc_{n-1,\alpha}} = n+(\alpha+1/2)(1-(-1)^n) =: \theta_{n,\alpha}.
+\end{equation}
+We also define
+\[
+  \binoma{n}{j} = \frac{\cc_{n,\alpha}}{\cc_{j,\alpha}\cc_{n-j,\alpha}},
+\]
+that becomes the ordinary binomial numbers in the case $\alpha=-1/2$.
+To simplify the notation we sometimes write $\cc_n=\cc_{n,\alpha}$ and $\theta_n=\theta_{n,\alpha}$.
+
+For each function $A(t)$ analytic in a neighborhood of $t=0$ and with $A(0) \ne 0$, we define an Appell-Dunkl sequence $\{A_{n,\alpha}(x)\}_{n=0}^{\infty}$ by means of the generating function
+\begin{equation}
+\label{eq:ad}
+  A(t)\Ea(xt) = \sum_{n=0}^\infty A_{n,\alpha}(x) \frac{t^n}{\cc_n}
+\end{equation}
+(additionally to the papers \cite{AlS, Ros} cited in the introduction, Appell-Dunkl sequences have been also considered, for instance, in \cite{BG, BKI, DH}).
+From this definition, it is not difficult to prove that $A_{n,\alpha}(x)$ is a polynomial of degree $n$ and, moreover, $\La A_{n,\alpha}(x) = \frac{\cc_{n}}{\cc_{n-1}}\, A_{n-1,\alpha}(x)$ (when $\alpha=-1/2$, this becomes the classical $A'_{n,-1/2}(x) = nA_{n-1,-1/2}(x)$ in the Appell sequences). 
+To simplify the notation we sometimes write $A_n=A_{n,\alpha}$.
+
+We straightforwardly have the following:
+
+\begin{lemma}
+\label{lem:xn}
+Let $\{A_n(x)\}_{n=0}^{\infty}$ be an Appell-Dunkl sequence defined by~\eqref{eq:ad}. This sequence satisfies 
+\begin{equation}
+\label{eq:LaAn}
+  \La(A_n) = \theta_n A_{n-1}
+\end{equation}
+with $\theta_n = n+(\alpha+1/2)(1-(-1)^n)$ as in~\eqref{eq:coccc} and, moreover,
+\begin{equation}
+\label{eq:xn}
+  x^n = \cc_n\sum_{j=0}^n \frac{A_j(x)}{\cc_j}a_{n-j},
+\end{equation}
+where ${1}/{A(t)} = \sum_{n=0}^\infty a_nt^n$. 
+\end{lemma}
+
+In particular, this can be also applied to the trivial case $A_n(x)=x^n$, $n\ge 0$,
+that is an Appell-Dunkl sequence with $A(t) = 1$. Thus, we have
+\begin{equation*}
+%\label{eq:Laxn}
+  \La((\cdot)^n)(x) = \theta_n x^{n-1}, \qquad n = 1, 2, 3,\dots
+\end{equation*}
+(actually, this is also clear from the definition~\eqref{eq:Duop} applied to $f(x) = x^n$).
+
+In fact, a uniparametric family of Appell-Dunkl polynomials $\{A_{n,\alpha}^{(r)}(x)\}_{n=0}^{\infty}$ can be defined if we take $A(t)^r$ instead of $A(t)$ in~\eqref{eq:ad}; that is,
+\begin{equation}
+\label{eq:adr}
+A(t)^r \Ea(xt) = \sum_{n=0}^{\infty} A_{n,\alpha}^{(r)}(x) \frac{t^n}{\cc_n}
+\end{equation}
+where $r$ is an arbitrary real or complex parameter.
+Again, to simplify we can write $A_{n}^{(r)}=A_{n,\alpha}^{(r)}$.
+
+Of course, Lemma~\ref{lem:xn} is also true for $A^r$ and $\{A_{n}^{(r)}\}_{n=0}^{\infty}$ instead of just $A$ and $\{A_{n}\}_{n=0}^{\infty}$, but we can also find formulas that relate polynomials with different parameters. For instance, we have
+\begin{equation*}
+  \sum_{n=0}^{\infty} A_{n}^{(r+s)}(x) \frac{t^n}{\cc_n} = A(t)^{r+s} \Ea(xt) 
+  = A(t)^s \sum_{n=0}^{\infty} A_{n}^{(r)}(x) \frac{t^n}{\cc_n},
+\end{equation*}
+so
+\begin{equation*}
+  \sum_{n=0}^{\infty} A_{n}^{(r)}(x) \frac{t^n}{\cc_n} 
+  = \frac{1}{A(t)^s} \sum_{n=0}^{\infty} A_{n}^{(r+s)}(x) \frac{t^n}{\cc_n}.
+\end{equation*}
+From this relation we easily get the following (notice that \eqref{eq:xn} is just the case $r=0$ and $s=1$):
+
+\begin{lemma}
+%\label{lem:xnr}
+Let $\{A_n^{(r)}(x)\}_{n=0}^{\infty}$ use to denote a uniparametric family of Appell-Dunkl polynomials defined as in~\eqref{eq:adr}. 
+Then, we have
+\[
+  A_n^{(r)}(x) = \cc_n\sum_{j=0}^n \frac{A_j^{(r+s)}(x)}{\cc_j}a_{n-j,s},
+\]
+where ${1}/{A(t)^s} = \sum_{n=0}^\infty a_{n,s}t^n$.
+\end{lemma}
+
+\begin{remark}
+\label{rem:Cho}
+It is interesting to note that some of the results of this paper in the context of the Dunkl operator~\eqref{eq:Duop} resembles to what happens in \cite{Cho} in the context of the differential operator
+\[
+  \Delta_\nu f(x) = \frac{d^2}{dx^2}f(x) + \frac{2\nu}{x} \frac{d}{dx}f(x),\quad \nu>0.
+\]
+On the one hand, the behavior of $\Delta_\nu$ for Bessel functions on $(0,\infty)$ is similar to the behavior \eqref{eq:LDu} for our function $\Ea$ on~$\RR$ (recall than the real part of $\Ea$ is, essentially, a Bessel function that, moreover, is even), a kind of Appell sequences can be defined in the context of~$\Delta_\nu$, and there is also a translation operator associated to~$\Delta_\nu$ (here, we will define the Dunkl translation in Section~\ref{sec:Dtau}).
+In particular, the $\Delta_\nu$-Bernoulli and $\Delta_\nu$-Euler sequences of polynomials are defined in~\cite{Cho}, and some of their properties studied. On the other hand, there are some important differences, that make the case corresponding to $\Delta_\nu$ to be poorer. As $\Delta_\nu$ is a second-order operator and the corresponding $\Delta_\nu$-Appell sequences have only even polynomials (in some sense, to apply $\Delta_\nu$ is similar to apply \eqref{eq:Duop} twice). Moreover, $\Delta_\nu$ does not include a reflection part $f(x)-f(-x)$, so it can not be included in Dunkl context. The notation in~\cite{Cho} is very different to the one that we follow in this paper, that is close to the used in the Dunkl context.
+\end{remark}
+
+%%%%%%%%%
+\section{Bernoulli-Dunkl polynomials and first properties}
+\label{sec:BD}
+%%%%%%%%%
+
+Following~\cite{CDPV}, we define the Bernoulli-Dunkl polynomials $\{\B_{n,\alpha}\}_{n=0}^{\infty}$ by means of the generating function
+\begin{equation}
+\label{eq:defbd}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)}
+  = \sum_{n=0}^\infty \frac{\B_{n,\alpha}(x)}{\cc_{n,\alpha}}\,t^n.
+\end{equation}
+To simplify the notation we sometimes write $\B_n=\B_{n,\alpha}$ (and $\cc_n=\cc_{n,\alpha}$).
+
+Since
+\begin{equation*}
+%\label{eq:ia1}
+  \I_{\alpha+1}(x) = \sum_{n=0}^\infty \frac{x^{2n}}{\cc_{2n,\alpha+1}},
+\end{equation*}
+we have for the first few Bernoulli-Dunkl polynomials that
+\begin{align*}
+  \B_0(x) &= 1, \quad & \B_1(x) &= x, \\
+  \B_2(x) &= x^2 - \frac{\alpha+1}{\alpha+2},\quad &
+  \B_3(x) &= x^3 - x,\\
+  \B_4(x) &= x^4 - 2x^2 + \frac{(\alpha+4)(\alpha+1)}{(\alpha+3)(\alpha+2)},\quad &
+  \B_5(x) &= x^5 - 2\,\frac{\alpha+3}{\alpha+2}\,x^3 + \frac{\alpha+4}{\alpha+2}\,x.
+\end{align*}
+
+Already in~\cite{CDPV}, we prove the following basic properties:
+
+\begin{theorem}
+The Bernoulli-Dunkl polynomials satisfy 
+\begin{equation}
+\label{eq:LaBn}
+\La(\B_n) = \theta_n \B_{n-1},
+\end{equation}
+with $\theta_n = n+(\alpha+1/2)(1-(-1)^n)$ as in~\eqref{eq:coccc}, and
+\begin{align}
+\label{eq:x2nbd}
+x^{2n} &= \B_{2n}(x)+(\alpha+1) \sum_{j=0}^{n-1} \binoma{2n}{2j}
+\frac{\B_{2j}(x)}{\alpha+n-j+1},\\
+\label{eq:x2n1bd}
+x^{2n+1} &= \B_{2n+1}(x) + (\alpha+1) \sum_{j=0}^{n-1} \binoma{2n+1}{2j+1}
+\frac{\B_{2j+1}(x)}{\alpha+n-j+1}.
+\end{align}
+Moreover,
+(i) $\B_{2n}$ (for $n\ge 0$) is an even polynomial, and
+(ii) $\B_{2n+1}$ (for $n\ge 0$) is an odd polynomial, which vanishes at~$1$ (and hence at~$-1$) for $n\ge 1$.
+\end{theorem}
+
+\begin{proof}
+\eqref{eq:x2nbd} and \eqref{eq:x2n1bd} are consequences of Lemma~\ref{lem:xn}, using $1/A(t) = \I_{\alpha+1}(t)$. Items (i) and (ii) may be proved using that our $A(t)$ is an even function.
+\end{proof}
+
+Prior to continue, and following~\cite{CDPV}, let us explain why we use ``Bernoulli-Dunkl'' to name these polynomials $\B_n$, $n\ge 0$.
+The first reason is that
+\begin{equation}
+\label{eq:BtoB}
+  \frac{\B_{n,-1/2}(2x-1)}{2^n} = B_n(x),
+\end{equation}
+where $\{B_n\}_{n=0}^{\infty}$ are the Bernoulli polynomials (for the definition and properties of the Bernoulli polynomials, see, for instance,~\cite{Dil-NIST} or~\cite{DKP}). Indeed, taking into account that
+\[
+  E_{-1/2}(x) = e^x,\quad \I_{1/2}(x) = \frac{\sin(ix)}{ix},
+\]
+the relation \eqref{eq:BtoB} can be deduced substituting $x$ to $2x-1$, $t$ to $t/2$ and $\alpha$ to $-1/2$ in the definition~\eqref{eq:defbd}. 
+Here, we must note that the change $x \mapsto 2x-1$ in~\eqref{eq:BtoB} is very natural, because, in the reflection group $\ZZ_2$ that is key in the standard definition of the Dunkl operator~\eqref{eq:Duop}, the points $\pm1$ are essential, and thus the role of $x=0$ and $x=1$ on the classical Bernoulli polynomials must be translated to $-1$ and~$1$.
+In fact, this is the process that is explained in Table~\ref{tab:scheme} to define Bernoulli-Dunkl polynomials as an extension to the Dunkl case of the classical Bernoulli polynomials. As it is shown in the table, this process can be used for other classical polynomials, and this is what we study in Sections~\ref{sec:ED} (Euler polynomials) and~\ref{sec:Gen-BE-D} (generalized Bernoulli and generalized Euler polynomials).
+
+Actually, another reason to use the name Bernoulli-Dunkl polynomials for $\B_n$ is the role that they play in certain sums involving the zeros of the Bessel functions (see~\cite{CDPV}), that is a generalization of what happens in the case $\alpha=-1/2$ with the Bernoulli polynomials. But this is not in the scope of this paper.
+
+
+%%%%%%%%%
+\section{The Dunkl translation}
+\label{sec:Dtau}
+%%%%%%%%%
+
+%%%%%%%%%
+%\subsection{Definition of the translation operator and some properties}
+\subsection{Definition and some properties}
+%%%%%%%%%
+
+
+The Dunkl translation operator of a function $f$ is defined by
+\begin{equation}
+\label{eq:translation}
+  \tau_y f(x) = \sum_{n=0}^\infty \frac{y^n}{\cc_{n,\alpha}}\La^{n}f(x),
+  \qquad \alpha>-1,
+\end{equation}
+where $\La^0$ is the identity operator and $\La^{n+1} = \La(\La^n)$. 
+%For the Dunkl transform, the translation $\tau_y$ plays the same role 
+%as the classical translation for the Fourier transform 
+%(that is, $\tau_y f(x) = f(x+y)$ for the case $\alpha=-1/2$). 
+In the case $\alpha=-1/2$, the translation $\tau_y f$ is just the Taylor expansion of a function $f$ around a fixed point $x$, that is,
+\[
+  f(x+y) = \sum_{n=0}^\infty f^{(n)}(x) \frac{y^n}{n!}.
+\]
+Of course, definition~\eqref{eq:translation} is valid only for $C^{\infty}$ functions, and assuming also that the series on the right is convergent. In particular, this can be guaranteed when $f$ is a polynomial, because the operator $\La$ applied to a polynomial of degree $k$ generates a polynomial of degree $k-1$, so the series~\eqref{eq:translation} has only a finite quantity on not null summands. (With the help of generalized Hermite polynomials, \cite{Ros} also gives the definition of $\tau_y f$ in a $L^2(\RR,d\mua)$ sense.)
+
+From the definition~\eqref{eq:translation}, it is clear that $\tau_y$ commutes with the Dunk operator~$\La$.
+In what follows, we are going to see some other basic properties.
+
+A nice property of the Dunkl translation, than resembles the Newton binomial $(x+y)^n = \sum_{k=0}^n \binom{n}{k} y^k x^{n-k}$, is the following:
+\begin{equation}
+\label{eq:Newton}
+  \tau_y ((\cdot)^n)(x) = 
+  \sum_{k=0}^n \binoma{n}{k} y^k x^{n-k}.
+\end{equation}
+
+Actually, this formula is a particular case of a general property for  Appell sequences, $\{A_n\}_{n=0}^{\infty}$, (for~\eqref{eq:Newton}, take the polynomials $A_n(x)=x^n$):
+
+\begin{theorem}
+\label{teo:tau-A}
+For $\alpha>-1$, let $\{A_n(x)\}_{n= 0}^{\infty}$ be an Appell-Dunkl sequence defined as in~\eqref{eq:ad}. Then,
+\begin{equation*}
+%\label{eq:tau-A}
+  \tau_y(A_k)(x)
+  = \sum_{j=0}^k \binoma{k}{j} A_j(x) y^{k-j}.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+From $\La(A_k)(x) = \theta_k A_{k-1}(x)$ it follows that
+\[
+  \La^j(A_k)(x) = \theta_k \theta_{k-1} \cdots \theta_{k-j+1} A_{k-j}(x)
+  = \frac{\cc_{k}}{\cc_{k-j}} \, A_{k-j}(x), \qquad j \le k.
+\]
+Then, 
+\begin{equation*}
+  \tau_y (A_k)(x) = 
+  \sum_{j=0}^k y^j \frac{\cc_{k}}{\cc_{j}\cc_{k-j}} A_{k-j}(x)
+%  = \sum_{j=0}^k \binoma{k}{j} y^j A_{k-j}(x) 
+  = \sum_{j=0}^k \binoma{k}{j} A_{j}(x) y^{k-j}.
+\qedhere
+\end{equation*}
+\end{proof}
+
+Other properties of the translation operator, including an integral expression
+can be found, for instance, in~\cite{Ros}. 
+This integral expression for the Dunkl translation is more general than~\eqref{eq:translation}, because we do not need $C^{\infty}$ functions to apply it. Using the integral expression, the relation $\tau_y f(x) = \tau_x f(y)$ can be easily obtained.
+But, at least for polynomials, this property can be also proved using our definition~\eqref{eq:translation}, as we see in what follows:
+
+\begin{lemma}
+Let $f$ be a polynomial. Then, 
+\begin{equation}
+\label{eq:tyxtxy}
+  \tau_y f(x) = \tau_x f(y).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By linearity, it is enough to prove it for $f(x) = x^n$, $n=0,1,2,\dots$. That is, we want to prove $\tau_y ((\cdot)^n)(x) = \tau_x ((\cdot)^n)(y)$. But, using $\binoma{n}{k} = \binoma{n}{n-k}$, this is clear from~\eqref{eq:Newton}.
+\end{proof}
+
+In particular, observe that
+$\tau_y f(0) = \tau_0 f(y) = f(y)$,
+and then, by \eqref{eq:translation}, we get the power expansion
+\[
+  f(y) = \sum_{n=0}^\infty \La^{n}f(0) \frac{y^n}{\cc_{n}}.
+\]
+% (at least, for polynomials).
+
+Now, we are going to state other basic properties of the Dunkl translation that will be valid only for suitable functions. That is, \eqref{eq:translation} must exist and converge, and the manipulations used in the corresponding proofs must be possible. In this paper, we will apply the Dunkl translation just for polynomials, and this avoids any kind of problems (this safeguard must be taken into account several times along the paper, but we will not mention it again). 
+
+In this way, a property easily checked is the following:
+
+\begin{lemma}
+We have
+\begin{align}
+  \label{eq:tauab}
+  \tau_a \tau_b f (x) 
+  &= \sum_{m=0}^{\infty} \frac{1}{\cc_{m}} 
+  \left( \sum_{k=0}^m \binoma{m}{k} a^k b^{m-k} \right) \La^m f(x) \\
+  &= \sum_{m=0}^{\infty} \frac{1}{\cc_{m}} 
+  \,\tau_a((\cdot)^m)(b) \La^m f(x).
+  \notag
+\end{align}
+\end{lemma}
+
+Then, taking into account that $\binoma{m}{k} = \binoma{m}{m-k}$, we obtain the commutativity of the translation, that is,
+\begin{equation*}
+%\label{eq:tau-c}
+  \tau_a \tau_b = \tau_b \tau_a.
+\end{equation*}
+
+In general (except when $\alpha=-1/2$), $\tau_a \tau_b$ is not a new translation, even though $a=b$. In particular, $\tau_y \tau_{-y}$ is not the identity operator. Actually, $\tau_y$ has an inverse operator $\tau_y^{-1}$, but, in general, it is not a translation; this inverse operator is the following:
+
+\begin{lemma}
+The inverse operator of $\tau_y$ defined as in~\eqref{eq:translation} is 
+\begin{equation}
+\label{eq:tau-inv}
+  \tau_y^{-1} f(x) = \sum_{n=0}^\infty \frac{c_n y^n}{\cc_{n,\alpha}}\La^{n}f(x),
+\end{equation}
+where $c_0 = 1$ and $c_n$ for $n\ge1$ is defined with the recurrence $c_n = -\sum_{j=0}^{n-1} \binoma{n}{j} c_j$.
+\end{lemma}
+
+\begin{proof}
+Let us take $\tau_y^{-1}$ defined as in \eqref{eq:tau-inv} and let us check that $\tau_y^{-1} \tau_y = \operatorname{Id}$ (the proof of $\tau_y \tau_y^{-1} = \operatorname{Id}$ is similar). We have
+\[
+  \tau_y^{-1} \tau_y f(x) = \sum_{n=0}^\infty \frac{y^n}{\cc_{n}} 
+  \left( \sum_{j=0}^{n} \binoma{n}{j} c_j \right) \La^{n}f(x),
+\]
+which coincides with $f(x)$ if we take $c_0=1$ and $\sum_{j=0}^{n} \binoma{n}{j} c_j = 0$.
+\end{proof}
+
+%%%%%%%%%
+\subsection{Properties of the Bernoulli-Dunkl polynomials related to the translation}
+%%%%%%%%%
+
+Let us start showing a kind of ``umbral property'' for the Bernoulli-Dunkl polynomials. Actually, similar properties can be proved for any Appell-Dunkl sequence because, in the proof, we only need to use~\eqref{eq:LaAn} (in our case,~\eqref{eq:LaBn}). 
+
+Let us start noticing that Theorem~\ref{teo:tau-A} applied to Bernoulli-Dunkl polynomials gives
+\begin{equation}
+\label{eq:tau-B}
+  \tau_y(\B_k)(x)
+  = \sum_{j=0}^k \binoma{k}{j} \B_j(x) y^{k-j}.
+\end{equation}
+In the classical case $\alpha=-1/2$, \eqref{eq:tau-B} becomes the well known translation formula
+\[
+  B_k(x+y) = \sum_{j=0}^k \binom{k}{j} B_j(x)y^{k-j}
+\]
+for the Bernoulli polynomials, whose umbral notation for $x=0$ is the identity $B_k(y)  = (B+y)^k$ where $B^j$ is interpreted as the Bernoulli number $B_j=B_j(0)$.
+
+An easy consequence of \eqref{eq:tau-B} is that it allows to write the Bernoulli-Dunkl polynomials in terms of the Bernoulli-Dunkl numbers $\B_j(0)$. Indeed, using $\tau_y(\B_k)(x) = \tau_x(\B_k)(y)$  and taking $y=0$ we get
+\begin{equation}
+\label{eq:B_kpotx}
+  \B_k(x) = \sum_{j=0}^k \binoma{k}{j} \B_j(0) x^{k-j}.
+\end{equation}
+
+Another property of the Bernoulli-Dunkl polynomials related to the translation is the following:
+
+\begin{theorem}
+\label{teo:Ltau-B}
+For $\alpha>-1$, the Bernoulli-Dunkl polynomials satisfy
+\begin{equation}
+\label{eq:Ltau-B}
+  \La((\cdot)^k)(x)
+  = (\alpha+1) \big(\tau_1 \B_k(x) - \tau_{-1} \B_k(x)\big).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+To compute $\La((\cdot)^k)(x)$, let us distinguish the cases $k=2n$ or $k=2n+1$ and apply, respectively, \eqref{eq:x2nbd} and~\eqref{eq:x2n1bd}. To compute $\tau_1 \B_k(x) - \tau_{-1} \B_k(x)$, let us use~\eqref{eq:translation} with $y = \pm1$, and take into account that $\La \B_k(x) = (\cc_{k}/\cc_{k-1}) \B_{k-1}(x)$. Thus, the left hand side and the right hand side in~\eqref{eq:Ltau-B} are equal.
+\end{proof}
+
+In the case $\alpha=-1/2$, this property becomes the ``forward difference operator'' formula
+\begin{equation}
+\label{eq:Bx+1x}
+  kx^{k-1} = B_k(x+1) - B_k(x)
+\end{equation}
+for the Bernoulli polynomials. Observe that the translation $\tau_{-1} \B_k(x)$ in the Bernoulli-Dunkl case becomes a ``translation'' $B_k(x-0)$ because the role of $\{0,1\}$ in the classical case is assumed by $\{-1,1\}$ in the Dunkl case (recall~\eqref{eq:BtoB}).
+
+Following with the Bernoulli case, we can change $x$ by $x+j$ in \eqref{eq:Bx+1x}, and to sum from $j=0$ to~$n$. Then we have the telescoping sum
+\[
+  k \sum_{j=0}^n (x+j)^{k-1} = \sum_{j=1}^n (B_k(x+j+1) - B_k(x+j)) = B_k(x+n+1) - B_k(x).
+\]
+Taking $x=0$ (and changing $k$ by $k+1$) we obtain the Jakob Bernoulli's summation formula
+\[
+  \sum_{j=1}^n j^k = \frac{B_{k+1}(n+1) - B_{k+1}(0)}{k+1}.
+\]
+
+If we try to do the same in the Bernoulli-Dunkl case, considering that the change $x \mapsto x+j$ corresponds to an iterated translation $\tau_1^j$, the sum in $j$ is not telescopic and, unfortunately, we do not obtain a so appealing formula.
+Actually, using \eqref{eq:Ltau-B}, we get the following (we have used $\tau_y^j$ instead of $\tau_1^j$ to clearly distinguish the provenance of the translations that appear in the formula):
+\begin{equation}
+\label{eq:summation}
+  \sum_{j=0}^n \tau_y^j((\cdot)^k)(x)  
+%  = \frac{\alpha+1}{k+1+(\alpha+1/2)(1-(-1)^{k+1})} 
+  = \frac{\alpha+1}{\theta_{k+1}} 
+  \sum_{j=0}^n \Big( \tau_y^j \tau_1 \B_{k+1}(x) - \tau_y^j \tau_{-1} \B_{k+1}(x) \Big),\quad k, n \ge 0. 
+\end{equation}
+
+However, if we consider a new operator  $\sigma_1 = \tau_{-1}^{-1}\tau_{1}$ instead of $\tau_1$ we can prove the next summation formula where a telescopic sum appears.
+
+\begin{theorem}[Summation formula]
+\label{teo:summationBs1}
+For $\alpha>-1$ and $k,n\ge 0$, we have
+\begin{equation}
+\label{eq:summationBs1}
+  \sum_{j=0}^n \sigma_1^j\tau_{-1}^{-1}((\cdot)^{k})(x)
+  = \frac{\alpha+1}{\theta_{k+1}} \Big(\sigma_1^{n+1}(\B_{k+1})(x)-\B_{k+1}(x)\Big).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+From \eqref{eq:Ltau-B} with $k + 1$ instead of $k$, and using $\La((\cdot)^{k+1})(x) = \theta_{k+1} x^k$, we have 
+\[
+  x^k = \frac{\alpha+1}{\theta_{k+1}} \big(\tau_1(\B_{k+1})(x)-\tau_{-1}(\B_{k+1})(x)\big),
+\]
+and, consequently,
+\[
+  \tau_{-1}^{-1}((\cdot)^{k})(x) = \frac{\alpha+1}{\theta_{k+1}} \big(\sigma_1(\B_{k+1})(x)-\B_{k+1}(x)\big).
+\]
+Then, applying $j$ times the operator $\sigma_1$ and summing in $j$ from $0$ to $n$,
+\begin{align*}
+  \sum_{j=0}^n \sigma_1^j \tau_{-1}^{-1}((\cdot)^{k})(x)
+  &= \frac{\alpha+1}{\theta_{k+1}} \sum_{j=0}^n \Big(\sigma_1^{j+1}(\B_{k+1})(x)-\sigma_1^j(\B_{k+1})(x)\Big) \\
+  &= \frac{\alpha+1}{\theta_{k+1}} \Big(\sigma_1^{n+1}(\B_{k+1})(x)-\B_{k+1}(x)\Big).
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{remark}
+\label{rem:sigma1}
+Let us analyze the formula \eqref{eq:summationBs1} in the classical case $\alpha=-1/2$. 
+Recall that, the ``basic'' interval $(-1,1)$ in the Dunkl case must be adapted to $(0,1)$ in the classical case while the translation $\tau_y f(x)$ generalizes the classical $f(x+y)$. Then, in the theorem, $\tau_1$ and $\tau_{-1}$ plays the role of the classical ``$(\cdot)+1$'' and ``$(\cdot)+0$''; and the inverse operator $\tau_{-1}^{-1}$ is a ``$(\cdot)-0$''. Thus, both $\tau_{-1}$ and $\tau_{-1}^{-1}$ become the identity operator in the classical case, and $\sigma_1 = \tau_{-1}^{-1}\tau_1$ plays the role of ``$(\cdot)+1$''. Finally, to reproduce a classical ``$(\cdot)+j$'' for $j \ge 2$, we will have $\sigma_1^{j}$ in the new context.
+Then, if we take $x=-1$ in \eqref{eq:summationBs1}, for $\alpha=-1/2$ this becomes $x=0$ and we again recover the classic formula for the Bernoulli polynomials:
+\[
+  \sum_{j=1}^n j^k = \frac{B_{k+1}(n+1) - B_{k+1}(0)}{k+1}.
+\]
+\end{remark}
+
+
+To illustrate the behavior of $\tau_y^j$ and $\sigma_y^j$ and then to facilitate the evaluation of~\eqref{eq:summation} and~\eqref{eq:summationBs1}, let us see how the operators that appear in these formulas act on the polynomials of an Appell-Dunkl sequence $\{A_n\}_{n=0}^\infty$, which includes both cases $x^n$ or $\B_n(x)$, for instance.
+
+For the operators in~\eqref{eq:summation}, let us start recalling that, as in Theorem~\ref{teo:tau-A}, we have
+\[
+  \tau_y(A_n)(x)
+  = \sum_{k=0}^n \binoma{n}{k} y^{n-k} A_k(x).
+\]
+Then, by induction on $j$, it is not difficult to prove that
+\[
+  \tau_y^j(A_n)(x)
+  = \sum_{k=0}^n \Bigg( \sum_{k \le k_1 \le k_2 \le \cdots \le k_{j-1} \le n} 
+  \overbrace{\binoma{n}{k_{j-1}} \binoma{k_{j-1}}{k_{j-2}} \cdots \binoma{k_2}{k_1} 
+  \binoma{k_1}{k}}^{\text{product of $j$ binomials}} \Bigg) y^{n-k} A_k(x).
+\]
+In the case $\alpha=-1/2$, and if we take $A_n(x) = x^n$, we have $\tau_y^j(A_n)(x) = (x+jy)^n$.
+Then, taking into account the coefficient of $x^k y^{n-k}$ in the binomial expansion of $(x+jy)^n$, we have
+\[
+  j^{n-k} \binom{n}{k} = \sum_{k \le k_1 \le k_2 \le \cdots \le k_{j-1} \le n} 
+  \overbrace{\binom{n}{k_{j-1}} \binom{k_{j-1}}{k_{j-2}} \cdots \binom{k_2}{k_1} 
+  \binom{k_1}{k}}^{\text{product of $j$ binomials}};
+\]
+we have not found this binomial relation in the literature.
+
+To analyze the operators in~\eqref{eq:summationBs1} is similar but a bit more cumbersome. 
+For the sake of generality and to clarify the formulas, let us give the expression for 
+$\sigma_y^j(A_n)(x)$, where $\sigma_y = \tau_{-y}^{-1}\tau_{y} = \tau_{y}\tau_{y}^{-1}$ 
+(to check the commutativity is an easy exercise). At this time, following \eqref{eq:tau-inv} 
+and its notation for $c_j$, and taking
+\[
+  d_l = \sum_{j=0}^l \binoma{l}{j} (-1)^j c_j,
+\]
+we can write
+\begin{multline*}
+  \sigma_y^j(A_n)(x) 
+  = \sum_{k=0}^n \Bigg( \sum_{k \le k_1 \le k_2 \le \cdots \le k_{j-1} \le n} 
+  d_{n-k_{j-1}}d_{k_{j-1}-k_{j-2}}\cdots d_{k_{1}-k} \\
+  \times \binoma{n}{k_{j-1}} \binoma{k_{j-1}}{k_{j-2}} 
+  \cdots \binoma{k_1}{k} \Bigg) y^{n-k}A_{k}(x).
+\end{multline*} 
+
+Another important property is what follows.
+
+\begin{theorem}
+\label{teo:tauLaP}
+Let $P(x)$ be a polynomial of degree $\le n$. Then,
+\begin{equation}
+\label{eq:tauLaP}
+  \tau_x (\La P)(y) = (\alpha+1) \sum_{j=0}^{n} \frac{\tau_1(\La^j P)(x) - \tau_{-1} (\La^j P)(x)}{\cc_j} \, \B_j(y).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Both $\tau_x$ and $\La$ are linear operators, so it is enough to prove the result for $P(x) = x^n$.
+From~\eqref{eq:Ltau-B}, we have
+\[
+  \tau_x (\La((\cdot)^n))(y)
+  = (\alpha+1) \big(\tau_x \tau_1 \B_n(y) - \tau_x \tau_{-1} \B_n(y)\big).
+\]
+Then, using \eqref{eq:tauab} and taking into account that $\La^k \B_n(y) = (\cc_n/\cc_{n-k}) \B_{n-k}(y)$ for $k \le n$, we get
+\begin{align*}
+  \tau_x \tau_1 \B_n (y) 
+  &= \sum_{k=0}^{n} \frac{1}{\cc_{k}} 
+  \left( \sum_{m=0}^k \binoma{k}{m} x^m \right) \La^k \B_n(y) \\
+  &= \sum_{k=0}^{n} \left( \sum_{m=0}^k \binoma{k}{m} x^m \right) \binoma{n}{k} \B_{n-k}(y)
+\end{align*}
+and, similarly,
+\[
+  \tau_x \tau_{-1} \B_n (y) 
+  = \sum_{k=0}^{n} \left( \sum_{m=0}^k (-1)^{k-m} \binoma{k}{m} x^m \right) \binoma{n}{k} \B_{n-k}(y).
+\]
+Consequently,
+\begin{equation}
+\label{eq:tauLaPleft}
+  \tau_x (\La((\cdot)^n)))(y)
+  = (\alpha+1) \sum_{k=0}^{n} \left( \sum_{m=0}^k (1-(-1)^{k-m}) \binoma{k}{m} x^m \right) 
+  \binoma{n}{k} \B_{n-k}(y).
+\end{equation}
+
+Now, let us study the right hand side in \eqref{eq:tauLaP}. We have 
+\[
+  \tau_1(\La^j ((\cdot)^n))(x) = \sum_{m=0}^{\infty} \frac{1}{\cc_m} \La^{j+m} ((\cdot)^n)(x) 
+  = \sum_{m=0}^{n-j} \frac{\cc_n}{\cc_m\cc_{n-j-m}} \,x^{n-j-m}
+\]
+and
+\[
+  \tau_{-1}(\La^j ((\cdot)^n))(x) = \sum_{m=0}^{n-j} \frac{(-1)^m\cc_n}{\cc_m\cc_{n-j-m}} \,x^{n-j-m},
+\]
+so
+\[
+  \tau_1(\La^j ((\cdot)^n))(x) - \tau_{-1}(\La^j ((\cdot)^n))(x) 
+  = \sum_{m=0}^{n-j} \frac{1-(-1)^m}{\cc_m} \frac{\cc_n}{\cc_{n-j-m}} \,x^{n-j-m}.
+\]
+Multiplying by $\B_j(y)/\cc_j$ and summing in $j$ from $0$ to $n$ we get 
+\begin{align*}
+  &\sum_{j=0}^{n} \frac{\tau_1(\La^j ((\cdot)^n))(x) - \tau_{-1} (\La^j ((\cdot)^n))(x)}{\cc_j} \, \B_j(y) \\
+  &\qquad\qquad = \sum_{j=0}^{n} \sum_{m=0}^{n-j} \frac{(1-(-1)^m)\cc_n}{\cc_j\cc_m\cc_{n-j-m}} \, x^{n-j-m} \B_j(y) 
+\end{align*}
+Changing $j=n-k$, this expression becomes 
+\begin{align*}
+  &\sum_{k=0}^{n} \sum_{m=0}^{k} \frac{(1-(-1)^m)\cc_n}{\cc_{n-k}\cc_m\cc_{k-m}} \, x^{k-m} \B_{n-k}(y) \\
+  &\qquad\qquad = \sum_{k=0}^{n} \sum_{m=0}^{k} (1-(-1)^m) 
+  \frac{\cc_k}{\cc_m\cc_{k-m}} \frac{\cc_n}{\cc_{n-k}\cc_k} \, x^{k-m} \B_{n-k}(y) \\
+%  &\qquad\qquad= \sum_{k=0}^{n} \left( \sum_{m=0}^{k} (1-(-1)^m) 
+%  \binoma{k}{m} x^{k-m} \right) \binoma{n}{k} \B_{n-k}(y) \\
+  &\qquad\qquad= \sum_{k=0}^{n} \left( \sum_{m=0}^{k} (1-(-1)^{k-m}) 
+  \binoma{k}{m} x^m \right) \binoma{n}{k} \B_{n-k}(y).
+\end{align*}
+Comparing with \eqref{eq:tauLaPleft}, this proves the theorem.
+\end{proof}
+
+In the classical case $\alpha=-1/2$, taking into account the change of ``basic'' interval from $(-1,1)$ to $(0,1)$ and \eqref{eq:BtoB}, the formula \eqref{eq:tauLaP}~can be written as 
+\begin{equation}
+\label{eq:P'x+y}
+  P'(x+y) = \sum_{j=0}^n \frac{P^{(j)}(x+1) - P^{(j)}(x)}{j!} B_j(y).
+\end{equation}
+
+\begin{remark}
+With the operator $\Delta_\nu$ explained in Remark~\ref{rem:Cho}, the paper~\cite{Cho} assigns the name ``Euler-Maclaurin'' to a formula that corresponds to our Theorem~\ref{teo:tauLaP} (see \cite[Theorem~16.12, p.~100]{Cho}). However, there is not any good reason to say that they are an ``Euler-Maclaurin summation formula''. Actually, we will see a suitable Euler-Maclaurin summation formula in the Dunkl context in Section~\ref{sec:EML}.
+\end{remark}
+
+%%%%%%%%%
+\section{The inverse of the Dunkl operator $\La$: Dunkl primitives}
+\label{sec:Dprim}
+%%%%%%%%%
+
+If $\alpha=-1/2$, the Dunkl operator is $\Lambda_{-1/2} = \frac{d}{dx}$ and if we want an ``inverse'' of this operator we use the concept of primitive of a function, that is unique except by an additive constant. In this situation, we may use the typical notation of integrals.
+
+In the Dunkl case, we could say that $F$ is a Dunkl primitive of $f$ if $\La F = f$. This definition would make sense in a wide space of functions, if the Dunkl primitives were unique unless additive constants. For our purposes, it is enough to see that, for functions in $C^1(\RR)$, $\La F = 0$ if and only if $F$ is a constant. For even or odd functions, this property can be easily checked. It is well-known that every function can be uniquely written as the  sum of an even function and an odd function, 
+% $F = F_{\mathrm{e}}+F_{\mathrm{o}}$, 
+and moreover, $\La$ changes the evenness of the functions. Therefore, the general case is straightaway obtained. Once that we have established the uniqueness except by an additive constant, a notation as
+\[
+  \oint f(x)\,d_\alpha x = F(x) + c
+\]
+is properly justified (of course, $c \in \RR$ is a constant).
+
+We are dealing only with polynomials so we only need to know how to compute the Dunkl primitive of a polynomial. Actually, as $\La ((\cdot)^{n+1})(x) = \theta_{n+1} x^n$, we have
+\begin{equation*}
+%\label{eq:primD}
+  \oint x^n\,d_\alpha x = \frac{x^{n+1}}{\theta_{n+1}} + c, \qquad n = 0,1,2,\dots,
+\end{equation*}
+and then, for a polynomial $p(x) = \sum_{k=0}^{n} a_k x^k$, its Dunkl primitive is
+\[
+  \oint p(x)\,d_\alpha x = \sum_{k=0}^{n} \frac{a_k}{\theta_{k+1}} x^{k+1} + c.
+\]
+
+By \eqref{eq:LaBn}, the Dunkl primitive of the Bernoulli-Dunkl polynomial
+$\B_n(x)$ is $\B_{n+1}(x)/\theta_{n+1} + c$.
+Actually, by \eqref{eq:LaAn}, the same happens with every Appell-Dunkl sequence $\{A_n(x)\}_{n=0}^\infty$,
+\[
+  \oint A_n(x)\,d_\alpha x = \frac{A_{n+1}(x)}{\theta_{n+1}} + c, 
+  \qquad n = 0,1,2,\dots.
+\]
+
+Following with the generalization of the classical case to the Dunkl scheme, we can also define the ``Dunkl definite integral'' as
+\[
+  \oint_a^b f(x)\,d_\alpha x = F(x)\Big|_{a}^{b} = F(b)-F(a),
+\]
+when $F$ is the Dunkl primitive of~$f$. 
+Of course, we have
+\[
+  \La \bigg(\oint_a^{(\cdot)} f(t)\,d_\alpha t\bigg)(x) = f(x).
+\]
+
+Even more, let $S$ and $T$ be linear operators such that $S(C) = T(C) = C$ when $C$ is a constant function; for instance, this happens when $S=T=\tau_y$.
+Then, if $\La F = f$ and $F$ is such that $S(F)$ and $T(F)$ are properly defined, we will denote
+\begin{equation}
+\label{eq:STfF}
+  \oint_{S(\cdot)(a)}^{T(\cdot)(b)} f(x)\,d_\alpha x = T(F)(b) - S(F)(a).
+\end{equation}
+Usually, $S$ and $T$ will be a Dunkl translation, its inverse operator, or a composition of this kind of operators.
+In this paper, we will always use this definition with polynomials, where the Dunkl translation (and its inverse operator) is a finite sum and thus \eqref{eq:STfF} does not have any problem. For instance, if $P(x)$ and $p(x)$ are polynomials with $P(x)$ a Dunkl primitive of $p(x)$, i.e., $\oint p(x)\,d_\alpha x = P(x)+c$, we have
+\begin{equation}
+\label{eq:yzpP}
+  \oint_{\tau_y(\cdot)(a)}^{\tau_z(\cdot)(b)} p(x)\,d_\alpha x = \tau_z(P)(b) - \tau_y(P)(a).
+\end{equation}
+
+When $\alpha=-1/2$ we know two basic properties 
+\[
+\int_{a}^{b} p(x+y)\,dx = \int_{a+y}^{b+y} p(x)\,dx
+\quad\text{and}\quad
+\int_{a}^{b} p(cx)c\,dx = \int_{ca}^{cb} p(x)\,dx.
+\]
+We are going to prove analogous properties for Dunkl definite integrals. 
+
+\begin{lemma} 
+If $p$ is a polynomial, we have
+\begin{equation}
+\label{eq:inttau}
+  \oint_{a}^{b} \tau_y p(x)\,d_\alpha x 
+  = \oint_{\tau_y(\cdot)(a)}^{\tau_y(\cdot)(b)} p(x)\,d_\alpha x
+\end{equation}
+and
+\begin{equation}
+\label{eq:intc}
+  \oint_{a}^{b} p(cx)c\,d_\alpha x 
+  = \oint_{ca}^{cb} p(x)\,d_\alpha x.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By linearity, it is enough to prove it for $p(x) = x^n$.
+Let us start with \eqref{eq:inttau}. By~\eqref{eq:Newton}, we have
+\begin{align*}
+  \oint \tau_y ((\cdot)^n)(x)\,d_\alpha x
+  &= \sum_{k=0}^n \binoma{n}{k} y^k \oint x^{n-k}\,d_\alpha x 
+  = \sum_{k=0}^n \binoma{n}{k} y^k \frac{x^{n-k+1}}{\theta_{n-k+1}} + c \\
+  &= \frac{1}{\theta_{n+1}} \sum_{k=0}^{n+1} \binoma{n+1}{k} y^k x^{n-k+1} + c'
+  = \frac{1}{\theta_{n+1}} \tau_y((\cdot)^{n+1})(x) + c'.
+\end{align*}
+Then,
+\[
+  \oint_a^b \tau_y ((\cdot)^n)(x)\,d_\alpha x 
+  = \frac{1}{\theta_{n+1}} \Big(\tau_y((\cdot)^{n+1})(b) - \tau_y((\cdot)^{n+1})(a)\Big)
+  = \oint_{\tau_y(\cdot)(a)}^{\tau_y(\cdot)(b)} x^n\,d_\alpha x.
+\]
+The proof of \eqref{eq:intc} is similar.
+\end{proof}
+
+%%%%%%%%%
+\section{Euler-Maclaurin summation formula for Ber\-nou\-lli-Dunkl polynomials}
+\label{sec:EML}
+%%%%%%%%%
+
+In the Dunkl context, the Euler-Maclaurin summation formula for polynomials becomes in the next result.
+
+\begin{theorem}[Euler-Maclaurin summation formula]
+\label{teo:EML}
+Let $R$ be a polynomial and use $\sigma_1$ to denote the operator $\sigma_1 = \tau_1\tau_{-1}^{-1}$.
+Also, let $N$ be a positive integer.
+Then, 
+\begin{equation}
+\label{eq:EMLdunkl}
+\begin{aligned}
+  &\frac{1}{2\alpha+2} (\sigma_1^{N} R(0) + R(0)) + \frac{1}{\alpha+1} \sum_{j=1}^{N-1} \sigma_1^{j} R(0) \\
+  &\qquad\qquad = \oint_{0}^{\sigma_1^{N}(\cdot)(0)} R(t) \, d_\alpha t 
+  + \sum_{k=1}^{\infty} 
+  \frac{\sigma_1^{N}(\La^{2k-1}R)(0) - \La^{2k-1}R(0)}{\cc_{2k}} \, \B_{2k}(1),
+\end{aligned}
+\end{equation}
+where the series $\sum_{k=1}^{\infty}$ is, actually, a finite sum. 
+\end{theorem}
+
+At a first sight, this formula does not resembles to the classical Euler-Maclaurin summation for a polynomial $Q$, where integrals and sums are related using Bernoulli numbers $B_k(0)$ by means of
+\begin{equation}
+\label{eq:EMLclasico}
+  \frac{1}{2}(Q(N)+Q(0)) + \sum_{j=1}^{N-1} Q(j) = \int_{0}^{N} Q(t)\,dt 
+  + \sum_{k=2}^{\infty} \frac{Q^{(k-1)}(N) - Q^{(k-1)}(0)}{k!} B_k(0);
+\end{equation}
+actually, $\sum_{k=2}^{\infty} = \sum_{k=2}^{n}$,
+where $n$ is the degree of $Q$, because $Q^{(k)}(x)$ is null for $k>n$.
+
+Of course, the new formula \eqref{eq:EMLdunkl} must reduce to \eqref{eq:EMLclasico} when $\alpha=-1/2$. With this aim,
+let us previously show how to obtain~\eqref{eq:EMLclasico}; then, in the proof of Theorem~\ref{teo:EML}, we will try to ``imitate'' the classical arguments but adapted to the new scenario. This justifies the name ``Euler-Maclaurin summation formula'' for~\eqref{eq:EMLdunkl}.
+
+In the classical case, a good starting point to prove the Euler-Maclaurin summation formula is~\eqref{eq:P'x+y} with $y=0$.
+Actually, we are going to write $\sum_{k=0}^\infty$ instead of $\sum_{k=0}^n$, taking again into accout that
+all the summands are null when $k$ is greater than the degree of the polynomial. Then, \eqref{eq:P'x+y} becomes
+\begin{equation}
+\label{eq:P'x0}
+  P'(x) = \sum_{k=0}^{\infty} \frac{P^{(k)}(x+1) - P^{(k)}(x)}{k!} B_k(0).
+\end{equation}
+The expansion~\eqref{eq:EMLclasico} that we want to prove is a formula for~$Q$ and, to apply~\eqref{eq:P'x0}, we take $P$ such that $P'(x)=Q(x)$. Of course, this implies that
+% (teorema fundamental del c\'alculo)
+\[
+  \int_x^{x+1} Q(t)\,dt = P(x+1)-P(x).
+\]
+Thus, isolating the summands corresponding to $k=0$ and $1$, we can write
+\begin{align*}
+  Q(x) &= (P(x+1)-P(x))B_0(0) + (P'(x+1)-P'(x))B_1(0) \\
+  &\qquad\qquad+ \sum_{k=2}^n \frac{P^{(k)}(x+1) - P^{(k)}(x)}{k!} B_k(0).
+\end{align*}
+Moreover,
+\[
+  P^{(k)}(x+1) - P^{(k)}(x) = Q^{(k-1)}(x+1) - Q^{(k-1)}(x), \qquad k \ge 2,
+\]
+so 
+\begin{align*}
+  Q(x) &= B_0 \int_{x}^{x+1} Q(t)\,dt + (Q(x+1)-Q(x))B_1(0) \\
+  &\qquad\qquad+ \sum_{k=2}^{\infty} \frac{Q^{(k-1)}(x+1) - Q^{(k-1)}(x)}{k!} B_k(0).
+\end{align*}
+Using $B_0=1$ and $B_1(x) = x-1/2$, we get
+\begin{equation}
+\label{eq:Qx+1x}
+  \frac{1}{2}(Q(x+1)+Q(x)) 
+  = \int_{x}^{x+1} Q(t)\,dt + \sum_{k=2}^{\infty} \frac{Q^{(k-1)}(x+1) - Q^{(k-1)}(x)}{k!} B_k(0).
+\end{equation}
+Finally, summing in $x$ from $x=0$ to $x=N-1$ (observe that $\sum_{x=0}^{N-1} (Q^{(k-1)}(x+1) - Q^{(k-1)}(x))$ is a telescoping series) we obtain~\eqref{eq:EMLclasico}.
+
+Now, we already have all the ingredients to obtain the Euler-Maclaurin summation formula for Bernoulli-Dunkl polynomials.
+In the same way that \eqref{eq:P'x0} is a key formula to obtain \eqref{eq:EMLclasico}, we will use~\eqref{eq:tauLaP} as a starting point to prove the new result. In the proof, we can see how the process tries to follows the steps of the classical case, but the method is more intricate due to the difficulties imposed by the translation operator. Remember that $\sigma_1^{j}$ plays the role of ``$(\cdot)+j$'' in the new context, as we see in Remark~\ref{rem:sigma1}.
+
+
+\begin{proof}[Proof of Theorem~\ref{teo:EML}]
+Let us start using~\eqref{eq:tauLaP}, but, on the left, with $\tau_y(\La P)(x)$ instead of $\tau_x(\La P)(y)$ (by \eqref{eq:tyxtxy}, they are equal). Then, taking $y=1$ we have 
+\begin{align*}
+  \frac{1}{\alpha+1} (\tau_1 \La P)(x) &= \tau_1(P)(x) - \tau_{-1} (P)(x)
+  + (\tau_1(\La P)(x) - \tau_{-1} (\La P)(x))/\cc_1 \\
+  &\qquad + \sum_{k=1}^{\infty} \frac{\tau_1(\La^{2k} P)(x) - \tau_{-1} (\La^{2k} P)(x)}{\cc_{2k}} \, \B_{2k}(1).
+\end{align*}
+
+Now, previously to introduce $R$ (that will arise later), let us give a formula similar to~\eqref{eq:Qx+1x}.
+Given a polynomial $Q$, take $P(x)$ a Dunkl primitive of $Q(x)$, so $\La P(x) = Q(x)$. Moreover, by~\eqref{eq:yzpP},
+\begin{equation}
+\label{eq:Ptau}
+  \oint_{\tau_{-1}(\cdot)(x)}^{\tau_1(\cdot)(x)} Q(t)\,d_\alpha t = \tau_1 P(x) - \tau_{-1}P(x),
+\end{equation}
+Using $\La P = Q$, we have 
+\[
+  \tau_1(\La P)(x) = \tau_1 Q(x), \quad \tau_{-1} (\La P)(x) = \tau_{-1} Q(x),
+\]
+and, similarly, $\tau_{\pm1} (\La^{2k} P)(x) = \tau_{\pm1} (\La^{2k-1} Q)(x)$.
+Moreover, by \eqref{eq:Ptau},
+\[
+  \tau_1(P)(x) - \tau_{-1} (P)(x)
+  = \left( \oint_{\tau_{-1}(\cdot)}^{\tau_1(\cdot)} Q(t)\,d_\alpha t \right)(x) 
+  = \oint_{\tau_{-1}(\cdot)(x)}^{\tau_1(\cdot)(x)} Q(t)\,d_\alpha t .
+\]
+Thus, remembering that $\cc_0=1$ and $\cc_1=2\alpha+2$, we get
+\begin{equation}
+\label{eq:t1t-1Q}
+\begin{aligned}
+  &\frac{1}{2\alpha+2} (\tau_1 Q(x)+ \tau_{-1}Q(x)) 
+  = \oint_{\tau_{-1}(\cdot)(x)}^{\tau_1(\cdot)(x)} Q(t)\,d_\alpha t \\
+  &\qquad\qquad\qquad + \sum_{k=1}^{\infty} \frac{\tau_1(\La^{2k-1} Q)(x) 
+    - \tau_{-1} (\La^{2k-1} Q)(x)}{\cc_{2k}} \, \B_{2k}(1).
+\end{aligned}
+\end{equation}
+
+Contrary to what happens in the classical case, we cannot take intervals $(x,x+1)$, $(x+1,x+2)$ and so on and to sum. Instead, we could successively apply the operator~$\tau_1$, but, in this way, the presence of $\tau_{-1}$ disturbes and we do not obtain an alternating series. Then, we introduce $\sigma_1 = \tau_{-1}^{-1}\tau_1$ and the polynomial $R = \tau_{-1}Q$ (so $Q = \tau_{-1}^{-1}R$).
+With this notation, \eqref{eq:t1t-1Q} becomes
+\begin{align*}
+  &\frac{1}{2\alpha+2} (\sigma_1 R(x)+ R(x)) 
+  = \oint_{x}^{\sigma_1(\cdot)(x)} R(t)\,d_\alpha t \\
+  &\qquad\qquad\qquad + \sum_{k=1}^{\infty} \frac{\sigma_1(\La^{2k-1} R)(x) 
+    - \La^{2k-1} R(x)}{\cc_{2k}} \, \B_{2k}(1).
+\end{align*}
+Applying the operator $\sigma_1$, and remembering the notation \eqref{eq:STfF} for the integral term, we get
+\begin{align*}
+  &\frac{1}{2\alpha+2} (\sigma_1^2 R(x) + \sigma_1 R(x)) 
+  = \oint_{\sigma_1(\cdot)(x)}^{\sigma_1^2(\cdot)(x)} R(t) \,d_\alpha t \\
+  &\qquad\qquad\qquad + \sum_{k=1}^{\infty} \frac{\sigma_1^2(\La^{2k-1}R)(x) 
+  - \sigma_1 (\La^{2k-1}R)(x)}{\cc_{2k}} \, \B_{2k}(1);
+\end{align*}
+and this $\sigma_1$ can be applied as many times as we want, obtainig
+\begin{align*}
+  &\frac{1}{2\alpha+2} (\sigma_1^{j+1} R(x) + \sigma_1^j R(x)) 
+  = \oint_{\sigma_1^j(\cdot)(x)}^{\sigma_1^{j+1}(\cdot)(x)} R(t) \,d_\alpha t \\
+  &\qquad\qquad\qquad + \sum_{k=1}^{\infty} \frac{\sigma_1^{j+1}(\La^{2k-1}R)(x) 
+  - \sigma_1^j(\La^{2k-1}R)(x)}{\cc_{2k}} \, \B_{2k}(1).
+\end{align*}
+Summing from $j=0$ up to $N-1$ and starting at $x=0$ we finish the proof.
+\end{proof}
+
+%%%%%%%%%
+\section{Euler-Dunkl polynomials}
+\label{sec:ED}
+%%%%%%%%%
+
+%%%%%%%%%
+\subsection{Definition of Euler-Dunkl polynomials and first properties}
+%%%%%%%%%
+
+We define the Euler-Dunkl polynomials $\{\E_{n,\alpha}\}_{n=0}^{\infty}$ of order $\alpha>-1$ by means of the generating function
+\begin{equation*}
+%\label{eq:defed}
+  \frac{\Ea(xt)}{\I_{\alpha}(t)}
+  = \sum_{n=0}^\infty \frac{\E_{n,\alpha}(x)}{\cc_{n,\alpha}} \,t^n.
+\end{equation*}
+As usually, we will sometimes denote it only by $\E_{n}$, without specifying~$\alpha$.
+The first few Euler-Dunkl polynomials are
+\begin{align*}
+  \E_0(x) &= 1, \quad & \E_1(x) &= x, \\
+  \E_2(x) &= x^2-1, \quad &
+  \E_3(x) &= x^3 - \frac{\alpha+2}{\alpha+1}\,x, \\
+  \E_4(x) &= x^4 - 2\,\frac{\alpha+2}{\alpha+1}\,x^2 + \frac{\alpha+3}{\alpha+1},\quad &
+  \E_5(x) &= x^5 - 2\,\frac{\alpha+3}{\alpha+1}\,x^3 + \frac{\alpha+3}{(\alpha+1)^2}\,x.
+\end{align*}
+
+
+These polynomials are an Appell-Dunkl sequence, so they satisfy~\eqref{eq:LaAn}
+Analogous to \eqref{eq:x2nbd} and \eqref{eq:x2n1bd} (again an easy consequence of Lemma~\eqref{lem:xn}, with $1/A(t) = \I_{\alpha}(t)$) are the following relations:
+\begin{equation}
+\label{eq:x2ned}
+%\label{eq:x2n1ed}
+  x^{2n} = \sum_{j=0}^{n} \binoma{2n}{2j} \E_{2j}(x),
+  \qquad
+  x^{2n+1} = \sum_{j=0}^{n} \binoma{2n+1}{2j+1} \E_{2j+1}(x).
+\end{equation}
+Moreover, as in the case corresponding to Bernoulli-Dunkl polynomials, it is easy to prove that
+(i) $\E_{2n}$ (for $n\ge 0$) is an even polynomial, which vanishes at~$1$ (and hence at~$-1$) for $n\ge 1$, and
+(ii) $\E_{2n+1}$ (for $n\ge 0$) is an odd polynomial.
+(Note the difference with $\{\B_n\}_{n=0}^{\infty}$: the polynomials $\{\E_n\}_{n=0}^{\infty}$ that vanishes at $\pm 1$ are the even polynomials, except $\E_0=1$.)
+
+Even more, these polynomials $\{\E_n\}_{n=0}^{\infty}$ are related to the classical Euler polynomials $\{E_n\}_{n=0}^{\infty}$ by
+\begin{equation*}
+  \frac{\E_{n,-1/2}(2x-1)}{2^n} = E_n(x)
+\end{equation*}
+(for the definition and properties of the Euler polynomials we can see, for instance,~\cite{Dil-NIST}).
+This process has been sketched in Table~\ref{tab:scheme}.
+
+%%%%%%%%%
+\subsection{Properties related to the Dunkl translation }
+%%%%%%%%%
+
+Applying Theorem~\ref{teo:tau-A} to the case of Euler-Dunkl polynomials, we have 
+\begin{equation}
+\label{eq:tau-E}
+  \tau_y(\E_k)(x)
+  = \sum_{j=0}^k \binoma{k}{j} \E_j(x) y^{k-j},
+\end{equation}
+that has the same aspect than~\eqref{eq:tau-B} for the Bernoulli-Dunkl case.
+
+For Euler-Dunkl polynomials we obtain a similar result to Theorem~\ref{teo:Ltau-B}. 
+
+\begin{theorem}
+%\label{teo:Ltau-E}
+For $\alpha>-1$, the Euler-Dunkl polynomials satisfy 
+\begin{equation}
+\label{eq:Ltau-E}
+  2x^k = \tau_1(\E_k)(x)+\tau_{-1}(\E_k)(x).
+\end{equation}
+\end{theorem}
+
+\begin{proof} 
+Use~\eqref{eq:tau-E} and \eqref{eq:x2ned}.
+\end{proof}
+
+Let us also note that, for $\alpha=-1/2$, this result becomes the classical formula
+\[
+2x^k = E_k(x+1)+E_k(x)
+\]
+for Euler polynomials.
+
+Analogously to \eqref{eq:summation}, applying $j$ times the translation $\tau_y$ in \eqref{eq:Ltau-E}, and summing from $j=0$ to $j=n$, we have
+\begin{equation*}
+%\label{eq:summationE}
+  \sum_{j=0}^n \tau_y^j((\cdot)^k)(x)
+  = \frac{1}{2} \sum_{j=0}^n \Big(\tau_y^j\tau_1(\E_k)(x)+\tau_y^j\tau_{-1}(\E_k)(x)\Big),
+  \quad k,n\ge 0.
+\end{equation*}
+
+And the summation formula for Euler-Dunkl polynomials similar to Theorem~\ref{teo:summationBs1} is the following.
+
+\begin{theorem}[Summation formula]
+%\label{teo:summationEs1}
+For $\alpha>-1$ and $k,n\ge 0$, we have
+\begin{equation}
+\label{eq:summationEs1}
+  \sum_{j=0}^n (-1)^{n-j} \sigma_1^j\tau_{-1}^{-1}((\cdot)^k)(x)
+  = \frac{1}{2} \Big(\sigma_1^{n+1}(\E_k)(x)+(-1)^n\E_k(x)\Big).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Starting in \eqref{eq:Ltau-E}, apply $\sigma_1^j$, multiply by $(-1)^{n-j}$ and sum with $j$ from $0$ to~$n$.
+\end{proof}
+
+Formula~\eqref{eq:summationEs1} is the analogous of the classical formula for the Euler polynomials
+\[
+  \sum_{j=1}^n (-1)^{n-j} j^k = \frac{E_k(n+1)+(-1)^nE_k(0)}{2}.
+\]
+
+Finally, following the analogous arguments of Theorem~\ref{teo:tauLaP} but with the properties of the Euler-Dunkl polynomials it is easy to prove the next result.
+
+\begin{theorem}
+%\label{teo:tauPE}
+Let $P(x)$ be a polynomial of degree $\le n$. Then,
+\begin{equation}
+\label{eq:tauPE}
+  \tau_x (P)(y) = \frac{1}{2} \sum_{j=0}^{n} \frac{\tau_1(\La^j P)(x) 
+  + \tau_{-1} (\La^j P)(x)}{\cc_j} \, \E_j(y).
+\end{equation}
+\end{theorem}
+
+%%%%%%%%%
+\subsection{Boole summation formula}
+%%%%%%%%%
+
+The alternating version of the Euler-Maclaurin formula, using Euler polynomials, is the Boole summation formula \cite[24.17.1]{Dil-NIST}, that for a polynomial $P$ is the following:
+\begin{equation}
+\label{eq:BS-P}
+  2\sum_{j=0}^{N-1} (-1)^jP(j)=  \sum_{k=0}^{\infty}\frac{(-1)^{N-1}P^{(k)}(N)+P^{(k)}(0)}{k!}E_k(0).
+\end{equation}
+Note that the summation is really finite because $P^{(k)}(x)$ is null when $k$ is greater than the degree of $P(x)$. 
+
+Now, we are going to prove this formula in the Dunkl context, using Euler-Dunkl polynomials. Of course, the new formula reduces to \eqref{eq:BS-P} when $\alpha=-1/2$.
+
+\begin{theorem}[Boole summation formula]
+%\label{teo:BS}
+Let $P$ be a polynomial and let $N$ be a positive integer. Then,
+\begin{equation}
+\label{eq:BS}
+\begin{aligned}
+  & 2 \sum_{j=0}^{N-1}(-1)^{j}\sigma_1^j(P)(0) = (-1)^{N-1}\sigma_1^N(P)(0) + P(0) \\ 
+  &\qquad\qquad + \sum_{k=0}^{\infty} 
+  \frac{(-1)^{N-1}\sigma_1^N(\La^{2k+1} P)(0)+\La^{2k+1} P(0)}{\cc_{2k+1}} \, \E_{2k+1}(1),
+\end{aligned} 
+\end{equation}
+where the series $\sum_{k=0}^{\infty}$ is really a finite sum.
+\end{theorem}
+
+\begin{proof}
+Using \eqref{eq:tauPE} with $\tau_y(P)(x)$ instead $\tau_x(P)(y)$ on the left side, and taking $y=-1$, we have
+\begin{align*}
+  2\tau_{-1}(P)(x) &= \tau_1(P)(x)+\tau_{-1}(P)(x) \\
+  &\qquad\quad + \sum_{k=0}^{\infty}\frac{\tau_1(\La^{2k+1} P)(x) 
+    + \tau_{-1} (\La^{2k+1} P)(x)}{\cc_{2k+1}} \, \E_{2k+1}(-1).
+\end{align*} 
+The summation is finite because $P$ is a polynomial; moreover, the even terms are null because $\E_{2k}(-1)=0$, $k>0$
+(and $\E_0(x)=1$ is outside of the sum). In fact, as $\E_{2k+1}$ is an even function, we can write $\E_{2k+1}(1)$ instead of $\E_{2k+1}(-1)$.
+
+Now, we apply the inverse operator $\tau_{-1}^{-1}$ to obtain
+\[
+  P(x)-\sigma_1(P)(x) = \sum_{k=0}^{\infty} \frac{\sigma_1(\La^{2k+1} P)(x) 
+    + \La^{2k+1} P(x)}{\cc_{2k+1}} \, \E_{2k+1}(1).
+\]
+Applying $(-1)^j\sigma_1^j$ and summing from $j=0$ up to $N-1$, we have 
+\begin{multline*}
+  2\sum_{j=1}^{N-1}(-1)^{j}\sigma_1^j(P)(x) = (-1)^{N-1}\sigma_1^N(P)(x)-P(x) \\ 
+  + \sum_{k=0}^{\infty} \frac{(-1)^{N-1}\sigma_1^N(\La^{2k+1} P)(x)
+  + \La^{2k+1} P(x)}{\cc_{2k+1}}\,\E_{2k+1}(1).
+\end{multline*}
+Finally, taking $x=0$ and summing $2P(0)$ on both sides of the equality, \eqref{eq:BS} is proved.
+\end{proof}
+
+%%%%%%%%%
+\section{Generalized Bernoulli-Dunkl and generalized Euler-Dunkl polynomials}
+\label{sec:Gen-BE-D}
+%%%%%%%%%
+
+%%%%%%%%%
+\subsection{Generalizated Bernoulli-Dunkl polynomials}
+%%%%%%%%%
+
+Following \eqref{eq:adr}, when $\alpha>-1$ we can also define the generalized Bernoulli-Dunkl polynomials $\{\B_{n,\alpha}^{(r)}\}_{n=0}^{\infty}$ of order $r$ by means of the generating function
+\begin{equation}
+\label{eq:defbdr}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)^r}
+  = \sum_{n=0}^\infty \frac{\B_{n,\alpha}^{(r)}(x)}{\cc_{n,\alpha}}\,t^n.
+\end{equation}
+Again, we sometimes write $\B_n^{(r)}=\B_{n,\alpha}^{(r)}$.
+Taking into account that
+\[
+  \I_{\alpha +1}(t)^s = \left(\sum_{n=0}^{\infty}\frac{t^{2n}}{\cc_{2n,\alpha+1}}\right)^s
+  = \sum_{n=0}^{\infty}a_{2n,s}t^{2n},
+\]
+and using Lemma~\ref{lem:xn} we can prove that, for $n\ge 0$, $\B_{2n}^{(r)}$ is an even polynomial, and $\B_{2n+1}^{(r)}$ is an odd polynomial.
+
+We can give a generalization of \eqref{eq:x2nbd} and \eqref{eq:x2n1bd}. Let's write
+\begin{equation*}
+  \sum_{n=0}^\infty \frac{\B_{n,\alpha}^{(r)}(x)}{\cc_{n,\alpha}}\,t^n 
+  = \I_{\alpha+1}(t) \frac{\Ea(xt)}{\I_{\alpha+1}(t)^{r+1}} 
+  = \biggl(\sum_{n=0}^\infty \frac{t^{2n}}{\cc_{2n,\alpha+1}}\biggr)
+  \biggl(\sum_{n=0}^\infty \frac{\B_{n,\alpha}^{(r+1)}(x)}{\cc_{n,\alpha}}\,t^n\biggr).
+\end{equation*}
+Then, making the Cauchy product of the series and identifying the coefficients of every $t^n$, we have the following:
+
+\begin{theorem}
+The generalized Bernoulli-Dunkl polynomials satisfy 
+\begin{align}
+\label{eq:x2nbdr}
+  \B_{2n}^{(r)}(x) &= \B_{2n}^{(r+1)}(x)+(\alpha+1) \sum_{j=0}^{n-1} \binoma{2n}{2j}
+  \frac{\B_{2j}^{(r+1)}(x)}{\alpha+n-j+1},
+\\
+\label{eq:x2n1bdr}
+  \B_{2n+1}^{(r)}(x) &= \B_{2n+1}^{(r+1)}(x) + (\alpha+1) \sum_{j=0}^{n-1} \binoma{2n+1}{2j+1}
+  \frac{\B_{2j+1}^{(r+1)}(x)}{\alpha+n-j+1}.
+\end{align}
+\end{theorem}
+
+
+In the classical case, the generalized Bernoulli polynomials of order $r$ are $\{B_{n}^{(r)}(x)\}_{n=0}^\infty$ defined by
+\[
+  \left(\frac{t}{e^t-1}\right)^r e^{xt} 
+  = \sum_{n=0}^\infty B_{n}^{(r)}(x) \frac{t^n}{n!}.
+\]
+They were introduced by N{\o}rlund in 1922 (see \cite{Nor,Nor-book}), and they are also known as N{\o}rlund polynomials.
+
+In this case, the generalized Bernoulli polynomials and the generalized Bernoulli-Dunkl polynomials are related by
+\[
+  \B_{n,-1/2}^{(r)}(2x-r) = 2^n B_n^{(r)}(x).
+\]
+To prove this relation we just need to verify that when we take $\alpha=-1/2$, $t\mapsto t/2$ and $x\mapsto 2x-r$, the generating function is given by
+\[
+  \frac{E_{-1/2}((2x-r)t/2)}{\I_{1/2}(t/2)^r} = \left(\frac{t}{e^t-1}\right)^r e^{xt}.
+\]
+The details are as in~\eqref{eq:BtoB}.
+
+%%%%%%%%%
+\subsection{Some properties for the generalized Bernoulli-Dunkl polynomials related to the translation}
+%%%%%%%%%
+
+Some of the properties Bernoulli-Dunkl polynomials shown in the previous sections have a suitable version for the case of generalized Bernoulli-Dunkl polynomials.
+
+The generalized Bernoulli-Dunkl polynomials form an Appell sequence, so, applying Theorem~\ref{teo:tau-A}, we have the relation
+\begin{equation}
+\label{eq:tau-Br}
+  \tau_y(\B_k^{(r)})(x)
+  = \sum_{j=0}^k \binoma{k}{j} \B^{(r)}_j(x) y^{k-j}.
+\end{equation}
+that is a generalization of~\eqref{eq:tau-B}.
+A simple consequence is the following expression for the polynomials $\B_k^{(r)}(x)$ (analogous to~\eqref{eq:B_kpotx}):
+\[
+\B_k^{(r)}(x) = \tau_0(\B^{(r)}_k)(x) = \tau_x(\B^{(r)}_k)(0)
+= \sum_{j=0}^k \binoma{k}{j}\B_j^{(r)}(0) x^{k-j}.
+\]
+
+Another result that we can generalize is Theorem~\ref{teo:Ltau-B}, that now becomes as follows (the proof is similar using \eqref{eq:x2nbdr} and \eqref{eq:x2n1bdr} instead of \eqref{eq:x2nbd} and~\eqref{eq:x2n1bd}): 
+
+\begin{theorem}
+For $\alpha>-1$, the generalized Bernoulli-Dunkl polynomials of order $r$ and $r+1$ are related by means of 
+\begin{equation*}
+%\label{eq:Ltau-Br}
+  \La(\B_k^{(r)})(x)
+  = (\alpha+1) \big(\tau_1 \B_k^{(r+1)}(x) - \tau_{-1} \B_k^{(r+1)}(x)\big).
+\end{equation*}
+\end{theorem}
+
+More interesting is this relation:
+
+\begin{theorem}
+\label{teo:tau-Brs}
+For $\alpha>-1$, the generalized Bernoulli-Dunkl polynomials satisfy
+\begin{equation*}
+%\label{eq:tau-Brs}
+  \tau_y(\B_k^{(r+s)})(x)
+  = \sum_{j=0}^k \binoma{k}{j} \B_j^{(r)}(x) \B_{k-j}^{(s)}(y).
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+From \eqref{eq:defbdr} for $r$ and $s$, we have 
+\begin{align*}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)^r} \frac{\Ea(yt)}{\I_{\alpha+1}(t)^s}
+  &= \biggl( \sum_{k=0}^{\infty} \frac{\B_k^{(r)}(x)}{\cc_k}t^k \biggr) 
+  \biggl( \sum_{k=0}^{\infty}\frac{\B_k^{(s)}(y)}{\cc_k}t^k \biggr) \\
+  %&= \sum_{k=0}^{\infty} \sum_{j=0}^k\frac{\B_j^{(r)}(x)}{\cc_{j}} \frac{\B_{k-j}^{(s)}(y)}{\cc_{k-j}}t^k \\
+  &= \sum_{k=0}^{\infty} \biggl( \frac{1}{\cc_k} \sum_{j=0}^k\binoma{k}{j} \B_j^{(r)}(x)\B_{k-j}^{(s)}(y) \biggr) t^k.
+\end{align*}
+On the other hand, using \eqref{eq:defbdr} for $r+s$ and the definition of $\Ea(z)$,
+\begin{align*}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)^{r+s}} \Ea(yt)
+  &= \biggl( \sum_{k=0}^{\infty} \frac{\B_k^{(r+s)}(x)}{\cc_k}t^k \biggr) 
+  \biggl( \sum_{k=0}^{\infty}\frac{y^k}{\cc_k}t^k \biggr) \\
+  &= \sum_{k=0}^{\infty} \biggl( \frac{1}{\cc_k} \sum_{j=0}^k \binoma{k}{j}\B_{j}^{(r+s)}(x)y^{k-j} \biggr) t^k .
+\end{align*}
+Now, equaling the coefficients of $t^k$ in these expressions and using~\eqref{eq:tau-Br}, we obtain 
+\[
+  \sum_{j=0}^k\binoma{k}{j} \B_j^{(r)}(x)\B_{k-j}^{(s)}(y)
+  = \sum_{j=0}^k\binoma{k}{j}\B_{j}^{(r+s)}(x)y^{k-j}
+  = \tau_y(\B_k^{(r+s)})(x).
+\qedhere
+\]
+\end{proof}
+
+A nice particular case appears taking $y=0$. In this way, we get
+\begin{equation}
+\label{eq:BkrsBjr}
+  \B_k^{(r+s)}(x) = \sum_{j=0}^k \binoma{k}{j} \B_{k-j}^{(s)}(0) \B_j^{(r)}(x),
+\end{equation}
+that gives the polynomials $\B_k^{(r+s)}(x)$ in terms of $\B_k^{(r)}(x)$
+and the generalized Bernoulli-Dunkl numbers $\B_{k-j}^{(s)}(0)$.
+It is also interesting to take $x=0$ in \eqref{eq:BkrsBjr}; this relates
+generalized Bernoulli-Dunkl numbers of different order by means of a formula
+that, as usual, resembles Newton expansion of the binomial.
+
+%%%%%%%%%
+\subsection{Generalizated Euler-Dunkl polynomials}
+%%%%%%%%%
+
+Following \eqref{eq:adr}, when $\alpha>-1$ we can also define the generalized Euler-Dunkl polynomials $\{\E_{n,\alpha}^{(r)}\}_{n=0}^{\infty}$ of order $r$ by means of the generating function
+\begin{equation*}
+%\label{eq:defedr}
+  \frac{\Ea(xt)}{\I_{\alpha}(t)^r}
+  = \sum_{n=0}^\infty \frac{\E_{n,\alpha}^{(r)}(x)}{\cc_{n,\alpha}}\,t^n.
+\end{equation*}
+Again, we sometimes write $\E_n^{(r)}=\E_{n,\alpha}^{(r)}$. Analogously to generalized Bernoulli-Dunkl polynomials, we easily obtain that, for $n\ge 0$, $\E_{2n}^{(r)}$ is an even polynomial an $\E_{2n+1}^{(r)}$ is an odd polynomial.
+
+In order to generalize \eqref{eq:x2ned} for the generalized Euler-Dunkl polynomials, we can write
+\begin{align*}
+  \sum_{n=0}^{\infty} \frac{\E_{n}^{(r)}(x)}{\cc_n} \,t^n
+%  &= \frac{\Ea(xt)}{\I_{\alpha}(t)^r}
+  = \I_{\alpha}(t) \frac{\Ea(xt)}{\I_{\alpha}(t)^{r+1}} 
+  = \left(\sum_{n=0}^{\infty}\frac{t^{2n}}{\cc_{2n}}\right) 
+  \left(\sum_{n=0}^{\infty}\frac{\E_n^{(r+1)}(x)}{\cc_n}\,t^n\right).
+\end{align*}
+Then, identifying coefficients we have the next result.
+
+\begin{theorem} 
+\label{teo:x2nedr}
+For $\alpha>-1$, the generalized Euler-Dunkl polynomials satisfy
+\begin{equation*}
+%\label{eq:x2nedr}
+%\label{eq:x2n1edr}
+  \E_{2n}^{(r)}(x) = \sum_{j=0}^n\binoma{2n}{2j}\E_{2j}^{(r+1)}(x),
+\quad
+  \E_{2n+1}^{(r)}(x) = \sum_{j=0}^n\binoma{2n+1}{2j+1}\E_{2j+1}^{(r+1)}(x).
+\end{equation*}
+\end{theorem}
+
+In the classical case, the generalized Euler polynomials of order $r$ are $\{E_{n}^{(r)}(x)\}_{n=0}^\infty$ defined by
+\[
+  \left(\frac{2}{e^t+1}\right)^r e^{xt} 
+  = \sum_{n=0}^\infty E_{n}^{(r)}(x) \frac{t^n}{n!}.
+\]
+The generalized Euler polynomials and the generalized Euler-Dunkl polynomials are related by
+\[
+  \E_{n,-1/2}^{(r)}(2x-r) = 2^n E_n^{(r)}(x).
+\]
+In a similar way than in the generalized Bernoulli-Dunkl case, we just need to verify that when we take $\alpha=-1/2$, $t\mapsto t/2$ and $x\mapsto 2x-r$, the generating function is given by
+\[
+  \frac{E_{-1/2}((2x-r)t/2)}{\I_{-1/2}(t/2)^r} = \left(\frac{2}{e^t+1}\right)^r e^{xt}.
+\]
+
+
+%%%%%%%%%
+\subsection{Some properties for the generalized Euler-Dunkl polynomials related to the translation}
+%%%%%%%%%
+
+
+As the generalized Euler-Dunkl polynomials are Appell-Dunkl polynomials we can write
+\begin{equation*}
+%\label{eq:tau-Er}
+  \tau_y(\E_k^{(r)})(x) = \sum_{j=0}^k\binoma{k}{j}\E_{j}^{(r)}(x)y^{k-j}.
+\end{equation*}
+Using this formula and Theorem~\ref{teo:x2nedr} we can show the relation of these polynomials with the translation.
+
+\begin{theorem}
+For $\alpha>-1$, the generalized Euler-Dunkl polynomials of order $r$ and $r+1$ satisfy
+\begin{equation*}
+%\label{eq:Ltau-Er}
+  \E_k^{(r)}(x) = \frac{1}{2} \big(\tau_1(\E_k^{(r+1)})(x)+\tau_{-1}(\E_k^{(r+1)})(x)\big).
+\end{equation*}
+\end{theorem}
+
+Finally, with the same arguments of Theorem~\ref{teo:tau-Brs} we have the following:
+
+\begin{theorem}
+%\label{teo:tau-Ers}
+For $\alpha>-1$, the generalized Euler-Dunkl polynomials hold
+\begin{equation*}
+%\label{eq:tau-Ers}
+  \tau_y(\E_k^{(r+s)})(x) = \sum_{j=0}^k \binoma{k}{j} \E_j^{(r)}(x)\E_{k-j}^{(s)}(y).
+\end{equation*}
+\end{theorem}
+
+
+%%%%%%%%%
+\begin{thebibliography}{00}
+%%%%%%%%%
+
+\small
+
+\bibitem{AlS}
+W. A. Al-Salam,
+Characterization theorems for orthogonal polynomials,
+\textit{Orthogonal Polynomials: Theory and Practice}
+(Columbus, OH, 1989, P.~Nevai, ed.), 1--24,
+NATO Adv. Sci. Inst. Ser. C Math. Phys. Sci., 294,
+Kluwer Acad. Publ., Dordrecht, 1990.
+% NATO ASI Series, Volume 294 (1990)
+% http://link.springer.com/book/10.1007/978-94-009-0501-6
+
+%\bibitem{Ap}
+%T. M. Apostol,
+%A primer on Bernoulli numbers and polynomials,
+%\textit{Math. Mag.} \textbf{81} (2008), 178--190.
+
+%\bibitem{AIK}
+%T. Arakawa, T. Ibukiyama and M. Kaneko,
+%\textit{Bernoulli numbers and zeta functions},
+%Springer, 2014.
+
+\bibitem{BG}
+Y. Ben Cheikh and M. Gaied,
+Dunkl-Appell $d$-orthogonal polynomials,
+\textit{Integral Transforms Spec. Funct.}
+\textbf{18} (2007), 581--597.
+
+%% Las cosas b\'asicas de la transformada de Dunkl que se necesitan::
+%\bibitem{BCV}
+%J. J. Betancor, \'O. Ciaurri and J. L. Varona,
+%The multiplier of the interval $[-1,1]$ for the Dunkl transform on the real line,
+%\textit{J. Funct. Anal.}
+%\textbf{242} (2007), 327--336.
+%% http://www.unirioja.es/cu/jvarona/downloads/multiplierDunkl.pdf
+%% (con la introducci\'on basta)
+
+\bibitem{BKI}
+A. Bouanani, L. Kh\'eriji and M. Ihsen Tounsi,
+Characterization of $q$-Dunkl Appell symmetric orthogonal $q$-polynomials,
+\textit{Expo. Math.}
+\textbf{28} (2010), 325--336.
+% Expositiones Mathematicae
+
+%\bibitem{Cal}
+%F. Calogero,
+%On the zeros of Bessel functions,
+%\textit{Lett. Nuovo Cimento (2)}
+%\textbf{20} (1977), 254--256.
+%%% Also available the second part:
+%%F. Calogero,
+%%On the zeros of Bessel functions.~II,
+%%\textit{Lett. Nuovo Cimento (2)}
+%%\textbf{20} (1977), no.~13, 476--478.
+
+\bibitem{Cho} 
+F. M. Cholewinski, 
+\textit{The finite calculus associated with Bessel functions}, 
+Contemporary Mathematics, 75, American Mathematical Society, Providence, RI, 1988.
+
+\bibitem{CDPV}
+\'O. Ciaurri, A. Dur\'an, M. P\'erez and J. L. Varona,
+Bernoulli-Dunkl and Apostol-Euler-Dunkl polynomials with applications to series involving
+zeros of Bessel functions, 
+\textit{J. Approx. Theory} \textbf{235} (2018), 20--45.
+% https://doi.org/10.1016/j.jat.2018.06.001
+
+%% La convergencia L^p de series Fourier-Dunkl:
+\bibitem{CPRV}
+\'O. Ciaurri, M. P\'erez, J. M. Reyes and J. L. Varona,
+Mean convergence of Fourier-Dunkl series,
+\textit{J. Math. Anal. Appl.}
+\textbf{372} (2010), 470--485.
+%% http://www.unirioja.es/cu/jvarona/downloads/Fourier-Dunkl-series.pdf
+
+% El sistema ortogonal de Dunkl se define aqu\'i:
+\bibitem{CV}
+\'O. Ciaurri and J. L. Varona,
+A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform,
+\textit{Proc. Amer. Math. Soc.}
+\textbf{135} (2007), 2939--2947.
+% http://www.unirioja.es/cu/jvarona/downloads/Dunkl-Sampling.pdf
+% Tambi\'en est\'a, en español (en el bolet\'in de sema), aqu\'i:
+% http://www.unirioja.es/cu/jvarona/downloads/Dunkl-Muestreo-SEMA.pdf
+% (algunas cuentas est\'an con m\'as detalle)
+
+\bibitem{Dil-NIST}
+K. Dilcher,
+Bernoulli and Euler Polynomials,
+\textit{NIST handbook of mathematical functions}
+(edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+587--599, % Es el Chapter 24
+National Institute of Standards and Technology, Washington, DC, and
+Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/24}
+
+\bibitem{DH}
+I. H. Dimovski and V. Z. Hristov,
+Nonlocal operational calculi for Dunkl operators,
+\textit{SIGMA Symmetry Integrability Geom. Methods Appl.}
+\textbf{5} (2009), Paper~030, 16~pp.
+
+%\bibitem{DHS}
+%I. H. Dimovski, V. Z. Hristov and M. Sifi,
+%Commutants of the Dunkl operators in $C(\RR)$,
+%\textit{Fract. Calc. Appl. Anal.}
+%\textbf{9} (2006), 195--213.
+
+\bibitem{Du}
+C. F. Dunkl,
+{Differential-difference operators associated to reflection groups},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{311} (1989), 167--183.
+
+\bibitem{DKP} % Tiene Bernoullli
+R. Graham, D. Knuth and O. Patashnik, 
+\textit{Concrete mathematics: A foundation for computer science}, 
+Second edition, Addison-Wesley, 1994.
+
+%\bibitem{Le} 
+%N. N. Lebedev,
+%\textit{Special functions and their applications},
+%Dover, New York, 1972.
+
+%\bibitem{Mor}
+%L. J. Mordell,
+%% Yes: the title uses "Bernouilli", with an extra "i"
+%Expansion of a function in terms of Bernouilli polynomials,
+%\textit{J. London Math. Soc.}
+%\textbf{41} (1966), 526--528.
+
+%\bibitem{NRV}
+%L. M. Navas, F. J. Ruiz and J. L. Varona,
+%Asymptotic estimates for Apostol-Bernoulli and Apostol-Euler polynomials,
+%\textit{Math. Comp.}
+%\textbf{81} (2012), 1707--1722.
+
+% Primeros Bernoulli de orden alpha (entero positivo)
+\bibitem{Nor} 
+% N. E. N\"orlund, % <--- In the paper, this is the name of the author.
+N. E. N{\o}rlund, % <--- The correct name in Danish
+M\'emoire sur les polyn\^omes de Bernoulli,
+\textit{Acta. Math.} 
+\textbf{43} (1922), 121--196.
+
+% Primeros Euler de orden alpha (entero positivo y negativo)
+\bibitem{Nor-book}
+% N. E. N\"orlund, % <--- In the book, this is the name of the author.
+N. E. N{\o}rlund, % <--- The correct name in Danish
+\textit{Vorlesungen \"uber Differenzenrechnung}, 1st ed., 
+Springer-Verlag, Berlin-Heidelberg, 1924.
+
+\bibitem{OlMa-NIST}
+F. W. J. Olver and L. C. Maximon,
+Bessel Functions,
+\textit{NIST handbook of mathematical functions}
+(edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+215--286, % Es el Chapter 10
+National Institute of Standards and Technology, Washington, DC, and
+Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/10}
+
+%\bibitem{PBM}
+%A. P. Prudnikov, A. Y. Brychkov and O. I. Marichev,
+%\textit{Integrals and series. Vol.~2: Special functions},
+%Gordon and Breach Science Publishers, New York, 1986.
+
+%\bibitem{Ray}
+%Lord Rayleigh (J. W. Strutt),
+%{Note on the numerical calculation of the roots of fluctuating functions},
+%\textit{Proc. London Math. Soc.}
+%\textbf{5} (1873), 119--124.
+
+\bibitem{Ros}
+M. Rosenblum,
+{Generalized Hermite polynomials and the Bose-like oscillator calculus},
+\textit{Oper. Theory Adv. Appl.}
+\textbf{73} (1994), 369--396.
+
+%\bibitem{Rosler}
+%M. R\"osler,
+%A positive radial product formula for the Dunkl kernel,
+%\textit{Trans. Amer. Math. Soc.}
+%\textbf{355} (2003), 2413--2438.
+
+%\bibitem{Sne}
+%I. N. Sneddon,
+%On some infinite series involving the zeros of Bessel functions of the first kind,
+%\textit{Proc. Glasgow Math. Assoc.}
+%\textbf{4} (1960), 144--156.
+
+%\bibitem{ThX}
+%S. Thangavelu and Y. Xu,
+%Riesz transform and Riesz potentials for Dunkl transform,
+%\textit{J. Comput. Appl. Math.}
+%\textbf{199} (2007), 181--195.
+
+\bibitem{Wat}
+G. N. Watson,
+\textit{A Treatise on the Theory of Bessel Functions} (2nd edition),
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+%%%%%%%%%
+\end{thebibliography}
+%%%%%%%%%
+
+%%%%%%%%%
+\end{document}
+%%%%%%%%% 

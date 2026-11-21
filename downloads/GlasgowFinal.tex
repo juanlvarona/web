@@ -1,0 +1,794 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                           %
+%                                                           %
+%                                                           %
+% COMIENZO DE ESCRITURA: 13 - MARZO - 2000                  %
+% \'ULTIMA MODIFICACI\'ON: 5 - FEBRERO - 2002               %
+%                                                           %
+%                                                           %
+%                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{amsart}
+%\renewcommand{\baselinestretch}{2} % DOBLE ESPACIO
+%\renewcommand{\baselinestretch}{1.4}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\spa}{\operatorname{span}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Weak behaviour of Fourier-Neumann series}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{oscar.ciaurri@dmc.unirioja.es}
+
+\author[M. P\'erez]{Mario P\'erez}
+\address{Departamento de Matem\'aticas,
+Edificio de Matem\'aticas, Universidad de Zaragoza,
+50009 Zaragoza, Spain}
+\email{mperez@posta.unizar.es}
+
+\author[J. L. Varona]{Juan~L.~Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+\thanks{Research supported by grants of the DGI and UR}
+
+\subjclass[2000]{Primary 42C10; Secondary 44A05}
+
+\keywords{Bessel functions, Fourier series, Neumann series, Hankel transform.}
+
+\thanks{PUBLISHED IN: Glasgow Math.\ J.\ \textbf{45} (2003), no.~1, 97--104;
+and Glasgow Math.\ J.\ \textbf{45} (2003), no.~3, 567 (Corrigendum).}
+
+\begin{abstract}
+Let $J_\mu$ denote the Bessel function of order $\mu$. The functions
+$x^{-\alpha-1}J_{\alpha+2n+1}(x)$, $n = 0, 1, 2, \dots$,
+form an orthogonal system in the space $L^2((0,\infty),x^{2\alpha+1}dx)$
+when $\alpha>-1$. In this paper we prove that the Fourier series associated
+to this system is of restricted weak type for the endpoints of
+the interval of mean convergence, while it is not of weak type if $\alpha
+\geq 0$.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction and results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Given a positive measure $\sigma$ on some space and an orthonormal system 
+$\{\varphi_n\}_{n\geq 0}$ in $L^2(\sigma)$, the
+Fourier series associated to $\{\varphi_n\}_{n\geq 0}$ is the sequence of
+operators $S_n$ defined by
+\[
+   S_n f = \sum_{k=0}^n c_k(f) \varphi_k,
+   \qquad f \in L^2(\sigma),
+\]
+where $c_k(f) = \int f \varphi_k \, d\sigma$.
+The elementary property that
+$\| S_n f - f \|_{L^2(\sigma)} \longrightarrow 0$
+for every $f \in \overline{\spa{\{\varphi_n\}_{n\geq0}}}$
+raises the same question with the $L^2(\sigma)$ norm replaced by the
+$L^p(\sigma)$ norm, $1 \leq p \leq \infty$. By the Banach-Steinhaus theorem,
+this is equivalent to the uniform boundedness
+$\| S_n f \|_{L^p(\sigma)} \leq  C \| f \|_{L^p(\sigma)}$,
+$f \in L^p(\sigma)$, $n \geq 0$.
+
+Needless to say, the most important case is the trigonometric system on the
+unit circle $\T$, for which the boundedness holds if $1 < p < \infty$
+\cite{R}. For $p =\infty$ the answer is definitely negative, while for $p
+=1$ the boundedness fails but there is a weak substitute in terms of the
+Lorentz space $L^{1,\infty}(\T,d\theta)$:
+\[
+   \| S_n f \|_{L^{1,\infty}(\T,d\theta)} \leq C \| f \|_{L^1(\T,d\theta)},
+   \qquad f \in L^1(\T,d\theta), \ n \geq 0.
+\]
+Here,
+\begin{align*}
+   \| f \|_{L^{p,\infty}(\sigma)}
+   &= \sup_{y>0} y \lambda(y)^{1/p}
+   = \| t^{1/p} f^*(t) \|_{L^\infty(\R^+,dt)},
+   \qquad 1 \leq p < \infty
+   \\
+   \| f \|_{L^{p,r}(\sigma)}
+   &= \left(\frac{r}{p} \int_0^\infty [t^{1/p} f^*(t)]^r \frac{dt}{t}
+     \right)^{1/r}
+   \qquad 1 \leq p < \infty, \ 1 \leq r < \infty,
+\end{align*}
+where $\lambda$ is the distribution function and $f^*$ the
+nonincreasing rearrangement of $f$. There is a H\"older's inequality
+$\| f \|_{p_1,p_2} \leq C \| f \|_{q_1,q_2} \| f \|_{r_1,r_2}$, $1/p_i =
+1/q_i + 1/r_i$. Also, $\| f \|_{p,\infty} \leq C \| f \|_{p,p} = C \| f \|_p
+\leq C_1 \| f \|_{p,1}$. The reader is referred to~\cite{H} or~\cite{SW} for
+further details on $L^{p,r}$ spaces.
+
+After the trigonometric system, the convergence of Fourier series has been
+studied for a number of orthonormal systems, including Jacobi
+polynomials~\cite{P1,P2,M1,Ch1,GPV1}, Hermite and Laguerre
+polynomials~\cite{M2,M3}, generalized Jacobi polynomials~\cite{B} and Bessel
+functions on $(0,1)$~\cite{GPRV}.
+
+In~\cite{V,GPV2} the authors characterized the $L^p$ convergence for the
+Fourier-Neumann series, i.e., the Fourier expansion associated to the
+functions
+\[
+   \mathbf{j}_n^\alpha(x)
+   = \sqrt{4n+2\alpha+2} \ J_{\alpha+2n+1}(x) x^{-\alpha-1},
+   \qquad n = 0, 1, \dots
+\]
+which are orthonormal on $L^2((0,\infty), x^{2\alpha+1} \, dx)$
+[$L^2(x^{2\alpha+1})$, from now on], see~\cite[\S~13.41~(7), p.~404]{W}
+and~\cite[\S~13.42~(1), p.~405]{W}. Here, $\alpha > -1$ and $J_\nu$ is
+the Bessel function of order $\nu$.
+
+For each suitable function $f$, let $S_nf$ be the
+$n$-th partial sum of its Fourier series with respect to the system
+$\{\mathbf{j}_n^\alpha\}_{n=0}^\infty$, i.e.,
+\begin{equation*}
+   S_n(f,x) = \int_0^{\infty}f(t) K_n(x,t)t^{2\alpha+1}\,dt,
+   \qquad
+   K_n(x,t)=\sum_{k=0}^n \mathbf{j}_k^{\alpha}(x) \mathbf{j}_k^{\alpha}(t).
+\end{equation*}
+In this paper, we study the weak and restricted weak behaviour of these
+series, i.e., the uniform boundedness
+\[
+   \| S_n f \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \leq  C \| f \|_{L^p(x^{2\alpha+1})},
+   \qquad f \in L^p(x^{2\alpha+1}), \ n \geq 0
+\]
+or
+\[
+   \| S_n f \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \leq  C \| f \|_{L^{p,1}(x^{2\alpha+1})},
+   \qquad f \in L^{p,1}(x^{2\alpha+1}), \ n \geq 0.
+\]
+Let us focus on the weak boundedness. The a priori assumption that
+$\mathbf{j}_n^\alpha \in L^q(x^{2\alpha+1})$ ($n=0,1,\dots$, $1/p + 1/q =1$)
+should be made so as to guarantee the existence of the Fourier coefficients
+for any $f \in L^p(x^{2\alpha+1})$. Also, we must assume that
+$\mathbf{j}_n^\alpha \in L^{p,\infty}(x^{2\alpha+1})$ if we want $S_n f$
+to be in $L^{p,\infty}(x^{2\alpha+1})$. By Lemmas 1 and 2 below, these
+assumptions hold if and only if $p_1 \leq p < p_2$, where $p_1 =
+4(\alpha+1)/(2\alpha+3)$, $p_2 = 4(\alpha+1)/(2\alpha+1)$ if $\alpha \geq
+0$, and $p_1=4/3$, $p_2 = 4$ if $-1 < \alpha < 0$. For the restricted weak
+boundedness, the same arguments lead to the a priori assumptions that $p_1
+\leq p \leq p_2$. Since the $L^p$-$L^p$ boundedness holds if and only if
+$p_1 < p < p_2$, and it implies the $L^p$-$L^{p,\infty}$ and
+$L^{p,1}$-$L^{p,\infty}$ boundedness, the real interest is in both endpoints.
+We obtain a negative answer for the weak type in the case $\alpha \geq 0$,
+and a positive answer for the restricted weak type.
+
+\begin{theorem}
+Let $\alpha \geq 0$, $p_1 = 4(\alpha+1)/(2\alpha+3)$, $p_2 =
+4(\alpha+1)/(2\alpha+1)$. Then the partial sum operators $S_n$,
+$n=0,1,\dots$, are not uniformly bounded as operators from
+$L^{p_i}(x^{2\alpha+1})$ into $L^{p_i,\infty}(x^{2\alpha+1})$ but are
+uniformly bounded as operators from $L^{p_i,1}(x^{2\alpha+1})$ into
+$L^{p_i,\infty}(x^{2\alpha+1})$, $i=1,2$. In the case $-1 < \alpha < 0$ the
+second statement holds with $p_1=4/3$ and $p_2=4$.
+\end{theorem}
+
+There is a close connection between $S_n$ and the Hankel
+transform ${\mathcal H}_\alpha$ given by
+\begin{equation}
+\label{ec:hankel}
+   {\mathcal H}_\alpha f(x)
+   = \int_0^\infty \frac{J_\alpha(xy)}{(xy)^\alpha} f(y) y^{2\alpha+1} \, dy.
+\end{equation}
+It turns out from~\cite[\S~5.1~(8), p.~134]{W} and~\cite[proof of Lemma
+4]{CGPV} that
+$
+   S_n f = {\mathcal H}_\alpha(\chi_{[0,1]}{\mathcal H}_\alpha f)
+   - {\mathcal H}_{\alpha,n}(\chi_{[0,1]}{\mathcal H}_{\alpha,n} f)
+   \equiv M_\alpha f - M_{\alpha,n}f,
+$
+where ${\mathcal H}_{\alpha,n}$ is given by~(\ref{ec:hankel}) with
+$J_{\alpha+2n+2}$ in place of $J_\alpha$. Now, Kenig and Thomas~\cite{KT}
+proved that the multiplier $M_\alpha$ is not bounded from
+$L^p(x^{2\alpha+1})$ into $L^{p,\infty}(x^{2\alpha+1})$, $p =
+4(\alpha+1)/(2\alpha+3)$. Chanillo~\cite{Ch2} proved that $M_\alpha$ is
+bounded from $L^{p,1}(x^{2\alpha+1})$ into $L^{p,\infty}(x^{2\alpha+1})$, $p
+= 4(\alpha+1)/(2\alpha+3)$. Some related uniform estimates were obtained by
+Carbery, Romera and Soria~\cite{RS, CRS} in the context of the disc
+multiplier.
+
+Throughout this paper, unless otherwise stated, we use $C$, $C_1$
+to denote positive constants independent of $n$ (and all other variables),
+which can assume different values in different occurrences. As usual, we
+write $f = O(g)$ in a given domain if $|f| \leq C g$. Finally, the standard
+notation $a_+ = \max\{a,0\}$ will be used.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Auxiliary results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Some appropriate estimates for Bessel functions will be needed.
+For instance,
+\begin{align}
+\label{ec:Jnu0}
+   J_\nu(x) &= \frac{x^\nu}{2^\nu \Gamma(\nu+1)} + O(x^{\nu+2}),
+   \quad  x\to 0+,
+   \\
+\label{ec:Jnuinfty}
+   J_\nu(x) &= \sqrt{\frac2{\pi x}}
+   \left[\cos\left(x-\frac{\nu\pi}2-\frac\pi4\right) + O(x^{-1})\right],
+   \ \quad x\to \infty,
+\end{align}
+where the $O$ terms depend on $\nu$ (see~\cite[\S~3.1~(8),
+p.~40]{W} and~\cite[\S~7.21~(1), p.~199]{W}). Some bounds for $J_\nu$ and
+$J_\nu'$ with constants independent of $\nu$ are also available.
+If $\nu > 0$, $0 < x \leq \nu/2$, and $a \geq -\nu$ then there exists some
+constant $C_a$ depending only on $a$, such that
+\begin{equation}
+\label{ec:Jnuxa}
+   |J_\nu(x)| x^a \le C_a \nu^{a-1/2} \left(\frac{e}{4}\right)^\nu
+\end{equation}
+(see~\cite[\S~3.31, p.~49]{W}). The formula $2 J_\nu' = J_{\nu-1} -
+J_{\nu+1}$ proves the same bound for $J_\nu'(x)$, as well as the analogs
+to~(\ref{ec:Jnu0}) and~(\ref{ec:Jnuinfty}):
+\begin{align*}
+   J_\nu'(x) &= \frac{x^{\nu-1}}{2^\nu \Gamma(\nu)} + O(x^{\nu+1}),
+   \quad  x\to 0+,
+   \\
+   J_\nu'(x) &= \sqrt{\frac2{\pi x}}
+   \left[-\sin\left(x-\frac{\nu\pi}2-\frac\pi4\right) + O(x^{-1})\right],
+   \ \quad x\to \infty.
+\end{align*}
+It is easy to deduce from~(\ref{ec:Jnuxa}) and bounds done by Barcel\'o and
+C\'ordoba (see~\cite[p.~661]{BC},~\cite[p.~24]{Co}) that
+\begin{align}
+\label{ec:Jnu}
+   |J_\nu(x)| &\le C x^{-1/4} \left( |x - \nu| + \nu^{1/3} \right)^{-1/4},
+   \qquad x \in (0,\infty),
+   \quad \nu > 1
+   \\
+\label{ec:Jnu'}
+   |J_\nu'(x)| &\le C x^{-3/4} \left( |x - \nu| + \nu^{1/3} \right)^{1/4},
+   \qquad x \in (0,\infty),
+   \quad \nu > 1
+\end{align}
+with some constant $C$ independent on $\nu$.
+As a consequence, the following estimate for the norm of $x^b J_\nu(x)$ and
+$x^b J_\nu'(x)$ in $L^p(x^{2\alpha+1})$ and $L^{p,\infty}(x^{2\alpha+1})$ can
+be given.
+
+\begin{lemma}
+\label{lema:JnuLp}
+Let $1 \leq p < \infty$, $\alpha > -1$, $b \in \mathbb{R}$ and $\nu > 1$. Let
+$\lambda(4,\nu) = (\log \nu)^{1/4}$, $\lambda(p,\nu) = 1$ if $p \not= 4$.
+Then
+\begin{enumerate}
+\item[(a)]
+$x^b J_\nu(x) \in L^p(x^{2\alpha+1})$ if and only if
+$p (b + \nu) + 2\alpha + 2 > 0$ and $p (b-\frac{1}{2}) + 2\alpha + 2 < 0$.
+In that case,
+$
+   \| x^b J_\nu(x) \|_{L^p(x^{2\alpha+1})}
+   \leq C \lambda(p,\nu)
+   \nu^{2\frac{\alpha+1}{p} + b - \frac{1}{2}
+   + \frac{2}{3} (\frac{1}{4} - \frac{1}{p})_+}.
+$
+\item[(b)]
+$x^b J_\nu(x) \in L^{p,\infty}(x^{2\alpha+1})$ if and only if
+$p (b + \nu) + 2\alpha + 2 \geq 0$ and $p (b-\frac{1}{2}) + 2\alpha + 2 \leq
+0$.
+In that case, 
+$
+   \| x^b J_\nu(x) \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \leq C \nu^{2\frac{\alpha+1}{p} + b - \frac{1}{2}
+   + \frac{2}{3} (\frac{1}{4} - \frac{1}{p})_+}.
+$
+\item[(c)]
+$x^b J_\nu'(x) \in L^p(x^{2\alpha+1})$ if and only if
+$p (b + \nu - 1) + 2\alpha + 2 > 0$ and $p (b-\frac{1}{2}) + 2\alpha + 2 < 0$.
+In that case, 
+$
+   \| x^b J_\nu'(x) \|_{L^p(x^{2\alpha+1})}
+   \leq C \nu^{2\frac{\alpha+1}{p} + b - \frac{1}{2}}.
+$
+\item[(d)]
+$x^b J_\nu'(x) \in L^{p,\infty}(x^{2\alpha+1})$ if and only if
+$p (b + \nu - 1) + 2\alpha + 2 \geq 0$ and $p (b-\frac{1}{2}) + 2\alpha + 2
+\leq 0$.
+In that case,
+$
+   \| x^b J_\nu'(x) \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \leq C \nu^{2\frac{\alpha+1}{p} + b - \frac{1}{2}}.
+$
+\end{enumerate}
+\end{lemma}
+
+Similar results can be found in~\cite{BC, S}, so we will omit the proof
+(details are given in~\cite[Chapter~2]{Ci}). Let us just mention that the
+$L^p$ and $L^{p,\infty}$ conditions follow easily from~(\ref{ec:Jnu0}),
+(\ref{ec:Jnuinfty}), and the analogs for $J_\nu'(x)$, while the norm estimates
+are a consequence of~(\ref{ec:Jnuxa}),~(\ref{ec:Jnu}), and the analogs for
+$J_\nu'(x)$.
+
+Next lemma is the main step in the proof of the uniform restricted weak type:
+
+\begin{lemma}
+\label{lema:Lnu}
+Let $\nu>1$, $1<p<\infty$, and
+$L_\nu(f,x) = J_{\nu}(x^{1/2})H(t^{1/2} J'_{\nu}(t^{1/2})f(t),x)$,
+where $H$ denotes the Hilbert transform.
+Then, there exists a constant $C$, independent of $\nu$, such that
+\begin{enumerate}
+\item[(a)]
+$\|L_\nu f\|_{L^p(dx)} \le C \|f\|_{L^p(dx)}$, $f\in L^p(dx)$, if $p<4$,
+\item[(b)]
+$\|L_\nu f\|_{L^{4,\infty}(dx)} \le C \|f\|_{L^{4,1}(dx)}$, $f\in
+L^{4,1}(dx)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) It follows from~(\ref{ec:Jnu}) that
+\begin{equation*}
+    \| L_\nu f \|_{L^p(dx)} \le C
+    \| H(t^{1/2} J'_{\nu}(t^{1/2})f(t),x)
+    \|_{L^p(x^{-p/8}(|x^{1/2}-\nu|+{\nu}^{1/3})^{-p/4})}.
+\end{equation*}
+Now, $x^{-p/8}(|x^{1/2}-\nu|+{\nu}^{1/3})^{-p/4} \in A_p$ uniformly in $\nu$
+if $p<4$ (see~\cite{CGPV}, \cite{GPV2} or~\cite{V}). Thus, $H$ is a bounded
+operator on $L^p(x^{-p/8}(|x^{1/2}-\nu|+{\nu}^{1/3})^{-p/4})$ and this,
+together with~(\ref{ec:Jnu'}), proves (a).
+
+(b) Let us write $L_\nu(f,x) = L_{\nu,1}(f,x) +
+L_{\nu,2}(f,x)$, where
+\begin{align*}
+   L_{\nu,1}(f,x) 
+   &= J_\nu(x^{1/2}) (|x^{1/2} - \nu| + \nu^{1/3})^{1/4}
+   H \left(
+   \frac{t^{1/2} J_\nu'(t^{1/2}) f(t)}{(|t^{1/2} - \nu| + \nu^{1/3})^{1/4}},
+   x \right),
+   \\
+   L_{\nu,2}(f,x)
+   &= J_\nu(x^\frac{1}{2}) H \left(
+   \frac{t^\frac{1}{2} J_\nu'(t^\frac{1}{2}) f(t)
+   [(|t^\frac{1}{2} - \nu| + \nu^\frac{1}{3})^\frac{1}{4} -
+   (|x^\frac{1}{2} - \nu| + \nu^\frac{1}{3})^\frac{1}{4}]}
+   {(|t^\frac{1}{2} -\nu| + \nu^\frac{1}{3})^\frac{1}{4}},
+   x \right).
+\end{align*}
+The term $L_{\nu,1}(f,x)$ is easy to handle: we have
+\[
+   |J_\nu(x^{1/2})| (|x^{1/2} - \nu| + \nu^{1/3})^{1/4} \leq C x^{-1/8}
+\]
+and $x^{-1/2} \in A_4(0,\infty)$, so that
+\begin{align*}
+   \| L_{\nu,1}f \|_{L^{4,\infty}(dx)}
+   &\leq C \left\| H \left(
+   \frac{t^{1/2} J_\nu'(t^{1/2}) f(t)}{(|t^{1/2} - \nu| + \nu^{1/3})^{1/4}},
+   x \right)
+   \right\|_{L^4(x^{-1/2})}
+   \\
+   &\leq C \left\|
+   \frac{x^{1/2} J_\nu'(x^{1/2}) f(x)}{(|x^{1/2} - \nu| + \nu^{1/3})^{1/4}}
+   \right\|_{L^4(x^{-1/2})}
+   \leq C \| f \|_{L^{4,1}(dx)}.
+\end{align*}
+Let us consider now $L_{\nu,2} f$. The elementary inequality $|a^{1/4} -
+b^{1/4}| \leq a^{-3/4} |a - b|$, which holds for every $a, b > 0$, gives
+\[
+   \left|
+   (|t^\frac{1}{2} - \nu| + \nu^\frac{1}{3})^\frac{1}{4} -
+   (|x^\frac{1}{2} - \nu| + \nu^\frac{1}{3})^\frac{1}{4}
+   \right|
+   \leq t^{-1/2} (|t^\frac{1}{2} - \nu| + \nu^\frac{1}{3})^{-\frac{3}{4}}
+   |t - x|.
+\]
+Thus,
+\begin{align*}
+   |L_{\nu,2}(f,x)|
+   &\leq |J_\nu(x^{1/2})|
+   \int_0^\infty |J_\nu'(t^{1/2})|
+   (|t^\frac{1}{2} - \nu| + \nu^\frac{1}{3})^{-1} |f(t)| \, dt
+   \\
+   &\leq |J_\nu(x^{1/2})| \,
+   \| J_\nu'(t^{1/2}) (|t^\frac{1}{2} - \nu| + \nu^\frac{1}{3})^{-1}
+   \|_{L^{4/3,\infty}(dt)} \| f \|_{L^{4,1}(dt)}.
+\end{align*}
+Finally, Lemma~\ref{lema:JnuLp}(b) and a small change in
+Lemma~\ref{lema:JnuLp}(d) give $\| J_\nu(x^\frac{1}{2})
+\|_{L^{4,\infty}(dx)} \leq C$ and $\| J_\nu'(x^\frac{1}{2}) (|x^\frac{1}{2}
+- \nu| + \nu^\frac{1}{3})^{-1} \|_{L^{4/3,\infty}(dx)} \leq C$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Weak boundedness}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Using that, for $\alpha >-1$,
+\begin{multline*}
+   \sum_{k=0}^n 2 (\alpha+2k+1) J_{\alpha+2k+1}(x) J_{\alpha+2k+1}(t)
+   = \frac{xt}{x^2-t^2} \, [
+   x J_{\alpha+1}(x) J_\alpha(t) - t J_\alpha(x) J_{\alpha+1}(t)
+   \\
+   + x J'_{\alpha+2n+2}(x) J_{\alpha+2n+2}(t)
+   - t J_{\alpha+2n+2}(x) J'_{\alpha+2n+2}(t)
+   ]
+\end{multline*}
+(see~\cite{GPV2, V}), we have
+$S_n f = W_1 f - W_2 f + W_{3,n} f - W_{4,n} f$,
+with
+\begin{align*}
+   W_1(f,x) &= \tfrac12 x^{-\alpha+1} J_{\alpha+1}(x)
+   \, H\big( t^{\alpha/2} J_{\alpha}(t^{1/2}) f(t^{1/2}), x^2 \big),
+   \\
+   W_2(f,x) &= \tfrac12 x^{-\alpha} J_{\alpha}(x)
+   \, H\big(t^{\alpha/2+1/2} J_{\alpha+1}(t^{1/2}) f(t^{1/2}), x^2 \big),
+   \\
+   W_{3,n}(f,x) &= \tfrac12 x^{-\alpha+1} J_\nu'(x)
+   \, H\big(t^{\alpha/2} J_\nu(t^{1/2}) f(t^{1/2}), x^2 \big),
+   \\
+   W_{4,n}(f,x) &= \tfrac12 x^{-\alpha} J_\nu(x)
+   \, H\big(t^{\alpha/2+1/2} J_\nu'(t^{1/2}) f(t^{1/2}), x^2 \big),
+\end{align*}
+and $\nu=\alpha+2n+2$. Here, $H$ denotes the Hilbert transform
+on $(0,\infty)$.
+The following was proved in~\cite[Theorem~1]{GPV2}:
+\begin{gather}
+\label{ec:acotW1}
+   \| W_1 f \|_{L^p(x^{2\alpha+1})} \leq C \| f \|_{L^p(x^{2\alpha+1})},
+   \quad
+   \frac{2\alpha-1}{4(\alpha+1)} < \frac{1}{p} <
+   \frac{2\alpha+3}{4(\alpha+1)};
+   \\
+\label{ec:acotW2}
+   \| W_2 f \|_{L^p(x^{2\alpha+1})} \leq C \| f \|_{L^p(x^{2\alpha+1})},
+   \quad
+   \frac{2\alpha+1}{4(\alpha+1)} < \frac{1}{p} <
+   \frac{2\alpha+5}{4(\alpha+1)};
+   \\
+\label{ec:acotW3n}
+   \| W_{3,n} f \|_{L^p(x^{2\alpha+1})} \leq C \| f \|_{L^p(x^{2\alpha+1})},
+   \quad
+   \frac{2\alpha-\frac{1}{2}}{4(\alpha+1)} < \frac{1}{p} <
+   \min\Big\{\frac{2\alpha+3}{4(\alpha+1)},\frac{3}{4}\Big\};
+   \\
+\label{ec:acotW4n}
+   \| W_{4,n} f \|_{L^p(x^{2\alpha+1})} \leq C \| f \|_{L^p(x^{2\alpha+1})},
+   \quad
+   \max\Big\{\frac{2\alpha+1}{4(\alpha+1)},\frac{1}{4}\Big\}
+   < \frac{1}{p} <
+   \frac{2\alpha+\frac{9}{2}}{4(\alpha+1)}.
+\end{gather}
+
+Now, let $\alpha \geq 0$. As mentioned in the introduction, the $S_n$ are not
+bounded operators from $L^p(x^{2\alpha+1})$ into $L^{p,\infty}(x^{2\alpha+1})$
+if $p = 4(\alpha+1)/(2\alpha+1)$, so we only need to prove here that the
+uniform weak boundedness fails for $p = 4(\alpha+1)/(2\alpha+3)$.
+
+It follows from~(\ref{ec:acotW2}) and~(\ref{ec:acotW4n}) that $W_2$ and
+$W_{4,n}$ are uniformly bounded from $L^p(x^{2\alpha+1})$ into itself, $p =
+4(\alpha+1)/(2\alpha+3)$. Thus, it will be enough to find a sequence of
+functions $\{f_n\}$ such that the inequality
+\begin{equation}
+\label{ec:W1+W3n}
+   \| W_1 f_n + W_{3,n} f_n \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \leq C \| f_n \|_{L^p(x^{2\alpha+1})}
+\end{equation}
+fails for every constant $C$. Let
+$
+    f_n(t)
+    = \sgn(J_{\alpha}(t))
+    t^{-\frac{2\alpha+3}{2}}\chi_{[1,n]}(t)
+$.
+Then,
+\begin{equation*}
+   \| f_n \|_{L^p(x^{2\alpha+1})}
+   = C (\log n)^\frac{1}{p}\, ,
+   \qquad p = 4(\alpha+1)/(2\alpha+3).
+\end{equation*}
+Now, for $\nu = \alpha + 2n + 2$ and $x > 2 \nu$ we have 
+\[
+   |W_{3,n}(f_n,x)|
+   \leq C x^{-\alpha-1} |J_\nu'(x)|
+   \int_1^{n^2} t^{-\frac{3}{4}} |J_\nu(t^\frac{1}{2})| \, dt
+   \leq C x^{-\alpha -\frac{3}{2}} \left(\frac{e}{4}\right)^{2n},
+\]
+where the last step follows from~(\ref{ec:Jnu'}) and~(\ref{ec:Jnuxa}). Thus,
+\begin{equation}
+\label{ec:W3nfn}
+   \| \chi_{(2\nu,\infty)} W_{3,n} f_n
+   \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \leq C \left(\frac{e}{4} \right)^{2n},
+   \qquad p=4(\alpha+1)/(2\alpha+3).
+\end{equation}
+On the other hand, for $x > 2 \nu$ we have
+\[
+   |W_1(f_n,x)| 
+   \geq C x^{-\alpha-1} |J_{\alpha+1}(x)|
+   \int_1^{n^2} t^{-\frac{3}{4}}
+   |J_\alpha(t^\frac{1}{2})| \, dt
+   \geq C (\log n) x^{-\alpha-1}
+   |J_{\alpha+1}(x)|,
+\]
+the last step following from~(\ref{ec:Jnuinfty}). Therefore,
+\begin{equation}
+\label{ec:W1fn}
+   \| \chi_{(2\nu,\infty)}(x) W_1(f_n,x)
+   \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \geq C \log n.
+\end{equation}
+Putting~(\ref{ec:W3nfn}) and~(\ref{ec:W1fn}) together, we get
+\[
+   \| W_1 f_n + W_{3,n} f_n
+   \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \geq  C \log n,
+   \qquad p = 4(\alpha+1)/(2\alpha+3)
+\]
+and~(\ref{ec:W1+W3n}) indeed fails. \qed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Restricted weak boundedness}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+By duality, we only need to prove that the self adjoint operators $S_n$ are
+uniformly of restricted weak type in two cases: $\alpha \geq 0$, $p =
+\frac{4(\alpha+1)}{2\alpha+1}$, and $-1 < \alpha < 0$, $p = 4$.
+
+{\it Case $\alpha \ge0$ and $p = \frac{4(\alpha+1)}{2\alpha+1}$.}
+From~(\ref{ec:acotW1}) and~(\ref{ec:acotW3n}), we conclude that $W_1$ and
+$W_{3,n}$ are uniformly bounded from $L^p(x^{2\alpha+1})$ into itself.
+Therefore, it is enough to prove that $W_2$ and $W_{4,n}$ are uniformly
+bounded from
+$L^{p,1}(x^{2\alpha+1})$ into $L^{p,\infty}(x^{2\alpha+1})$, i.e.,
+\[
+   \| W_{4,n} f \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \leq C \| f \|_{L^{p,1}(x^{2\alpha+1})},
+   \ f \in L^{p,1}(x^{2\alpha+1})
+\]
+and the same inequality for $W_2$. We will consider only $W_{4,n}$,
+since the boundedness of $W_2$ is completely analogous. Let $f \in
+L^{p,1}(x^{2\alpha+1})$ and, for each $k \in \Z$,
+\[
+   I_k = [2^k, 2^{k+1}),
+   \qquad
+   f_1^k = f \chi_{(0,2^{k-1}) \cup [2^{k+2},\infty)},
+   \qquad
+   f_2^k = f \chi_{[2^{k-1},2^{k+2})}.
+\]
+Thus, $f = f_1^k + f_2^k$ for each $k \in \Z$ and
+\begin{equation}
+\label{ec:descW4n}
+   |W_{4,n} (f,x)| 
+   \leq \sum_{k \in \Z} |W_{4,n} (f_1^k,x)| \chi_{I_k}(x)
+   + \sum_{k \in \Z} |W_{4,n} (f_2^k,x)| \chi_{I_k}(x).
+\end{equation}
+Let $x \in I_k$. Then, it is easy to
+check that $|x^2 - y^2| \geq \frac{3}{4} y^2$ if $y \in (0,2^{k-1}) \cup
+[2^{k+2},\infty)$. Hence, after a change of variable we get
+\[
+   |W_{4,n} (f_1^k,x)| 
+   \leq C x^{-\alpha} |J_\nu(x)|
+   \int_0^\infty y^{\alpha}
+   |J_\nu'(y)| |f(y)| \, dy
+\]
+and
+\[
+   \sum_{k \in \Z} |W_{4,n} (f_1^k,x)| \chi_{I_k}(x)
+   \leq C x^{-\alpha} |J_\nu(x)|\,
+   \| x^{-\alpha-1} J_\nu'(x)
+   \|_{L^{q,\infty}(x^{2\alpha+1})}
+   \| f \|_{L^{p,1}(x^{2\alpha+1})},
+\]
+where $\frac{1}{p} + \frac{1}{q} = 1$. Therefore, the first term
+in~(\ref{ec:descW4n}) is bounded:
+\[
+   \| \sum_{k \in \Z} |W_{4,n} (f_1^k,x)| \chi_{I_k}(x)
+   \|_{L^{p,\infty}(x^{2\alpha+1})}
+   \leq C \| f \|_{L^{p,1}(x^{2\alpha+1})},
+\]
+by Lemma~\ref{lema:JnuLp}(b) and (d).
+Let us consider
+now the second term. If $x \in I_k$,
+\[
+   |W_{4,n} (f_2^k,x)| 
+   \leq C
+   2^{-\alpha k} \left|L_\nu(t^\frac{\alpha}{2} f_k^2(t^{1/2}), x^2)
+   \right|.
+\]
+From Lemma~\ref{lema:Lnu} it follows that
+\begin{align*}
+   \|W_{4,n} (f_2^k,x) \chi_{I_k}(x)\|_{L^{p,\infty}(x^{2\alpha+1})}    
+   \leq C
+   2^{-\alpha k + \frac{2\alpha k}{p}}
+   \|  \chi_{I_k}(x) L_\nu(t^\frac{\alpha}{2} f_k^2(t^{1/2}), x^2)
+   \|_{L^{p,\infty}(x\, dx)}
+   \\
+   \leq C
+   2^{-\alpha k + \frac{2\alpha k}{p}}
+   \| x^\frac{\alpha}{2} f_k^2(x^{1/2}) \|_{L^{p,1}(dx)}
+   \leq C \| f \chi_{[2^{k-2},2^{k+2})} \|_{L^{p,1}(x^{2\alpha+1})}.
+\end{align*}
+Then,
+\begin{equation}
+\label{ec:W4nf2k}
+   \| \sum_{k \in \Z} |W_{4,n} (f_2^k,x)|
+   \chi_{I_k}(x)\|_{L^{p,\infty}(x^{2\alpha+1})} 
+   \leq C \| f \|_{L^{p,1}(x^{2\alpha+1})}.
+\end{equation}
+
+{\it Case $-1 < \alpha < 0$ and $p =4$.} Now, $W_1$, $W_2$, and $W_{3,n}$
+are uniformly bounded from $L^4(x^{2\alpha+1})$ into itself
+(see~(\ref{ec:acotW1}), (\ref{ec:acotW2}), (\ref{ec:acotW3n})), so we only
+need to prove that
+\[
+   \| W_{4,n} f \|_{L^{4,\infty}(x^{2\alpha+1})}
+   \leq C \| f \|_{L^{4,1}(x^{2\alpha+1})},
+   \ f \in L^{4,1}(x^{2\alpha+1}).
+\]
+The above proof of~(\ref{ec:W4nf2k}) remains valid, while only minor
+changes are necessary for the first term in~(\ref{ec:descW4n}): it is not
+difficult to check that
+\[
+   \frac{y^{2+\frac{\alpha}{2}} x^{-\frac{\alpha}{2}}}{|x^2-y^2|}
+   \leq \frac{4}{3}
+\]
+if $x \in I_k$ and $y \in (0,2^{k-1}) \cup [2^{k+2},\infty)$. Then, it
+follows that
+\[
+   |W_{4,n} (f_1^k,x)| \leq C x^{-\frac{\alpha}{2}} |J_\nu(x)|
+   \int_0^\infty y^{\frac{\alpha}{2}} |J_\nu'(y)| \, |f(y)|
+   \,dy.
+   \qed
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{amsplain}
+
+\begin{thebibliography}{99}
+
+\bibitem{B}
+V. M. Badkov,
+{Convergence in the mean and almost everywhere of Fourier series in
+polynomials orthogonal on an interval},
+\textit{Math. USSR Sb.}
+\textbf{24} (1974), 223--256.
+
+\bibitem{BC} J. A. Barcel\'o and A. C\'ordoba,
+{Band-limited functions: $L^p$-convergence},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{313} (1989), 655--669.
+
+\bibitem{CRS} A. Carbery, E. Romera and F. Soria,
+{Radial weights and mixed norm inequalities for the disc multiplier},
+\textit{J. Funct. Anal.}
+\textbf{109} (1992), 52--75.
+
+\bibitem{Ch1} S. Chanillo,
+{On the weak behaviour of partial sums of Legendre series},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{268} (1981), 367--376.
+
+\bibitem{Ch2} S. Chanillo,
+{The multiplier for the ball and radial functions},
+\textit{J. Funct. Anal.}
+\textbf{55} (1984), 18--24.
+
+\bibitem{Ci} \'O. Ciaurri,
+{\it Aproximaci\'on de funciones cuya transformada de Hankel est\'a soportada
+en $[0,1]$,}
+Ph.~D.~Thesis, University of La Rioja, Logro\~no (Spain), 2000.
+
+\bibitem{CGPV} \'O. Ciaurri, J. J. Guadalupe, M. P\'erez and J. L. Varona,
+{Mean and almost everywhere convergence of Fourier-Neumann series},
+\textit{J. Math. Anal. Appl.}
+\textbf{236} (1999), 125--147.
+
+\bibitem{Co} A. C\'ordoba,
+{The disc multiplier},
+\textit{Duke Math. J.}
+\textbf{58} (1989), 21--29.
+
+%\bibitem{EMOT} A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+%{\it Higher Transcendental Functions,} Vol.~II,
+%McGraw-Hill, New York, 1953.
+
+\bibitem{GPRV} J. J. Guadalupe, M. P\'erez, F. J. Ruiz and J. L. Varona,
+{Mean and weak convergence of Fourier-Bessel series},
+\textit{J. Math. Anal. Appl.}
+\textbf{173} (1993), 370--389.
+
+\bibitem{GPV1} J. J. Guadalupe, M. P\'erez and J. L. Varona,
+{Weak behaviour of Fourier-Jacobi series},
+\textit{J. Approx. Theory}
+\textbf{61} (1990), 222--238.
+
+\bibitem{GPV2} J. J. Guadalupe, M. P\'erez and J. L. Varona,
+{Commutators and analytic dependence of Fourier-Bessel series on
+$(0,\infty)$},
+\textit{Canad. Math. Bull.}
+\textbf{42} (1999), 198--208.
+
+\bibitem{H} G. H. Hunt,
+{On $L(p,q)$ spaces},
+\textit{Enseign. Math.}
+\textbf{12} (1966), 249--276.
+
+\bibitem{KT} C. E. Kenig and P. A. Tomas,
+{The weak behaviour of spherical means},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{78} (1980), 48--50.
+
+\bibitem{M1} B. Muckenhoupt,
+{Mean convergence of Jacobi series},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{23} (1969), 306--310.
+
+\bibitem{M2} B. Muckenhoupt,
+{Mean convergence of Hermite and Laguerre series.~I},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{147} (1970), 419--431.
+
+\bibitem{M3} B. Muckenhoupt,
+{Mean convergence of Hermite and Laguerre series.~II},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{147} (1970), 433--460.
+
+\bibitem{P1} H. Pollard,
+{The mean convergence of orthogonal series.~II},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{63} (1948), 355--367.
+
+\bibitem{P2} H. Pollard,
+{The mean convergence of orthogonal series.~III},
+\textit{Duke Math. J.}
+\textbf{16} (1949), 189--191.
+
+\bibitem{R} M. Riesz,
+{Sur les fonctions conjugu\'ees},
+\textit{Math. Z.}
+\textbf{27} (1927), 218--244.
+
+\bibitem{RS} E. Romera and F. Soria,
+{Endpoint estimates for the maximal operator associated to
+spherical partial sums on radial functions},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{111} (1991), 1015--1022.
+
+\bibitem{SW} E. M. Stein and G. Weiss,
+{\it Introduction to Fourier Analysis on Euclidean Spaces,}
+Princeton Univ. Press, Princeton, NJ, 1975.
+
+\bibitem{S} K. Stempak,
+{A weighted uniform $L^p$-estimate of Bessel functions:
+A note on a paper of Guo},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{128} (2000), 2943--2945.
+
+\bibitem{V} J. L. Varona,
+{Fourier series of functions whose Hankel transform is supported on $[0,1]$},
+\textit{Constr. Approx.}
+\textbf{10} (1994), 65--75.
+
+\bibitem{W} G. N. Watson,
+{\it A Treatise on the Theory of Bessel Functions} (2nd edition),
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+\end{thebibliography}
+
+
+\end{document}

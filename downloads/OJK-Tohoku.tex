@@ -1,0 +1,1558 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% Uniform two-weight norm inequalities for Hankel transform          %
+% Bochner-Riesz means of order one,                                  %
+% by                                                                 %
+% \'Oscar Ciaurri, Krzysztof Stempak and Juan L. Varona              %
+%                                                                    %
+% DATE: 6-November-2003                                              %
+%                                                                    %
+% Written with AMS-LaTeX 2.0                                         %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[leqno,a4paper]{amsart}
+
+\newtheorem{Prop}{Proposition}
+\newtheorem{Lem}{Lemma}
+\newtheorem{Theorem}{Theorem}
+%% \newtheorem{Cor}{Corollary} % UNUSED
+\newtheorem*{TheoremKnown}{Theorem}
+
+% \usepackage[notcite,notref]{showkeys}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Diag}{\mathop{\rm Diag}\nolimits}
+\newcommand{\Var}{\mathop{\rm Var}\nolimits}
+\newcommand{\overnu}{\overline{\nu}}
+
+%%%%%%%% A LOT OF BIG SEVERAL-LINE EQUATIONS (aligns, etc.).
+%%%%%%%% THUS, WE ALLOW TO BREAK THEM IN PAGES.
+% \allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Uniform two-weight norm inequalities]{Uniform two-weight
+norm inequalities for\\ Hankel transform Bochner-Riesz means\\
+of order one}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,
+% Edificio J.~L.~Vi\-ves,
+Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}
+\email{oscar.ciaurri@dmc.unirioja.es}
+
+\thanks{Research of the first and third authors supported by grant
+BFM2003-06335-C03-03 of the~DGI}
+
+\author[K. Stempak]{Krzysztof Stempak}
+\address{Instytut Matematyki,
+Politechnika Wroc\l{a}wska,
+Wyb.~Wyspia\'nskiego 27,
+50-370 Wro\-c\l{a}w,
+Poland}
+\email{stempak@im.pwr.wroc.pl}
+
+\author[J. L. Varona]{Juan L. Varona}
+
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,
+% Edificio J.~L.~Vi\-ves,
+Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+
+\subjclass[2000]{Primary 42C10; Secondary 44A20}
+%\subjclass{Primary 42C10; Secondary 44A20}
+
+\keywords{Bochner-Riesz means, Hankel transform, Bessel functions, two-weight norm inequalities}
+
+\thanks{Research of the second author supported in part by KBN grant
+\#~2 P03A 034 20}
+
+\thanks{THIS PAPER HAS BEEN PUBLISHED IN
+\textit{Tohoku Math.\ J. (2)} \textbf{56} (2004), no.~3, 371--392.}
+
+\begin{abstract}
+Two-weight $L^p$ norm inequalities, uniform with respect to the order of the
+involved Bessel function, are proved for the Bochner-Riesz means of the first
+order for the Hankel transform. Both sufficient and necessary conditions for
+parameters used in the two weights are determined. The proof relies on uniform
+pointwise asymptotic estimates for the Bessel functions that were shown by
+Barcel\'o and C\'ordoba.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The Hankel transform ${\mathcal H}_\nu f$ of a suitable function $f$ on
+$(0,\infty)$ is defined by
+$$
+{\mathcal H}_\nu f(x)
+= \int_0^\infty (xy)^{1/2}J_\nu(xy)f(y)\,dy,\qquad x>0.
+$$
+Here $\nu>-1$ is given and $J_\nu(x)$ denotes the Bessel function of the
+first kind and order $\nu$, \cite{Le}. It is known that
+$({\mathcal H}_\nu\circ{\mathcal H}_\nu)f=f$ and $\|{\mathcal H}_\nu
+f\|_2=\|f\|_2$, for any
+$f\in C_c^\infty(0,\infty)$, the space of $C^\infty$ functions with
+compact support in $(0,\infty)$ ($\|\cdot\|_p$ denotes the usual unweighted
+norm in $L^p(0,\infty)$). Consider the Bochner-Riesz means
+of order $\delta\ge0$ for the Hankel transform ${\mathcal H}_\nu$ given by
+\begin{align*}
+S_{\nu,R}^\delta f(x)
+&= {\mathcal H}_\nu(m_R^\delta
+\cdot{\mathcal H}_\nu f)(x)\\
+&= \int_0^\infty K_{\nu,R}^\delta(x,y)f(y)\,dy,
+\end{align*}
+where $m_R^\delta(y)=(1-(y/R)^2)^\delta$ for $0<y<R$ and 0 otherwise, and
+\begin{equation*}
+K^{\delta}_{\nu,R}(x,y) = \int_0^R m_R^\delta(s)
+(xs)^{1/2}J_\nu(xs)(ys)^{1/2}J_\nu(ys)\, ds.
+\end{equation*}
+Uniform boundedness, with respect to $R>0$, of $S_{\nu,R}^\delta$ in weighted
+$L^{p}$ spaces for fixed $\nu>-1$ and $\delta=0$,
+\begin{equation}
+\|S_{\nu,R}^0 f(x)x^a\|_{p}\le C\|f(x)x^a\|_{p},\qquad R>0,
+\label{1a}
+\end{equation}
+is known to hold if either $\nu\ge-1/2$, $1<p<\infty$ and $-1/p<a<1-1/p$
+or $-1<\nu<-1/2$, $2/(2\nu+3)<p<-2/(2\nu+1)$ and $a=0$; cf.~\cite{St}
+for appropriate references. The general case $\delta>0$ then
+follows by applying a sort of Ste\v ckin-type multiplier theorem for the Hankel
+transform. Indeed, let $m(x)$ be a function of bounded variation
+on $(0,\infty)$. Then (\ref{1a}) implies
+$$
+\|{\mathcal H}_\nu(m\cdot{\mathcal H}_\nu f)(x)x^a\|_p\le C\max\{|m(1)|,
+\Var m\}\|f(x)x^a\|_{p}
+$$
+(with the same constant $C$). To show this, it is sufficient to establish
+the inequality
+$$
+\bigg|\int_0^\infty m(y){\mathcal H}_\nu f(y){\mathcal H}_\nu g(y)\,dy\bigg|
+\le C\max\{|m(1)|,\Var m\}\|f(x)x^a\|_p\|g(x)x^{-a}\|_{p'}
+$$
+for $f,g\in C_c^\infty(0,\infty)$. Define
+$$
+n_\nu(R)=\int_0^R{\mathcal H}_\nu f(y){\mathcal H}_\nu g(y)\,dy, \qquad R>0.
+$$
+Then (\ref{1a}) gives
+$$
+|n_\nu(R)|\le C\|f(x)x^a\|_p\|g(x)x^{-a}\|_{p'}
+$$
+and an integration by parts leads to
+\begin{align*}
+\bigg|\int_\varepsilon^N m(y){\mathcal H}_\nu f(y){\mathcal H}_\nu g(y)\,dy\bigg|
+&\le |m(\varepsilon)n_\nu(\varepsilon)|+|m(N)n_\nu(N)|
++\bigg|\int_\varepsilon^N n_\nu(y)\,dm(y)\bigg|\\
+&\le C\max\{|m(1)|,\Var m\}\|f(x)x^a\|_p\|g(x)x^{-a}\|_{p'}.
+\end{align*}
+Finally, a limit passage with $\varepsilon$ tending to 0 and $N$ tending to
+$\infty$ completes the argument.
+
+Since (\ref{1a}), with $\delta=0$ and $R=1$ (hence also with any $R>0$),
+holds uniformly with respect to $\nu\ge2$ (cf.~\cite{St} for appropriate
+comments) in the case when $4/3<p<4$ and $-1/p<a<1-1/p$ the same remains valid,
+by applying the argument just used, for arbitrary $\delta>0$.
+
+The present paper focuses on proving more general, uniform with respect to
+$\nu$, inequalities of the form
+$$
+\|S_\nu^1 f(x)x^a(1+x)^{b-a}\|_p\le C\|f(x)x^A(1+x)^{B-A}\|_p;
+$$
+we simplify the notation by writing $S_\nu^1$ and $K_\nu^1$
+in place of $S_{\nu,1}^1$ and~$K_{\nu,1}^1$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{Theorem}
+\label{Theorem:main}
+Let $\alpha>-1$ and $1\le p\le\infty$. Then
+\begin{equation}
+\|S_\nu^1 f(x)x^a(1+x)^{b-a}\|_p\le C\|f(x)x^A(1+x)^{B-A}\|_p
+\label{t4}
+\end{equation}
+with a constant $C=C(p,\alpha,a,b,A,B)$ independent of $\nu\ge\alpha$ and~$f$
+if and only if $a,b,A,B, \alpha$ and $p$ satisfy the conditions
+\begin{equation}
+a>-1/p-(\alpha+1/2)\,\,\,(\ge \text{if } p=\infty), \qquad
+A<1-1/p+(\alpha+1/2)\,\,\,(\le \text{if } p=1),
+\label{t1}
+\end{equation}
+\begin{equation}
+b<2-1/p\,\,\,(\le \text{if } p=\infty),
+\qquad  B>-1-1/p\,\,\,(\ge \text{if }p=1),
+\label{t2}
+\end{equation}
+\begin{equation}
+b \le B.
+\label{t3}
+\end{equation}
+Moreover, only $\nu=\alpha$ in $(\ref{t4})$ is required to prove necessity of
+$(\ref{t1})$, $(\ref{t2})$ and $(\ref{t3})$.
+\end{Theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It is tacitly understood that when assuming (\ref{t4}) to hold and then proving the
+necessity of (\ref{t1}), (\ref{t2}) and (\ref{t3}) only such functions
+$f$ are admitted for which $S^1_\alpha f(x)$ is well defined for (almost) all
+$x>0$, i.e.,\ $\int_0^\infty|K^1_\alpha(x,y)f(y)|\,dy < \infty$ for $x>0$.
+Clearly, if $f$ is compactly supported in $(0,\infty)$, say in $[c,d]$, $0<c<d<\infty$,
+and $\int_c^d|f(y)|\,dy < \infty$, then $\int_0^\infty|K^1_\nu(x,y)f(y)|\,dy<\infty$,
+since, with given $x>0$, $K^1_\nu(x,y)$ is a continuous function of $y>0$.
+But if we assume $\int_0^\infty|f(x)x^A(1+x)^{B-A}|^p\,dx < \infty$
+with $A<1-1/p+(\alpha+1/2)$ ($\le$ if $p=1$) and $B>-1-1/p$ ($\ge$ if $p=1$),
+then $S_\nu^1 f(x)$ is also well-defined for $\nu\ge\alpha$ and $x>0$.
+This easily follows, by using H\"older's inequality and the estimates
+$K_\nu^1(x,y) = O(y^{\nu+1/2})$, $y\to0^+$, and $K_\nu^1(x,y)=O(y^{-2})$,
+$y\to\infty$. The first estimate follows from the integral representation of
+$K_\nu^1(x,y)$ and the asymptotic
+\begin{equation}
+J_\nu(t) = O(t^{\nu}), \qquad t\to0^+,
+\label{asy}
+\end{equation}
+the second is a consequence of the Campbell-type representation
+of $K_\nu^1(x,y)$:
+cf.~(\ref{ec:jk}) and follow the argument in the proof of Lemma~\ref{Lem:L2}
+(now, with $x$ and $\nu$ fixed!).
+Therefore the second parts of (\ref{t1}) and (\ref{t2}) should be considered
+as ``natural'' assumptions. An analysis also shows that the first conditions
+in (\ref{t1}) and (\ref{t2}) are dual to their right counterparts.
+
+It is instructive to compare the assumptions (\ref{t1}), (\ref{t2})
+and (\ref{t4}) of Theorem~\ref{Theorem:main} with those of Theorem 1.1 of
+\cite{St} (partial sums case). The conditions on $a$ and $A$ are exactly the
+same; this is probably explained by the fact that the kernels $K^1_\nu(x,y)$
+and $K^0_\nu(x,y)$ have the same behaviour in the neighbourhood of $(0,0)$.
+The conditions on $b$ and $B$ are now relaxed (by one from both sides) when
+compared with those from Theorem 1.1 of \cite{St}. The most important difference
+is with the condition on the relation between $b$ and $B$; it becomes now
+very simple when compared with that of Theorem 1.1 of \cite{St}. Furthermore,
+the uniformity of (\ref{t4}) for large $\nu$ does not imply additional restrictions:
+the condition $b\le B$ is sufficient for (\ref{t4}) to hold for $\nu\ge\alpha$
+as well as for the single~$\nu=\alpha$.
+
+In \cite{St} we compared a similar result proved there for partial sum operators
+(the case of $\delta=0$) with Muckenhoupt's result \cite{Mu} proved for partial
+sum operators for expansions with respect to the system of
+Laguerre functions
+$$
+\psi_n^\alpha(x)=\bigg(\frac{2\Gamma(n+1)}
+{\Gamma(n+\alpha+1)}\bigg)^{1/2}\,e^{-x^2/2}\,x^{\alpha+1/2}L_n^\alpha(x^2),
+$$
+which form a complete orthonormal system in $L^2(0,\infty)$ (for a motivation
+leading to such a comparition see again \cite{St}).
+
+It seems worthy to compare our present result with that of Muckenhoupt and Webb
+\cite{Mu-We} specified to the first order Ces\`aro means and reformulated
+for expansions with respect to~$\{\psi^\alpha_n\}_{n=0}^\infty$,
+$$
+\sigma_N^{(\alpha,1)}(f,x) = \frac1{N+1}\sum_{n=0}^N(N+1-n)
+\langle f,\psi^\alpha_n\rangle\psi^\alpha_n(x).
+$$
+An earlier result of Poiani,~\cite{Po}, admitted the case $a=A$ and $b=B$
+only and did not include some possibilities.
+
+%%%%%%%%%%%%%%%%%%
+\begin{TheoremKnown}[\cite{Mu-We}, Theorem~(2.29)]
+Let $\alpha>-1$ and $1\le p\le\infty$.
+Then
+\begin{equation}
+\sup_{N\ge0}\|\sigma_N^{(\alpha,1)}(f,x)x^a(1+x)^{b-a}\|_p
+\le C\|f(x)x^A(1+x)^{B-A}\|_p,
+\label{m6}
+\end{equation}
+holds with $C=C(p,\alpha,a,b,A,B)$ independent of $f$ if and only if
+$a,b,A,B$ and $\alpha$ satisfy the conditions
+\begin{equation}
+a\ge-1-1/p, \qquad a>-1/p-(\alpha+1/2)\,\,\,(\ge \text{if } p=\infty),
+\label{m1}
+\end{equation}
+%%%%%%
+\begin{equation}
+A\le a,\qquad A\le 1-1/p+1/2,\qquad A<1-1/p+(\alpha+1/2)
+\,\,\,(\le \text{if } p=1),
+\label{m2}
+\end{equation}
+%%%%%%
+\begin{equation}
+a+B\ge\min\{-3-2/(3p),-2-2/p\},\qquad A+b\le\min\{4-2/p,11/3-2/(3p)\},
+\label{m3}
+\end{equation}
+%%%%%%
+\begin{equation}
+b\le\min\{3-1/p,8/3+1/(3p)\},\qquad B\ge\max\{-3+1/(3p),-2-1/p\},
+\label{m4}
+\end{equation}
+%%%%%%
+\begin{equation}
+b\le B+\min\{0,3-4/(3p),5/3+4/(3p)\}.
+\label{m5}
+\end{equation}
+\end{TheoremKnown}
+%%%%%%%%%%%%%%%%%%
+
+The last parts of the assumptions (\ref{m1}) and (\ref{m2}) are identical
+with our assumptions on $a$ and $A$, cf.~(\ref{t1}). This is caused by the
+fact that the kernel $K^1_\alpha(x,y)$ and the kernels that correspond to
+$\sigma^{(\alpha,1)}_N$ have the same behaviour for small $x$ and $y$. To see
+this, one has to compare the result of Lemma~\ref{Lem:L1} below with the estimate
+(2.3) of \cite{Mu-We} (because of the reformulation mentioned above, in
+(2.3) of \cite{Mu-We} one has to take $x^2, y^2$ in place of $x, y$, and then
+multiply both sides by $(xy)^{1/2}$). In general, however, the assumptions
+(\ref{m1})--(\ref{m5}) from the Laguerre case are much more involved than
+those from Theorem~\ref{Theorem:main}.
+This is again explained by more complicated nature of estimates of the
+first order Ces\`aro kernels in the Laguerre case (cf.~(2.3), (2.4)
+and (2.2) in \cite{Mu-We} with necessary modifications) when compared
+with the estimates contained in Lemmas~\ref{Lem:L1}--\ref{Lem:L4} below.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Preliminaries}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We start with writing an exact expression for the kernel
+$$
+K^{1}_{\nu}(x,y) = \sqrt{xy}\int_0^1 s(1-s^2)J_\nu(xs)J_\nu(ys)\, ds
+$$
+that corresponds to the Bochner-Riesz mean $S_\nu^1$. We use the notation
+$$
+u=x^2-y^2,\qquad\qquad v=x^2+y^2
+$$
+and
+\begin{align*}
+F_1(x,y) &= \sqrt{xy}J_\nu(x)J_\nu(y),\qquad\qquad
+F_2(x,y) = \sqrt{xy}J'_\nu(x)J_\nu(y),\\
+F_3(x,y) &= \sqrt{xy}J_\nu(x)J'_\nu(y),\qquad\qquad
+F_4(x,y) = \sqrt{xy}J'_\nu(x)J'_\nu(y).
+\end{align*}
+Then we have
+\begin{align}
+\label{Cam}
+&K_\nu^1(x,y) \\
+\nonumber
+&\quad= \frac{2}{u^{2}} \left((2\nu^2-v)F_1(x,y)-2x\frac vuF_2(x,y)
++ 2y\frac vuF_3(x,y)-2xyF_4(x,y)\right)
+\end{align}
+whenever $x\neq y$. This may be checked by noting that
+\begin{equation}
+\label{dif}
+K^1_\nu(x,y) = 2\mathcal{D}^{2}F_1(x,y)
+\end{equation}
+where
+\begin{equation*}
+\mathcal{D} = \frac{1}{u}\left(y\frac{\partial}{\partial y}
+-x\frac{\partial}{\partial x}\right),
+\end{equation*}
+using $\mathcal{D}(fgh) = \mathcal{D}(f)gh+f\mathcal{D}(g)h+fg\mathcal{D}(h)$
+and $\mathcal{D}(x^ay^bu^{-c})=x^ay^bu^{-c-2}((b-a)u+2cv)$, $a,b,c\in\R$,
+and observing how $\mathcal{D}$ acts on $F_i$, $i=1,2,3$:
+\begin{align*}
+\mathcal{D}(F_1) &= \frac1 u(-x F_2+ y F_3),\\
+\mathcal{D}(F_2) &= \frac1u\left(-\frac{\nu^2-x^2}{x}F_1+ F_2+ y F_4\right),\\
+\mathcal{D}(F_3) &= \frac1u\left(\frac{\nu^2-y^2}{y}F_1- F_3- x F_4\right);
+\end{align*}
+the identities are obtained by using the fact that $J_\nu(x)$ satisfies
+Bessel's differential equation $J''_\nu(x) = ((\nu^2-x^2)/x^2)J_\nu(x)-
+(1/x)J_\nu'(x)$. To verify (\ref{dif}) we first use Lommel's formula
+\begin{equation*}
+\int_0^stJ_{\nu}(xt)J_{\nu}(yt)\,dt
+= s\frac{xJ_{\nu+1}(sx)J_{\nu}(sy)-yJ_{\nu}(sx)J_{\nu+1}(sy)}{x^2-y^2},
+\end{equation*}
+with $s=1$, the identity $xJ_{\nu+1}(x)=\nu J_{\nu}(x)-xJ'_{\nu}(x)$
+and the expression on $\mathcal{D}(F_1)$
+to obtain $K^0_\nu(x,y)=\mathcal{D}F_1(x,y)$, where $K^0_\nu(x,y)$ denotes
+the integral kernel of $S^0_\nu=S^0_{\nu,1}$.
+Then, integrating by parts, using Lommel's formula and
+the expression on $\mathcal{D}(F_1)$ shows that
+\begin{align*}
+K^{1}_\nu(x,y)&=\sqrt{xy}\int_0^1(1-s^2)sJ_{\nu}(xs)J_\nu(ys)\, ds\\
+&=2\sqrt{xy}\int_0^1 s\cdot
+s\frac{xJ_{\nu+1}(sx)J_{\nu}(sy)-yJ_{\nu}(sx)J_{\nu+1}(sy)}{x^2-y^2}\, ds\\
+&=2\sqrt{xy}\int_0^1 s\mathcal{D}(J_\nu(sx)J_\nu(sy))\,ds\\
+&=2\mathcal{D}K^{0}_\nu(x,y).
+\end{align*}
+This completes checking (\ref{dif}). We should add at this point that according
+to the Laguerre case, (\ref{dif}) could be called a Campbell-type formula.
+
+If $\nu=-1/2$ then $J_{-1/2}(u) = (2/(\pi u))^{1/2}\cos u$ and ${\mathcal H}_{-1/2}$
+reduces to the cosine transform. A direct calculation of the integral
+representing $K^1_{-1/2}(x,y)$ then shows that
+\begin{align*}
+K^1_{-1/2}(x,y) = \frac2\pi\bigg(\frac1{(x-y)^3}\sin(x-y)
+&-\frac1{(x-y)^2}\cos(x-y) + \frac1{(x+y)^3}\sin(x+y)\\
+&-\frac1{(x+y)^2}\cos(x+y)\bigg).
+\end{align*}
+Similarly, if $\nu=1/2$ then $J_{1/2}(u) = (2/(\pi u))^{1/2}\sin u$,
+${\mathcal H}_{1/2}$ reduces to the sine transform and
+\begin{align*}
+K^1_{1/2}(x,y) = \frac2\pi\bigg(\frac1{(x-y)^3}\sin(x-y)
+&-\frac1{(x-y)^2}\cos(x-y) - \frac1{(x+y)^3}\sin(x+y)\\
+&+\frac1{(x+y)^2}\cos(x+y)\bigg).
+\end{align*}
+These two exact formulas (consistent with (\ref{Cam})!) give an
+immediate insight on how estimates of
+$K^1_\nu(x,y)$ should look like, for a single $\nu$, in different regions
+of the quarter plane. For estimates uniform on $\nu$, (\ref{Cam}) together
+with the uniform estimates that follow are required.
+
+We will make an extensive use of the following uniform
+pointwise estimates of Bessel functions and their first derivatives: with a
+constant $D$,
+independent of $\nu$ and $x$, for $\nu\ge1$,
+\begin{equation}
+|x^{1/2}J_\nu(x)|\le D
+\begin{cases}
+x^{\nu+1/2}(\Gamma(\nu+1)2^\nu)^{-1},& 0<x<\nu/2,\\
+\nu^{1/4}(\nu^{1/3}+|x-\nu|)^{-1/4},& \nu/2<x<2\nu,\\
+1,& 2\nu<x<\infty,
+\end{cases}
+\label{1b}
+\end{equation}
+and
+\begin{equation}
+|x^{1/2}J_\nu'(x)|\le D
+\begin{cases}
+\nu x^{\nu-1/2}(\Gamma(\nu+1)2^\nu)^{-1},& 0<x<\nu/2,\\
+\nu^{-1/4}(\nu^{1/3}+|x-\nu|)^{1/4},& \nu/2<x<2\nu,\\
+1,& 2\nu<x<\infty,
+\end{cases}
+\label{2b}
+\end{equation}
+and, for $-1<\nu<1$,
+\begin{equation}
+|x^{1/2}J_\nu(x)|\le D
+\begin{cases}
+x^{\nu+1/2}(\Gamma(\nu+1))^{-1},& 0<x<1/2,\\
+1,& 1/2<x<\infty,
+\end{cases}
+\label{3b}
+\end{equation}
+and
+\begin{equation}
+|x^{1/2}J_\nu'(x)|\le D
+\begin{cases}
+x^{\nu-1/2}(\Gamma(\nu+1))^{-1},& 0<x<1/2,\\
+1,& 1/2<x<\infty.
+\end{cases}
+\label{4b}
+\end{equation}
+In the case $\nu=0$, the bound $x^{-1/2}$ in (\ref{4b}) has to be replaced
+by $x^{3/2}$. (\ref{1b}) and (\ref{2b}) are direct consequences of the delicate
+bounds done by Barcel\'o and C\'ordoba; they follow from the table on p.~661
+of~\cite{BC}, or p.~24 of~\cite{C}. The transition point $x=\nu/2$ in (\ref{1b})
+and (\ref{2b}) may be replaced (clearly, with a different $D$) by
+$(1+\varepsilon)\nu/2$, or in (\ref{3b}) and (\ref{4b}), $x=1/2$ may be replaced by $(1+\varepsilon)/2$,
+where $0<\varepsilon<1$ is chosen
+earlier; cf.~\cite{St} for additional comments.
+
+Denoting by $\Phi_\nu(x)$ the function that appears on the right of (\ref{1b})
+when $\nu\ge1$ or on the right of (\ref{3b}) when $-1<\nu<1$, we have
+\begin{equation}
+\label{ec:Jalpha}
+|\sqrt{x}J_\nu(x)|\le D \Phi_\nu(x).
+\end{equation}
+Accordingly, (\ref{2b}) and (\ref{4b}) may be written in the following form
+\begin{equation}
+\label{ec:cotaJ'}
+|\sqrt{x}J'_\nu(x)| \le C \,\frac{\sqrt{|\nu^2-x^2|+x^{4/3}}}{x}\,\Phi_\nu(x)
+\end{equation}
+when $\nu\ge1$ and
+\begin{equation}
+\label{ec:cotaJ''}
+|\sqrt{x}J'_\nu(x)|\le C \, \frac{x+1}x \,\Phi_\nu(x)
+\end{equation}
+when $-1<\nu<1$ with the exception for $\nu=0$; then $(x+1)/x$ is
+replaced by $x/(x+1)$.
+
+For the purpose of kernel estimates that are proved in Lemma~\ref{Lem:L1}
+it is much more convenient to split $(\nu/2,2\nu)$ into the three intervals
+$(\nu/2,\nu-\nu^{1/3})$, $(\nu-\nu^{1/3},\nu+\nu^{1/3})$ and $(\nu+\nu^{1/3},
+2\nu)$ and, instead of $\Phi_\nu(x)$ in (\ref{ec:Jalpha}) use, if $\nu\ge3$,
+say, the (equivalent) bound by
+\begin{equation*}
+\widetilde{\Phi}_\nu(x) =
+\begin{cases}
+x^{\nu+1/2}(\Gamma(\nu+1)2^{\nu})^{-1}, & 0<x\le \nu/2,\\
+\nu^{1/4}(\nu-x)^{-1/4}, & \nu/2<x\le \nu-\nu^{1/3},\\
+\nu^{1/6}, & \nu-\nu^{1/3}<x\le \nu+\nu^{1/3},\\
+\nu^{1/4}(x-\nu)^{-1/4}, & \nu+\nu^{1/3}<x\le 2\nu,\\
+1,& 2\nu<x.
+\end{cases}
+\end{equation*}
+We have, for certain $a_\nu$, $b_\nu$ and $c_\nu$, the asymptotic
+\begin{equation}
+\sqrt{t}J_\nu(t)=\sqrt{2/\pi}\bigg(\cos(t+a_\nu)+b_\nu\frac{\sin(t+c_\nu)}{t}+
+O(t^{-2})\bigg),\qquad\,t\to\infty.
+\label{asy2}
+\end{equation}
+At several places of the next section, without further refering to it, Stirling's
+formula is used:
+$$
+\lim_{\nu\to\infty}\nu^{\nu+1/2}e^{-\nu}\Gamma(\nu+1)^{-1}=
+(2\pi)^{-1/2}.
+$$
+Given $p$, $1\le p\le\infty$, $p'$ denotes its conjugate, $1/p+1/p'=1$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Kernel estimates and bounds for $K_\nu^1$ in different regions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In the sequel we write $\overnu=\nu$ if $\nu\ge1$ and
+$\overnu=1$ if $-1<\nu\le1$. Also, we use the notation
+$$
+w_{a,b}(x)=x^a(1+x)^{b-a}.
+$$
+The lemmas that follow give proper estimates of the kernel $K_\nu^1(x,y)$
+in different regions of the quarter plane $(0,\infty)\times(0,\infty)$.
+The corresponding propositions furnish weighted $L^p$ bounds of associated
+kernel operators restricted to relevant regions with minimal assumptions
+required on $a, b, A, B$.
+In the propositions the constant $C$ will depend on $\alpha, p, a, b, A, B$
+but will not depend on $\nu\ge\alpha$ and~$f$. At several places the
+usual interpretation of the $L^p$ norm is needed when $p=\infty$.
+
+%%%%%%%%%%%%%
+\begin{Lem}
+\label{Lem:L1}
+There exists $C>0$ independent of $\nu>-1$ such that
+\begin{equation*}
+\left|K_\nu^1(x,y)\right|\le C
+\begin{cases}
+(xy)^{\nu+1/2}/(\Gamma(\nu+2)2^{\nu})^2,& 0<x,y<2\overnu/3,\\
+1,& x,y>\overnu/2.
+\end{cases}
+\end{equation*}
+\end{Lem}
+%%%%%%%%%%%%%
+
+\begin{proof}
+Using (\ref{1b}) and (\ref{3b}) gives, for $0<x,y<2\overnu/3$,
+\begin{equation*}
+\left|K_\nu^1(x,y)\right| \le C
+\frac{(xy)^{\nu+1/2}}{\Gamma(\nu+1)^2 2^{2\nu}} \int_0^1 (1-s^2)
+s^{2\nu+1}\,ds.
+\end{equation*}
+To get the required bound we use
+\begin{equation*}
+\int_0^1 (1-s^2)s^{2\nu+1}\,ds =
+\frac12\frac{\Gamma(\nu+1)\Gamma(2)}{\Gamma(\nu+3)}
+\end{equation*}
+and then majorize the last expression by $C(1+\nu)^{-2}$.
+To prove the estimate for $x,y>\overnu/2$ we note that
+by Schwarz's inequality we have $|K_\nu^1(x,y)|^2 \le A_{\nu}(x)A_{\nu}(y)$,
+where
+$$
+A_{\nu}(x) = \int_0^1(1-s^2)(\sqrt{xs}J_{\nu}(xs))^2\,ds.
+$$
+It is therefore sufficient to check that $A_{\nu}(x)\le C$
+for $x>\overnu/2$. In what follows we consider the case $\nu\ge 1$
+only (analysing the case $-1<\nu<1$ is much easier). In fact we also assume
+that $\nu\ge3$.
+We consider four cases to estimate $A_\nu(x)$: $\nu/2<x\le \nu-\nu^{1/3}$,
+$\nu-\nu^{1/3}<x\le \nu+\nu^{1/3}$, $\nu+\nu^{1/3}<x\le 2\nu$, and
+$2\nu<x$.
+
+\textit{Case 1}: $\nu/2<x\le \nu-\nu^{1/3}$. By (\ref{ec:Jalpha}), (here
+and in the sequel we use (\ref{ec:Jalpha}) with $\widetilde{\Phi}_\nu(x)$
+in place of $\Phi_\nu(x)$)
+\begin{equation*}
+|\sqrt{xs}J_\nu(xs)|\le C
+\begin{cases}
+(xs)^{\nu+1/2}(\Gamma(\nu+1)2^{\nu})^{-1},& 0<s\le \nu/(2x),\\
+\nu^{1/4}(\nu-xs)^{-1/4}, & \nu/(2x)<s< 1.
+\end{cases}
+\end{equation*}
+Therefore,
+\begin{multline*}
+\qquad
+A_\nu(x) \le C\bigg(x^{2\nu+1}(\Gamma(\nu+1)2^{\nu})^{-2}
+\int_0^{\nu/(2x)}(1-s^2) s^{2\nu+1}\, ds\\
++ \nu^{1/2}\int_{\nu/(2x)}^1(1-s^2) (\nu-xs)^{-1/2}\,ds \bigg).
+\qquad
+\end{multline*}
+The first summand above is bounded by using
+\begin{equation*}
+\int_0^{\nu/(2x)}(1-s^2) s^{2\nu+1}\, ds\le C
+\frac1{2(\nu+1)}\left(\frac{\nu}{2x}\right)^{2(\nu+1)}
+\end{equation*}
+and Stirling's formula. For the second summand we write
+\begin{align*}
+\int_{\nu/(2x)}^1(1-s^2) (\nu-xs)^{-1/2}\,ds
+&\le \int_{\nu/(2x)}^{\nu/x}(\nu-xs)^{-1/2}\, ds
+\end{align*}
+and note that the last integral is bounded by $C\nu^{-1/2}$ which gives the
+correct bound of the second summand. The claim,
+$A_\nu(x)\le C$, now follows.
+
+\textit{Case 2}: $\nu-\nu^{1/3}<x<\nu+\nu^{1/3}$.
+From (\ref{ec:Jalpha}), the following estimate holds:
+\begin{equation*}
+|\sqrt{xs}J_\nu(xs)|\le C
+\begin{cases}
+(xs)^{\nu+1/2}(\Gamma(\nu+1)2^{\nu})^{-1}, & 0<s\le \nu/(2x),\\
+\nu^{1/4}(\nu-xs)^{-1/4}, & \nu/(2x) < s\le (\nu-\nu^{1/3})/x,\\
+\nu^{1/6}, & (\nu-\nu^{1/3})/x<s<1.
+\end{cases}
+\end{equation*}
+Therefore,
+\begin{multline*}
+\quad
+A_\nu(x)
+\le C\bigg(x^{2\nu+1}(\Gamma(\nu+1)2^{\nu})^{-2}
+\int_0^{\nu/(2x)}(1-s^2) s^{2\nu+1}\, ds\\
++ \nu^{1/2}\int_{\nu/(2x)}^{(\nu-\nu^{1/3})/x}
+(1-s^2) (\nu-xs)^{-1/2}\,ds +
+\nu^{1/3}\int_{(\nu-\nu^{1/3})/x}^1 (1-s^2)\,ds\bigg).
+\quad
+\end{multline*}
+The first summand is that from~\textit{Case~1}. The same is with the second
+summand once we enlarge the upper integral limit from $(\nu-\nu^{1/3})/x$
+to~$1$.
+The integral contained in the third summand is easily seen to be bounded by
+$C\nu^{-1/3}$ which gives the correct bound of the summand. The claim,
+$A_\nu(x)\le C$, again follows.
+
+\textit{Case 3}: $\nu+\nu^{1/3}<x\le 2\nu$.
+As in the previous cases we use (\ref{ec:Jalpha}) obtaining:
+\begin{equation*}
+|\sqrt{xs}J_\nu(xs)|\le C
+\begin{cases}
+(xs)^{\nu+1/2}(\Gamma(\nu+1)2^{\nu})^{-1},
+& 0<s\le \nu/(2x),\\
+\nu^{1/4}(\nu-xs)^{-1/4},
+& \nu/(2x) < s \le (\nu-\nu^{1/3})/x,\\
+\nu^{1/6},
+& (\nu-\nu^{1/3})/x < s \le (\nu+\nu^{1/3})/x,\\
+\nu^{1/4}(xs-\nu)^{-1/4},
+& (\nu+\nu^{1/3})/x<s<1.
+\end{cases}
+\end{equation*}
+Next, we bound $A_\nu(x)$ by splitting the integration accordingly. The first
+two resulting terms are exactly those from~\textit{Case~2}. The same is with
+the third one once the upper integral limit is enlarged from
+$(\nu+\nu^{1/3})/x$ to~$1$. The fourth resulting term is
+\begin{equation*}
+\nu^{1/2}\int_{(\nu+\nu^{1/3})/x}^1(1-s^2) (xs-\nu)^{-1/2}\,ds
+\end{equation*}
+and the required claim follows since
+\begin{equation*}
+\int_{(\nu+\nu^{1/3})/x}^1(1-s^2)(xs-\nu)^{-1/2}\,ds\le Cx^{-1/2}
+\int_{\nu/x}^1\Big(s-\frac{\nu}x\Big)^{-1/2}\,ds
+\le C \nu^{-1/2}.
+\end{equation*}
+
+\textit{Case 4}: $2\nu<x$. In this situation we have
+\begin{equation*}
+|\sqrt{xs}J_\nu(xs)| \le C
+\begin{cases}
+(xs)^{\nu+1/2}(\Gamma(\nu+1)2^{\nu})^{-1},
+& 0 < s \le \nu/(2x),\\
+\nu^{1/4}(\nu-xs)^{-1/4},
+& \nu/(2x) < s \le (\nu-\nu^{1/3})/x,\\
+\nu^{1/6},
+& (\nu-\nu^{1/3})/x < s \le(\nu+\nu^{1/3})/x,\\
+\nu^{1/4}(xs-\nu)^{-1/4},
+& (\nu+\nu^{1/3})/x < s \le 2\nu/x,\\
+1, & 2\nu/x<s<1.
+\end{cases}
+\end{equation*}
+Again, we bound $A_\nu(x)$ by properly splitting the integration and noting
+that the first three resulting terms are those from~\textit{Case~3}. The same is with
+the fourth one after replacing the upper integral limit $2\nu/x$ by $1$.
+The fifth resulting term is $\int_{2\nu/x}^1(1-s^2)\,ds$ and it is
+obviously bounded by a constant. This finishes the proof of~\textit{Case~4}
+hence the lemma.
+\end{proof}
+
+%%%%%%%%%%%%%
+\begin{Prop}
+\label{Prop:P1}
+Let $\alpha>-1$ and $1\le p\le\infty$. Assuming $a> -1/p-(\alpha+1/2)$
+\,$(\ge$ if $p=\infty)$ and $A<1-1/p+(\alpha+1/2)$ \,$(\le$ if $p=1)$
+we have
+\begin{equation}
+\label{ec:xyz} \int_0^{2\overnu/3}
+\bigg(w_{a,b}(x)\int_0^{2\overnu/3}
+|K_\nu^1(x,y)f(y)|\,dy\bigg)^p\,dx \le C
+\int_0^{2\overnu/3}\left|f(y)w_{A,B}(y)\right|^p\,dy,
+\end{equation}
+for $\nu\ge\alpha$, while, assuming in addition $b\le B$, for $\nu\ge \alpha$
+we have
+\begin{equation}
+\label{ec:diagonal} \int_{\overnu/2}^{\infty}
+\bigg(w_{a,b}(x) \int_{\overnu/2}^{\infty}\chi_{D}(x,y)
+|K_\nu^1(x,y)f(y)|\,dy\bigg)^p\,dx \le
+C\int_{\overnu/2}^{\infty}\left|f(y)w_{A,B}(y)\right|^p\,dy,
+\end{equation}
+where $D=\{(x,y): |x-y|\le 1\}$.
+\end{Prop}
+%%%%%%%%%%%%%
+
+\begin{proof}
+Proving (\ref{ec:xyz}) use the bound on $|K_\nu^1(x,y)|$ from
+Lemma~\ref{Lem:L1} and consider $p=1$ first. Then split the integration
+regions $[0,2\overnu/3]$ in the double integral using $2/3$ as
+breakpoints and change
+the order of integration to end up with four integrals to be estimated by
+a constant multiple of either
+$\int_0^{2/3}|f(y)|y^A\,dy$ or $\int_{2/3}^{2\overnu/3}|f(y)|y^B\,dy$.
+If the $y$-region of integration is $[0,2/3]$, then merely replace $y^{\nu+1/2}$
+by $y^A$ (using the assumption $A\le \alpha+1/2$) and note that the integrals
+\begin{equation*}
+\int_0^{2/3}x^{a+\nu+1/2}\,dx,
+\qquad \int_{2/3}^{2\overnu/3} x^{b+\nu+1/2}\,dx,
+\end{equation*}
+when multiplied by $(\Gamma(\nu+2)2^{\nu})^{-2}$ give
+bounded functions of $\nu\ge\alpha$. If the $y$-region of integration is $[2/3,
+2\overnu/3]$ then, for large values of $\nu$ say, replace $y^{\nu+1/2}$
+by $(2\nu/3)^{\nu+1/2-B}y^B$ and, in the case of the $x$-integration over
+$[2/3,2\nu/3]$, note that
+\begin{equation*}
+\frac1{(\Gamma(\nu+2)2^{\nu})^2}
+\,\Big(\frac23\nu\Big)^{\nu+1/2-B}\int_{2/3}^{2\nu/3} x^{b+\nu+1/2}\,dx
+\end{equation*}
+is a bounded function of large $\nu$ (note that the possible growth of
+$x^{b-B-2}$ is compensated by the decay of $(e/3)^\nu$).
+The remaining case of the $x$-integration over $[0,2/3]$ is similar (and easier).
+In the case $1<p<\infty$ apply the analogous argument using H\"older's
+inequality in appropriate places (cf.\ also the proof of Lemma~2.1
+in~\cite{St}). Consider now $p=\infty$.
+It is then sufficient to show that, for $\nu\ge\alpha$, the quantities
+\begin{equation*}
+\frac{1}{(\Gamma(\nu+2)2^{\nu})^2}\sup_{0<x<2/3}\bigg[x^{a+\nu+1/2}
+\int_0^{2\overnu/3}y^{\nu+1/2}|f(y)|\,dy\bigg]
+\end{equation*}
+and
+\begin{equation*}
+\frac{1}{(\Gamma(\nu+2)2^{\nu})^2}\sup_{2/3<x<2\overnu/3}\bigg[x^
+{b+\nu+1/2}\int_0^{2\overnu/3}y^{\nu+1/2}|f(y)|\,dy\bigg]
+\end{equation*}
+are bounded by a constant (independent of $\nu\ge\alpha$) multiplied by the sum
+\begin{equation*}
+\sup_{0<y<2/3}\,y^A|f(y)| + \sup_{2/3<y<2\overnu/3}y^B|f(y)|.
+\end{equation*}
+This is easily done by using the assumptions $a\ge-(\alpha+1/2)$ and
+$A<1+(\alpha+1/2)$.
+
+Proving (\ref{ec:diagonal}) use Lemma~\ref{Lem:L1} and note that only
+$\nu\ge1$ may be considered. Let $p=1$.
+It is sufficient to show that
+\begin{equation*}
+\int_{\nu/2}^{\infty}x^{b}\int_{\nu/2}^{\infty}\chi_{[0,1]}(|x-y|)|f(y)|\,dy
+\,dx\le C \int_{\nu/2}^{\infty}\left|f(y)\right|y^B\,dy
+\end{equation*}
+with $C$ independent of $\nu\ge1$.
+The inequality immediately follows by changing the order of integration,
+noting that for $y\ge\nu/2$ and $\nu\ge1$
+\begin{equation*}
+\int_{\nu/2}^{\infty}x^{b}\chi_{[0,1]}(|x-y|)\,dx
+\le Cy^b,
+\end{equation*}
+and using $b\le B$. Consider now the case $1<p\le\infty$. By using
+$b\le B$ it is easily seen that (\ref{ec:diagonal}) is implied by
+\begin{equation*}
+\int_{\nu/2}^{\infty}\left(\int_{x-1}^{x+1}|
+\chi_{[\nu/2,\infty]}(y)g(y)|\,dy\right)^p\,dx
+\le C \int_{\nu/2}^{\infty}\left|g(y)\right|^p\,dy,
+\end{equation*}
+where $\nu\ge1$.
+This, in order, follows from the well-known standard norm inequality for the
+maximal function since, for $x\ge\nu/2$ and $\nu\ge1$,
+\begin{equation*}
+\int_{x-1}^{x+1}|\chi_{[\nu/2,\infty]}(y)g(y)|\,dy
+\le C M(\chi_{[\nu/2,\infty]}g)(x).
+\end{equation*}
+\end{proof}
+
+%%%%%%%%%%%%%
+\begin{Lem}
+\label{Lem:L2} Let $\alpha>-1$. There exists a constant $C$
+independent of $\nu\ge\alpha$ such that for $|x-y|\ge1$ and
+$x,y\ge 5\overnu/4$,
+\begin{equation}
+\label{ec:cota2nu}
+|K^1_\nu(x,y)|\le C |x-y|^{-2}.
+\end{equation}
+\end{Lem}
+%%%%%%%%%%%%%
+
+\begin{proof}
+Using (\ref{Cam}) gives
+\begin{equation}
+\label{ec:jk}
+|K^1_\nu(x,y)|\le 2 |u|^{-2}\bigg(|2\nu^2-v||F_1|+\frac{2v}{|u|}
+(x|F_2|+y|F_3|)+2xy|F_4|\bigg).
+\end{equation}
+Since $|F_i|\le C$ on $x,y\ge\overnu$, see (\ref{1b})--(\ref{4b}),
+the conclusion then follows by noting that each of the terms,
+$|2\nu^2-(x^2+y^2)|$, $v$, $xy$, when
+divided by $(x+y)^{2}$ is bounded on the indicated range of $x$ and~$y$.
+\end{proof}
+
+%%%%%%%%%%%%%
+\begin{Prop}
+\label{Prop:P2}
+Let $\alpha>-1$, $1\le p\le\infty$, $b\le B$, $b<2-1/p$ $(\le$ if $p=\infty)$,
+and $B>-1-1/p$ $(\ge$ if $p=1)$. Then,
+for $\nu\ge \alpha$,
+\begin{equation}
+\label{ec:antidiagonal} \int_{5\overnu/4}^{\infty}
+\bigg(w_{a,b}(x) \int_{5\overnu/4}^{\infty}
+\chi_{D^c}(x,y)|K_\nu^{1}(x,y)f(y)|\,dy \bigg)^p\,dx \le
+C\int_{5\overnu/4}^{\infty}
+\left|f(y)w_{A,B}(y)\right|^p\,dy,
+\end{equation}
+where $D^c=\{(x,y): |x-y|\ge 1\}$.
+\end{Prop}
+%%%%%%%%%%%%%
+
+\begin{proof}
+Consider first $p=1$. Then (\ref{ec:antidiagonal}) reduces to showing that
+\begin{equation*}
+\int_{5\overnu/4}^{\infty}
+\int_{5\overnu/4}^{\infty}\chi_{[1,\infty)}
+(|x-y|)x^by^{-B}\frac{|g(y)|}{|x-y|^2}\,dy\,dx
+\le C\int_{2\overnu}^{\infty}|g(y)|\,dy
+\end{equation*}
+and this is a consequence of (this time $b<1$ is used)
+\begin{equation*}
+\sup_{\nu\ge\alpha}\sup_{y\ge5\overnu/4}\bigg[y^{-B}
+\int_{5\overnu/4}^{\infty}x^b\chi_{[1,\infty)}
+(|x-y|)\frac{1}{|x-y|^2}\,dx\bigg] < \infty.
+\end{equation*}
+In the case $p=\infty$, (\ref{ec:antidiagonal}) reduces to
+showing that
+\begin{equation*}
+\sup_{x\ge5\overnu/4}
+\bigg[x^b\int_{5\overnu/4}^{\infty}\chi_{D^c}(x,y)\frac{|g(y)|}
+{|x-y|^2}\,y^{-B}\,dy\bigg] \le C\,\sup_{y\ge5\overnu/4}|g(y)|
+\end{equation*}
+and this easily follows by noting that ($B>-1$ is used)
+\begin{equation*}
+\sup_{\overnu\ge\alpha}\sup_{x\ge5\overnu/4}
+\bigg[x^b\int_{2\overnu}^{\infty}
+\chi_{[1,\infty)}(|x-y|)\frac{1}{y^B|x-y|^2}\,dy\bigg]<\infty.
+\end{equation*}
+Consider now the case $1<p<\infty$. We decompose the $y$-range in
+$[5\overnu/4, x/2]$, $[x/2,2x]$ and $[2x,\infty)$. Then,
+\begin{multline*}
+\qquad
+\int_{5\overnu/4}^{\infty} \bigg(w_{a,b}(x)
+\int_{5\overnu/4}^{x/2}
+\chi_{D^c}(x,y) |K_\nu^1(x,y)f(y)|\,dy\bigg)^p\,dx\\
+\le C\int_{5\overnu/4}^\infty \bigg(x^{b-2}
+\int_{5\overnu/4}^{x}|f(y)|\,dy\bigg)^p\,dx,
+\qquad
+\end{multline*}
+and an application of H\"older's inequality shows that the last expression is
+bounded by the right side of~(\ref{ec:antidiagonal}). Similarly,
+\begin{equation*}
+\int_{5\overnu/4}^{\infty} \bigg(w_{a,b}(x)\int_{2x}^{\infty}
+\chi_{D^c}(x,y) |K_\nu^{1}(x,y)f(y)|\,dy\bigg)^p\,dx
+\le C\int_{5\overnu/4}^\infty \bigg(x^{b}\int_{x}^{\infty}
+\frac{|f(y)|}{y^2}\, dy\bigg)^p\,dx
+\end{equation*}
+and again H\"older's inequality does the job. Proving
+\begin{equation*}
+\int_{5\overnu/4}^{\infty} \bigg(w_{a,b}(x)\int_{x/2}^{2x}
+\chi_{D^c}(x,y) |K_\nu^{1}(x,y)f(y)|\,dy \bigg)^p\,dx
+\le C \int_{5\overnu/4}^{\infty}|w_{A,B}(x)f(x)|^p\,dx
+\end{equation*}
+reduces to showing that
+\begin{equation*}
+\int_{5\overnu/4}^{\infty}x^{p(b-B)}\bigg(\int_{x/2}^{2x}
+\chi_{[1,\infty]}(|x-y|)\frac{|g(y)|}{|x-y|^2}\,dy\bigg)^p\,dx
+\le C \int_{5\overnu/4}^{\infty}|g(x)|^p\,dx.
+\end{equation*}
+By the assumption $b\le B$, we obtain
+\begin{align*}
+&\phantom{\null\le\null}
+\int_{5\overnu/4}^{\infty}x^{p(b-B)}\bigg(\int_{x/2}^{2x}
+\chi_{[1,\infty]}(|x-y|)\frac{|g(y)|}{|x-y|^2}\,dy\bigg)^p\,dx\\
+&\le C\int_{5\overnu/4}^\infty
+\left( \sum_{k=1}^\infty\int_{|x-y|\sim 2^k} \frac{|g(y)|}{|x-y|^2}
+\chi_{[5\overnu/4,\infty]}(y)\, dy\right)^p\, dx\\
+&\le C\int_{5\overnu/4}^\infty
+\left(\sum_{k=1}^\infty 2^{-2k}\int_{|x-y|\sim2^k} |g(y)|
+\chi_{[5\overnu/4,\infty]}(y)\, dy\right)^p\,dx\\
+&\le C\int_{5\overnu/4}^\infty
+M(\chi_{[5\overnu/4,\infty)}g)(x)^p\,dx.
+\end{align*}
+Using the fact that $M$ is a bounded operator on $L^p$ for $1<p<\infty$,
+we conclude the proof of Proposition~\ref{Prop:P2}.
+\end{proof}
+
+%%%%%%%%%%%%%
+\begin{Lem}
+\label{Lem:L3}
+There exists a constant $C$ independent of $\nu\ge1$ such that for
+$|x-y|\ge 1$ and $\nu/2\le x,y\le 3\nu/2$,
+\begin{equation}
+\label{ec:cotanumedios2nu}
+|K^1_\nu(x,y)|\le C |x-y|^{-2}
+\left(\left(\frac{|\nu-x|+\nu^{1/3}}{|\nu-y|+\nu^{1/3}}\right)^{1/4}
++ \left(\frac{|\nu-y|+\nu^{1/3}}{|\nu-x|+\nu^{1/3}}\right)^{1/4}\right).
+\end{equation}
+\end{Lem}
+\begin{proof}
+%%%%%%%%%%%%%
+
+Applying (\ref{ec:Jalpha}) and (\ref{ec:cotaJ'}) to (\ref{ec:jk}) leads to
+\begin{multline}
+\label{ec:basic}
+|K_\nu^1(x,y)|\le C \Phi_\nu(x)\Phi_\nu(y)|u|^{-2}\,
+\bigg(|2\nu^2-v|+\frac{v}{|u|}(|\nu^2-x^2|+x^{4/3})^{1/2}\\
++ \frac{v}{|u|}(|\nu^2-y^2|+y^{4/3})^{1/2}
++ (|\nu^2-x^2|+x^{4/3})^{1/2}(|\nu^2-y^2|+y^{4/3})^{1/2}\bigg).
+\end{multline}
+Then the estimates for
+$\Phi_\nu$ on the range $(\nu/2,3\nu/2)$ give
+\begin{multline*}
+|K_\nu^1(x,y)|\le C|x-y|^{-2}(|\nu-x|+\nu^{1/3})^{-1/4}(|\nu-y|+\nu^{1/3})
+^{-1/4}\nu^{-3/2}\\ \times
+\bigg(\nu\big[|\nu-x|+|\nu-y|\big]+\nu^{3/2}\big[(|\nu-x|+\nu^{1/3})^{1/2}+
+(|\nu-y|+\nu^{1/3})^{1/2}\big]\\
++\nu\big(|\nu-x|+\nu^{1/3}\big)^{1/2}\big(|\nu-y|+\nu^{1/3}\big)^{1/2}\bigg).
+\end{multline*}
+A careful analysis then shows that each of the three resulting summands is
+bounded by the right side of~(\ref{ec:cotanumedios2nu}).
+\end{proof}
+
+%%%%%%%%%%%%%
+\begin{Prop}
+\label{Prop:P3}
+Let $\alpha\ge1$, $1\le p\le\infty$, and $b\le B$. Then, for $\nu\ge \alpha$,
+\begin{equation}
+\label{ec:d2}
+\int_{\nu/2}^{3\nu/2} \bigg(w_{a,b}(x)
+\int_{\nu/2}^{3\nu/2}\chi_{D^c}(x,y)|K_\nu^{1}(x,y)f(y)|\,dy\bigg)^p dx
+\le C\int_{\nu/2}^{3\nu/2}\left|f(y)w_{A,B}(y)\right|^p dy.
+\end{equation}
+\end{Prop}
+%%%%%%%%%%%%%
+
+\begin{proof}
+By using (\ref{ec:cotanumedios2nu}) and the assumption $b\le B$,
+(\ref{ec:d2}) will follow from
+\begin{multline}
+\label{ec:abc}
+\quad
+\bigg(\int_{\nu/2}^{3\nu/2}\bigg(\int_{\nu/2}^{3\nu/2}\chi_{D^c}(x,y)\frac{|f(y)|}
+{|x-y|^2}\bigg(\frac{|\nu-x|+\nu^{1/3}}{|\nu-y|+\nu^{1/3}}\bigg)^{1/4}\,dy
+\bigg)^p\,dx\bigg)^{1/p} \\
+\le C\bigg(\int_{\nu/2}^{3\nu/2}|f(y)|^p\,dy\bigg)^{1/p}
+\qquad
+\end{multline}
+and an analogous inequality with the second term from the right side of
+(\ref{ec:cotanumedios2nu}) involved. Since in the latter case the argument is
+completely similar to what we present below we do not repeat it.
+The change of variables $X=\nu^{-1/3}(x-\nu)$,
+$Y=\nu^{-1/3}(y-\nu)$, shows that the left side of (\ref{ec:abc}) equals
+$\nu^{-1/3+1/(3p)}$ multiplied by
+\begin{equation*}
+\bigg(\int_{-\nu^{2/3}/2}^{\nu^{2/3}/2}\bigg(\int_{-\nu^{2/3}/2}
+^{\nu^{2/3}/2}\chi_{\{|X-Y|>\nu^{-1/3}\}}(X,Y)\frac{|F(Y)|}{|X-Y|^2}
+\bigg(\frac{1+|X|}{1+|Y|}\bigg)^{1/4}\,dY\bigg)^p\,dX\bigg)^{1/p},
+\end{equation*}
+with $F(Y)=f(Y\nu^{1/3}+\nu)$. By symmetry, it is now enough to majorize the
+quantity
+\begin{equation*}
+\bigg(\int_{0}^{\nu^{2/3}/2}\bigg(\int_{-\nu^{2/3}/2}
+^{\nu^{2/3}/2}\chi_{\{|X-Y|>\nu^{-1/3}\}}(X,Y)\frac{|F(Y)|}{|X-Y|^2}
+\bigg(\frac{1+|X|}{1+|Y|}\bigg)^{1/4}\,dY\bigg)^p\,dX\bigg)^{1/p}
+\end{equation*}
+by $\nu^{1/3-1/(3p)}$ times the right side of (\ref{ec:abc}).
+We decompose the $Y$-range into five intervals $[-\nu^{2/3}/2,-X]$,
+$[-X,0]$, $[0,X/2]$, $[X/2,2X]$ and $[2X,\nu^{2/3}/2]$ (the extreme intervals
+may be void, the second one may reduce to $[-\nu^{2/3}/2,0]$) and denote
+the resulting double integrals by $I_i$, $i=1,\dots,5$. We will focus on
+proving that
+\begin{equation}
+\label{ec:bbb}
+I_i\le C\nu^{1/3-1/(3p)}\bigg(\int_{\nu/2}^{3\nu/2}|f(y)|^p\,dy
+\bigg)^{1/p},\qquad i=1,\dots,5.
+\end{equation}
+Let $i=1$. If $Y\in [-\nu^{2/3}/2, -X]$ then $|X-Y|^{-2}\le C|Y|^{-2}$,
+the change of variable $Y=-T$ and H\"older's inequality produce the following
+bound of~$I_1$:
+\begin{align*}
+&\phantom{\null\le\null}
+\bigg(\int_{0}^{\nu^{2/3}/2} \bigg(\int_{-\nu^{2/3}/2}^{-X}
+\chi_{\{|X-Y|>\nu^{-1/3}\}}(X,Y)\frac{|F(Y)|}{|X-Y|^2}
+\bigg(\frac{1+|X|}{1+|Y|}\bigg)^{1/4}\,dY\bigg)^p\,dX\bigg)^{1/p}\\
+&\le C\bigg(\int_{0}^{\nu^{2/3}/2}\bigg(\int_{X}^{\nu^{2/3}/2}
+\chi_{\{X+T>\nu^{-1/3}\}}(X,T)\frac{|F(-T)|}{T^{2}}
+\bigg(\frac{1+X}{1+T}\bigg)^{1/4}\,dT\bigg)^p\,dX\bigg)^{1/p}\\
+&\le C\bigg(\int_{0}^{\nu^{2/3}/2}\bigg(\int_{\max\{X,\nu^{-1/3}-X\}}
+^{\nu^{2/3}/2} \frac{|F(-T)|}{T^{2}}\,dT\bigg)^p\,dX\bigg)^{1/p}\\
+&\le C\nu^{-1/(3p)}\bigg(\int_{0}^{\nu^{2/3}/2} \bigg(\int_{\max\{X,2\nu^
+{-1/3}-X\}}^{\nu^{2/3}/2}T^{-2p'}\,dT\bigg)^{p/p'}dX\bigg)^{1/p} \\
+&\hspace{0.6\textwidth} \times
+\bigg(\int_{\nu/2}^{3\nu/2}|f(y)|^p\,dy\bigg)^{1/p}.
+\end{align*}
+This proves (\ref{ec:bbb}) for $i=1$ since
+\begin{equation*}
+\bigg(\int_{0}^{\nu^{2/3}/2}\bigg(\int_{\max\{X,\nu^{-1/3}-X\}}^
+{\nu^{2/3}/2}T^{-2p'}\,dT\bigg)^{p/p'}dX\bigg)^{1/p}\le C\nu^{1/3}.
+\end{equation*}
+Let $i=2$. If $Y\in [-X,0]$ then $|X-Y|^{-2}\le C|X|^{-2}$, the change of
+variable $Y=-T$ and H\"older's inequality similarly show that $I_2$ is bounded
+by $\nu^{-1/(3p)}$ multiplied by the product of
+\begin{equation}
+\label{ec:w1}
+\bigg(\int_{0}^{\nu^{2/3}/2}X^{-2p}\bigg(\int_{\max\{0,
+\nu^{-1/3}-X\}}^{X}\bigg(\frac{1+X}{1+T}\bigg)^{p'/4}\,dT\bigg)^{p/p'}
+dX\bigg)^{1/p}
+\end{equation}
+and the right side of~(\ref{ec:abc}). This completes the proof of
+(\ref{ec:bbb}) for~$i=2$ once we note that (\ref{ec:w1}) is~$O(\nu^{1/3})$.
+Consider the case~$i=3$. Then $I_3$ equals
+\begin{equation*}
+\bigg(\int_{\nu^{-1/3}}^{\nu^{2/3}/2}\bigg(\int_{0}^{X/2}
+\chi_{\{|X-Y|>\nu^{-1/3}\}}(X,Y)\frac{|F(Y)|}{|X-Y|^2}
+\bigg(\frac{1+X}{1+Y}\bigg)^{1/4}\,dY\bigg)^p\,dX\bigg)^{1/p}
+\end{equation*}
+and we further split the $X$-range onto $[\nu^{-1/3},1]$ and $[1,\nu^{2/3}/2]$
+denoting the resulting double integrals by $I_{31}$ and $I_{32}$. Then
+\begin{align*}
+I_{31}
+&\le C\bigg(\int_{\nu^{-1/3}}^{1}\bigg(\int_{0}^{\min\{X/2,X-\nu^{-1/3}\}}
+\frac{|F(Y)|}{X^{2}}\,dY\bigg)^p\,dX\bigg)^{1/p}\\
+&\le C\bigg[\bigg(\int_{\nu^{-1/3}}^{2\nu^{-1/3}}\bigg(\int_{0}^{X-\nu^{-1/3}}
+\frac{|F(Y)|}{X^{2}}\,dY\bigg)^p\,dX\bigg)^{1/p}\\
+&\qquad \qquad \qquad
++\bigg(\int_{2\nu^{-1/3}}^{1}\bigg(\int_{0}^{X/2}\frac{|F(Y)|}{X^{2}}
+\,dY\bigg)^p\,dX\bigg)^{1/p}\bigg]\\
+&\le C\nu^{-1/(3p)}\bigg[\bigg(\int_{\nu^{-1/3}}^{2\nu^{-1/3}}X^{-2p}
+(X-\nu^{-1/3})^{p/p'}\,dX\bigg)^{1/p}\\
+&\qquad \qquad \qquad
++\bigg(\int_{2\nu^{-1/3}}^{1}X^{p(1/p'-2)}\,dX\bigg)^{1/p}\bigg]
+\bigg(\int_{\nu/2}^{3\nu/2}|f(y)|^p\,dy\bigg)^{1/p}
+\end{align*}
+where, in the last line, H\"older's inequality was used. Now, the bound
+\begin{equation*}
+\bigg(\int_{\nu^{-1/3}}^{2\nu^{-1/3}}X^{-2p}(X-\nu^{-1/3})^{p/p'}dX\bigg)^{1/p} +
+\bigg(\int_{2\nu^{-1/3}}^{1}X^{p(1/p'-2)}\,dX\bigg)^{1/p}\le C \nu^{1/3}
+\end{equation*}
+shows (\ref{ec:bbb}) for $I_{31}$. Similarly, using H\"older's inequality
+again, we majorize $I_{32}$ by $\nu^{-1/(3p)}$ times the product of
+\begin{equation}
+\label{ec:ddd}
+\bigg(\int_{1}^{\nu^{2/3}/2}X^{-7p/4}
+\bigg(\int_{0}^{X}(1+Y)^{-p'/4}\,dY\bigg)^{p/p'}dX\bigg)^{1/p}
+\end{equation}
+and the right side of (\ref{ec:abc}).
+Thus (\ref{ec:bbb}) follows for $I_{32}$, hence also for $I_3$, since
+(\ref{ec:ddd}) is $O(\nu^{1/3})$.
+Consider the case~$i=4$. Then $I_4$ equals
+\begin{equation*}
+\bigg(\int_{0}^{\nu^{2/3}/2}\bigg(\int_{X/2}^{2X}
+\chi_{\{|X-Y|>\nu^{-1/3}\}}(X,Y)\frac{|F(Y)|}{|X-Y|^2}
+\bigg(\frac{1+X}{1+Y}\bigg)^{1/4}\,dY\bigg)^p\,dX\bigg)^{1/p}
+\end{equation*}
+and we further bound it by
+\begin{align*}
+&\phantom{\null\le\null}
+C\bigg(\int_{0}^{\nu^{2/3}/2}\bigg(\int_{X/2}^{2X}\chi_{\{|X-Y|>\nu^
+{-1/3}\}}(X,Y)\frac{|F(Y)|}{|X-Y|^2}\,dY\bigg)^p\,dX\bigg)^{1/p}\\
+&\le C\bigg(\int_{0}^{\nu^{2/3}/2}\bigg( \sum_{k=k_1}^{\infty}\int_{|X-Y|
+\sim 2^k}\frac{|\chi_{[0,\nu^{2/3}/2]}(Y)F(Y)|}{|X-Y|^2}\,dY\bigg)^p\,dX\bigg)^{1/p}\\
+&\le C \bigg(\int_{0}^{\nu^{2/3}/2}\bigg(\sum_{k=k_1}^{\infty}2^{-2k}\int_{|X-Y|
+\sim 2^k} |\chi_{[0,\nu^{2/3}/2]}(Y)F(Y)|\,dY\bigg)^p\,dX\bigg)^{1/p}\\
+&\le C \bigg(\int_{0}^{\nu^{2/3}/2}\bigg(\sum_{k=k_1}^{\infty}2^{-k}
+M(\chi_{[0,\nu^{2/3}/2]}F)(X)\bigg)^p \,dX\bigg)^{1/p}\\
+&\le C\nu^{1/3}\bigg(\int_{0}^{\nu^{2/3}/2}M(\chi_{[0,\nu^{2/3}/2]}F)
+(X)^p\,dX\bigg)^{1/p}
+\end{align*}
+with $k_1 = [-(\log_2\nu)/3]-1$. Using the fact that $M$ is a bounded
+operator on $L^p$ we finish the proof of (\ref{ec:bbb}) for $i=4$.
+Consider the case~$i=5$. Then $I_5$ equals
+\begin{equation*}
+\bigg( \int_{0}^{\nu^{2/3}/2}\bigg(\int_{2X}^{\nu^{2/3}/2}
+\chi_{\{|X-Y|>\nu^{-1/3}\}}(X,Y)\frac{|F(Y)|}{|X-Y|^2}
+\bigg(\frac{1+X}{1+Y}\bigg)^{1/4}\,dY\bigg)^p \,dX\bigg)^{1/p}
+\end{equation*}
+and is easily seen to be bounded by a constant multiplied by the sum of
+\begin{equation*}
+I_{51}=\bigg(\int_{0}^{1}\bigg(\int_{2X}^{\nu^{2/3}/2}
+\chi_{\{|X-Y|>\nu^{-1/3}\}}(X,Y)\frac{|F(Y)|}{Y^{2}}\,dY\bigg)^p\,dX\bigg)^{1/p}
+\end{equation*}
+and
+\begin{equation*}
+I_{52}=\bigg(\int_{1}^{\nu^{2/3}/2}\bigg(\int_{2X}^{\nu^{2/3}/2}
+\chi_{\{|X-Y|>\nu^{-1/3}\}}(X,Y)\frac{|F(Y)|}{Y^{2}}\,dY\bigg)^p\,dX\bigg)^{1/p}.
+\end{equation*}
+Using H\"older's inequality and the estimate
+\begin{equation*}
+\bigg(\int_{0}^{1}\bigg(\int_{\max\{X+\nu^{-1/3},2X\}}^{\nu^{2/3}/2}Y^{-2}
+\,dY\bigg)^{p/p'}dX\bigg)^{1/p}\le C \nu^{1/3}
+\end{equation*}
+(decompose the $X$-range into $[0,\nu^{-1/3}]$ and $[\nu^{-1/3},1]$) shows
+that
+\begin{align*}
+I_{51}&\le C \bigg(\int_{0}^{1}\bigg(\int_{\max\{X+\nu^{-1/3},2X\}}
+^{\nu^{2/3}/2}\frac{|F(Y)|}{Y^{2}}\,dY\bigg)^p\,dX\bigg)^{1/p}\\
+&\le C\nu^{1/3-1/(3p)}\bigg(\int_{\nu/2}^{3\nu/2}|f(y)|^p\,dy\bigg)^{1/p}.
+\end{align*}
+Similarly, the estimate
+\begin{equation*}
+\bigg(\int_{1}^{\nu^{2/3}/2}\bigg(\int_{2X}^{\nu^{2/3}/2}
+Y^{-2p'}\,dY\bigg)^{p/p'}dX\bigg)^{1/p}\le C\nu^{1/3}
+\end{equation*}
+and H\"older's inequality produce
+\begin{align*}
+I_{52}&\le C\bigg(\int_{1}^{\nu^{2/3}/2}
+\bigg(\int_{2X}^{3\nu^{2/3}}Y^{-2p'}\,dY\bigg)^{p/p'}dX\bigg)^{1/p}
+\bigg(\int_{-\nu^{2/3}/2}^{\nu^{2/3}/2}|F(Y)|^p\,dY\bigg)^{1/p}\\
+&\le C\nu^{1/3-1/(3p)}\bigg(\int_{\nu/2}^{3\nu/2}|f(y)|^p\,dy\bigg)^{1/p}.
+\end{align*}
+This finishes the proof of (\ref{ec:bbb}) for $i=5$ hence the proposition.
+\end{proof}
+
+%%%%%%%%%%%%%
+\begin{Lem}
+\label{Lem:L4}
+Let
+\begin{center}
+\begin{tabular}{rr}
+$R_1=[2\overnu/3,\infty)\times[0,\overnu/2]$, &
+$\quad R_2=
+[3\overnu/2,\infty)\times[\overnu/2,5\overnu/4]$,\\
+$R_3=[0,\overnu/2]\times[2\overnu/3,\infty)$, &
+$\quad R_4=
+[\overnu/2,5\overnu/4]\times[3\overnu/2,\infty)$.\\
+\end{tabular}
+\end{center}
+Then there exists a constant $C$ independent of $\nu>-1$ such that
+\begin{equation*}
+|K_\nu^1(x,y)\chi_{R_i}(x,y)|\le C \,\frac{\Phi_\nu(x)\Phi_\nu(y)}{|x-y|^2},
+\qquad i=1,2,3,4.
+\end{equation*}
+\end{Lem}
+%%%%%%%%%%%%%
+
+\begin{proof}
+We discuss the case $\nu\ge1$ only (if $\nu<1$ our argument also applies but
+the right side of (\ref{ec:basic}) must be suitably modified).
+It is sufficient to check that the expression in parentheses on the right side
+of (\ref{ec:basic}) divided by $(x+y)^2$ is bounded by a constant.
+In $R_1$, $x\le x+y \le 7x/4$ and $x/4\le x-y\le x$, therefore $v/|u|$ is
+bounded. Also each of the terms $(|\nu^2-x^2|+x^{4/3})^{1/2}$,
+$(|\nu^2-y^2|+y^{4/3})^{1/2}$, when divided by $x+y$ is bounded. Finally,
+$|2\nu^2-(x^2+y^2)|$ when divided by $(x+y)^2$ is bounded. Similar analysis
+holds for $i=2,3,4$.
+\end{proof}
+
+%%%%%%%%%%%%%
+\begin{Prop}
+\label{Prop:P4}
+Let $\alpha>-1$, $1\le p\le\infty$ and $a,A,b,B$ satisfy the assumptions
+$(\ref{t1})$ and $(\ref{t2})$ of Theorem~$\ref{Theorem:main}$. Assume also that
+\begin{equation*}
+b \le
+\begin{cases}
+B+1+1/2-2/(3p),& \text{ if } 1\le p<4/3,\\
+B+1,& \text{ if } 4/3\le p\le 4,
+\,\,\,(< \text{if } p=4/3 \text{ or } p=4),\\
+B+1-1/6+2/(3p),& \text{ if } 4<p\le\infty.
+\end{cases}
+\end{equation*}
+Then, for $\nu\ge \alpha$,
+\begin{equation}
+\label{dod} \int_{0}^{\infty}\bigg(w_{a,b}(x)\int_{0}^{\infty}
+\chi_{R_i}(x,y)|K_\nu^{1}(x,y)f(y)|\,dy\bigg)^p\,dx \le
+C\int_{0}^{\infty}|f(y)w_{A,B}(y)|^p\,dy,
+\end{equation}
+where $R_i$, $i=1,\ldots,4$, are as in Lemma~$\ref{Lem:L4}$.
+\end{Prop}
+%%%%%%%%%%%%%
+
+\begin{proof}
+Denote the left side of the inequality to be proved raised to the $1/p$\,th
+power (with the usual interpretation when $p=\infty$) by $F_i=F_i(a,b,p,
+\nu;f)$. Consider first the case~$i=1$. Using the bound
+from Lemma~\ref{Lem:L4} and H\"older's inequality gives
+\begin{align*}
+F_1 &= \bigg(\int_{0}^{\infty} \left(w_{a,b}(x)\int_{0}^{\infty}
+\chi_{R_1}(x,y) |K_{\nu}^{1}(x,y)f(y)|\,dy\right)^p\,dx\bigg)^{1/p}\\
+&\le C \bigg(\int_{2\overnu/3}^{\infty}\bigg(x^b \int_{0}^{\overnu/2}
+|f(y)|\frac{\Phi_{\nu}(x)
+\Phi_{\nu}(y)}{|x-y|^2}\,dy\bigg)^p\,dx\bigg)^{1/p}\\
+&\le C \bigg(\int_{2\overnu/3}^{\infty}\bigg(x^{b-2}
+\Phi_{\nu}(x)\int_{0}^{\overnu/2} |f(y)|
+\Phi_{\nu}(y)\,dy\bigg)^p\,dx\bigg)^{1/p}\\
+&\le C \|\chi_{(2\overnu/3,\infty)}(x)x^{b-2}\Phi_{\nu}(x)\|_{p}
+\cdot \|\chi_{(0,\overnu/2)}(y)w_{A,B}(y)^{-1}
+\Phi_{\nu}(y)\|_{p'} \cdot \|f(y)w_{A,B}(y)\|_p.
+\end{align*}
+The product of the first two terms following the last $C$ above is a continuous function
+of $\nu\in[\alpha,\infty)$. It is therefore sufficient to consider large
+$\nu$'s; analogous remark applies when analysing $F_i$, $i=2,3,4$. Thus, from now on
+we assume $\nu$ to be large and write $\nu$ in place of $\overnu$.
+Then we have
+\begin{align}
+\label{ec:estimacion0}
+&\phantom{\null\le\null}
+\|\chi_{(0,\nu/2)}(y)w_{A,B}(y)^{-1}\Phi_\nu(y)\|_{p'}\\
+&\le C\max\{\|\chi_{(0,1)}(y)y^{-A}\Phi_\nu(y)\|_{p'},
+\|\chi_{(1,\nu/2)}(y)y^{-B}\Phi_\nu(y)\|_{p'}\}\nonumber\\
+&\le C 2^{-\nu}\Gamma(\nu+1)^{-1}(\nu/2)^{-B+\nu+1/2}\nonumber,
+\end{align}
+where, to assure the convergence of the integral on $[0,1]$ the condition
+$A<1-1/p+(\alpha+1/2)$ was used ($A\le\alpha+1/2$ when $p=1$). Moreover,
+\begin{equation}
+\label{ec:normapesob}
+\|\chi_{(2\nu/3,\infty)}(x)x^{b-2}\Phi_\nu(x)\|_{p} \le C\nu^{b-2+1/p}
+\begin{cases}
+1, & \text{ if } p<4,\\
+(\log \nu)^{1/4}, & \text{ if } p=4,\\
+\nu^{1/6-2/(3p)}, & \text{ if } p>4.\\
+\end{cases}
+\end{equation}
+This is obtained by splitting the integration onto $(2\nu/3,2\nu)$ and
+$(2\nu,\infty)$, using the assumption $b<2-1/p$ ($b\le2$ when $p=\infty)$
+and then by inspection.
+We conclude the analysis by noting that the product of majorants in
+(\ref{ec:estimacion0}) and (\ref{ec:normapesob}) produces a bounded function
+of $\nu\ge1$.
+
+In the case $i=2$, to get the required bound we proceed as in the case just discussed
+majorizing $F_2$ by a constant times
+\begin{equation*}
+\|\chi_{(3\nu/2,\infty)}(x)x^{b-2}\|_{p}\cdot
+\|\chi_{(\nu/2,5\nu/4)}(y)w_{A,B}(y)^{-1}\Phi_\nu(y)\|_{p'}\cdot
+\|f(y)w_{A,B}(y)\|_p.
+\end{equation*}
+Again, we claim that the product of the first two terms
+above is a bounded function of $\nu\ge1$. This is because
+$\|\chi_{(3\nu/2,\infty)}(x)x^{b-2}\|_{p}=O(\nu^{b-2+1/p})$ and
+\begin{equation*}
+\|\chi_{(\nu/2,5\nu/4)}(y)w_{A,B}(y)^{-1}\Phi_\nu(y)\|_{p'}
+\le C\nu^{-B+1-1/p}
+\begin{cases}
+\nu^{-1/2+2/(3p)}, & \text{ if } p<4/3,\\
+(\log \nu)^{1/4}, & \text{ if } p=4/3,\\
+1, & \text{ if } p>4/3.\\
+\end{cases}
+\end{equation*}
+Now, considering separately the cases $p<4/3$, $p=4/3$, $p>4/3$ and using
+appropriate assumptions on the relation between $b$ and $B$ proves the claim.
+
+Consider the case~$i=3$. This time we bound $F_3$ by a constant times
+\begin{equation*}
+\|\chi_{(0,\nu/2)}(x)w_{a,b}(x)\Phi_\nu(x) \|_{p}\cdot
+\|\chi_{(2\nu/3,\infty)}(y)y^{-(B+2)}\Phi_\nu(y)\|_{p'}\cdot
+\|f(y)w_{A,B}(y)\|_p.
+\end{equation*}
+Similarly to (\ref{ec:estimacion0}) (the assumption
+$a>-1/p-(\alpha+1/2)$, with $a\ge-(\alpha+1/2)$ when $p=\infty$, is used),
+we obtain the estimate
+\begin{equation*}
+\|\chi_{(0,\nu/2)}(x)w_{a,b}(x)\Phi_\nu(x) \|_{p}
+\le C 2^{-\nu}\Gamma(\nu+1)^{-1}(\nu/2)^{b+\nu+1/2}.
+\end{equation*}
+Moreover,
+\begin{equation*}
+\|\chi_{(2\nu/3,\infty)}(y)y^{-(B+2)}\Phi_\nu(y)\|_{p'} \le C
+\nu^{-B-1-1/p}
+\begin{cases}
+\nu^{-1/2+2/(3p)}, & \text{ if } p<4/3,\\
+(\log \nu)^{1/4}, & \text{ if } p=4/3,\\
+1, & \text{ if } p>4/3.\\
+\end{cases}
+\end{equation*}
+This is easily seen by splitting the integration onto $(2\nu/3,2\nu)$ and
+$(2\nu,\infty)$, using the relevant assumption and then by inspection.
+Combining these two bounds shows that the product of the first two
+terms majorizing $F_3$ is a bounded function of $\nu\ge1$.
+
+Finally, consider $i=4$. Then $F_4$ is bounded by a constant times
+\begin{equation*}
+\|\chi_{(\nu/2,5\nu/4)}(x)x^b\Phi_\nu(x)\|_{p}\cdot
+\|\chi_{(3\nu/2,\infty)}(y)y^{-(B+2)}\|_{p'}\cdot
+\|f(y)w_{A,B}(y)\|_p.
+\end{equation*}
+Here we use $\|\chi_{(3\nu/2,\infty)}(y)y^{-(B+2)}\|_{p'}=
+O(\nu^{-B-1-1/p})$ (the assumption $B>-1-1/p$, $B\ge-2$ when $p=1$, is applied)
+and (\ref{ec:normapesob}) with $b$ instead of $b-2$ (to be precise with
+$(\nu/2,5\nu/4)$ in place of $(2\nu/3,\infty)$). Then,
+considering separately the cases $p<4/3$, $p=4/3$, $p>4/3$ and using
+appropriate assumptions on the relation between $b$ and $B$ shows that
+the product of the two relevant terms is a bounded function of $\nu\ge1$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{Theorem:main}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We start with the proof of sufficiency in
+Theorem~\ref{Theorem:main}. If $\alpha<1$ and $\nu\in[\alpha,1]$,
+then (\ref{t4}) is a consequence of the estimates contained in
+Propositions~\ref{Prop:P1}, \ref{Prop:P2} and~\ref{Prop:P4}. If
+$\alpha\ge1$ and $\nu\in[\alpha,\infty)$, then we use the
+estimates from Propositions \ref{Prop:P1}--\ref{Prop:P4} (note
+that the regions that appear there cover the quarter plane
+$(0,\infty)\times(0,\infty)$). Checking the required assumptions
+shows that (\ref{t1}), (\ref{t2}) and (\ref{t3}) were used.
+
+We now pass to the necessity. Checking of (\ref{t1}) relies on the
+asymptotics of $K^1_\alpha(x,y)$ at $(0,0)$. Indeed,
+to check the necessity of the first condition in (\ref{t1}) note that for a
+sufficiently small $\varepsilon=\varepsilon(\alpha)$ we have $J_\alpha(s)\ge
+Cs^\alpha$ for $0<s<\varepsilon$. Hence, for $x,y\in (0,\varepsilon)$,
+$K^1_\alpha(x,y)\ge C(xy)^{\alpha+1/2}$. Take $f=\chi_{(\varepsilon/2,
+\varepsilon)}$; then, for $x\in(0,\varepsilon)$,
+$$
+S_\alpha^1f(x)= \int_0^\infty K^1_\alpha(x,y) f(y)\,dy
+\ge Cx^{\alpha+1/2} \int_{\varepsilon/2}^{\varepsilon}y^{\alpha+1/2}\,dy
+\ge Cx^{\alpha+1/2}.
+$$
+Thus, (here and later on an appropriate interpretation is needed if
+$p=\infty$), by (\ref{t4}),
+\begin{align*}
+\bigg(\int_0^\varepsilon x^{(\alpha+1/2+a)p}\,dx\bigg)^{1/p} &\le C
+\bigg(\int_{0}^{\varepsilon}|S^1_\alpha f(x) x^a(1+x)^{b-a}|^p\,dx\bigg)^{1/p}\\
+&\le C\bigg(\int_{\varepsilon/2}^{\varepsilon}| x^A(1+x)^{B-A}|^p\,dx\bigg)^{1/p}\\
+&<\infty.
+\end{align*}
+In consequence, $a>-1/p-(\alpha+1/2)$ ($\ge$ if $p=\infty$) follows.
+
+To verify the necessity of the second part of (\ref{t1}) define the function
+$f$ by
+$$
+f(x) =
+\begin{cases}
+x^{-1-A}/({-\log x})^2, & \text{ if } p=1,\\
+x^{-1/p-A}/({-\log x}), & \text{ if } 1<p<\infty,\\
+x^{-A}, & \text{ if } p=\infty,
+\end{cases}
+$$
+for $0<x<\varepsilon$ and $f(x)=0$ otherwise, and
+consider in (\ref{t4}) the sequence of functions $f_n(x)=f(x)
+\chi_{(\varepsilon/n,\varepsilon)}(x)$. Then,
+$\sup_{n\ge1}\|f_n(x)x^A(1+x)^{B-A}\|_p<\infty$
+and, for $0<x<\varepsilon$,
+$$
+S_\alpha^1f_n(x) = \int_0^\infty K^1_\alpha(x,y) f_n(y)\,dy
+\ge Cx^{\alpha+1/2} \int_{\varepsilon/n}^{\varepsilon}y^{\alpha+1/2}f(y)\,dy.
+$$
+Thus, to keep $\|S_\alpha^1f_n(x)x^a(1+x)^{b-a}\|_p$ uniformly bounded
+(with respect to $n$) requires $\alpha+1/2-A-1/p>-1$ ($\ge$ if $p=1$),
+the second part of (\ref{t1}).
+
+To check the necessity of the first condition in (\ref{t2}) choose a
+sufficiently small $\varepsilon$ such that $J_\alpha(y)>0$ for $0<y<
+\varepsilon$ and take $f=\chi_{(\varepsilon/2,\varepsilon)}$. Then, $S^1_\alpha
+f(x)$ is the sum of
+\begin{equation}
+2\int_{\varepsilon/2}^\varepsilon \frac{2\alpha^2-(x^2+y^2)}{(x^2-y^2)^2}
+\,y^{1/2}J_\alpha(y)\,dy \cdot x^{1/2}J_\alpha(x),
+\label{A}
+\end{equation}
+\begin{equation}
+-4x\int_{\varepsilon/2}^\varepsilon \frac{x^2+y^2}{(x^2-y^2)^3}
+\,y^{1/2}J_\alpha(y)\,dy \cdot x^{1/2}J_\alpha'(x),
+\label{B}
+\end{equation}
+\begin{equation}
+4\int_{\varepsilon/2}^\varepsilon \frac{y(x^2+y^2)}{(x^2-y^2)^3}
+\,y^{1/2}J_\alpha'(y)\,dy \cdot x^{1/2}J_\alpha(x),
+\label{C}
+\end{equation}
+\begin{equation}
+-4x\int_{\varepsilon/2}^\varepsilon \frac{y}{(x^2-y^2)^2}
+\,y^{1/2}J_\alpha'(y)\,dy \cdot x^{1/2}J_\alpha'(x).
+\label{D}
+\end{equation}
+Since
+$$
+x^{1/2}J_\alpha(x) = (2/\pi)^{1/2} \cos\Big(x-\frac{\alpha\pi}2-
+\frac\pi4\Big) + O(x^{-1}), \qquad x\ge1,
+$$
+and
+$$
+J_\alpha'(x) = \frac{\alpha}xJ_\alpha(x)-J_{\alpha+1}(x),
+$$
+hence
+$$
+x^{1/2}J_\alpha'(x) = (2/\pi)^{1/2} \sin\Big(x-\frac{\alpha\pi}2-
+\frac\pi4\Big) + O(x^{-1}), \qquad x\ge1.
+$$
+Let $g$ and $h$, $4<g<h<\infty$, be such that $x^{1/2}J_\alpha(x)\ge
+1/\sqrt{2\pi}$ for $x\in X=\cup_{j=0}^\infty(g+2\pi j,h+2\pi j)$.
+Then, for $x\in X$, the absolute values of (\ref{B}), (\ref{C}) and
+(\ref{D}) are less than $Cx^{-3}$, while the (negative) value of (\ref{A})
+is less than $-Cx^{-2}$. Thus, for large values of $x\in X$, the sum of absolute values
+of (\ref{B}), (\ref{C}) and (\ref{D}) is less than the half of the absolute
+value of~(\ref{A}). Therefore, it is possible to choose $g$ so large that the former
+statement remains valid for all $x\in X$. Hence, with such a choice of $g$, for
+$x\in X$, $|S^1_\alpha f(x)|\ge Cx^{-2}$, and using (\ref{t4}) produces
+\begin{align*}
+\bigg(\int_Xx^{(b-2)p}\,dx\bigg)^{1/p}&
+\le C\bigg(\int_X|S^1_\alpha f(x)x^a(1+x)^{b-a}|^p\,dx\bigg)^{1/p}\\
+&\le C\bigg(\int_{\varepsilon/2}^\varepsilon|f(x)x^A(1+x)^{B-A}|^p\,dx\bigg)^{1/p}\\
+&<\infty.
+\end{align*}
+In consequence, $b<2-1/p$ ($\le$ if $p=\infty$) follows.
+
+To check the necessity of the second condition in (\ref{t2}), define the
+function $f$ by
+$$
+f(x) =
+\begin{cases}
+x^{-1-B}/(\log x)^{2}, & \text{ if } p=1,\\
+x^{-1/p-B}/(\log x), & \text{ if } 1<p<\infty,\\
+x^{-B}, & \text{ if } p=\infty,
+\end{cases}
+$$
+for $x\ge2$ and $f(x)=0$ otherwise. Then choose an interval $(g,h)$,
+$1<g<h<\infty$, such that $J_\alpha(x)<0$ and $J_\alpha'(x)>0$ for $x\in(g,h)$.
+In addition, choose $G$ and $H$, $2\max\{g,\alpha\}<G<H<\infty$ in such a way
+that $y^{1/2}J_\alpha(y)\ge 1/\sqrt{2\pi}$ and $J_\alpha'(y)\le 0$ for
+$y\in Y=\cup_{j=0}^\infty(G+2\pi j,H+2\pi j)$.
+Consider in (\ref{t4}) the sequence of functions $f_n(x)=f(x)\chi_{Y_n}(x)$,
+$Y_n=Y\cap(2,n)$. Then, $\sup_{n\ge1}\|f_n(x)x^A(1+x)^{B-A}\|_p<\infty$
+and $S^1_\alpha f_n(x)$ is the sum of
+\begin{align*}
+I_1(n,x) &= 2\int_{Y_n}f(y)\frac{2\alpha^2-(x^2+y^2)}{(x^2-y^2)^2}
+\,y^{1/2}J_\alpha(y)\,dy\cdot x^{1/2}J_\alpha(x),\\
+I_2(n,x) &= -4x\int_{Y_n}f(y)\frac{x^2+y^2}{(x^2-y^2)^3}
+\,y^{1/2}J_\alpha(y)\,dy\cdot x^{1/2}J_\alpha'(x),\\
+I_3(n,x) &= 4\int_{Y_n}f(y)\frac{y(x^2+y^2)}{(x^2-y^2)^3}
+\,y^{1/2}J_\alpha'(y)\,dy\cdot x^{1/2}J_\alpha(x),\\
+I_4(n,x) &= -4x\int_{Y_n}f(y)\frac{y}{(x^2-y^2)^2}
+\,y^{1/2}J_\alpha'(y)\,dy\cdot x^{1/2}J_\alpha'(x).
+\end{align*}
+The choice of $f$, $(g,h)$ and $Y$ shows that for $x\in(g,h)$, $I_1(n,x)$,
+$I_2(n,x)$ and $I_4(n,x)$ are positive while $I_3(n,x)$ in negative. Thus
+$I_1(n,x)+I_3(n,x)\le S^1_\alpha f_n(x)$. Moreover,
+$$
+0 < \int_{Y_n}\frac{f(y)}{y^2}\,dy \cdot
+\big({-x^{1/2}}J_\alpha(x)\big)\le C I_1(n,x)
+$$
+and
+$$
+|I_3(n,x)|\le C\int_{Y_n}\frac{f(y)}{y^3}\,dy \cdot
+\big({-x^{1/2}}J_\alpha(x)\big).
+$$
+The last estimate shows that $G$ might be chosen so large that
+$|I_3(n,x)|\le 10^{-2}I_1(n,x)$ for $x\in(g,h)$. With such a choice of $G$,
+$$
+\int_{Y_n}\frac{f(y)}{y^2}\,dy \cdot
+\big({-x^{1/2}}J_\alpha(x)\big)\le CS^1_\alpha
+f_n(x)
+$$
+and then multiplication of both sides by $x^b$ and $x$-integration
+over $(g,h)$ produces
+\begin{align*}
+\int_{Y_n}\frac{f(y)}{y^2}\,dy
+\cdot \bigg(\int_g^h\big|J_\alpha(x)x^{(b+1/2)} \big|^p\,dx\bigg)^{1/p}
+&\le C\bigg(\int_g^h|S^1_\alpha f_n(y)y^b|^p\,dy\bigg)^{1/p}\\
+&\le C\|f_n(x)x^A(1+x)^{B-A}\|_p.
+\end{align*}
+Thus, uniform boundedness (with respect to $n$) of the integrals
+$\int_{Y_n}f(y)y^{-2}\,dy$ now requires $B>-1-1/p$ ($\ge$ if $p=1$),
+the second part of (\ref{t2}).
+
+Proving the necessity of (\ref{t3}) note that for $R>0$,
+$K_{\alpha,R}^1(x,y)=R K_{\alpha,1}^1(xR,yR)$, hence
+$S_{\alpha,R}^1f(x)= S_{\alpha,1}^1f_R(xR)$,
+where $f_R(y)=f(y/R)$. Then, applying (\ref{t4}) (where $R=1$ is assumed)
+to a nontrivial function $f\in C^\infty_c(0,\infty)$ produces
+\begin{align}
+\|S_{\alpha,R}^1 f(x)x^a(R^{-1}+x)^{b-a}\|_p
+&\le C R^{B-b}\|f(x)x^A(R^{-1}+x)^{B-A})\|_p \nonumber\\
+&\le C R^{B-b}\|f(x)x^B\|_p
+\label{n1}
+\end{align}
+if $B-A\le0$ or with the last term replaced by $\|f(x)x^A(1+x)^{B-A}\|_p$ if
+$B-A>0$ and $R>1$. But
+\begin{equation}
+\lim_{R\to\infty}S_{\alpha,R}^1 f(x)=f(x), \qquad x>0,
+\label{n2}
+\end{equation}
+hence by (\ref{n1}), (\ref{n2}) and Fatou's lemma for $p<\infty$ or trivially for
+$p=\infty$ we have
+\begin{equation}
+\|f(x)x^b\|_p\le C \|f(x)x^B\|_p\liminf_{R\to\infty}R^{B-b}
+\end{equation}
+if $B-A\le0$ or analogous inequality with $x^B$ replaced by $x^A(1+x)^{B-A}$
+when $B-A>0$. In any case, this implies $b\le B$. To verify (\ref{n2}),
+fix $x>0$ and $f\in C^\infty_c(0,\infty)$ and use $S_{\nu,R}^1f(x)
+= {\mathcal H}_\nu(m_R^1\cdot{\mathcal H}_\nu f)(x)$ to write
+\begin{equation*}
+S_{\nu,R}^1 f(x) = \int_0^\infty (xy)^{1/2}J_\alpha(xy)\Big(1-\Big(
+\frac yR\Big)^2\Big)_+{\mathcal H}_\alpha f(y)\,dy.
+\end{equation*}
+Then, (\ref{n2}) follows by an application of the dominated
+convergence theorem and the inversion formula for the Hankel
+transform ${\mathcal H}_\alpha$ once we note that
+$$
+\int_0^\infty (xy)^{1/2}|J_\alpha(xy)||{\mathcal H}_\alpha f(y)|\,dy
+< \infty.
+$$
+The above is a consequence of ${\mathcal H}_\alpha
+f(y)=O(y^{\alpha+1/2})$, $y\to0^+$, which in turn follows from
+(\ref{asy}) and ${\mathcal H}_\alpha f(y) = O(y^{-2})$, the latter
+easily implied by (\ref{asy2}). This finishes the proof of the
+necessity of (\ref{t3}), hence the theorem.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{BC} J. A. Barcel\'o and A. C\'ordoba,
+Band-limited functions: $L^p$-convergence,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{313} (1989), 655--669.
+
+\bibitem{C} A. C\'ordoba, The disc multiplier,
+\textit{Duke Math. J.} \textbf{58} (1989), 21--27.
+
+\bibitem{Le} N. N. Lebedev,
+Special functions and its applications,
+Dover, New York, 1972.
+
+\bibitem{Mu} B. Muckenhoupt,
+Mean convergence of Hermite and Laguerre series. I,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{147} (1970), 419--431;
+{II}, \textit{ibid.} \textbf{147} (1970), 433--460.
+
+\bibitem{Mu-We} B. Muckenhoupt and D. W. Webb,
+Two-weight norm inequalities for Ces\`aro means of Laguerre expansions,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{353} (2000), 1119--1149.
+
+\bibitem{Po} E. L. Poiani,
+Mean Ces\`aro summability of Laguerre and Hermite series,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{173} (1972), 1--31.
+
+\bibitem{St} K. Stempak,
+Uniform two-weight norm inequalities for Hankel transform partial
+sum operators,
+\textit{Houston J. Math.}
+\textbf{29} (2003), 1045--1063.
+
+\bibitem{We} D. W. Webb,
+Pointwise estimates of the moduli of Ces\`aro-Laguerre kernels,
+{preprint}.
+
+\end{thebibliography}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

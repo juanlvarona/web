@@ -1,0 +1,1167 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% Mean Ces\`aro-type summability  of Fourier-Neumann series,         %
+% by                                                                 %
+% \'Oscar Ciaurri, Krzysztof Stempak and Juan L. Varona              %
+%                                                                    %
+% DATE: first version, 29-October-2002                               %
+% DATE: last modification, 23-October-2003                           %
+%                                                                    %
+% Written with AMS-LaTeX 2.0                                         %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper]{amsart}
+%\usepackage{amsmath,amsthm} %%% amsthm necessary to use ``proof''
+
+% \usepackage[notcite,notref]{showkeys}
+% \overfullrule=5pt
+
+%\date{October 23, 2003}
+% \newcommand{\datename}{\textit{Date}:} %% <- Original
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+\date{\textit{Studia Sci.\@ Math.\@ Hungar.\@} \textbf{42} (2005), 413--430.}
+
+%%%%%%%% A LOT OF BIG SEVERAL-LINE EQUATIONS (aligns, etc.).
+%%%%%%%% THUS, WE ALLOW TO BREAK THEM IN PAGES.
+\allowdisplaybreaks
+
+%%%% \span already exists in TeX
+\newcommand{\spa}{\operatornamewithlimits{span}}
+\newcommand{\supp}{\operatornamewithlimits{supp}}
+\newcommand{\iden}{\operatorname{Id}}
+
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\mua}{d\mu_\alpha}
+\newcommand{\muag}{d\mu_{\alpha+\gamma}}
+
+\newtheorem{theor}{Theorem}
+\newtheorem{propo}{Proposition}
+\newtheorem{corol}[theor]{Corollary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Mean Ces\`aro-type summability of Fourier-Neumann series]{Mean
+Ces\`aro-type summability of Fourier-Neumann series}
+
+%\author{\'Oscar Ciaurri, Krzysztof Stempak and Juan L. Varona}
+
+\author[ \'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,
+Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}
+\email{oscar.ciaurri@dmc.unirioja.es}
+
+\thanks{Research of the first and third authors supported by grant
+BFM2003-06335-C03-03 of the DGI} %% BFM2003-06335-C03-03
+
+\author[K. Stempak]{Krzysztof Stempak}
+\address{Instytut Matematyki,
+Politechnika Wroc\l{a}wska,
+Wyb.~Wyspia\'nskiego 27,
+50-370 Wro\-c\l{a}w,
+Poland}
+\email{stempak@im.pwr.wroc.pl}
+
+\thanks{Research of the second author supported in part by
+KBN grant\#~2 P03A 028 25}
+
+\author[J. L. Varona]{Juan L. Varona}
+
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+
+% \subjclass{Primary 42C10; Secondary 44A20}
+\subjclass[2000]{Primary 42C10; Secondary 44A20}
+
+\keywords{Riesz summation process, Ces\`aro means, summability of
+Fourier-Neumann series, Hankel transform, Bessel functions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+Let $J_\nu$ be the Bessel function of order $\nu$. For $\alpha>-1$, the
+functions $x^{-\alpha-1}J_{\alpha+2n+1}(x)$, $n=0,1,2\dots$, form an
+orthogonal system in $L^2(x^{2\alpha+1}\,dx)$, but the span of such functions
+is not dense in this space. For a function $f$, let $S_k^{\alpha}f$ denote
+the $k$th partial sum of the Fourier-Neumann series of $f$. In this paper we
+provide the minimal conditions on a real $\gamma$
+and $1<p<\infty$, for which the means
+$R_n^{\alpha}f = \frac{\lambda_0 S_0^{\alpha}f + \cdots
++ \lambda_n S_n^{\alpha}f}{\lambda_0 + \cdots + \lambda_n}$,
+$\lambda_k = 2(\alpha+2k+2$), are uniformly bounded in the spaces
+$L^p(x^{2(\alpha+\gamma)+1}\,dx)$. Clearly, the convergence
+$R_n^{\alpha}f\to f$ holds only for functions from the closure
+of the linear span of the orthogonal system in these spaces.
+As a byproduct of the main result, we obtain a characterization of the closure of
+the span in terms of functions whose modified Hankel transforms of order $\alpha$
+are supported on the interval $[0,1]$.
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction and statement of results}
+%\setcounter{equation}{0}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $J_\nu$ stand for the Bessel function of the first kind of order~$\nu$.
+For $\alpha>-1$, the formula
+\begin{equation*}
+  \int_0^\infty J_{\alpha+2n+1}(x)J_{\alpha+2m+1}(x)\frac{dx}{x}
+  = \frac{\delta_{nm}}{2(2n+\alpha+1)},
+  \quad n,m = 0,1,2,\dots,
+\end{equation*}
+provides an orthonormal system $\{j_n^\alpha\}_{n=0}^\infty$ in
+$L^2((0,\infty),x^{2\alpha+1}\,dx)$ ($L^2(\mua)$ and, more generally, $L^p(\mua)$
+from now on) given by
+\begin{equation*}
+  j_n^\alpha(x) = \sqrt{2(2n+\alpha+1)}\,J_{\alpha+2n+1}(x) x^{-\alpha-1},
+  \qquad n = 0,1,2,\dots\,.
+\end{equation*}
+For a function $f$, provided that the coefficients
+\begin{equation*}
+  c_k^\alpha(f) = \int_0^\infty f(y)j_k^\alpha(y) y^{2\alpha+1}\,dy,
+  \qquad k = 0,1,2,\dots,
+\end{equation*}
+exist, consider its formal expansion
+$f\sim \sum_{k=0}^\infty c_k^\alpha(f) j_k^\alpha(x)$ and the partial sum
+operators
+\begin{equation*}
+  S_n^\alpha(f,x) = \sum_{k=0}^n c_k^\alpha(f) j_k^\alpha(x),
+  \qquad n = 0,1,2,\dots\,.
+\end{equation*}
+Series of the form $\sum_{n\ge0} a_n J_{\alpha+n}$ are usually
+called the Neumann series, hence we refer to $\sum_{k=0}^\infty c_k^\alpha(f)
+j_k^\alpha(x)$ as to the Fourier-Neumann series.
+
+For $\alpha$ and $\gamma$, $\alpha>-1$, $\gamma>-1-\alpha$, let
+\begin{equation*}
+  p_0(\alpha,\gamma) = \max\left\{1,\frac{4(\alpha+\gamma+1)}{2\alpha+3}\right\},
+  \qquad p_1(\alpha,\gamma) =
+  \begin{cases}
+    \frac{4(\alpha+\gamma+1)}{2\alpha+1},&\text{ $\alpha>-1/2$}, \\
+    \infty, &\text{$-1<\alpha\le-1/2$}.
+  \end{cases}
+\end{equation*}
+In the case $\gamma=0$ we simply write $p_i(\alpha)$ in place of $p_i(\alpha,0)$, $i=1,2$.
+
+The essential aim of this paper is to study the convergence $R_n^\alpha f\to f$
+in the $L^p(\muag)$ spaces (note that it is equivalent to the
+study of the convergence in the weighted $L^p(x^{2\gamma}\mua)$ spaces),
+$1<p<\infty$, where $R_n^\alpha$ are means of the partial sum operators
+$\{S_k^\alpha\}_{k=0}^n$, cf.~\eqref{eq:Rna}.
+To pose the problem correctly, we must impose some natural conditions on the
+parameters involved. First, we have the requirement $j_n^\alpha\in L^p(\muag)$.
+Second, to ensure the existence of the coefficients $c_n^\alpha(f)$ for every
+$f \in L^p({\muag})$, we must require
+$j_n^\alpha \in L^{p'}(x^{-2\gamma p'}\,\muag)$.
+However, assuming $1<p<\infty$, we have
+$j_n^\alpha\in L^p(\muag)\cap L^{p'}(x^{-2\gamma p'}\,\muag)$
+for every $n=0,1,2,\dots$ if and only if
+$0 < \alpha+\gamma+1 < (\alpha+1)p$ and
+$p_0(\alpha,\gamma) < p < p_1(\alpha,\gamma)$,
+and these are precisely the minimal assumptions we impose.
+The last equivalence easily follows by using the following
+well-known asymptotics for the Bessel functions:
+\begin{equation}
+\label{eq:zero}
+  J_\nu(x) = \frac{x^\nu}{2^\nu \Gamma(\nu+1)} + O(x^{\nu+2}),
+    \qquad x \to 0^+;
+\end{equation}
+\begin{equation}
+\label{eq:infty}
+  J_\nu(x)=\left(\frac{2}{\pi x}\right)^{1/2}\left[ \cos\left(x-\frac{\nu\pi}2
+    - \frac\pi4 \right) + O(x^{-1}) \right], \qquad x \to \infty.
+\end{equation}
+
+Most orthogonal systems considered in the literature, for instance, the
+trigonometric, Jacobi, Laguerre and Hermite systems as well as the ones
+related to Freud weights, Bessel and Dini, are complete. Moreover, the
+$\spa$ of each of these systems is dense in the corresponding $L^p$ spaces,
+$1\le p<\infty$.
+Thus, the $L^p$-convergence of the associated Fourier series is equivalent
+to the uniform boundedness of the partial sum operators.
+However, this is not the present case since the span of $\{j^\alpha_n\}$ is not
+dense in~$L^p(\mua)$.
+Therefore, it is important to identify the closure in $L^p(\mua)$
+of the subspace spanned by $j_n^\alpha$, $n = 0,1,2,\dots$,
+or, more generally, the space
+\begin{equation*}
+  B_{p,\alpha,\gamma} = \overline{\spa \{j_n^\alpha : n = 0,1,2,\dots\}}
+  \qquad (\text{closure in } L^p(\muag)),
+\end{equation*}
+because the uniform boundedness of the partial sum operators $S_n^\alpha$,
+or the Ces\`aro-type means $R_n^\alpha$, would imply the $L^p$-convergence
+only for functions in $B_{p,\alpha,\gamma}$. Note
+that the spaces $B_{p,\alpha,\gamma}$ are well defined if
+$j_n^\alpha\in L^p(\muag)$ and this holds if and only if
+$\alpha+\gamma+1>0$ and $p_0(\alpha,\gamma)<p$ (again by using~\eqref{eq:zero}
+and~\eqref{eq:infty}, or see~\cite{Ci}).
+
+Identifying the spaces $B_{p,\alpha,\gamma}$ with those defined in
+\eqref{eq:Epa}, we will use the modified Hankel transform $H_{\alpha}$ given by
+\begin{equation}
+\label{eq:htr}
+  H_{\alpha}(f,x) = \int_0^\infty \frac{J_\alpha(xy)}{(xy)^\alpha} \, f(y)
+    y^{2\alpha+1} \, dy,
+  \qquad x>0.
+\end{equation}
+For $\alpha\ge-1/2$, \eqref{eq:zero}, \eqref{eq:infty}
+and H\"older's inequality show that~\eqref{eq:htr} is well defined for every
+$f\in L^p(\mua)$ with $1 \le p <p_0(\alpha)$.
+Furthermore, it is easy to see that $H_{\alpha}$ is a bounded
+operator from $L^1(\mua)$ into $L^\infty(\mua)$.
+It is also well known that $H_{\alpha}$ extends to an isometric
+isomorphism from $L^2(\mua)$ onto itself and $H_{\alpha} \circ H_{\alpha} =
+\iden$ (for $-1<\alpha<-1/2$,
+the isometric extension of $H_{\alpha}$ to $L^2(\mua)$ can
+also be done; see~\cite{Dur,BeSt}).
+As a consequence, by interpolation, for $\alpha\ge-1/2$ we consider $H_{\alpha}$ to
+be a bounded operator from $L^p(\mua)$ into $L^{p'}(\mua)$, $1\le p\le2$.
+
+The Hankel transform of the function $j_n^\alpha$ is
+\begin{equation*}
+   H_{\alpha}(j_n^\alpha,x) = \sqrt{2(\alpha+2n+1)} P_n^{(\alpha,0)}(1-2x^2)
+   \chi_{[0,1]}(x),
+\end{equation*}
+where $P_n^{(\alpha,\beta)}(x)$ is the $n$-th Jacobi polynomial of order
+$(\alpha,\beta)$, cf.~\cite{CiGPV}, a remark on p.~127.
+The important fact here is that $H_{\alpha}(j_n^\alpha)$ is supported on
+$[0,1]$; then, only functions $f$ having this property could be approximated
+by the sequence $S_n^\alpha f$. We describe this property using the language
+of the modified Hankel transform.
+
+Thus, define the operator $M_{\alpha}$, associated with $H_{\alpha}$, as the multiplier
+operator
+\begin{equation*}
+  M_{\alpha} f = H_{\alpha}(\chi_{[0,1]}H_{\alpha} f).
+\end{equation*}
+Applying Fubini's theorem, we have
+$M_\alpha (f,x) = \int_0^\infty M_\alpha(x,y)f(y)\,d\mu_\alpha(y)$,
+where
+\begin{equation}
+\label{eq:Makernel}
+  M_\alpha(x,y) = (xy)^{-\alpha} \int_0^1 J_\alpha(xs)J_\alpha(ys) s\,ds.
+\end{equation}
+It is known that $M_\alpha$ is a bounded operator on $L^p(\mua)$
+if and only if $p_0(\alpha)<p<p_1(\alpha)$, cf.~\cite{Her,V,CiGPV-DIE,CiV,BeSt}.
+
+For $\alpha \ge -1/2$ and $p_0(\alpha) < p < p_1(\alpha)$ define the
+following closed subspace of~$L^p(\mua)$:
+\begin{equation}
+\label{eq:Epa}
+  E_{p,\alpha} = \{ f \in L^p(\mua): M_\alpha f = f\}
+  = M_\alpha(L^p(\mua)).
+\end{equation}
+The spaces $E_{p,\alpha}$ enjoy some nice properties: for $1<p<q<\infty$,
+$E_{p,\alpha} \subset E_{q,\alpha}$ and the inclusion is continuous and dense.
+Besides, the dual space of $E_{p,\alpha}$ is naturally identified
+with $E_{p',\alpha}$, cf.~\cite{V} for details.
+
+Note that we assume $\alpha>-1$ in the definition of $B_{p,\alpha,\gamma}$.
+ We require, however, $\alpha\ge-1/2$ for $E_{p,\alpha}$. Actually, the
+definition of $E_{p,\alpha}$ can be extended to the whole range of $\alpha >
+-1$. But in the case $\alpha < -1/2$, $H_{\alpha}$ is not a bounded operator
+from $L^1$ into $L^\infty$ since $J_\alpha(t)t^{-\alpha}$ is not a bounded function.
+As a consequence, the spaces
+$E_{p,\alpha}$ do not behave for $\alpha<-1/2$ like those for $\alpha\ge-1/2$.
+Thus, some of the results in this paper will be established for $\alpha>-1$,
+but we will require $\alpha\ge-1/2$ when $E_{p,\alpha}$ appears.
+
+It is clear from the very definition that for $f \in E_{p,\alpha}
+\cap L^2(\mua)$ the Hankel
+transform of $f$ is supported on $[0,1]$. When $p=2$, using the fact that
+$H_{\alpha}$ is an isomorphism
+and the completeness of the Jacobi system, we easily get that
+$\{j_n^\alpha\}$ is, indeed, a basis for~$E_{2,\alpha}$.
+But this cannot be proved in such a direct way for other values of~$p$.
+
+In~\cite{V}, one of the authors
+(actually, in that paper there is a change of notation that is, basically,
+a change of variable $x \mapsto x^2$; see \cite[Remark~1]{CiV} for
+appropriate comments on the change of notation) proved the following:
+by using the basic case $p=2$, and the properties
+of $E_{p,\alpha}$, it follows that $B_{p,\alpha,0} = E_{p,\alpha}$
+for $2 \le p < p_1(\alpha)$.
+On the other hand, it was also shown that, for $\alpha\ge-1/2$,
+\begin{equation*}
+  \|S_n^\alpha f\|_{L^p(\mua)} \le C \|f\|_{L^p(\mua)},\qquad n=0,1,2,\dots,
+\end{equation*}
+if and only if $\max\{p_0(\alpha),4/3\} < p < \min\{p_1(\alpha),4\}$
+(for a more general result in a weighted setting, see \cite[Theorem~1]{CiGPV}).
+Then, for this range of $p$'s, $\|S_n^\alpha f-f\|_{L^p(\mua)} \to 0$
+for every $f$ from the space $B_{p,\alpha,0}$, already identified
+as $E_{p,\alpha}$ for $2 \le p < p_1(\alpha)$.
+By using duality and the uniform boundedness of the partial sum operators $S_n^\alpha$,
+it  also follows that  $B_{p,\alpha,0} = E_{p,\alpha}$
+when $\max\{p_0(\alpha),4/3\} < p < 2$.
+
+If $-1/2 \le \alpha < 0$, we have $ p_0(\alpha)<4/3$. Thus, there is a gap
+$p_0(\alpha) < p < 4/3$, for which  the previous argument
+does not show if $B_{p,\alpha,0}$ and $E_{p,\alpha}$ are equal.
+Filling this gap is another  aim of this paper (see
+Theorem~\ref{th:Bp=Ep} with $\gamma=0$).
+
+To overcome the difficulty, we will use means equivalent to Ces\`aro
+$(C,1)$ means instead of partial sums. This will allow us to
+eliminate the condition $4/3 < p < 4$ and,
+again by using a duality argument, will enable us to
+identify $B_{p,\alpha,0}$ with $E_{p,\alpha}$ in the whole range of
+$p_0(\alpha) < p < p_1(\alpha)$.
+Actually, instead of using Ces\`aro means, we will use the means
+\begin{equation}
+\label{eq:Rna}
+  R_n^\alpha =
+  \frac{\lambda_0 S_0^\alpha + \cdots + \lambda_n S_n^\alpha}
+    {\lambda_0 + \cdots + \lambda_n},
+  \qquad \lambda_k = 2(\alpha+2k+2).
+\end{equation}
+A reason for this is that for such means it is possible to write an
+exact expression for their kernels.
+This summation method is sometimes known as the Riesz method
+$(R,\lambda_k)$; see, for instance, \cite[\S\,59, p.~470]{Kno}.
+The convergence in this method is equivalent
+to the convergence of Ces\`aro $(C,1)$ means
+(see, for instance, \cite[\S\,3.8, Th.~14]{Har}).
+Thus, we refer to this method as to a \textit{Ces\`aro-type} summation method.
+
+Investigating the uniform boundedness and convergence of
+$R_n^\alpha$ reveals that the kernels of these operators remind
+those for the Hankel transform
+partial sum operators, cf.~\cite{CiV}; boundedness properties of the
+corresponding operators were studied there by using a
+convolution structure for the Hankel transform. Unfortunately, in
+the case of kernels considered here, an extra factor of size
+$xy/n^2$ appears, and the method used in~\cite{CiV} didn't turn out to be
+useful. On the other hand, however, the kernels have a similar
+behaviour as the ones that appear in~\cite{CiStV}; boundedness
+properties of the corresponding operators were established without
+using properties of the aforementioned convolution. It occurs that
+the proofs may be adapted to the present case and the extra factor
+can be properly annihilated. This is particularly well visible in the proof
+of Proposition~\ref{pro:BcAc}.
+
+Finally, some comments seem to be relevant.
+Although, in many aspects, the situation of the present setting is
+similar to the one of the Laguerre expansions, for instance, the
+condition $4/3<p<4$ disappears when we pass from the partial sum
+operators to the $(C,1)$ means, cf.~\cite{Po} (see~\cite{St03} for a
+motivation of such a comparison), there are important differences. First,
+the $(C,1)$ (and also $(C,\delta)$) summability of the Laguerre series
+can be deduced from an associated convolution structure,
+see~\cite{St91}. Second, we always restrict the $p$'s interval to
+$1<p<\infty$, not including $p=1$ or $p=\infty$. This is explained by the fact that
+already in the unweigted case, $\gamma=0$, the system $j_n^\alpha$, $n=0,1,2,\dots$,
+is not contained in $L^1(d\mu_\alpha)$.
+
+The main result of the paper states the uniform boundedness of
+$R_n^\alpha$ in $L^p(\muag)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{theor}
+\label{th:main}
+Let $\alpha > -1$ and $\gamma\in\mathbb{R}$. Assume that
+\begin{equation}
+\label{eq:condition1}
+  0 < \alpha+\gamma+1 < (\alpha+1)p
+\end{equation}
+and
+\begin{equation}
+\label{eq:condition2}
+  p_0(\alpha,\gamma) < p < p_1(\alpha,\gamma).
+\end{equation}
+Then
+\begin{equation*}
+  \|R_n^\alpha f\|_{L^p(\muag)} \le C \|f\|_{L^p(\muag)}\,,
+\end{equation*}
+with $C$ independent of~$n=0,1,2,\dots$ and~$f$.
+\end{theor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Note, that the assumptions that appear in Theorem~\ref{th:main} are,
+according to what was said earlier, ``natural'' (minimal).
+
+The second main result of the paper concerns the spaces~$B_{p,\alpha,\gamma}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{theor}
+\label{th:Bp=Ep} Let $\alpha > -1$, $\alpha+\gamma\ge-1/2$,
+$p_0(\alpha+\gamma)<p<p_1(\alpha+\gamma)$ and $\gamma<1/2$.
+If $p<2$, assume further that
+$p_0(\alpha,\gamma)<p$
+and $\alpha+\gamma+1<\frac{p}4(2\alpha+4\gamma+3)$.
+Then $B_{p,\alpha,\gamma} = E_{p,\alpha+\gamma}$.
+\end{theor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The proofs of Theorems~\ref{th:main} and~\ref{th:Bp=Ep} are postponed to
+Sections~\ref{sec:proofmain} and~\ref{sec:Bp=Ep}. Theorem~\ref{th:Bp=Ep} imediately
+shows that $B_{p,\alpha,0}=E_{p,\alpha}$ in the whole range of $p$'s in
+which both spaces are well defined.
+
+By using Theorems~\ref{th:main} and~\ref{th:Bp=Ep}, the proof of the
+following result is standard.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corol}
+Let $\alpha > -1$, $\alpha+\gamma\ge-1/2$,
+$p_0(\alpha+\gamma)<p<p_1(\alpha+\gamma)$, $\gamma<1/2$,
+and~\eqref{eq:condition1} and
+\eqref{eq:condition2} are satisfied. If
+$p<2$, assume further $\alpha+\gamma+1<\frac{p}4(2\alpha+4\gamma+3)$.
+Then, $R_n^\alpha f\to f$ in
+$L^{p}(\muag)$ for every $f\in E_{p,\alpha+\gamma}$.
+\end{corol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Apart of the expansions based on the system $\{j_n^\alpha\}_{n=0}^\infty$, there
+is another setting in which the Fourier-Neumann series may be  investigated.
+The system of functions
+\begin{equation*}
+ \varphi_n^\alpha(x) = \sqrt{2(2n+\alpha+1)}\,J_{\alpha+2n+1}(x) x^{-1/2},
+  \qquad n = 0,1,2,\dots\,
+\end{equation*}
+is orthonormal (but not complete) in
+$L^2((0,\infty), dx)$; in what follows we simply write $L^2(dx)$ or, more generally,
+$L^p(x^\gamma dx)$ for weighted $L^p$ spaces.
+Hence, for any suitable function $f$ on $(0,\infty)$ consider its expansion
+$f\sim\sum_{k=0}^\infty d_k^\alpha(f) \varphi_k^\alpha(x)$, $d_k^\alpha(f)=
+\int_0^\infty f(x)\varphi_k^\alpha(x)\,dx$, and the partial sum operators
+\begin{equation*}
+  \calS_n^\alpha(f,x) = \sum_{k=0}^n d_k^\alpha(f) \varphi_k^\alpha(x),
+  \qquad n = 0,1,2,\dots\,.
+\end{equation*}
+Analogously, define the means
+\begin{equation*}
+\label{eq:Rnacal}
+  \calR_n^\alpha =
+  \frac{\lambda_0 \calS_0^\alpha + \cdots + \lambda_n \calS_n^\alpha}
+    {\lambda_0 + \cdots + \lambda_n},
+  \qquad \lambda_k = 2(\alpha+2k+2).
+\end{equation*}
+Clearly enough, results concerning both types of expansions are linked together since
+$\calS_n^\alpha(f,x) =x^{\alpha+1/2}S_n^\alpha((\cdot)^{-(\alpha+1/2)}f,x)$.
+
+Therefore, Theorem~\ref{th:main} has its counterpart in the following.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{theor}
+\label{th:maincal}
+Let $\alpha > -1$, $\gamma\in\mathbb{R}$ and $1<p<\infty$. Assume that
+\begin{equation}
+\label{eq:cal}
+  \max\{-1,-1-p(\alpha+1/2)\} < \gamma < \min\{-1+p, -1+p(\alpha+3/2)\}.
+\end{equation}
+Then
+\begin{equation*}
+  \|\calR_n^\alpha f\|_{L^p(x^\gamma\,dx)} \le C \|f\|_{L^p(x^\gamma\,dx)}\,,
+\end{equation*}
+with $C$ independent of~$n=0,1,2,\dots$ and~$f$.
+\end{theor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As in the case of Theorem~\ref{th:main}, it can be easily seen by a direct computation
+that the assumptions of Theorem~\ref{th:maincal} are minimal in the sense that
+for all $n=0,1,\dots$, $\varphi_n^\alpha\in L^p(x^\gamma\,dx)$ and the coefficients
+$ d_k^\alpha(f)$ exist for every $f\in L^p(x^\gamma\,dx)$ if and
+only if~\eqref{eq:cal} is satisfied.
+Clearly, Theorem~\ref{th:maincal} and Theorem~\ref{th:main} are equivalent.
+Actually, the direct proof of Theorem~\ref{th:maincal} simplifies a little bit;
+for instance, the formula corresponding
+to that of Proposition~\ref{pro:3sum} becomes
+$$
+  \calR_n^\alpha(f,x) = \calM_{\alpha}^0(f,x)
+  - \frac{d_n}{2} \Big(x\calM_{\alpha+1}^1(yf,x)-x
+    \calM_{\alpha+2n+3}^1(yf,x)\Big).
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The kernel}
+%\setcounter{equation}{0}
+\label{sec:kernel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we find exact expressions for the kernel of the Ces\`aro-type
+means~$R^\alpha_n$.
+The partial sum operators $S_n^\alpha $ can be written as
+\begin{equation}
+\label{eq:Sn}
+  S^\alpha_n(f,x) = \int_0^\infty S_n^\alpha(x,y) f(y) y^{2\alpha+1}\,dy
+\end{equation}
+with the kernel
+\begin{equation*}
+  S_n^\alpha(x,y) = (xy)^{-(\alpha+1)}
+    \sum_{k=0}^n 2(\alpha+2k+1) J_{\alpha+2k+1}(x)J_{\alpha+2k+1}(y).
+\end{equation*}
+Thus, by~\eqref{eq:Rna},
+\begin{equation*}
+  R^\alpha_n(f,x) = \int_0^\infty R_n^\alpha(x,y)f(y)y^{2\alpha+1}\,dy
+\end{equation*}
+with
+\begin{equation*}
+  R_n^\alpha(x,y)
+  = d_n \left(\lambda_0 S_0^\alpha(x,y) + \cdots
+  + \lambda_n S_n^\alpha(x,y)\right),
+  \qquad \lambda_k = 2(\alpha+2k+2),
+\end{equation*}
+where $d_n^{-1} = \sum_{k=0}^n \lambda_k=4(n+1)(\alpha+n+2)$.
+
+For $\nu>-1$, let
+\begin{equation}
+\label{eq:phi1}
+  \calJ_\nu(x,y) = \int_0^1 J_\nu(xs) J_\nu(ys) s\,ds.
+\end{equation}
+Then
+\begin{equation}
+\label{eq:phi2}
+  \calJ_\nu(x,y) = \frac{1}{x^2-y^2}\{ xJ_{\nu+1}(x)J_{\nu}(y)
+    - yJ_{\nu}(x)J_{\nu+1}(y) \}
+\end{equation}
+and
+\begin{equation}
+\label{eq:phi3}
+  \calJ_\nu(x,y) = \frac{1}{x^2-y^2}\{ yJ'_{\nu}(y)J_{\nu}(x)
+  - xJ'_{\nu}(x)J_{\nu}(y) \}.
+\end{equation}
+We applied von Lommel's formula, cf.~\cite{CiGPV}, and, for the last equality,
+the identity $zJ_{\nu+1}(z) = \nu J_{\nu}(z) - zJ'_{\nu}(z)$.
+
+By using~\eqref{eq:phi2}, it can be proved (see~\cite{CiGPV}) that
+\begin{equation}
+\label{eq:kernelKn}
+  S_n^\alpha(x,y) = (xy)^{-\alpha} \{\calJ_\alpha(x,y)
+  - \calJ_{\alpha+2n+2}(x,y)\}.
+\end{equation}
+Then
+\begin{multline*}
+  R_n^\alpha(x,y) = \frac{1}{2}d_n (xy)^{-\alpha}
+    \sum_{k=0}^n 2(\alpha+2k+2) \{\calJ_\alpha(x,y)
+      - \calJ_{\alpha+2k+2}(x,y)\} \\
+  \begin{aligned}
+  &= (xy)^{-\alpha} \left[\calJ_\alpha(x,y)
+    - d_n \int_0^1 s\bigg( \sum_{k=0}^n 2(\alpha+2k+2)
+    J_{\alpha+2k+2}(xs) J_{\alpha+2k+2}(ys)\bigg) \,ds\right] \\
+  &= (xy)^{-\alpha}\left[\calJ_\alpha(x,y)
+    - d_n \int_0^1 s (xsys) (\calJ_{\alpha+1}(xs,ys)
+    - \calJ_{\alpha+2n+3}(xs,ys)) \,ds\right].
+  \end{aligned}
+\end{multline*}
+Therefore, denoting
+\begin{equation*}
+  \xi_\nu(x,y) = 2 \int_0^1 s^3 \calJ_\nu(xs,ys) \,ds,
+\end{equation*}
+we finally obtain
+\begin{equation}
+\label{eq:Jn3sum}
+  R_n^\alpha(x,y) = (xy)^{-\alpha} \calJ_\alpha(x,y)
+  - \frac{1}{2}d_n(xy)^{-\alpha+1}( \xi_{\alpha+1}(x,y)
+  - \xi_{\alpha+2n+3}(x,y)).
+\end{equation}
+In this decomposition, the first summand is just the integral kernel of the
+multiplier operator $M_\alpha$, as one can observe by comparing~\eqref{eq:phi1}
+with~\eqref{eq:Makernel}.
+Its boundedness properties has already been studied;
+see for instance~\cite{CiGPV}
+(note also that this summand appears in the decomposition
+of the kernel $S_n^\alpha(x,y)$ used to study the uniform
+boundedness of~$S_n^\alpha$).
+
+We will find another expression for $\xi_\nu(x,y)$. By using~\eqref{eq:phi1},
+the change of variable $t=w/s$ and Fubini's theorem easily produce
+\begin{equation*}
+  \xi_\nu(x,y)=\int_0^1 w(1-w^2) J_\nu(xw) J_\nu(yw) \,dw.
+\end{equation*}
+This expression for $\xi_\nu(x,y)$ will be useful for our purposes for the
+following reasons: let $\calH_\nu$ denote the (non-modified) Hankel
+transform of order~$\nu > -1$, i.e.,
+\begin{equation*}
+  \calH_\nu(f,x)
+  = \int_0^\infty (xy)^{1/2}J_\nu(xy)f(y)\,dy, \qquad x>0.
+\end{equation*}
+
+The Bochner-Riesz multiplier of order $\delta\ge0$ for
+$\calH_\nu$ is given by
+\begin{equation}
+\label{eq:B-Rd}
+  \calM_{\nu}^\delta(f,x)
+  = \calH_\nu(m^\delta \cdot \calH_\nu f,x)
+  = \int_0^\infty \calM_{\nu}^\delta(x,y)f(y)\,dy,
+\end{equation}
+where $m^\delta(y) = (1-y^2)^\delta_+$ and
+\begin{equation}
+\label{eq:KB-Rd}
+  \calM^{\delta}_{\nu}(x,y)
+  = \int_0^1 (1-w^2)^\delta (xw)^{1/2}J_\nu(xw)(yw)^{1/2}J_\nu(yw)\, dw.
+\end{equation}
+Then, $\xi_\nu(x,y) = (xy)^{-1/2}\calM^{1}_{\nu}(x,y)$.
+Pointwise estimates for $\calM^{1}_{\nu}(x,y)$,
+as well as necessary and sufficient conditions for the uniform boundedness
+\begin{equation*}
+  \|\calM_{\nu}^1(f,x)x^a\|_{L^p(dx)}
+  \le C\|f(x)x^a\|_{L^p(dx)},
+  \qquad \nu\ge\alpha,
+\end{equation*}
+were found in~\cite{CiStV}. We will partially use those results
+in Section~\ref{sec:proofmain} of this paper.
+
+Actually, also the first summand in~\eqref{eq:Jn3sum} can be described
+following the notation of~\eqref{eq:B-Rd}:
+the multiplier $M_\alpha$ (for the modified Hankel transform $H_{\alpha}$)
+is related to the  multiplier $\calM_{\alpha} = \calM_{\alpha}^0$
+(for the Hankel transform $\calH_\alpha$) by mean of
+$\calM_\alpha(f,x) = x^{\alpha+1/2}M_{\alpha}((\cdot)^{-(\alpha+1/2)}f,x)$,
+with the analogous relation for the kernels
+$\calM_\alpha(x,y)$ and $M_{\alpha}(x,y)$.
+
+Summarizing, we found the following decomposition.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{propo}
+\label{pro:3sum}
+Let $\alpha>-1$ and $n=0,1,2\dots\,$. Then
+\begin{multline*}
+  R_n^\alpha(f,x)
+  = x^{-\alpha-1/2} \calM_{\alpha}^0(y^{\alpha+1/2}f,x) \\
+  - \frac{d_n}{2} \left(x^{-\alpha+1/2}
+    \calM_{\alpha+1}^1(y^{\alpha+3/2}f,x)-x^{-\alpha+1/2}
+    \calM_{\alpha+2n+3}^1(y^{\alpha+3/2}f,x)\right)
+\end{multline*}
+with $d_n^{-1} = \sum_{k=0}^n \lambda_k = 4(n+1)(\alpha+n+2)$.
+\end{propo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{th:main}}
+%\setcounter{equation}{0}
+\label{sec:proofmain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The main idea of the proof is the following.
+The first summand in the decomposition of $R_n^\alpha(f,x)$,
+$x^{-\alpha-1/2}\calM_{\alpha}^0(y^{\alpha+1/2}f,x)$,
+may be easily treated since we know appropriate weighted bounds for the
+operator $\calM_{\alpha}^0$. Thus we are immediately left with the
+operators
+\begin{equation*}
+  Q_n^\alpha(f,x)
+  = R_n^\alpha(f,x) - x^{-\alpha-1/2}
+    \calM_{\alpha}^0(y^{\alpha+1/2}f,x).
+\end{equation*}
+The relevant uniform inequalities for them,
+\begin{equation*}
+  \|Q_n^\alpha f\|_{L^p(\muag)}
+  \le C \|f\|_{L^p(\muag)},\qquad n=1,2,\dots,
+\end{equation*}
+will be obtained by a proper splitting of $(0,\infty)\times(0,\infty)$ and
+then by treating each resulting region separately. It is important to stress
+here the fact that in the region that corresponds to large $x$ and $y$ we will
+go back to the original definition
+of $R_n^\alpha$ as a Ces\`aro type mean of $\{S^\alpha_k\}$.
+In consequence, the results of Section~\ref{sec:kernel}
+will allow us to write $Q_n^\alpha f$ as a mean of
+$x^{-\alpha-1/2} \calM_{\alpha+2k+2}^0(y^{\alpha+1/2}f,x)$,
+$k = 0,1,\dots,n$,
+and then to treat each resulting term in the aforementioned
+region separately.
+
+The weighted bound for $\calM_{\alpha}^0$ is contained in
+the following (see, with different degree of generality, \cite{Her},
+\cite{CiGPV-DIE}, \cite{St03} and, in particular, \cite[\S\,6.4]{CiGPV}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{propo}
+\label{pro:Mab}
+Let $\alpha>-1$, $\gamma\in \mathbb{R}$ and $1 < p < \infty$. Then
+\begin{equation*}
+  \| x^{-\alpha-1/2}\calM_{\alpha}^0(y^{\alpha+1/2}f,x)\|_{L^p(\muag)}
+  \le C \| f(x) \|_{L^p(\muag)}
+\end{equation*}
+if and only if~\eqref{eq:condition1} and~\eqref{eq:condition2} are satisfied.
+\end{propo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $\nu=\nu(n)=\alpha+2n+3$, $n=0,1,\dots$, and
+$A=(0,4\nu)$, $B=(2\nu,\infty)$. Since
+\begin{equation*}
+  \chi_{(0,\infty)\times(0,\infty)}
+  = \chi_{A\times A} + \chi_{A^c\times B^c}
+  + \chi_{B^c\times A^c} + \chi_{B\times B}
+  - \chi_{(A\cap B)\times (A\cap B)},
+\end{equation*}
+by using the notation $Q^\alpha_{n,T,S}f=\chi_T Q^\alpha_n(\chi_S f)$
+we have
+\begin{multline*}
+  \|Q^\alpha_nf\|_{L^p(\muag)}
+  \le \|Q^\alpha_{n,A,A}f\|_{L^p(\muag)}
+  + \|Q^\alpha_{n,A^c,B^c}f\|_{L^p(\muag)} \\
+  + \|Q^\alpha_{n,B^c,A^c}f\|_{L^p(\muag)}
+  + \|Q^\alpha_{n,B,B}f\|_{L^p(\muag)}
+  + \|Q^\alpha_{n,A\cap B,A\cap B}f\|_{L^p(\muag)}.
+\end{multline*}
+We will bound each of the five quantities above by $C\|f\|_{L^p(\muag)}$
+with $C$ independent of~$n$ and~$f$.
+In the rest of this section we write $\|\cdot\|_p$ for the unweighted
+$L^p$-norm on~$(0,\infty)$.
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estimating $\|Q^\alpha_{n,A,A}f\|_{L^p(\muag)}$}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Noting that $d_n\sim \nu(n)^{-2}$, it is enough to show the uniform bounds:
+\begin{equation*}
+  \nu^{-2} \|x^{-\alpha+1/2}\chi_A(x)
+    \calM_{\nu}^1(y^{\alpha+3/2}\chi_Af,x)\|_{L^p(\muag)}
+  \le C\|\chi_Af\|_{L^p(\muag)}, \quad \nu\ge\alpha+3,
+\end{equation*}
+and the analogous bound with $\calM_{\nu}^1$ frozen to
+$\calM_{\alpha+1}^1$ (but with $A$ associated to $\nu$,
+not to $\alpha+1$\,!). In both cases,
+taking $g(y)=y^{\alpha+3/2}f(y)$ and using the notation
+\begin{equation}
+\label{eq:aaa}
+  a = -\alpha-1/2+(2(\alpha+\gamma)+1)/p,
+\end{equation}
+proving the former bounds reduces to showing that
+\begin{equation*}
+  \nu^{-2}\|x\chi_A(x)\calM_\nu^1(\chi_Ag,x)x^a\|_p
+  \le C\|y^{-1}\chi_Agy^a\|_p,
+  \quad \nu\ge\alpha+3,
+\end{equation*}
+and the analogous bound with $\calM_{\nu}^1$ replaced by
+$\calM_{\alpha+1}^1$.
+These bounds, due to $x\le4\nu$ and $(4\nu)^{-1}\le y^{-1}$,
+are further reduced to
+\begin{equation}
+\label{eq:red}
+  \|\chi_A(x)\calM_\nu^1(\chi_Ag,x)x^a\|_p
+  \le C \|\chi_Agy^a\|_p,
+  \quad \nu\ge\alpha+3,
+\end{equation}
+and the one with $\calM_{\nu}^1$ replaced by
+$\calM_{\alpha+1}^1$.
+
+In~\cite{CiStV}, the following result on the uniform boundedness
+of the Bochner-Riesz operators for the Hankel
+transform was found (actually, in a more general setting).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{propo}[{\cite[Theorem~1]{CiStV}}]
+\label{pro:acotSnu}
+Let $\beta>-1$ and $1<p<\infty$.
+The Bochner-Riesz multipliers of order one for $\calH_\nu$
+given by~\eqref{eq:B-Rd}, satisfy the uniform estimate
+\begin{equation*}
+  \| \calM_{\nu}^1(g,x) x^a \|_p \le C \| g(x) x^a \|_p,
+  \qquad \nu\ge \beta,
+\end{equation*}
+if and only if $-1/p - (\beta+1/2) < a < 1 - 1/p + (\beta+1/2)$
+and $-1/p - 1 < a < 2 - 1/p$.
+\end{propo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Thus, taking $\beta=\alpha+1$ gives~\eqref{eq:red}
+and its companion once we assume that
+\begin{equation*}
+  \max\left\{1,\frac{4(\alpha+\gamma+1)}{2\alpha+5}\right\}
+  < p <
+  \begin{cases}\frac{4(\alpha+\gamma+1)}{2\alpha-1},
+    &\text{ if $\alpha>1/2$},\\
+    \infty,&\text{ if $-1<\alpha\le 1/2$},
+  \end{cases}
+\end{equation*}
+and
+\begin{equation*}
+%\label{eq:hypAA''}
+  0 < \alpha+\gamma+1 < (\alpha+3/2)p
+\end{equation*}
+are satisfied. Finally, note that the two conditions
+are implied by~\eqref{eq:condition1} and~\eqref{eq:condition2}.
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estimating $\|Q^\alpha_{n,B^c,A^c}f\|_{L^p(\muag)}$ and
+$\|Q^\alpha_{n,A^c,B^c}f\|_{L^p(\muag)}$}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Applying an argument from the previous subsection and
+taking $g(y)=y^{\alpha+1/2}f(y)$ it is enough to
+prove the uniform inequalities
+\begin{equation}
+\label{eq:one}
+  \nu^{-2} \|x\chi_{B^c}(x)\calM_\nu^1(y\chi_{A^c}g,x)x^{a}\|_p
+  \le C \|g(y)y^a\|_p, \quad \nu\ge\alpha+3,
+\end{equation}
+and
+\begin{equation}
+\label{eq:two}
+  \nu^{-2} \|x\chi_{A^c}(x)\calM_\nu^1(y\chi_{B^c}g,x)x^{a}\|_p
+  \le C \|g(y)y^a\|_p, \quad \nu\ge\alpha+3,
+\end{equation}
+with $a$ given by~\eqref{eq:aaa}, and its counterparts with
+$\calM_{\nu}^1$ replaced by $\calM_{\alpha+1}^1$.
+This will be done in Propositions~\ref{pro:BcAc} and~\ref{pro:AcBc}
+below by applying uniform pointwise estimates of Bessel
+functions which were already used in~\cite{CiStV}: with a constant~$C$,
+independent of $\nu$ and~$x$,
+\begin{equation}
+\label{eq:Phi}
+  |x^{1/2}J_\nu(x)| \le C \Phi_\nu(x)
+\end{equation}
+where, for $\nu \ge 1$,
+\begin{equation*}
+  \Phi_\nu(x) =
+  \begin{cases}
+    \frac{x^{\nu+1/2}}{\Gamma(\nu+1)2^\nu},& 0<x<\nu/2,\\
+    \nu^{1/4}(\nu^{1/3}+|x-\nu|)^{-1/4},& \nu/2<x<2\nu,\\
+    1,& 2\nu<x<\infty,
+  \end{cases}
+\end{equation*}
+and, for $-1 < \nu < 1$,
+\begin{equation*}
+  \Phi_\nu(x) =
+  \begin{cases}
+    \frac{x^{\nu+1/2}}{\Gamma(\nu+1)},& 0<x<1/2,\\
+    1,& 1/2<x<\infty.
+  \end{cases}
+\end{equation*}
+Moreover, there exists a constant $C$ independent of $\nu>-1$, such
+that, for $(x,y) \in B^c \times A^c$ or $(x,y) \in A^c \times B^c$,
+we have
+\begin{equation}
+\label{eq:acotcalK}
+  |\calM_\nu^1(x,y)|
+  \le C \frac{\Phi_\nu(x)\Phi_\nu(y)}{|x-y|^2};
+\end{equation}
+see~\cite[Lemma~4]{CiStV} and a slight modification
+of~\cite[Lemma~2]{CiStV}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{propo}
+\label{pro:BcAc}
+Let $\alpha>-1$, $\alpha+\gamma>-1$, $1<p<\infty$, and $a$ be given
+by~\eqref{eq:aaa}. If $p<p_1(\alpha,\gamma)$,
+then the inequality~\eqref{eq:one} and its aforementioned counterpart
+are satisfied.
+\end{propo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{proof}
+We consider only the case of~\eqref{eq:one}.
+The proof of its mutant, with $\calM_{\alpha+1}^1$
+in place of $\calM_\nu^1$,
+requires minor modifications only.
+For $(x,y) \in B^c \times A^c$, $x \le 2\nu$. Thus
+\begin{equation*}
+  \left( \int_0^{2\nu} \Big| \frac{x}{\nu^2}
+    \calM_\nu^1(yg\chi_{A^c},x)x^a \Big|^p \,dx \right)^{1/p}
+  \le \frac{C}{\nu} \left(\int_0^{2\nu} \big|
+    \calM_\nu^1(yg\chi_{A^c},x)x^a \big|^p \,dx\right)^{1/p}.
+\end{equation*}
+Moreover, in that region,  $y-x\ge y/2$, so $1/|x-y|^2 \le 4/y^2$.
+Then, by using~\eqref{eq:acotcalK} and H\"older's inequality,
+\begin{align*}
+  \big| \chi_{B^c}(x) \calM_\nu^1(yg\chi_{A^c},x)x^a \big|
+  &\le C \chi_{B^c}(x)x^a\Phi_\nu(x)
+    \left(\int_0^\infty\chi_{A^c}(y) y^{-1}|g(y)| \Phi_\nu(y) \,dy \right) \\
+  &\le C \chi_{B^c}(x) x^a \Phi_\nu(x)\,\| g(y) y^a\|_p \,
+    \|\chi_{A^c}(y) y^{-a-1} \Phi_\nu(y) \|_{p'}
+\end{align*}
+and thus
+\begin{multline*}
+ \nu^{-2} \| \chi_{B^c}(x) \calM_\nu^1(yg\chi_{A^c},x)x^a \|_p \\
+  \le C \nu^{-1}\, \| g(y) y^a\|_p\,
+  \|\chi_{A^c}(y) y^{-a-1} \Phi_\nu(y) \|_{p'}\,
+  \|\chi_{B^c}(x) x^a \Phi_{\nu}(x) \|_p.
+\end{multline*}
+Therefore, to establish the proposition we only need to check that
+the product of the last two terms is bounded by $C\nu$.
+This easily follows, by a direct calculation, once we have $(-a-1)p'<-1$
+(i.e., $p<p_1(\alpha,\gamma)$),
+from the definition of~$\Phi_\nu$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{propo}
+\label{pro:AcBc}
+Let $\alpha>-1$, $\alpha+\gamma>-1$, $1<p<\infty$ and $a$ be given
+by~\eqref{eq:aaa}.
+If $p_0(\alpha,\gamma)<p$, then the inequality~\eqref{eq:two}
+and its aforementioned counterpart are satisfied.
+\end{propo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{proof}
+The proof is very similar to that of the previous proposition.
+Moreover, a duality argument can also  be used, because the operators
+from Propositions~\ref{pro:BcAc} and~\ref{pro:AcBc} are adjoint in
+the following sense:
+\begin{equation*}
+  \langle  x\chi_{B^c} \calM_\nu^1(y^{-a}yg_1\chi_{A^c},x) x^a, h_1 \rangle
+  = \langle  y\chi_{A^c} \calM_\nu^1(x^axh_1\chi_{B^c},y) y^{-a}, g_1 \rangle.
+\end{equation*}
+Thus, the hypothesis $(-a-1)p' < -1$ from the proof of Proposition~\ref{pro:BcAc}
+becomes $(a-1)p < -1$, i.e.,~$p_0(\alpha,\gamma)<p$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estimating $\|Q^\alpha_{n,B,B}f\|_{L^p(\muag)}$
+and $\|Q^\alpha_{n,A\cap B, A\cap B}f\|_{L^p(\muag)}$}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Start with the case of $B\times B$. Here we do not use the
+decomposition of $Q_n^\alpha(f,x)$ that follows from
+Proposition~\ref{pro:3sum}. Instead, we apply
+earlier results of Section~\ref{sec:kernel} that lead
+to writing $Q_n^\alpha(f,x)$ as the mean
+\begin{equation*}
+  Q_n^\alpha(f,x) = -\frac{d_n}{2} \sum_{k=0}^n
+  \lambda_k x^{-\alpha-1/2}\calM_{\alpha+2k+2}^0(y^{\alpha+1/2}f,x).
+\end{equation*}
+The required bound
+\begin{equation*}
+  \|Q^\alpha_{n,B,B}f\|_{L^p(\muag)} \le C\|f\|_{L^p(\muag)}
+\end{equation*}
+then follows from the following.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{propo}
+\label{pro:BB}
+Let $\alpha>-1$, $\alpha+\gamma>-1$, $1<p<\infty$ and,
+for simplicity, write $\kappa=\alpha+2k+2$.
+If the assumption~\eqref{eq:condition2} is satisfied then
+\begin{equation*}
+  \| x^{-\alpha-1/2}\chi_{B}(x)
+    \calM_{\kappa}^0(y^{\alpha+1/2}\chi_{B}f,x) \|_{L^p(\muag)}
+  \le C \| f(x) \|_{L^p(\muag)},
+  \quad 0 \le k \le n,
+\end{equation*}
+with a constant $C$ independent of~$n$.
+\end{propo}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{proof}
+Denoting by $H(g,x)$ the Hilbert transform of~$g$,
+\begin{equation*}
+  H(g,x) = \text{P.V.} \int_0^\infty \frac {g(y)}{x-y}\,dy,
+\end{equation*}
+and performing the change of variables
+$x \mapsto x^{1/2}$ and $y \mapsto y^{1/2}$ in~\eqref{eq:phi3},
+it is then enough to prove
+\begin{multline}
+\label{eq:JJ'}
+  \int_0^\infty \big| \chi_B(\sqrt{x}) x^{-\alpha/2} J_\kappa(\sqrt{x})
+    H(\chi_B(\sqrt{y}) f(\sqrt{y}) y^{(1+\alpha)/2} J'_\kappa(\sqrt{y}), x)
+    \big|^p x^{\alpha+\gamma}\,dx \\
+  \le C \int_0^\infty\big| f(\sqrt{x})\big|^p x^{\alpha+\gamma}\,dx
+\end{multline}
+and the analogous inequality with $J_\kappa(\sqrt{x})$ replaced by
+$J'_\kappa(\sqrt{x})$ and $J'_\kappa(\sqrt{y})$ replaced by $J_\kappa(\sqrt{y})$.
+We treat~\eqref{eq:JJ'} only, the proof of its companion is completely analogous.
+By~\eqref{eq:Phi} (and similar bounds for $J'_\nu$, see \cite{CiStV}), it
+is clear that $|J_\kappa(x)| \le Cx^{-1/2}$ and
+$|J'_\kappa(x)| \le Cx^{-1/2}$ for $x \ge 2\nu$
+with a constant $C$ independent of $x$, $\kappa$ and~$\nu$ ($\nu\ge\alpha+2>1$).
+
+We will use the fact that the Hilbert
+transform is a bounded operator on weighted $L^p$ spaces with weights from
+$A_p$. It is clear that $x^{\alpha+\gamma \pm p/4 - \alpha p/2} \in A_p$
+if and only if $-1 < \alpha+\gamma \pm p/4 - \alpha p/2 < p-1$.
+Here, the relevant inequalities are $-1 < \alpha+\gamma - p/4 - \alpha p/2$
+and $ \alpha+\gamma + p/4 - \alpha p/2 < p-1$,
+which are equivalent to~\eqref{eq:condition2} when  considered together.
+Take
+\begin{equation*}
+  g(y) = \chi_B(\sqrt{y}) f(\sqrt{y}) y^{(1+\alpha)/2} J'_\kappa(\sqrt{y}).
+\end{equation*}
+
+To prove~\eqref{eq:JJ'} we apply successively
+$|J_\kappa(\sqrt{x})| \le Cx^{-1/4}$, $x^{\alpha+\gamma-p/4-\alpha
+p/2} \in A_p$, and $|J'_\kappa(\sqrt{x})| \le Cx^{-1/4}$,
+obtaining
+\begin{align*}
+  \int_0^\infty \big| \chi_B(\sqrt{x}) x^{-\alpha/2} J_\kappa(\sqrt{x})
+    H(g, x) \big|^p\,x^{\alpha+\gamma}\,dx
+  &\le C \int_0^\infty  |H(g, x)|^p x^{\alpha+\gamma-p/4-\alpha p/2}\,dx\\
+  &\le C \int_0^\infty  |g(x)|^p x^{\alpha+\gamma-p/4-\alpha p/2}\,dx \\
+  &\le  C \int_0^\infty \big|f(\sqrt{x})\big|^p x^{\alpha+\gamma}\,dx.
+\end{align*}
+\end{proof}
+
+The bound for $\|Q^\alpha_{n,A\cap B, A\cap B}f\|_{L^p(\muag)}$ follows
+from the uniform estimate
+\begin{equation*}
+  \| x^{-\alpha-1/2}\chi_{A\cap B}(x)\calM_{\kappa}^0(y^{\alpha+1/2}
+  \chi_{A\cap B}f,x) \|_{L^p(\muag)}
+  \le C \| f(x) \|_{L^p(\muag)},
+\end{equation*}
+$0 \le k \le n$, with $C$ independent of $n$. This can be obtained  by applying
+Proposition~\ref{pro:BB} to the function $f(y)\chi_{A\cap B}(y)$ and
+taking into account that
+\begin{equation*}
+  |x^{-\alpha-1/2}\chi_{A\cap B}(x)\calM_{\kappa}^0(y^{\alpha+1/2}
+    \chi_{A\cap B}f,x)|
+  \le | x^{-\alpha-1/2}\chi_{B}(x)\calM_{\kappa}^0(y^{\alpha+1/2}
+    \chi_{A\cap B}f,x)|.
+\end{equation*}
+The proof of Theorem~\ref{th:main} is completed.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{th:Bp=Ep}}
+%\setcounter{equation}{0}
+\label{sec:Bp=Ep}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We follow closely the proof of Theorem~4 in \cite{CiGPV}, where we
+refer the reader for details. Clearly,
+the assumptions $p_{0}(\alpha+\gamma)<p<p_1(\alpha+\gamma)$
+and $\alpha+\gamma\ge-1/2$ are needed to have the
+space $E_{p,\alpha+\gamma}$ well defined and assure good properties of
+it, see a comment in Section~\ref{sec:intro}. Moreover, in our argument the
+case $p=2$ is crucial since it is required when considering other
+cases, $p<2$ and $p>2$. Therefore, in the range of $p$'s, $p_0(\alpha,\gamma)<p$,
+for which the spaces $B_{p,\alpha,\gamma}$ are well defined, $p=2$ must be
+included, which forces us to impose the condition
+$\gamma<1/2$. Clearly, with the last assumption the spaces
+$B_{p,\alpha,\gamma}$ are well defined for all $p\ge 2$.
+Thus, apart of $\alpha>-1$, in what follows we assume
+the conditions $\alpha+\gamma\ge-1/2$,
+$p_{0}(\alpha+\gamma)<p<p_1(\alpha+\gamma)$, and $\gamma<1/2$ to hold.
+
+The formula (which holds for $\alpha>-1$, $\gamma<1$ and $\alpha+\gamma> -1$,
+see \cite[Lemma~3]{CiGPV})
+\begin{equation*}
+  H_{\alpha+\gamma}(j_n^\alpha,x)
+  = 2^{1/2+\gamma}
+    \frac{\sqrt{\alpha+2n+1}\,\Gamma(n+1)}{\Gamma(n+1-\gamma)}
+    (1-x^2)^{-\gamma} P_n^{(\alpha+\gamma,-\gamma)}(1-2x^2)\chi_{[0,1]}(x).
+\end{equation*}
+shows the inclusion $B_{p,\alpha,\gamma} \subseteq E_{p,\alpha+\gamma}$.
+It remains to check that in fact
+the inclusion becomes the identity (with the additional assumption
+$\alpha+\gamma+1 < \frac{p}4(2\alpha+4\gamma+3)$ if $p<2$).
+
+\textit{Case $p=2$.}
+The above formula, the completeness of the Jacobi system and the fact that
+$H_{\alpha+\gamma}$ is an automorphism of $L^2(\muag)$ prove the claim,
+i.e.~$B_{2,\alpha,\gamma} = E_{2,\alpha+\gamma}$.
+
+\textit{Case $p>2$.} Here the crucial fact is the result of {Case $p=2$} and
+continuity and density of the inclusion
+$E_{2,\alpha+\gamma} \subset E_{p,\alpha+\gamma}$.
+
+\textit{Case $p<2$.} The required
+equality follows by showing that the only
+functional $T\in(E_{p,\alpha+\gamma})'$ such that $T(f)=0$ for all
+$f\in B_{p,\alpha,\gamma}$ is
+$T=0$. Since dual of $E_{p,\alpha+\gamma}$ is naturally
+identified with $E_{p',\alpha+\gamma}$,
+there exists $g\in E_{p',\alpha+\gamma}$, such that
+$T(f) = \int_0^\infty g(x)f(x)\,\muag(x)$, for every
+$f\in E_{p,\alpha+\beta}$. With the additional assumption
+$\alpha+\gamma+1 < \frac{p}4(2\alpha+4\gamma+3)$, we have
+$j_n^{\alpha+\gamma} \in B_{p,\alpha,\gamma}$,
+see \cite[Lemma~2]{CiGPV}. Therefore, in particular,
+$c_n^{\alpha+\gamma}(g)
+= \int_0^\infty g(x)j_n^{\alpha+\gamma}(x)\,\muag(x)=0$,
+for $n=0,1,2,\dots$. Now, from the preceding case, we have
+$B_{p',\alpha+\gamma,0} = E_{p',\alpha+\gamma}$,
+so that $g\in B_{p',\alpha+\gamma,0}$. This
+fact, taking into account that with the hypothesis
+$p_0(\alpha,\gamma)<p<2$ we can apply Theorem~\ref{th:main},
+together with $c_n^{\alpha+\gamma}(g) = 0$ gives
+$0 = \lim_{n\to\infty}R_n^{\alpha+\gamma}g = g$
+in $L^{p'}(\muag)$.
+
+The proof of Theorem~\ref{th:Bp=Ep} is completed.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{00}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{BeSt} J. J. Betancor and K. Stempak,
+Relating multipliers and transplantation for Fourier-Bessel expansions and
+Hankel transform,
+\textit{T\^ohoku Math. J.}
+\textbf{53} (2001), 109--129.
+
+\bibitem{Ci} \'O. Ciaurri,
+{``Aproximaci\'on de funciones cuya transformada de Hankel est\'a
+soportada en el intervalo $[0,1]$''},
+Doctoral dissertation,
+Universidad de La Rioja, Logro\~no, Spain, 2000.
+
+\bibitem{CiGPV} \'O. Ciaurri, J. J. Guadalupe, M. P\'erez, and J. L. Varona,
+Mean and almost everywhere convergence of Fourier-Neumann series,
+\textit{J. Math. Anal. Appl.}
+\textbf{236} (1999), 125--147.
+
+\bibitem{CiGPV-DIE} \'O. Ciaurri, J. J. Guadalupe, M. P\'erez, and J. L. Varona,
+Solving dual integral equations on Lebesgue spaces,
+\textit{Studia Math.}
+\textbf{142} (2000), 253--267.
+
+\bibitem{CiV} \'O. Ciaurri and J. L. Varona,
+A uniform boundedness for Bochner-Riesz operators related
+to the Hankel transform,
+\textit{J. Inequal. Appl.} \textbf{7} (2002), 759--777.
+
+\bibitem{CiStV} \'O. Ciaurri, K. Stempak, and J. L. Varona,
+Uniform two-weight inequalities for Hankel transform Bochner-Riesz means,
+preprint, December 2002.
+
+\bibitem{Dur} A. J. Dur\'an,
+On Hankel transform,
+\textit{Proc. Amer. Math. Soc.}
+\textbf{110} (1990), 417--424.
+
+\bibitem{Har} G. H. Hardy,
+{``Divergent Series''},
+Oxford at the Clarendon Press, Oxford, 1949.
+
+\bibitem{Her} C. S. Herz,
+On the mean inversion of Fourier and Hankel transforms,
+\textit{Proc. Nat. Acad. Sci. U.S.A.}
+\textbf{40} (1954), 996--999.
+
+\bibitem{Kno} K. Knopp,
+{``Theory and Application of Infinite Series''},
+Hafner, New York, 1971.
+
+\bibitem{Po} E. L. Poiani,
+Mean Ces\`aro summability of Laguerre and Hermite series,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{173} (1972), 1--31.
+
+\bibitem{St91} K. Stempak,
+Almost everywhere summability of Laguerre series,
+\textit{Studia Math.}
+\textbf{100} (1991), 129--147.
+
+\bibitem{St03} K. Stempak,
+Uniform two-weight norm inequalities for Hankel transform partial sum operators,
+\textit{Houston J. Math.}
+\textbf{29} (2003), 1045--1063.
+
+\bibitem{V} J. L. Varona,
+Fourier series of functions whose Hankel transform is supported on $[0,1]$,
+\textit{Constr. Approx.}
+\textbf{10} (1994), 65--75.
+
+\end{thebibliography}
+
+\end{document}
+

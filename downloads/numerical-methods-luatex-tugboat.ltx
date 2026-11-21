@@ -1,0 +1,843 @@
+% !TEX TS-program = LuaLaTeX
+% !TEX spellcheck = English
+
+\documentclass[final]{ltugboat}
+\usepackage{url,microtype,upquote}
+\def\verbopt{\small}
+\def\pgfplots{\textsf{pgfplots}}
+
+\def\volyr{2014}
+\def\volno{35}
+\def\issno{1}
+\setcounter{page}{51}
+
+%% XeTeX logo defined in pracjourn.cls
+%% Consequenly,
+%% \usepackage{metalogo} % XeTeX logo (\LuaTeX is Lua\TeX)
+%% or 
+%% \usepackage{hologo}
+%% are not necessary
+
+%\usepackage{amsfonts}
+
+\usepackage{luacode}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.5} % to avoid warning
+
+%--------------------------
+
+%% PROVISIONAL WORKING TITLES:
+\title{Numerical methods with Lua\LaTeX}
+%\title{Examples of the LuaLaTeX programming language}
+
+\author{Juan I. Montijano, Mario~P\'erez, Luis~R\'andez and Juan~Luis~Varona}
+
+%%% Optional article metadata %%%
+{\makeescape!
+\netaddress{!char123 monti,mperez,randez!char125! (at) unizar dot es
+!textrm{and!hfil!break }jvarona (at) unirioja dot es}
+}
+%\hyperlinkemail
+%\website{...} 
+\address{Universidad de Zaragoza (Zaragoza, Spain) and Universidad de La Rioja (Logro\~no, Spain)} 
+
+\begin{document}
+\maketitle
+
+\begin{abstract}An extension of \TeX{} known as Lua\TeX{} has been in development for the past few years. 
+Its purpose is to allow \TeX{} to execute scripts written in the general purpose programming language Lua. 
+There is also Lua\LaTeX, which is the corresponding extension for \LaTeX.
+
+In this paper, we show how Lua\LaTeX{} can be used to perform tasks that require a large amount of mathematical computation.
+With Lua\LaTeX{} instead of \LaTeX{}, we achieve important improvements: since Lua is a general purpose language, 
+rendering documents that include evaluation of mathematical algorithms is much easier, and generating the \PDF\ file becomes much faster.
+\end{abstract}
+
+%%% Revision control
+% \TPJrevision{year}{mm}{dd} % The editors ask you to update this for each revision submitted
+%\TPJrevision{2013}{1}{27} % The editors ask you to update this for each revision submitted
+%\TPJissue{2013}{1}
+%\TPJcopyright{ } % May be used if you want a copyright notice at the bottom right of the first page
+%%%
+
+%--------------------------
+%--------------------------
+
+%--------------------------
+%--------------------------
+
+% Article text
+
+%--------------------------
+\section*{Introduction}
+%--------------------------
+
+\TeX{} (and \LaTeX{}) is a document markup language used to typeset beautiful papers and books.
+Although it can also do programming commands such as conditional execution, it is not a general purpose programming language.  Thus there are many tasks that are 
+easily done with other programming languages, but are very complicated or very slow when done with \TeX.
+Due to this limitation, auxiliary programs have been developed to assist \TeX{} with common tasks related to document preparation. For instance, \textsf{bibtex} or \textsf{biber} to build bibliographies,  and \textsf{makeindex} or \textsf{xindy} to generate indexes.
+In both cases, sorting a list alphabetically is a relatively simple task for most programming languages,  but it is very complicated to do with \TeX{},
+hence the desire for auxiliary applications.
+%which is why auxiliary applications written in standard programming
+%languages are used to prepare the bibliography and index.
+
+Another shortcoming of \TeX{} is the computation of mathematical expressions.
+One of the most common uses of \TeX{} is to compose mathematical formulas, and it does this extremely well.
+However \TeX{} is not good at computing mathematics. 
+For instance, \TeX{} itself does not have built-in functions to compute a square root or a sine.
+Although it is possible to compute mathematical functions with the help of auxiliary packages written in \TeX{}, internally these packages must compute functions using only addition, subtraction, multiplication and division operations\Dash and a very large number of them. This is difficult to program (for package developers) and slow in execution.
+
+To address the need to do more complex functions within \TeX, an extension of \TeX{} called Lua\TeX{} was undertaken a few years ago.  
+(The leaders of the project and main developers are Taco Hoekwater, Hartmut Henkel and Hans Hagen.) The idea was to enhance \TeX{} with a previously existing general purpose programming language. After careful evaluation of possible candidates, the language chosen was Lua (see \url{http://www.lua.org}), a powerful, fast, lightweight, embeddable scripting language that has,  of course, a free software license suitable to be used with \TeX.
+Moreover, Lua is easy to learn and use, and anyone with basic programming skills can use it without difficulty. (Many examples of Lua code can be found later in this article, and also, for example, at \url{http://rosettacode.org/wiki/Category:Lua},
+and \url{http://lua-users.org/}.)
+
+Lua\TeX{} is not \TeX{}, but an extension of \TeX{}, in the same way that pdf\TeX{} or \XeTeX{} are extensions.
+In fact, Lua\TeX{} includes pdf\TeX{} (it is an extension of pdf\TeX{}, and offers backward compatibility), 
+and also has many of the features of \XeTeX.
+
+Lua\TeX{} is still in a beta stage, but the current versions are usable (the first public beta was launched in 2007,
+and when this paper was written in January 2013, the release used was version 0.74). 
+
+It has many new features useful for typographic composition; and examples can be seen at the project web site \url{http://www.luatex.org},
+and some papers using development versions have been published in \TUB, among them \cite{HoHe, Ha, Is2010, Is2012,Ma, Reu}. Most of those articles are devoted to the internals and are very technical, only for true \TeX{} wizards; we do not deal with this in this paper. 
+Instead, our goal is to show how the mathematical power of the embedded language Lua can be used in Lua\TeX{}.
+Of course, when we build \LaTeX{} over Lua\TeX{}, we get so-called Lua\LaTeX{}, which will be familiar to regular \LaTeX{}~users.
+
+All the examples in this paper are done with Lua\LaTeX{}.
+It is important to note that the current version of Lua\TeX{} is not meant for production and beta users are warned of possible future changes in the syntax.
+However, the examples in this article use only a few general Lua-specific commands, so it is likely these examples will continue to work with future versions. 
+
+To process a Lua\LaTeX{} document we perform the following steps:
+First, we must compile with Lua\LaTeX{}, not with \LaTeX{}; how to do this depends on the editor being used.
+Second, we must load the package \textsf{luacode} with \verb|\usepackage{luacode}|.
+Then, inside Lua\LaTeX{}, we can jump into Lua mode with the command \verb|\directlua|; moreover, we can define Lua routines in a \verb|\begin{luacode}|\ldots\verb|\end{luacode}| environment (also \verb|{luacode*}| instead of \verb|{luacode}| can be used);
+the precise syntax can be found in the manual ``The \textsf{luacode} package'' (by Manuel P\'egouri\'e\hyph Gonnard) \cite{Peg}.
+In the examples, we do not explain all the details of the code; they are left to the reader's intuition.
+
+In this paper we present four examples. The first is very simple: the computation of a  trigonometric table. In the other examples we use the \LaTeX{} packages \textsf{tikz} and \pgfplots{} to show Lua's ability to produce graphical output. 
+Some mathematical skill may be necessary to fully understand the examples, but the reader can nevertheless see how Lua is able to manage the computation-intensive job. In any case, we do not explore the more complex possibilities, which involve writing Lua programs that load existing Lua modules or libraries to perform a wide range of functions and specialized tasks. 
+
+%--------------------------
+\section{First example: a trigonometric table}
+%--------------------------
+
+To show how to use Lua, let us begin with a simple but complete example.
+Observe the following document, which embeds some Lua source code.
+Typesetting it with Lua\LaTeX{}, we get the trigonometric table shown in Figure~\ref{fig:trig}.
+
+\begin{verbatim}[\verbopt]
+\documentclass{article} 
+\usepackage{luacode} 
+
+\begin{luacode*}
+  function trigtable () 
+    for t=0, 45, 3 do
+      x=math.rad(t) 
+      tex.print(string.format(
+      '%2d$^{\\circ}$ & %1.5f & %1.5f & %1.5f '
+        .. '& %1.5f \\\\', 
+      t, x, math.sin(x), math.cos(x), 
+        math.tan(x)))
+    end 
+  end
+\end{luacode*} 
+\newcommand{\trigtable}
+  {\luadirect{trigtable()}}
+
+\begin{document}
+\begin{tabular}{rcccc}
+  \hline
+  & $x$ & $\sin(x)$ & $\cos(x)$ & $\tan(x)$ \\
+  \hline
+  \trigtable
+  \hline 
+\end{tabular}
+\end{document}
+\end{verbatim}
+
+%---------------
+\begin{figure}
+\begin{luacode*}
+  function trigtable () 
+    for t=0, 45, 3 do
+      x=math.rad(t) 
+      tex.print(string.format(
+      '%2d$^{\\circ}$ & %1.5f & %1.5f & %1.5f '
+        .. '& %1.5f \\\\', 
+      t, x, math.sin(x), math.cos(x),
+        math.tan(x)))
+    end 
+  end
+\end{luacode*} 
+\newcommand{\trigtable}{\luadirect{trigtable()}}
+\centering\small\divide\columnsep by 2
+\begin{tabular}{rcccc}
+  \hline
+  & $x$ & $\sin(x)$ & $\cos(x)$ & $\tan(x)$ \\
+  \hline
+  \trigtable
+  \hline 
+\end{tabular}
+\caption{A trigonometric table.}\label{fig:trig}
+\end{figure}
+%---------------
+
+The \verb|luacode*| environment contains a small Lua program with a function named \verb|trigtable| (with no arguments). 
+This function consists of a loop with a variable \verb|t| representing degrees. Lua converts \verb|t| to radians with \verb|x=math.rad(t)|;
+then, Lua computes the sine, the cosine and the tangent.
+Inside Lua mode, it ``exports'' to \LaTeX{} with \verb|tex.print|; note that we escape any backslash by doubling it.
+Moreover, we have taken into account the following notation to give format to numbers:
+\begin{itemize}
+\item \verb|%2d| indicates that a integer number must be displayed with $2$ digits.
+\item \verb|%1.5f| indicates that a floating point number must be displayed with $1$ digit before the decimal point and $5$ digits after it.
+\end{itemize}
+
+The \LaTeX{} part has the skeleton of a tabular built with the data exported by Lua.
+
+%--------------------------
+\section{Second example: Gibbs phenomenon}
+%--------------------------
+
+Now and in what follows, we will use graphics to show the output of some mathematical routines.
+A very convenient way to do it is by means of the \PGF/\TikZ\ package
+(\TikZ\ is a high-level interface to \PGF) by Till Tantau
+(the huge manual \cite{Tan} of the current version 2.10 has more than 700 pages of documentation and examples);
+two short introductory papers are~\cite{MeSl,MeSl2}.
+Based on \PGF/\TikZ, the package \pgfplots{} (by Christian Feuers\"anger \cite{Feu}) has additional facilities to
+plot mathematical functions like $y = f(x)$ (or a parametric function $x = f(t),\,y = g(t)$) or visualize data in two or three dimensions.
+For instance, \pgfplots{} can draw the axis automatically, as usual in any graphic software.
+
+For completeness, let us start showing the syntax of \pgfplots{} by means of a data plot; this is an example extracted from its very complete manual (more than 400 pages in the present version~1.7).
+After loading \verb|\usepackage{pgfplots}|, the code
+\begin{verbatim}[\verbopt]
+\begin{tikzpicture}
+\begin{axis}[xlabel=Cost, ylabel=Error]
+ \addplot[color=red,mark=x] coordinates {
+  (2,-2.8559703) (3,-3.5301677) (4,-4.3050655)
+  (5,-5.1413136) (6,-6.0322865) (7,-6.9675052)
+  (8,-7.9377747)
+ };
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+generates the plot in Figure~\ref{fig:data}.
+Before going on, note that in future versions the packages \PGF/\TikZ\ and \pgfplots{} could, internally, use Lua\LaTeX{} themselves in a way transparent to the user. This would allow extra power, calculating speed, and simplicity, but this is not yet available and we will not worry about it in this paper.
+
+%---------------
+\begin{figure}
+\scalebox{.9}{%
+\begin{tikzpicture}
+\begin{axis}[xlabel=Cost, ylabel=Error]
+  \addplot[color=red,mark=x] coordinates {
+    (2,-2.8559703) (3,-3.5301677) (4,-4.3050655)
+    (5,-5.1413136) (6,-6.0322865) (7,-6.9675052)
+    (8,-7.9377747)
+  };
+\end{axis}
+\end{tikzpicture}
+}
+\caption{Plotting of a data table with \pgfplots{}.}\label{fig:data}
+\end{figure}
+%---------------
+
+In the next example we consider the Gibbs phenomenon. Using Lua\LaTeX{}, the idea is to compute a data table with Lua (easy to program, powerful and fast in the execution), and plot it with \pgfplots{}.
+
+The Gibbs phenomenon is the peculiar way in which the Fourier series of a piecewise continuously differentiable periodic function behaves at a jump discontinuity, where the 
+$n$-th partial sum of the Fourier series has large oscillations near the jump. It is explained in many harmonic analysis texts, but for the purpose of this paper the reader can refer to~\cite{Wiki-Gib}.
+
+In our case we consider the function $f(x) = (\pi-x)/2$ in the interval $(0,2\pi)$ 
+ extended by periodicity to the whole real line (it has discontinuity jumps at $2j\pi$ for every integer~$j$). Its Fourier series is
+\[
+  f(x) = \sum_{k=1}^{\infty} \frac{ \sin(k x) }{k}.
+\]
+To show the Gibbs phenomenon, we evaluate the partial sum $\sum_{k=1}^{n} \frac{ \sin(k x) }{k}$ (for $n=30$) with Lua to generate a table of data, and we plot it with \pgfplots{}. 
+
+In the \texttt{.tex} file, we include the following Lua to compute the partial sum (function \verb|partial_sum|) and to export the data with the syntax required by  \pgfplots{} (function \verb|print_partial_sum|):
+\smallskip\begin{verbatim}[\verbopt]
+\begin{luacode*}
+-- Fourier series
+function partial_sum(n,x)
+    partial = 0;
+    for k = 1, n, 1 do 
+        partial = partial + math.sin(k*x)/k
+    end;
+    return partial
+end
+
+-- Code to write PGFplots data as coordinates
+function print_partial_sum(n,xMin,xMax,npoints,
+                           option)
+    local delta = (xMax-xMin)/(npoints-1)
+    local x = xMin
+    if option~=[[]] then
+        tex.sprint("\\addplot[" .. option
+                   .. "] coordinates{")
+    else
+        tex.sprint("\\addplot coordinates{")
+    end
+    for i=1, npoints do
+        y = partial_sum(n,x)
+        tex.sprint("("..x..","..y..")")
+        x = x+delta
+    end
+    tex.sprint("}") 
+end
+\end{luacode*}
+\end{verbatim}
+Then, we also define the command 
+\smallskip\begin{verbatim}[\verbopt]
+\newcommand\addLUADEDplot[5][]{%
+  \directlua{print_partial_sum(#2,#3,#4,#5,
+                               [[#1]])}%
+}
+\end{verbatim}
+which will be used to call the data from \pgfplots{}. Here, the parameters
+have the following meaning:
+\verb|#2| indicates the number of terms to be added ($n=30$ in our case); 
+the plot will be done in the interval [\verb|#3|, \verb|#4|] (from $x = 0$ to $10\pi$)
+sampled with \verb|#5| points (to get a very smooth graphic and to show the power
+of the method we use $1000$ points); finally, the optional argument
+\verb|#1| is used to manage optional arguments in the \verb|\addplot| environment (for instance color [grayscaled for \TUB], width of the line,~\ldots).
+
+Now, the plot is generated by
+\smallskip\begin{verbatim}[\verbopt]
+\pgfplotsset{width=.9\hsize}
+\begin{tikzpicture}\small
+\begin{axis}[
+  xmin=-0.2, xmax=31.6,
+  ymin=-1.85, ymax=1.85, 
+  xtick={0,5,10,15,20,25,30},
+  ytick={-1.5,-1.0,-0.5,0.5,1.0,1.5},
+  minor x tick num=4,
+  minor y tick num=4,
+  axis lines=middle,
+  axis line style={-}
+  ] 
+% SYNTAX: Partial sum 30, from x = 0 to 10*pi,
+% sampled in 1000 points.
+\addLUADEDplot[color=blue,smooth]{30}
+  {0}{10*math.pi}{1000};
+\end{axis} 
+\end{tikzpicture}
+\end{verbatim}
+See the output in Figure~\ref{fig:Gibbs}.
+
+%---------------
+\begin{figure}
+\begin{luacode*}
+-- Fourier series
+function partial_sum(n,x)
+    partial = 0;
+    for k = 1, n, 1 do 
+        partial = partial + math.sin(k*x)/k 
+    end;
+    return partial
+end
+-- Code to write PGFplots data as coordinates
+function print_partial_sum(n,xMin,xMax,npoints,option)
+    local delta = (xMax-xMin)/(npoints-1)
+    local x = xMin
+    if option~=[[]] then
+        tex.sprint("\\addplot["..option.."] coordinates{")
+    else
+        tex.sprint("\\addplot coordinates{")
+    end
+    for i=1, npoints do
+        y = partial_sum(n,x)
+        tex.sprint("("..x..","..y..")")
+        x = x+delta
+    end
+    tex.sprint("}") -- We can write "};" and then it is not necessary to put ";" when used
+end
+\end{luacode*}
+\newcommand\addLUADEDplot[5][]{\directlua{print_partial_sum(#2,#3,#4,#5,[[#1]])}}
+\centering
+\pgfplotsset{width=.9\hsize}
+\begin{tikzpicture}\small
+\begin{axis}[xmin=-0.2, xmax=31.6, ymin=-1.85, ymax=1.85, 
+  xtick={0,5,10,15,20,25,30},
+  ytick={-1.5,-1.0,-0.5,0.5,1.0,1.5},
+  minor x tick num=4,
+  minor y tick num=4,
+  axis lines=middle,
+  axis line style={-}
+  ] 
+%%\addplot[color=red] {pi/2-x/2};
+% SYNTAX: Partial sum 30, from x = 0 to 10*pi, and sampled in 1000 points
+\addLUADEDplot[color=blue,smooth]{30}{0}
+  {10*math.pi}{1000};
+\end{axis} 
+\end{tikzpicture}
+\caption{The partial sum $\sum_{k=1}^{30} \frac{\sin(kx)}{k}$ of the Fourier series  of $f(x)=(\pi-x)/2$ illustrating the Gibbs phenomenon.}\label{fig:Gibbs}
+\end{figure}
+%---------------
+
+%--------------------------
+\section{Third example: Runge-Kutta method}
+%--------------------------
+
+A differential equation is an equation that links an unknown function and its derivatives, and
+these equations play a prominent role in engineering, physics, economics, and other disciplines.
+When the value of the function at an initial point is fixed, a differential equation is known as an initial value problem. The mathematical theory of differential equations shows that, under very general conditions, an initial value problem has a unique solution.
+Usually, it is not possible to find the exact solution in an explicit form, and it is
+necessary to approximate it by means of numerical methods.
+
+One of the most popular methods to integrate numerically an initial value problem
+\[
+  \left\{
+  \begin{array}{l}
+  y'(t) = f(t,y(t)),\\
+  y(t_0) = y_0
+  \end{array}
+  \right.
+\]
+is the \textit{classical} Runge-Kutta method of order~$4$. With it, we compute  
+in an approximate way the values $y_i \simeq y(t_i)$ at a set of points $\{t_i\}$ 
+starting from $i=0$ and with $t_{i+1} = t_i+h$ for every~$i$ by the algorithm
+\[
+  y_{i+1} = y_i + \frac{1}{6} (k_1+2k_2+2k_3+k_4),
+\]
+where
+\[
+  \left\{
+  \begin{array}{l}
+  k_1 = h f(t_i,y_i),\\[3pt]
+  k_2 = h f(t_i+\frac{1}{2}h,y_i+\frac{1}{2}k_1),\\[3pt]
+  k_3 = h f(t_i+\frac{1}{2}h,y_i+\frac{1}{2}k_2),\\[3pt]
+  k_4 = h f(t_i+h,y_i+k_3).
+  \end{array}
+  \right.
+\]
+See, for instance,~\cite{Wiki-RK}.
+
+Here, we consider the initial value problem
+\[
+  \left\{
+  \begin{array}{l}
+  y'(t) = y(t) \cos\bigl(t+\sqrt{1+y(t)}\bigr),\\[3pt]
+  y(0) = 1.
+  \end{array}
+  \right.
+\]
+
+In the Lua part of our \texttt{.tex} file, we compute the values $\{(t_i,y_i)\}$ and export them with
+\pgfplots{} syntax by means of
+\begin{verbatim}[\verbopt]
+\begin{luacode*}
+-- Differential equation y'(t) = f(t,y)
+-- with f(t,y) = y * cos(t+sqrt(1+y)).
+-- Initial condition: y(0) = 1
+function f(t,y)
+    return y * math.cos(t+math.sqrt(1+y))
+end
+
+-- Code to write PGFplots data as coordinates
+function print_RKfour(tMax,npoints,option)
+    local t0 = 0.0
+    local y0 = 1.0
+    local h = (tMax-t0)/(npoints-1)
+    local t = t0
+    local y = y0
+    if option~=[[]] then
+        tex.sprint("\\addplot[" .. option
+                   .. "] coordinates{")
+    else
+        tex.sprint("\\addplot coordinates{")
+    end
+    tex.sprint("("..t0..","..y0..")")
+    for i=1, npoints do
+        k1 = h * f(t,y)
+        k2 = h * f(t+h/2,y+k1/2)
+        k3 = h * f(t+h/2,y+k2/2)
+        k4 = h * f(t+h,y+k3)
+        y = y + (k1+2*k2+2*k3+k4)/6
+        t = t + h
+        tex.sprint("("..t..","..y..")")
+    end
+    tex.sprint("}") 
+end
+\end{luacode*}
+\end{verbatim}
+Also, we define the command
+\begin{verbatim}[\verbopt]
+\newcommand\addLUADEDplot[3][]{%
+  \directlua{print_RKfour(#2,#3,[[#1]])}%
+}
+\end{verbatim}
+to call the Lua routine from the \LaTeX{} part
+(the parameter \verb|#2| indicates the final value of $t$, and \verb|#3| is the number of sampled points).
+
+Then, the graphic of Figure~\ref{fig:RK}, which shows the solution of our initial value problem, is created by means of
+\begin{verbatim}[\verbopt]
+\pgfplotsset{width=0.9\hsize}
+\begin{tikzpicture}
+\begin{axis}[xmin=-0.5, xmax=30.5,
+  ymin=-0.02, ymax=1.03, 
+  xtick={0,5,...,30}, ytick={0,0.2,...,1.0},
+  enlarge x limits=true,
+  minor x tick num=4, minor y tick num=4,
+  axis lines=middle, axis line style={-}
+  ] 
+% SYNTAX: Solution of the initial value problem
+% in the interval [0,30] sampled at 200 points
+\addLUADEDplot[color=blue,smooth]{30}{200};
+\end{axis} 
+\end{tikzpicture}
+\end{verbatim}
+
+%---------------
+\begin{figure}
+\begin{luacode*}
+-- Differential equation y'(t) = f(t,y)
+-- with f(t,y) = y * cos(t+sqrt(1+y)).
+-- Initial condition: y(0) = 1
+function f(t,y)
+    return y * math.cos(t+math.sqrt(1+y))
+end
+
+-- Code to write PGFplots data as coordinates
+function print_RKfour(tMax,npoints,option)
+    local t0 = 0.0
+    local y0 = 1.0
+    local h = (tMax-t0)/(npoints-1)
+    local t = t0
+    local y = y0
+    if option~=[[]] then
+        tex.sprint("\\addplot["..option.."] coordinates{")
+    else
+        tex.sprint("\\addplot coordinates{")
+    end
+    tex.sprint("("..t0..","..y0..")")
+    for i=1, npoints do
+        k1 = h * f(t,y)
+        k2 = h * f(t+h/2,y+k1/2)
+        k3 = h * f(t+h/2,y+k2/2)
+        k4 = h * f(t+h,y+k3)
+        y = y + (k1+2*k2+2*k3+k4)/6
+        t = t + h
+        tex.sprint("("..t..","..y..")")
+    end
+    tex.sprint("}") -- Se puede poner "};" y ya no har\'ia falta a\~nadir ";" al usarlo
+end
+\end{luacode*}
+\newcommand\addLUADEDplot[3][]{%
+  \directlua{print_RKfour(#2,#3,[[#1]])}%
+}
+\centering
+\pgfplotsset{width=0.9\hsize} %, height=0.6\textwidth}  
+\begin{tikzpicture}
+\begin{axis}[xmin=-0.5, xmax=30.5, ymin=-0.02, ymax=1.03, 
+  xtick={0,5,...,30}, ytick={0,0.2,...,1.0},
+  enlarge x limits=true,
+  minor x tick num=4, minor y tick num=4,
+  axis lines=middle, axis line style={-}
+  ] 
+% SYNTAX: Solution of the initial value problem
+% in the interval [0,30] sampled at 200 points
+\addLUADEDplot[color=blue,smooth]{30}{200};
+\end{axis} 
+\end{tikzpicture}
+\caption{Solution of the differential equation $y'(t) = y(t) \cos\bigl(t+\sqrt{1+y(t)}\bigr)$ with initial condition $y(0)=1$.}\label{fig:RK}
+\end{figure}
+%---------------
+
+%--------------------------
+\section{Fourth example: Lorenz attractor}
+%--------------------------
+
+The Lorenz attractor is a strange attractor that arises in a system of
+equations describing the $2$-dimensional flow of a fluid of uniform depth, 
+with an imposed vertical temperature difference.
+In the early 1960s, Lorenz \cite{Lo} discovered the chaotic behavior of a
+simplified $3$-dimensional system of this problem,
+now known as the Lorenz equations:
+\[
+  \left\{
+  \begin{array}{l}
+  x'(t) = \sigma (y(t)-x(t)), \\
+  y'(t) = -x(t) z(t) + \rho x(t) - y(t), \\
+  z'(t) = x(t) y(t) - \beta z(t). 
+  \end{array}
+  \right.
+\]
+The parameters $\sigma$, $\rho$, and $\beta$ are usually assumed to be positive. Lorenz used the values $\sigma=10$, $\rho=28$ and $\beta=8/3$. The system exhibits a chaotic behavior for these values; in fact, it became the first example of a chaotic system.
+A more complete description can be found in~\cite{Wiki-LS}.
+
+Figure~\ref{fig:LA} shows the numerical solution of the Lorenz equations calculated with
+$\sigma = 3$, $\rho = 26.5$ and $\beta = 1$. 
+Six orbits starting at several initial points close to $(0,1,0)$ are plotted in different colors; all of them converge to the $3$-dimensional chaotic attractor known as the Lorenz attractor.
+
+%---------------
+\begin{figure}
+\begin{luacode*}
+-- Differential equation of the Lorenz attractor
+function f(x,y,z)
+    local sigma = 3
+    local rho = 26.5
+    local beta = 1
+    return {sigma*(y-x), -x*z + rho*x - y, x*y - beta*z}
+end
+
+-- Code to write PGFplots data as coordinates
+function print_LorAttrWithEulerMethod(h,npoints,option)
+    -- The usual starting point (x0,y0,z0)
+    local x0 = 0.0 
+    local y0 = 1.0 
+    local z0 = 0.0 
+    -- we add a random number between -0.25 and 0.25
+    local x = x0 + (math.random()-0.5)/2
+    local y = y0 + (math.random()-0.5)/2
+    local z = z0 + (math.random()-0.5)/2
+    if option~=[[]] then
+        tex.sprint("\\addplot3["..option.."] coordinates{")
+    else
+        tex.sprint("\\addplot3 coordinates{")
+    end
+    -- we dismiss the first 100 points to go into the attractor 
+    for i=1, 100 do
+        m = f(x,y,z)
+        x = x + h * m[1]
+        y = y + h * m[2]
+        z = z + h * m[3]
+    end
+    for i=1, npoints do
+        m = f(x,y,z)
+        x = x + h * m[1]
+        y = y + h * m[2]
+        z = z + h * m[3]
+        tex.sprint("("..x..","..y..","..z..")")
+    end
+    tex.sprint("}") 
+end
+\end{luacode*}
+\newcommand\addLUADEDplot[3][]{%
+  \directlua{print_LorAttrWithEulerMethod(#2,#3,[[#1]])}%
+}
+\centering
+\pgfplotsset{width=.9\hsize}
+\begin{tikzpicture}
+\begin{axis}
+% SYNTAX: Solution of the Lorenz system
+% with step h=0.02 sampled at 1000 points.
+  \addLUADEDplot[color=red,smooth]{0.02}{1000};
+  \addLUADEDplot[color=green,smooth]{0.02}{1000};
+  \addLUADEDplot[color=blue,smooth]{0.02}{1000};
+  \addLUADEDplot[color=cyan,smooth]{0.02}{1000};
+  \addLUADEDplot[color=magenta,smooth]{0.02}{1000};
+  \addLUADEDplot[color=yellow,smooth]{0.02}{1000};
+\end{axis} 
+\end{tikzpicture}
+\caption{The Lorentz attractor (six orbits starting at several initial points).\label{fig:LA}}
+\end{figure}
+
+The Lua part of the program uses a discretization of the Lorenz equations (technically, this is the explicit Euler method $y_{i+1} = y_i + h f(t_i,y_i)$, which is less precise than the Runge-Kutta method of the previous section, but enough to find the attractor):
+\begin{verbatim}[\verbopt \hfuzz=1.8pt]
+\begin{luacode*}
+-- Differential equation of Lorenz attractor
+function f(x,y,z)
+    local sigma = 3
+    local rho = 26.5
+    local beta = 1
+    return {sigma*(y-x),
+            -x*z + rho*x - y,
+            x*y - beta*z}
+end
+
+-- Code to write PGFplots data as coordinates
+function print_LorAttrWithEulerMethod(h,npoints,
+                                      option)
+    -- The initial point (x0,y0,z0)
+    local x0 = 0.0 
+    local y0 = 1.0 
+    local z0 = 0.0 
+    -- add random number between -0.25 and 0.25
+    local x = x0 + (math.random()-0.5)/2
+    local y = y0 + (math.random()-0.5)/2
+    local z = z0 + (math.random()-0.5)/2
+    if option ~= [[]] then
+        tex.sprint("\\addplot3[" .. option
+                   .. "] coordinates{")
+    else
+        tex.sprint("\\addplot3 coordinates{")
+    end
+    -- dismiss the first 100 points
+    -- to go into the attractor 
+    for i=1, 100 do
+        m = f(x,y,z)
+        x = x + h * m[1]
+        y = y + h * m[2]
+        z = z + h * m[3]
+    end
+    for i=1, npoints do
+        m = f(x,y,z)
+        x = x + h * m[1]
+        y = y + h * m[2]
+        z = z + h * m[3]
+        tex.sprint("("..x..","..y..","..z..")")
+    end
+    tex.sprint("}") 
+end
+\end{luacode*}
+\end{verbatim}
+%---------------
+
+The function which calls the Lua part from the \LaTeX{} part is
+\begin{verbatim}[\verbopt]
+\newcommand\addLUADEDplot[3][]{%
+  \directlua{print_LorAttrWithEulerMethod
+               (#2,#3,[[#1]])}%
+}
+\end{verbatim}
+Here, the parameter \verb|#2| gives the step of the discretization, and \verb|#3| is the number of points.
+
+The \LaTeX{} part is the following. In it, we call the Lua function six times with different colors:
+
+\begin{verbatim}[\verbopt\hfuzz=11.3pt]
+\pgfplotsset{width=.9\hsize}
+\begin{tikzpicture}
+\begin{axis}
+% SYNTAX: Solution of the Lorenz system
+% with step h=0.02 sampled at 1000 points.
+ \addLUADEDplot[color=red,smooth]{0.02}{1000};
+ \addLUADEDplot[color=green,smooth]{0.02}{1000};
+ \addLUADEDplot[color=blue,smooth]{0.02}{1000};
+ \addLUADEDplot[color=cyan,smooth]{0.02}{1000};
+ \addLUADEDplot[color=magenta,smooth]{0.02}{1000};
+ \addLUADEDplot[color=yellow,smooth]{0.02}{1000};
+\end{axis} 
+\end{tikzpicture}
+\end{verbatim}
+
+\SetBibJustification{\raggedright \def\TikZ{TikZ}}
+%--------------------------
+\begin{thebibliography}{00}
+%--------------------------
+
+\bibitem{Feu}
+{C. Feuers\"anger}, % Christian Feuers\"anger
+\textit{Manual for Package \acro{PGFPLOTS}}.
+\url{http://mirror.ctan.org/graphics/pgf/contrib/pgfplots/doc/pgfplots.pdf}
+
+%\bibitem{Gu}
+%{P. Gundlach},
+%\textit{Generating barcodes with Lua\TeX},
+%TUGboat, Volume 33 (2012), No.~1, 54--58.
+%Available from
+%\url{http://tug.org/members/TUGboat/tb33-1/tb103gundlach.pdf}
+
+%\bibitem{HoHe-pdf}
+%{T. Hoekwater and H. Henkel},
+%\textit{Lua\TeX{} 0.60: An overview of changes},
+%TUGboat, Volume 31 (2010), No.~2, 178--179.
+%Available from
+%\url{http://tug.org/TUGboat/tb31-2/tb98hagen-pdfmerge.pdf}
+
+\bibitem{Ha}
+{H. Hagen},
+\textit{Lua\TeX: Halfway to version~1}, 
+\TUB, Volume 30 (2009), No.~2, 183--186.
+\url{http://tug.org/TUGboat/tb30-2/tb95hagen-luatex.pdf}
+
+%\bibitem{Ha-Con}
+%{H. Hagen},
+%\textit{LuaTeX and ConTeXt: Where we stand},
+%TUGboat, Volume 30 (2009), No.~2, 187--190.
+%Available from
+%\url{http://tug.org/TUGboat/tb30-2/tb95hagen-stand.pdf}
+
+\bibitem{HoHe}
+{T. Hoekwater and H. Henkel},
+\textit{Lua\TeX{} 0.60: An overview of changes},
+\TUB, Volume 31 (2010), No.~2, 174--177.
+\url{http://tug.org/TUGboat/tb31-2/tb98hoekwater.pdf}
+
+\newpage
+\bibitem{Is2010}
+{P. Isambert},
+\textit{Three things you can do\\ with Lua\TeX{} that would be extremely\\ painful otherwise},
+\TUB, Volume 31 (2010), No.~3, 184--190.
+\url{http://tug.org/TUGboat/tb31-3/tb99isambert.pdf}
+
+%\bibitem{Is2011}
+%{P. Isambert},
+%\textit{Lua\TeX: What it takes to make a paragraph},
+%TUGboat, Volume 32 (2011), No.~1, 68--76.
+%Available from
+%\url{http://tug.org/TUGboat/tb32-1/tb100isambert.pdf}
+
+\bibitem{Is2012}
+{P. Isambert},
+\textit{OpenType fonts in Lua\TeX},
+\TUB, Volume 33 (2012), No.~1, 59--85.
+\url{http://tug.org/TUGboat/tb33-1/tb103isambert.pdf}
+
+\bibitem{Lo} 
+{E. N. Lorenz}, 
+\textit{Deterministic Nonperiodic Flow}, 
+{J.\@ Atmospheric Sci.\@}, Volume 20 (1963), No.~2, 130--141.
+\url{http://dx.doi.org/10.1175/1520-0469(1963)020<0130:DNF>2.0.CO;2}
+
+%\bibitem{Manual}
+%{LuaTEX team},
+%\textit{Lua\TeX Reference}.
+%Available from
+%\url{http://www.luatex.org/svn/trunk/manual/luatexref-t.pdf}
+
+\bibitem{Ma}
+{A. Mahajan}, % Aditya Mahajan
+\textit{Lua\TeX: A user's perspective},
+\TUB, Volume 30 (2009), No.~2, 247--251.
+\url{http://tug.org/TUGboat/tb30-2/tb95mahajan-luatex.pdf}
+
+\bibitem{MeSl} 
+{A. Mertz and W. Slough}, % Andrew Mertz and William Slough
+\textit{Graphics with PGF and \TikZ},
+\TUB, Volume 28 (2007), No.~1, 91--99.
+\url{http://tug.org/TUGboat/tb28-1/tb88mertz.pdf}
+
+\bibitem{MeSl2} 
+{A. Mertz and W. Slough}, % Andrew Mertz and William Slough
+\textit{A \TikZ\ tutorial: \\Generating graphics in the spirit of \TeX},
+\TUB, Volume 30 (2009), No.~2, 214--226.
+\url{http://tug.org/TUGboat/tb30-2/tb95mertz.pdf}
+
+\bibitem{Peg}
+{M. P\'egouri\'e-Gonnard}, % Manuel P\'egouri\'e-Gonnard
+\textit{The luacode package}.
+\url{http://mirror.ctan.org/macros/luatex/latex/luacode/luacode.pdf}
+
+\bibitem{Reu}
+{A. Reutenauer}, % Arthur Reutenauer
+\textit{Lua\TeX{} for the \LaTeX{} user: An introduction},
+\TUB, Volume 30 (2009), No.~2, 169.
+\url{http://tug.org/TUGboat/tb30-2/tb95reutenauer.pdf}
+
+\bibitem{Tan}
+{T. Tantau}, % Till Tantau
+\textit{Ti\emph{k}Z \textsl{\&} \acro{PGF}}.
+\url{http://mirror.ctan.org/graphics/pgf/base/doc/generic/pgf/pgfmanual.pdf}
+
+\bibitem{Wiki-Gib}
+{Wikipedia}, 
+\textit{Gibbs phenomenon}.
+\url{http://en.wikipedia.org/wiki/Gibbs_phenomenon}
+
+\bibitem{Wiki-LS} 
+{Wikipedia}, 
+\textit{Lorenz system}.
+\url{http://en.wikipedia.org/wiki/Lorenz_system}
+
+\bibitem{Wiki-RK}
+{Wikipedia}, 
+\textit{Runge-Kutta methods}.
+\url{http://en.wikipedia.org/wiki/Runge-Kutta_methods}
+
+\end{thebibliography}
+
+\makesignature
+%--------------------------
+\end{document}
+%--------------------------
+

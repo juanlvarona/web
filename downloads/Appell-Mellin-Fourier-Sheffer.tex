@@ -1,0 +1,976 @@
+%!TEX TS-program = pdflatex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% A note on Appell sequences, Mellin transforms and Fourier series,
+% by
+% L. M. Navas, F. J. Ruiz and J. L. Varona
+%
+% Date of last modification: 2018-03-09
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{amsart}
+
+%\usepackage{amssymb}
+
+%%% \allowdisplaybreaks is a command from amsmath that allow page breaks
+%%% inside a multi-line formula (align, multline, gather, ...)
+\allowdisplaybreaks[3] %%% Scale from 1 (weak allow) to 4 (complete allow).
+%%% If a break can be avoided, we can use \\* instead of \\
+
+\usepackage[inline]{enumitem}
+\setlist[enumerate,itemize]{font=\bfseries,wide=0pt}
+
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ONLY FOR DRAFTS:
+%\usepackage[latin1]{inputenc}
+%\usepackage{color}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ONLY FOR DRAFTS:
+%\usepackage[hyperpageref]{backref} % For drafts
+%\renewcommand*{\backrefalt}[4]{%
+%\ifcase #1 %
+%\rojo{No citations.}%
+%\or
+%\textcolor{YellowGreen}{One citation in section #2.}%
+%\else
+%\textcolor{Green3}{#1 citations in sections #2.}%
+%\fi
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ONLY FOR DRAFTS:
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{backref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\date{\today}
+
+%\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\AB}{\mathcal{B}}
+\newcommand{\calH}{\mathcal{H}}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+%\newcommand{\pochhammer}[2]{(#1)_{#2}}
+%\newcommand{\factorialdown}[2]{[#1]_{#2}}
+
+%\newcommand{\dist}{\mathop{\mathrm{dist}}}
+%\newcommand{\re}{\mathop{\mathrm{Re}}}
+%\newcommand{\im}{\mathop{\mathrm{Im}}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+
+%\theoremstyle{plain}
+%\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{plain}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[theorem]{Lemma}
+
+% \theoremstyle{plain}
+% \newtheorem*{conjecture}{Conjecture}
+
+% \theoremstyle{plain}
+% \newtheorem{property}{Property}
+
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+%\theoremstyle{remark}
+%\newtheorem*{note}{Note}
+
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+\date{\textit{J.\ Math.\ Anal.\ Appl.}\ \textbf{476} (2019), 836--850.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Appell sequences, Mellin transforms and Fourier series]%
+{A note on Appell sequences, Mellin transforms and Fourier series}
+
+\author[L.~M.~Navas]{Luis M. Navas}
+\address{%
+       Departamento de Matem\'aticas,
+       Universidad de Salamanca,
+       37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author[F.~J.~Ruiz]{Francisco J. Ruiz}
+\address{%
+       Departamento de Matem\'aticas,
+       Universidad de Zaragoza,
+       50009 Zaragoza, Spain}
+\email{fjruiz@unizar.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address{%
+       Departamento de Matem\'aticas y Computaci\'on,
+       Universidad de La Rioja,
+       26006 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+
+\thanks{The research of the authors is supported by Grant MTM2015-65888-C4-4-P of MINECO/FEDER (Spain). The second author has also been supported by Project E~-64, D. G. Arag\'on (Spain).}
+
+\subjclass[2010]{Primary 11B83; Secondary 42A16, 11B68, 11M35, 30B40}
+\keywords{Appell sequences, Sheffer sequences, Mellin transform, Lerch transcendent, Bernoulli polynomials, Apostol-Bernoulli polynomials}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Class amsart Warning:
+%% Abstract should precede \maketitle in AMS document classes
+\begin{abstract}
+A large class of Appell polynomial sequences $\{p_{n}(x)\}_{n=0}^{\infty}$ are special values at the negative integers of an entire function $F(s,x)$, given by the Mellin transform of the generating function for the sequence. For the Bernoulli and Apostol-Bernoulli polynomials, these are basically the Hurwitz zeta function and the Lerch transcendent. Each of these have well-known Fourier series which are proved in the literature using varied techniques.
+%
+Here we find the latter Fourier series by directly calculating the coefficients in a straightforward manner. We then show that, within the context of Appell sequences, these are the only cases for which the polynomials have uniformly convergent Fourier series.
+%
+In the more general context of Sheffer sequences, we find that there are other polynomials with uniformly convergent Fourier series. Finally, applying the same ideas to the Fourier transform, considered as the continuous analog of the Fourier series, the Hermite polynomials play a role analogous to that of the Bernoulli polynomials.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+An Appell sequence $\{P_{n}(x)\}_{n=0}^{\infty}$ is defined formally by an exponential generating function of the form
+\begin{equation}
+\label{eq:Appell_def}
+  G(x,t) = A(t) \, e^{xt} = \sum_{n=0}^\infty P_{n}(x)\frac{t^n}{n!},
+\end{equation}
+where $x,t$ are indeterminates and $A(t)$ is a formal power series. One often adds the condition $A(0) \neq 0$, although in principle this is not necessary. As in~\cite{NRV-values}, we define an \emph{Appell-Mellin sequence} as an Appell sequence where $A(t)$ is a function defined on the union of a complex neighborhood of the origin and the negative axis $(-\infty,0)$, satisfying:
+%%
+\begin{enumerate}[label=\normalfont(\alph*)]
+  \item $A(t)$ is non-constant and analytic around~$0$,
+  \item $A(-t)$ is continuous on $[0,+\infty)$ and has polynomial growth at~$+\infty$.
+\end{enumerate}
+
+In this case, assuming that $A(t)$ has a zero of order $k$ at $t = 0$ (thus $k=0$ if $A(0) \ne 0$), we proved in~\cite{NRV-values} that for each fixed $x>0$, the Mellin transform
+\begin{equation}
+\label{eq:Mellin_GF_def}
+    F(s,x) = \frac{1}{\Gamma(s)}\int_{0}^{\infty} G(x,-t)\,t^{s-1}\,dt
+         = \frac{1}{\Gamma(s)} \int_{0}^{\infty} A(-t) e^{-xt} t^{s-1}\,dt
+\end{equation}
+converges in the right half-plane $\Re(s) > -k$  to a holomorphic function, which may be  analytically continued to an entire function of $s$ satisfying
+\begin{equation}
+\label{eq:sinCeros}
+  F(-n,x)=P_{n}(x),\quad n=0,1,2,\dots;
+\end{equation}
+a pair of recent papers dealing with continuous parameter extensions of sequences are \cite{CGale-I, CGale-II}.
+
+From here on, in the rest of the paper, we will use the common notational convention $\sigma = \Re s$ for $s \in \C$.
+
+The classical cases, of significant importance in number theory, for example, are the Bernoulli and Apostol-Bernoulli polynomials. For the Bernoulli polynomials $B_n(x)$, we have $A(t)=t/(e^t-1)$ and $F(s,x)$ is essentially the Hurwitz zeta function, namely,
+\begin{equation}
+\label{eq:Mellin-Hurwitz}
+  F(s,x) = s \zeta(s+1,x).
+\end{equation}
+The Hurwitz zeta function $\zeta(s,x)$ is usually defined as the meromorphic continuation to $\C$, of the series~$\sum_{k=0}^{\infty} (k + x)^{-s}$, which converges for $\sigma > 1$. It has a simple pole at $s=1$ and no other singularities. As can be observed, the pole is canceled in the above expression for $F(s,x)$.
+
+The Apostol-Bernoulli polynomials $\AB_n(x;\lambda)$ correspond to the choice $A(t)=t/(\lambda e^t-1)$, with $\lambda\in\C\setminus\{1\}$. If we denote the Mellin transform by $F(s,x;\lambda)$, then for $|\lambda|\leq 1$ we have
+\begin{equation}
+\label{eq:Mellin-Lerch}
+  F(s,x;\lambda) = s \Phi(\lambda,s+1,x),
+\end{equation}
+where the latter function is the classical Lerch transcendent (see~\cite{Ap}) defined as the analytic continuation of the series
+%
+\begin{equation*}
+%\label{eq:Lerch}
+  \Phi(\lambda,s,x) = \sum_{n=0}^\infty \frac{\lambda^n}{(n + x)^{s}}.
+\end{equation*}
+%
+For $|\lambda|<1$, the series converges for all $s \in \C$ and for $|\lambda|=1$, it converges if $\sigma>0$. For $|\lambda|>1$ it is divergent, but one can use~\eqref{eq:Mellin-Lerch} to continue the Lerch transcendent to a meromorphic function on $\C$, again having a simple pole at $s=1$ and no other singularities:
+%
+\begin{equation}
+\label{eq:Mellin-Lerch-ext}
+  \Phi(\lambda,s,x) := \frac{1}{s-1}F(s-1,x;\lambda).
+\end{equation}
+
+The Hurwitz zeta function and the Lerch transcendent have the following Fourier series in $x$:
+\begin{equation*}
+%\label{eq:SFHurwitzIntro}
+  \zeta(s,x) = \Gamma(1-s)\sum_{k\in\Z \setminus \{0\}}\frac{e^{2\pi ikx}}{(2\pi i k)^{1-s}},
+\quad x\in (0,1], \quad \sigma<0,
+\end{equation*}
+and
+\begin{equation*}
+%\label{eq:SFLerchIntro}
+\Phi(\lambda,s,x)\lambda^x = \Gamma(1-s) \sum_{k=-\infty}^\infty \frac{e^{2\pi ikx}}{(2\pi i k -\log\lambda)^{1-s}},
+\quad x\in (0,1], \quad \sigma<0.
+\end{equation*}
+Multiple proofs of these formulas are found in the literature (see for instance the classical references \cite[\S\,1.10 and \S\,1.11]{Bate} or \cite[\S\,1.6]{MOS})
+as well as extensive studies of their many other properties. In~\cite{NRV-Lerch-Fou} we give a direct simple argument, based on the Mellin transform, for finding the Fourier coefficients in the case of the Hurwitz zeta function. Here we show how that reasoning applies also to the Lerch function. When we substitute $s = -n$ we obtain the Fourier series of the Bernoulli and Apostol-Bernoulli polynomials. This is discussed in Section~\ref{sec:HL}.
+
+For degree greater than or equal to $2$, these Fourier series converge uniformly on $[0,1]$. Of course this is not possible for a linear polynomial since its value at $0$ cannot coincide with its value at~$1$. In Section~\ref{sec:characterization} we show that these two are the only Appell polynomials with such uniformly convergent Fourier series.
+
+On the other hand, in Section~\ref{sec:Sheffer} we shall see that dropping the Appell condition and considering Sheffer sequences, one does find other examples of polynomials with uniformly convergent Fourier series.
+
+Finally, in Section~\ref{sec:Hermite}, we consider the Fourier transform as the continuous analog of the Fourier series and use similar techniques to show that the Hermite polynomials play a role analogous to that of the Bernoulli polynomials in the latter case.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fourier series for Hurwitz and Lerch zeta functions}
+\label{sec:HL}
+% (fold)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (fold)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The following Fourier expansion of the Hurwitz zeta function $\zeta(s,x)$ is well-known. We will briefly discuss the proof given in~\cite{NRV-Lerch-Fou}, but without entering into too much detail, with a view towards using similar ideas in the case of the Lerch function.
+
+\begin{theorem}
+\label{T:SFHurwitz}
+For $x\in (0,1]$ and $\sigma<0$,
+\begin{equation}
+\label{eq:SFHurwitz}
+  \zeta(s,x) = \Gamma(1-s)\sum_{k\in\Z \setminus \{0\}}\frac{e^{2\pi ikx}}{(2\pi i k)^{1-s}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Sketch of the proof]
+By \eqref{eq:Mellin_GF_def} and \eqref{eq:Mellin-Hurwitz}, we have
+\[
+ \Gamma(s) \zeta(s,x) = \frac{\Gamma(s)}{s-1}F(s-1,x) = \int_0^\infty G(x,-t)\,t^{s-2}\,dt,
+\]
+where $G(x,-t) = te^{t(1-x)}/(e^t-1)$.
+%\[
+%  G(x,-t) = \frac{te^{t(1-x)}}{e^t-1} = 1-t\Big(x-\frac12\Big)+O(t^2),
+%  \quad t \to 0.
+%\]
+The integral converges for $\sigma>1$, but it can be extended to $\sigma>-1$ by adding and subtracting the first two terms of the power series of $G(x,-t)$ (as a function of~$t$). Moreover, by simple manipulations of straightforward integrals, we get that, on the strip $-1<\sigma<0$, 
+\begin{equation}
+\label{eq:2sumandos}
+  \Gamma(s) \zeta(s,x) = \int_0^\infty \left(G(x,-t)-1+t\Big(x-\frac12\Big)\right) t^{s-2}\,dt
+\end{equation}
+(the details will be seen in the proof of Theorem~\ref{T:SFHurwitzLerch}).
+Now fix $s=\sigma\in (-1,0)$. We find the Fourier coefficients of the $1$-periodic extension $f(x)$ of $\Gamma(\sigma)\zeta(\sigma,x)$ for $x\in (0,1]$. The calculation is based on the following integral:
+\[
+  \int_0^1 \left(\frac{te^{(1-x)t}}{e^t-1}-1 + t\Big(x-\frac12\Big)\right)e^{-2\pi ikx}\,dx
+  = -\frac{t^2}{(t+2\pi i k)2\pi i k}
+\]
+for $k\not=0$, and $0$ if $k=0$. By Fubini's theorem,
+\[
+  \int_0^1 \Gamma(\sigma)\zeta(\sigma,x)e^{-2\pi ikx}\,dx
+  = -\int_0^\infty \frac{t^\sigma}{(t+2\pi i k)2\pi i k}\,dt
+  = \frac{\pi}{\sin(\pi \sigma)} (2\pi i k)^{\sigma-1},
+\]
+where one may observe that the last integral is a beta function. Since the series
+\[
+  \sum_{k\in\Z \setminus \{0\}}\frac{e^{2\pi ikx}}{(2\pi i k)^{1-\sigma}}
+\]
+is uniformly convergent in $x$ if $\sigma<0$, Dirichlet's theorem on the convergence of Fourier series and the reflection formula $\Gamma(s)\Gamma(1-s) = \pi/\sin(\pi s)$ imply that~\eqref{eq:SFHurwitz} holds for $\sigma\in (-1,0)$. The general case follows by analytic continuation.
+\end{proof}
+
+
+As an immediate corollary, by~\eqref{eq:sinCeros} and~\eqref{eq:Mellin-Lerch} we obtain the Fourier series of the Bernoulli polynomials (or rather, their $1$-periodic extensions, but we shall regard this as implicit),
+\begin{equation}
+\label{eq:Mellin-HurwitzFou}
+  B_n(x) = -n!\sum_{k\in\Z \setminus \{0\}} \frac{e^{2\pi ikx}}{(2\pi i k)^{n}},
+  \quad x\in[0,1],\ n\geq 2;
+\end{equation}
+for $n=1$ this holds only for $x\in (0,1]$, as can be verified directly.
+% Note that the uniform convergence of the Fourier series when $n \geq 2$ 
+% implies that the sum is continuous and, since it is $1$-periodic, 
+% we must have $B_n(0)=B_n(1)$, $n\geq 2$, which of course in fact holds. 
+% The uniform convergence of these series is a crucial fact that allows one 
+% to derive many other properties (see for example~\cite{NRV-MC}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (fold)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For the Lerch transcendent, Theorem~\ref{T:SFHurwitz} has the following analog, whose proof, that we now give in more detail, is similar:
+
+\begin{theorem}
+\label{T:SFHurwitzLerch}
+Let $\lambda\in \C\setminus\{0,1\}$. For $x\in (0,1]$ and $\sigma<0$,
+\begin{equation}
+\label{eq:SFHurwitzLerch}
+  \Phi(\lambda,s,x)\lambda^x = \Gamma(1-s)\sum_{k=-\infty}^\infty\frac{e^{2\pi ikx}}{(2\pi i k -\log\lambda)^{1-s}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+%% WE HAVE REMOVED $\lambda=0$ IN THE HYPOTHESIS.
+% If $\lambda=0$ the result is trivial, so assume $\lambda \neq 0$. 
+By~\eqref{eq:Mellin-Lerch-ext}, we have
+\[
+  \Phi(\lambda,s,x) = \frac{1}{s-1}F(s-1,x;\lambda)
+  = \frac{1}{\Gamma(s)} \int_0^\infty G(x,-t)\,t^{s-2}\,dt
+\]
+where
+\[
+  G(x,-t) = \frac{-t}{\lambda e^{-t}-1}e^{-xt} = \frac{te^{t(1-x)}}{e^t-\lambda}.
+\]
+The integral is holomorphic for $\sigma>0$. To make it holomorphic for $\sigma>-1$, we subtract the first term of the Taylor series at $t=0$,
+\[
+  G(x,-t) = \frac{1}{\lambda-1}(-t)+O(t^2),
+\]
+and apply the standard classical technique of separating the integral into two parts: over $(0,\alpha)$ and over $(\alpha,\infty)$, where $0<\alpha<R_\lambda$, $R_\lambda$ being the radius of convergence of the Taylor series of $G(x,-t)$ at $t=0$. We have
+\begin{equation}
+\label{eq:1sumando}
+\begin{aligned}
+  \Gamma(s) \Phi(\lambda,s,x)
+  &= \int_\alpha^\infty G(x,-t)\,t^{s-2}\,dt \\
+  &\qquad + \int_0^\alpha \Big(G(x,-t)+\frac{t}{\lambda-1}\Big)t^{s-2}\,dt
+  - \frac{\alpha^s}{(\lambda-1)s},
+\end{aligned}
+\end{equation}
+where the last summand arises from 
+$\int_0^{\alpha} t^{s-1}\,dt = \alpha^s/s$. 
+Observe that the right-hand term in \eqref{eq:1sumando} is analytic for $\sigma>-1$, except at $s=0$, where there is a simple pole. Thus, for $x\in (0,1]$, $\Phi(\lambda,s,x)$ can be analytically continued to $\sigma>-1$ (the pole at $s=0$ is  canceled by the zero of $1/\Gamma(s)$). Moreover, taking into account that
+$\alpha^s/s = -\int_{\alpha}^{\infty} t^{s-1}\,dt$ when $\sigma < 0$, 
+on the strip $-1<\sigma<0$ we have
+%%
+\begin{align*}
+  \Phi(\lambda,s,x) &= \frac{1}{\Gamma(s)} \int_0^\infty \Big(G(x,-t)+\frac{t}{\lambda-1}\Big) t^{s-2}\,dt
+  \\
+  &= \frac{1}{\Gamma(s)} \int_0^\infty \Big(\frac{te^{t(1-x)}}{e^t-\lambda} + \frac{t}{\lambda-1}\Big) t^{s-2}\,dt.
+\end{align*}
+%%
+Now fix $s=\sigma\in (-1,0)$. To obtain the Fourier coefficients 
+$\int_0^1 \Phi(\lambda,\sigma,x)\lambda^x e^{-2\pi i kx} \,dx$, 
+we note the following immediate integral:
+\[
+  \int_0^1 \Big(\frac{te^{t(1-x)}}{e^t-\lambda} + \frac{t}{\lambda-1}\Big) \lambda^x e^{-2\pi i kx} \,dx
+= -\frac{t^2}{(t+2\pi i k-\log\lambda)(2\pi i k -\log\lambda)}.
+  \]
+Then by Fubini's theorem, whose use is easily justified,
+\[
+  \Gamma(\sigma) \int_0^1 \Phi(\lambda,\sigma,x) \lambda^x e^{-2\pi i kx} \,dx
+  = -\int_0^\infty \frac{t^\sigma}{(t+2\pi i k-\log\lambda)(2\pi i k -\log\lambda)}\,dt.
+\]
+Now, the last integral is a beta function, and we arrive at
+\[
+  \Gamma(\sigma) \int_0^1 \Phi(\lambda,\sigma,x) \lambda^x e^{-2\pi i kx}\, dx
+  = \frac{\pi}{\sin(\pi \sigma)} (2\pi i k -\log\lambda)^{\sigma-1},
+\quad \sigma\in (-1,0).
+\]
+By Dirichlet's theorem,
+\begin{equation*}
+%\label{eq:SFLerch}
+  \Phi(\lambda,\sigma,x)\lambda^x
+  = \Gamma(1-\sigma)\sum_{k=-\infty}^\infty \frac{e^{2\pi ikx}}{(2\pi i k -\log\lambda)^{1-\sigma}},
+  \quad \sigma\in (-1,0).
+\end{equation*}
+The sum on the right is analytic on $\sigma<0$ by uniform convergence, and the general case follows by analytic continuation.
+\end{proof}
+
+As an immediate corollary, since $F(-n,x;\lambda) = \AB_n(x;\lambda)$, by \eqref{eq:Mellin-Lerch} we have
+\begin{equation}
+\label{eq:SFApostol-Ber}
+\AB_n(x;\lambda)\lambda^x
+= -n!\sum_{k=-\infty}^\infty \frac{e^{2\pi ikx}}{(2\pi i k -\log\lambda)^{n}},
+\quad x\in [0,1], \quad n\geq 2.
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (fold)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{remark}
+Note that the difference between the theorems is due to the fact that the generating function of the Apostol-Bernoulli polynomials has a zero at $t = 0$ while that of the Bernoulli polynomials does not. That is why in~\eqref{eq:1sumando} we only need to remove one term from the Taylor series, while in~\eqref{eq:2sumandos} we need two. It is often convenient to assume $A(0) \neq 0$ in order to normalize results. We will do this from now on, after a brief digression showing that this can be done without loss of generality.
+\end{remark}
+
+
+Indeed, allowing $A(t)$ to have a zero at $t = 0$ of any multiplicity $k > 0$ causes the polynomials $P_0(x),\dots,P_{k-1}(x)$ to be null, and makes the polynomials $P_n(x)$ with $n \ge k$ have degree $n-k$.
+Removing the zero by taking $A^*(t) = A(t)/t^k$ (so $A^*(0) \ne 0$) yields
+\[
+  A^*(t) \, e^{xt} = \sum_{n=0}^\infty P^*_{n}(x)\frac{t^n}{n!},
+\]
+which generates an Appell sequence such that $P^*_{n}(x)$ has degree $n$ for every $n \ge 0$, and these ``shifted'' polynomials are related to the original family in~\eqref{eq:Appell_def} via
+\begin{equation*}
+%\label{eq:shifted_Pn}
+  P_{n}(x) = \begin{cases}
+    0,                                    &\text{if $0 \leq n < k$,}
+    \\[1ex]
+    \dfrac{n!}{(n-k)!} \, P^{*}_{n-k}(x), &\text{if $n \geq k$,}
+  \end{cases}
+\end{equation*}
+which is a near trivial variation. It is convenient to have polynomial sequences in which the $n$-th polynomial has degree $n$, and it also avoids unnecessarily complicating the statements of results (for example, in Theorem~\ref{T:SoloAB}). For these reasons let us assume from now on that $A(0) \ne 0$.
+
+The assumption that $A(0) \neq 0$ requires us to slightly alter the Apostol-Bernoulli polynomials $\AB_n(x;\lambda)$ given in~\cite{Ap}, for which $A(t)=t/(\lambda e^t-1)$, which has a simple zero at the origin. Except when $\lambda=1$, this implies that $\AB_n(x;\lambda)$ has degree $n-1$ (and $\AB_0(x;\lambda)$ is null). To avoid this, we assume that $\lambda \ne 1$ ($\lambda=1$ corresponds to the Bernoulli polynomials) and instead of $A(t)$ we will use $A^*(t)=1/(\lambda e^t-1)$, which generates polynomials with the ``correct'' degree. Thus, we define the ``shifted'' Apostol-Bernoulli polynomials $\{\AB^*_n(x;\lambda)\}_{n=0}^{\infty}$ by means of
+\begin{equation*}
+%\label{eq:shiftedAB}
+  \frac{1}{\lambda e^t-1} \, e^{xt} = \sum_{n=0}^\infty \AB^*_n(x;\lambda) \frac{t^n}{n!},
+  \qquad \lambda \in \C \setminus \{1\}.
+\end{equation*}
+Thus, $\AB^*_n(x;\lambda)$ is a polynomial of degree $n$ and is trivially related to the ``classical'' Apostol-Bernoulli sequence by
+\[
+  \AB^*_n(x;\lambda) = \frac{1}{n+1} \AB_{n+1}(x;\lambda), \qquad n = 0, 1, 2,\dots.
+\]
+It is easy to check how \eqref{eq:Mellin-Lerch} and \eqref{eq:Mellin-Lerch-ext} change when using shifted Apostol-Bernoulli polynomials. For $\lambda\ne1$, they are related to the Lerch transcendent function by
+\begin{equation}
+\label{eq:shiftedABL}
+  \AB^*_n(x;\lambda) = - \Phi(\lambda,-n,x),\quad n=0,1,2,\dots.
+\end{equation}
+
+With this change of notation, we have
+\begin{equation}
+\label{eq:SFApostol-Ber*}
+  \AB^*_n(x;\lambda)\lambda^x
+  = -n!\sum_{k=-\infty}^\infty \frac{e^{2\pi ikx}}{(2\pi i k -\log\lambda)^{n+1}},
+  \quad x\in [0,1], \quad n\geq 1.
+\end{equation}
+%% HE COMPROBADO QUE CON $n=1$ VA BIEN
+%% (CON $n=0$ NI SIQUIERA ES OBVIA LA CONVERGENCIA DE LA SERIE)
+%% En cambio, con $B_1(x) = x-1/2$ se tiene $B_1(0)\ne B_1(1)$,
+%% luego la SF no puede converger en los dos extremos.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Appell polynomials and uniformly convergent Fourier series}
+%\label{sec:Apostol-Bernoulli}
+\label{sec:characterization}
+% (fold)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+It is easy to see that the Fourier coefficients of the $1$-periodic function which coincides with an $n$ th degree polynomial $P_{n}$ on $(0,1]$ are of the form
+%%
+\begin{equation}
+\label{eq:FourierCoeff}
+	\widehat{P_n}(k) = \frac{c_{1,k}}{k} + \frac{c_{2,k}}{k^2} + \cdots+\frac{c_{n,k}}{k^n}
+\end{equation}
+%%
+(an explicit form for these coefficients is given in~\cite[Lemma 10]{MT}, for example).
+The Bernoulli polynomials are special from this point of view since their Fourier coefficients involve only the last term, namely only $c_{n,k}$ is nonzero. This implies that their Fourier series are uniformly convergent for $n \geq 2$. In addition, the Fourier coefficients are completely multiplicative arithmetic functions, a fact which can be used to find interesting M\"obius inversion formulas (see~\cite{NRV-Mobius}).
+
+The Apostol-Bernoulli polynomials $\AB(x;\lambda)$, after introducing the factor $\lambda^{x}$, have similar properties. It is natural to ask if there are other Appell sequences having ``interesting'' Fourier series in the above senses. In fact, the mere requirement of uniform convergence, which in terms of~\eqref{eq:FourierCoeff} means that $c_{1,k} = 0$, leaves the Bernoulli polynomials as the only example. Similarly, requiring uniform convergence after the introduction of a factor $\varphi(x)$ discards all but the Apostol-Bernoulli polynomials.
+
+
+\begin{theorem}
+\label{T:BernUnif}
+Suppose that for a given general Appell sequence $\{P_{n}(x)\}_{n=0}^\infty$ defined as in \eqref{eq:Appell_def}, with $A(0) \ne 0$, the Fourier series of $P_{n}(x)$ converges uniformly on $(0,1]$ for all $n \ge 2$. Then the sequence is a nonzero constant multiple of the sequence of Bernoulli polynomials.
+\end{theorem}
+
+
+\begin{proof}
+Uniform convergence implies that the $1$-periodic extension of $P_{n}(x)$ is continuous, which means we must have $P_n(0)=P_n(1)$ for $n \ge 2$. Then by \eqref{eq:Appell_def}, the function
+\[
+  A(t)e^{xt}-P_0-P_1(x)t
+\]
+has the same value at $x=0$ and $x=1$, from which we deduce that
+\[
+  A(t)(e^t-1) = (P_1(1)-P_1(0))t,
+\]
+and hence the generating function is a nonzero constant multiple of the generating function of the Bernoulli polynomials.
+\end{proof}
+
+
+\begin{remark}
+\label{R:BernUnif}
+A similar argument shows that if the Fourier series of $P_{n}(x)$ converges uniformly on the entire interval $(0,1]$ for any $n \ge n_{0}$, then for these $n$,
+$P_{n}(x)/n!$ is a fixed (i.e., with coefficients not depending on~$n$)
+linear combination of $B_j(x)/j!$ for $j=n$, $n-1$, $\dots$, $n-n_0$.
+\end{remark}
+
+Thus, uniform convergence of the Fourier series characterizes the Bernoulli polynomials among all Appell sequences. There is, however, another possibility: that there exists some function $\varphi(x)$ on $[0,1]$ such that $g_n(x) = \varphi(x)P_n(x)$ satisfies $g_n(0)=g_n(1)$ for $n\ge n_0$, and hence $g_n(x)$ may have a uniformly convergent Fourier series. As we saw this happens for the shifted Apostol-Bernoulli polynomials $\AB^*_n(x;\lambda)$ with $\varphi(x)=\lambda^x$. Let's see that these are essentially the only possible cases within the Appell context.
+
+\begin{theorem}
+\label{T:SoloAB}
+Suppose that for a given general Appell sequence $\{P_{n}(x)\}_{n=0}^\infty$ defined as in \eqref{eq:Appell_def} with $A(0) \ne 0$, there is a function $\varphi(x)$ on $[0,1]$ such that $\varphi(0) \neq 0$ and the Fourier series of $\varphi(x)P_{n}(x)$ converges uniformly on $(0,1]$ for all $n \ge 2$.
+Then $\{P_{n}(x)\}_{n=0}^{\infty}$ is, up to a constant, the sequence of Bernoulli polynomials, the sequence of shifted Apostol-Bernoulli polynomials, or a combination of Apostol-Bernoulli and shifted Apostol-Bernoulli polynomials.
+\end{theorem}
+
+\begin{proof}
+The uniform convergence of the series implies that $\varphi(0)P_n(0) = \varphi(1)P_n(1)$ for $n \ge 2$.
+Separating the constant and linear terms, the hypothesis implies that the function
+\[
+  \varphi(x)A(t)e^{xt} - \varphi(x)A(0) - \varphi(x)(A'(0)+A(0)x)t
+\]
+takes the same values at $x=0$ and $x=1$. A little algebra shows that, if we let $\lambda=\varphi(1)/\varphi(0)$, then
+\[
+  A(t)\left(\lambda e^t - 1\right) = A(0)(\lambda-1)+(A'(0)(\lambda-1)+A(0)\lambda)t
+\]
+and hence, setting $C_1=A(0)(\lambda-1)$ and $C_2=A'(0)(\lambda-1)+A(0)\lambda$, we arrive at
+\[
+  A(t) = \frac{C_1}{\lambda e^t - 1} + \frac{C_2 t}{\lambda e^t-1},
+\]
+from which we deduce the theorem. The case $\lambda = 1$ corresponds to the special case of Bernoulli polynomials and $\lambda \neq 1$ to the remaining cases.
+\end{proof}
+
+\begin{remark}
+In general, if we require equality $\varphi(0)P_n(0)=\varphi(1)P_n(1)$ for $n \ge n_{0}$, or uniform convergence of the Fourier series for $n \ge n_{0}$, the same method shows that $P_{n}(x)/n!$ is a fixed (i.e., with coefficients independent of $n$) linear combination of $\AB^*_{j}(x;\lambda)/j!$ for $j=n,\allowbreak n-1,\dots,\allowbreak n-n_0$.
+\end{remark}
+
+This result exhausts the possibilities for ``nice'' Fourier series of Appell polynomials, at least in the sense of being uniformly convergent on the entire interval $[0,1]$. Thus an analytical property translates into a uniqueness statement involving these two arithmetically interesting polynomial families.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The case of Sheffer sequences}
+\label{sec:Sheffer}
+% (fold)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% http://mathworld.wolfram.com/ShefferSequence.html
+
+Appell polynomials are a particular case of Sheffer polynomials, defined by means of a generating function of the form
+\begin{equation}
+\label{eq:FGenSheffer}
+    G(x,t) = A(t)\,e^{xB(t)} = \sum_{n=0}^\infty P_n(x)\frac{t^n}{n!},
+\end{equation}
+where $A(t)$ and $B(t)$ are analytic in a neighborhood of $0$ and $B(0) = 0$, which guarantees that the coefficients $P_n(x)$ are polynomials in~$x$. We will also assume that $A(0) \ne 0$ and $B'(0) \ne 0$, because these conditions imply that $P_n(x)$ is a polynomial of degree $n$ for every $n \ge 0$.
+
+In the case of Appell polynomials, we have seen that the unique family of polynomials whose Fourier series for $n \geq 2$ converge uniformly on $[0,1]$ is that of the Bernoulli polynomials, Apostol-Bernoulli polynomials or some combination of these. This is no longer true within the wider context of Sheffer sequences.
+
+In this section we are going to see that there exist other families of Sheffer polynomials with uniformly convergent Fourier series. An example is~\eqref{eq:polnuevos}.
+
+Let $\{P_n(x)\}_{n=0}^{\infty}$ be a Sheffer family defined by~\eqref{eq:FGenSheffer}. As in the proof of Theorem~\ref{T:BernUnif}, the uniform convergence implies that the $1$-periodic extension of $P_n(x)$ is continuous, which means we must have $P_n(0) = P_n(1)$ for $n\geq 2$. Then, the function $A(t)\,e^{xB(t)}-P_0(x)-P_1(x)t$ must have the same value at $x=0$ and $x=1$. From this, it follows that $A(t)(e^{B(t)}-1) = (P_1(1)-P_1(0))t$. As $P_1(t)$ is a polynomial of degree $1$, the difference $a = P_1(1) - P_1(0)$ is nonzero. Without lost of generality we may assume that $a=1$, so that
+%% Si no, tomamos $A(t)/a$, y todos los polinomios quedan divididos por $a$
+\begin{equation}
+\label{eq:condicion_necesaria}
+  A(t)(e^{B(t)}-1) = t.
+\end{equation}
+
+We need a procedure to find the Fourier series of Sheffer polynomials satisfying~\eqref{eq:condicion_necesaria}. The method is essentially different from what we have used above for the Bernoulli polynomials to obtain~\eqref{eq:Mellin-HurwitzFou}, which was based on the Fourier series of the transcendental function $\zeta(s,x)$ and its specialization at the negative integers. With this in mind, let us begin with the following lemma.
+
+\begin{lemma}
+\label{L:coefFouGenSh}
+Let $\{P_n(x)\}_{n=0}^{\infty}$ be a Sheffer sequence defined by~\eqref{eq:FGenSheffer}
+and satisfying~\eqref{eq:condicion_necesaria}. For $k\in\Z$ and $t$ in a neighborhood of $0$, we have
+\begin{equation}
+\label{eq:GenFou}
+ \sum_{n=0}^\infty \left(\int_0^1 P_n(x)e^{-2 \pi i k x}\,dx \right) \frac{t^n}{n!}
+ = \frac{t}{B(t)-2 \pi i k}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Multiplying both sides of~\eqref{eq:FGenSheffer} by $e^{-2 \pi i k x}$ and integrating over $[0,1]$ we obtain, on the one hand,
+\[
+	\int_0^1 A(t)\,e^{x(B(t)-2 \pi i k)}\,dx
+= A(t)\frac{e^{B(t)}-1}{B(t)-2 \pi i k} = \frac{t}{B(t)-2 \pi i k},
+\]
+and on the other hand,
+\[
+	\int_0^1 \left(\sum_{n=0}^\infty  P_n(x)e^{-2 \pi i k x} \,\frac{t^n}{n!}\right)\,dx.
+\]
+Thus~\eqref{eq:GenFou} follows if we can justify the exchange of the integral and the sum in a neighborhood of~$0$. To this end, let $R$ be the minimum of the radius of convergence of $A(t)$ and $B(t)$, and $K$ an upper found for the values of these functions on $|t|=R/2$. By Cauchy's formula,
+\[
+	\frac{P_n(x)}{n!} = \frac{1}{2\pi i} \int_{|t|=R/2} \frac{A(t)\,e^{xB(t)}}{t^{n+1}}\,dt,
+\]
+for $x\in [0,1]$. Then
+\[
+	\left|\frac{P_n(x)}{n!}\right|
+	\leq \frac{1}{2\pi} \frac{2\pi R}{2} \left(\frac{2}{R}\right)^{n+1} \max_{|t|=R/2} |A(t)\,e^{xB(t)}|
+	\leq \left(\frac{2}{R}\right)^n Ke^{K}.
+\]
+Now, for $|t|<R/3$, we have
+\[
+	\int_0^1 \sum_{n=0}^\infty  \left|P_n(x)e^{-2 \pi i k x}\, \frac{|t|^n}{n!}\right|\,dx
+	\leq Ke^{K} \sum_{n=0}^\infty \left(\frac{2}{R}\right)^n \left(\frac{R}{3}\right)^n < \infty,
+\]
+and thus Fubini's theorem justifies the exchange of integral and sum.
+\end{proof}
+
+The lemma implies that one way of computing the Fourier coefficients of $P_n(x)$ is to expand $\frac{t}{B(t)-2 \pi i k}$ in~\eqref{eq:GenFou} as a power series in $t$ and then compare coefficients. To illustrate the method, let us see how it works for the Bernoulli polynomials. In this case $B(t)=t$ and
+$$
+	\frac{t}{t-2 \pi i k} = -\sum_{n=1}^\infty \frac{t^n}{(2 \pi i k)^n}, \quad k \ne 0
+$$
+(of course, we have the constant function $1$ when $k=0$). Using~\eqref{eq:GenFou} and comparing the coefficients of $t^n$, we obtain the Fourier coefficients $\int_0^1 P_n(x)e^{-2 \pi i k x}\,dx$ and again arrive at~\eqref{eq:Mellin-HurwitzFou}.
+
+
+Consider now the choice of $B(t) = {t}/({1-t})$ in~\eqref{eq:FGenSheffer}. Assuming~ \eqref{eq:condicion_necesaria}, our polynomials are defined by
+\begin{equation}
+\label{eq:polnuevos}
+   \frac{t}{e^{t/(1-t)}-1}e^{xt/(1-t)} = \sum_{n=0}^\infty P_n(x)\frac{t^n}{n!}.
+\end{equation}
+For $k\ne 0$, we have
+\begin{align*}
+\frac{t}{B(t)-2 \pi i k}
+&= \frac{(t-1)t}{2 \pi i k} \frac{1}{1-t\,\frac{1+2 \pi i k}{2 \pi i k}}
+= (t^2-t )\sum_{n=0}^\infty \frac{(1+2 \pi i k)^n}{(2 \pi i k)^{n+1}} \, t^n
+\\
+&= \sum_{n=0}^\infty \frac{(1+2 \pi i k)^n}{(2 \pi i k)^{n+1}} \, t^{n+2}
+- \sum_{n=0}^\infty \frac{(1+2 \pi i k)^n}{(2 \pi i k)^{n+1}} \, t^{n+1}
+\\
+&= -\frac{1}{2 \pi i k}\,t - \sum_{n=2}^\infty \frac{(1+2 \pi i k)^{n-2}}{(2 \pi i k)^{n}}\,t^n,
+\end{align*}
+and ${t}/(B(t)-2 \pi i k) = 1-t$ for $k=0$. Thus, we have proved the following.
+
+\begin{lemma}
+\label{L:coefFouShB}
+The Fourier coefficients of the $1$-periodic extension of the Sheffer polynomials $\{P_n(x)\}_{n=0}^{\infty}$ defined in~\eqref{eq:polnuevos} are as follows:
+for $k\ne0$,
+\[
+\widehat{P_n}(k)
+= \int_0^1 P_n(x) e^{-2 \pi i k x}\,dx
+= \begin{cases}
+    0, & \text{if $n=0$,} \\[3pt]
+    -\frac{1}{2 \pi i k}, & \text{if $n=1$,} \\[3pt]
+    -n! \,\frac{(1+2 \pi i k)^{n-2}}{(2 \pi i k)^n}, & \text{if $n\geq 2$;}
+\end{cases}
+\]
+and, for $k=0$, $\widehat{P_0}(0)=1$, $\widehat{P_1}(0)=-1$, $\widehat{P_n}(0)=0$ ($n\geq 2$).
+\end{lemma}
+
+Consequently, discarding the case $n=1$, which cannot have a uniformly convergent Fourier series, we arrive at:
+
+\begin{theorem}
+\label{T:serFouB}
+For $n\geq 2$, the Sheffer polynomials defined in~\eqref{eq:polnuevos} satisfy
+\begin{equation*}
+%\label{eq:serFouB}
+P_n(x) = -n! \sum_{k\in\Z\setminus\{0\}} \frac{(1+2 \pi i k)^{n-2}}{(2 \pi i k)^n} \,e^{2\pi ikx}
+\end{equation*}
+uniformly on $x\in[0,1]$.
+\end{theorem}
+
+
+\begin{remark}
+%\label{R:polnuevosBern}
+It is easy to check by expanding the numerator of the expression given in Theorem~\ref{T:serFouB}, that the polynomials $P_{n}(x)$ are related to the Bernoulli polynomials via
+\[
+	\frac{P_{n}(x)}{n!} = \sum_{m=2}^{n} \binom{n-2}{m-2} \frac{B_{m}(x)}{m!}.
+\]
+As expected, $B_{1}(x)$ is excluded since it does not have a uniformly convergent Fourier series. The corresponding constant terms $P_{n}(0)$ for $n \geq 1$ form sequence A052852 of the Online Encyclopedia of Integer Sequences~\cite{OEIS-A052852}.
+\end{remark}
+
+In this case, it is easy to construct a function $F(s,x)$ which is entire in $s$ and whose values at the negative integers is the $n$th polynomial $P_{n}(x)$, at least up to a constant factor depending only on~$n$.
+
+\begin{corollary}
+The function
+\[
+	F(s,x) = -\sum_{k\in\Z\setminus\{0\}} \left(\frac{1}{2 \pi i k}+1\right)^{-s} \frac{e^{2 \pi i k x}}{(1+2 \pi i k)^2},
+	\quad x\in [0,1],\quad s\in\C
+\]
+is entire in $s$ and satisfies
+\[
+	F(-n,x) = P_n(x)/n!,
+	\qquad n \ge 2,
+\]
+where $\{P_n(x)\}_{n=0}^{\infty}$ are the Sheffer polynomials defined in~\eqref{eq:polnuevos}.
+\end{corollary}
+
+
+\begin{proof}
+It is easily checked that the series converges absolutely and uniformly on compact sets of the complex plane and thus defines an entire function. It is clear that the values at negative integers satisfy the above relation.
+\end{proof}
+
+
+
+We can consider an ``Apostol-type'' generalization of~\eqref{eq:polnuevos}, defined by
+\begin{equation*}
+%\label{eq:pollambdanuevos}
+   \frac{t}{\lambda e^{t/(1-t)}-1}e^{xt/(1-t)} = \sum_{n=0}^\infty \mathcal{P}_n(x;\lambda)\frac{t^n}{n!},
+\end{equation*}
+or, for $\lambda \ne 1$, the ``shifted'' polynomials
+\begin{equation}
+\label{eq:pollambdanuevos*}
+   \frac{1}{\lambda e^{t/(1-t)}-1}e^{xt/(1-t)} = \sum_{n=0}^\infty \mathcal{P}^{*}_n(x;\lambda)\frac{t^n}{n!},
+\end{equation}
+so that $\mathcal{P}^{*}_n(x;\lambda)$ has degree~$n$. Proceeding as we did in~\eqref{eq:polnuevos} and assuming $\lambda \ne 0$ to avoid trivial cases, we obtain
+\[
+	\frac{1}{B(t)-2 \pi i k + \log\lambda} = -\frac{1}{2 \pi i k - \log\lambda}
+	- \sum_{n=2}^\infty \frac{(1+2 \pi i k - \log\lambda)^{n-2}}{(2 \pi i k - 	\log\lambda)^{n}}\,t^{n-1},
+\]
+which is valid for all $k \in \Z$. The Fourier expansion of $\lambda^x \mathcal{P}^{*}_n(x;\lambda)$ for $\lambda \in \C \setminus \{0,1\}$ can be written as follows.
+
+\begin{theorem}
+%\label{T:serFouBlambda}
+For $n\geq 1$, the Sheffer polynomials defined in~\eqref{eq:pollambdanuevos*} satisfy
+\begin{equation*}
+\mathcal{P}^{*}_n(x;\lambda)\lambda^x
+= -n! \sum_{k\in\Z} \frac{(1+2 \pi i k-\log\lambda)^{n-1}}{(2 \pi i k-\log\lambda)^{n+1}} \,e^{2\pi ikx}
+\end{equation*}
+uniformly on $x\in[0,1]$.
+\end{theorem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hermite polynomials and Fourier transform}
+\label{sec:Hermite}
+% (fold)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+In this last section, using similar techniques involving the Mellin transform, we show that if instead of Fourier series, we consider the Fourier transform, then the Hermite polynomials appear as analogs of the Bernoulli polynomials with regard to the themes of the previous sections.
+
+The sequence of Hermite polynomials is generated by
+\begin{equation*}
+  e^{-t^2} e^{2xt} = \sum_{n=0}^\infty H_{n}(x)\frac{t^n}{n!}.
+\end{equation*}
+Strictly speaking, this is not an Appell sequence, but only because of the factor of $2$ in the exponential. For many purposes, one uses the Hermite \emph{functions} $\calH_{n}(x) = e^{-x^2}H_{n}(x)$, which are generated by
+\begin{equation*}
+  e^{-(x-t)^2} = \sum_{n=0}^\infty \calH_{n}(x)\frac{t^n}{n!}.
+\end{equation*}
+Now the problem is that these are not even polynomials. Nevertheless, the Mellin transforms of both the Hermite polynomials and functions,
+\[
+  H(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} e^{-t^2}e^{2xt} t^{s-1}\,dt,
+  \quad
+  \calH(s,x)  = \frac{1}{\Gamma(s)} \int_{0}^{\infty} e^{-(x+t)^2} t^{s-1}\,dt,
+\]
+can still be analytically continued to entire functions which have as special values at the negative integers the respective polynomials and functions, i.e.,
+\[
+  H(-n,x) = H_n(x),
+  \quad
+  \calH(-n,x) = \calH_n(x),
+  \qquad n=0,1,2,\dots,
+\]
+since it can be easily verified that the results in \cite{NRV-values} are still valid with these trivial modifications to the generating functions. Moreover, in this case, the Mellin transform is defined for $x\in\R$.
+
+
+\begin{lemma}
+\label{L:previoFou-Her}
+\leavevmode
+\begin{enumerate}
+\item[(a)]
+For $\sigma > -1$ we have
+$\displaystyle
+\calH(s,x) = \frac{1}{\Gamma(s)} \int_0^\infty \left(e^{-(x+t)^2}-e^{-x^2}\right)t^{s-1}\,dt.
+$
+\item[(b)] Let $\xi \in \C$ with $\Im \xi > 0$. Then for $-1 < \sigma < 0$,
+\[
+  \int_0^\infty (e^{2\pi i\xi t}-1)t^{s-1}\,dt = (-2\pi i\xi)^{-s}\Gamma(s).
+\]
+\end{enumerate}
+\end{lemma}
+
+
+\begin{proof}
+For the first part, we subtract the constant term from the Taylor series of $\calH(s,x)$. Then for $\sigma > -1$ we have
+\[
+  \Gamma(s)\calH(s,x) = \int_1^\infty e^{-(x+t)^2}t^{s-1}\,dt
+  + \int_0^1 \left(e^{-(x+t)^2}-e^{-x^2}\right)t^{s-1}\,dt + \frac{e^{-x^2}}{s}.
+\]
+Since $\int_1^\infty t^{s-1}\,dt = -1/s$, this proves the first formula. For the second formula, the same trick that improves the convergence at $t = 0$ yields
+\[
+  \Gamma(s) = \int_0^\infty (e^{-t}-1)t^{s-1}\,dt,
+  \quad -1<\sigma <0.
+\]
+Now consider the parametric integral
+\[
+  G(a)=\int_0^\infty (e^{-at}-1)t^{s-1}\,dt.
+\]
+It defines a function holomorphic for $\Re a> 0$ and continuous for $\Re a\geq 0$. By changing variables we have $G(a)=\Gamma(s)/a^{s}$ for $a>0$, and the general result follows by analytic continuation and continuity.
+\end{proof}
+
+
+\begin{theorem}
+\label{T:Fourier-Hermite}
+For any $x \in \R$ and $\sigma < 0$,
+\begin{equation}
+\label{eq:Fourier-Hermite}
+  \calH(s,x) = \sqrt{\pi} \int_{-\infty}^\infty e^{-\pi^2\xi^2} (-2\pi i\xi)^{-s}e^{2\pi ix\xi}\,d\xi.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We start from the well-known Fourier transform
+\[
+  \int_{-\infty}^\infty \left(e^{-(x+t)^2}-e^{-x^2}\right)e^{-2\pi ix\xi}\,dx
+  = \sqrt{\pi}(e^{2\pi i\xi t}-1)e^{-\pi^2\xi^2}.
+\]
+For $-1 < \sigma < 0$ we can compute the Fourier transform of $\calH(s,x)$ using the first formula in Lemma~\ref{L:previoFou-Her} and Fubini's theorem:
+\[
+  \int_{-\infty}^\infty \calH(s,x)e^{-2\pi ix\xi}\,dx
+  = \frac{\sqrt{\pi}e^{-\pi^2\xi^2}}{\Gamma(s)} \int_0^\infty (e^{2\pi i\xi t}-1)t^{s-1}\,dt.
+\]
+By the second formula in the lemma,
+\[
+  \int_{-\infty}^\infty \calH(s,x)e^{-2\pi ix\xi}\,dx
+  = \sqrt{\pi}e^{-\pi^2\xi^2} (-2\pi i\xi)^{-s},
+  \quad -1<\sigma<0.
+\]
+Since $\sqrt{\pi}e^{-\pi^2\xi^2} (-2\pi i\xi)^{-s}\in L^1(\R)$ for $-1 < \sigma < 0$, the Fourier inversion theorem gives
+\[
+  \calH(s,x) = \sqrt{\pi} \int_{-\infty}^\infty e^{-\pi^2\xi^2} (-2\pi i\xi)^{-s}e^{2\pi ix\xi}\,d\xi.
+\]
+Finally, note that the integral on the right is holomorphic for $\sigma < 0$, so~\eqref{eq:Fourier-Hermite} follows by analytic continuation.
+\end{proof}
+
+
+\begin{remark}
+These entire functions which extend the Hermite polynomials are well-known and classical, as is the formula in the theorem. They may be found in~\cite[Section 10.5]{Le}, for example. However, we are not aware of this particularly simple treatment using the Fourier transform and its inverse.
+\end{remark}
+
+As a corollary of the theorem and the special values at negative integers, we obtain the following formula for the Hermite polynomials, which was known even before that in Theorem~\ref{T:Fourier-Hermite} (see for example~\cite[formula 18.10.10]{OP-NIST}).
+
+\begin{corollary}
+\label{C:Fourier-Hermite}
+For $x \in \R$ and $n \in \N$,
+\begin{equation*}
+  H_n(x) = \sqrt{\pi} e^{x^2}\int_{-\infty}^\infty e^{-\pi^2\xi^2} (-2\pi i\xi)^{n}e^{2\pi ix\xi}\,d\xi.
+\end{equation*}
+\end{corollary}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{00}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{Ap}
+T. Apostol,
+{On the Lerch Zeta function},
+\textit{Pacific J. Math.} \textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+% https://msp.org/pjm/1951/1-2/pjm-v1-n2-p01-s.pdf
+% https://projecteuclid.org/euclid.pjm/1103052188
+% https://projecteuclid.org/euclid.pjm/1103051938
+
+%% NO SE CITA
+%% Usa Apostol-Euler (sin alpha) sin reducirlo a Apostol-Bernoulli
+%\bibitem{Ba}
+%A. Bayad,
+%Fourier expansions for Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials,
+%\textit{Math. Comp.}
+%\textbf{80} (2011), 2219--2221.
+
+\bibitem{CGale-I}
+J. S. Campos-Orozco and J. E. Gal\'e,
+Continuous Sheffer families I,
+\textit{J. Math. Anal. Appl.}
+\textbf{405} (2013), 286--296.
+% http://www.sciencedirect.com/science/article/pii/S0022247X13003144
+
+\bibitem{CGale-II}
+J. S. Campos-Orozco and J. E. Gal\'e,
+Continuous Sheffer families II,
+\textit{J. Math. Anal. Appl.}
+\textbf{412} (2014), 381--390.
+% http://www.sciencedirect.com/science/article/pii/S0022247X13009815
+
+% \cite[\S1.11, p.~27]{Bate}
+\bibitem{Bate} % Bateman project
+A. Erd\'{e}lyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+\textit{Higher Transcendental Functions}, Volume I,
+McGraw-Hill, New York, 1953.
+
+\bibitem{OP-NIST}
+T. H. Koornwinder, R. Wong, R. Koekoek and R. F. Swarttouw,
+Orthogonal polynomials,
+\textit{NIST handbook of mathematical functions}
+(edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+435--484,
+National Institute of Standards and Technology, Washington, DC, and
+Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/18}
+
+\bibitem{Le}
+N. N. Lebedev,
+\textit{Special functions and its applications},
+Dover, New York, 1972.
+
+%% NO SE CITA.
+\bibitem{MOS}
+W. Magnus, F. Oberhettinger and R. P. Soni,
+\textit{Formulas and Theorems for the Special Functions of Mathematical Physics},
+third edition, Springer-Verlag, Berlin-Heidelberg, 1966.
+
+\bibitem{MT}
+S. Marmia and P. Tempesta,
+Hyperfunctions, formal groups and generalized Lipschitz summation formulas,
+\textit{Nonlinear Anal.}
+\textbf{75} (2012), 1768--1777.
+
+\bibitem{NRV-Mobius}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+The M\"obius inversion formula for Fourier series applied to Bernoulli and Euler polynomials,
+\textit{J. Approx. Theory}
+\textbf{163} (2011), 22--40.
+
+%% NO SE CITA.
+%% Reduce Apostol-Euler a Apostol-Bernoulli
+%\bibitem{NRV-MC}
+%L. M. Navas, F. J. Ruiz and J. L. Varona,
+%Asymptotic estimates for Apostol-Bernoulli and Apostol-Euler polynomials,
+%\textit{Math. Comp.}
+%\textbf{81} (2012), 1707--1722.
+
+%% NO SE CITA.
+%% Lindel\"of-Wirtinger expansion, that we prove here in another way.
+%\bibitem{NRV-Lerch-asym}
+%L. M. Navas, F. J. Ruiz and J. L. Varona,
+%Asymptotic behavior of the Lerch transcendent function,
+%\textit{J. Approx. Theory}
+%\textbf{170} (2013), 21--31.
+
+\bibitem{NRV-Lerch-Fou}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+The Lerch transcendent from the point of view of Fourier analysis,
+\textit{J. Math. Anal. Appl.}
+\textbf{431} (2015), 186--201.
+
+\bibitem{NRV-values}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Appell polynomials as values of special functions,
+\textit{J. Math. Anal. Appl.}
+\textbf{459} (2018), 419--436.
+% DOI: \url{https://doi.org/10.1016/j.jmaa.2017.10.049}
+
+\bibitem{OEIS-A052852}
+OEIS Foundation Inc., 
+Sequence A052852,
+\textit{The On-Line Encyclopedia of Integer Sequences}, 2018,
+\url{http://oeis.org/A052852}
+
+\end{thebibliography}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

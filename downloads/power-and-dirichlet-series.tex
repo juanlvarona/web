@@ -1,0 +1,1121 @@
+% !TEX TS-program = pdflatex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% A connection between power series and Dirichlet series,
+% by
+% L. M. Navas, F. J. Ruiz and J. L. Varona
+%
+% Date of last modification: 2020-06-17
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{amsart}
+
+\usepackage{amsmath, amsthm, amssymb}
+
+%%% \allowdisplaybreaks is a command from amsmath that allow page breaks
+%%% inside a multi-line formula (align, multline, gather, ...)
+\allowdisplaybreaks[3] %%% Scale from 1 (weak allow) to 4 (complete allow).
+%%% If a break can be avoided, we can use \\* instead of \\
+
+\usepackage[inline]{enumitem}
+\setlist[enumerate,itemize]{leftmargin=*}
+
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+%\usepackage{color}
+
+%---------------------
+%% ONLY FOR DRAFTS:
+%\usepackage[hyperpageref]{backref} % For drafts
+%\renewcommand*{\backrefalt}[4]{%
+%\ifcase #1 %
+%\rojo{No citations.}%
+%\or
+%\textcolor{YellowGreen}{One citation in section #2.}%
+%\else
+%\textcolor{Green3}{#1 citations in sections #2.}%
+%\fi
+%}
+%---------------------
+
+
+%---------------------
+%% ONLY FOR DRAFTS:
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{refcheck}
+%\usepackage{backref}
+%---------------------
+
+%---------------------
+%% ONLY FOR DRAFTS:
+%\usepackage[latin1]{inputenc}
+%---------------------
+
+%\date{\today}
+%\date{}
+
+%---------------------
+%\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\AB}{\mathcal{B}}
+\newcommand{\B}{\mathbb{B}}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\newcommand{\Li}{\operatorname{Li}}
+\newcommand{\Res}{\operatorname{Res}}
+
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\D}{\mathfrak{D}}
+%---------------------
+
+%---------------------
+\newcommand{\decr}{\ominus}
+\newcommand{\incr}{\oplus}
+%---------------------
+
+%---------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{plain}
+\newtheorem{corollary}{Corollary}
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+%---------------------
+
+
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+\date{\textit{J.\ Math.\ Anal.\ Appl.}\ \textbf{493} (2021), article 124541, 18~pp., 
+\url{https://doi.org/10.1016/j.jmaa.2020.124541}}
+
+%---------------------
+\title[A connection between power series and Dirichlet series]%
+{A connection between power series and Dirichlet series}
+
+\author[L.~M.~Navas]{Luis M. Navas}
+\address{%
+       Departamento de Matem\'aticas,
+       Universidad de Salamanca,
+       37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author[F.~J.~Ruiz]{Francisco J. Ruiz}
+\address{%
+       Departamento de Matem\'aticas,
+       Universidad de Zaragoza,
+       50009 Zaragoza, Spain}
+\email{fjruiz@unizar.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address{%
+       Departamento de Matem\'aticas y Computaci\'on,
+       Universidad de La Rioja,
+       26006 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+%---------------------
+
+%---------------------
+\thanks{The research of the authors is supported by Grant PGC2018-096504-B-C32 (Minis\-te\-rio de Ciencia, Innovaci\'on y Universidades, MCIU) and Feder Funds (European Union). The first author is also supported by PGC2018-099599-B-I00 (MCIU) and J416/463AC03 (Jun\-ta de Cas\-ti\-lla y Le\'on) and Feder Funds (European Union). The second author is also supported by E26\_17R and E48\_20R (Go\-bier\-no de Ara\-g\'on).}
+%---------------------
+
+%---------------------
+\subjclass[2010]{Primary 30B50; Secondary 30B10, 30B40, 11B83, 11M35}
+\keywords{Dirichlet series, power series, special functions, Mellin transforms, 
+Lerch transcendent, zeta function}
+%---------------------
+
+%---------------------
+\begin{document}
+%---------------------
+
+%---------------------
+%% Class amsart Warning:
+%% Abstract should precede \maketitle in AMS document classes
+\begin{abstract}
+We prove that for any convergent Laurent series $f(z) = \sum_{n=-k}^{\infty} a_{n} z^{n}$ with $k \geq 0$, there is a meromorphic function $F(s)$ on $\C$ whose only possible poles are among the integers $n=1,2,\ldots,k$, having residues $\Res(F;n) = {a_{-n}}/{(n-1)!}$, and satisfying $F(-n) = (-1)^{n} n!\, a_{n}$ for $n=0,1,2,\ldots$.
+
+Under certain conditions, $F(s)$ is a Mellin transform. In particular,  this happens when $f(z)$ is of the form $H(e^{-z})e^{-z}$ with $H(z)$ analytic on the open unit disk. In this case, if $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$, the analytic continuation of $H(z)$ to $z=1$ is related to the analytic continuation of the Dirichlet series $\sum_{n=1}^{\infty} h_{n-1} n^{-s}$ to the complex plane.
+\end{abstract}
+%---------------------
+
+%---------------------
+\maketitle
+%---------------------
+
+%---------------------
+\section{Introduction}
+\label{sec:introduction}
+%---------------------
+
+Consider the integral transform of a function $f(t)$ on $(0,\infty)$ defined by the complex-valued integral
+%%
+\begin{equation}
+\label{eq:Mellin}
+  \M{f}(s) = \frac{1}{\Gamma(s)}\int_{0}^{\infty} f(t)t^{s-1} \, dt.
+\end{equation}
+%%
+Without the Gamma factor in front, this is of course the classical Mellin transform. Here we normalize so that the exponential $f(t) = e^{-t}$ transforms to the constant function~$1$.
+
+When $f(t) = 1/(e^{t}-1) = e^{-t}/(1 - e^{-t})$, we have the well-known classical formula
+\[
+  \zeta(s) = \M{f}(s)
+  = \frac{1}{\Gamma(s)} \int_{0}^{\infty} \frac{t^{s-1}}{e^{t} - 1} \, dt,
+\]
+valid for $\Re(s) > 1$, which is an oft-chosen starting point to obtain both the analytic continuation of the Riemann zeta function to $\C \setminus \{1\}$ and the values $\zeta(-n) = -B_{n+1}/(n+1)$ at the negative integers, where $\{B_{n}\}$ is the sequence of Bernoulli numbers. Of the various methods (see for example Titchmarsh's book~\cite{Titchmarsh}), we are interested in the following procedure, summarized in two main points:
+ 
+%%
+\begin{enumerate}[label=\Alph*., ref=\Alph*]
+\item
+\label{item:truncating-trick}
+By adding and subtracting the partial sums of the series representation at $t = 0$ of 
+\[
+  f(t) = 1/(e^{t}-1) = t^{-1} \sum_{n=0}^{\infty} B_{n} t^{n}/n!
+\]
+in the integral~\eqref{eq:Mellin}, the Mellin transform, which a priori is only holomorphic on $\Re s > 1$, is shown to have an analytic continuation to $\C \setminus \{1\}$. This same method also shows that the values of the analytic continuation at the negative integers are essentially the coefficients of the Taylor series, in this case, the Bernoulli numbers~$B_{n}$.
+
+\item
+\label{item:series-trick}
+On the other hand, noting that 
+\[
+  f(t) = e^{-t}/(1 - e^{-t}) = \sum_{n=0}^{\infty} e^{-(n+1)t}
+\]
+and exchanging this sum with the integral in~\eqref{eq:Mellin}, we find that for $\Re s > 1$, $\M{f}(s) = \sum_{n=1}^{\infty} n^{-s}$, which is the Dirichlet series defining~$\zeta(s)$.
+\end{enumerate}
+%% 
+
+
+The use of the Mellin transform to prove both the analytic continuation and the formula for its values at the negative integers can be generalized to the Hurwitz zeta function and the associated Bernoulli \emph{polynomials}~\cite{Apostol-ANT}, as well as to the Lerch zeta function and the Apostol-Bernoulli polynomials~\cite{Apostol-Lerch}. In~\cite{AppellSpecialValues}, by again using~\eqref{item:truncating-trick} and~\eqref{item:series-trick} as motivation, we extended these results to a very general class of Appell polynomials and entire functions.
+
+
+These ideas are also related to the technique known as ``Ramanujan's Master Theorem'' (see~\cite{Amdeberhan}), used often by him to derive expressions for infinite sums and integrals. It is summarized by the following ``non-rigorous formula:''
+%%
+\begin{equation*}
+%\label{eq:RamanujanMT}
+  h(-s)
+  = \frac{1}{\Gamma(s)}
+  \int_{0}^{\infty} \left(\sum_{n=0}^{\infty} \frac{h(n)}{n!} (-t)^{n}\right) t^{s-1} \, dt,
+\end{equation*}
+%%
+the intent of which is to provide an explicit expression for the analytic continuation of the Mellin transform of a power series, here given in exponential form, emphasizing that one recovers the coefficients as values at the negative integers of the Mellin transform. For example, with $h(s) = \zeta(-s)$ the formula gives
+\[
+  \zeta(s) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} \left(-\frac{1}{t} 
+  - \frac{1}{2} + \frac{1}{1-e^{-t}}\right) t^{s-1} \, dt,
+\]
+which is correct for $-1 < \sigma = \Re(s) < 0$. Note that the first two terms are the leading terms in the Laurent series of the third, so that this turns out to be an instance of~\eqref{item:truncating-trick}.
+
+
+The results presented here are both a generalization and a simplification of the methods in~\cite{AppellSpecialValues}. We wish to obtain more out of~\eqref{item:truncating-trick} and~\eqref{item:series-trick}. On one hand, the idea contained in~\eqref{item:truncating-trick} allows us to start from a Laurent expansion $f(z) = \sum_{n=-k}^{\infty} a_{n} z^{n}$ and obtain a meromorphic function $F(s)$ with possible poles only at $s=1,2,\dots,k$ and which interpolates at the negative integers $s=-n$ values related to the coefficients~$a_{n}$.
+
+
+On the other hand, for $f(z) =H(e^{-z})e^{-z}$ with $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ satisfying certain conditions, the analytic continuation $F(s)$ is just the Mellin transform of $f$ and we can use the ideas in~\eqref{item:series-trick} to show that $F(s)$ is given in a half-plane by the Dirichlet series $\sum_{n=0}^{\infty} h_{n} (n+1)^{-s}$. The analytic continuation of the Taylor series $\sum_{n=0}^{\infty} h_{n} z^{n}$ to $z=1$ is directly related to the analytic continuation of this Dirichlet series.
+
+The paper is organized as follows: in the second section, Theorem~\ref{th:interpolation} is the interpolation result for Laurent series which extends the ideas of~\eqref{item:truncating-trick}. In the third, inspired by~\eqref{item:series-trick}, we study the connection between the meromorphic continuation of Dirichlet series and the continuation of power series converging in the unit disk to $z=1$; this is summarized in Theorem~\ref{th:prolongarpor1}. In the next several sections we discuss various examples, counterexamples to the converse, and general consequences of Theorem~\ref{th:prolongarpor1}. Finally, in the last section, Theorem~\ref{th:sing_log} extends these results to power series with a non-isolated singularity at $z=1$; such is the case for $(z-1)^{\alpha}$ with $\alpha \notin \Z$, for example.
+
+Let us establish some conventions to be used throughout. Notationwise, we consider the natural numbers to be the set $\N = \{1,2,3,\dots\}$, while $\N_{0} = \N \cup \{0\}$.
+When we speak of a meromorphic function with a pole of order $k \geq 0$, it is understood that for $k=0$ we simply mean a holomorphic function. 
+The letters $z$, $s$, and sometimes $t$, denote complex variables, with $z$ used mainly for power series and $s$ for Dirichlet series, in which case we will denote its real part by $\sigma = \Re s$. The principal branch of the complex logarithm is assumed by default.
+
+The various parametric integrals which appear all define analytic functions in their domain of convergence. The justification of this fact is the generalization to integrals of Weierstrass' M-test for series. This general criterion is an application of the Dominated Convergence Theorem and Morera's Theorem. We will omit the details of verifying for each integral that the conditions of the criterion are satisfied, as this is straightforward in every case.
+
+
+%---------------------
+\section{An interpolation result for power series coefficients}
+\label{sec:interpolation}
+%---------------------
+
+\begin{theorem}
+\label{th:interpolation}
+Let $f(z)$ be a meromorphic function with a pole of order $k \geq 0$ at $z = 0$ and having Laurent series around $z=0$ given by
+\[
+  f(z) = \sum_{n=-k}^{\infty} a_{n} z^{n}
+  \quad (0 < |z| < R).
+\]
+Then for a fixed $r \in (0,R)$, the integral
+\[
+  F(s) = \frac{1}{\Gamma(s)} \int_{0}^r f(t) t^{s-1}\,dt
+\]
+defines an analytic function on the half-plane $\sigma > k$. 
+%%
+\begin{enumerate}[label=\emph{(\alph*)}]
+\item If $k \geq 1$, then $F(s)$ can be extended to a meromorphic function on $\C$ whose singularities are a simple pole at $s=k$ and possible simple poles
+at $s = 1,2,\dots, k-1$ with residues 
+\begin{equation}
+  \label{eq:valores_en_residuos}
+  \Res(F;n) = \frac{a_{-n}}{(n-1)!} \qquad (n = 1,\dots,k)
+\end{equation}
+and satisfying
+\begin{equation}
+  \label{eq:valores_en_enteros}
+  F(-n) = (-1)^{n} n!\, a_{n} \qquad (n \ge 0).
+\end{equation}
+%%
+\item If $k = 0$ then $F(s)$ can be extended to an entire function satisfying~\eqref{eq:valores_en_enteros}.
+\end{enumerate}
+%%
+\end{theorem}
+
+
+\begin{proof} 
+The integral defining $F(s)$ converges for $\sigma > k$ since the integrand is  $O(t^{s-1-k})$ at $t=0$. Fixing $N \in \N$, we separate it into two parts,
+\begin{equation*}
+  F(s) = \frac{1}{\Gamma(s)} \int_{0}^r \left(f(t)-\sum_{n=-k}^N a_{n} t^{n}\right)t^{s-1}\,dt
+ + \frac{1}{\Gamma(s)}\int_{0}^r \sum_{n=-k}^N a_{n} t^{n} t^{s-1}\,dt.
+\end{equation*}
+Since the integrand in the first part is $O(t^{N+s})$ at $t = 0$, the integral is holomorphic for $\sigma>-N-1$, and the $1/\Gamma(s)$ term in front implies this part has zeros at the negative integers, so as far as~\eqref{eq:valores_en_residuos} and~\eqref{eq:valores_en_enteros} are concerned we may ignore this part.
+
+Turning to the second part, we find a trivial integral yielding the function
+%%
+\begin{equation}
+\label{eq:parte_facil}
+  \frac{1}{\Gamma(s)}\sum_{n=-k}^{N} a_{n}\, \frac{r^{n+s}}{n+s}
+  = \frac{1}{\Gamma(s)}\sum_{n=-N}^{k} a_{-n}\, \frac{r^{s-n}}{s-n},
+\end{equation}
+%%
+which is meromorphic on $\C$ with possible simple poles only at $s=1,2,\dots,k$, since the other possible poles at $s=0,-1,\dots,-N$ are canceled by the zeros of $1/\Gamma(s)$. The residues of $F(s)$ at $s = n = 1,2,\dots,k$ are the residues of~\eqref{eq:parte_facil}, namely $a_{-n}/\Gamma(n) = a_{-n}/(n-1)!$. In particular, if $k \geq 1$ there is an actual simple pole at $s=k$. Likewise, the values $F(-n)$ for $n=0,1,\dots,N$ are the values of~\eqref{eq:parte_facil}, given by
+\[
+  \lim_{s\to -n} a_{n} \, \frac{r^{n+s}}{\Gamma(s)(s+n)}=(-1)^{n} n!\,a_{n},
+\]
+because $\Res(\Gamma;-n) = (-1)^{n}/n!$. Since $N$ was arbitrary, the proof is complete.
+\end{proof}
+
+
+\begin{remark} 
+Of course, for a given $f(z)$ there are infinitely many entire or meromorphic functions satisfying~\eqref{eq:valores_en_residuos} and~\eqref{eq:valores_en_enteros}. The dependence on $r$ notwithstanding, in general the function
+%%
+\begin{equation}
+\label{eq:suma_entera}
+  F(s) = \frac{1}{\Gamma(s)} \left(\int_{0}^r f(t) t^{s-1}\,dt + E(s)\right),
+\end{equation}
+%%
+where $E(s)$ in an arbitrary entire function, also satisfies~\eqref{eq:valores_en_residuos} and~\eqref{eq:valores_en_enteros}. In view of this, our interest now turns to the question of whether there are functions of the form~\eqref{eq:suma_entera} that are easier to deal with.
+
+Towards this end, if $f(t)$ has additional properties which allow the same integral, extended over $(r,\infty)$, to define an entire function, then a ``canonical'' choice would be
+\[
+  E(s) =\int_r^{\infty} f(t) t^{s-1}\,dt,
+\]
+which of course leads to
+\[
+  F(s) =\frac{1}{\Gamma(s)}\int_{0}^{\infty} f(t) t^{s-1}\,dt,
+\]
+the Mellin transform of $f(t)$. However, we need to ask more from $f$ in order to obtain a well-behaved Mellin transform.
+\end{remark}
+
+In the following section we will see that an interesting special case is when $f(t) = e^{-t} H(e^{-t})$ for $H(z)$ an analytic function in the (open) unit disk having an analytic continuation to the point $z=1$.
+
+
+%%---------------------
+\section{Dirichlet series and analytic continuation}
+\label{sec:dirichlet}
+%---------------------
+
+Given a sequence $\{h_{n}\}_{n=0}^{\infty}$ of complex coefficients, consider the 
+formal power series and Dirichlet series with those coefficients, namely
+%%
+\begin{equation*}
+%\label{eq:PWS+DS}
+  H(z) = \sum_{n=0}^{\infty} h_{n} z^{n},
+  \qquad
+  D(s) = \sum_{n=1}^{\infty} \frac{h_{n-1}}{n^{s}}
+\end{equation*}
+%%
+(note the displacement in the index in the Dirichlet series, due to beginning the sequence $h_{n}$ at $n=0$). In what follows, we will denote the radius of convergence of $H(z)$ by $R$ and the abscissas of ordinary and absolute convergence of $D(s)$ by $\sigma_{c}$ and $\sigma_{a}$ respectively. A priori $R \in [0,\infty]$ and $\sigma_{c},\sigma_{a} \in [-\infty,\infty]$.
+
+
+Recall that a Dirichlet series $D(s)$ converges in the open half-plane $\sigma > \sigma_{c}$ and diverges for $\sigma < \sigma_{c}$, and that $\sigma_{c} \leq \sigma_{a} \leq \sigma_{c} + 1$. If $\sigma_{c} < \infty$, then the sum of $D(s)$ is analytic in its half-plane of convergence. We will use the same notation for the series and its sum function, as well as its analytic continuation, and do the same for power series. In particular if $\sigma_{c} = -\infty$ then $D(s)$ is an entire function.
+
+
+For a power series $H(z)$ converging inside the unit disk (that is to say, with $R \geq 1$), the main result of this section (Theorem~\ref{th:prolongarpor1}) establishes a relationship between the analytic continuation of $H(z)$ to the boundary point $z=1$ and the analytic continuation of the corresponding Dirichlet series $D(s)$ beyond its half-plane of convergence.
+
+Needless to say, many important problems, especially in Number Theory, involve the existence of an analytic continuation of a Dirichlet series. Theorem~\ref{th:prolongarpor1} will allow us to easily deduce a varied number of interesting examples, both in the positive (existence) and negative (non-existence) sense.
+
+
+We begin with two simple observations regarding the relationship between the radius of convergence $R$ and the abscissa of convergence~$\sigma_{c}$.
+
+
+\begin{lemma}
+\label{lem:sc_finite_R>=1}
+If the Dirichlet series $\sum_{n=1}^{\infty} h_{n-1} n^{-s}$ converges at some $s \in \C$, then the power series $\sum_{n=0}^{\infty} h_{n} z^{n}$ converges inside the unit disk; i.e.\ $\sigma_{c} < \infty$ implies $R \geq 1$.
+\end{lemma}
+
+
+\begin{proof}
+Since $D(s)$ converges for $\sigma > \sigma_{c}$, it converges at any real $r > \sigma_{c}$; hence $h_{n} = O(n^{r})$ and the result follows from the Cauchy-Hadamard formula for the radius of convergence of a power series.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:R>1_entire}
+If the power series $\sum_{n=0}^{\infty} h_{n} z^{n}$ converges at some point outside the unit disk, then the Dirichlet series $\sum_{n=1}^{\infty} h_{n-1} n^{-s}$ converges everywhere and thus defines an entire function; i.e.\ $R > 1$ implies $\sigma_{c} = -\infty$.
+\end{lemma}
+
+
+\begin{proof}
+If $R > 1$ then the power series converges at some real $z=r > 1$; hence $h_{n} = O(r^{-n})$, which implies that for fixed $s \in \C$, the general term of the Dirichlet series decreases exponentially and hence converges.\footnote{One could also use the analog of Hadamard's formula for $\sigma_{c}$ but this is unnecessary.}
+\end{proof}
+
+
+In light of this, discarding the extreme cases $\sigma_{c} = \pm\infty$, where $D(s)$ either converges or diverges everywhere and hence there is nothing more to say about its analytic continuation, we can assume $-\infty < \sigma_{c} < \infty$ and $R=1$.
+
+
+\begin{remark}
+Note that a finite abscissa of convergence $-\infty < \sigma_{c} < \infty$ implies unit radius $R = 1$, but $R=1$ does not imply anything about $\sigma_{c}$. For example, with $h_{n} = n^{\pm\sqrt{n}}$ we have $R=1$ and $\sigma_{c} = \pm\infty$ respectively, while with $h_{n} = n^{\alpha - 1}$ with $\alpha \in \R$ we have $R=1$ and $\sigma_{c} = \alpha$.
+\end{remark}
+
+
+We now turn to the main result of this section, beginning with an auxiliary lemma regarding the relationship between $H(z)$ and $f(t) = e^{-t} H(e^{-t})$.
+
+\begin{lemma}
+\label{lem:continuation_eHe}
+If the power series $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ converges inside the unit disk, then the function $f(t) = e^{-t} H(e^{-t})$ is holomorphic on the half-plane $\Re t > 0$ and $f(t) = O(e^{-t})$ as $\Re t \to \infty$. In addition, $H(z)$ has a meromorphic extension at $z=1$ with a pole of order $k \geq 0$ if and only if $f(t)$ has a meromorphic extension at $t = 0$, with a pole of the same order.
+\end{lemma}
+
+\begin{proof}
+The first part follows simply by observing that $z = e^{-t}$ maps the right half-plane $\Re t > 0$ to the punctured unit disk $0 < |z| < 1$, with the half-line $(0,\infty)$ mapping to the radius $(0,1)$ and $z \to 0$ as $\Re t \to \infty$. Furthermore, for $0 < \delta < \frac{\pi}{2}$, the infinite half-strip $R_{\delta} = \{\Re t > -\delta, |\Im t| < \delta\}$ is mapped biholomorphically to the circular sector $S_{\delta} = \{0 < |z| < e^{\delta}, |\arg z| < \delta\}$. 
+% Since $0 \in R_{\delta}$ and $1 \in S_{\delta}$, 
+Considering small $\delta$ shows that the existence of a meromorphic continuation of $H(z)$ to $z=1$ is equivalent to that of $H(e^{-t})$ to $t=0$, necessarily with poles of the same order. Clearly this also holds for $f(t) = e^{-t} H(e^{-t})$, corresponding to $z H(z)$.
+\end{proof}
+
+
+
+\begin{theorem}
+\label{th:prolongarpor1}
+If the power series $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ converges inside the unit disk and has a meromorphic extension to a function with a pole of order $k \geq 0$ at $z=1$, then the Dirichlet series $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$ has a meromorphic extension to $\C$, denoted also by $D(s)$, whose only singularities are possible simple poles at $s=1,2,\dots,k$ with residues
+%%
+\begin{equation}
+\label{eq:residues}
+  \Res(D;n) =\frac{a_{-n}}{(n-1)!} \qquad  (n=1,\dots,k),
+\end{equation}
+%%
+and values at negative integers given by
+%%
+\begin{equation}
+\label{eq:valores-n}
+  D(-n) = (-1)^{n} n!\, a_{n} \qquad (n\geq 0),
+\end{equation}
+%%
+where $\{a_{n}\}_{n\ge-k}$ is the sequence of coefficients of the Laurent series at $t = 0$ of
+\[
+  e^{-t} H(e^{-t}) = \sum_{n=-k}^{\infty} a_{n} t^{n}.
+\]
+% which is analytic for $\Re t > 0$ and can be continued to $t = 0$ with a pole of order $k$.
+% 
+In particular, the poles of $D(s)$ are the negatives of the degrees of the terms in the principal part of this Laurent series; thus $D(s)$ is entire if $H(z)$ is analytic at $z=1$ and $s=k$ is always a pole if $k \geq 1$.
+\end{theorem}
+
+
+\begin{proof}
+% Consider the function $f(t) = H(e^{-t})e^{-t} = \sum_{n=0}^{\infty} h_{n} e^{-t(n+1)}$. 
+% First, we note that $f(t)$ does indeed have a pole of order $k$ at $t=0$, 
+% since for each $m \in \N \cup \{0\}$,
+% \[
+%   \lim_{t\to 0} t^m H(e^{-t})e^{-t}
+%   = (-1)^m\lim_{z\to 1}(z-1)^m H(z)
+% \]
+% when the second limit exists in $\C \cup \{\infty\}$.
+As we saw in Lemma~\ref{lem:continuation_eHe}, $f(t) = e^{-t} H(e^{-t})$ is continuous on $(0,\infty)$ with $f(t) = O(e^{-t})$ as $t \to \infty$, and can be continued meromorphically to $t = 0$ with a pole of order $k$. Thus, by Theorem~\ref{th:interpolation} and the remark following it, the Mellin transform
+%%
+\begin{equation*}
+%\label{eq:1th1}
+  F(s) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} f(t) t^{s-1}\,dt
+\end{equation*}
+%%
+is defined on a half-plane and has a meromorphic continuation satisfying~\eqref{eq:residues} and~\eqref{eq:valores-n}. It just remains to show that $F(s) = D(s)$ in some region. 
+In fact, using that $f(t) = \sum_{n=0}^{\infty} h_{n} e^{-t(n+1)}$, for $\sigma > \max(\sigma_{a},0)$ we have 
+%%
+\begin{align*}
+%\label{eq:2th1}
+  F(s) &= \frac{1}{\Gamma(s)}\int_{0}^{\infty} \sum_{n=0}^{\infty} h_{n} e^{-t(n+1)} t^{s-1}\,dt
+  \\
+  &=\frac{1}{\Gamma(s)}\sum_{n=0}^{\infty} h_{n} \int_{0}^{\infty} e^{-t(n+1)} t^{s-1}\,dt
+  = \sum_{n=0}^{\infty} \frac{h_{n}}{(n+1)^s}
+  = D(s),
+\end{align*}
+%%
+noting that  $\lambda^{-s} = \frac{1}{\Gamma(s)} \int_{0}^{\infty} x^{s-1} e^{-\lambda x}\,dx$  for $\sigma = \Re s > 0$ and $\Re \lambda > 0$. The exchange of sum and integral is justified since $\sum_{n=1}^{\infty} |h_{n-1}| n^{-\sigma} < \infty$.
+\end{proof}
+
+
+%---------------------
+\subsection{Rescaling}
+\label{subsec:rescaling}
+%---------------------
+
+A simple yet useful situation arises when we change variables in the power series $H(z)$ by a complex nonzero constant~$\lambda$.
+
+
+\begin{corollary}
+\label{cor:rescaling}
+If the power series $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ has positive radius of convergence $R$, then for $\lambda \in \C^{*}$, the Dirichlet series
+\[
+  D(s) = \sum_{n=0}^{\infty} \frac{h_{n} \lambda^{n}}{(n+1)^{s}}  
+\]
+can be continued to an entire function for $|\lambda| < R$ or if $|\lambda| = R$ and $H(z)$ can be analytically continued to $z=\lambda$.
+
+In general if $|\lambda| = R$ and $H(z)$ has a meromorphic continuation with a pole of order $k \geq 0$ at $z = \lambda$, then $D(s)$ has a meromorphic continuation to $\C$ with simple poles at $s = 1,2,\ldots,k$.
+\end{corollary}
+
+
+\begin{proof}
+Apply Theorem~\ref{th:prolongarpor1} to the rescaled power series $H(\lambda z) = \sum_{n=0}^{\infty} h_{n} \lambda^{n} z^{n}$, which has radius of convergence equal to $R/|\lambda|$, and which can be continued to $z=1$ if and only if $H(z)$ can be continued to $z=\lambda$.
+\end{proof}
+
+
+%---------------------
+\subsection{Translation by a non-negative integer}
+\label{subsec:translationN0}
+%---------------------
+
+Under the correspondence we are considering
+\[
+  H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}
+  \;\longleftrightarrow\; D(s) = \sum_{n=0}^{\infty} \frac{h_{n}}{(n+1)^{s}}
+\]
+between power and Dirichlet series, translation of the Dirichlet series $D(s)$ by a non-negative integer $m$ to obtain $D_{m}(s) = D(s-m)$, is obviously reflected in the new correspondence
+\[
+  H_{m}(z) = \sum_{n=0}^{\infty} h_{n} (n+1)^{m} z^{n}
+  \;\longleftrightarrow\; D_{m}(s) = \sum_{n=0}^{\infty} \frac{h_{n}}{(n+1)^{s-m}}.
+\]
+It can be easily checked that on power series, this is given by applying the differential operator $\frac{d}{dz} z = 1 + z \frac{d}{dz}$; in other words, $H_{m}(z) = (\frac{d}{dz} z)^{m} H(z)$.
+
+
+Assuming that $H(z)$ converges inside the unit disk and can be meromorphically continued to $z=1$ with a pole of order $k \geq 0$, Theorem~\ref{th:prolongarpor1} asserts that $D(s)$ has pole set in $\{1,2,\dots,k\}$ with a pole at $k$ if $k \geq 1$, and hence $D_{m}(s)$ has pole set in $\{m+1,m+2,\dots,m+k\}$ with a pole at $m+k$ if $k \geq 1$. This fact is less obvious when viewed from the power series side, since it means that the principal part of the Laurent series of $e^{-t} H_{m}(e^{-t})$ at $t = 0$ lacks terms of degree $-1,-2,\dots,-m$.
+
+
+%---------------------
+\subsection{Partial summation}
+\label{subsec:partialsum}
+%---------------------
+
+\begin{corollary}[Partial summation]
+\label{cor:partialsum}
+If $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ converges inside the unit disk and can be analytically continued to $z=1$, then the Dirichlet series
+\[
+  D_1(s) = \sum_{n=1}^{\infty} \frac{\sum_{k=0}^{n-1} h_{k}}{n^s}
+\]
+can be analytically continued to an entire function if $H(1) = 0$ and to a meromorphic function with a unique and simple pole at $s=1$ if $H(1) \neq 0$.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{th:prolongarpor1} to the power series
+$
+  \frac{H(z)}{1-z} = \sum_{n=0}^{\infty} \left( \sum_{k=0}^{n} h_{k}\right)z^{n}.
+  % \qedhere
+$
+\end{proof}
+
+
+%---------------------
+\section{Examples}
+\label{sec:examples}
+%---------------------
+
+%---------------------
+\subsection{Zeta functions and polylogarithms (I)}
+\label{subsec:polylog1}
+%---------------------
+
+The Dirichlet series $D_{\lambda}(s) = \sum_{n=1}^{\infty} \lambda^{n} n^{-s}$  corresponds to the power series $H_{\lambda}(z) = \sum_{n=0}^{\infty} \lambda^{n+1} z^{n} = \lambda/(1 - \lambda z).$ Clearly $H_{\lambda}(z) = \lambda H(\lambda z)$ where $H(z) = H_{1}(z) = (1-z)^{-1}$.
+
+Corollary~\ref{cor:rescaling} implies that for $|\lambda| < 1$ and $|\lambda| = 1$ with $\lambda \neq 1$, $D_{\lambda}(s)$ can be continued to an entire function, which is in fact the polylogarithm at $\lambda$ with varying parameter $s \mapsto \Li_{s}(\lambda)$, while for $\lambda = 1$ it says that $D_{1}(s)$ has a meromorphic continuation with a single simple pole at $s=1$, which is of course the Riemann zeta function $\zeta(s)$. The latter fact can also be obtained from Corollary~\ref{cor:partialsum} starting from the constant series $H(z) \equiv 1$.
+
+To obtain the values of the analytic continuations at negative integers, we need the coefficients of the Laurent series at $t=0$ of 
+\[
+  e^{-t} H(e^{-t}) = -\frac{\lambda e^{-t}}{\lambda e^{-t} - 1}.
+\]
+These can be expressed in terms of the exponential generating function
+\[
+  \B(\lambda;x;t) = \frac{t e^{xt}}{\lambda e^{t} - 1}
+  = \sum_{n=0}^{\infty} \frac{\AB_n(\lambda;x)}{n!} \,t^{n}
+\]
+considered by Apostol in~\cite{Apostol-Lerch}, which defines the Apostol-Bernoulli polynomials $\AB_n(\lambda;x)$. For $\lambda = 1$ these are the classical Bernoulli polynomials $B_{n}(x) = \AB_n(1;x)$. Similarly one defines the Apostol-Bernoulli numbers as $\AB_n(\lambda) = \AB_n(\lambda;0)$, so that $B_{n} = \AB_n(1)$ are the classical Bernoulli numbers.
+With these definitions in mind, one easily obtains from~\eqref{eq:valores-n} the well-known formulas
+\[
+  \zeta(-n)
+  =-\frac{B_{n+1}}{n+1},
+  \qquad
+  \Li_{-n}(\lambda)
+  = -\frac{\AB_{n+1}(\lambda)}{n+1}.
+\]
+The first is valid for $n \in \N_{0}$ and the second for $n \in \N$ and $0 < |\lambda| \leq 1$, $\lambda \neq 1$. For $n=0$ one has the discrepancy $\Li_{0}(\lambda) = -\lambda \AB_{1}(\lambda) = -\lambda/(\lambda-1)$.
+
+
+%---------------------
+\subsection{Zeta functions and polylogarithms (II)}
+\label{subsec:polylog2}
+%---------------------
+
+By considering linear combinations of translates $\zeta(s-m)$ of the Riemann zeta function for $m$ a non-negative integer, we obtain examples of Dirichlet series with simple poles at a given set of positive integers. The discussion in Section~\ref{subsec:translationN0} shows that the coefficients of these series are polynomials in $n$ and the corresponding power series are rational functions with  denominators which are powers of $(1-z)$.
+
+
+Indeed, since the power series corresponding to $\zeta(s)$ is $H(z) = (1-z)^{-1} = \sum_{n=0}^{\infty} z^{n}$, the power series corresponding to the translate $\zeta(s-m)$ is 
+\[
+  H_{m}(z) = \left(\frac{d}{dz} z\right)^{\!\!m} \!\!(1-z)^{-1}
+  = \sum_{n=0}^{\infty} (n+1)^{m} z^{n}
+  = \sum_{n=1}^{\infty} n^{m} z^{n-1}
+  = z^{-1} \Li_{-m}(z).
+\]
+Euler was the first to find the sum of this series in 1749, in essentially the way that is presented here, observing that
+\[
+  H_{m}(z) = \sum_{n=1}^{\infty} n^m z^{n-1} = \frac{A_m(z)}{(1-z)^{m+1}}
+  \qquad
+  (m \geq 0),
+\]
+where $A_{m}(z)$ is a palindromic polynomial of degree $m-1$ with integer coefficients. The $A_{m}(z)$ are known as \emph{Eulerian polynomials}\footnote{Not to be confused with the \emph{Euler polynomials}, which have a different definition.}. Their coefficients are the Eulerian numbers, which have interesting combinatorial interpretations.
+
+Recalling the formula $\Li_{-m}(z) = -\frac{\AB_{m+1}(z)}{m+1}$ from~\S\ref{subsec:polylog1}, we find immediately that the Apostol-Bernoulli ``numbers'' $\AB_{m}(\lambda)$ are related to the functions described in this section by $\AB_{m}(\lambda) = -m \lambda H_{m-1}(\lambda) = -m \frac{\lambda A_{m-1}(\lambda)}{(1-\lambda)^{m}}$ for $m \geq 2$. 
+
+%---------------------
+\subsection{Rational functions}
+\label{subsec:rational}
+%---------------------
+
+In the previous examples, the power series $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ represents a rational function. A classical theorem of Kronecker states that rationality of $H(z)$ is equivalent to the sequence $\{h_{n}\}$ of coefficients satisfying a homogeneous linear recurrence relation with constant coefficients, i.e.\ there is an integer $d \geq 0$ and $c_{1}, \ldots, c_{d} \in \C$ such that $c_{d} \neq 0$ and
+\[
+  h_{n} = c_{1} h_{n-1} + c_{2} h_{n-2} + \cdots + c_{d} h_{n-d}
+\]
+for $n$ sufficiently large. Writing $H(z) = Q(z) + R(z)/S(z)$ where $Q,R,S$ are polynomials with $S \neq 0$ and $\deg R < \deg S$, and noting that a polynomial is a power series with infinite radius of convergence, corresponding to a finite combination of powers $n^{-s}$, we may henceforth assume that in fact $Q = 0$ and $R \neq 0$, which means that $d \geq 1$ and the recurrence holds for $n \geq d$. The general term is thus determined by $h_{0}, \dots, h_{d-1}$ and in fact
+\[
+  h_{n} = p_{1}(n) \lambda_{1}^{n} + \cdots + p_{r}(n) \lambda_{r}^{n},
+\]
+where $\lambda_{1}, \dots, \lambda_{r} \in \C^{*}$ are the distinct roots of the characteristic polynomial
+\[
+  B(z) = z^{d} - c_{1} z^{d-1} - \cdots - c_{d}
+\]
+and each $p_{j}(t)$ is a polynomial of degree less than the multiplicity $m_{j}$ of $\lambda_{j}$ in $B(z)$. Then $H(z) = A(z)/B^{*}(z)$ where $B^{*}(z) = 1 - c_{1} z - \cdots - c_{d} z^{d}$ is the reciprocal polynomial of $B(z)$, and $A(z)$ has degree less than $d$. We can assume that the relation is minimal, so that $A(z)$ and $B^{*}(z)$ have no common factors. The poles of $H(z)$ are then the zeros of $B^{*}(z)$, namely, the reciprocal roots~$\lambda_{j}^{-1}$; thus the radius of convergence of $\sum_{n=0}^{\infty} h_{n} z^{n}$ is
+\[
+  R = \min_{1\le j\le r} |\lambda_{j}^{-1}| = \Big(\max_{1\le j\le r} |\lambda_{j}|\Big)^{-1}.
+\]  
+The condition $R \geq 1$ of Lemma~\ref{lem:sc_finite_R>=1}, for convergence of the corresponding Dirichlet series $D(s) = \sum_{n=1}^{\infty} \frac{h_{n-1}}{n^{s}}$ at some point, corresponds in this case to $B(z)$ having all its roots inside the closed unit disk. By Lemma~\ref{lem:R>1_entire}, if they are all inside the \emph{open} unit disk, the corresponding Dirichlet series converges everywhere to an entire function. This leaves the case $R=1$, where at least one root $\lambda_{j}$, and hence also its reciprocal $\lambda_{j}^{-1}$, is on the unit circle.
+Equivalently, $H(z)$ has at least one pole of unit modulus.
+
+In addition, when $R=1$, if the poles of $H(z)$ on the unit circle avoid~$1$, i.e., none of the roots $\lambda_{j}$ of unit modulus are equal to~$1$, then Theorem~\ref{th:prolongarpor1} implies that the corresponding Dirichlet series $D(s)$ has an analytic continuation to an entire function.
+
+For example, $H(z) = \sum_{n=0}^{\infty} (-z)^{n}$ has $R=1$ and sums to $(1+z)^{-1}$, whose unique pole is at $z = -1$. The corresponding Dirichlet series is the eponymous eta function $\eta(s) = \sum_{n=1}^{\infty} (-1)^{n-1} n^{-s}$, which can indeed be continued to an entire function. In fact $\eta(s) = (1-2^{1-s}) \zeta(s)$, with the zero of the extra factor canceling the simple pole of $\zeta(s)$ at $s=1$.
+
+
+In general, if we shift the general term of the recurrence by $1$ then, in terms of the coefficients of $p_{j}(n-1) = \sum_{k=0}^{m_{j}-1} c_{j,k} n^{k}$, the Dirichlet series corresponding to $H(z)$ is
+%%
+\begin{align*}
+  D(s)
+  &= \sum_{n=1}^{\infty} \frac{h_{n-1}}{n^{s}}
+  = \sum_{n=1}^{\infty} \sum_{j=1}^{r} \frac{p_{j}(n-1) \lambda_{j}^{n-1}}{n^{s}}
+  = \sum_{n=1}^{\infty} \sum_{j=1}^{r} \sum_{k=0}^{m_{j}-1} 
+  \frac{c_{j,k} n^{k} \lambda_{j}^{n-1}}{n^{s}}
+  \\
+  &= \sum_{j=1}^{r} \sum_{k=0}^{m_{j}-1} c_{j,k} \lambda_{j}^{-1} 
+  \sum_{n=1}^{\infty}  \frac{\lambda_{j}^{n}}{n^{s-k}}
+  = \sum_{j=1}^{r} \sum_{k=0}^{m_{j}-1} c_{j,k} \lambda_{j}^{-1} \Li_{s-k}(\lambda_{j})
+  \\
+  &= \sum_{j=1}^{r} \sum_{k=0}^{m_{j}-1} c_{j,k} \Phi(\lambda_{j},s-k,1),
+\end{align*}
+%%
+where $\Phi(\lambda,s,x)$ is the Lerch transcendent, obtained via analytic continuation of the series $\sum_{n=0}^{\infty} \frac{\lambda^{n}}{(n+x)^{s}}$. The latter sum provides the analytic continuation of $D(s)$.
+
+If none of the distinct roots $\lambda_{j}$ are equal to $1$, then $D(s)$ has an analytic continuation to an entire function, while if some $\lambda_{j} = 1$, then the relation $\Li_{s}(1) = \Phi(1,s,1) = \zeta(s)$ implies that the corresponding terms in the above sum are a finite combination of translates of the Riemann zeta function, namely
+\[
+  \sum_{k=0}^{m_{j}-1} c_{j,k} \zeta(s-k),
+\]
+which contribute possible simple poles at $s=1,2,\dots,m_{j}$, in agreement with Theorem~\ref{th:prolongarpor1}. Moreover, since $m_{j}$ is the order of the pole of $H(z)$ at $z = \lambda_{j}^{-1} = 1$, the analytic continuation of $D(s)$ has an actual simple pole at $s = m_{j}$.
+
+The values $D(-n)$ at negative integers may be expressed via the above formula in terms of the Apostol-Bernoulli polynomials described in~\S\ref{subsec:polylog1}, via the general relation $\Phi(\lambda,1-k,x) = -\AB_{k}(x;\lambda)/k$ for $k \in \N$. This formula was in fact one of the main reasons for the introduction of these polynomials in the first place~\cite{Apostol-Lerch}. As mentioned in~\S\ref{subsec:polylog1}, for $\lambda = 1$ the  Apostol-Bernoulli polynomials reduce to the classical Bernoulli polynomials.
+
+For recurrences with \emph{integer} coefficients, the roots of $B(t) \in \Z[t]$ are conjugate algebraic integers. In this case another theorem of Kronecker implies that they all lie inside the closed unit disk if and only if they are roots of unity.
+
+
+%---------------------
+\subsection{Rescaling of the Fibonacci generating function}
+\label{subsec:Fibonacci}
+%---------------------
+
+If the power series $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ has radius of convergence $R < 1$, then by Lemma~\ref{lem:sc_finite_R>=1} the corresponding Dirichlet series $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$ is everywhere divergent. However, we can rescale by the radius of convergence to go back to the case of $R = 1$. 
+
+In the case when $H(z)$ represents a rational function, this situation occurs when it has a pole outside the closed unit disk. For example, the Fibonacci sequence $\{F_{n}\}$ is generated by the power series $\sum_{n=0}^{\infty} F_{n} z^{n} = z/(1 - z - z^{2})$, which is rational with poles at $z = -\phi, \phi^{-1}$ where $\phi$ is the golden ratio. Since $\phi > 1$, we have $R = \phi^{-1}$ and the corresponding Dirichlet series is nowhere convergent. However, rescaling by $\phi$ as in~\cite{AppellSpecialValues} we consider
+\[
+  H(z) = \sum_{n=0}^{\infty} F_{n} \phi^{-n} z^{n}
+  = \frac{1}{\sqrt{5}}\left(\frac{1}{1-z} - \frac{1}{1 + \phi^{-2}z}\right),
+\]
+which has $R = 1$ and is rational with a simple pole at $z=1$.
+% In fact
+% \[
+%   H(z)
+%   = \frac{\phi z}{\phi^{2} - \phi z - z^{2}}
+%   = \frac{\phi z}{(1-z)(\phi^{2} + z)}
+%   = \frac{1}{\sqrt{5}}\left(\frac{1}{1-z} - \frac{1}{1 + \phi^{-2}z}\right).
+% \]
+Solving the recurrence relation yields Binet's formula $F_{n} = \frac{1}{\sqrt{5}}(\phi^{n} - (-\phi)^{-n})$, from which one obtains the following closed form for the corresponding Dirichlet series $D(s) = \sum_{n=0}^{\infty} F_{n} \phi^{-n} (n + 1)^{-s}$:
+\[
+  D(s) = \frac{1}{\sqrt{5}}(\zeta(s) + \phi^{2}\Li_{s}(-\phi^{-2})).
+\]
+In this case~\eqref{eq:residues} and~\eqref{eq:valores-n} give $\Res(D;1) = \frac{1}{\sqrt{5}}$ and
+\[
+  D(-n) = -\frac{1}{(n+1)\sqrt{5}}(B_{n+1} + \phi^{2} \AB_{n+1}(-\phi^{-2})).
+\]
+
+
+%---------------------
+\section{Counterexamples to the converse}
+\label{sec:counterexamples}
+%---------------------
+
+Finding a converse to Theorem~\ref{th:prolongarpor1} is not likely to be a simple matter. That is to say, starting from the assumption that the Dirichlet series $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$ has a meromorphic continuation to $\C$ conclude, with suitable additional hypotheses, that the power series $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ has a continuation to $z=1$. 
+
+Here, we give a list of counterexamples to the converse statement illustrating various phenomena that indicate we should not expect too straightforward a result. For instance, it can happen that $H(z)$ has the unit circle as natural boundary (i.e.\ it cannot be continued to any boundary point), but $D(s)$ still has the ``nice'' properties of the Dirichlet series in Theorem~\ref{th:prolongarpor1}: a finite number of poles, all of which are simple.
+
+%---------------------
+\subsection{The logarithmic series}
+\label{subsec:log}
+%---------------------
+
+The power series
+\[
+  H(z) = \sum_{n=0}^{\infty}\frac{z^{n}}{n+1} = -\frac{\log(1-z)}{z}
+\]
+cannot be continued to a meromorphic function at $z=1$, although the corresponding Dirichlet series is
+\[
+  D(s) = \sum_{n=1}^{\infty}\frac{1}{n \cdot n^{s}} = \zeta(s+1)
+\]
+which can bbe continued to $\C$ except for a simple pole at $s=0$. The principle at work here is that, as we have commented above, differentiation of the power series corresponds basically to translation of the Dirichlet series. Although $\log(1-z)$ cannot be continued meromorphically to $z=1$, its derivative can. This is taken up again later in~\S\ref{subsec:poles_wrong}.
+
+
+The next pair of (non)-examples lie somewhat deeper.
+
+
+%---------------------
+\subsection{Lacunary sequences}
+\label{subsec:lacunary}
+%---------------------
+
+Consider the lacunary sequence $h_{n}=1$ if $n=2^k-1$ for some $k\in\N_{0}$ and $h_{n}=0$ otherwise. It is well-known that the function in the open unit disk defined by the power series $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n} = z^{-1} \sum_{k=0}^{\infty} z^{2^{k}}$ has the unit circle as its natural boundary, that is to say, it cannot be analytically continued to any point on this boundary (see, for instance \cite[Chapter XVI]{Rudin}). Neither can it be meromorphically continued to any boundary point, since it would then have an analytic continuation to nearby arcs. Nevertheless,
+\[
+  D(s) = \sum_{n=1}^{\infty} \frac{h_{n-1}}{n^{s}}
+  = \sum_{k=0}^{\infty} \frac{1}{2^{ks}}    
+  = \frac{1}{1-2^{-s}}
+  \quad (\sigma > 0),
+\]
+can be continued to $\C$ except for simple poles at $s=-\frac{2m\pi i}{\log 2}$, $m\in\Z$.
+
+A similar yet more sophisticated example of this phenomenon is the series $H(z) = \sum_{n=1}^{\infty} z^{F_{n}}$, where $F_{n}$ is the sequence of Fibonacci numbers. $\{F_{n}\}$ is also a lacunary sequence and hence $H(z)$ has the unit circle as natural boundary. Nonetheless it is shown in~\cite{FibonacciDirichlet} that the Dirichlet series $D(s) = \sum_{n=1}^{\infty} F_{n}^{-s}$ has a meromorphic continuation to the complex plane, with simple poles.
+
+
+%---------------------
+\subsection{Dirichlet series with quasiperiodic coefficients}
+\label{subsec:quasiperiodic}
+%---------------------
+
+For $\alpha \in \R$, letting $\lambda = e^{2 \pi i \alpha}$ in the example of \S\ref{subsec:polylog1} we have the power series $H_{\alpha}(z) = \sum_{n=0}^{\infty} e^{2 \pi i (n+1) \alpha} z^{n} = e^{2 \pi i \alpha} (1 - e^{2 \pi i \alpha} z)^{-1}$ and the Dirichlet series $D_{\alpha}(s) = \sum_{n=1}^{\infty} e^{2 \pi i n \alpha} n^{-s} = \Li_{s}(e^{2 \pi i \alpha})$. The sequence $h_{n} = e^{2 \pi i (n+1) \alpha} = g((n+1)\alpha)$ for $g(x) = e^{2 \pi i x}$ can be generalized to  $h_{n}=g((n+1)\alpha)$, where $g(x)$ is a trigonometric polynomial with unit period,
+\[
+  g(x) = \sum_{k=-N}^N c_k e^{2\pi ikx}.
+\]
+The corresponding power series and Dirichlet series are
+\[
+  H_{g,\alpha}(z) = \sum_{k=-N}^{N} \frac{c_{k} e^{2 \pi i k \alpha}}{1 - e^{2 \pi i k \alpha} z},
+  \quad
+  D_{g,\alpha}(s) = \sum_{n=1}^{\infty}\frac{g(n\alpha)}{n^{s}}
+  = \sum_{k=-N}^{N} c_{k} \Li_{s}(e^{2 \pi i k \alpha}).
+\]
+It is straightforward to check that for irrational $\alpha$, $D_{g,\alpha}(s)$ has a simple pole at $s=1$ or is entire depending on whether $c_{0}$ is nonzero, whereas for a reduced rational $\alpha = p/q$, it has a simple pole at $s=1$ depending on whether or not the sum $\sum_{|kq|\leq N} c_{kq}$ is nonzero ($\alpha = 0$ corresponds to $(p,q) = (0,1)$).
+
+If $g(x)$ is piecewise continuous with unit period and its Fourier series has an infinite number of terms, then for irrational $\alpha \in \R$ the series $D_{g,\alpha}(s)$ are called Dirichlet series with quasiperiodic coefficients. They are studied in~\cite{Knill-Lesieutre} along with the corresponding power series $H_{g,\alpha}(z)$. It is shown that under certain Diophantine approximation conditions on $\alpha$, the power series $H_{g,\alpha}(z)$ has the unit circle as natural boundary yet the Dirichlet series $D_{g,\alpha}(s)$ can be analytically continued to an entire function. This result shows that the converse of Theorem~\ref{th:prolongarpor1} is far from true in general, even under the best of conditions, namely that $D(s)$ have no poles.
+
+
+%---------------------
+\section{Power series that cannot be continued to $z=1$}
+\label{sec:power}
+%---------------------
+
+We may interpret Theorem~\ref{th:prolongarpor1} in the contrapositive sense, i.e.\ as providing a method for showing that a power series $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ converging inside the unit disk, \emph{cannot} be continued meromorphically to $z=1$, by checking that the corresponding Dirichlet series $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$ fails to have one or more of the characteristics stated in the theorem, namely:
+%%
+\begin{itemize}
+
+\item The poles of $D(s)$ lie in a set of the form $\{1,2,\dots,k\}$ for $k \in \N$.
+
+\item $D(s)$ has no poles of order greater than~$1$.
+
+\item $D(s)$ has a finite number of poles.
+
+\end{itemize}
+%%
+
+In a number of interesting cases, these criteria can be used to easily conclude that many types of power series converging inside the unit disk cannot be continued meromorphically to $z=1$. Of course, the criteria can overlap.
+
+% To reiterate, in what follows we are assuming that the power series 
+% $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ converges in the unit disk, 
+% and we are considering the associated Dirichlet series 
+% $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$.
+
+In the theory of Dirichlet series, an arithmetical function is a complex sequence $\alpha : \N \to \C$. The corresponding Dirichlet series will be denoted by
+\(
+  \D_{\alpha}(s) = \sum_{n=1}^{\infty} \alpha(n) n^{-s}.
+\)
+For convenience, we also define the shift operators $h^{\decr}(n) = h(n-1)$ taking sequences $h : \N_{0} \to \C$ to $h^{\decr} : \N \to \C$ and $\alpha^{\incr}(n) = \alpha(n+1)$ taking $\alpha : \N \to \C$ to $\alpha^{\incr} : \N_{0} \to \C$. Thus, a sequence $h: \N_{0} \to \C$ has generating power series $H(z) = \sum_{n=0}^{\infty} h(n) z^{n}$ and generating Dirichlet series $\D_{h^{\decr}}(s) = \sum_{n=1}^{\infty} h(n-1) n^{-s}$.
+
+The set of arithmetical functions is a commutative algebra with respect to pointwise sum and Dirichlet convolution
+\(
+  (\alpha * \beta)(n) = \sum_{ab=n} \alpha(a) \beta(b),
+\)
+with the delta function at $1$ as the multiplicative identity. 
+We have the following well-known and easily verifiable facts about the correspondence $\alpha \mapsto \D_{\alpha}(s)$:
+%%
+\begin{itemize}
+\item Addition corresponds to addition: $\D_{\alpha+\beta}(s) = \D_{\alpha}(s) +  \D_{\beta}(s)$. 
+
+\item Multiplication corresponds to convolution: $\D_{\alpha}(s) \cdot \D_{\beta}(s) = \D_{\alpha * \beta}(s)$. 
+% In particular $\D_{\alpha}(s)^{k} = \D_{\alpha^{*k}}(s)$ for $k \in \N_{0}$
+
+\item Translation by $\tau$ corresponds to multiplication by~$n^{\tau}$: $\D_{\alpha}(s-\tau) = \D_{\alpha \cdot n^{\tau}}(s)$.
+
+\item Differentiation corresponds to multiplication by $-\log(n)$: $\D_{\alpha}'(s) = \D_{-\alpha \cdot \log}(s)$.
+\end{itemize}
+%%
+In general these are formal operations on Dirichlet series, but they become analytic under suitable growth conditions on arithmetical functions which ensure convergence of the series in $\C$, such as the ones we have been using throughout.
+
+
+With this in mind, we list some criteria that prevent the meromorphic continuation of a power series converging inside the unit disk to $z=1$.
+
+
+%---------------------
+\subsection{Poles in the wrong places.}
+\label{subsec:poles_wrong}
+%---------------------
+
+Translation by $\tau \in \C$ of a Dirichlet series $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$ is reflected in the corresponding power series by
+\[
+  H_{\tau}(z) = \sum_{n=0}^{\infty} h_{n} (n+1)^{\tau} z^{n}
+  \;\longleftrightarrow\; D_{\tau}(s) = D(s - \tau)
+  = \sum_{n=1}^{\infty} \frac{h_{n-1}}{n^{s-\tau}}.
+\]
+The radius of convergence stays the same, by the Cauchy-Hadamard formula.
+
+% If $H(z)$ converges inside the unit disk, so does $H_{\tau}(z)$
+
+
+\begin{remark}
+%\label{rem:fractional_diff}
+Recall (\S\ref{subsec:translationN0}) that for $\tau = m \in \N_{0}$, translation by $1$ corresponds to the action of the differential operator $\frac{d}{dz} z = 1 + z \frac{d}{dz}$ on power series. The general case can be interpreted as fractional differentiation: $H_{\tau} = \left(\frac{d}{dz} z\right)^{\tau} H$.
+\end{remark}
+
+
+
+\begin{lemma}
+\label{lem:shifting_poles}
+If $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ converges inside the unit disk and can be continued meromorphically to $z=1$, then for a fixed $\tau \in \C \setminus \N_{0}$, the series $H_{\tau}(z) = \sum_{n=0}^{\infty} h_{n} (n+1)^{\tau} z^{n}$ cannot be so continued.
+\end{lemma}
+
+\begin{proof}
+By Theorem~\ref{th:prolongarpor1}, $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$ has a meromorphic continuation to $\C$ with (simple) poles in $\{1,2,\dots,k\}$, but $D_{\tau}(s)$ has poles in $\{\tau + 1, \tau + 2, \dots, \tau + k\}$, which is not a consecutive set of natural numbers unless $\tau \in \N_{0}$, as it should be if $H_{\tau}(z)$ could be continued meromorphically to $z=1$.
+\end{proof}
+
+
+For example, if $\sum_{n=0}^{\infty} h_{n} z^{n}$ can be continued meromorphically to $z=1$ then the series
+\[
+  \sum_{n=0}^{\infty} \frac{h_{n}}{n+1} z^{n},
+  \qquad
+  \sum_{n=0}^{\infty} h_{n} \sqrt{n+1} \, z^{n},
+  \qquad
+  \sum_{n=0}^{\infty} h_{n} (n+1)^{\pi} z^{n}
+\]
+cannot. However, it may still happen that $H_{\tau}(z)$ converges at $z=1$ to some $\eta \in \C$, in which case by Abel's Theorem the non-tangential limit $\measuredangle\lim_{z \to 1^{-}} H_{\tau}(z) = \eta$ exists.
+
+
+In particular, continuation already fails if $\tau$ is a negative integer, e.g.\ for $\tau = -1$. In this case the power series of $D(s+1)$ is obtained by dividing $h_{n}$ by $n+1$ and corresponds to the action of the inverse operator $(\frac{d}{dz} z)^{-1}$. The example in \S\ref{subsec:log} is of this form:
+\[
+\begin{aligned}
+  H(z) 
+  &= (1-z)^{-1} = \sum_{n=0}^{\infty} z^{n} 
+  &\longleftrightarrow &\quad \zeta(s),
+  \\
+  H_{-1}(z) 
+  &= -\frac{\log(1-z)}{z} = \sum_{n=0}^{\infty} \frac{z^{n}}{n+1} 
+  &\longleftrightarrow &\quad \zeta(s+1),
+\end{aligned}  
+\]
+and of course $\zeta(s+1)$ has its pole at $0$, which is not where it should be for a meromorphic continuation arising from Theorem~\ref{th:prolongarpor1}.
+
+This example generalizes to the polylogarithms: $\Li_{s}(z) = \sum_{n=1}^{\infty} n^{-s} z^{n}$ cannot be meromorphically continued to $z=1$ unless $s=0,-1,-2,\dots$, in which case we get the Apostol-Bernoulli numbers. However, for $\Re s > 1$, the non-tangential limit $\measuredangle\lim_{z \to 1^{-}} \Li_{s}(z) = \zeta(s)$ exists.
+
+
+%---------------------
+\subsection{Poles of higher order}
+\label{subsec:poles_higher}
+%---------------------
+
+Differentiation and taking positive powers increase the order of a pole. For example, the Dirichlet series
+%%
+\begin{equation*}
+%\label{eq:seriespolo2}
+  \zeta'(s)  = -\sum_{n=1}^{\infty} \frac{\log n}{n^s},
+  \qquad
+  \zeta(s)^2 = \sum_{n=1}^{\infty} \frac{d(n)}{n^s},
+\end{equation*}
+%%
+where $d(n)$ is the divisor function, have analytic continuations with double poles at $s=1$. Hence, we can conclude that the corresponding power series
+\[
+  \sum_{n=1}^{\infty} \log(n) z^{n},
+  \qquad
+  \sum_{n=1}^{\infty} d(n) z^{n},
+\]
+cannot be meromorphically continued to $z=1$.
+
+The general result summarizing these various observations is as follows.
+
+\begin{theorem}
+\label{th:noncontinuable}
+Assume the power series $H(z) = \sum_{n=0}^{\infty} h(n) z^{n}$ converges inside the  unit disk and can be continued to a meromorphic function with a pole at $z=1$. Consider the shift $h^{\decr}(n) = h(n-1)$ for $n \geq 1$. Given $\tau \in \C$, $k \in \N$, and $m \in \N_{0}$, the power series
+%%
+\begin{equation}
+\label{eq:noncontinuable}
+  \sum_{n=1}^{\infty} (-1)^{m} \log^{m}(n) 
+  \cdot ( \underbrace{h^{\decr} * \cdots * h^{\decr}}_{k})(n) \cdot n^{\tau} z^{n}
+\end{equation}
+%%
+cannot be meromorphically continued to $z=1$ unless $k=1$, $m=0$ and $\tau \in \N_{0}$, corresponding to $\left(\frac{d}{dz} z\right)^{l} H(z)$ for a non-negative integer~$l$.
+\end{theorem}
+
+
+\begin{proof}
+This follows immediately from Theorem~\ref{th:prolongarpor1} and the properties of the correspondence $\alpha \mapsto \D_{\alpha(s)}$ between arithmetical functions and Dirichlet series mentioned above, applied to the Dirichlet series $D(s) = \D_{h^{\decr}}(s) = \sum_{n=1}^{\infty} h(n-1) n^{-s}$ corresponding to $H(z)$. The power series $H_{\tau,k,m}(z)$ in~\eqref{eq:noncontinuable}, up to an irrelevant factor of $z$, corresponds to the Dirichlet series
+\[
+  \frac{d^m}{ds^m}\bigl(D(s)^k\bigr)(s-\tau).
+\]
+If $\tau \notin \N_{0}$, its poles are in the wrong places. If $k \geq 2$ or $m \geq 1$, they are not simple.
+\end{proof}
+
+
+%---------------------
+\subsection{An infinite number of poles}
+\label{subsec:inf_poles}
+%---------------------
+
+Any Dirichlet series which has a meromorphic continuation to $\C$ with infinitely many poles cannot arise from the correspondence in Theorem~\ref{th:prolongarpor1}. 
+To give some examples, let $\mu(n)$ and $\Lambda(n)$ be respectively the M\"obius function and the von Mangoldt function defined as
+\[
+\mu(n) = 
+\begin{cases}
+  1, & \text{if $n=1$ has a squared factor}, \\
+  (-1)^k, & \text{if $n$ is the product or $k$ distinct primes}, \\
+  0, & \text{if $n$ has a squared factor}, \\
+\end{cases}
+\]
+and
+\[
+  \Lambda(n) = 
+  \begin{cases}
+  \log(p), & \text{if $n=p^k$ for some prime $p$ and integer $k \ge 1$}, \\
+  0, & \text{otherwise}.
+  \end{cases}
+\]
+%
+Then
+\[
+  \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} = \frac{1}{\zeta(s)},
+  \qquad
+  \sum_{n=1}^{\infty} \frac{\Lambda(n)}{n^{s}} = - \frac{\zeta'(s)}{\zeta(s)}
+\]
+have infinitely many poles since $\zeta(s)$ has infinitely many zeros. Hence the power series $\sum_{n=1}^{\infty} \mu(n) z^{n}$ and $\sum_{n=1}^{\infty} \Lambda(n) z^{n}$ cannot be meromorphically continued to $z = 1$.
+
+If $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ converges inside the unit disk and can be meromorphically continued to $z=1$, then by~\eqref{eq:valores_en_enteros}, the meromorphic continuation $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$ has zeros at any negative integer $-n$ where the coefficient of degree $n$ in the Laurent series of $e^{-t} H(e^{-t})$ at $t = 0$ is null. This could happen infinitely often, for example because of parity, as with the Riemann zeta function.
+If this is the case, 
+and if we use $\alpha^{-1}$ to denote the inverse of an arithmetical function $\alpha$ with respect to the
+Dirichlet convolution (it is well known that $\alpha^{-1}$ exists if and only if $\alpha(1) \ne 0$), the formulas
+\[
+  \D_{\alpha}(s)^{-1} = \D_{\alpha^{-1}}(s),
+  \qquad
+  \D_{\alpha}'(s)/\D_{\alpha}(s) = \D_{-\alpha^{-1} * \log}(s)
+\]
+for the reciprocal and the logarithmic derivative imply that the power series $\sum_{n=0}^{\infty} (h^{\decr})^{-1}(n+1) z^{n}$ and $\sum_{n=0}^{\infty} (h^{\decr})^{-1}(n+1) \log(n+1) z^{n}$ cannot be meromorphically continued to $z=1$.
+  
+
+\begin{remark} 
+Much more is known for the classical arithmetical functions such as those in the examples above. Theorems of Fatou and Carlson from the early part of the twentieth century state that a power series $H(z) = \sum_{n=1}^{\infty} h_{n} z^{n}$ with integer coefficients which converges inside the unit disk is either rational or is transcendental over $\Q(z)$ and has the unit circle as natural boundary. This applies in particular if $h_{n}$ has polynomial growth, as is the case for the above functions. The irrationality of $H(z)$ for many of these arithmetical functions has now been proven (much more recently, it should be noted), especially if they are multiplicative, so that typically we may expect $H(z)$ to have the unit circle as natural boundary. For a survey and extension of these results, see~\cite{Bell-Transcendence}.
+\end{remark}
+
+
+%---------------------
+\section{Functions in the disk with a non-isolated singularity at $1$}
+\label{sec:non-isolated}
+%---------------------
+
+As we observed in~\S\ref{subsec:log}, the function $H(z) = -\log(1-z)/z$ has a non-isolated singularity at $z=1$ and yet the corresponding Dirichlet series has a meromorphic continuation. Here we will see that there is a whole class of such functions whose corresponding Dirichlet series $D(s)$ also has a meromorphic continuation to $\C$, in general with countably infinitely many poles. 
+
+The key requirement is that there be some number $\alpha \in \R$ such that $H(e^{-t})  t^{-\alpha}$ can be analytically continued to $t=0$. The prototype is $H(z) = (1-z)^{\alpha}$ for non-integer $\alpha$, studied below. All complex powers are assumed to refer to the principal branch.
+
+
+\begin{theorem}
+\label{th:sing_log}
+Suppose $H(z) = \sum_{n=0}^{\infty} h_{n} z^{n}$ converges inside the unit disk and $\alpha \in \R$ is such that $H(e^{-t}) t^{-\alpha}$ can be analytically continued to a neighborhood of $0$. Then there is an entire function $F(s)$ such that the Dirichlet series $D(s) = \sum_{n=1}^{\infty} h_{n-1} n^{-s}$ has the meromorphic continuation
+%%
+\begin{equation*}
+%\label{eq:sing_log}
+  D(s) = F(s+\alpha)\frac{\Gamma(s+\alpha)}{\Gamma(s)}.  
+\end{equation*}
+%%
+In particular, $D(s)$ has at most simple poles at the points 
+of the set $\{-\alpha,\allowbreak-\alpha-1,\allowbreak-\alpha-2,\ldots\}$.
+% $s \in -\alpha +(\Z\setminus\N)$.
+\end{theorem}
+
+
+\begin{proof}
+Consider the integral
+\[
+  F(s) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} H(e^{-t}) t^{-\alpha}e^{-t} t^{s-1}\,dt.
+\]
+The function $f(t) = H(e^{-t}) t^{-\alpha} e^{-t}$ is analytic at $t = 0$ with $f(t) = O(t^{-\alpha} e^{-t})$ as $t \to \infty$, so the integral converges for $\sigma = \Re s > 0$. The same reasoning as in the proof of Theorem~\ref{th:prolongarpor1} shows that it has an analytic continuation to an entire function and that for $\sigma > \alpha + \max(\sigma_{a},0)$, we can exchange the integral with the power series expansion, yielding
+%%
+\begin{align*}
+  F(s)
+  &= \frac{1}{\Gamma(s)} \int_{0}^{\infty} \sum_{n=0}^{\infty} h_{n} e^{-t(n+1)} t^{s-\alpha-1}\,dt
+  = \frac{\Gamma(s-\alpha)}{\Gamma(s)} \sum_{n=0}^{\infty} \frac{h_{n}}{(n+1)^{s-\alpha}},
+\end{align*}
+%%
+or equivalently, for $\sigma > \max(\sigma_{a},0)$ we have
+\[
+  D(s) = \sum_{n=0}^{\infty} \frac{h_{n}}{(n+1)^{s}}
+  = F(s+\alpha) \frac{\Gamma(s+\alpha)}{\Gamma(s)},
+\]
+and the latter expression provides the meromorphic continuation of $D(s)$, whose only possible poles are seen to be those contributed by $\Gamma(s+\alpha)$ and not canceled by zeros of the other two factors.
+\end{proof}
+
+
+Consider $H(z) = (1-z)^\alpha$. If $\alpha$ is a non-negative integer then $D(s)$ is a finite sum and hence entire. The case when $\alpha$ is a negative integer is taken care of by Theorem~\ref{th:prolongarpor1}. For non-integer $\alpha$, define
+\[
+  \binom{\alpha}{n} = \frac{\Gamma(\alpha+1)}{\Gamma(n+1)\Gamma(\alpha-n+1)}
+  = \frac{(\alpha-n+1)_n}{n!} \qquad (n\geq 0)
+\]
+where $(a)_n = a(a+1)\cdots(a+n-1)$ is the Pochhammer symbol.
+Then we have the following result:
+
+\begin{corollary}
+\label{cor:potencias_alfa}
+For $\alpha \in \C \setminus \Z$, the Dirichlet series
+\[
+  \mathfrak{B}^{*}_\alpha(s) = \sum_{n=0}^{\infty} (-1)^{n} \binom{\alpha}{n} \frac{1}{(n+1)^s}
+\]
+can be analytically continued to a meromorphic function on $\C$ with countably infinitely many simple poles lying in the set $\{-\alpha,\allowbreak-\alpha-1,\allowbreak-\alpha-2,\ldots\}$.
+\end{corollary}
+
+
+\begin{proof} 
+Apply Theorem~\ref{th:sing_log} to
+\[
+  H(z) = (1-z)^{\alpha} = \sum_{n=0}^{\infty} (-1)^{n} \binom{\alpha}{n} z^{n},
+\]
+noting that, at least for $t > 0$, we have
+\[
+  H(e^{-t}) t^{-\alpha} = \left(\frac{1-e^{-t}}{t}\right)^\alpha
+\]
+and the right hand side is holomorphic in a neighborhood of $t=0$. A number $s$ in the set $\{-\alpha,\allowbreak-\alpha-1,\allowbreak-\alpha-2,\ldots\}$ is a (simple) pole if $F(s + \alpha) \neq 0$, i.e.\ if $F(-n) \neq 0$ for $n = 0,1,2,\ldots$. Now, as in the proof of Theorem~\ref{th:prolongarpor1}, if
+\[
+  \left(\frac{1-e^{-t}}{t}\right)^{\alpha}e^{-t} = \sum_{n=0}^{\infty} b_{n} t^{n},
+\]
+then $F(-n) = (-1)^{n}n!\,b_{n}$ (the coefficients $b_{n}$ are the values $b_{n} = B_{n}^{(-\alpha)}(-1-\alpha)/n!$ where $B_{n}^{(\nu)}(x)$ are the N{\o}rlund or ``generalized Bernoulli'' polynomials of order~$\nu$). Since the above function is not a polynomial, $b_{n} \neq 0$ for infinitely many $n$ and hence $D(s)$ has infinitely many poles. 
+\end{proof}
+
+\begin{remark} 
+Note that by Theorem~\ref{th:prolongarpor1}, the series
+\[
+  \mathfrak{B}_{\alpha}(s) = \sum_{n=0}^{\infty} \binom{\alpha}{n}\frac{1}{(n+1)^s}
+\]
+without the alternating signs, has an analytic continuation to an entire function, since the corresponding function $H(z) =(1+z)^\alpha$ can be analytically continued to $z=1$. Thus we have an example where introducing alternating signs causes the Dirichlet series to acquire infinitely many poles. Compare this with Corollary~\ref{cor:rescaling}.
+
+At positive integers $k$ we have the following expressions in terms of generalized hypergeometric functions
+%%
+\begin{align*}
+  \mathfrak{B}_{\alpha}(k)
+  &= {}_{k+1}F_{k}\big(\underbrace{1,\ldots,1}_{k},-\alpha; \underbrace{2,\ldots,2}_{k}; -1\big),
+  \\
+  \mathfrak{B}^{*}_{\alpha}(k)
+  &= {}_{k+1}F_{k}\big(\underbrace{1,\ldots,1}_{k},-\alpha; \underbrace{2,\ldots,2}_{k}; 1\big),
+\end{align*}
+%%
+which is not so remarkable, except to note that in the alternating case, apart from the easy to prove $\mathfrak{B}_{\alpha}(1) = (\alpha+1)^{-1}$, we may use the formula
+\[
+  \psi(\alpha + 1) = -\gamma + \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} \binom{\alpha}{n}
+\]
+for the digamma function $\psi(z) = \Gamma'(z)/\Gamma(z)$, where $\gamma$ is Euler's constant, along with various identities, to simplify $\mathfrak{B}_{\alpha}(2) = (\alpha+1)^{-1}(\gamma + \psi(\alpha + 2))$, and in general $\mathfrak{B}_{\alpha}(k)$ can be expressed in terms of polygamma functions. For complex $s$ these series are therefore a kind of ``continuous iterate'' version of these generalized hypergeometric functions.
+\end{remark}
+
+%---------------------
+\subsection*{Acknowledgements.}
+The authors wish to thank the anonymous referees for their detailed revision of the manuscript,
+which has allowed us to improve the final version of the paper.
+%---------------------
+
+%---------------------
+\begin{thebibliography}{0}
+%---------------------
+
+\bibitem{Amdeberhan}
+T. Amdeberhan, O. Espinosa, I. Gonzalez, M. Harrison, V. H. Mall and A. Straub,
+{Ramanujan's master theorem},
+\textit{Ramanujan J.}
+\textbf{29} (2012), no. 1-3, 103--120.
+
+\bibitem{Apostol-Lerch}
+T. M. Apostol,
+{On the Lerch zeta function},
+\textit{Pacific J. Math.} \textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+\bibitem{Apostol-ANT}
+T. M. Apostol,
+\textit{Introduction to Analytic Number Theory}, 
+Springer-Verlag, New York-Heidelberg, 1976.
+
+\bibitem{Bell-Transcendence}
+J. P. Bell, N. Bruin and M. Coons,
+{Transcendence of generating functions whose coefficients are multiplicative},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{364} (2012), no. 2, 933--959.
+
+\bibitem{Knill-Lesieutre}
+O. Knill and J. Lesieutre,
+{Analytic continuation of Dirichlet series with almost periodic coefficients},
+\textit{Complex Anal. Oper. Theory} \textbf{6} (2012), no. 1, 237--255.
+
+\bibitem{FibonacciDirichlet}
+L. M. Navas,
+{Analytic continuation of the Fibonacci Dirichlet series},
+\textit{Fibonacci Quart.} \textbf{39} (2001), no. 5, 409--418.
+
+\bibitem{AppellSpecialValues}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+{Appell polynomials as values of special functions},
+\textit{J. Math. Anal. Appl.} \textbf{459} (2018), no. 1, 419--436.
+
+\bibitem{Rudin}
+W. Rudin,
+\textit{Real and Complex Analysis},
+third edition, McGraw-Hill, New York, 1987.
+
+\bibitem{Titchmarsh}
+E. C. Titchmarsh, 
+\textit{The theory of the Riemann zeta-function}, second edition,
+The Clarendon Press, Oxford University Press, New York, 1986.
+
+%---------------------
+\end{thebibliography}
+%---------------------
+
+%---------------------
+\end{document}
+%---------------------

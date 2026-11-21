@@ -1,0 +1,102 @@
+%!TEX TS-program = pdftex
+% JUAN LUIS VARONA, 14-4-1991.
+% RESUMEN DE LA TESIS DOCTORAL PARA LA REVISTA Zubia, DEL I.E.R.
+% REFERENCIA A LA REVISTA A\~NADIDA EL 21-8-2004.
+
+\magnification=1200
+\pretolerance=500
+\tolerance=1000
+\baselineskip=18pt % Espacio y medio
+\frenchspacing % Para no dejar doble espacio despues de los puntos
+
+
+\def\'#1{\if#1i{\accent"13\i}\else{\accent"13 #1}\fi}
+
+\centerline{\bf CONVERGENCIA EN $L^p$ CON PESOS DE LA SERIE DE FOURIER} 
+\centerline{\bf RESPECTO DE ALGUNOS SISTEMAS ORTOGONALES\rm\footnote{*}{Resumen
+de la tesis doctoral; dicha tesis fue dirigida por el Dr. D. Jos\'e J. Guadalupe
+y defendida en la Universidad de Cantabria el d\'ia 10-12-1988.
+El Instituto de Estudios Riojanos public\'o este resumen
+en {\it Zub\'{\i}a\/} {\bf 8} (1990), 217--218.}}
+
+\bigskip
+
+
+\centerline{\bf Juan Luis Varona}
+
+\centerline{\sl Departamento de Matem\'atica Aplicada. Colegio Universitario de
+La Rioja.}
+
+
+\bigskip
+
+
+Dada $d\mu$ una medida positiva y $\{\phi_n\}$, $n=0,1,2,\dots$, un sistema
+ortogonal completo en $L^2(d\mu)$, para cada $f\in L^2(d\mu)$ se denota $S_nf$ a
+las sumas parciales de la serie de Fourier de $f$ respecto del sistema
+$\{\phi_n\}$.
+
+Es bien conocido que $S_nf$ converge a $f$ en la norma de $L^2(d\mu)$, pero no
+se puede asegurar en general que haya convergencia en $L^p(d\mu)$ para $p$
+distinto de 2. Sin embargo, para diversos sistemas ortogonales entre los que se
+encuentran los polinomios ortogonales cl\'asicos y los sistemas de Bessel y
+Dini s\'i que se conocen condiciones necesarias y suficientes para esta
+convergencia.
+
+Un paso m\'as nos lleva a pensar en estudiar la convergencia de $S_nf$ a $f$ en
+$L^p(Ud\mu)$ para alguna funci\'on positiva (peso) $U$. M\'as en general a\'un,
+dados dos pesos $U$ y $V$, podemos preguntarnos bajo qu\'e condiciones es
+cierta la convergencia de $(S_nf)U$ a $fU$ en la norma de $L^p(d\mu)$ para cada
+funci\'on $f$ tal que $fV\in L^p(Ud\mu)$, $1<p<\infty$. Cuando $U\le CV$ esto
+se traduce en la acotaci\'on uniforme de $S_n$ como operador entre
+$L^p(V^pd\mu)$ y $L^p(U^pd\mu)$.
+
+Para realizar este estudio es fundamental disponer de buenas estimaciones de
+las funciones ortogonales y de una adecuada descomposici\'on en sumandos del
+n\'ucleo de la serie de Fourier. De este modo el problema se reduce,
+fundamentalmente, a conocer la acotaci\'on de la transformada de Hilbert entre
+diversos espacios de tipo $L^p$ con pesos, para lo cual se emplea la teor\'ia
+$A_p$ de pesos.
+
+En el trabajo se analizan todos estos problemas para diversos sistemas
+ortogonales que incluyen $a)$ polinomios de Jacobi generalizados, $b)$ sistemas
+provinientes de pesos de pesos de Jacobi a los que se han a\~nadido deltas de
+Dirac, $c)$ sistemas de Bessel y Dini, $d)$ polinomios de Hermite
+generalizados. Explicamos a continuaci\'on brevemente lo que se obtiene en
+relaci\'on con cada uno de los apartados anteriores.
+
+Para pesos en el intervalo $(-1,1)$ en los que los polinomios ortonormales
+verifican determinadas acotaciones, como es el caso de los polinomios de Jacobi
+generalizados, se encuentran condiciones necesarias y suficientes para la
+convergencia en media deseada. Estas condiciones se expresan en t\'erminos de
+$p$ y de condiciones $A_p$ y de integrabilidad para los diversos pesos que
+intervienen. Hay que hacer notar que cuando el peso de Jacobi es
+$(1-x)^\alpha(1+x)^\beta$ con $\alpha,\beta\ge-1/2$ todas las condiciones se
+expresan de forma m\'as sencilla, y las demostraciones son m\'as f\'aciles de
+hacer. Otro sistema ortogonal en $(-1,1)$ que se analiza es el de Pollaczek,
+para el cual se muestra que no puede haber convergencia en media para $p\not=2$.
+
+Para estudiar la convergencia de sistemas provinientes de pesos de Jacobi con
+deltas de Dirac es necesario previamente calcular estimaciones de los
+polinomios ortonormales, pues no eran conocidas. Es de destacar que, hasta
+donde el autor conoce, esta es la primera vez que se aborda la convergencia de
+series de Fourier de polinomios ortogonales respecto a una medida no
+absolutamente continua.
+
+En los sistemas de Bessel y Dini --que ya no est\'an constituidos por
+polinomios-- se encuentran condiciones necesarias y condiciones suficientes
+para la convergencia en media que, como ocurr\'ia con polinomios de Jacobi, se
+expresan en funci\'on de $p$ y de condiciones $A_p$ y de integrabilidad sobre los
+pesos implicados. De nuevo en este caso cuando el par\'ametro de la funci\'on de
+Bessel es $\alpha\ge-1/2$ las condiciones tienen una expresi\'on m\'as sencilla y
+las demostraciones se simplifican.
+
+Por \'ultimo, el m\'etodo empleado para analizar la convergencia de series de
+Fourier de polinomios de Hermite generalizados es radicalmente diferente del
+utilizado para los otros sistemas. Consiste simplemente en usar resultados
+conocidos sobre series de polinomios de Laguerre y adaptarlos para obtener
+conclusiones sobre series de polinomios de Hermite generalizados. El m\'etodo
+resulta sencillo de aplicar y los resultados que se consiguen permiten incluso
+extender lo ya conocido para el sistema original de Hermite.
+
+\end

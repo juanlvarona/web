@@ -1,0 +1,348 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% Rational values of the arccosine function,                         %
+% by                                                                 %
+% J. L. Varona                                                       %
+%                                                                    %
+% Central European Journal of Mathematics,                           %
+% Vol. 4 (2006), no. 2, 319-322.                                     %
+%                                                                    %
+% DATE OF LAST MODIFICATION: 13-January-2006                         %
+% Written with LaTeX2e                                               %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{amsmath,amsthm,amsfonts}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\newtheorem*{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+%	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\bfseries Rational values of the arccosine function\thanks{Research partially 
+supported by grant BFM2003-06335-C03-03 of the DGI (Spain).}}
+%	% \title{Rational values of the arccosine function}
+%	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% WITH article:
+\author{{\Large Juan L. Varona\thanks{Email: \texttt{jvarona@dmc.unirioja.es}}}\\[5pt]
+\textit{\small Departamento de Matem\'aticas y Computaci\'on,}\\[-2pt]
+\textit{\small Universidad de La Rioja,}\\[-2pt]
+\textit{\small Edificio Vives, Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}}
+
+\date{\small \leavevmode\\[5pt] \hfill Received 7 November 2005; 
+accepted 8 February 2006}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand\thefootnote{}
+\renewcommand\footnotemark{}
+\footnote{This paper has been published in: \textit{Cent.\@ Eur.\@ J.\@ Math.\@}
+\textbf{4} (2006), no.~2, 319--322.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{-1cm}\hrule
+\begin{abstract}\parindent=0pt\noindent
+We give a short proof to characterize the cases when
+$\arccos(\sqrt{r})$, the arccosine
+of the square-root of a rational number~$r \in [0,1]$,
+is a rational multiple of~$\pi$:
+This happens exactly if $r$ is an integer multiple of~$1/4$.
+The proof relies on the well-known recurrence relation for the
+Chebyshev polynomials of the first kind.
+
+\copyright\ Versita Warsaw and Springer-Verlag Berlin Heidelberg.
+All rights reserved.
+\bigskip
+
+\textit{Keywords: Arccosine, cosine, rational, irrational.}
+
+\textit{MSC (2000): 11J72, 33B10.}
+\end{abstract}
+\hrule\bigskip
+\bigskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The arithmetic properties of trigonometric functions has been
+a recurring topic in the mathematical literature. In 1933,
+D.~H.~Lehmer \cite{Leh} proved that if $d>2$ and $k/d$ is an
+irreducible fraction, then $2\cos(2\pi k/d)$ is an algebraic
+integer of degree $\varphi(d)/2$ (with $\varphi(d)$ being
+Euler's totient function); the proof can be also found
+in~\cite[Theorem~3.9]{Ni}. As a consequence, it can be shown
+that, for $t \in \Q$, the only rational values of
+$\cos(\pi t)$ are $\cos(\pi t) = 0, \pm1, \pm1/2$. But this can
+be proved independently of Lehmer's result; see also~\cite[Chapter~3]{Ni}
+for historical references.
+Another nice and self-contained proof appears
+in~\cite[\S\,6.3, Theorem~6.16]{NiZuMo}.
+% From this result and the relation $\cos^2(\theta) = (1+\cos(2\theta))/2$,
+% we can describe the possible rational values of $\cos^2(\pi r)$
+% when $r \in \Q$.
+
+In~\cite[Chapter~6]{AiZi}, as a key step for the construction of Dehn's
+counterexamples to Hilbert's third problem about decomposing 
+polyhedra, it is established that
+\begin{equation}
+\label{eq:AiZi}
+  \frac{1}{\pi} \arccos\left(\frac{1}{\sqrt{n}}\right) \notin \Q
+  \quad\mbox{when }n \in \N,\quad n\mbox{ odd},\quad n \ge 3.
+\end{equation}
+%% NO ORIGINAL REFERENCE IS GIVEN IN~\cite[Chapter~6]{AiZi}
+The aim of this paper is to give a direct and simple proof of
+a much more general result: the complete characterization of the
+$r \in \Q$ such that
+$$
+  \frac{1}{\pi} \arccos\left(\sqrt{r}\right) \in \Q.
+$$
+
+Let us explain the idea of our proof.
+The elegant proof of~(\ref{eq:AiZi}) given in~\cite[Chapter~6]{AiZi}
+is based in the trigonometric identity
+\begin{equation}
+\label{eq:coscos}
+  \cos((k+1)\theta) = 2\cos(\theta)\cos(k\theta) - \cos((k-1)\theta),
+\end{equation}
+which is an immediate consequence of
+$$
+  \cos(\alpha) + \cos(\beta)
+  = 2 \cos(\tfrac{\alpha+\beta}{2}) \cos(\tfrac{\alpha-\beta}{2}).
+$$
+For even~$n$, a different method is suggested in that book, distinguishing
+between the cases $n=2^j$ and $n$ not a power of~$2$.
+Thus, it is obtained that $(1/\pi)\arccos(1/\sqrt{n})$ is rational
+if and only if $n \in \{1,2,4\}$.
+
+The relation~(\ref{eq:coscos}) can be read in term of
+Chebyshev polynomials of the first kind.
+These polynomials are well known in the mathematical literature
+(see, for instance, \cite{Wei} or~\cite{Te}),
+mainly for their importance in approximation theory (they are orthogonal polynomials,
+and are also used in least squares fit and in quatrature formulas for
+numerical integration).
+At least for this author, polynomial relations
+are easier to handle than trigonometric relations and, thus, the proof
+given in~\cite[Chapter~6]{AiZi} seems to be clearer when written in terms
+of polynomials. Moreover, this allows a useful generalization
+of~(\ref{eq:AiZi}) whose proof does not lose the simplicity of~\cite{AiZi};
+concretely, in this way we show that
+$$
+  \frac{1}{\pi} \arccos\left(\frac{m}{2\sqrt{nM}}\right) \notin \Q
+$$
+when $n,m,M \in \N$, $n \ge 2$, $\gcd(n,m) = 1$ and $m/(2\sqrt{nM}) < 1$.
+
+Finally, the square root of every positive rational number $r<1$
+can be written as $\sqrt{r} = m/(2\sqrt{nM})$ with $\gcd(n,m) = 1$, with the exceptions
+of $\sqrt{r} = 1$, $1/2$, $1/\sqrt{2}$ and $\sqrt{3}/2$. Thus, we conclude
+that, for $r \in \Q$ with $0 \le r \le 1$, the number $(1/\pi)\arccos(\sqrt{r})$
+is irrational except in the cases arising from these values of the cosine function:
+% the following cases:
+% the cases provided for these values of the cosine function:
+\begin{equation}
+\label{eq:cos}
+\begin{aligned}
+  &\cos(0) = 1,\quad \cos(\pi/6) = \sqrt{3}/2,\quad
+  \cos(\pi/4) = 1/\sqrt{2},\\
+  &\cos(\pi/3) = 1/2, \quad\mbox{and}\quad \cos(\pi/2) = 0.
+\end{aligned}
+\end{equation}
+
+\begin{rem}
+As an easy consequence, for $t \in \Q$, the only possible rational values of
+$\cos^2(\pi t)$ are given by $\cos(\pi t) = \pm1$, $\pm\sqrt{3}/2$,
+$\pm1/\sqrt{2}$, $\pm1/2$ and~$0$.
+Actually, this can also be proved by using that the only rational values of
+$\cos(\pi t)$ are $0$, $\pm1$, and $\pm1/2$, and the relation
+$\cos^2(\theta) = (1+\cos(2\theta))/2$;
+or can be derived from Lehmer's result by searching 
+algebraic integers of degree at most~$2$ of $\cos(\pi t)$.
+But it seems that none of these facts about
+$\cos^2$ have been noticed in the literature. In any case,
+we are giving a direct and new proof of this result.
+Of course, using the elementary trigonometric relations
+$\cos^2(\theta) = 1-\sin^2(\theta)$
+and $\cos^2(\theta) = 1/(1 +\tan^2(\theta))$,
+similar results for the rational values of $\sin^2(\pi t)$ and $\tan^2(\pi t)$
+can be obtained.
+\end{rem}
+
+Thus, let us state
+
+\begin{theorem}
+Let $r \in \Q$ with $0 \le r \le 1$. Then, the number
+$$
+  \frac{1}{\pi} \arccos\left(\sqrt{r}\right)
+$$
+is rational if and only if $r$ is $0$, $1/4$, $1/2$, $3/4$, or~$1$;
+%$$
+%  \sqrt{r} \in \left\{ 0,\; 1,\; \frac12,\; \frac1{\sqrt{2}},\;
+%  \frac3{2\sqrt{3}} \right\};
+%$$
+and the same holds for $(1/\pi) \arcsin(\sqrt{r})$.
+\end{theorem}
+
+\begin{proof}
+Noticing that $\arccos(x) + \arcsin(x) = \pi/2$, it is enough to analyze
+the case $\arccos$. Even more, the~``if'' part is clear from the trigonometric
+values shown in~(\ref{eq:cos}), so let us study the ``only~if'' part.
+
+We claim that every $r \in \Q \setminus \{0, 1/4, 2/4, 3/4, 1 \}$, $r \ge 0$,
+can be written as
+\begin{equation}
+\label{eq:4nM}
+  r = \frac{m^2}{4nM}
+\end{equation}
+with conditions $n,m,M \in \N$, $n \ge 2$ and $\gcd(n,m) = 1$.
+This is true because given $r = p/q$, with $p$ and $q$ co-prime
+and $q$ not a divisor of~$4$, there are only two possibilities:
+\begin{itemize}
+\item if $q$ has an odd divisor $n$, say $q = nM'$, we can write
+$r = (2p)^2/(4nM)$ (with $M=pM'$);
+\item if $q$ is a power of $2$, then $q = 2^j$ with $j \ge 3$,
+$p$ is odd and we have $r = p^2/(4\cdot2^{j-2}p)$ (with $n = 2^{j-2} \ge 2$).
+\end{itemize}
+In both cases we have found the decomposition~(\ref{eq:4nM}).
+Then, we only need to prove that
+\begin{equation*}
+\label{eq:nmM}
+  A(n,m,M) = \frac{1}{\pi} \arccos\left(\frac{m}{2\sqrt{nM}}\right) \notin \Q
+\end{equation*}
+when $n,m,M \in \N$, $n \ge 2$, $\gcd(n,m) = 1$ and $m/(2\sqrt{nM}) < 1$.
+
+For $x \in [-1,1]$ and $k \in \N \cup \{0\}$, let $T_k(x)$ be
+$$
+  T_k(\cos(\theta)) = \cos(k \theta), \qquad x = \cos(\theta).
+$$
+It is immediate that $T_0(x) = 1$ and $T_1(x) = x$. Moreover, the trigonometric relation
+\begin{equation*}
+  \cos((k+1)\theta) = 2\cos(\theta)\cos(k\theta) - \cos((k-1)\theta)
+\end{equation*}
+proves the recurrence formula
+\begin{equation*}
+%\label{eq:rec}
+  T_{k+1}(x) = 2x T_k(x) - T_{k-1}(x), \quad k \ge 1.
+\end{equation*}
+In particular, this implies that $T_k(x)$ is a polynomial of degree~$k$,
+and so we get the so-called Chebyshev polynomials of the first kind.
+Making the substitution $g_k(x) = 2T_k(mx/2)$, we get
+\begin{equation}
+\label{eq:g_k}
+\left\{
+\begin{aligned}
+  &g_0(x) = 2,\quad g_1(x) = m x,\\
+  &g_{k+1}(x) = m x g_k(x) - g_{k-1}(x), \quad k \ge 1.
+\end{aligned}
+\right.
+\end{equation}
+Then, $g_k(x)$ is a polynomial of degree~$k$ and coefficients in~$\Z$,
+and it verifies
+\begin{equation}
+\label{eq:2cosg}
+  2 \cos(k \theta) = 2 T_k(\cos(\theta))
+  = g_k(2\cos(\theta)/m).
+\end{equation}
+
+Now, let us take
+$$
+  \theta = \arccos\left(\frac{m}{2\sqrt{nM}}\right),
+  \quad x = \frac{1}{2\sqrt{nM}},
+  \quad \cos(\theta) = mx.
+$$
+By~(\ref{eq:2cosg}), we have
+%% (remember that $g_k(x)$ is a polynomial of degree~$k$ and integer coefficients)
+\begin{equation}
+\label{eq:Bk}
+  2 \cos(k \theta) = g_k(2x) = g_k\left(\frac{1}{\sqrt{nM}}\right)
+  = \frac{B_k}{(\sqrt{nM})^k}
+\end{equation}
+for some~$B_k \in \Z$. From~(\ref{eq:g_k}) it is easy to check that
+$B_0 = 2$, $B_1 = m$, and $B_{k+1} = m B_k - nM B_{k-1}$.
+Now, let us recall that $\gcd(n,m) = 1$. Then, by induction on $k$ (starting with $k=1$),
+it follows that $n$ does not divide $B_k$ for any $k \ge 1$.
+
+To conclude the proof, let us suppose that $A(n,m,M) = (1/\pi) \theta = h/k \in \Q$.
+Then, $k\theta = h\pi$ and, by~(\ref{eq:Bk}),
+$$
+  \pm 2 = 2 \cos(h\pi) = 2 \cos(k\theta) = \frac{B_k}{(\sqrt{nM})^k},
+  \quad B_k \in \Z.
+$$
+This implies that $n$ divides $B_k$, which is a contradiction.
+\end{proof}
+
+\subsection*{Acknowledgment} Thanks to Professors G\"unter M.~Ziegler,
+Jai\-me Vi\-nue\-sa, and the referee, for their
+interest and their valuable comments, that allowed to improve this paper.
+%% 
+%% In ``{J. Vinuesa}, {Problems and solutions: Solution to the problem 28}
+%% (Spanish), \textit{Gac. R. Soc. Mat. Esp.} \textbf{9} (2006), no.~1''
+%% there appears the proof of the claim~(\ref{eq:4nM}). It was the solution
+%% to the cooresponding problem proposed in ``{J. L. Varona}, {Problems and
+%% solutions: Problem 28} (Spanish), \textit{Gac. R. Soc. Mat. Esp.}
+%% \textbf{8} (2007), no.~1, p.~182''.
+%% I tried to include the reference to the solucion of J. Vinuesa in the
+%% final version of this paper, but unfortunately it were not possible.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{AiZi}
+{M. Aigner and G. M. Ziegler},
+\textit{Proofs from THE BOOK},
+3\textsuperscript{rd} edition, Springer, 2004.
+
+\bibitem{Leh}
+{D. H. Lehmer},
+{A note on trigonometric algebraic numbers},
+\textit{Amer. Math. Monthly}
+\textbf{40} (1933), 165--166.
+
+\bibitem{Ni}
+{I. Niven},
+\textit{Irrational numbers},
+Carus Monographs no.~11,
+The Mathematical Association of America
+(distributed by John Wiley and Sons), 1956.
+
+\bibitem{NiZuMo}
+{I. Niven, H. S. Zuckerman, and H. L. Montgomery},
+\textit{An introduction to the theory of numbers},
+5\textsuperscript{th}~edition, Wiley, 1991.
+
+\bibitem{Te}
+{N. M. Temme},
+\textit{Special functions: an introduction to the classical functions of
+mathematical physics},
+John Wiley and Sons, 1996.
+
+\bibitem{Wei}
+{E. W. Weisstein},
+{Chebyshev polynomial of the first kind}.
+From \textit{MathWorld}--A Wolfram Web Resource,
+\texttt{http://mathworld.wolfram.com/\allowbreak ChebyshevPolynomialoftheFirstKind.html}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

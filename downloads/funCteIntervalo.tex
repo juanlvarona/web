@@ -1,0 +1,180 @@
+% !TEX encoding = IsoLatin
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             %
+% MINIATURAS MATEM\'ATICAS DE LA GACETA DE LA RSME            %
+%                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[autocontact]{gaceta}
+
+%---------------------
+% La Gaceta se har\'a con esto activado,
+% pero no hace falta ahora si no quieres:
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Puedes usar esto (u otra codificaci\'on) si quieres:
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\decimalpoint
+%---------------------
+
+%---------------------
+% Esto ya lo carga el estilo de La Gaceta:
+%\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{url} % <-- Para p\'aginas web o similar: \url{...}
+%\usepackage{graphicx}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+% \usepackage{wrapfig}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+%\usepackage{tikz}
+%\usepackage{pgfplots}
+%---------------------
+
+% PARA BORRADORES:
+%\usepackage{color}
+%\newcommand\rojo[1]{\textcolor{red}{#1}}
+
+%---------------------
+% <<< ESTO SE AJUSTAR\'A AL EDITAR CADA N\'UMERO DE LA GACETA >>>
+%\provisional
+\newcounter{pageforminiatura}
+\setcounter{pageforminiatura}{212} % Siempre ser\'a p\'agina par
+\setcounter{page}{1} % No se usa (dejarlo como 1)
+\journame{La Gaceta de la RSME}
+\yearofpublication{2017}
+\volume{20}
+\issuenumber{1}
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+%\belongstopart{Art\'{\i}culos}
+%\belongstopart{Secciones}
+%\belongstopart{Noticias de la Sociedad}
+%\belongstopart{Actualidad}
+\nopart
+%---------------------
+
+%---------------------
+% Usa este tipo de definiciones si las necesitas:
+%\theoremstyle{plain}
+%\newtheorem*{Prop}{Proposici\'on}
+% \newtheorem*{Teo}{Teo}
+%\newtheorem*{theorem}{Teorema}
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+\supertitle{\large Miniaturas matem\'aticas de \thejourname\\[1mm]
+\hfill\footnotesize
+Vol.~\thevolume\ (\theyearofpublication),
+N\'um.~\theissuenumber, P\'ag.~\thepageforminiatura\theprovisional}
+%
+\noeditor
+%---------------------
+
+\let\contacturl\relax
+
+\newcommand{\sgn}{\operatorname{sgn}}
+
+%---------------------
+%% ALTERANTIVAS PARA EL TÍTULO:
+%\title{Una función constante en un intervalo}
+\title{Una función que, sin parecerlo, es constante en un intervalo}
+%\author{} % Poner \author{} o no poner nada, da igual.
+% Para ahorrar espacio, el autor solo se pone en la firma:
+\contact{Óscar Ciaurri y Juan Luis Varona,
+% Dpto. de Matemáticas y Computación, 
+Universidad de La Rioja}
+{\texttt{oscar.ciaurri@unirioja.es}, \texttt{jvarona@unirioja.es}}{}
+%---------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deja esto as\'{\i}:
+\previousvspace{-1.8cm}
+\makesupertitle
+\previousvspace{-0.25cm}
+\maketitle
+\vspace*{-0.4cm}
+\thispagestyle{empty} % <<<<< Importante
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% A PARTIR DE AQU\'I HAY LIBERTAD PARA EL AUTOR:
+
+En los primeros cursos de Análisis Matemático, resulta muy útil disponer
+de funciones con definiciones sencillas que tengan comportamientos
+extraños e insospechados a primera vista, de modo que 
+los alumnos se convenzan de la necesidad de introducir el rigor.
+Aquí vamos a ver que la función
+\[
+F(a) = \int_{-1}^1 \frac{\log(x-a)^2}{\sqrt{1-x^2}}\, dx
+\]
+es constante (igual a $-2\pi\log2$) cuando $a \in [-1,1]$, pero no lo es cuando $|a|>1$.
+
+Comencemos suponiendo $|a|\le 1$. 
+Usando $F(-a)=F(a)$ y el cambio de variable $x=\cos t$, se tiene 
+\[
+2F(a) = \int_{-1}^1  \frac{\log(x^2-a^2)^2}{\sqrt{1-x^2}}\, dx
+= \int_{0}^\pi \log(\cos^2 t-\cos^2\alpha)^2\, dt,
+\]
+donde hemos tomado $a=\cos\alpha$. 
+Mediante transformaciones de sumas en productos se prueba que
+$(\cos^2 a-\cos^2 b)^2 = \sen^2(a+b)\sen^2(a-b)$ y, de esta forma, 
+usando que la funci\'on $\sen^2 z$ es $\pi$-peri\'odica, llegamos a
+\begin{multline*}
+2F(a) = \int_{0}^\pi \log(\sen(t+\alpha)\sen(t-\alpha))^2\, dt
+= \int_{-\alpha}^{\pi-\alpha}\log(\sen^2(t+\alpha))\, dt \\
++ \int_{\alpha}^{\pi+\alpha}\log(\sen^2(t-\alpha))\, dt
+= 2\int_{0}^{\pi}\log(\sen^2 t)\, dt = 2F(1).
+\end{multline*}
+
+Para $|a|>1$, derivando bajo el signo integral y aplicando el cambio de variable $x=(1-u^2)/(1+u^2)$, 
+se tiene 
+\[
+F'(a) = 2\int_{-1}^1 \frac{dx}{(a-x)\sqrt{1-x^2}}
+= 4\int_{0}^\infty \frac{du}{a-1+(a+1)u^2} 
+= \frac{2 \sgn(a) \pi}{\sqrt{a^2-1}},
+\]
+así que $F(a) = 2\pi\log(|a|+\sqrt{a^2-1})+C$. 
+Por continuidad de $F$, $C=F(1)$.
+% Por ser $F$ es una funci\'on continua, es claro que $C=F(1)$. 
+
+% Los c\'alculos que conducen a $F(1)$ son comunes en muchos cursos de 
+% an\'alisis b\'asico, pero damos una pincelada del proceso. 
+Damos una pincelada de los c\'alculos que conducen a $F(1)$.
+De las identidades
+\[
+\int_{\pi/2}^\pi \log(\sen t)\, dt
+= \int_0^{\pi/2} \log(\sen t)\, dt
+\quad\text{ y }\quad
+\int_{0}^{\pi/2} \log(\sen t)\, dt
+= \int_0^{\pi/2} \log(\cos t)\, dt
+\] 
+se obtiene 
+\[
+F(1) = 2\left(\int_{0}^{\pi/2} \log(\sen t)\, dt
++ \int_0^{\pi/2} \log(\cos t)\, dt\right)
+= 2\int_{0}^{\pi/2} \log(\sen(2t)/2)\, dt,
+\]
+luego $F(1) = -\pi\log 2+F(1)/2$ y $F(1)=-2\pi\log2$.
+
+\enlargethispage{1.5mm}
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

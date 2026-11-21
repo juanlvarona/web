@@ -1,0 +1,521 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% An uncertainty uncertainty for Fourier--Dunkl series               %
+% by                                                                 %
+% \'Oscar Ciaurri and Juan L. Varona                                 %
+%                                                                    %
+% Last modification: March 31, 2008                                  %
+%                                                                    %
+% Written with AMS-LaTeX 2.0                                         %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[a4paper]{amsart}
+\addtolength{\textwidth}{1.7cm}
+\addtolength{\textheight}{2cm}
+\hoffset=-0.75cm
+\voffset=-1cm
+
+\theoremstyle{plain}
+\newtheorem{Theo}{Theorem}
+\newtheorem{Prop}{Proposition}
+\newtheorem{Lem}{Lemma}
+\newtheorem{Cor}{Corollary}
+
+%\theoremstyle{definition}
+%\newtheorem{Def}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{Rem}{Remark}
+
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\Re}{\operatorname{Re}}
+
+\newcommand{\varneg}{\operatorname{\mathbf{var}}}
+%\newcommand{\var}{\mathop{\textrm{var}}\nolimits}
+%\newcommand{\sgn}{\mathop{\textrm{sgn}}\nolimits}
+\newcommand{\var}{\operatorname{var}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[An uncertainty inequality for Fourier--Dunkl series]{An uncertainty 
+inequality for Fourier--Dunkl series}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{oscar.ciaurri@dmc.unirioja.es}
+
+\author[J. L. Varona]{Juan~L.~Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+\thanks{Research supported by grant MTM2006-13000-C03-03 of the DGI}
+
+\dedicatory{Dedicated to Professor Jes\'us S.~Dehesa on the ocassion
+of his 60th birthday}
+
+\keywords{Uncertainty inequalities, Fourier series, Dunkl operators, Bessel functions}
+\subjclass[2000]{Primary 42C10; Secondary 26D10}
+
+\renewcommand\datename{\textbf{THIS PAPER HAS BEEN PUBLISHED IN}}
+\date{\textit{J.\@ Comput.\@ Appl.\@ Math.\@} \textbf{233} (2010), 1499--1504.}
+
+\begin{abstract}
+An uncertainty inequality for the Fourier--Dunkl series, introduced by the authors in 
+[\'O.~Ciaurri and J.~L.~Varona,
+{A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform,}
+\textit{Proc.\ Amer.\ Math.\ Soc.}\ \textbf{135} (2007), 2939--2947], is proved. 
+This result is an extension of the classical uncertainty inequality for the Fourier series.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The classical Heisenberg--Pauli--Weyl inequality states that for $f\in L^2(\mathbb{R})$,
+\[
+\int_{\mathbb{R}}x^2|f(x)|^2\,dx 
+\cdot \int_{\mathbb{R}}\xi^2|\widehat{f}(\xi)|^2\,d\xi
+\ge \frac14 \left(\int_{\mathbb{R}}|f(x)|^2\,dx\right)^2,
+\]
+where $\widehat{f}(\xi)=(2\pi)^{-1/2} \int_{\mathbb{R}}f(x)e^{-i x\xi }\, dx$ is the one-dimensional Fourier transform. The previous inequality is a consequence of a more general one given in terms of the variance. For a function $f\in L^2(\mathbb{R})$, such that $\|f\|_{L^2(\mathbb{R})}=1$, the variance is defined as
+\[
+V(f)=\inf_{a\in \mathbb{R}}\int_{\mathbb{R}}(x-a)^2|f(x)|^2\,dx.
+\]
+If the integral defining the variance is finite for one value $a$, then it is finite for every $a\in \mathbb{R}$, and in this case the minimum is attained when $a$ is the mean of $f$, given by $\int_{\mathbb{R}}x|f(x)|^2\,dx=\langle x f,f\rangle_{L^2(\mathbb{R})}$. With this definition, it is verified that
+\[
+V(f)\cdot V(\widehat{f})\ge \frac14,
+\]
+and, in particular,
+\[
+\int_{\mathbb{R}}(x-a)^2|f(x)|^2\,dx
+\cdot \int_{\mathbb{R}}(\xi-b)^2|\widehat{f}(\xi)|^2\,d\xi
+\ge \frac14 \left(\int_{\mathbb{R}}|f(x)|^2\,dx\right)^2,
+\]
+for any $a,b\in \mathbb{R}$. Moreover the equality holds if and only if $f(x)=Ce^{ibx}e^{-\gamma(x-a)^2}$, for some $C\in \mathbb{C}$ and some $\gamma>0$. It is interesting to observe that we can rewrite the variances in terms of norms in the following manner:
+\[
+V(f) = \|(x-\langle x f,f\rangle_{L^2(\mathbb{R})})f\|^2_{L^2(\mathbb{R})}
+\]
+and, using that $\xi\widehat{f}(\xi)=\widehat{\frac{df}{dx}}(\xi)$ and the Parseval identity,
+\[
+V(\widehat{f}) = \left\|\left(\frac{d}{dx} - \left\langle\frac{df}{dx},f
+\right\rangle_{L^2(\mathbb{R})}\right)f\right\|_{L^2(\mathbb{R})}^2.
+\]
+
+In the $n$-dimensional case the uncertainty inequality has the form
+\[
+\int_{\mathbb{R}^n}|x|^2|f(x)|^2\,dx\cdot \int_{\mathbb{R}^n}|\xi|^2|\widehat{f}(\xi)|^2\,d\xi\ge \frac{n^2}4 \left(\int_{\mathbb{R}^n}|f(x)|^2\,dx\right)^2,
+\]
+being now $\widehat{f}(\xi) = (2\pi)^{-n/2} 
+\int_{\mathbb{R}^n}f(x)e^{-i \langle x,\xi \rangle}\, dx$.
+
+
+It is well known that when we consider radial functions in $\mathbb{R}^n$, $f(x)=g(\|x\|_2)$, the Fourier transform becomes the Hankel transform of order ${n/2-1}$. Indeed, taking the Hankel transform of order $\alpha$, with $\alpha\ge -1/2$, as
+\[
+\mathcal{H}_\alpha g(s) = \int_0^\infty g(r)j_\alpha(sr)\, d\omega_{\alpha}(r),\qquad s>0,
+\]
+where $d\omega_{\alpha}(r) = (2^{\alpha}\Gamma(\alpha+1))^{-1}r^{2\alpha+1}\, dr$ and $j_\alpha(z)=\Gamma(\alpha+1)(z/2)^{-\alpha} J_\alpha(z)$, $J_\alpha$ being the Bessel function of order $\alpha$, it is verified that $\widehat{f}(\xi)=\mathcal{H}_{n/2-1}g(\|\xi\|_2)$.
+
+From the $n$-dimensional version of the classical uncertainty inequality, denoting 
+$\|f\|^p_{L^p(I,dw)} = \int_I |f|^p\,dw$, we have
+\[
+\|r g(r)\|_{L^2((0,\infty),d\omega_{n/2-1})}^2
+\|s \mathcal{H}_{n/2-1}g(s)\|_{L^2((0,\infty),d\omega_{n/2-1})}^2
+\ge \frac{n^2}{4}\|g(r)\|^4_{L^2((0,\infty),d\omega_{n/2-1})}.
+\]
+
+In \cite{Rosler-Voit2}, the general inequality
+\begin{equation}
+\label{eq:uncertaintyHankel}
+\|r g(r)\|_{L^2((0,\infty),d\omega_\alpha)}^2
+\|s \mathcal{H}_{\alpha}g(s)\|_{L^2((0,\infty),d\omega_\alpha)}^2
+\ge (\alpha+1)^2\|g(r)\|^4_{L^2((0,\infty),d\omega_\alpha)}
+\end{equation}
+was shown for $\alpha\ge -1/2$. They also prove that the equality holds if and only if $g(r)=de^{-cr^2/2}$ for some $d\in \mathbb{C}$ and $c>0$. The result is obtained from a more general uncertainty inequality related to the Dunkl transform on the real line.\footnote{The first known proof of \eqref{eq:uncertaintyHankel} is due to Bowie \cite{Bowie}. In~\cite{Rosler-Voit2}, the authors comment, in a final remark, that Prof.\ R. Askey pointed out to them that an unpublished proof, using expansions in terms of generalized Hermite polynomials, of the uncertainty inequality for the Hankel transform had been obtained by C.~T. Roosenraad in his Ph.\ D. Thesis in 1969.}
+
+The Dunkl transform on the real line is both an extension of the Hankel transform to the whole real line and a generalization of the Fourier transform. It is defined by the identity
+\[
+\mathcal{F}_\alpha f(y) = \int_{\mathbb{R}} f(x)E_{\alpha}(-i y x)\,d\mu_{\alpha}(x),\qquad y>0,
+\]
+where
+\[
+E_\alpha(z) = j_\alpha(iz)+\frac{z}{2(\alpha+1)}j_{\alpha+1}(iz)
+\]
+and $d\mu_{\alpha}(x) = (2^{\alpha+1}\Gamma(\alpha+1))^{-1}|x|^{2\alpha+1}\, dx$. The Fourier transform corresponds with the case $\alpha=-1/2$ because $E_{-1/2}(z)=e^{z}$ and $d\mu_{-1/2}$ is, up to a multiplicative factor, the Lebesgue measure on $\mathbb{R}$. This transform is related to the Dunkl operator on the real line.
+
+The Dunkl operators on $\mathbb{R}^n$ are differential-difference operators associated with some finite reflection groups (see~\cite{Dunkl}).\footnote{The paper \cite{Rosler} is an interesting survey about the general theory of the Dunkl operators. Moreover, in the second part of it, the connection of this kind of operator with the integrable particle systems of Calogero--Moser--Sutherland type is explained.} We consider the Dunkl operator $\Lambda_\alpha$, $\alpha \ge -1/2$, associated with the reflection group $\mathbb{Z}_2$ on $\mathbb{R}$ given by
+\begin{equation*}
+  \Lambda_\alpha f(x) = \frac{d}{dx}f(x)
+    + \frac{2\alpha+1}{x} \left(\frac{f(x)-f(-x)}{2}\right).
+\end{equation*}
+The Dunkl kernel $E_\alpha$ is, for $\alpha \ge -1/2$ and $\lambda\in \mathbb{C}$, the unique solution of the initial value problem
+\begin{equation}
+\label{eq:dunklproblem}
+\begin{cases}
+  \Lambda_\alpha f(x) = \lambda f(x),\quad x\in \mathbb{R},\\
+  f(0) = 1.
+\end{cases}
+\end{equation}
+
+The uncertainty inequality for the Hankel transform is deduced from the corresponding result for the Dunkl transform in terms of the appropriate variances. Being
+\[
+\var(f) = \|(x-\langle xf,
+f\rangle_{L^2(\mathbb{R},d\mu_\alpha)})f\|_{L^2(\mathbb{R},d\mu_\alpha)}^2
+\]
+and
+\[
+\var(\mathcal{F}_\alpha f) = \|(\Lambda_\alpha-\langle \Lambda_\alpha f,
+f\rangle_{L^2(\mathbb{R},d\mu_\alpha)})f\|_{L^2(\mathbb{R},d\mu_\alpha)}^2,
+\]
+with the usual notation $\langle f,g \rangle_{L^2(I,dw)}=\int_{I}f\overline{g}\,dw$, the main result in \cite{Rosler-Voit2} is the following one: for $\|f\|_{L^2(\mathbb{R},d\mu_\alpha)}=1$,
+\[
+\var(f)\cdot \var(\mathcal{F}_\alpha f)
+\ge \left(\left(\alpha+\frac12\right)
+(\|f_\text{e}\|_{L^2(\mathbb{R},d\mu_\alpha)}
+-\|f_\textrm{o}\|_{L^2(\mathbb{R},d\mu_\alpha)}) + \frac12\right)^2
+\]
+for functions $f$ in the appropriate space and where $f_\textrm{o}(x)=(f(x)-f(-x))/2$ and $f_\textrm{e}(x)=(f(x)+f(-x))/2$ are the odd and the even parts of $f$ respectively. This inequality with $\alpha=-1/2$ gives the classical Heisenberg--Pauli--Weyl inequality in the real line. Moreover, using that for an even function $f$ it is verified 
+$\mathcal{F}_{\alpha}f(y)=\mathcal{H}_{\alpha}f(|y|)$, we can deduce~\eqref{eq:uncertaintyHankel}.
+
+For the classical Fourier series, an uncertainty principle was discussed from a physicist's point of view in \cite{Brei}. For a function $f\in L^2(\mathbb{T},dm)$ such that $\|f\|_{L^2(\mathbb{T},dm)}=1$, $dm=\frac{dz}{2\pi}$ being the normalized Lebesgue measure for the torus, and $f(z)=\sum_{k\in \mathbb{Z}}c_k z^k$, the frequency variance is defined by
+\[
+\var_F(f)=\sum_{k\in \mathbb{Z}}k^2|c_k|^2-\left(\sum_{k\in \mathbb{Z}}k|c_k|^2\right)^2.
+\]
+Defining the mean localization of the function as
+\[
+\tau(f)=\int_{\mathbb{T}}z|f(z)|^2\,dm,
+\]
+the angular variance of $f$ is given by
+\[
+\var_A(f)=1-|\tau(f)|^2.
+\]
+With this notation, the uncertainty inequality for classical Fourier series establishes that
+\begin{equation}
+\label{eq:incerFourier}
+\var_A(f)\cdot \var_F(f)\ge \frac14 |\tau(f)|^2.
+\end{equation}
+Again, it is possible to rewrite the variances associated to the uncertainty principle for the trigonometric expansions in terms of the scalar product in $L^2(\mathbb{T},dm)$, as was done for the Fourier and the Hankel transforms. Indeed, we can check easily that
+\[
+\var_A(f) = \|(z-\langle z f,f\rangle_{L^2(\mathbb{T},dm)})f\|^2_{L^2(\mathbb{T},dm)}
+\]
+and
+\[
+\var_F(f) = \left\| \left(\frac{d}{dz}
+- \left\langle\frac{df}{dx},
+f\right\rangle_{L^2(\mathbb{T},dm)}\right)f \right\|_{L^2(\mathbb{T},dm)}^2.
+\]
+
+We can find many other uncertainty inequalities associated to
+orthonormal expansions in the literature. For example, the result
+for Fourier series was extended to $SO(2)$-invariant functions on
+the sphere $\mathbb{S}^2$ in \cite{Narco-Ward}. The extension for
+$\mathbb{S}^n$ was analyzed in \cite{Rosler-Voit1}. In this last
+case, the authors obtained the result as a corollary of an
+uncertainty inequality for ultraspherical expansions. For the
+Jacobi expansions, the topic was discussed in~\cite{Li-Liu}. In
+the paper~\cite{Li-Liu2}, an uncertainty inequality for orthogonal
+expansions of eigenfunctions of certain Sturm--Liouville operators
+was proved. As a consequence, inequalities for the Laguerre
+polynomials and for the generalized Hermite polynomials were
+given. In the nice short note~\cite{Grun}, the question for 
+the discrete Fourier transform was analyzed. 
+The result in this last paper shows that in a finite-dimensional 
+set-up theuncertainty principle does not hold in the usual fashion.
+
+In other settings, the analysis of uncertainty principles
+continues intensively. Very recently, in \cite{Ma}, a weighted
+uncertainty inequality has been obtained for the Jacobi transform.
+The proof of this result follows the guidelines given in
+\cite{Ciatti-Ricci-Sundari}, where similar inequalities were
+established for Lie groups. The main idea is, in both cases, the
+analysis of a semigroup generated by a positive self-adjoint
+operator and it is based on an earlier work of Faris \cite{Faris}.
+
+The purpose of this paper is to prove an uncertainty inequality
+for the Fourier--Dunkl expansions introduced in \cite{Ciau-Var1},
+where it was used to conclude a sampling theorem of Shannon type
+in the setting of the Dunkl transform. The orthonormal system
+associated with this kind of series is a generalization of the
+trigonometric one. The next section will contain Theorem
+\ref{theo:incertidumbre}, which is the main result of the paper,
+and the notation to establish it. Some comments are included in
+that section also. In the last section we give a proof of
+Theorem~\ref{theo:incertidumbre}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The uncertainty inequality for the Fourier-Dunkl expansions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In \cite{Ciau-Var1}, we introduced the sequence of functions
+\begin{equation}
+\label{eq:eaj}
+  e_{\alpha,j}(x) = \frac{2^{\alpha/2}(\Gamma(\alpha+1))^{1/2}}
+    {|j_{\alpha}(s_j)|} E_{\alpha}(is_j x),
+  \quad j\in \mathbb{Z} \setminus\{0\}, \quad x \in (-1,1),
+\end{equation}
+and $e_{\alpha,0}(x) = 2^{(\alpha+1)/2}(\Gamma(\alpha+2))^{1/2}$,
+where $\{s_j\}_{j\in \mathbb{Z}}$ are the zeros of the function
+$\Im(E_{\alpha}(ix)) = \frac{x}{2(\alpha+1)}\, j_{\alpha+1}(x)$
+(with $s_{-j} = -s_j$ and $s_0 = 0$). Theorem~1 in~\cite{Ciau-Var1} establishes that $\{e_{\alpha,j}\}_{j\in\mathbb{Z}}$ is a complete orthonormal system in $L^2((-1,1),d\mu_\alpha)$. For each appropriate function $f$ on $(-1,1)$, we define its Fourier series related to the system $\{e_{\alpha,j}\}_{j\in\mathbb{Z}}$, which we will call Fourier--Dunkl series, as
+\[
+f\sim \sum_{j\in \mathbb{Z}} a_j(f)e_{\alpha,j}, 
+\qquad a_j(f)=\int_{-1}^1 f(y)\overline{e_{\alpha,j}(y)}\, d\mu_\alpha(y).
+\]
+
+To enounce the uncertainty principle related to the Fourier--Dunkl series, we consider the variances defined by
+\[
+\varneg_A^\alpha(f)
+= \|(e_{\alpha,1}-\tau_\alpha(f))f\|_{L^2((-1,1),d\mu_\alpha)}^2,
+\]
+where
+\[
+\tau_\alpha(f) = \langle e_{\alpha,1}f,f \rangle_{L^2((-1,1),d\mu_\alpha)},
+\]
+and
+\[
+\varneg_F^\alpha(f) 
+= \|(\Lambda_\alpha-\langle \Lambda_\alpha f,
+f\rangle_{L^2((-1,1),d\mu_\alpha)})f\|_{L^2((-1,1),d\mu_\alpha)}^2.
+\]
+Note that these expressions are, essentially, generalizations of the variances for the trigonometric expansions.
+
+With the previous notation we will prove the following result
+\begin{Theo}
+\label{theo:incertidumbre}
+For $f\in C^1_c(-1,1)$, with $\|f\|_{L^2((-1,1),d\mu_\alpha)}=1$, and $\alpha\ge-1/2$, there holds
+\begin{equation}
+  \label{eq:incer}
+  \varneg_A^\alpha(f)\varneg_F^\alpha(f)
+  \ge \left|\frac{s_1}2 \tau_\alpha(f)
+  - \int_{-1}^1 \frac{2\alpha+1}{x} \Im(e_{\alpha,1}(x)) 
+  |f_{\textrm{o}}(x)|^2\,d\mu_{\alpha}(x)\right|^2,
+\end{equation}
+where $f_{\textrm{o}}$ denotes the odd part of the function $f$.
+\end{Theo}
+
+
+The inequality \eqref{eq:incer} can be written in a more usual way involving the Fourier--Dunkl coefficients of the given function. It is clear that
+\[
+\varneg_A^\alpha(f) = \int_{-1}^1 |e_{\alpha,1}(x)f(x)|^2\,d\mu_\alpha(x)
+- |\tau_{\alpha}(f)|^2.
+\]
+Moreover, if a function $f\in C_c^2(-1,1)$ has the Fourier--Dunkl expansion
+\[
+f(x) = \sum_{j\in \mathbb{Z}}a_j(f)e_{\alpha,j}(x),\qquad a_j(f)
+= \int_{-1}^1 f(y)\overline{e_{\alpha,j}(y)}\,d\mu_{\alpha}(y),
+\]
+we conclude
+\begin{align*}
+\varneg_F^\alpha(f)& = |\langle \Lambda_\alpha^2 f,f\rangle|
+- |\langle \Lambda_\alpha f,f\rangle|^2
+\\&=
+\sum_{j\in \mathbb{Z}}s_j^2|a_{j}(f)|^2
+- \left(\sum_{j\in \mathbb{Z}}(\sgn j)s_j |a_j(f)|^2\right)^2.
+\end{align*}
+The previous facts prove the next corollary.
+\begin{Cor} For $\alpha\ge -1/2$ and $f\in L^2((-1,1),d\mu_\alpha)$, with 
+$\|f\|_{L^2((-1,1),d\mu_\alpha)}=1$, the inequality
+\begin{multline*}
+\left(\int_{-1}^1 |e_{\alpha,1}(x)f(x)|^2\,d\mu_\alpha(x)
+- |\tau_{\alpha}(f)|^2\right) %\\ \times 
+\left(\sum_{j\in \mathbb{Z}}s_j^2|a_{j}(f)|^2
+- \left(\sum_{j\in \mathbb{Z}}(\sgn j )s_j |a_j(f)|^2\right)^2\right)\\
+\ge \left|\frac{s_1}2 \tau_\alpha(f)
+-\int_{-1}^1 \frac{2\alpha+1}{x}\Im(e_{\alpha,1}(x)) 
+|f_{\textrm{o}}(x)|^2\,d\mu_{\alpha}(x)\right|^2
+\end{multline*}
+holds.
+\end{Cor}
+The extension to functions in $L^2((-1,1),d\mu_\alpha)$ can be done by using a standard density argument.
+
+
+\begin{Rem}
+By using that $E_{-1/2}(z)=e^{iz}$, it is easy to check that
+\[
+e_{-1/2,j}(x)=\left(\frac{\pi}{2}\right)^{1/4} e^{ij\pi x}, \quad j\in \mathbb{Z}.
+\]
+So, $\{e_{-1/2,j}\}$ is, up to a multiplicative constant, the trigonometric system associated to the classical Fourier series.
+
+For a function $g\in L^2(\mathbb{T},dm)$, with unitary norm, we can consider the function $f(x) =\left(\frac{\pi}2\right)^{1/4}g(e^{i\pi x})\in L^2((-1,1),d\mu_{-1/2})$. With this definition, it is easy to check that $\|f\|_{L^2((-1,1),d\mu_{-1/2})}=\|g\|_{L^2(\mathbb{T},dm)}=1$.  From this fact, using the identities
+\begin{align*}
+|\tau_{-1/2}(f)|^2&=\sqrt{\frac{\pi}{2}}|\tau(g)|^2, \\ 
+\|e_{-1/2}f\|_{L^2((-1,1),d\mu_{-1/2})}^2
+&=\sqrt{\frac{\pi}{2}}\|zg(z)\|^2_{L^2(\mathbb{T},dm)} = \sqrt{\frac{\pi}{2}},\\
+\varneg_A^{-1/2}(f) &= \sqrt{\frac{\pi}{2}}\var_A(g), \\ 
+\varneg_{F}^{-1/2}(f) &= \pi^2\var_F(g)=s_1^{2}\var_F(g),
+\end{align*}
+we can deduce \eqref{eq:incerFourier} from~\eqref{eq:incer}.
+\end{Rem}
+
+
+\begin{Rem}
+When we consider real even and odd functions the Fourier--Dunkl series can be seen as Fourier--Dini and Fourier--Bessel series respectively. From this fact, applying Theorem~\ref{theo:incertidumbre} to even or odd functions, we can deduce uncertainty inequalities for these kinds of series.
+\end{Rem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of the Theorem \ref{theo:incertidumbre}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Some technical facts are needed to prove Theorem \ref{theo:incertidumbre}. They are included in the next lemma.
+\begin{Lem}
+\label{lem:tec}
+For $\alpha\ge -1/2$, the following statements hold:
+\begin{enumerate}
+\item[(a)] $\Lambda_\alpha e_{\alpha,j}=is_j e_{\alpha,j}$.
+\item[(b)] For functions $f\in C_c^1(-1,1)$,
+\[
+\Lambda_\alpha (|f|^2)(x)
+= 2\Re (f(x)\overline{\Lambda_\alpha f(x)}) - \frac{2(2\alpha+1)}{x}|f_\textrm{o}(x)|^2.
+\]
+\item[(c)] For functions $f,g\in C_c^1(-1,1)$,
+\[
+\langle \Lambda_\alpha f,g\rangle_{L^2((-1,1),d\mu_\alpha)} 
+= -\langle f, \Lambda_\alpha g\rangle_{L^2((-1,1),d\mu_\alpha)}.
+\]
+\end{enumerate}
+\end{Lem}
+\begin{proof}
+(a) is a consequence of \eqref{eq:dunklproblem}, the initial value problem satisfied by the function $E_{\alpha}$ used to define the system $\{e_{\alpha,j}\}_{j\in \mathbb{Z}}$. The proof of~(b) is elementary. To conclude~(c) it is enough apply integration by parts in the integral defining the scalar product.
+\end{proof}
+
+
+\begin{proof}[Proof of the Theorem~\ref{theo:incertidumbre}]
+Using the Cauchy--Schwarz inequality we have
+\begin{multline}
+\label{eq:CS1}
+\varneg_A^\alpha(f)\varneg_F^\alpha(f)\\
+\begin{aligned}
+&\ge \left|\int_{-1}^1 (e_{\alpha,1}(x)-\tau_{\alpha}(f))f(x)
+\overline{(\Lambda_\alpha f(x)
+-\langle \Lambda_\alpha f, f\rangle_{L^2((-1,1),d\mu_\alpha)}f(x))}\,d\mu_{\alpha}(x)\right|^2\\
+&= \left|\int_{-1}^1 (e_{\alpha,1}(x) - \tau_{\alpha}(f))f(x)
+\overline{\Lambda_\alpha f(x)}\,d\mu_{\alpha}(x)\right|^2.
+\end{aligned}
+\end{multline}
+In a similar way we obtain
+\begin{equation}
+\label{eq:CS2}
+\varneg_A^\alpha(f)\varneg_F^\alpha(f)
+\ge \left|\int_{-1}^1 (e_{\alpha,1}(x) - \tau_{\alpha}(f))
+\overline{f(x)}\Lambda_\alpha f(x)\,d\mu_{\alpha}(x)\right|^2.
+\end{equation}
+Now, adding \eqref{eq:CS1} and \eqref{eq:CS2} and using (b) in Lemma~\ref{lem:tec}, we get
+\begin{multline}
+\label{eq:CS3}
+\varneg_A^\alpha(f)\varneg_F^\alpha(f)
+\ge  \left|\int_{-1}^1 (e_{\alpha,1}(x) - \tau_{\alpha}(f))\Re(f(x)
+\overline{\Lambda_\alpha f(x)})\,d\mu_{\alpha}(x)\right|^2\\
+= \left|\int_{-1}^1 (e_{\alpha,1}(x) - \tau_{\alpha}(f))
+\left(\frac12\Lambda_\alpha |f(x)|^2 + \frac{2\alpha+1}{x}
+|f_\text{o}(x)|^2\right)\,d\mu_{\alpha}(x)\right|^2.
+\end{multline}
+With the identities in (b) and (a) of Lemma~\ref{lem:tec}, it follows that
+\begin{align*}
+\int_{-1}^1 (e_{\alpha,1}(x)-\tau_{\alpha}(f)) \Lambda_\alpha |f(x)|^2\,d\mu_{\alpha}(x)
+&= -\int_{-1}^1 \Lambda_\alpha(e_{\alpha,1}(x) - \tau_{\alpha}(f)) |f(x)|^2\,d\mu_{\alpha}(x)\\
+&= -i s_1 \int_{-1}^1 e_{\alpha,1}(x)|f(x)|^2\,d\mu_{\alpha}(x)\\
+&=-is_1 \langle e_{\alpha,1}f,f \rangle_{L^2((-1,1),d\mu)}.
+\end{align*}
+Taking into account that $\Re(e_{\alpha,1}(x))$ is even and $\Im(e_{\alpha,1}(x))$ is odd, the equality
+\[
+\int_{-1}^1 (e_{\alpha,1}(x)-\tau_{\alpha}(f))
+\frac{2\alpha+1}{x}|f_\text{o}(x)|^2\,d\mu_{\alpha}(x)
+= i\int_{-1}^1 \frac{2\alpha+1}{x}\Im(e_{\alpha,1}(x)) |f_\text{o}(x)|^2\,d\mu_{\alpha}(x)
+\]
+holds. In this manner, we conclude the proof by substituting the two previous identities in the last line of~\eqref{eq:CS3}.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{Rosler-Voit2} M. R\"osler and M. Voit,
+{An uncertainty principle for Hankel transforms,}
+\textit{Proc. Amer. Math. Soc.}
+\textbf{127} (1999), 183--194.
+
+\bibitem{Bowie} P. C. Bowie,
+{Uncertainty inequalities for Hankel transforms,}
+\textit{SIAM J. Math. Anal.}
+\textbf{2} (1971), 601--606.
+
+\bibitem{Dunkl} C. F. Dunkl,
+{Differential-difference operators associated with reflections groups,}
+\textit{Trans. Amer. Math. Soc.}
+\textbf{311} (1989), 167--183.
+
+\bibitem{Rosler} M. R\"osler,
+{Dunkl operators: Theory and applications,}  \textit{Orthogonal polynomials and special functions (Leuven, 2002)}, Lecture Notes in Math. \textbf{1817} (2003), Springer, 93--135.
+
+\bibitem{Brei} E. Breitenberger,
+{Uncertainty measures and uncertainty relations for angle observables,}
+\textit{Found. Phys.}
+\textbf{15} (1985), 353--364.
+
+\bibitem{Narco-Ward} F. J. Narcowich and J. D. Ward,
+{Nonstationary wavelets on the $m$-sphere for scattered data,}
+\textit{Appl. Comput. Harmon. Anal.}
+\textbf{3} (1996), 324--336.
+
+\bibitem{Rosler-Voit1} M. R\"osler and M. Voit,
+{An uncertainty principle for ultraspherical expansions,}
+\textit{J. Math. Anal. Appl.}
+\textbf{209} (1997), 624--634.
+
+\bibitem{Li-Liu} Z. Li and L. Liu,
+{Uncertainty principles for Jacobi expansions,}
+\textit{J. Math. Anal. Appl.}
+\textbf{286} (2003), 652--663.
+
+\bibitem{Li-Liu2} Z. Li and L. Liu,
+{Uncertainty principles for Sturm-Liouville operators,}
+\textit{Constr. Approx.}
+\textbf{21} (2005), 193--205.
+
+\bibitem{Grun} F. A. Gr\"unbaum,
+{The Heisenberg inequality for the discrete Fourier transform,}
+\textit{Appl. Comput. Harmon. Anal.}
+\textbf{15} (2003), 163--167.
+
+\bibitem{Ma} R. Ma,
+{Heisenberg inequalities for Jacobi transforms,}
+\textit{J. Math. Anal. Appl.}
+\textbf{332}  (2007), 155--163.
+
+\bibitem{Ciatti-Ricci-Sundari} P. Ciatti, F. Ricci, and M. Sundari,
+{Heisenberg--Pauli--Weyl uncertainty inequalities and polynomial volume growth,}
+\textit{Adv. Math.}
+\textbf{215} (2007), 616--625.
+
+\bibitem{Faris} W. Faris,
+{Inequalities and uncertainty principles,}
+\textit{J. Math. Phys.}
+\textbf{19} (1978), 461--466.
+
+\bibitem{Ciau-Var1} \'O. Ciaurri and J. L. Varona,
+{A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform,}
+\textit{Proc. Amer. Math. Soc.}
+\textbf{135} (2007), 2939--2947.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

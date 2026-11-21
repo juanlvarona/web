@@ -1,0 +1,706 @@
+%&pdftex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ULTIMA MODIFICACION: 18 DE FEBRERO DE 1992. PARA EL CONGRESO PO's DE GRANADA.
+% MAS ADELANTE, ENVIADO A J. Comput. Appl. Math.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\magnification = 1200
+\font \peq = cmr8
+\font \peqbf = cmbx8
+
+\font\msymnormal=msbm10
+\font\msympeq=msbm7
+\font\msymmuypeq=msbm5
+\newfam\numeros
+\textfont\numeros=\msymnormal
+\scriptfont\numeros=\msympeq
+\scriptscriptfont\numeros=\msymmuypeq
+\def\num{\fam\numeros\msymnormal}
+\def\N{{\num N}}
+\def\R{{\num R}}
+\font\tipo = cmr12 at 10pt
+\tipo
+
+\def \proof {{\it Proof.} }
+\def \qed {\vrule height 5 pt width 5 pt depth 0 pt}
+
+\centerline{\bf ENDPOINT WEAK BOUNDEDNESS OF SOME}
+\centerline{\bf POLYNOMIAL EXPANSIONS}
+
+\bigskip
+
+\centerline{Jos\'e J. Guadalupe
+   \footnote{$^1$}{\peq Dpto. de Matem\'aticas. Universidad de Zaragoza. 50009
+Zaragoza. Spain.}, Mario P\'erez $^1$, Francisco J. Ruiz $^1$ and 
+Juan L. Varona
+   \footnote{$^2$}{\peq Dpto. de Matem\'atica Aplicada. Colegio Universitario de
+La Rioja. 26001 Logro\~no. Spain.}}
+\footnote{}{\peq 1991 Mathematics Subject Classification: 42C10.}
+\footnote{}{\peq Research supported by DGICYT under grant PB89-0181-C02-02}
+\footnote{}{\peq AN UPDATED VERSION OF THIS MANUSCRIPT WERE PUBLISHED IN:
+J.\ Comput.\ Appl.\ Math.\ {\peqbf 49} (1993), 93--102.}
+
+\bigskip
+
+{\narrower\narrower\noindent{\bf Abstract. }{\sl Let $w(x) =
+(1-x)^\alpha (1+x)^\beta$ on $[-1,1]$, $\alpha, \beta \geq -1/2$
+and for each function $f$ let $S_nf$ be the $n$-th expansion in the
+corresponding orthonormal polynomials. We show that the operators $f
+\longrightarrow u S_n(u^{-1} f)$ are not of weak $(p,p)$-type,
+where $u$ is another Jacobi weight and $p$ is an endpoint of the
+interval of mean convergence. The same result is shown for
+expansions associated to measures of the form $d\nu = w(x)dx +
+\sum_{i=1}^k M_i \delta_{a_i}$.}\smallskip}
+
+\bigskip
+
+{\noindent \bf \S 1. Introduction and main results.}
+
+\medskip
+
+Let $\mu$ be a positive measure on $\R$ with infinitely many points of increase
+and such that all the moments
+$$
+   \int_{\R} x^nd\mu \qquad (n = 0,1,\dots)
+$$
+exist. Let $\{P_n\}_{n \geq 0}$ stand for the corresponding orthonormal
+polynomials. For $f \in L^1(d\mu)$, let $S_nf$ denote the $n$-th partial sum of 
+the
+orthonormal Fourier expansion of $f$ in $\{P_n\}_{n \geq 0}$:
+$$
+   S_n(f,x) = \int_{\R} f(y) K_n(x,y) d\mu(y), \qquad
+   K_n(x,y) = \sum_{k=1}^n P_k(x) P_k(y).
+$$
+
+The problem of the uniform boundedness of the partial sum operators $S_n$ in
+weighted $L^p$ spaces, that is,
+$$
+   \Vert u S_nf \Vert _{L^p(d\mu)} \leq C \Vert u f \Vert _{L^p(d\mu)}
+   \quad \forall n \geq 0, \ \forall f \in L^p(u^pd\mu) \eqno(1)
+$$
+has been completely solved only in some specific cases (this boundedness
+implies, in rather general situations, the $L^p$ convergence of $S_nf$ to $f$).
+For example, Badkov gave in [3] necessary and sufficient conditions for $(1)$
+when $d\mu$ and $u$ are generalized Jacobi weights (earlier results can be
+found in [22], [24], [21], [15]). Orthogonal Hermite and Laguerre series were
+studied by Askey and Wainger ([1]) and Muckenhoupt ([16], [17]).
+
+Let us consider the case of a Jacobi weight on the interval $[-1,1]$, that is,
+$d\mu = w(x) dx$,
+$$
+   w(x)=(1-x)^{\alpha}(1+x)^{\beta}
+$$
+and let $1 < p < \infty$. If $\alpha, \beta \geq -1/2$, then (see [15])
+$$
+   \Vert S_nf \Vert _{L^p(w)} \leq C \Vert f \Vert _{L^p(w)}
+   \quad \forall n \geq 0, \ \forall f \in L^p(w) \eqno(2)
+$$
+if and only if $p$ belongs to the open interval $(p_0, p_1)$, where
+$$
+   p_0 = {4(\alpha+1) \over 2\alpha+3}, \qquad
+   p_1 = {4(\alpha+1) \over 2\alpha+1}
+$$
+when $\alpha \geq \beta$ (and the analogous formulas with $\alpha$ replaced
+by $\beta$ if $\beta \geq \alpha$).
+
+If both $\alpha, \beta > -1/2$, the authors proved (see [6]) that the $n$-th
+partial sum operators are not of weak $(p,p)$-type when $p$ is an endpoint of
+the interval of mean convegence. In theorem 1 we extend this result to the
+weighted case $f \longrightarrow u S_n(u^{-1} f)$, where $u$ is also a Jacobi
+weight, $u(x) = (1-x)^a (1+x)^b, \ a, b \in \R$. Now, the weighted uniform
+boundedness (1) holds (see [15]) if and only if
+$$
+   \eqalign{
+   \vert a+(\alpha+1)({1 \over p} - {1 \over 2}) \vert
+   < \min \{{1 \over 4}, {\alpha+1 \over 2}\},
+   \cr
+   \vert b+(\beta+1)({1 \over p} - {1 \over 2}) \vert
+   < \min \{{1 \over 4}, {\beta+1 \over 2}\}.
+   \cr} \eqno (3)
+$$
+
+Let us state our first result.
+
+\medskip
+
+\proclaim{Theorem 1}. Let $\alpha, \beta \geq -1/2$,
+$w(x)=(1-x)^\alpha(1+x)^\beta$, $u(x)=(1-x)^a(1+x)^b$, $1<p<\infty$. Let $S_n$
+be the partial sum operators associated to $w$. If there exists a constant
+$C>0$ such that for every $f \in L^p(u^pw)$ and for every $n \geq 0$
+$$
+   \Vert uS_nf \Vert _{L^p_*(w)} \leq	 C \Vert uf \Vert _{L^p(w)},
+$$
+then the inequalities
+$$
+   \vert a+(\alpha+1)({1 \over p}-{1 \over 2}) \vert < {1 \over 4}, \qquad
+   \vert b+(\beta+1) ({1 \over p}-{1 \over 2}) \vert < {1 \over 4}
+$$
+are verified.
+
+On the other hand, we also study the weak boundedness of the operators $S_n$
+associated to a measure $d\nu = d\mu + \sum_{i=1}^k M_i \delta_{a_i}$,
+where $\mu\{a_i\} = 0$. In the particular case of a Jacobi weight and two mass
+points on $1$ and $-1$, the corresponding orthonormal polynomials were studied
+by Koornwinder in [10] from the point of view of differential equations (see
+also [4], [2], [11], [12]). The authors have found (see [7]) some estimates for
+the orthonormal polynomials and kernels relative to this type of measures.
+
+In this context, let us consider the polynomial expansion associated to a
+measure $d\nu = w(x)dx + \sum_{i=1}^k M_i \delta_{a_i}$, where
+$w(x)=(1-x)^\alpha(1+x)^\beta$, $M_i>0$ and take $u(x)=(1-x)^a(1+x)^b$ for $x
+\not= a_i$, $0<u(a_i)<\infty$. With this notation, we can state the following
+result.
+
+\medskip
+
+\proclaim{Theorem 2}. Let $\alpha, \beta \geq -1/2$, $1<p<\infty$. Then, there
+exists a constant $C>0$ such that
+$$
+   \Vert uS_nf \Vert _{L^p_*(d\nu)} \leq C \Vert uf \Vert _{L^p(d\nu)}
+   \quad \forall f \in L^p(u^pd\nu), \ \forall n \geq 0,
+$$
+if and only if the inequalities
+$$
+   \vert a+(\alpha+1)({1 \over p}-{1 \over 2}) \vert < {1 \over 4}, \qquad
+   \vert b+(\beta+1)({1 \over p}-{1 \over 2}) \vert < {1 \over 4}
+$$
+are verified.
+
+\bigskip
+
+{\noindent \bf \S 2. Preliminary lemmas.}
+
+\medskip
+
+\noindent A basic tool in the study of Fourier series on the interval $[-1,1]$
+is Pollard's decomposition of the kernels $K_n(x,t)$ (see [22], [15]): if
+$\{P_n\}_{n\geq 0}$ is the sequence of polynomials orthonormal with respect to
+$w(x)dx$ and $\{Q_n\}_{n\geq 0}$ is the sequence of polynomials relating to
+\hbox{$(1-x^2)w(x)dx$}, then
+$$
+   K_n(x,t) = r_nT_{1,n}(x,t) + s_nT_{2,n}(x,t) + s_nT_{3,n}(x,t),
+$$
+where
+$$
+   T_{1,n}(x,t) = P_{n+1}(x) P_{n+1}(t),
+$$
+$$
+   T_{2,n}(x,t) = (1-t^2) {P_{n+1}(x) Q_n(t) \over x-t},
+$$
+$$
+   T_{3,n}(x,t) = (1-x^2) {P_{n+1}(t) Q_n(x) \over t-x}
+$$
+and $\{r_n\}$, $\{s_n\}$ are bounded sequences. In fact, for any measure $\mu$
+on $[-1,1]$ with $\mu'>0$ $a.e.$ (in particular, for $w(x)dx$),
+$$
+   \vbox{\halign{\hfil #  &  \qquad \hfil # \hfil \cr
+   $\displaystyle\lim_{n\to\infty} r_n = -1/2$,
+   & $\displaystyle\lim_{n\to\infty} s_n = 1/2$ \cr
+   }}
+$$
+(this can be deduced from [22] and [23] or [13]). Therefore, we can write
+$$
+   S_nf = r_n W_{1,n}f + s_n W_{2,n}f - s_n W_{3,n}f,
+$$
+where
+$$
+   W_{1,n}f(x) = P_{n+1}(x) \int_{-1}^1 P_{n+1}(t) f(t) w(t) dt,
+$$
+$$
+   W_{2,n}f(x) = P_{n+1}(x) H((1-t^2) Q_n(t) f(t) w(t), x)
+$$
+and
+$$
+   W_{3,n}f(x) = (1-x^2) Q_n(x) H(P_{n+1}(t) f(t) w(t), x),
+$$
+$H$ being the Hilbert transform on the interval $[-1,1]$. Thus, the study of
+$S_n$ can be reduced to that of $W_{i,n}$ $(i=1,2,3)$.
+
+The boundedness of the Hilbert transform can be stated in terms of Muckenhoupt's
+$A_p$ classes of weights (see [9] and [19]; throughout this paper, the Hilbert
+transform, as well as the $A_p$ classes, are taken on the interval $[-1,1]$): if
+$u$ is a weight on $[-1,1]$ and $1<p<\infty$, then $u \in A_p$ if and only if
+$H$ is a bounded operator in $L^p(u)$, with a constant which depends only on the
+$A_p$ constant of $u$.
+
+Concerning mixed weak norm inequalities for the Hilbert transform, we can state
+the following property, which can be proved in the same way as in theorem 3 of
+[18]: assume that $u_1(x), u_2(x), v(x) \geq 0$, $1<p<\infty$ and there is a
+constant $C>0$ such that
+$$
+   \Vert u_2 Hg \Vert_{L^p_*(u_1)} \leq C \Vert g \Vert_{L^p(v)}
+   \quad \forall g \in L^p(v);
+$$
+then, there exists another constant $B>0$ which depends only on $C$, such that
+for every interval $I$
+$$
+   \Vert u_2 \chi_I \Vert_{L^p_*(u_1)} \left(
+   \int_{-1}^1 {v(x)^{-1/(p-1)} \over (\vert I \vert + \vert x-x_I \vert)^q} dx
+   \right)^{1/q} \leq B, \eqno (4)
+$$
+$x_I$ being the centre of $I$ and $1/p + 1/q = 1$.
+
+The polynomials $P_n$ satisfy the estimate
+$$
+   \vert P_n(x) \vert \leq C (1-x)^{-(2\alpha+1)/4}
+   (1+x)^{-(2\beta +1)/4} \quad \forall n, \forall x \in [-1,1] \eqno (5)
+$$
+with a constant $C>0$ independent of $x$ and $n$. A similar estimate is
+verified by $Q_n$, with $\alpha+1$ and $\beta+1$ instead of $\alpha$ and
+$\beta$:
+$$
+   \vert Q_n(x) \vert \leq C (1-x)^{-(2\alpha+3)/4}
+   (1+x)^{-(2\beta +3)/4} \quad \forall n, \forall x \in [-1,1]. \eqno (6)
+$$
+Thus, the following easy result will be useful.
+
+\medskip
+
+\proclaim{Lemma 3}. Let $r \in \R$. Then, $\vert x \vert^r \in A_p([-1,1])
+\Longleftrightarrow -1 < r < p-1$.
+
+\medskip
+
+The same property holds if we replace $x$ by $x-a$, with $a \in [-1,1]$. Even
+more, it is not difficult to show that in order to see whether a finite product
+of this type of expressions belongs to $A_p$, we only need to check the
+above inequalities for each factor separately.
+
+\medskip
+
+We will eventually need to show that some of the operators are not of
+strong or weak type. In this sense, this lemma (see [14]) will be used:
+
+\proclaim{Lemma 4}. Let ${\rm supp}\ d\alpha = [-1,1]$, $\alpha'>0$ a.e. in
+$[-1,1]$, and $0<p \leq \infty$. There exists a constant $C>0$ such that if $g$
+is a Lebesgue-measurable function on $[-1,1]$, then
+$$
+   \Vert \alpha'(x)^{-1/2}(1-x^2)^{-1/4} \Vert _{L^p(\vert g \vert^pdx)} \leq
+   C \liminf_{n \to \infty} \Vert P_n \Vert _{L^p(\vert g \vert^pdx)}.
+$$
+
+\medskip
+
+There is a weak version of this property: it is a consequence of Kolmogorov's
+condition (see [5], lemma V.2.8, p. 485) and the previous lemma.
+
+\proclaim{Lemma 5}. Let ${\rm supp}\ d\alpha = [-1,1]$, $\alpha'>0$ a.e. in
+$[-1,1]$, and $0<p<\infty$. There exists a constant $C>0$ such that if
+$g$, $h$ are Lebesgue-measurable functions on $[-1,1]$, then
+$$
+   \Vert \alpha'(x)^{-1/2}(1-x^2)^{-1/4}g(x) \Vert _{L^p_*(\vert h \vert^pdx)}
+   \leq C \liminf_{n \to \infty} \Vert P_ng \Vert _{L^p_*(\vert h \vert^pdx)}.
+$$
+
+\medskip
+
+The following lemma will be useful to estimate some weighted $L^p_*$ norms:
+
+\proclaim{Lemma 6}. Let $1 \leq p <\infty$, $r,s \in \R$, $a>0$. Then,
+$$
+   \chi_{(0,a)}(x) x^r \in L^p_*(x^sdx) \Longleftrightarrow
+   pr+s+1 \geq 0, \ \ (r,s) \not= (0,-1).
+$$
+Moreover, in this case there is a constant $K$ depending on $r,s,p$ such that
+$$
+   \Vert \chi_{(0,a)}(x) x^r \Vert _{L^p_*(x^sdx)} = K a^{r+(s+1)/p}.
+$$
+
+\bigskip
+
+{\noindent \bf \S 3. Proof of theorem 1.}
+
+\medskip
+
+\noindent The weak boundedness
+$$
+   \Vert uS_nf \Vert _{L^p_*(w)} \leq	 C \Vert uf \Vert _{L^p(w)}
+$$
+implies the following conditions (see [6], theorem 1, with the appropriate
+changes):
+$$
+   u \in L^p_*(w),
+$$
+$$
+   u^{-1} \in L^q(w),
+$$
+$$
+   u(x) w(x)^{-1/2}(1-x^2)^{-1/4} \in L^p_*(w),
+$$
+$$
+   u(x)^{-1} w(x)^{-1/2}(1-x^2)^{-1/4} \in L^q(w),
+$$
+where $1/p + 1/q = 1$. With the weight $u(x) = (1-x)^a(1+x)^b$ and having in
+mind that $\alpha, \beta \geq -1/2$, this means
+$$
+   \eqalign{
+   -{1 \over 4} \leq a+(\alpha+1)({1 \over p}-{1 \over 2}) < {1 \over 4}, \cr
+   -{1 \over 4} \leq b+(\beta+1)({1 \over p}-{1 \over 2}) < {1 \over 4}.
+   \cr}
+$$
+Therefore, we only need to show that the equality cannot occur in the left hand
+side of these equations. Assume, for example,
+$$
+   -{1 \over 4} = a+(\alpha+1)({1 \over p}-{1 \over 2}). \eqno (7)
+$$
+Let us consider again Pollard's decomposition of the partial sums $S_nf$. We
+will prove that there exists a constant $C$ such that
+$$
+   \Vert u W_{1,n}f \Vert _{L^p_*(w)} \leq	 C \Vert u f \Vert _{L^p(w)}
+$$
+and
+$$
+   \Vert u W_{3,n}f \Vert _{L^p(w)} \leq	 C \Vert u f \Vert _{L^p(w)}.
+$$
+This, together with the boundedness of $S_n$, implies the same property for
+$W_{2,n}$ and will lead to a contradiction.
+
+\medskip
+
+a) {\it Boundedness of $W_{1,n}$}. From its definition, we have
+$$
+   \Vert u W_{1,n}f \Vert _{L^p_*(w)} \leq \Vert u P_{n+1} \Vert _{L^p_*(w)}
+   \Vert u^{-1} P_{n+1} \Vert _{L^q(w)} \Vert u f \Vert _{L^p(w)}.
+$$
+So, we only need to prove
+$$
+   \Vert u P_n \Vert _{L^p_*(w)} \leq C \quad \forall n \in \N
+$$
+and
+$$
+   \Vert u^{-1} P_n \Vert _{L^q(w)} \leq C \quad \forall n \in \N,
+$$
+which follows from lemma 6, (5) and the dominate convergence theorem.
+
+\medskip
+
+b) {\it Boundedness of $W_{3,n}$}. Using again (5) and (6), it is enough
+to obtain
+$$
+   \Vert Hg \Vert _{L^p(v)} \leq C \Vert g \Vert _{L^p(v)}
+   \quad \forall g \in L^p(v),
+$$
+with
+$$
+   v(x) = (1-x)^{\alpha + a p + p(1 - 2\alpha)/4}
+   (1+x)^{\beta + a p + p(1 - 2\beta)/4}.
+$$
+Now, we only need to prove that $v \in A_p$. This can be deduced from lemma 3.
+
+\medskip
+
+c) From $a)$, $b)$ and the hypothesis, we have a constant $C$ such that
+for all $f \in L^p(u^pw)$ and every $n \in \N$
+$$
+   \Vert uW_{2,n}f \Vert _{L^p_*(w)} \leq	 C \Vert uf \Vert _{L^p(w)},
+$$
+that is,
+$$
+   \Vert u P_{n+1} Hg \Vert _{L^p_*(w)} \leq	 C
+   \Vert u(x) (1-x^2)^{-1} Q_n(x)^{-1} w(x)^{-1} g \Vert _{L^p(w)}.
+$$
+Applying (4), we have
+$$
+   \Vert u P_{n+1} \chi_I \Vert _{L^p_*(w)} \left(
+   \int_{-1}^1 { u(x)^{-q} (1-x^2)^q \vert Q_n(x) \vert^q w(x) \over
+   (\vert I \vert + \vert x-x_I \vert)^q } dx
+   \right)^{1/q} \leq C
+$$
+for every interval $I \subseteq [-1,1]$, with a constant $C>0$ independent of
+$n$ and $I$; by lemma 5 with $I = [1-\varepsilon,1]$, it follows
+$$
+   \Vert x^{a-\alpha/2-1/4} \chi_{[0,\varepsilon]} \Vert _{L^p_*(x^\alpha)}
+   \left( \int_0^1 { x^{-aq+q/4+\alpha(1-q/2)} \over
+   (\varepsilon + \vert x-\varepsilon/2 \vert)^q } dx
+   \right)^{1/q} \leq C. \eqno (8)
+$$
+Now, by lemma 6 and (7)
+$$
+   \Vert x^{a-\alpha/2-1/4} \chi_{[0,\varepsilon]} \Vert _{L^p_*(x^\alpha)}
+   = K \eqno (9)
+$$
+and
+$$
+   \int_0^1 { x^{-aq+q/4+\alpha(1-q/2)} \over
+   (\varepsilon + \vert x-\varepsilon/2 \vert)^q } dx =
+   \int_0^1
+   { x^{1/(p-1)} \over (\varepsilon + \vert x-\varepsilon/2 \vert)^q } dx \geq
+   C \int_\varepsilon^1 x^{1/(p-1) - q} dx = C \vert \log \varepsilon \vert,
+$$
+which, together with (9), leads to a contradiction in (8). Therefore, (7)
+cannot be true and the theorem is proved.
+
+\bigskip
+
+{\goodbreak\noindent \bf \S 4. Adding mass points.\nobreak}
+
+\medskip
+
+Let $d\mu$ be a positive measure on $\R$, $d\nu = d\mu + \sum_{i=1}^k M_i
+\delta_{a_i}$, where $M_i > 0$, $\mu\{a_i\} = 0$. Let also $u$ be a weight
+such that $0 < u(a_i) < \infty$ ($i=1,\dots,k$). We will denote by
+$\{K_n(x,y)\}$ the kernels relative to $d\mu$ and by $\{L_n(x,y)\}$ the kernels
+relative to $d\nu$. Then, the $n$-th partial sum of the Fourier series with
+respect to $d\nu$ is given by
+$$
+   S_nf(x) = \int_{\R} L_n(x,y) f(y) d\nu(y).
+$$
+Let us take $1 < p < \infty$, $1/p + 1/q = 1$ and
+$$
+   T_nf(x) = \int_{\R} L_n(x,y) f(y) d\mu(y).
+$$
+Then
+
+\proclaim{Theorem 7}. With the above notation, there exists a constant $C$ such
+that
+$$
+   \Vert uS_nf \Vert _{L^p_*(d\nu)} \leq C \Vert uf \Vert _{L^p(d\nu)}
+   \quad \forall n \geq 0, \ \forall f \in L^p(u^pd\nu) \eqno(10)
+$$
+if and only if there exists another constant $C$ such that:
+\medskip
+\item {a)} $\Vert uT_nf \Vert _{L^p_*(d\mu)} \leq C \Vert uf \Vert
+_{L^p(d\mu)}\quad \forall n \geq 0, \ \forall f \in L^p(u^pd\mu)$;
+\medskip
+\item {b)} $u(a_i) \Vert u^{-1}L_n(x,a_i) \Vert _{L^q(d\mu)} \leq C
+\quad \forall n \geq 0, \ (i=1,\dots,k)$;
+\medskip
+\item {c)} $\Vert uL_n(x,a_i) \Vert _{L^p_*(d\mu)} \leq C u(a_i)
+\quad \forall n \geq 0, \ (i=1,\dots,k)$.
+\medskip \noindent
+The same holds replacing $L^p_*(d\nu)$ by $L^p(d\nu)$ and $L^p_*(d\mu)$
+by $L^p(d\mu)$.
+
+\proof From the definition, it follows
+$$
+   S_nf(x) = T_nf(x) + \sum_{i=1}^k M_iL_n(x,a_i)f(a_i). \eqno(11)
+$$
+Now, suppose $(10)$ holds. If $f \in L^p(u^pd\nu)$, let us define $g(x)=f(x)$
+for $x \not= a_i$  $(i=1,\dots,k)$ and $g(a_i)=0$ $(i=1,\dots,k)$. Since
+$\mu(\{a_i\})=0$, we have $S_ng=T_nf$ and
+$$
+   \Vert ug \Vert _{L^p(d\nu)} = \Vert uf \Vert _{L^p(d\mu)}.
+$$
+Therefore, (10) implies
+$$
+   \Vert uT_nf \Vert _{L^p_*(d\nu)} \leq C \Vert uf \Vert _{L^p(d\mu)}
+   \quad \forall n \geq 0, \ \forall f \in L^p(u^pd\nu). \eqno(12)
+$$
+Taking now $f=\chi_{\{a_i\}}$ we obtain $S_nf(x) = M_iL_n(x,a_i)$ and $\Vert
+uf \Vert _{L^p(d\nu)} = M_i^{1/p}u(a_i)$. Thus, (10) also implies
+$$
+   \Vert uL_n(x,a_i) \Vert _{L^p_*(d\nu)} \leq C u(a_i)
+   \quad \forall n \geq 0, \ (i=1,\dots,k). \eqno(13)
+$$
+Actually, since $\Vert uf \Vert _{L^p(d\mu)}$, $u(a_i) \vert f(a_i) \vert$
+$\leq$ $\Vert uf \Vert _{L^p(d\nu)}$ it is inmediate from $(11)$ that $(12)$ and
+$(13)$ imply $(10)$. So, we only need to show that $(12)$ is equivalent to $a)$ 
+and
+$b)$ and that $(13)$ is the same as $c)$.
+
+It is easy to see that
+$$
+   \Vert uL_n(x,a_i) \Vert ^p_{L^p_*(d\nu)}
+   \leq \Vert uL_n(x,a_i) \Vert ^p_{L^p_*(d\mu)}
+   + \sum_{j=1}^k M_ju(a_j)^p\vert L_n(a_j,a_i)\vert^p.
+$$
+Now, by Schwarz inequality we have
+$$
+   \vert L_n(a_j,a_i)\vert \leq L_n(a_j,a_j)^{1/2} L_n(a_i,a_i)^{1/2}
+$$
+and $\{L_n(a_i,a_i)\}_{n\geq 0}$ is a bounded sequence, since $\mu(\{a_i\})>0$.
+Therefore
+$$
+   \Vert uL_n(x,a_i) \Vert ^p_{L^p_*(d\mu)}
+   \leq \Vert uL_n(x,a_i) \Vert ^p_{L^p_*(d\nu)}
+   \leq \Vert uL_n(x,a_i) \Vert ^p_{L^p_*(d\mu)} + C
+$$
+and $(13)$ is actually equivalent to $c)$.
+
+Let us examine now condition $(12)$. It is easy to see that
+$$
+   \Vert uT_nf \Vert ^p_{L^p_*(d\nu)}
+   \leq \Vert uT_nf \Vert ^p_{L^p_*(d\mu)}
+   + \sum_{i=1}^k M_iu(a_i)^p\vert T_nf(a_i)\vert^p,
+$$
+$$
+   \Vert uT_nf \Vert ^p_{L^p_*(d\mu)}
+   \leq \Vert uT_nf \Vert ^p_{L^p_*(d\nu)}
+$$
+and
+$$
+   M_iu(a_i)^p\vert T_nf(a_i)\vert^p \leq \Vert uT_nf \Vert ^p_{L^p_*(d\nu)}.
+$$
+Thus, $(12)$ holds if and only if condition $a)$ holds together with
+$$
+   u(a_i) \vert T_nf(a_i)\vert \leq C \Vert uf \Vert _{L^p(d\mu)}
+   \quad \forall n \geq 0 \ \forall f \in L^p(u^pd\mu) \ (i=1,\dots,k).
+$$
+Taking into acount that
+$$
+   T_nf(a_i) = \int_{\R} L_n(a_i,x)f(x)d\mu(x),
+$$
+this last inequality is simply $b)$.
+\medskip\noindent
+The proof can be rewritten with $L^p$ norms instead of $L^p_*$ norms.
+
+\medskip
+
+The operators $T_n$ can be handled in a similar way to expansions with respect
+to $d\mu$. As to like in parts $b)$ and $c)$, let us introduce the following
+notation:
+
+\medskip
+
+$d\mu^c(x) = (x-c)^2d\mu(x)$;
+
+\medskip
+
+$\{P_n^c\}$ is the sequence of orthonormal polynomials relative to $d\mu^c$;
+
+\medskip
+
+$P_n^c(x) = k_n^c x^n + \dots, \qquad k_n^c > 0$;
+
+\medskip
+
+$\{K_n^c(x,y)\}$ is the sequence of kernels relative to $d\mu^c$.
+
+\medskip
+
+Then (see [7])
+
+\proclaim {Proposition 8}. Let $d\mu$ be a positive measure on $\R$, $c \in \R$,
+$M>0$. Let $\{\widetilde P_n\}_{n\geq 0}$ be the polynomials orthonormal with
+respect to $d\mu + M \delta_c$. Then, for each $n \in \N$ there exist two
+constants $A_n, B_n \in (0,1)$ such that
+$$
+   \widetilde P_n(x) = A_n P_n(x) + B_n (x-c) P_{n-1}^c(x).
+$$
+Furthermore, if ${\rm supp\ }d\mu = [-1,1]$, $\mu ' > 0$ a.e. and $c \in
+[-1,1]$, then
+$$
+   \lim_{n \to \infty} A_n K_{n-1}(c,c) = {1 \over \lambda(c)+M}
+$$
+and
+$$
+   \lim_{n \to \infty} B_n = {M \over \lambda(c)+M},
+$$
+where
+$$
+   \lambda(c) = \lim_{n \to \infty} {1 \over K_n(c,c)}.
+$$
+
+\medskip
+
+We can also find some relations which involve the kernels.
+
+\proclaim {Proposition 9}. Let $d\mu$ be a positive measure on $\R$, $c \in \R$
+and $M>0$. Let $\{\widetilde K_n\}_{n\geq 0}$ be the kernels relative to $d\mu +
+M\delta_c$. Then $\forall n \in \N$
+$$
+   \widetilde K_n(x,y) = {1 \over 1 + M K_n(c,c)} K_n(x,y)
+   + {M K_n(c,c) \over 1 + M K_n(c,c)} (x-c)(y-c) K_{n-1}^c(x,y).
+$$
+
+\medskip
+
+Propositions 8 and 9 lead to bounds for $\widetilde P_n$ and $\widetilde K_n$,
+provided bounds for $P_n$, $P_n^c$, $K_n$, $K_n^c$ are known. These bounds,
+together with theorem 7, can be used to prove theorem 2 (see [8]).
+
+\bigskip
+
+\centerline {\bf REFERENCES}
+
+\bigskip
+
+\frenchspacing
+
+\item {{\bf [1]}} R. Askey and S. Wainger, {\it Mean convergence of expansions
+in Laguerre and Hermite series}, Amer. J. Math. {\bf 87} (1965), 695--708.
+
+\item {{\bf [2]}} {\rm F. V. Atkinson and W. N. Everitt, {\it Orthogonal
+polynomials which satisfy second order differential equations}, in \lq \lq E.
+B. Christoffel, the influence of his work on mathematics and the physical
+sciences" (P. L. Butzer and F. Feh\'er, eds.), Birkh\"auser, 1981, pp.
+173--181.}
+
+\item {{\bf [3]}} V. M. Badkov, {\it Convergence in the mean and almost
+everywhere of Fourier series in polynomials orthogonal on an interval},  Math.
+USSR Sb. {\bf 24} (1974), 223--256.
+
+\item {{\bf [4]}} T. S. Chihara, {\it Orthogonal polynomials and measures with
+end point masses}, Rocky Mountain J. Math. {\bf 15} (1985), 705--719.
+
+\item {{\bf [5]}} J. Garc\'\i a Cuerva and J. L. Rubio de Francia, {\it \lq \lq
+Weighted norm inequalities and related topics"}, North-Holland, Amsterdam, 1985.
+
+\item {{\bf [6]}} J. J. Guadalupe, M. P\'erez and J. L. Varona, {\it Weak
+behaviour of Fourier-Jacobi series}, J. Approx. Theory {\bf 61} (1990),
+222--238.
+
+\item {{\bf [7]}} {\rm J. J. Guadalupe, M. P\'erez, F. J. Ruiz and J. L. Varona,
+{\it Asymptotic behaviour of orthogonal polynomials relative to measures with
+mass points} (preprint).}
+
+\item {{\bf [8]}} {\rm J. J. Guadalupe, M. P\'erez, F. J. Ruiz and J. L. Varona,
+{\it On mean and weak convergence of Fourier series relative to measures with
+mass points} (preprint).}
+
+\item {{\bf [9]}} R. Hunt, B. Muckenhoupt and R. Wheeden, {\it Weighted norm
+inequalities for the conjugate function and Hilbert transform}, Trans. Amer.
+Math. Soc. {\bf 176} (1973), 227--251.
+
+\item {{\bf [10]}} T. Koornwinder, {\it Orthogonal polynomials with weight
+function $(1-x)^{\alpha}(1+x)^{\beta}+M\delta(x+1)+N\delta(x-1)$}, Canad. Math.
+Bull. {\bf 27} (1984), 205--214.
+
+\item {{\bf [11]}} A. M. Krall, {\it Orthogonal polynomials satisfying fourth
+order differential equations}, Proc. Roy. Soc. Edinburgh {\bf 87} (1981),
+271--288.
+
+\item {{\bf [12]}} L. L. Littlejohn, {\it On the classification of differential
+equations having orthogonal polynomial solutions}, Ann. Mat. Pura Appl. {\bf
+138} (1984), 35--53.
+
+\item {{\bf [13]}} A. M\'at\'e, P. Nevai and V. Totik, {\it Asymptotics for the
+ratio of the leading coefficients of orthogonal polynomials on the unit
+circle}, Constr. Approx. {\bf 1} (1985), 63--69.
+
+\item {{\bf [14]}} A. M\'at\'e, P. Nevai and V. Totik, {\it Necessary
+conditions for weighted mean convergence of Fourier series in orthogonal
+polynomials}, J. Approx. Theory {\bf 46} (1986), 314--322.
+
+\item {{\bf [15]}} B. Muckenhoupt, {\it Mean convergence of Jacobi series},
+Proc. Amer. Math. Soc. {\bf 23} (1969), 306--310.
+
+\item {{\bf [16]}} B. Muckenhoupt, {\it Mean convergence of Hermite and
+Laguerre series. I}, Trans. Amer. Math. Soc. {\bf 147} (1970), 419--431.
+
+\item {{\bf [17]}} B. Muckenhoupt, {\it Mean convergence of Hermite and
+Laguerre series. II}, Trans. Amer. Math. Soc. {\bf 147} (1970), 433--460.
+
+\item {{\bf [18]}} B. Muckenhoupt and R. L. Wheeden, {\it Two weight function
+norm inequalities for the Hardy-Littlewood maximal function and the Hilbert
+transform}, Studia Math. {\bf 55} (1976), 279--294.
+
+\item {{\bf [19]}} C. J. Neugebauer, {\it Inserting $A_p$ weights}, Proc. Amer.
+Math. Soc. {\bf 87} (1983), 644--648.
+
+\item {\bf [20]} {\rm P. Nevai, {\it \lq \lq Orthogonal Polynomials"}, Memoirs
+of the Amer. Math. Soc., vol. 18, n. 213, Providence, RI, U.S.A., 1979.}
+
+\item {{\bf [21]}} J. Newman and W. Rudin, {\it Mean convergence of orthogonal
+series}, Proc. Amer. Math. Soc. {\bf 3} (1952), 219--222.
+
+\item {{\bf [22]}} H. Pollard, {\it The mean convergence of orthogonal series.
+II}, Trans. Amer. Math. Soc. {\bf 63} (1948), 355--367.
+
+\item {{\bf [23]}} E. A. Rahmanov, {\it On the asymptotics of the ratio of
+orthogonal polynomials. II}, Math. USSR. Sb. {\bf 46} (1983), 105--117.
+
+\item {{\bf [24]}} G. M. Wing, {\it The mean convergence of orthogonal series},
+Amer. J. Math. {\bf 72} (1950), 792--808.
+
+\bye

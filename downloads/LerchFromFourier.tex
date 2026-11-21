@@ -1,0 +1,1253 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The Lerch transcendent from the point of view of Fourier Analysis,
+% by
+% L. M. Navas, F. J. Ruiz and J. L. Varona
+%
+% Date of last modification: 2015-03-28
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[11pt,a4paper,reqno]{amsart}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumitem}
+\setlist[1]{font=\normalfont\bfseries,label=(\alph*), ref=\theenumii(\alph*),leftmargin=*,widest=u}
+
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+
+% \usepackage[hyperpageref]{backref} % For drafts
+
+\renewcommand{\datename}{\textbf{This paper has been published in}:}
+\date{\textit{J.\@ Math.\@ Anal.\@ Appl.\@} \textbf{431} (2015), 186--201.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ONLY FOR DRAFTS:
+%\usepackage[svgnames,x11names]{xcolor}
+%\newcommand{\repasar}[2][]{\color{red}{#2\mbox{\ \(\bullet\)}#1.\ }\color{black}}
+%\newcommand{\comentario}[2][]{\noindent\textcolor{red}{$\rhd$\,}\color{Gold3}{#2\mbox{\ \(\bullet\)}#1.\ }\color{black}}
+%\newcommand{\respuesta}[2][]{\noindent\textcolor{red}{$\lhd$\,}\color{Green3}{#2\mbox{\ \(\bullet\)}#1.\ }\color{black}}
+%\newcommand{\comenpacho}[2][]{\noindent\textcolor{red}{$\rhd$\,}\color{Blue3}{#2\mbox{\ \(\bullet\)}#1.\ }\color{black}}
+%\newcommand{\nuevo}[1]{\color{Green4}{#1}\color{black}}
+%\usepackage[normalem]{ulem}
+%\newcommand\reduline{\bgroup\markoverwith%
+%      {\textcolor{red}{\rule[0.5ex]{2pt}{0.4pt}}}\ULon}
+%\newcommand{\quitar}[1]{\reduline{\color{red}{#1}\color{black}}}
+
+
+%% ONLY FOR DRAFTS:
+%\providecommand*\showkeyslabelformat[1]{\fbox{\mbox{\tt\scriptsize#1}}}
+%\usepackage[color,notcite,notref]{showkeys}
+%\definecolor{labelkey}{rgb}{0.3,0.8,0.9}
+
+% ONLY FOR DRAFTS:
+% \usepackage{backref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Apostol-Bernoulli polynomials and [0,1]-periodic extension of Apostol polynomials:
+\newcommand{\B}{\mathcal{B}} 
+%\newcommand{\E}{\mathcal{E}} % Euler
+
+% Set of numbers:
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\let\hat\widehat
+\let\tilde\widetilde
+
+%\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+%\newcommand{\re}{\operatorname{Re}}
+%\newcommand{\im}{\operatorname{Im}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\pv}{\operatorname{p.v.}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+%\theoremstyle{definition}
+%\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+%\newtheorem{remarks}{Remarks}
+
+\numberwithin{equation}{section}
+
+\allowdisplaybreaks[3]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Lerch transcendent and Fourier Analysis]{The Lerch transcendent from the point of view of Fourier Analysis}
+
+%\author{L.~M.~Navas, F.~J.~Ruiz and J.~L.~Varona}
+
+\author[L.~M.~Navas]{Luis M. Navas}
+\address{%
+        Departamento de Matem\'aticas,
+        Universidad de Salamanca,
+%        Plaza de la Merced 1--4,
+        37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author[F.~J.~Ruiz]{Francisco J. Ruiz}
+\address{%
+        Departamento de Matem\'aticas,
+        Universidad de Zaragoza,
+%        Campus de la Plaza de San Francisco,
+        50009 Zaragoza, Spain}
+\email{fjruiz@unizar.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address{%
+        Departamento de Matem\'aticas y Computaci\'on,
+        Universidad de La Rioja,
+%        Calle Luis de Ulloa s/n,
+        26004 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+
+\thanks{The authors are supported by grant MTM2012-36732-C03-02 of the DGI (Spain).}
+
+\keywords{Lerch transcendent function, Hurwitz zeta functions, Bernoulli polynomials, Fourier series, conjugate Fourier series}
+
+\subjclass[2010]{Primary 11M35; Secondary 41A60, 42A10, 42A50}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%--------------------------------------
+\begin{abstract}
+We obtain some well-known expansions for the Lerch transcendent and the Hurwitz zeta function using elementary Fourier analytic methods. These Fourier series can be used to analytically continue the functions and prove the classical functional equations, which arise from the relations satisfied by the Fourier conjugate and flat Fourier series. In particular, the functional equation for the Riemann zeta function can be obtained in this way without contour integrals. The conjugate series for special values of the parameters yields analogous results for the Bernoulli and Apostol-Bernoulli polynomials. Finally, we give some consequences derived from the Fourier series.
+\end{abstract}
+%--------------------------------------
+
+%--------------------------------------
+\maketitle
+%--------------------------------------
+
+
+%----------------
+\section{Introduction}
+\label{sec:intro}
+%----------------
+
+Recall that the Lerch transcendent function is defined via the series
+\begin{equation*}
+%\label{eq:Lerch}
+  \Phi(\lambda,s,z) = \sum_{k=0}^\infty\frac{\lambda^k}{(k+z)^s}
+\end{equation*}
+for complex parameters $\lambda$, $s$ and~$z$. 
+The closely related Lerch zeta function, where the first parameter $a$ is exponential, is
+%%
+\begin{equation}
+\label{eq:Lerchzeta}
+  L(a,s,z) = \sum_{k=0}^\infty\frac{e^{2\pi ika}}{(k+z)^s}
+\end{equation}
+(logarithms and powers are always taken to be principal).
+These functions, introduced by M.~Lerch in~\cite{Lerch}, are of great interest because their analytic continuations include as special cases important transcendental functions such as the polylogarithm family, the Hurwitz zeta function and of course the Riemann zeta function.
+
+
+When dealing with the Lerch functions, for example in analytic number theory, one often encounters the Fourier series
+%%
+\begin{equation}
+\label{eq:mainFS}
+  F(a,s,x) = \sum_{n\in\Z}\frac{e^{2\pi i nx}}{(n+a)^s},
+\end{equation}
+%%
+where $\Z$ denotes the set of integers.
+The relationships between~\eqref{eq:Lerchzeta} and Fourier series like~\eqref{eq:mainFS} are well known and usually proved via complex analytic methods involving contour integrals. In previous papers (see~\cite{NRV-JAT2, NRV-MC2}), we have derived some properties of the Lerch function based on Fourier series by direct calculation of the Fourier coefficients. Observe, for instance, the simplicity of the following reasoning. Let $\Im a<0$ and $\Re s<0$; then, for each $k\in\Z$ we have
+%%
+\begin{multline*}
+  \int_0^1 e^{-2\pi i a x} L(-a,s,x) e^{-2\pi i kx}\,dx
+  = \sum_{n=0}^\infty \int_0^1 \frac{e^{-2\pi i a(x+n)}}{(x+n)^s} \,e^{-2\pi i kx}\,dx
+  \\
+  = \int_0^\infty e^{-2\pi i(k+a)t}t^{-s} \,dt
+  = \Gamma(1-s)(2\pi i(k+a))^{s-1}
+\end{multline*}
+%%
+(the exchange of series and integrals is easily justifiable under the given restrictions on the parameters). Consequently, by Dirichlet's theorem,
+%%
+\begin{equation}
+\label{eq:SFzetaLerch}
+  L(-a,s,x) = e^{2\pi iax} \Gamma(1-s) \sum_{n\in\Z} \frac{e^{2\pi inx}}{(2\pi i(n+a))^{1-s}}.
+\end{equation}
+%%
+The series on the right-hand side is not exactly a series of the type~\eqref{eq:mainFS} since, in general, the parameter $s$ is complex and the term $(2\pi i)^{1-s}$ is not a common factor. In fact, we will see that the series in~\eqref{eq:SFzetaLerch} is related to the \emph{conjugate} series of the Fourier series~\eqref{eq:mainFS}.
+The Lerch zeta function~\eqref{eq:Lerchzeta} will be a \emph{flat series,} namely, the projection on the positive coefficients of a Fourier series of the type~\eqref{eq:mainFS}. 
+
+% For example, the conjugate version of Hurwitz's formula for the eponymous zeta function is~\eqref{eq:FHconjsenoscosenos}, and
+% in Section~\ref{sec:ABconjugate} we study the conjugate functions of the Apostol-Bernoulli polynomials, obtaining their generating function and a Fourier series~\eqref{eq:conjAB} representation. In addition we prove various new, albeit analogous, relations, such as a M\"{o}bius inversion formula for the conjugate Bernoulli polynomials (Theorem~\ref{th:mobiusconjB}).
+
+In this paper, we address in a systematic way the study of these conjugate and flat functions. For example, \ref{item:Fconj} in Theorem~\ref{theo:FintermsofL} establishes a new functional relation, between the Lerch zeta function and the conjugate of the function defined by the series $F(a,s,x) = \sum_{n \in \Z} (n+a)^{-s} e^{2 \pi i nx}$, whose flat function is the periodic Hurwitz zeta function. Analogously, Theorem~\ref{theo:zbz} relates the Hurwitz zeta function to its flat and conjugate functions.
+
+We show that it is possible to obtain the functional equation of the Lerch transcendent (Theorem~\ref{theo:ecufuncional}) with these real-analytic tools. For $a=0$, corresponding to the Hurwitz zeta function, the calculation of the Fourier series by real techniques is somewhat less straightforward, but also possible. The study of conjugate series in this case allows us to prove the functional equation for the Riemann zeta function (Corollary~\ref{cor:funceqZeta}) with real methods. One advantage of this approach is that it reveals that many well-known classical results have conjugate counterparts. Another proof of the functional equation for the Riemann zeta function via a different real method has been presented in~\cite[Section~6.2]{Ganzburg}.
+
+Some problems arise for certain values of the parameters corresponding to the Apostol-Bernoulli and Bernoulli polynomials. We introduce the conjugate series of the Apostol-Bernoulli polynomials, along the lines initiated in~\cite{Ha} for Bernoulli polynomials, obtaining new results about their Fourier series~\eqref{eq:conjAB}, generating function, and various new analogous relations, such as a M\"{o}bius
+inversion formula for the conjugate Bernoulli polynomials (Theorem~\ref{th:mobiusconjB}).
+
+Although conjugate and flat Fourier series have been widely studied because of their connection with the convergence of Fourier series, we have not found them in the literature in connection with the Lerch zeta function, although~\cite{Ha} deals with the Riemann zeta function in a related fashion.
+
+Let us also note that Fourier series provide a simple yet far-reaching method for verifying that two apparently different expressions actually represent the same function, by checking that they give rise to the same Fourier coefficients; in principle, this reduces the problem to be able to compute some integrals. This method has been used advantageously in~\cite{NRV-IJMMS} to establish new identities involving Bernoulli polynomials.
+
+The content of this paper is as follows. In Section~\ref{sec:FSLerch}, we obtain the Fourier series of the Lerch zeta function, which allows its analytic continuation. In Section~\ref{sec:conjugate}, we gather all the necessary facts regarding the conjugate and flat series of Fourier series, especially those of the type~\eqref{eq:mainFS}. The results are applied in Section~\ref{sec:funequation} to deduce the functional equations. Finally, in Section~\ref{sec:ABconjugate}, we study the conjugate functions of the special cases corresponding to the Bernoulli and Apostol-Bernoulli polynomials.
+
+%----------------
+\section{Fourier series and analytic continuation of Lerch functions}
+\label{sec:FSLerch}
+%----------------
+
+%----------------
+\subsection{The case \texorpdfstring{$a\not=0$}{a!=0}: Lerch functions}
+%----------------
+
+For a fixed $x \in (0,1]$ and $\Re s < 0$, the series
+%%
+\begin{equation}
+\label{eq:Lerchzeta2}
+  L(a,s,x) = \sum_{k=0}^\infty\frac{e^{2\pi ika}}{(k+x)^s}
+\end{equation}
+%%
+converges uniformly on compact subsets of $\Omega=\{a:\Im a>0\}$ and defines an analytic function of the variable $a\in\Omega$. Moreover, for fixed $a\in\Omega$, by defining $L(a,s,0) = \sum_{k=1}^\infty\frac{e^{2\pi ika}}{k^s}$ we get a continuous function $f(x) = L(a,s,x)$ on $[0,1]$ satisfying $f(0)=e^{2\pi ia}f(1)$. Let $g(x)$ be the $1$-periodic function such that $g(x)=e^{2\pi iax}f(x)$ for $x\in [0,1]$. Since $g(0)=g(1)$, $g$ is a continuous and piecewise $\mathcal{C}^{1}$ function that, by Dirichlet's theorem, is equal to the sum of its Fourier series. Moreover, the calculation of the Fourier coefficients is immediate (see the reasoning in Section~\ref{sec:intro} and~\cite{NRV-JAT2} for additional details), and so we get
+%%
+\begin{equation*}
+  g(x) = \Gamma(1-s)\sum_{n\in\Z} \frac{e^{2\pi inx}}{(2\pi i(n-a))^{1-s}},
+  \quad x\in\R,
+\end{equation*}
+%%
+where $\R$ is the set of real numbers.
+Thus, for $\Im a>0$ and $\Re s<0$, we have
+%%
+\begin{equation}
+\label{eq:Fszetafunction}
+  L(a,s,x) = e^{-2\pi iax} \Gamma(1-s) \sum_{n\in\Z} \frac{e^{2\pi inx}}{(2\pi i(n-a))^{1-s}},
+  \quad x\in [0,1].
+\end{equation}
+%%
+
+The series in~\eqref{eq:Fszetafunction} provides the analytic continuation of the Lerch zeta function.
+
+\begin{lemma}
+\label{lem:prol1}
+For fixed $x\in [0,1]$ and $\Re s<0$, the series
+%%
+\begin{equation*}
+  h(a) = \sum_{n\in\Z}\frac{e^{2\pi i(n-a)x}}{(2\pi i(n-a))^{1-s}}
+\end{equation*}
+%%
+defines an analytic $1$-periodic function in $\C\setminus\{n+i\beta:n\in\Z,\,\beta\leq 0\}$.
+\end{lemma}
+
+\begin{proof}
+The periodicity is clear. To make the general term in the sum analytic, we must exclude the points $a$ such that $2\pi i(n-a)\in (-\infty,0]$, that is, $a\in [n-i0,n-i\infty)$. Convergence is uniform on compact subsets of the given domain, hence the sum is analytic.
+\end{proof}
+
+Setting $\lambda=e^{2\pi i a}$ in~\eqref{eq:Lerchzeta2}, we obtain the Lerch transcendent
+%%
+\begin{equation}
+\label{eq:Lerch2}
+  \Phi(\lambda,s,x) = \sum_{k=0}^\infty\frac{\lambda^k}{(k+x)^s}
+\end{equation}
+%%
+and~\eqref{eq:Fszetafunction} becomes, for $|\lambda|<1$ and $\Re s<0$,
+%%
+\begin{equation*}
+ \Phi(\lambda,s,x) = \lambda^{-x} \Gamma(1-s) 
+ \sum_{n\in\Z} \frac{e^{2\pi inx}}{(2\pi in-\log\lambda)^{1-s}},
+ \quad x\in [0,1].
+\end{equation*}
+%%
+
+The analytic continuation of the Lerch transcendent follows in the same manner by changing variables. 
+%The result is as follows.
+
+\begin{lemma}
+For fixed  $x\in [0,1]$ and $\Re s<0$, the function
+%%
+\begin{equation*}
+  f(\lambda) = \lambda^{-x} \sum_{n\in\Z}\frac{e^{2\pi inx}}{(2\pi in-\log\lambda)^{1-s}}
+\end{equation*}
+%%
+is analytic in $\C\setminus [1,+\infty)$.
+\end{lemma}
+
+\begin{proof}
+The map $a \mapsto e^{2\pi i a}$ is an analytic isomorphism from $U=\{a:-1/2<\Re a<1/2\}\setminus [-i0,-i\infty)$ to $V=\C\setminus\{(-\infty,0]\cup[1,+\infty)\}$, with inverse $\lambda \mapsto (\log\lambda)/(2\pi i)$ (taking arguments in $[-\pi,\pi)$). If we compose this inverse function with the function $h$ defined in Lemma~\ref{lem:prol1}, we obtain
+%%
+\begin{equation*}
+  f(\lambda) = h\big(\log(\lambda)/(2\pi i)\big),
+\end{equation*}
+%%
+therefore $f$ is analytic in~$V$. Finally, observe that the singularities on $(-\infty,0]$ are avoided because the jumps in the logarithm are compensated by a shift in the series (or equivalently because $h$ is $1$-periodic and analytic on $\Re a=\pm 1/2$).
+\end{proof}
+
+We summarize the above facts in the following theorem.
+
+\begin{theorem}
+\label{theo:SFparaL}
+Fix $x\in[0,1]$ and $\Re s<0$. Then:
+\begin{enumerate}
+\item[(a)] The Lerch zeta function, initially defined by~\eqref{eq:Lerchzeta2} for $\Im a>0$, can be analytically continued to all $a\in \C\setminus\{n+i\beta:n\in\Z,\,\beta<0\}$ via the series
+%%
+\begin{equation*}
+  L(a,s,x) = e^{-2\pi iax} \Gamma(1-s) \sum_{n\in\Z} \frac{e^{2\pi inx}}{(2\pi i(n-a))^{1-s}}.
+\end{equation*}
+%%
+\item[(b)] The Lerch transcendent function, initially defined by~\eqref{eq:Lerch2} for $|\lambda|<1$, can be analytically continued to all $\lambda\in \C\setminus[1,\infty)$ via the series
+\begin{equation*}
+  \Phi(\lambda,s,x) = \lambda^{-x} \Gamma(1-s) 
+  \sum_{n\in\Z} \frac{e^{2\pi inx}}{(2\pi in-\log\lambda)^{1-s}}.
+\end{equation*}
+%%
+\end{enumerate}
+\end{theorem}
+
+%----------------
+\subsection{The case \texorpdfstring{$a=0$}{a=0}: the Hurwitz zeta function} 
+%----------------
+
+Let $\Z^* = \Z\setminus\{0\}$. When $a=0$, the function defined by~\eqref{eq:Lerchzeta2} reduces to the Hurwitz zeta function, denoted by
+%%
+\begin{equation*}
+%\label{eq:Hurwitzfunction}
+  \zeta(s,x) = \sum_{k=0}^\infty\frac{1}{(k+x)^s}.
+\end{equation*}
+%%
+For fixed $x\in (0,1]$, the series converges and defines an analytic function on $\Re s>1$. It is straightforward to see that
+%%
+\begin{equation*}
+%\label{eq:paso1}
+  \Gamma(s)\zeta(s,x) = \int_0^\infty u^{s-1} \frac{e^{u(1-x)}}{e^u-1} \,du,
+  \quad \Re s>1.
+\end{equation*}
+%%
+If we use the Laurent expansion
+%%
+\begin{equation}
+\label{eq:Laurent}
+  \frac{e^{u(1-x)}}{e^u-1} = \frac{1}{u} + \biggl(\frac12 -x\biggr) + g_x(u),
+\end{equation}
+%%
+where $g_x(u)$ is analytic around $u=0$ with $g_x(0)=0$, then we can write
+%%
+\begin{multline*}
+%\label{eq:paso2}
+  \int_0^\infty u^{s-1}\frac{e^{u(1-x)}}{e^u-1} \,du
+  = \int_1^\infty u^{s-1}\frac{e^{u(1-x)}}{e^u-1}\,du + \frac{1}{s-1}+\frac{1/2-x}{s}
+  \\
+  + \int_0^1 u^{s-1} \biggl(\frac{e^{u(1-x)}}{e^u-1}-\frac{1}{u}-\frac{1}{2}+x\biggr)\,du,
+  \quad \Re s >1.
+\end{multline*}
+%%
+Since the right-hand side is analytic on $\{\Re s>-1\}\setminus\{0,1\}$, the Hurwitz zeta function can be analytically continued to a meromorphic function on $\{\Re s > -1\}$ that satisfies
+%%
+\begin{equation}
+\label{eq:paso3}
+  \Gamma(s)\zeta(s,x) = \int_0^\infty u^{s-1} 
+    \biggl(\frac{e^{u(1-x)}}{e^u-1}-\frac{1}{u}-\frac{1}{2}+x\biggr) \,du,
+  \quad -1<\Re s<0,\ x\in (0,1].
+\end{equation}
+This equality, which is well-known in analytic number theory, is the key to a simple and direct proof of Hurwitz's formula.
+
+%It is well known that for each $x\in (0,1]$, $\zeta(s,x)$ is extended analytically to $\C\setminus\{1\}$.
+%Considering this extension, the analogue of the equation~\eqref{eq:SFzetaLerch}
+%is also true and it is known and is called as Hurwitz formula.
+
+In the following theorem we give an analytic continuation of the Hurwitz zeta function to the half-plane $\Re s < 0$ by mean of series representation. Here its proof does not depend on the contour integration.
+
+\begin{theorem}
+\label{theo:Hurwitzformula}
+Let $-1<\Re s<0$. Then
+%%
+\begin{equation}
+\label{eq:FHcompacta}
+  \zeta(s,x) = \Gamma(1-s) \sum_{k\in\Z\setminus\{0\}} \frac{e^{2\pi ikx}}{(2\pi ik)^{1-s}},
+  \quad x\in (0,1].
+\end{equation}
+Moreover, for each $x\in (0,1]$, the Fourier series defines an analytic function on $\Re s<0$. Therefore~\eqref{eq:FHcompacta} gives an analytic continuation of the Hurwitz zeta function to $\Re s<0$. By periodicity, we can define $\zeta(s,0)=\zeta(s,1)$ and then~\eqref{eq:FHcompacta} is valid for $x\in[0,1]$ and $\Re s<0$.
+\end{theorem}
+
+\begin{proof}
+% The proof that follows does not need complex integration.
+By uniqueness of the analytic continuation, we can assume that $s$ is a real number in $(-1,0)$. To prove~\eqref{eq:FHcompacta}, it suffices to show that the Fourier coefficients of both sides are equal. Using the reflection formula for the Gamma function, we have $\zeta(s,x)/\Gamma(1-s) = \zeta(s,x)\Gamma(s)\sin(\pi s)/\pi$, and thus it is enough to prove that
+%%
+\begin{equation}
+\label{eq:paso4}
+  \int_0^1 \Gamma(s) \zeta(s,x) e^{-2\pi ikx} \,dx
+  = \frac{\delta_k}{(2\pi ik)^{1-s}} \frac{\pi}{\sin(\pi s)},
+\end{equation}
+%%
+where $\delta_k=1$ if $k\not=0$ and $\delta_0=0$.
+From~\eqref{eq:paso3} and Fubini's theorem (see~\ref{item:fubini}
+%part~(i) of Remark~\ref{rem:facts},
+below), the integral given in~\eqref{eq:paso4} can be expressed as
+%%
+\begin{equation*}
+  \int_0^\infty \left(\int_0^1 \biggl( \frac{e^{u(1-x)}}{e^u-1}-\frac{1}{u}-\frac{1}{2}+x \biggr)
+  e^{-2\pi ikx}\,dx \right) u^{s-1}\,du.
+\end{equation*}
+%%
+The inner integral is immediate: for $k \neq 0$,
+%%
+\begin{equation*}
+  \int_0^1 \biggl(\frac{e^{u(1-x)}}{e^u-1} - \frac{1}{u}-\frac{1}{2}+x\biggr) e^{-2\pi ikx} \,dx
+  = -\frac{1}{2k\pi i}\frac{u}{u+2k\pi i}
+\end{equation*}
+%%
+and for $k = 0$ it is equal to $0$, so we only need to evaluate the integral
+%%
+\begin{equation*}
+  -\frac{1}{2k\pi i} \int_0^\infty \frac{u^s}{u+2k\pi i}\,du.
+\end{equation*}
+%%
+Since (see~\ref{item:integral}
+%part~(ii) of Remark~\ref{rem:facts},
+below)
+%%
+\begin{equation*}
+  \int_0^\infty \frac{u^s}{u+a}\,du = -\frac{\pi}{\sin(\pi s)}\,a^{s},
+  \quad a\in\C\setminus (-\infty,0], \ s\in (-1,0),
+\end{equation*}
+%%
+the proof is complete, save for the technical details which we now fill in.
+\begin{enumerate}
+  \item\label{item:fubini}
+In the Laurent series~\eqref{eq:Laurent}, one has $g_x(u) = \sum_{k=2}^\infty B_k(1-x)\frac{u^k}{k!}$. It is easy to see, for instance using the Fourier expansion of the Bernoulli polynomials, that there exist positive real constants $C,c$ such that $|g_x(u)|\leq C u$ for all $x\in (0,1]$ and $u\in [0,c]$. Therefore
+%%
+\begin{multline*}
+  \int_0^\infty \left(\int_0^1 \biggl| \frac{e^{u(1-x)}}{e^u-1}
+  - \frac{1}{u}-\frac{1}{2}+x \biggr| |e^{-2\pi ikx}|\,dx \right) u^{s-1} \,du
+  \\
+  \leq C\int_0^c u^s\,ds + \int_c^\infty \biggl(\frac{e^{u}}{e^u-1}
+  +\frac{1}{u}+\frac32\biggr) u^{s-1} \, du
+  < +\infty,
+  \quad s\in (-1,0).
+\end{multline*}
+%%
+This justifies the application of Fubini's theorem in~\eqref{eq:paso4}.
+  \item\label{item:integral} One can show that
+$\int_0^\infty \frac{u^s}{u+1}\,du = B(s+1,-s) = -\pi/\sin(\pi s)$, 
+where $B(p,q)$ is Euler's beta function, via real variable methods. If $a>0$, by a change of variable, $\int_0^\infty \frac{u^s}{u+a}\,du = a^s B(s+1,-s) = -a^s\pi/\sin(\pi s)$; finally, by analytic continuation, the same formula is true for $a\in\C\setminus (-\infty,0]$.
+\end{enumerate}
+%%
+\end{proof}
+%%
+
+
+With minor modifications, we can write Hurwitz's formula as follows:
+
+\begin{cor}
+\label{cor:Hurwitzformula}
+For $\Re s>1$ and $x\in [0,1]$,
+%%
+\begin{equation*}
+%\label{eq:FHdesarrollada}
+  \zeta(1-s,x) = \frac{\Gamma(s)}{(2\pi i)^s} \left\{ \sum_{k>0} \frac{e^{2\pi ikx}}{k^s}
+  + e^{i\pi s} \sum_{k<0} \frac{e^{2\pi ikx}}{(-k)^s} \right\}
+\end{equation*}
+%%
+(recall that $\zeta(1-s,0):=\zeta(1-s,1)=\zeta(1-s)$).
+\end{cor}
+%%
+
+%----------------
+\section{Conjugate and flat series of Fourier series}
+\label{sec:conjugate}
+%----------------
+
+We are considering throughout Fourier series on the interval $[0,1]$, that is to say,
+%%
+\begin{equation*}
+  f(x) = \sum_{n\in\Z} \hat{f}(n) e^{2\pi i n x},
+  \quad
+  \hat{f}(n) = \int_0^1 f(t) e^{-2\pi int}\,dt.
+\end{equation*}
+%%
+The conjugate function of an integrable function $f$ on $[0,1]$, extended to $\R$ by $1$-periodicity, is defined by
+%%
+\begin{equation*}
+%\label{eq:defconj}
+  \tilde{f}(x) = \pv \int_{0}^1 f(t-x)\cot(\pi t)\,dt;
+\end{equation*}
+%%
+one verifies that this is a well-defined measurable function. If $f\in L^2([0,1])$ then $\tilde{f}\in L^2([0,1])$ and
+%%
+\begin{equation*}
+%\label{eq:defserieconj}
+  \tilde{f}(x) = \sum_{n\in\Z} - i\sgn (n) \hat{f}(n)e^{2\pi i n x}
+\end{equation*}
+%%
+(with the convention that $\sgn(0)=0$),
+where the series converges in the $L^2$ norm. In the cases in this paper we will have pointwise and even uniform convergence.
+
+The \emph{flat function} $f^\flat$ of a function $f\in L^2([0,1])$ is the function in $L^2([0,1])$ whose Fourier series is
+%%
+\begin{equation*}
+  f^\flat(x) \sim \sum_{n=0}^\infty \hat{f}(n) e^{2\pi i nx}.
+\end{equation*}
+%%
+Sometimes it is also useful to consider the projection on the negative coefficients, given by $f-f^\flat$. The relations between flat and conjugate functions are
+%%
+\begin{equation}
+\label{eq:conjbemol}
+  f^\flat = \frac12 \hat{f}(0) + \frac12(f+i\tilde{f}),\
+  \quad
+  \tilde{f} = -i \big(2f^\flat-f-\hat{f}(0)\big).
+\end{equation}
+%%
+For this and other properties of conjugate functions, see~\cite{Z}.
+
+We wish to analyze the conjugate and flat functions of series of the type~\eqref{eq:mainFS}. We begin with the following lemma, whose proof consists of a simple verification of relations between principal arguments.
+
+\begin{lemma}
+Let $a,s$ be such that $0<\Re a<1$ and $\Re s<0$. Then, for $n\in\N\cup\{0\}$, we have
+%%
+\begin{align*}
+  (2\pi i(n+a))^{1-s} &= (2\pi)^{1-s}e^{(1-s)i\frac{\pi}{2}}(n+a)^{1-s},\ \text{if}\ n\geq 0, \\
+  (-2\pi i(n-a))^{1-s} &= (2\pi)^{1-s}e^{-(1-s)i\frac{\pi}{2}}(n-a)^{1-s},\ \text{if}\ n\geq 1,  \\
+  (2\pi i(n-a))^{1-s} &= (2\pi)^{1-s}e^{(1-s)i\frac{\pi}{2}}(n-a)^{1-s},\ \text{if}\ n\geq 1, \\
+  (-2\pi i(n+a))^{1-s} &= (2\pi)^{1-s}e^{-(1-s)i\frac{\pi}{2}}(n+a)^{1-s},\ \text{if}\ n\geq 0.
+\end{align*}
+%%
+\end{lemma}
+
+With these formulas we can separate negative and non-negative indices as follows:
+%%
+\begin{multline*}
+  \sum_{n\in\Z} \frac{e^{2\pi inx}}{(2\pi i(n+a))^{1-s}}
+  = \sum_{n\geq 0} \frac{e^{2\pi inx}}{(2\pi i(n+a))^{1-s}}
+  + \sum_{n>0}\frac{e^{-2\pi inx}}{(-2\pi i(n-a))^{1-s}}
+  \\
+  = (2\pi)^{s-1}e^{(s-1)i \frac{\pi}{2}} \sum_{n\geq 0}\frac{e^{2\pi inx}}{(n+a)^{1-s}}
+  + (2\pi)^{s-1}e^{-(s-1)i\frac{\pi}{2}} \sum_{n> 0}\frac{e^{-2\pi inx}}{(n-a)^{1-s}}.
+\end{multline*}
+%%
+Hence,
+%%
+\begin{multline}
+\label{eq:ecufunc1}
+  \sum_{n\in\Z} \frac{e^{2\pi inx}}{(2\pi i(n+a))^{1-s}}
+  \\
+  = (2\pi)^{s-1} \left( e^{(s-1)i\frac{\pi}{2}} \sum_{n\geq 0}
+  \frac{e^{2\pi inx}}{(n+a)^{1-s}} + e^{-(s-1)i\frac{\pi}{2}}
+  \sum_{n> 0} \frac{e^{-2\pi inx}}{(n-a)^{1-s}}\right).
+\end{multline}
+%%
+Similarly,
+%%
+\begin{multline}
+  \label{eq:ecufunc2}
+  \sum_{n\in\Z}\frac{e^{-2\pi inx}}{(2\pi i(n-a))^{1-s}}
+  \\
+  = (2\pi)^{s-1} \left( e^{(s-1)i\frac{\pi}{2}}
+  \sum_{n> 0} \frac{e^{-2\pi inx}}{(n-a)^{1-s}}
+  + e^{-(s-1)i\frac{\pi}{2}} \sum_{n\geq 0}
+  \frac{e^{2\pi inx}}{(n+a)^{1-s}}\right).
+\end{multline}
+%%
+
+Having separated the series in this manner, the remaining sums are clearly related to the series~\eqref{eq:mainFS} defining $F(a,s,x)$, except the sums which are extended only over non-negative integers. To get these half-sums from~\eqref{eq:mainFS}, 
+since that series converges uniformly for $x \in [0,1]$ and fixed $s$ with $\Re s > 1$, we have
+%%
+\begin{equation*}
+%\label{eq:mainFS}
+  F^\flat(a,s,x) = \sum_{n\geq 0}^\infty\frac{e^{2\pi i nx}}{(n+a)^s},
+  \quad \tilde{F}(a,s,x) = \sum_{n=-\infty}^\infty -i\sgn(n) \frac{e^{2\pi i nx}}{(n+a)^s},
+\end{equation*}
+%%
+where both series are also uniformly convergent. Now~\eqref{eq:ecufunc1},~\eqref{eq:ecufunc2} and Theorem~\ref{theo:SFparaL} allow us to express these functions in terms of the Lerch function~$L$.
+
+\begin{theorem}
+\label{theo:FintermsofL}
+Let $a\in\{0<\sigma<1\}$ and $\Re s<0$. Then, for $x\in[0,1]$, we have
+%%
+\begin{enumerate}
+  \item\label{item:Fb}
+   $\displaystyle 2^s\pi^{s-1}\sin(\pi s)\Gamma(1-s)e^{2\pi iax}F^{\flat}(a,1-s,x)$
+\[
+\qquad\qquad=
+   e^{i\pi\frac s2}L(-a,s,x)+ e^{i\pi(-\frac s2 +2a)}L(a,s,1-x);
+\]
+  \item\label{item:F} 
+  $\displaystyle 2^s\pi^{s-1}\sin(\pi s)\Gamma(1-s)e^{2\pi iax}F(a,1-s,x)$
+\[
+\qquad\qquad=
+  \begin{cases}
+    2\sin(\pi s)e^{i\pi(\frac12-\frac s2)}L(-a,s,x), & \text{if $\Im a>0$,} \\
+    2\sin(\pi s)e^{i\pi(-\frac12+\frac s2 +2a)}L(a,s,1-x), & \text{if $\Im a\leq 0$;}
+  \end{cases}
+\]
+  \item\label{item:Fconj} 
+  $\displaystyle 2^s\pi^{s-1}\sin(\pi s)\Gamma(1-s)e^{2\pi iax}
+  \left(i\tilde{F}(a,1-s,x)+a^{s-1}\right)$
+\[
+=
+  \begin{cases}
+    2\cos(\pi s)e^{-i\pi\frac s2}L(-a,s,x) + 2e^{i\pi(-\frac s2 +2a)}L(a,s,1-x),
+    & \text{if $\Im a>0$,}
+    \\
+    2e^{i\pi\frac s2}L(-a,s,x) + 2\cos(\pi s)e^{i\pi(\frac s2 +2a)}L(a,s,1-x), 
+    & \text{if $\Im a\leq 0$}.
+  \end{cases}
+\]
+% The first line is for $\Im a>0$ and the second line is for $\Im a\leq 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Multiplying~\eqref{eq:ecufunc1} by $e^{(s-1)i\frac{\pi}{2}}$,~\eqref{eq:ecufunc2} by $e^{-(s-1)i\frac{\pi}{2}}$ and subtracting, we get
+%%
+\begin{multline*}
+  (2\pi)^{1-s} \left(e^{(s-1)i\frac{\pi}{2}}
+  \sum_{n\in\Z}\frac{e^{2\pi inx}}{(2\pi i(n+a))^{1-s}}
+  - e^{-(s-1)i\frac{\pi}{2}} \sum_{n\in\Z}\frac{e^{-2\pi inx}}{(2\pi i(n-a))^{1-s}}\right)
+  \\
+  = \left(e^{(s-1)i\pi}-e^{-(s-1)i\pi}\right) \sum_{n\geq 0} \frac{e^{2\pi inx}}{(n+a)^{1-s}}.
+\end{multline*}
+%%
+Now, the first part of Theorem~\ref{theo:SFparaL} and an easy manipulation imply~\ref{item:Fb}. Similarly, from~\eqref{eq:ecufunc1} and~\eqref{eq:ecufunc2} we obtain
+%%
+\begin{multline*}
+%  \label{eq:despejelaotraparte}
+  (2\pi)^{1-s} \left(e^{-is\frac{\pi}{2}}
+  \sum_{n\in\Z}\frac{e^{2\pi inx}}{(2\pi i(n+a))^{1-s}}
+  + e^{is\frac{\pi}{2}} \sum_{n\in\Z} \frac{e^{-2\pi inx}}{(2\pi i(n-a))^{1-s}}\right)
+  \\
+  = 2\sin(\pi s) \sum_{n> 0} \frac{e^{-2\pi inx}}{(n-a)^{1-s}}.
+\end{multline*}
+%%
+Then,
+%%
+\begin{multline*}
+% \label{eq:bemolnegativa}
+  \sum_{n< 0} \frac{e^{2\pi inx}}{(n+a)^{1-s}} = \sum_{n> 0} \frac{e^{-2\pi inx}}{(-(n-a))^{1-s}}
+  \\ =
+  \begin{cases}
+    e^{-\pi i(s-1)}\sum_{n> 0}\frac{e^{-2\pi inx}}{(n-a)^{1-s}}, & \text{if $\Im a>0$,} \\
+    e^{\pi i(s-1)}\sum_{n> 0}\frac{e^{-2\pi inx}}{(n-a)^{1-s}}, & \text{if $\Im a\leq 0$.}
+  \end{cases}
+\end{multline*}
+%%
+Observe that these calculations depend on $a$ because, if $w\not=0$ and $s\in\C$,
+%%
+\begin{equation*}
+%\label{eq:potencias}
+  (-w)^{s-1} =
+  \begin{cases}
+    w^{s-1}e^{-\pi i(s-1)}, & \text{if $\arg w\in(0,\pi]$,} \\
+   w^{s-1}e^{\pi i(s-1)}, & \text{if $\arg w\in(-\pi,0]$.}
+  \end{cases}
+\end{equation*}
+%%
+Now, we can appeal again to Theorem 3 to express the sum over negative $n$ in terms of $L$. Adding the expression~\ref{item:Fb} for the flat function, yields~\ref{item:F}. Finally,~\ref{item:Fb}, \ref{item:F} and~\eqref{eq:conjbemol} give~\ref{item:Fconj}.
+\end{proof}
+
+Note that Theorem~\ref{theo:FintermsofL} allows us to recover the flat and conjugate functions in terms of the Lerch function only when $\sin(\pi s)\not=0$. In the remaining case, we have the following result.
+
+\begin{cor}
+Let $s=1-k$ with $k\in \N \setminus\{1\}$. Then
+%%
+\begin{equation*}
+%\label{eq:simApBer}
+    (-1)^{k}  L(-a,1-k,x)
+  = e^{2\pi i a }L(a,1-k,1-x).
+\end{equation*}
+%%
+\end{cor}
+
+This is a well-known symmetry property of the Apostol-Bernoulli polynomials (see~\eqref{eq:defABviaLerch} below to recall their definition); namely, with $\lambda=e^{2\pi ia}$, it says that $\B_{k}(1-x;\lambda) = (-1)^{k} \lambda^{-1} \B_{k}(x;\lambda^{-1})$. We analyze their conjugate functions in Section~\ref{sec:ABconjugate}.
+
+The calculation of conjugate and flat series is easier in the following simple result. This can be applied to Hurwitz's formula.
+
+\begin{lemma}
+\label{lem:casosencillo}
+Let $f\in L^2([0,1])$ have a Fourier series of the type
+\begin{equation*}
+  f(x) = \sum_{k>0} \hat{f}(k)e^{2\pi ikx} + \alpha \sum_{k<0}\hat{f}(-k)e^{2\pi ikx},
+\end{equation*}
+%%
+where $\alpha\in\C \setminus \{\pm1\}$ is a constant. Then
+\begin{align*}
+  f^\flat(x) &= \frac{1}{1-\alpha^2}f(x) - \frac{\alpha}{1-\alpha^2}f(1-x), \\
+  i\tilde{f}(x) &= \frac{1+\alpha^2}{1-\alpha^2}f(x) - \frac{2\alpha}{1-\alpha^2} f(1-x).
+\end{align*}
+%%
+\end{lemma}
+
+\begin{proof}
+Observe that
+%%
+\begin{align*}
+  f(1-x) &= \sum_{k>0} \hat{f}(k)e^{-2\pi ikx} + \alpha \sum_{k<0} \hat{f}(-k)e^{-2\pi ikx} \\
+  &= \sum_{k<0} \hat{f}(-k)e^{2\pi ikx} + \alpha \sum_{k>0} \hat{f}(k) e^{2\pi ikx}.
+\end{align*}
+%%
+Hence
+%%
+\begin{equation*}
+  \frac{f(x)}{\alpha}-f(1-x) = \biggl(\frac{1}{\alpha}- \alpha\biggr) \sum_{k>0}\hat{f}(k)e^{2\pi ikx}.
+\end{equation*}
+%%
+From this we obtain the formula for $f^\flat(x)$ and, by~\eqref{eq:conjbemol}, for $\tilde{f}(x)$.
+\end{proof}
+
+%----------------
+\section{Functional equations}
+\label{sec:funequation}
+%----------------
+
+%----------------
+\subsection{The case \texorpdfstring{$a\not=0$}{a!=0}}
+%----------------
+
+\begin{theorem}[Functional equation of the Lerch zeta function]
+\label{theo:ecufuncional}
+Let $0 < \Re a < 1$,
+ % $a\in\{0<\sigma<1\}$, 
+$\Re s<0$ and $x\in[0,1]$. Then
+%%
+\begin{multline}
+\label{eq:ecufunLerchzeta}
+  L(-a,s,x) = \Gamma(1-s)(2\pi)^{s-1}
+  \\
+  \times \left(e^{\pi i(\frac{s}{2}-\frac12+2ax)}L(x,1-s,a)
+  + e^{\pi i(-\frac{s}{2} + \frac12+2x(a-1))} L(1-x,1-s,1-a) \right).
+\end{multline}
+%%
+\end{theorem}
+
+\begin{proof}
+In~\eqref{eq:ecufunc1}, write
+%%
+\begin{equation*}
+  \sum_{n> 0} \frac{e^{-2\pi inx}}{(n-a)^{1-s}}
+  = e^{-2\pi ix} \sum_{n\geq 0} \frac{e^{-2\pi inx}}{(n+1-a)^{1-s}},
+\end{equation*}
+%%
+then apply the first part of Theorem~\ref{theo:SFparaL} to the left-hand side of~\eqref{eq:ecufunc1}, use the definition of $L$ itself on the right-hand side, and we are done.
+\end{proof}
+
+% ??????
+% La proof consiste en manipulaciones parecidas a las usadas para obtener el teorema 8.
+% Es una pena que no sea propiamente un corolario directo del teorema 8.
+
+\begin{remark}
+If we write~\eqref{eq:ecufunLerchzeta} in terms of the Lerch transcendent function $\Phi$, that is, set $\lambda=e^{-2\pi i a}$, we obtain \emph{Lerch's transformation formula,} as denoted in~\cite[Eq.~(7), p.~29]{Bate}.
+\end{remark}
+
+
+%----------------
+\subsection{The case \texorpdfstring{$a=0$}{a=0}}
+%----------------
+
+When $\alpha=e^{i\pi s}$, Lemma~\ref{lem:casosencillo} and Corollary~\ref{cor:Hurwitzformula} allow us to express the  flat and conjugate functions of the Hurwitz zeta function,
+%%
+\begin{equation*}
+  \zeta^\flat(1-s,x)= \Gamma(s)\sum_{k>0}\frac{e^{2\pi ikx}}{(2\pi ik)^s},
+  \quad
+  \tilde{\zeta}(1-s,x) = \Gamma(s)\sum_{k\in\Z\setminus\{0\}}
+  -i\sgn(k) \frac{e^{2\pi ikx}}{(2\pi ik)^s}
+\end{equation*}
+%%
+in terms of $\zeta(1-s,x)$ and $\zeta(1-s,1-x)$. The result is given in the following theorem.
+
+\begin{theorem}
+\label{theo:zbz}
+For $\Re s>1$, $s\not=n\in\Z$ and $x\in [0,1]$,
+\begin{enumerate}
+  \item\label{item:zbz-bemol}
+  $
+    \displaystyle (1-e^{2\pi is}) \zeta^{\flat}(1-s,x)
+  =  \zeta(1-s,x)-e^{i\pi s}\zeta(1-s,1-x)
+  $;
+
+  \item\label{item:zbz-conj}
+  $
+    \displaystyle \sin(\pi s) \tilde{\zeta}(1-s,x)
+  = \cos(\pi s) \zeta(1-s,x) - \zeta(1-s,1-x)
+  $.
+\end{enumerate}
+\end{theorem}
+
+As a special case, we recover the functional equation of the Riemann zeta function.
+
+\begin{cor}[Riemann's functional equation]
+\label{cor:funceqZeta}	
+%%
+\begin{equation*}
+  \zeta(s) = \sin\Big(\frac{\pi s}{2}\Big) \Gamma(1-s)2^{s}\pi^{s-1}\zeta(1-s).
+\end{equation*}
+%%
+\end{cor}
+
+\begin{proof}
+With slight modifications and an application of the reflection formula $\Gamma(s)\Gamma(1-s) = \pi/\sin(\pi s)$, this is~\ref{item:zbz-bemol} of Theorem~\ref{theo:zbz} for $x=0$, since the left side is equal to $\zeta(s)\Gamma(s)/(2\pi i)^s$ by definition.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{theo:zbz} also holds when $s=n+1$ with $n\in\N$. But in this case the conjugate and flat functions are canceled and the formula expresses the well-known symmetry property of the Bernoulli polynomials, $B_n(1-x) = (-1)^n B_n(x)$.
+\end{remark}
+
+\begin{remark} 
+One also finds Hurwitz's formula in the following classical form: 
+%%
+\begin{equation*}
+%\label{eq:FHsenoscosenos}
+\begin{aligned}
+  \zeta(1-s,x) &= \frac{2\Gamma(s)}{(2 \pi)^s}
+  \left( \cos\frac{\pi s}{2}\sum_{k>0}\frac{\cos(2\pi kx)}{k^s}
+  + \sin\frac{\pi s}{2} \sum_{k>0} \frac{\sin(2\pi kx)}{k^s} \right)
+  \\
+  &= \frac{2\Gamma(s)}{(2 \pi)^s}\sum_{k>0}\frac{\cos(2\pi kx-\pi s/2)}{k^s}.
+\end{aligned}
+\end{equation*}
+%%
+The corresponding conjugate formula in the same form is
+%%
+\begin{equation}
+\label{eq:FHconjsenoscosenos}
+\begin{aligned}
+  \tilde{\zeta}(1-s,x) &= \frac{2\Gamma(s)}{(2 \pi)^s}
+  \left( \cos\frac{\pi s}{2}\sum_{k>0}\frac{\sin(2\pi kx)}{k^s}
+  - \sin\frac{\pi s}{2} \sum_{k>0} \frac{\cos(2\pi kx)}{k^s} \right)
+  \\
+  &= \frac{2\Gamma(s)}{(2 \pi)^s} \sum_{k>0} \frac{\sin(2\pi kx-\pi s/2)}{k^s}.
+\end{aligned}
+\end{equation}
+\end{remark}
+%%
+
+%----------------
+\section{Conjugate functions of Apostol-Bernoulli polynomials}
+\label{sec:ABconjugate}
+%----------------
+
+%----------------
+\subsection{The case \texorpdfstring{$a\not=0$}{a!=0} and integer \texorpdfstring{$s$}{s}: Apostol-Bernoulli polynomials}
+\label{subsec:ApBer}
+%----------------
+
+The Apostol-Bernoulli polynomials are usually defined via the generating function 
+%%
+\begin{equation}
+\label{eq:GF-AB}
+  g(z,\lambda,t) \stackrel{\text{\tiny def}}{=}
+    \frac{t e^{zt}}{\lambda e^{t} - 1}
+  = \sum_{k=0}^{\infty} \B_{k}(z;\lambda) \frac{t^{k}}{k!}.
+\end{equation}
+%%
+However, Apostol in~\cite{Ap} first introduced them via their relation to the Lerch transcendent:
+%%
+\begin{equation}
+\label{eq:defABviaLerch}
+  \Phi(\lambda,1-k,z) = -\frac{\B_k(z;\lambda)}{k},
+\end{equation}
+%%
+which generalizes the well-known formula for the values of the Hurwitz and Riemann zeta functions at the negative integers in terms of Bernoulli polynomials and numbers respectively. If $|\lambda|<1$, we can use~\eqref{eq:Lerch2} to show that $\B_k(z;\lambda)$, as defined in terms of the Lerch transcendent, is indeed a polynomial of degree $k-1$ in the variable $z$, with coefficients that are rational functions of $\lambda$ having a unique pole at $\lambda = 1$. It is then trivial to extend the definition of $\B_{k}(z;\lambda)$ to all $\lambda\in\C\setminus\{1\}$. In what follows, we shall exclude the trivial case $\lambda=0$ and the case $\lambda=1$, corresponding to the Bernoulli polynomials.
+
+
+We have already proved by analytic continuation that, for $\lambda\in\C\setminus[1,+\infty)$ and $k\in \N \setminus \{1\}$,
+%%
+\begin{equation}
+\label{eq:FSApostolBer}
+  \B_k(x;\lambda) = -\lambda^{-x}\,k! \sum_{n\in\Z} \frac{e^{2n\pi i x}}{(2n\pi i-\log\lambda)^k},
+  \quad x\in[0,1].
+\end{equation}
+%%
+Again by analytic continuation, it is easy to see that the above equality is true for $\lambda \in \C\setminus\{1\}$. The Fourier series is also valid for $k=1$ if we restrict to $x\in (0,1)$; this is a trivial case since $\B_1(x;\lambda) = 1/(\lambda-1)$ and calculating the Fourier coefficients of $\lambda^x \B_1(x;\lambda)$ is straightforward. In the following, it will be more convenient to change the parameter to $\lambda=e^{-2\pi ia}$, $a\not=0$, and write 
+%%
+\begin{equation*}
+  \B_k(x;\lambda) = -\frac{k!}{(2\pi i)^k} \, e^{2\pi i ax} \sum_{n\in\Z} \frac{e^{2n\pi i x}}{(n+a)^k}.
+\end{equation*}
+%%
+
+%\begin{remark}
+We can also deduce the generating function~\eqref{eq:GF-AB} of the Apostol-Bernoulli polynomials using Fourier Analysis. It suffices to check that the functions
+$\lambda^x g(x,\lambda,t)$ and $\sum_{n\geq 1} \lambda^x \B_n(x;\lambda)\, \frac{t^n}{n!}$ have the same Fourier coefficients. Taking $t$ small enough to ensure the validity of exchanging sums and integrals, one finds that the $k$-th Fourier coefficient of the first function is
+%%
+\begin{equation*}
+  \frac{t}{e^{t-2\pi i(k+a)}-1} \int_0^1 e^{-2\pi i a x}e^{xt}e^{2\pi ikx}\,dx
+  = \frac{t}{t-2\pi i(k+a)}
+\end{equation*}
+%%
+while for the second function, using the Fourier expansion of $\B_{n}(x;\lambda)$, we find that it leads to the same expression:
+%%
+\begin{equation*}
+  \sum_{n=1}^\infty \frac{-n!}{(2\pi i(k+a))^n} \frac{t^n}{n!}
+  = - \sum_{n=1}^\infty \left(\frac{t}{2\pi i(k+a)}\right)^n
+  = \frac{t}{t-2\pi i(k+a)},
+\end{equation*}
+%%
+as we claimed.
+%\end{remark}
+
+Let us now study the conjugate functions of the Apostol-Bernoulli polynomials. For
+%\begin{definition}
+$\lambda=e^{-2\pi ia}$, $k\geq 2$ and $x\in [0,1]$, we denote
+%%
+\begin{equation}
+\label{eq:conjAB}
+  \tilde{\B}_k(x;\lambda) = -\frac{k!}{(2\pi i)^k} \, e^{2\pi i ax} \sum_{n\in\Z} -i\sgn(n)\frac{e^{2n\pi i x}}{(n+a)^k}.
+\end{equation}
+%%
+%\end{definition}
+%
+%\begin{remark}
+In terms of conjugate functions, $\tilde{\B}_k(x;\lambda)\lambda^x$ is the conjugate function of $\B_k(x;\lambda)\lambda^x$. Note also that for $k = 1$,
+$\tilde{\B}_k(x;\lambda)$ is well defined as an~$L^2$ function.
+%\end{remark}
+We then find the following generating function for the family~$\tilde{\B}_k$.
+
+
+\begin{prop}
+\label{prop:genconjAB}
+Let
+%%
+\begin{equation*}
+  E(x,\omega) = \pv \int_{0}^1 e^{\omega y} \cot(\pi(x- y))\,dy.
+\end{equation*}
+%%
+The generating function of the conjugate functions $\tilde{\B}_k(x;\lambda)$ is given by
+%%
+\begin{equation*}
+  \sum_{k=1}^\infty \tilde{\B}_k(x;\lambda)\, \frac{z^k}{k!}
+  = \frac{z}{\lambda e^z -1} E(x,z-2\pi ia).
+\end{equation*}
+%%
+\end{prop}
+
+\begin{proof}
+We only need to compare the Fourier coefficients of $\sum \lambda^x \tilde{\B}_k(x;\lambda) \frac{z^k}{k!}$ and the coefficients of the conjugate function of the $1$-periodic function whose restriction to $[0,1)$ is $\lambda^x g(x,\lambda,z)$ (see~\eqref{eq:GF-AB}). Since this conjugate function is
+%%
+\begin{equation*}
+  \frac{z}{\lambda e^z -1} \pv \int_{0}^1 e^{(z-2\pi ia)y} \cot(\pi(x- y))\,dy,
+\end{equation*}
+%%
+the conclusion is immediate.
+\end{proof}
+
+\begin{remark}
+Another way of writing the conjugate function above is given as
+%%
+\begin{multline*}
+  \frac{z\lambda e^{xz}}{\lambda e^z -1} \left(\int_0^x e^{-yz} \cot(\pi y)\,dy
+  + \lambda e^z \int_x^1 e^{-yz}\cot(\pi y)\,dy\right)
+  \\
+  = \frac{z\lambda e^{xz}}{\lambda e^z -1}\left(\int_0^1 e^{-yz}\cot(\pi y)\,dy
+  + (\lambda e^z-1) \int_x^1 e^{-yz}\cot(\pi y)\,dy\right),
+\end{multline*}
+%%
+where the integrals are principal values (the ``bad'' behavior near $0$ is canceled by that near~$1$). This form of the formula is closer to the one used in~\cite[\S\,7]{Ha}, which deals with Bernoulli polynomials and their conjugate functions (see also Proposition~\ref{prop:genconjB} below).
+\end{remark}
+
+%----------------
+\subsection{The case \texorpdfstring{$a=0$}{a=0} and integer \texorpdfstring{$s$}{s}: Bernoulli polynomials}
+\label{subsec:Ber}
+%----------------
+
+The usual way of defining the Bernoulli polynomials is by means of the generating function
+%%
+\begin{equation*}
+%\label{eq:GF-Apostol}
+  \frac{z e^{xz}}{e^z-1} = \sum_{k=0}^\infty B_k(x)\, \frac{z^k}{k!},
+  \quad |z| < 2\pi.
+\end{equation*}
+%%
+Alternatively, as Apostol does for the Apostol-Bernoulli polynomials, they may be defined via their relation to the Hurwitz zeta function:
+%%
+\begin{equation*}
+  \zeta(1-n,x) = -\frac{B_n(x)}{n},
+  \quad n\in \N.
+\end{equation*}
+%%
+When $n\in \N \setminus\{1\}$,~\eqref{eq:FHcompacta} provides the Fourier expansion of $B_n(x)$ on $[0,1]$. It is customary to separate the even and odd cases, leading to the formulas
+%%
+\begin{equation}
+  \label{eq:FBpar}
+  B_{2k}(x) = \frac{2(-1)^{k-1}(2k)!}{(2\pi)^{2k}} \sum_{n=1}^\infty \frac{\cos(2\pi n x)}{n^{2k}},
+  \quad k\in \N,
+\end{equation}
+%%
+and
+%%
+\begin{equation}
+\label{eq:FBimpar}
+  B_{2k+1}(x) = \frac{2(-1)^{k-1}(2k+1)!}{(2\pi)^{2k+1}} \sum_{n=1}^\infty \frac{\sin(2\pi n x)}{n^{2k+1}},
+  \quad k\in \N.
+\end{equation}
+%%
+The series converge uniformly on $[0,1]$. In addition,~\eqref{eq:FBimpar} is valid for $k=0$, but restricting $x$ to $(0,1)$.
+%In what follows, we shall denote by $b_j(x)$ the $1$-periodic function 
+%on $\R$ that coincides with $B_{j}(x)$ on $[0,1)$.
+
+The conjugate series of~\eqref{eq:FBpar} and~\eqref{eq:FBimpar} were introduced in~\cite{Ha}. They are given by
+%%
+\begin{equation}
+%\label{eq:FBconjpar}
+  \tilde{B}_{2k}(x) = \frac{2(-1)^{k-1}(2k)!}{(2\pi)^{2k}} 
+  \sum_{n=1}^\infty \frac{\sin(2\pi n x)}{n^{2k}},
+  \quad k\in \N,
+\end{equation}
+%%
+and
+%%
+\begin{equation}
+%\label{eq:FBconjimpar}
+  \tilde{B}_{2k+1}(x) = -\frac{2(-1)^{k-1}(2k+1)!}{(2\pi)^{2k+1}} 
+  \sum_{n=1}^\infty \frac{\cos(2\pi n x)}{n^{2k+1}},
+  \quad k\in \N.
+\end{equation}
+%%
+Of course, these functions (which are $1$-periodic) are not polynomials, not even on the interval $[0,1)$. Only $\tilde{B}_1$ has a nice closed form as follows:
+%%
+\begin{equation*}
+  \tilde{B}_{1}(x) = \frac{1}{\pi} \sum_{n=1}^\infty \frac{\cos(2\pi nx)}{n}
+  = -\frac{1}{\pi}\log(2\sin(\pi x)),
+  \quad x\in (0,1).
+\end{equation*}
+%%
+By analogy with the Bernoulli numbers $B_{j}=B_{j}(0)$, we define $\tilde{B}_{j}=\tilde{B}_{j}(0)$, $j\in \N \setminus\{1\}$, and call them the \emph{conjugate Bernoulli numbers.} Their interest lies in their relation to the values of the Riemann zeta function at odd positive integers:
+%%
+\begin{equation*}
+  \tilde{B}_{2k+1} = -\frac{2(-1)^{k-1}(2k+1)!}{(2\pi)^{2k+1}} \, \zeta(2k+1).
+\end{equation*}
+%%
+As in the case of the Apostol-Bernoulli polynomials, one can easily obtain a generating function for these conjugate functions.
+
+\begin{prop}
+\label{prop:genconjB}
+For fixed $t$ with $|t|<2 \pi$,
+%%
+\begin{equation*}
+  \sum_{k=1}^\infty \frac{\tilde{B}_k(x)}{k!} \, t^k
+  = \frac{t\,\tilde{E}(x,t)}{e^t-1},\quad \text{a.e. } x\in\R.
+\end{equation*}
+%%
+\end{prop}
+
+\begin{proof}
+As in Proposition~\ref{prop:genconjAB}, it is enough to compute the Fourier coefficients of both sides, and this is straightforward using $\widehat{\tilde{f}}(n) = -i\sgn(n)\hat{f}(n)$.
+\end{proof}
+
+%----------------
+\subsection{Some consequences derived from the Fourier series}
+\label{subsec:ConseqFS}
+%----------------
+
+We present some results that are straightforward applications of Fourier analysis, but can be more complicated without it. The following proposition and its corollary have an immediate analogue for Apostol-Bernoulli polynomials, although we shall state it for Bernoulli polynomials in order to maintain a simpler notation and also to allow the reader to compare it with results in the same vein in~\cite{Ha}.
+
+We shall denote by $b_j(x)$ the $1$-periodic function on $\R$ that coincides with $B_{j}(x)$ on $[0,1)$.
+
+\begin{prop}
+Let $f*g$ denote the $1$-periodic convolution of $f$ and~$g$.
+The following relations hold, provided the indices of the functions involved are greater than or equal to~$1$:
+%%
+\begin{equation*}
+  \tilde{B}_{2k+2j+1}(x) = -\binom{2k+2j+1}{2k} b_{2k} * \tilde{B}_{2j+1}(x)
+  = -\binom{2k+2j+1}{2k} \tilde{B}_{2k} * b_{2j+1} (x)
+\end{equation*}
+%%
+and
+%%
+\begin{equation*}
+  \tilde{B}_{2k+2j+2}(x) = -\binom{2k+2j+2}{2k} \tilde{B}_{2k} * b_{2j+2}(x)
+  = \binom{2k+2j+2}{2k+1} b_{2k+1} * \tilde{B}_{2j+1} (x).
+\end{equation*}
+%%
+\end{prop}
+
+\begin{proof}
+Let $\gamma_{2k} = \frac{2(-1)^{k-1}(2k)!}{(2\pi)^{2k}}$
+and $\gamma_{2k+1} = \frac{2(-1)^{k-1}(2k+1)!}{(2\pi)^{2k+1}}$.
+The Fourier coefficients of $\tilde{B}_{j}$ and $b_{j}$ are $0$ for $k=0$ and
+%%
+\begin{gather*}
+  \hat{b}_{2k}(n) = \frac{\gamma_{2k}}{2 |n|^{2k}},
+  \quad
+  \hat{b}_{2k+1}(n) = \frac{\gamma_{2k+1} \sgn (n)}{2 i |n|^{2k+1}},
+  \\
+  \widehat{\tilde{B}_{2k}}(n) = \frac{\gamma_{2k} \sgn (n)}{2 i |n|^{2k}},
+  \quad
+  \widehat{\tilde{B}_{2k+1}}(n) = -\frac{\gamma_{2k+1}}{2 |n|^{2k+1}},
+\end{gather*}
+%%
+for $k\not=0$. It then suffices to compare Fourier coefficients, recalling that $\widehat{f*g}(k) = \hat{f}(k)\hat{g}(k)$.
+\end{proof}
+
+
+A simple consequence of this, which also shows an alternative way of expressing the convolution, is as follows:
+% We should not forget that $b_j$ are $1$-periodic functions that we know in the interval $[0,1]$.
+
+\begin{cor}
+Let $j\in \N \setminus\{1\}$. For $x\in [0,1]$, we have
+%%
+\begin{multline*}
+  \frac{\pi}{j}(-1)^{[j/2]-1} \tilde{B}_{j}(x)
+  = \int_0^1 b_{j-1}(x-t) \log(2\sin(\pi t))\,dt
+  \\
+  = \int_0^1 B_{j-1}(t) \log\big(2|\sin(\pi(x-t))|\big)\,dt
+  \\
+  = \int_0^x B_{j-1}(x-t) \log(2\sin(\pi t))\,dt
+  +\int_x^1 B_{j-1}(x-t+1) \log(2\sin(\pi t))\,dt.
+\end{multline*}
+%%
+\end{cor}
+
+The next application involves M\"obius inversion of Fourier series having an arithmetically simple form, to which the general framework developed in~\cite{BNV} can be applied in a straightforward manner. This includes the Fourier series of the Bernoulli polynomials, studied in~\cite{NRV-JAT}, and more generally, of the Apostol-Bernoulli polynomials. For example, in~\cite{Bayad} and~\cite{NRV-MC2}, it is shown that
+\begin{multline*}
+\qquad
+  \frac{e^{2 \pi i x}}{(2 \pi i - \log \lambda)^k}
+    + \frac{(-1)^k e^{-2 \pi i x}}{(2 \pi i + \log \lambda)^k}
+  \\
+  = - \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{k}}
+    \left(
+    \frac{\lambda^{\{nx\}/n}}{k!} \B_{k}(\{nx\};\lambda^{1/n}) + \frac{n^{k}}{(-\log \lambda)^{k}}
+    \right),
+\qquad
+\end{multline*}
+where $\mu$ denotes the M\"obius function, defined by $\mu(1)=1,$ $\mu(n)=(-1)^k$ if $n\in \N \setminus\{1\}$ is the product of $k$ distinct primes, and $0$ otherwise.
+
+The reader may check that the same procedure outlined in these references can be used to obtain the conjugate version of the above formula, that is, the M\"obius inverse of~\eqref{eq:conjAB}, written in terms of the parameter $\lambda = e^{-2\pi i a}$. The result is as follows.
+
+\begin{theorem}
+\label{th:mobiusconjB}
+For $k\in \N \setminus\{1\}$, $\lambda \in \C \setminus \{0,1\}$ and $x \in [0,1)$, we have
+%%
+\begin{multline*}
+%\qquad
+  \frac{e^{2 \pi i x}}{(2 \pi i - \log \lambda)^k}
+    - \frac{(-1)^k e^{-2 \pi i x}}{(2 \pi i + \log \lambda)^k}
+% \\
+  = - i \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{k}}
+    \left(
+    \frac{\lambda^{\{nx\}/n}}{k!} \tilde{\B}_{k}(\{nx\};\lambda^{1/n})
+    \right).
+%\qquad
+\end{multline*}
+%%
+\end{theorem}
+
+The Fourier series can also be used to deduce results about the asymptotic behavior of the functions they represent. Namely, one can obtain asymptotic series with simple explicit bounds on the error term, and use them to understand the growth of the functions and also certain limiting oscillatory phenomena brought to light by the Fourier expansions. We have done this for the classical Bernoulli and Euler polynomials in~\cite{NRV-JAT}, for the Apostol-Bernoulli and Apostol-Euler polynomials in~\cite{NRV-MC}, and for the Lerch transcendent in~\cite{NRV-JAT2}. Clearly one will have analogous results for the conjugate functions in each case. Rather than state the results explicitly here, we refer the reader to the aforementioned papers, since it is straightforward to combine the method used there with the techniques and formulas given here to obtain the corresponding asymptotic series if one so desires.
+
+
+%:bibliography
+%--------------------------------------
+\begin{thebibliography}{00}
+%--------------------------------------
+
+\bibitem{Ap}
+T. M. Apostol,
+On the Lerch zeta function,
+\textit{Pacific J. Math.}
+\textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+\bibitem{Bayad}
+A. Bayad and J. Chikhi,
+M\"obius inversion formulae for Apostol-Bernoulli type polynomials and numbers,
+\textit{Math. Comp.}
+\textbf{82} (2013),
+2327--2332.
+
+\bibitem{BNV}
+M. Benito, L. M. Navas and J. L. Varona,
+M\"{o}bius inversion formulas for flows on arithmetic semigroups,
+\textit{J. Number Theory}
+\textbf{128} (2008),
+390--412.
+
+\bibitem{Bate} % Bateman project
+A. Erd\'{e}lyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+\textit{Higher Transcendental Functions}, Volume~I,
+McGraw-Hill, New York, 1953.
+
+\bibitem{Ganzburg}
+M. I. Ganzburg,
+Polynomial interpolation and asymptotic representations for zeta functions, 
+\textit{Dissertationes Math. (Rozprawy Mat.)} \textbf{496} (2013), 117~pp.
+
+\bibitem{Ha} M. Hauss,
+An Euler-Maclaurin-type formula involving conjugate Bernoulli polynomials and an
+application to $\zeta(2m+1)$,
+\textit{Commun. Appl. Anal.}
+\textbf{1} (1997), 15--32.
+
+\bibitem{Lerch}
+M. Lerch,
+Note sur la fonction $\mathfrak{K}(w,x,s) = \sum_{k=0}^{\infty} e^{2\pi ikx}(w+k)^{-s}$,
+\textit{Acta Math.}
+\textbf{11} (1887), 19--24.
+% \url{http://www.springerlink.com/content/bpn8104100w31667/}
+% http://www.springerlink.com/content/0001-5962/11/1-4/
+
+%\bibitem{MOS}
+%W. Magnus, F. Oberhettinger and R. P. Soni,
+%\textit{Formulas and Theorems for the Special Functions of Mathematical Physics},
+%3rd ed., Springer, New York, 1966.
+
+\bibitem{NRV-JAT}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+The M\"obius inversion formula for Fourier series
+applied to Bernoulli and Euler polynomials,
+\textit{J. Approx. Theory}
+\textbf{163} (2011), 22--40.
+
+\bibitem{NRV-IJMMS}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Old and new identities for Bernoulli polynomials via Fourier series,
+\textit{Int. J. Math. Math. Sci.}
+\textbf{2012} (2012), Art. ID 129126.
+
+\bibitem{NRV-MC}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Asymptotic estimates for Apostol-Bernoulli and Apostol-Euler polynomials,
+\textit{Math. Comp.}
+\textbf{81} (2012), 1707--1722.
+
+\bibitem{NRV-JAT2}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Asymptotic behavior of the Lerch transcendent function,
+\textit{J. Approx. Theory} \textbf{170} (2013), 21--31.
+% DOI: \url{http://dx.doi.org/10.1016/j.jat.2012.03.006}
+
+\bibitem{NRV-MC2}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Some functional relations derived from the Lindel\"of-Wirtinger 
+expansion of the Lerch transcendent function,
+\textit{Math. Comp.} \textbf{84} (2015), 803--813.
+
+\bibitem{Z}
+A. Zygmund,
+\textit{Trigonometric series}, third ed. (with a foreword by Robert A.~Fefferman),
+Cambridge University Press, Cambridge, 2002.
+
+%--------------------------------------
+\end{thebibliography}
+%--------------------------------------
+
+%--------------------------------------
+\end{document}
+%--------------------------------------
+

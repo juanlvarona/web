@@ -1,0 +1,186 @@
+
+\documentclass[10pt, a4paper]{article}
+
+\usepackage{amsmath,amsfonts}
+
+
+\usepackage[empty]{fullpage} 
+\addtolength{\textwidth}{-0.6cm}
+\addtolength{\oddsidemargin}{0.3cm}
+\setlength{\evensidemargin}{\oddsidemargin}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+
+% This controls the number of lines that star from the center
+\newcounter{lineas}
+\setcounter{lineas}{23}
+
+%---------------------
+%\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+%\usepackage{fourier}
+%---------------------
+
+%---------------------
+\title{\vspace*{-1cm}
+\hfill \huge\bfseries\sffamily Proof Without Words:\\
+\hfill \huge\bfseries\sffamily $\ell^1(\mathbb{R})$ is a subset of $\ell^2(\mathbb{R})$}
+
+\author{\hspace*{\textwidth}\kern -7pt\\[-16pt]
+\hfill \sffamily\sffamily\Large \uppercase{Juan Luis Varona}\\
+\hfill \sffamily \small Universidad de La Rioja\\[-3pt]
+\hfill \sffamily \small 26006 Logro\~no, Spain\\[-3pt]
+\hfill \sffamily \small \href{mailto:jvarona@unirioja.es}{jvarona@unirioja.es}}
+
+\date{}
+
+%\shorttitle{$\ell^1(\mathbb{R})$ is a subset of $\ell^2(\mathbb{R})$}
+
+%\address{Dpto.~de Matem\'aticas y Computaci\'on, Universidad de La Rioja, 26006 Logro\~no, Spain}
+%\email{jvarona@unirioja.es}
+%\urladdr{http://www.unirioja.es/cu/jvarona/}
+
+%---------------------
+
+%---------------------------
+\begin{document}
+%---------------------------
+
+%---------------------
+\maketitle
+%---------------------
+
+\thispagestyle{empty}
+
+
+Let's take the sequence $\mathbf{x} = \{x_n\}_{n=1}^{\infty}$, with $x_n>0$ for every $n$.
+We define a new sequence $\{h_n\}_{n=1}^{\infty}$ as follows.
+\[
+  h_1 = x_1, \quad h_{n}^2 = h_{n-1}^2  + x_{n}^2, \quad n \ge 2
+  \quad\Rightarrow\quad
+  h_n = \sqrt{x_1^2 + x_2^2 + x_3^2 + \cdots + x_n^2}
+\]
+
+%\smallskip
+
+% In the picture, x_n = 1/n^1.03, that gives a series both in \ell^1 and in \ell^2
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{center}
+\begin{tikzpicture}[scale=3.8] 
+\coordinate (origin) at (0,0);
+\draw[very thin, gray!80] (origin) circle (1);
+
+\coordinate (h1) at (1,0);
+% I use \path instead of \draw to avoid painting, and paint the spiral at the end
+% all together, because the aspect of coins is better
+\path[ultra thick, black] (origin) -- (h1) node[black, midway, below] {$h_1=x_1$}; % midway is the same than pos=0.5
+\draw (h1) node[above=6pt, left=-2pt] {{\scriptsize $90^\circ$}}; % put \footnotesize size to 10pt
+
+\coordinate (h2) at ($ (h1) ! 1cm/2^1.03 ! -90:(origin) $); 
+\draw (origin) -- (h2) node[pos=0.5, inner sep=1.5pt, below right] {$h_2$}; % midway is the same than pos=0.5 (p. 193)
+\draw (h2) node[above=2.5pt, left=0.5pt] {{\scriptsize $90^\circ$}}; % put \footnotesize size to 10pt
+
+% \draw (h1) -- (h2) node[midway, right] {$x_2$}; % this paint the line
+\path (h1) -- (h2) node[midway, right] {$x_2$}; % this do not paint it
+% \node [inner sep=1pt, label=right:${x_2}$] (c2) at ($ (h1)!.5!(h2) $) {}; % this do not paint, but defines c2
+
+% NOTE: WITHOUT "cm" THIS IS RELATIVE TO DE DISTANCE (h2)--(h3)
+\coordinate (h3) at ($ (h2) ! 1cm/3^1.03 ! -90:(origin) $); 
+\draw (origin) -- (h3) node[pos=0.65, inner sep=1.5pt, below right] {$h_3$}; 
+\draw (h3) node[above=0pt, left=0.5pt] {{\scriptsize $90^\circ$}}; % put \footnotesize size to 10pt
+
+\path (h2) -- (h3) node[midway, right] {$x_3$}; % this do not paint the line
+% \node [inner sep=1pt, label=right:${x_3}$] (c3) at ($ (h2)!.5!(h3) $) {}; % this do not paint, but defines c3
+
+\coordinate (h4) at ($ (h3) ! 1cm/4^1.03 ! -90:(origin) $); 
+\draw (origin) -- (h4); 
+
+\newcounter{nmenosuno}
+\foreach \n in {5,...,\value{lineas}}
+{ %\def\nmenosuno{\n-1} % <------ This is the idea
+  \pgfmathparse{\n-1}
+  \pgfmathsetcounter{nmenosuno}{\pgfmathresult} 
+  \coordinate (h\n) at ($ (h\thenmenosuno) ! 1cm/\n^1.03 ! -90:(origin) $); 
+  \draw (origin) -- (h\n);
+}
+
+\draw[ultra thick, black] (origin) -- (h1) -- (h2) -- (h3) -- (h4) -- (h5) 
+\foreach \n in {5,...,\value{lineas}}
+{ 
+  -- (h\n)
+};
+
+% ...
+
+\newcounter{lineasmasuno}
+\newcounter{lineasmastres}
+
+\setcounter{lineasmasuno}{\value{lineas}}
+\addtocounter{lineasmasuno}{1} %% o \stepcounter{lineasmasuno} 
+
+\setcounter{lineasmastres}{\value{lineas}}
+\addtocounter{lineasmastres}{3}
+
+\foreach \n in {\thelineasmasuno,...,\value{lineasmastres}}
+{ 
+  \pgfmathparse{\n-1}
+  \pgfmathsetcounter{nmenosuno}{\pgfmathresult} 
+  \coordinate (h\n) at ($ (h\thenmenosuno) ! 1cm/\n ! -90:(origin) $); 
+  \fill[black] (h\n) circle (0.28pt); % (0.25) if the spiral is very thick, and (0.28) if it is ultra thick
+  \fill ($(origin) ! 0.88 ! (h\n)$) circle (0.2pt);
+}
+
+\draw[thin, dotted] (origin) circle ({pi/sqrt(6)});
+\end{tikzpicture}
+\end{center} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%\smallskip
+
+Because
+\[
+  \operatorname{Length}(\text{spiral}) = {\|\mathbf{x}\|}_{\ell^1}
+  \quad\text{and}\quad
+  \operatorname{Radius}(\text{asymptotic outer circle}) = {\|\mathbf{x}\|}_{\ell^2}
+\]
+then
+\[
+  \operatorname{Length}(\text{spiral}) < \infty
+  \quad\Rightarrow\quad \operatorname{Radius}(\text{asymptotic outer circle}) < \infty
+\]
+or
+\[
+  \ell^1(\mathbb{R}) \subseteq \ell^2(\mathbb{R}).
+\]
+
+\bigskip
+
+\begin{small}
+\paragraph{Summary.} We prove that $\ell^1(\mathbb{R})$ is a subset of $\ell^2(\mathbb{R})$ by means of a spiral.\par
+\end{small}
+
+\enlargethispage{0.5cm}
+
+\begin{small}
+\paragraph{JUAN LUIS VARONA\hspace{-1em} }
+(MR Author ID: \href{http://www.ams.org/mathscinet/MRAuthorID/260232}{260232}) is professor in the Department of Mathematics and Computation in the University of La Rioja, in Spain. He has published more that 50 research papers as well as an undergraduate book on number theory. He is editor in-chief of La Gaceta de la Real Sociedad Matem\'atica Espa\~nola.\par
+\end{small}
+
+\vfill
+
+\begin{small}
+\paragraph{\rule{0.33\textwidth}{0.4pt}}\quad\\
+\textit{Math. Mag.} \textbf{90} (2017) 58--58. \texttt{doi:10.4169/math.mag.90.1.58}. 
+\copyright~Mathematical Association of America\\
+MSC: Primary 46B45, Secondary 40A05.\par
+\end{small}
+
+%---------------------------
+\end{document}
+%---------------------------
+
+

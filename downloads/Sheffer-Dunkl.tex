@@ -1,0 +1,1827 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Sheffer-Dunkl sequences
+% by
+%
+% email: alejandro.gil@unirioja.es, 
+%        judit.minguez@unirioja.es, 
+%        jvarona@unirioja.es
+%
+% COMIENZO DE ESCRITURA: 2023/05/25
+% LAST MODIFICATION: 2023/10/20
+% REVISIÓN: 2024/07/18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ORCID:
+% A. Gil Asensi: 0009-0007-9667-0744
+% J. M\'inguez: 0000-0002-9840-5772
+% J. L. Varona: 0000-0002-2023-9946
+
+\documentclass[11pt]{article}
+%\documentclass[10pt,a4paper]{article}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+%%% \allowdisplaybreaks is a command from amsmath that allow page breaks
+%%% inside a multi-line formula (align, multline, gather, ...)
+\allowdisplaybreaks[3] %%% Scale from 1 (weak allow) to 4 (complete allow).
+%%% If a break can be avoided, we can use \\* instead of \\
+
+\addtolength{\textwidth}{1.8cm}
+\addtolength{\oddsidemargin}{-0.9cm}
+\setlength{\evensidemargin}{\oddsidemargin}
+\addtolength{\textheight}{0.8cm}
+\addtolength{\topmargin}{-0.4cm}
+
+%\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+%%% ONLY FOR DRAFTS:
+% \usepackage[utf8]{inputenc}
+%\usepackage[notcite,notref]{showkeys}
+% \usepackage{refcheck}
+%\usepackage{color}
+%\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+%\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+%\newcommand{\verde}[1]{\textcolor{green}{#1}}
+% \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+% \newcommand{\verde}[1]{\textcolor[cmyk]{1,0,1,0.3}{#1}}
+
+%%% ONLY FOR DRAFTS (put it after hyperref)
+%\usepackage{backref}
+%\usepackage{refcheck}
+
+
+%%% \allowdisplaybreaks es una orden de amsmath que permite cortes de
+%%% p\'agina dentro de una f\'ormula de varias l\'ineas (align, multline, gather, ...)
+\allowdisplaybreaks[3]
+%%% Escala de 1 (permite algo) a 4 (ninguna traba para cortar).
+%%% Si en alg\'un sitio queremos impedir un posible corte, usar \\* en vez de \\
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\numberwithin{equation}{section} % To include the number of section
+
+\newcommand{\Ea}{E_{\alpha}}
+\newcommand{\La}{\Lambda_{\alpha}}
+\newcommand{\Lax}{\Lambda_{\alpha,x}}
+\newcommand{\Lay}{\Lambda_{\alpha,y}}
+%\newcommand{\Fa}{\mathcal{F}_{\alpha}} % Dunkl transform of order \alpha
+%\newcommand{\mua}{\mu_{\alpha}}
+\newcommand{\binoma}[2]{\binom{#1}{#2}_{\!\alpha}}
+%\newcommand{\arcsinh}{\operatorname{arcsinh}}
+
+\newcommand{\I}{\mathcal{I}}
+
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\Sa}{\mathcal{S}_{\alpha}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+%\newcommand{\ZZO}{\mathbb{Z} \setminus \{0\}}
+
+\newcommand{\FF}{\mathrm{F}}
+%% NO SE PUEDE REDEFINIR UN COMANDO. PUEDE SER UNA PUTADA PARA LA REVISTA 
+%% (o para nosotros un l\'io en las pruebas de imprenta):
+%% \renewcommand{\L}{\mathrm{L}}
+\newcommand{\LL}{\mathrm{L}}
+%\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\Bell}{\operatorname{Bell}}
+
+%----------
+% Alternative: Sheffer-Dunkl sequences 
+% Alternative: Umbral calculus in the Dunkl context and Sheffer-Dunkl sequences
+\title{Sheffer-Dunkl sequences via umbral calculus\\
+in the Dunkl context%
+\footnote{Partially supported by grant PID2021-124332NB-C22 
+(Mi\-nis\-te\-rio de Cien\-cia e Inno\-va\-ci\'on-Agen\-cia Esta\-tal de Inves\-ti\-ga\-ci\'on, Spain)}
+\textsuperscript{,}\thanks{\textbf{This paper has been published in:} 
+\textit{Bull. Malays. Math. Sci. Soc.}\ \textbf{47} (2024), Paper No.~172, 28~pp., 
+\url{https://doi.org/10.1007/s40840-024-01768-3}}%
+}
+%----------
+
+%%----------
+%\title{Sheffer-Dunkl sequences via umbral calculus in the Dunkl context%
+%\thanks{\textbf{This paper has been published in:} 
+%\textit{Bull. Malays. Math. Sci. Soc.}\ \textbf{47} (2024), Paper No. 172,~28 pp., 
+%\url{https://doi.org/10.1007/s40840-024-01768-3}}}
+%%----------
+
+%----------
+\author{Alejandro Gil Asensi\textsuperscript{1},  
+Judit M\'inguez Ceniceros\textsuperscript{2}
+and Juan Luis Varona\textsuperscript{3}\\[6pt]
+  \small Departamento de Matem\'aticas y
+  Computaci\'on, Universidad de La Rioja,\\[-2pt]
+  \small 26006 Logro\~no, Spain\\[3pt]
+  \small 
+  \textsuperscript{1}{algila@unirioja.es},
+  \textsuperscript{2}{judit.minguez@unirioja.es},
+  \textsuperscript{3}{jvarona@unirioja.es}
+}
+%----------
+
+
+\date{}
+
+%----------
+\begin{document}
+%----------
+
+%----------
+\maketitle
+%----------
+
+\begin{abstract}
+Umbral calculus refers to a series of techniques that can be used to prove some polynomial formulas. Nowadays, it mostly involves the study of Sheffer sequences. In this paper, we focus on a generalization of umbral calculus in a Dunkl context (that we call Dunkl-umbral calculus). Here, the operators of classical umbral calculus are naturally replaced by operators of the Dunkl theory on the real line. In this context we define for the first time Sheffer-Dunkl sequences, $\{s_{n,\alpha}(x)\}_{n=0}^\infty$, and provide some properties and examples. We also connect, via Dunkl-umbral calculus, properties of some polynomials in a Dunkl sense that have appeared in the literature in the recent years, like Bernoulli-Dunkl or Euler-Dunkl polynomials.
+
+2020 Mathematics Subject Classification: Primary 05A40; Secondary 11B83, 11B68.
+
+Keywords: Appell-Dunkl sequences, discrete Appell-Dunkl sequences, Sheffer-Dunkl sequences, Dunkl-umbral calculus.
+\end{abstract}
+
+%----------
+\section{Introduction}
+%----------
+
+During the XIXth century, there was an attempt to connect formulas that look alike, for example, the binomial identity $(x+y)^n = \sum_{i=0}^n \binom{n}{i}x^i y^{n-i}$ and the formula $B_n(x+y) = \sum_{i=0}^n \binom{n}{i} B_{n-i}(y)x^i$ for Bernoulli polynomials. \'Edouard Lucas provided a series of techniques to justify these resemblances, but John Blissard was the first to develop them. Since it seemed that the subindex $n$ in $B_{n}(x+y)$ was the shadow of the superindex $n$ in $(x+y)^n$, they started referring to these techniques as \textit{umbral calculus} (``umbral'' is a Latin word that means shadow). For further details about the origin of umbral calculus, see~\cite{Bell}.
+
+In the late 70's Roman and Rota \cite{RomRot} formalized umbral calculus by using functionals and linear operators. The general idea is that a formal exponential power series $f: \mathbb{C} \to \mathbb{C}$, given by
+\[
+f(t) = \sum_{n=0}^{\infty} a_n\frac{t^n}{n!},
+\]
+can also play other roles such as:
+\begin{enumerate}
+\item A functional $f: \mathcal{P} \to \mathbb{C}$ (where $\mathcal{P}$ is the space of polynomials)
+\begin{equation}
+\label{def:fun}
+\langle f(t) \mid p(x)\rangle = \sum_{n=0}^\infty \frac{a_n}{n!} \frac{d^n}{dx^n}p(0).
+\end{equation}
+\item A linear operator $f: \mathcal{P} \to \mathcal{P}$ given by
+\begin{equation}
+\label{def:ope}
+f(t)p(x) = \sum_{n=0}^\infty \frac{a_n}{n!}\frac{d^n}{dx^n}p(x).
+\end{equation}
+\end{enumerate}
+
+%In the late 70's Roman and Rota \cite{RomRot} formalized umbral calculus by using functionals and linear operators. The general idea is that functions $f(t)$ can play three different roles:
+%\begin{enumerate}
+%\item A formal \rojo{exponential} power series $f: \mathbb{C} \to \mathbb{C}$,
+%\[
+%f(t) = \sum_{n=0}^{\infty} a_n\frac{t^n}{n!}.
+%\]
+%\item A functional $f: \mathcal{P} \to \mathbb{C}$ (where $\mathcal{P}$ is the space of polynomials)
+%\begin{equation}
+%\label{def:fun}
+%\langle f(t) \mid p(x)\rangle = \sum_{n=0}^\infty \frac{a_n}{n!} \frac{d^n}{dx^n}p(0).
+%\end{equation}
+%\item A linear operator $f: \mathcal{P} \to \mathcal{P}$ given by
+%\begin{equation}
+%\label{def:ope}
+%f(t)p(x) = \sum_{n=0}^\infty \frac{a_n}{n!}\frac{d^n}{dx^n}p(x).
+%\end{equation}
+%\end{enumerate}
+Hence, there are relations between functionals or linear operators and these relations depend only on the coefficients $a_n$ of $f(t)$. Therefore, properties of $f(t)$ as a functional or as a linear operator can be deduced by each other using umbral calculus. Nowadays umbral calculus is involved in the study of Sheffer sequences $\{s_n(x)\}_{n=0}^\infty$ that can be defined in many ways, for instance, by the generating function
+\[
+\frac{1}{g(\overline{f}(t))}e^{x\overline{f}(t)} = \sum_{n=0}^\infty {s_n(x)} \frac{t^n}{n!},
+\]
+for certain $f(t)$ and $g(t)$ (and where $\overline{f}(t)$ denotes the compositional inverse of $f(t)$).
+
+As pointed out in \cite[Chapter 6]{Rom}, umbral calculus can be generalized by replacing $n!$ for some sequence $c_n$ and other minor changes. Despite finding some general results in the literature (see \cite{RomV1}, \cite{RomV2} and \cite{RomV3}) each concrete sequence $c_n$ is interesting in itself. For example, setting $c_n=1$, we get the newtonian umbral calculus and setting $c_n = (1-q)(1-q^2)\cdots(1-q^n)/(1-q)^n$ we get $q$-umbral calculus. Other families of generalized Apostol type polynomials are studied in \cite{DeSimSri} using umbral calculus. In each context, the derivative operator is replaced for some operator $\partial$, such as $\partial x^n = c_n x^{n-1}$. The evaluation operator and the translation operator that arise in a non-classical umbral calculus also play an important role in it. Finally, generalizations of Sheffer sequences can be studied in different umbral calculus.
+
+More types of generating functions have been studied in the mathematical literature. Introducing different parameters and variations in the generating functions as in \cite{Kilar-Simsek, Kuc, KucSim, OzSim}, a unified and generalized presentation of Sheffer type sequences can be obtained. Probability generating functions for random variables and for moments have also been studied in \cite{Sim}, which have provided relations with Bernstein polynomials.
+
+
+In this paper we consider a non-classical umbral calculus related to Dunkl theory on the real line, see \cite{Du, Jeu, Ros}. We study some operators that appear in Dunkl theory using umbral calculus and provide a framework to study Sheffer-Dunkl sequences. We call this framework Dunkl-umbral calculus. Here, we are replacing $n!$ for a particular sequence $c_n$ named ``Dunkl factorial'', $\gamma_{n,\alpha}$, defined by
+\begin{equation*}
+%\label{eq:ccna}
+\gamma_{n,\alpha} =
+\begin{cases} 
+  2^{2k}k!\,(\alpha+1)_k, & \text{if $n=2k$},\\
+  2^{2k+1}k!\,(\alpha+1)_{k+1}, & \text{if $n=2k+1$},
+\end{cases}
+\end{equation*}
+and where $(a)_n$ denotes the Pochhammer symbol
+\[
+  (a)_n = a(a+1)(a+2) \cdots (a+n-1) = \frac{\Gamma(a+n)}{\Gamma(a)}
+\]
+(with $a$ different from a negative integer). Note that $\gamma_{n,-1/2} = n!$, hence, $\gamma_{n,\alpha}$ is a generalization of $n!$. 
+The classical derivative is replaced by a certain operator $\La$ called Dunkl derivative, which is defined as
+\begin{equation*}
+%\label{eq:op-D}
+\La f(x) = \frac{d}{dx}f(x)+\frac{2\alpha+1}{2}\frac{f(x)-f(-x)}{x},
+\end{equation*}
+%with $\alpha>-1$ and let the Dunkl exponential be
+with $\alpha>-1$. The classical exponential function is replaced by the Dunkl exponential
+\[
+  \Ea(t) = \sum_{n=0}^\infty \frac{t^n}{\gamma_{n,\alpha}}, \qquad t \in \CC.
+\]
+It satisfies $\La(\Ea(\lambda t)) = \lambda \Ea(\lambda t)$ and it can also be written as
+\[
+\Ea(t) = \I_\alpha(t) + \frac{1}{2(\alpha+1)}G_{\alpha}(t), 
+\]
+where, also for $t \in \CC$,
+\begin{equation}
+\label{eq:def-I}
+\I_\alpha(t) = 2^\alpha \Gamma(\alpha+1)\frac{J_\alpha(it)}{(it)^\alpha} 
+= \sum_{n=0}^\infty \frac{t^{2n}}{\gamma_{2n,\alpha}}
+\end{equation}
+and
+\begin{equation}
+\label{eq:def-G}
+G_\alpha(t) = t \I_{\alpha+1}(t) = \sum_{n=0}^\infty \frac{t^{2n+1}}{\gamma_{2n,\alpha+1}} 
+= 2(\alpha + 1) \sum_{n=0}^\infty \frac{t^{2n+1}}{\gamma_{2n + 1,\alpha}}.
+\end{equation}
+Here, $J_\alpha(t)$ is the Bessel function of order $\alpha$ (and hence, $\I_\alpha(t)$ is a small variation of the modified Bessel function of the second kind, $I_\alpha(t)$), see~\cite{Wat} or~\cite{OlMa-NIST}; notice that $J_\alpha(t)/t^\alpha$ and $\I_\alpha(t)$ are entire functions. Therefore, $\I_\alpha(t)$ and $G_\alpha(t)$ play the role of the even part and the odd part of $\Ea(t)$, respectively. We will also study $\I_\alpha(t)$ and $G_{\alpha}(t)$ as an operator as well. We remark that, when $\alpha=-1/2$, we recover the classical case, i.e., $\La = d/dt$ and $\Ea(x) = e^t$.
+
+Now, let us introduce the notations for Dunkl integrals.
+We say that $H$ is a \textit{Dunkl primitive} of $h$ if $\La H = h$. For functions defined in $\RR$ or $\CC$ and in the $C^1$ class, $\La H = 0$ if and only if $H$ is a constant. Then, the Dunkl primitive is unique except by an additive constant. Following the kind of notation used in \cite[\S\,15]{Cho}, and that has been adopted in \cite[\S\,5]{CMV} and \cite{JMC, GLMV}, we use $\oint$ to represent the inverse of the operator $\Lambda_\alpha$, that is,
+\[
+  \oint h(x)\,d_\alpha x = H(x) + c
+\]
+(of course, now this is not an integral over a closed curve).
+For our purposes, we only need to take Dunkl primitives of polynomials, and then, by linearity, it is enough to know that
+\begin{equation*}
+%\label{eq:primDxn}
+  \oint x^n\,d_\alpha x = \frac{x^{n+1}}{\theta_{n+1,\alpha}} + c, \qquad n = 0,1,2,\dots,
+\end{equation*} 
+where $\theta_{n,\alpha} = \gamma_{n,\alpha}/\gamma_{n-1,\alpha}$.
+Moreover, following with the generalization of the classical case to the Dunkl scheme, we can also define the \textit{Dunkl definite integral} as
+\begin{equation}
+\label{eq:primDxn}
+  \oint_a^b h(x)\,d_\alpha x = H(x)\Big|_{a}^{b} = H(b)-H(a),
+\end{equation}
+when $H$ is the Dunkl primitive of~$h$.
+
+
+Finally, the \textit{translation operator} in this context is the Dunkl translation, which is  defined by
+\begin{equation}
+\label{eq:translation}
+  \tau_y f(x) = \sum_{n=0}^\infty \La^{n}f(x) \frac{y^n}{\gamma_{n,\alpha}},
+  \qquad \alpha>-1,
+\end{equation}
+where $\La^0$ is the identity operator and $\La^{n+1} = \La(\La^n)$. 
+This is just a generalization of the classical translation, but considered as a Taylor expansion of a function $f$ around a fixed point $x$, that is,
+\[
+  f(x+y) = \sum_{n=0}^\infty f^{(n)}(x) \frac{y^n}{n!}.
+\]
+The Dunkl translation has a property that resembles the Newton binomial $(x+y)^n = \sum_{k=0}^n \binom{n}{k} y^k x^{n-k}$, which is
+\begin{equation*}
+%\label{eq:Newton}
+  \tau_y ((\cdot)^n)(x) = 
+  \sum_{k=0}^n \binoma{n}{k} y^k x^{n-k}
+\end{equation*}
+where
+\[
+  \binoma{n}{j} = \frac{\gamma_{n,\alpha}}{\gamma_{j,\alpha}\gamma_{n-j,\alpha}}.
+\]
+Of course, the coefficients $\binoma{n}{j}$ become the ordinary binomial coefficients in the case $\alpha=-1/2$.
+Some other properties of the Dunkl translation, including an integral expression that is more general than~\eqref{eq:translation}, can be found in \cite{Ros}, \cite{Rosler03}, and~\cite{ThX}.
+
+%\azul{------ TEXTO ANTIGUO ------
+%As it may be expected, some functionals and linear operators, and also the polynomial sequences that will appear are not new. Our goal is mostly to approach known results using umbral calculus, to connect them, and to give some other properties that were unknown. Moreover, we will define Sheffer-Dunkl sequences. Despite special subclasses of Sheffer-Dunkl sequences as Appell-Dunkl or discrete Appell-Dunkl sequences can be found recently in the literature, Sheffer-Dunkl sequences themselves have not been defined yet (at least, as far as we know). For that, we provide many results related to this topic and we give many known examples (and their references).
+%}
+
+%\rojo{------ TEXTO NUEVO ------
+%In this paper we will define Sheffer-Dunkl sequences using umbral calculus (JL: PERO EL OBJETIVO NO ES ESTE, SINO DEFINIR EL CA´LCULO UMBAR DUNKL; PARA DEFINIR Sheffer-Dunkl NO HARÍA FALTA USAR UMBRAL, LO MISMO QUE NO HACE FALTA PARA Sheffer clásico ?????). These sequences are a generalization of Appell-Dunkl sequences. Given $\alpha>-1$, an Appell-Dunkl sequence $\{A_{n,\alpha}(x)\}_{n=0}^\infty$ is defined by the generating function
+%\begin{equation}
+%\label{eq:def-AD}
+%A(t)\Ea(xt) = \sum_{n=0}^\infty A_{n,\alpha}(x) \frac{t^n}{\gamma_{n,\alpha}},
+%\end{equation}
+%where $A(t)$ is a function analytic at $t = 0$ (or a formal series) with $A(t) \ne 0$. This is equivalent to saying that $A_{n,\alpha}(x)$ is a polynomial of degree $n$ that satisfies
+%\begin{equation*}
+%\La(A_{n,\alpha})(x) = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}A_{n-1,\alpha}(x).
+%\end{equation*}
+%Of course, Appell-Dunkl sequences are a generalization in a Dunkl sense of classical Appell sequences, see \cite{BG, CDPV, DH}. Note that taking $A(t) = 1$ we get the monomials~$x^n$. The first Appell-Dunkl polynomials to be defined were the generalized Hermite polynomials \cite{Ros}, that is, essentially, \eqref{eq:def-AD} with $A(t) = e^{-t^2}$. The next Appell-Dunkl sequences to be studied were Bernoulli-Dunkl (take $A(t) = 1/\I_{\alpha+1}(t)$) and Euler-Dunkl polynomials (take $A(t) = 1/\I_{\alpha}(t)$), as well as some generalizations with an additional parameter, see \cite{CDPV, CMV, DPV}. Some other Appell-Dunkl sequences are the truncated polynomials (take $A(t) = 1/(1-t)$, see~\cite{JMC}).
+%}
+
+
+In this paper we set up umbral calculus in the Dunkl context. Using this umbral calculus we define the Sheffer-Dunkl sequences and prove some of their properties. These polynomials are a generalization of Appell-Dunkl and discrete Appell-Dunkl polynomials. Some of them had already been studied using techniques different than umbral techniques as we can see in \cite{CDPV, CMV, DPV, ELMV, GLMV, JMC, MV,Ros}.
+
+
+
+Given $\alpha>-1$, an Appell-Dunkl sequence $\{a_{n,\alpha}(x)\}_{n=0}^\infty$ is defined by the generating function
+\begin{equation}
+\label{eq:def-AD}
+A(t)\Ea(xt) = \sum_{n=0}^\infty a_{n,\alpha}(x) \frac{t^n}{\gamma_{n,\alpha}},
+\end{equation}
+where $A(t)$ is a function analytic at $t = 0$ (or a formal series) with $A(0) \ne 0$. This is equivalent to saying that $a_{n,\alpha}(x)$ are polynomials of degree $n$ that satisfy
+\begin{equation}\label{eq:der-AD}
+  \La a_{n,\alpha}(x) = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}a_{n-1,\alpha}(x), \qquad n = 1,2,\dots.
+\end{equation}
+Of course, Appell-Dunkl sequences are a generalization in a Dunkl sense of classical Appell sequences, see \cite{BG, CDPV, DH}. Note that taking $A(t) = 1$ we get the monomials~$x^n$. The first Appell-Dunkl polynomials to be defined were the generalized Hermite polynomials \cite{Ros}, that is, essentially, \eqref{eq:def-AD} with $A(t) = e^{-t^2}$. The next Appell-Dunkl sequences to be studied were Bernoulli-Dunkl (take $A(t) = 1/\I_{\alpha+1}(t)$) and Euler-Dunkl polynomials (take $A(t) = 1/\I_{\alpha}(t)$), as well as some generalizations with an additional parameter, see \cite{CDPV, CMV, DPV}. Some other Appell-Dunkl sequences are the truncated polynomials (take $A(t) = 1/(1-t)$, see~\cite{JMC}).
+
+
+
+The discrete version of Appell-Dunkl sequences was defined in~\cite{ELMV}. Again for $\alpha>-1$, a discrete Appell-Dunkl sequence $\{d_{n,\alpha}(x)\}_{n=0}^\infty$ is defined by the generating function
+\begin{equation*}
+%\label{eq:def-dAD}
+A(t)\Ea(x\overline{G_{\alpha}}(t)) = \sum_{n=0}^\infty d_{n,\alpha}(x) \frac{t^n}{\gamma_{n,\alpha}},
+\end{equation*}
+where $A(t)$ is a function analytic at $t = 0$ (or a formal series) with $A(0) \ne 0$ and where $\overline{G_{\alpha}}(t)$ is the compositional inverse function of $G_{\alpha}(t) = t\mathcal{I_\alpha}(t)$. Now, this is equivalent to saying that $d_{n,\alpha}(x)$ are polynomials of degree $n$ that satisfy
+\[
+(\alpha+1)(\tau_{1} - \tau_{-1})d_{n,\alpha}(x) 
+= \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} d_{n-1,\alpha}(x),
+\qquad n = 1,2,\dots.
+\]
+Taking $A(t) = 1$ we get the Dunkl factorial polynomials \cite{ELMV}, taking $A(t) = (t/\overline{G_{\alpha}}(t))^r$ we get Bernoulli-Dunkl polynomials of order $r$ \cite{ELMV}, and taking $A(t) = 1/\I_{\alpha}(\overline{G_{\alpha}}(t))^r$ we get Boole-Dunkl polynomials of order $r$, see~\cite{GLMV}.
+
+
+Our goal is mostly to establish umbral calculus in the Dunkl context and, as a consequence, to define and study the Sheffer-Dunkl polynomals. On the other hand, we want to approach known results of Appell-Dunkl sequences using umbral calculus, to connect them and to give some other properties that were unknown but that arise naturally in the context of umbral calculus. For that, we provide many results related to this topic as well as some examples (and their references).
+
+
+
+The paper is structured in this way. In Section~\ref{sec:fun-lin-op} basic properties of the functionals and linear operators that arise in this Dunkl-umbral calculus are studied. We give many examples in Section~\ref{sec:ex-fun-lin}. Section~\ref{sec:sheffer} is devoted to Sheffer-Dunkl sequences and some important subclasses of them, such as Appell-Dunkl sequences and polynomials of binomial type (here, we define associated Dunkl and conjugated Dunkl sequences). Finally, Sections~\ref{sec:ex-appell} and~\ref{sec:ex-sheffer} are mostly dedicated to examples of Appell-Dunkl and Sheffer-Dunkl sequences and the associated Dunkl and conjugated Dunkl sequences related to them.
+
+%----------
+\section{Functionals and linear operators}
+\label{sec:fun-lin-op}
+%----------
+
+For $\alpha>-1$, let $\Sa$ be the algebra of formal power series in the indeterminate $t$ expressed as
+\begin{equation}
+\label{eq:series}
+f(t) = \sum_{k=0}^{\infty} a_k \frac{t^k}{\gamma_{k,\alpha}},
+\end{equation}
+with $a_k \in \CC$. From this series we are going to define a functional and a linear operator over the set of complex polynomials, $\calP$. The functional associated to $f$ will be $\FF_f : \calP \to \CC$, and the linear operator associated to $f$ will be denoted by $\LL_f : \calP \to \calP$.
+As usual, the set of all functionals over $\calP$ is denoted by~$\calP^*$. It is important to remark that we are using a different notation from the one that usually appears in the literature (see, for instance, \cite{Rom}). Here, we use $\FF_f(p(x))$ instead of the classical notation $\langle f(t) \mid p(x)\rangle$ for functionals (see \eqref{def:fun}) and $\LL_f(p(x))$ instead of $f(t)p(x)$ for linear operators (see~\eqref{def:ope}). We have chosen this notation to clarify when we are applying $f(t)$ as a functional or as a linear operator for those unfamiliar with the classical notation (which may seem a bit confusing at first).
+
+For $f \in \Sa$ as in \eqref{eq:series}, the \textit{functional associated} is $\FF_f \in \calP^*$ whose action over $x^n$ is defined by 
+\begin{equation}
+\label{eq:ev-xn}
+\FF_f(x^n) = a_n
+\end{equation}
+and then $\FF_f$ is extended to polynomials by linearity.
+This means we can write 
+\begin{equation}
+\label{eq:ser-fun}
+f(t) = \sum_{k=0}^{\infty} \FF_{f}(x^k) \frac{t^k}{\gamma_{k,\alpha}}.
+\end{equation}
+
+Note that, if $f(t) = t^m$, the functional  $\FF_f$ can be written as 
+\[
+  \FF_f(p) = \La^m(p)(0), \quad p \in \calP,
+\]
+because, for monomials,
+\[
+\FF_f(x^n) = \gamma_{n,\alpha}\delta_{n,m} = \La^m(x^n)(0).
+\]
+Then, if $p(x) \in \calP$ has degree $n$, by applying \eqref{eq:ser-fun} we obtain that
+\begin{equation}
+\label{eq:pol}
+p(x) = \sum_{k=0}^n \La^k(p)(0) \frac{x^k}{\gamma_{k,\alpha}} 
+= \sum_{k=0}^n \FF_{t^k}(p(x)) \frac{x^k}{\gamma_{k,\alpha}}.
+\end{equation}
+Moreover, if $f(t)$ is like \eqref{eq:series} and $p(x)$ is a polynomial, we also have
+\begin{equation}
+\label{eq:Ffp}
+\FF_f(p) = \sum_{k=0}^{\infty} {a_k} \,\frac{\La^k p(0)}{\gamma_{k,\alpha}}.
+\end{equation}
+In what follows, we will sometimes use slightly different notations, such as $\FF_f(p)$, $\FF_f(p(x))$ or $\FF_{f(t)}(p(x))$. Moreover, if $f$ or $p$ depend on several variables, the variable involved will be often denoted by~$\cdot$ or by additional subindex, such as in $\FF_{f(y\cdot)}(p)$ or in $\FF_{f(t)}(q(\cdot,y)) = \FF_{f(t),x}(q(x,y))$ (that will become functions of~$y$). Let us also note that, for $f$ is as in \eqref{eq:series}, a usual notation of umbral calculus is to take
+\begin{equation}
+\label{eq:fLa}
+f(\La) = \sum_{k=0}^{\infty} {a_k} \, \frac{\La^k}{\gamma_{k,\alpha}}.
+\end{equation}
+With this notation, \eqref{eq:Ffp} becomes $\FF_f(p) = f(\La)(p)(0)$.
+
+
+Since when $\alpha = -1/2$, $\gamma_{n,\alpha} = n!$ and the Dunkl operator $\La$ is the derivative operator $d/dx$, the framework of Dunkl-umbral calculus is reduced to the classical case studied in~\cite{Rom}.
+
+It is clear that, if $af+bg$ is a linear combination of two formal series $f$ and $g$ (here, $a$ and $b$ are constants), then
+\begin{equation}
+\label{eq:af+bg}
+\FF_{af+bg} = a\FF_{f}+b\FF_{g}.
+\end{equation}
+Furthermore, for the product of two formal power series $f$ and $g$, we have
+\[
+\FF_{fg}(x^n) = \sum_{k=0}^n \binoma{n}{k} \FF_f(x^k) \FF_g(x^{n-k}).
+\]
+
+The following result shows us that the vector spaces $\calP^*$ and $\Sa$ are isomorphic. 
+
+\begin{theorem}
+\label{thm:isom}
+The vector spaces $\calP^*$ and $\Sa$ are isomorphic.
+\end{theorem}
+
+\begin{proof}
+Let $L : \calP \to \CC$ be a functional in $\calP^*$. We define the formal series $f_L(t) \in \Sa$ as  
+\[
+f_L(t) = \sum_{k=0}^{\infty} L(x^k) \frac{t^k}{\gamma_{k,\alpha}}.
+\]
+Then from \eqref{eq:ev-xn}, we get
+\[
+\FF_{f_L}(x^n) = L(x^n),
+\]
+where $\FF_{f_L}$ is the functional associated to the series~$f_L$. So, $\FF_{f_L} = L$. Then, as two functionals, $L$ and $M$, are equal if and only if $L(x^n) = M(x^n)$ for every $n\ge 0$, and this is true if and only if $f_L(t) = f_M(t)$, the map $L \mapsto f_L(t)$ is bijective.
+
+Since the functionals are linear, it is easy to see that
+\[
+f_{L+M}(t) = f_L(t)+f_M(t),\quad f_{cL}(t) = cf_L(t).
+\]
+So, our map is an isomorphism. 
+\end{proof}
+
+We translate a classical result in umbral calculus concerning functionals to the Dunkl context:
+
+\begin{theorem}
+\label{thm:umbral}
+Let $f(t) \in \Sa$. Then, for each polynomial $p(x)$,
+\begin{equation*}
+%\label{eq:umbral}
+\FF_{f}(p(x)) = \FF_{\La f}(x p(x)),
+\end{equation*}
+where $\FF_{\La f}$ is the functional associated to the series $\La f$.
+\end{theorem}
+
+
+
+The proof is just a particular case of \cite[Theorem~6.2.1]{RomRot}.
+
+On the other hand, given $f(t) \in \Sa$ as in \eqref{eq:series}, we define the \textit{linear operator associated} to $f$ over $\calP$, that is denoted by $\LL_f: \calP \to \cal P$, by taking
+\begin{equation*}
+%\label{eq:oper-xn}
+\LL_f(x^n) = \sum_{k=0}^{\infty} {a_k} \, \frac{\La^k(x^n)}{\gamma_{k,\alpha}} 
+= \sum_{k=0}^n  \binoma{n}{k} a_k x^{n-k},
+\end{equation*}
+and then, for each polynomial $p(x)$,
+\begin{equation}
+\label{eq:operLL-p}
+\LL_f(p(x)) = \sum_{k=0}^{\infty} {a_k} \, \frac{\La^k p(x)}{\gamma_{k,\alpha}}.
+\end{equation}
+As in the case of functionals, we will use several notations, such as $\LL_fp$, $\LL_fp(x)$ or $\LL_{f(t)}p(x)$; sometimes, with a small abuse of notation, we will also use $\LL_f(p(x))$. In addition, if there are several variables, the variables involved will often be denoted by a dot. Let us finally note that, using \eqref{eq:fLa}, the expression \eqref{eq:operLL-p} can be written as $\LL_fp = f(\La)(p)$.
+
+In the case $f(t) = t^m$ (so $a_{m} = \gamma_{m,\alpha}$ and $a_{k} = 0$ for $k \ne m$), we get, by using \eqref{eq:operLL-p}, that
+\[
+  \LL_{t^m}p = \La^m p, \quad p \in \calP.
+\]
+
+Moreover, it is not difficult to check that the product of formal power series corresponds to the composition of operators. That is, for $f(t), g(t) \in \Sa$, we have
+\begin{equation}
+\label{eq:LLL}
+\LL_f\circ\LL_g = \LL_{fg}.
+\end{equation}
+% Esto es \cite[(2.2.3), p.~13]{Rom}
+
+We continue with the Dunkl version of two basic results in umbral calculus.
+
+\begin{theorem}
+\label{thm:relation}
+Let $f(t)$ and $g(t)$ be formal series in $\Sa$. Then
+\[
+ \FF_{fg}(p(x)) = \FF_g(\LL_fp(x)).
+\]
+\end{theorem} 
+
+%\begin{proof}
+%It is enough to prove the result for monomials $p(x) = x^n$.
+%By Proposition~\ref{prop:Ffg}, we have
+%\begin{equation}
+%\label{eq:pro-oper}
+%\FF_{fg}(x^n) = \sum_{k=0}^{n} \binoma{n}{k} \FF_f(x^k)\FF_g(x^{n-k}).
+%\end{equation}
+%Taking into account \eqref{eq:oper-xn},
+%\begin{equation}
+%\label{eq:pro-oper2}
+%\FF_g(\LL_fx^n) = \FF_g \bigg(\sum_{k=0}^n \binoma{n}{k} \FF_f(x^k) x^{n-k}\bigg) 
+%= \sum_{k=0}^{n} \binoma{n}{k} \FF_f(x^k)\FF_g(x^{n-k}).
+%\end{equation}
+%From \eqref{eq:pro-oper} and \eqref{eq:pro-oper2} we have proved result.
+%\end{proof}
+
+The proof is a consequence of \cite[Theorem~4.1]{RomV1}.
+
+Unlike in the case of functionals $\calP \to \CC$ (see Theorem~\ref{thm:isom}), not all linear operators $\calP \to \calP$ are associated with a series $f(t) \in \Sa$. To do so, they must commute with the Dunkl operator.
+
+\begin{theorem}
+\label{thm:conmuta}
+Let $T: \calP \to \calP$ be a linear operator. 
+% Then, $T = \LL_f$ for a series $f(t) \in \Sa$ 
+Then, $T$ comes from a series $f(t) \in \Sa$
+if and only if $T$ commutes with the Dunkl operator, that is,
+\[
+T(\La p(x)) = \La(Tp(x)).
+\]
+\end{theorem}
+
+%\begin{proof}
+%If $T = \LL_f$ is associated to a series $f \in \Sa$, \eqref{eq:LLL} proves that $T$ %conmutes with all the operators $\LL_g$ associated to $g(t) \in \Sa$. In particular, $T$ %conmutes with~$\La = \LL_t$.
+%
+%Now, we suppose that $T$ conmutes with $\La$ and let $g(t) \in \Sa$ given by 
+%\[
+%g(t) = \sum_{k=0}^{\infty} \frac{T(x^k)(0)}{\gamma_{k,\alpha}} \,t^k.
+%\]
+%Let $\LL_g$ be the operator associated to $g$; then
+%\[
+%\LL_gx^n = \sum_{k=0}^{\infty}\frac{Tx^k(0)}{\gamma_{k,\alpha}} \,\La^kx^n 
+%= \sum_{k=0}^n \binoma{n}{k} Tx^k(0) x^{n-k}.
+%\]
+%Using the hypothesis and Theorem~\ref{thm:relation}, we obtain
+%\begin{equation*}
+%T(x^k)(0) = \frac{\gamma_{k,\alpha}}{\gamma_{n,\alpha}} T(\La^{n-k}x^n)(0) \\
+%= \frac{\gamma_{k,\alpha}}{\gamma_{n,\alpha}} \La^{n-k}(Tx^n)(0). 
+%\end{equation*}
+%So, 
+%\[
+%\LL_gx^n = \sum_{k=0}^{n} \frac{\La^{n-k}(Tx^n)(0)}{\gamma_{n-k,\alpha}} \, x^{n-k} 
+%= \sum_{k=0}^{n} \frac{\La^{k}(Tx^n)(0)}{\gamma_{k,\alpha}} \, x^{k} 
+%= Tx^n
+%\]
+%(in the last equality we have used~\eqref{eq:pol}).
+%\end{proof}
+
+This is a particular case of \cite[Proposition~4.1]{RomV1}. Moreover, a direct consequence of Theorem~\ref{thm:conmuta} is the following:
+
+\begin{corollary}
+\label{cor:conmuta}
+Let $T : \calP \to \calP$ be a linear operator. Then, $T$ comes from a series $f(t) \in \Sa$ if and only if $T$ commutes with the translation operator, that is,
+\[
+T(\tau_y(p))(x) = \tau_y(T(p))(x).
+\]
+\end{corollary}
+
+Following the ideas of \cite{CH} we are going to build the isomorphism between the set of functionals $\calP^*$ and the linear operators over $\calP$ that commutes with the Dunkl operator; in what follows, we use $\Sigma$ to denote the set of these operators.
+
+%\begin{theorem}
+%\label{thm:isomor}
+%The linear isomorphism between $\calP^*$ and $\Sigma$, $l:\calP^*\longrightarrow\Sigma$, 
+%is given by
+%\[
+%\FF\longrightarrow \LL p(x) = \FF(\tau_x(p)),\quad p \in \calP,
+%\]
+%and its inverse is
+%\[
+%\LL \longrightarrow \FF(p) = \LL p(0)\quad p \in \calP.
+%\]
+%\end{theorem}
+
+\begin{theorem}
+\label{thm:isomor}
+Let us define $l : \calP^* \longrightarrow \Sigma$ in such a way that, for $\FF \in \calP^*$, the linear operator $L = l(\FF) \in \Sigma$ is given by
+\[
+\LL p(x) = \FF(\tau_x(p)) = \FF(\tau_x(p)(\cdot)),\quad p \in \calP.
+\]
+Then, $l$ is a linear isomorphism and its inverse consists of assigning, to $\LL \in \Sigma$, the functional $\FF \in \calP^*$ given by
+\[
+\FF(p) = \LL p(0), \quad p \in \calP.
+\]
+\end{theorem}
+
+\begin{proof}
+Given $\FF \in \calP^*$, the map $L = l(\FF)$ is clearly linear; indeed, for $p,q \in \calP$ and constant~$c$,
+\[
+\LL(p+q)(x) = \FF(\tau_x(p+q)) = \FF(\tau_x(p)+\tau_x(q)) 
+= \FF(\tau_x(p))+\FF(\tau_x(q)) = \LL(p)(x)+\LL(q)(x),
+\]
+\[
+ \LL(cp)(x) = \FF(\tau_x(cp)) = \FF(c\tau_x(p)) = c\FF(\tau_x(p)) = c\LL(p)(x).
+\]
+We are going to see that $\LL$ commutes with~$\La$. By linearity we can take $\FF = \FF_{t^k}$ and $p(x) = x^n$. Recall that 
+$\tau_x((\cdot)^n)(y) = \sum_{j=0}^n \frac{x^j}{\gamma_{j,\alpha}} \La^j((\cdot)^n)(y) 
+= \sum_{j=0}^n \binoma{n}{j} x^{j}y^{n-j}$ 
+(note that we will also use the abuse of notation $\tau_x(y^n)$ and $\La^j(y^n)$).
+Then, on the one hand,
+\begin{align*}
+\LL \circ \Lax (x^n)
+&= \LL \bigg( \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} \, x^{n-1} \bigg) 
+= \FF_{t^k,y} \bigg(\tau_x\bigg(\frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}
+\, y^{n-1}\bigg)\bigg) \\
+&= \FF_{t^k,y} \bigg( \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}
+\sum_{j=0}^{n-1}\frac{x^j}{\gamma_{j,\alpha}} 
+\frac{\gamma_{n-1,\alpha}}{\gamma_{n-1-j,\alpha}} \, y^{n-1-j} \bigg) \\
+&= \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} 
+\sum_{j=0}^{n-1} \frac{x^j}{\gamma_{j,\alpha}} 
+\frac{\gamma_{n-1,\alpha}}{\gamma_{n-1-j,\alpha}} \, \Lay^k (y^{n-1-j})(0) \\
+&= \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} 
+\sum_{j = 0}^{n-1}\frac{x^j}{\gamma_{j,\alpha}} 
+\frac{\gamma_{n-1,\alpha}}{\gamma_{n-1-j-k,\alpha}} \, y^{n-1-j-k}\Big|_{y=0} 
+= \frac{\gamma_{n,\alpha}}{\gamma_{n-1-k,\alpha}} \, x^{n-1-k}.
+\end{align*}
+On the other hand, 
+\begin{align*}
+\Lax\circ \LL (x^n) &= \Lax(\FF_{t^k,y}(\tau_x(y^n))) 
+= \Lax\bigg( \FF_{t^k,y} \bigg(\sum_{j=0}^n {x^j}\,
+\frac{\La^jy^n}{\gamma_{j,\alpha}} \bigg) \bigg) \\
+&= \Lax\bigg( \sum_{j=0}^n \frac{x^j}{\gamma_{j,\alpha}}
+\frac{\gamma_{n,\alpha}}{\gamma_{n-j,\alpha}} \La^k (y^{n-j})(0) \bigg) \\
+&= \Lax\bigg( \sum_{j=0}^n \frac{x^j}{\gamma_{j,\alpha}}
+\frac{\gamma_{n,\alpha}}{\gamma_{n-j-k,\alpha}} \, y^{n-j-k} \Big|_{y=0} \bigg) \\
+&= \Lax\bigg( \frac{x^{n-k}}{\gamma_{n-k,\alpha}} \, \gamma_{n,\alpha} \bigg) 
+= \frac{\gamma_{n,\alpha}}{\gamma_{n-k-1,\alpha}} \, x^{n-k-1}.
+\end{align*}
+
+Conversely, if $\LL \in \Sigma$ and $\FF(p) = \LL p(0)$, then $\FF \in \calP^*$ and $\FF(\tau_{x_0}(p)) = \LL \tau_{x_0}(p)(0)$. From Corollary~\ref{cor:conmuta}, $\LL$ commutes with the translation, so 
+\[
+\FF(\tau_{x_0}(p)) = (\tau_{x_0}\circ\LL)(p)(0) = \tau_{x_0}\LL p(0) = \LL p(x_0)
+\]
+for every $x_0$. Thus, the maps are inverse of each other.
+\end{proof}
+
+%% See \cite[p.~4 and Proposition 2.1.8]{Rom}
+
+% \rojo{a formal series $f(t) \in \Sa$ as in \eqref{eq:series} is called \textit{invertible}
+% when $a_0\ne 0$. In this case, the formal series 1/f(t) also exists.}}
+Following the names used in \cite[Chapter~1, \S\,2]{Rom}, a formal series $f(t) \in \Sa$ as in \eqref{eq:series} is called \textit{invertible} (with respect to the product) if there exists $g(t) \in \Sa$ such as $f(t)g(t) = 1$, and we use $1/f$ or $f^{-1}$ to denote the formal series~$g$. It is a simple exercise to show that this is equivalent to saying that $a_0\ne 0$. Moreover, $f(t) \in \Sa$ is called a \textit{delta series} when $a_0 = 0$ and $a_1\ne 0$. In this case, the series $f(t)$ has a compositional inverse $\overline{f}(t)$ satisfying $f(\overline{f}(t)) = \overline{f}(f(t)) = t$. If $f(t)$ is a delta series, the sequence $\{f(t)^k\}_{k=0}^{\infty}$, forms a \textit{pseudobasis} for $\Sa$, that is, any series $g(t) \in \Sa$ can be expressed uniquely as
+\[
+g(t) = \sum_{k=0}^{\infty} a_k f(t)^k.
+\]
+When a functional or a linear operator comes from an invertible series, we will say that it is an \textit{invertible functional} or an \textit{invertible linear operator}, respectively. When a functional or a linear operator comes from a delta series, we will say that it is a \textit{delta functional} or a \textit{delta linear operator}, respectively.
+
+Now, let us explain a typical notation of umbral calculus. Let $f, g \in \Sa$, with $f$ an invertible series, so $1/f \in \Sa$. By using \eqref{eq:LLL} we have $\LL_{1/f} \circ \LL_{f} = \LL_{1} = \operatorname{Id}$, so $\LL_{1/f}$ is the compositional inverse of $\LL_{f}$. This suggests the notation
+\begin{equation}
+\label{eq:fracLgLf}
+  \frac{\LL_{g}}{\LL_{f}} := \LL_{g/f} = \LL_{g} \circ \LL_{1/f}.
+\end{equation}
+In this way, if $g$ is also an invertible series, we can write
+\begin{equation}
+\label{eq:invcLgLf}
+  \bigg(\frac{\LL_{g}}{\LL_{f}}\bigg)^{-1} = \frac{\LL_{f}}{\LL_{g}}.
+\end{equation}
+
+%----------
+\section{Examples of functionals and linear operators}
+\label{sec:ex-fun-lin}
+%----------
+
+In this section we are going to take some formal series in $\Sa$ and study the corresponding functionals and linear operators.
+
+\begin{example}
+\label{ex:FEa}
+Let $\Ea(yt)$ be the series
+\[
+\Ea(yt) = \sum_{k=0}^{\infty} {y^{k}} \, \frac{t^k}{\gamma_{k,\alpha}}.
+\]
+We are going to see that the corresponding functional $\FF_{\Ea(y\cdot)}$ is the evaluation functional, that is, $\FF_{\Ea(y\cdot)}(p) = p(y)$. If we apply $\FF_{\Ea(y\cdot)}$ to $x^n$ we obtain
+\[
+\FF_{\Ea(y\cdot)}(x^n) = \sum_{k=0}^{\infty} {y^k} \, \frac{\La^k(x^n)(0)}{\gamma_{k,\alpha}} = y^n.
+\]
+Then, by linearity, when we apply $\FF_{\Ea(y\cdot)}$ to a polynomial $p(x)$ we have
+\[
+\FF_{\Ea(y\cdot)}(p(x)) = \sum_{k=0}^{\infty} {y^k} \, \frac{\La^kp(0)}{\gamma_{k,\alpha}} = p(y).
+\]
+The linear operator $\LL_{\Ea(y\cdot)}$ is the translation operator~$\tau_y$ because
+\[
+\LL_{\Ea(y\cdot)}(x^n) = \sum_{k=0}^{\infty} {y^k}\, \frac{\La^kx^n}{\gamma_{k,\alpha}}
+= \sum_{k=0}^n \binoma{n}{k} y^k x^{n-k} = \tau_y(x^n),
+\]
+and then
+\[
+\LL_{\Ea(y\cdot)}p(x) = \sum_{k=0}^{\infty} {y^k}\, \frac{\La^k p(x)}{\gamma_{k,\alpha}} 
+= \tau_y(p)(x).
+\]
+\end{example}
+
+\begin{example}
+We take the function defined in \eqref{eq:def-I}, that can be written as 
+\[
+\I_{\alpha}(yt) = \frac{\Ea(yt)+\Ea(-yt)}{2}.
+\]
+Then the functional $\FF_{\I_{\alpha}(y\cdot)}$ is given by
+\[
+\FF_{\I_{\alpha}(y\cdot)}(p(x)) = \frac{p(y)+p(-y)}{2}.
+\]
+When we take the linear operator we obtain 
+\begin{equation}
+\label{eq:rel-euler}
+\LL_{\I_{\alpha}(y\cdot)}p(x) = \frac{\tau_yp(x)+\tau_{-y}p(x)}{2}.
+\end{equation}
+Note that if $y = 1$ we obtain the operator $M_{\alpha}$ of \cite{GLMV}.
+\end{example}
+
+\begin{example}
+\label{ex:Galpha}
+Following the notation of \cite{ELMV}, we take the delta series defined in \eqref{eq:def-G}
+\[
+G_{\alpha}(yt) = (\alpha+1)(\Ea(yt)-\Ea(-yt)) 
+= 2(\alpha+1) \sum_{k=0}^{\infty} {y^{2k+1}}\, \frac{t^{2k+1}}{\gamma_{2k+1,\alpha}}.
+\]
+For the function $G_{\alpha}(y\cdot)$, the corresponding functional is the Dunkl central evaluation:
+\[
+\FF_{G_{\alpha(y\cdot)}}(p(x)) = (\alpha+1)(p(y)-p(-y)),
+\qquad p \in \calP.
+\]
+And the linear operator is 
+\[
+\LL_{G_{\alpha}(y\cdot)}p(x) = (\alpha+1)(\tau_y(p)(x)-\tau_{-y}(p)(x)),
+\qquad p \in \calP.
+\]
+Observe that, when $y=1$, it coincides with the Dunkl central operator given in~\cite{ELMV}.
+\end{example}
+
+\begin{example}
+We take the delta series
+\begin{equation}
+\label{def:a-d}
+t\Ea(yt) = \sum_{k=0}^{\infty} {y^k} \, \frac{t^{k+1}}{\gamma_{k,\alpha}}.
+\end{equation}
+The action of the functional $\FF_{t\Ea(yt)}$ over $x^n$ is
+\[
+\FF_{t \Ea(yt)}(x^n) = \sum_{k=0}^{\infty} {y^k}\, \frac{\La^{k+1}(x^n)(0)}{\gamma_{k,\alpha}} 
+= \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}y^{n-1} = \La y^n.
+\] 
+So, if $p(x)$ is a polynomial, 
+\[
+\FF_{t \Ea(yt)}(p(x)) = \La(p)(y).
+\]
+When $\alpha = -1/2$ this functional is called the Abel functional (see, for instance, \cite[Chapter~2, \S\,6, Example~3, p.~29]{Rom}). Thus, the functional $\FF_{t\Ea(yt)}$ will be called the \textit{Abel-Dunkl functional}.
+
+Considering the linear operator $\LL_{t \Ea(yt)}$, we have
+\[
+\LL_{t \Ea(yt)}p(x) = \La\tau_y(p)(x) = \tau_y\La(p)(x) = \tau_y\La p(x),\qquad p\in\calP,
+\]
+and it will be called the \textit{Abel-Dunkl operator}.
+\end{example}
+
+\begin{example}
+Let $A(t)$ be the invertible series
+\[
+A(yt) = \frac{1}{1-yt} = \sum_{k=0}^{\infty} y^kt^k 
+= \sum_{k=0}^{\infty} \gamma_{k,\alpha}y^k \frac{t^k}{\gamma_{k,\alpha}}, \qquad |t| < 1/|y|.
+\]
+Then the corresponding functional over $x^n$ gives
+\[
+\FF_{A(y\cdot)}(x^n) = \gamma_{n,\alpha}y^n.
+\]
+And the action of the linear operator over $x^n$ is
+\[
+\LL_{A(y\cdot)}x^n = \sum_{k=0}^{\infty} y^k\La^kx^n 
+= \sum_{k=0}^n \binoma{n}{k}\gamma_{k,\alpha}y^kx^{n-k}.
+\] 
+\end{example}
+
+\begin{example}
+For any $y$, and following the notation of \eqref{eq:primDxn} for Dunkl integrals, let $\mathcal{F}_y : \calP \to \CC$ be the functional defined as 
+\[
+\mathcal{F}_y(p(x)) = \oint_{-y}^y p(s)\,d_\alpha s,
+\qquad p \in \calP.
+\]
+When we apply it to $x^n$ we have
+\[
+\mathcal{F}_y(x^n) = \oint_{-y}^y s^n\,d_\alpha s 
+= \frac{y^{n+1}}{\theta_{n+1,\alpha}} - \frac{(-1)^{n+1}y^{n+1}}{\theta_{n+1,\alpha}}.
+\]
+Now, define
+\begin{align*}
+f(yt) & = \sum_{k=0}^{\infty} \frac{\mathcal{F}_y(x^k)}{\gamma_{k,\alpha}}t^k 
+= \sum_{k=0}^{\infty} \frac{2y^{2k+1}}{\theta_{2k+1,\alpha}} \frac{t^{2k}}{\gamma_{2k,\alpha}}
+= 2\sum_{k=0}^{\infty} \frac{y^{2k+1}}{\gamma_{2k+1,\alpha}}t^{2k} \\
+& = \frac{\Ea(yt)-\Ea(-yt)}{t} = \frac{\I_{\alpha+1}(yt)}{\alpha+1}.
+\end{align*}
+Then, if we observe~\eqref{eq:ser-fun}, it is clear that $\mathcal{F}_y = \FF_{f(y\cdot)}$.
+
+And the linear operator over $x^n$ is
+\begin{equation}
+\label{eq:bernoulli}
+\LL_{f(y\cdot)} x^n = 2\sum_{k=0}^\infty {y^{2k+1}} \, \frac{\La^{2k}x^n}{\gamma_{2k+1,\alpha}}
+= 2 \sum_{k=0}^{\lfloor n/2\rfloor} 
+\frac{\gamma_{2k,\alpha}y^{2k+1}}{\gamma_{2k+1,\alpha}} \binoma{n}{2k}x^{n-2k}.
+\end{equation}
+\end{example}
+
+%----------
+\section{Sheffer-Dunkl sequences}
+\label{sec:sheffer}
+%----------
+
+In this section we are going to define the Sheffer-Dunkl sequences. When we write that $s_n$ is a polynomial then we understand that $\deg s_n = n$.
+
+\begin{theorem}
+\label{thm:S-D}
+Let $f(t), g(t) \in \Sa$ be two formal series expressed as in \eqref{eq:series} such that $f(t)$ is a delta series and $g(t)$ is an invertible series. Then there exists an unique sequence of polynomials, $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$, such that
+\begin{equation}
+\label{eq:defSheffer}
+\FF_{gf^k}(s_{n,\alpha}(x)) = \gamma_{n,\alpha}\delta_{n,k},\quad n,\,k\ge 0,
+\end{equation}
+where $\delta_{n,k}$ is the Kronecker delta.
+\end{theorem} 
+
+\begin{proof}
+First of all, let us see the uniqueness. Suppose that there exists another sequence $\{r_{n,\alpha}(x)\}_{n=0}^{\infty}$ that satisfies \eqref{eq:defSheffer}. Because $f(t)$ is a delta series and $g(t)$ is an invertible series, then $\{g(t)f(t)^j\}_{j=0}^{\infty}$ forms a pseudobasis, 
+% i.e., cada serie se puede poner como "combinaci\'on lineal formal" de esos 
+i.e., for each $k$, there exists a sequence $\{a_{k,j}\}_{j = 0}^{\infty}$ such that
+\[
+t^k = \sum_{j=0}^{\infty} a_{k,j}g(t)f(t)^j.
+\]
+By hypothesis, 
+\begin{equation*}
+\sum_{j=0}^{\infty} a_{k,j} \FF_{gf^j}(s_{n,\alpha}(x)) 
+= \sum_{j=0}^{\infty} a_{k,j} \FF_{gf^j}(r_{n,\alpha}(x)),
+\end{equation*}
+and, consequently,
+\[
+\FF_{t^k}(s_{n,\alpha}(x)) = \FF_{t^k}(r_{n,\alpha}(x)).
+\]
+Then, from \eqref{eq:pol},
+\[
+s_{n,\alpha}(x) = \sum_{k=0}^n \FF_{t^k}(s_{n,\alpha}(x)) \frac{x^k}{\gamma_{k,\alpha}}
+= \sum_{k=0}^n {\FF_{t^k}(r_{n,\alpha}(x))} \frac{x^k}{\gamma_{k,\alpha}} = r_{n,\alpha}(x).
+\]
+For the existence, let us write $s_{n,\alpha}(x) = \sum_{j=0}^n a_{n,j}x^j$ 
+and $g(t)f(t)^k = \sum_{i=k}^{\infty} b_{k,i}t^i$, $b_{k,k}\ne 0$. We want to see how to choose the coefficients $a_{n,j}$ to get~\eqref{eq:defSheffer}. Using \eqref{eq:af+bg}, this is reduced to have the following:
+\begin{align*}
+\gamma_{n,\alpha}\delta_{n,k}
+&= \FF_{gf^k}(s_{n,\alpha}(x))
+= \sum_{i=k}^{\infty} b_{k,i}
+\FF_{t^i} \bigg(\sum_{j=0}^n a_{n,j}x^j\bigg)
+= \sum_{i=k}^{\infty} \sum_{j = 0}^n b_{k,i}a_{n,j} \FF_{t^i}(x^j) \\
+&= \sum_{i=k}^{\infty} \sum_{j = 0}^nb_{k,i}a_{n,j} \gamma_{j,\alpha} \delta_{i,j}
+= \sum_{i=k}^{n} b_{k,i}a_{n,i}\gamma_{i,\alpha}.
+\end{align*}
+For $n = k$, we have $\gamma_{n,\alpha} = b_{n,n}a_{n,n}\gamma_{n,\alpha}$ and thus we can solve for $a_{n,n} = 1/b_{n,n}$. For $n = k-1, k-2,\ldots, 0$, we obtain a triangular system of equations, and we can solve for~$a_{n,k}$.
+\end{proof}
+
+In this scenario, i.e., when $f(t)$, $g(t)$ and $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$ are given as in Theorem~\ref{thm:S-D}, we say that $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$ is the \textit{Sheffer-Dunkl sequence} for the pair $(g(t),f(t))$. 
+%Classical Sheffer sequences are given by 
+%\[
+%\FF_{gf^k}(s_{n,\alpha}(x)) = n! \delta_{n,k}.
+%\]
+As pointed out in the introduction when $n!$ is replaced by $c_n$ we get a more general umbral calculus (and though, Sheffer sequences) and there are some general results. However, it is often interesting to study what happens in concrete choices of $c_n$. In the ``Dunkl case'' ($c_n = \gamma_{n,\alpha}$) the definition of Sheffer-Dunkl sequences is new (at least, as far as we now). 
+
+
+However, as mentioned in the introduction, Appell-Dunkl sequences, which turn out to be a subclass of Sheffer-Dunkl sequences, have already been studied. More precisely, an \textit{Appell-Dunkl sequence}, $\{a_{n,\alpha}(x)\}_{n=0}^\infty$, is a Sheffer-Dunkl sequence for $f(t) = t$ and some invertible function $g(t)$.
+Other important subclasses of Sheffer-Dunkl sequences are \textit{associated Dunkl sequences}. We say $\{p_{n,\alpha}(x)\}_{n=0}^{\infty}$ is the associated Dunkl sequence for $f(t)$ if it is Sheffer-Dunkl for a delta series $f(t)$ and $g(t) = 1$. For a given delta functional, $f(t)$, its associated Dunkl sequence is unique. 
+
+By this definition, it is straightforward to see that a direct consequence of Theorem~\ref{thm:S-D} is the following:
+\begin{corollary}
+Let $\{p_{n,\alpha}(x)\}_{n=0}^{\infty}$ be the associated Dunkl sequence for a delta series $f(t) \in \Sa$. Then,
+\begin{equation}
+\label{eq:asociados}
+p_{0,\alpha}(x) = 1,\quad p_{n,\alpha}(0) = 0,\ n\ge 1.
+\end{equation}
+\end{corollary}
+
+As a simple example, we show that, since 
+\[
+\FF_{t^k}(x^n) = \gamma_{n,\alpha}\delta_{n,k},
+\]
+we have that $p_{n,\alpha}(x) = x^n$ is the associated Dunkl sequence for $f(t) = t$.
+
+Associated Dunkl sequences may be computed from $\FF_{\overline{f}(t)}$ as we show next.
+
+\begin{theorem}
+Let $f(t) \in \Sa$ be a delta series. Then $\{p_{n,\alpha}(x)\}_{n=0}^{\infty}$ is the associated Dunkl sequence for $f(t)$ if and only if
+\begin{equation}
+\label{eq:pn-fk}
+p_{n,\alpha}(x) := \sum_{k=0}^n {\FF_{\overline{f}^k}(x^n)} \frac{x^k}{\gamma_{k,\alpha}},
+\quad n= 0,1,2,\dots,
+\end{equation}
+where $\overline{f}$ is the compositional inverse of~$f$.
+\end{theorem}
+
+On the other hand, we have \textit{conjugated Dunkl sequences}, $\{q_{n,\alpha}(x)\}_{n=0}^{\infty}$, which were defined for the first time in \cite{RomRot}. The conjugated Dunkl sequence $\{q_{n,\alpha}(x)\}_{n=0}^{\infty}$ is just a Sheffer-Dunkl sequence for $\overline{f}(t)$ and $g(t) = 1$. Hence, they can be computed using
+\begin{equation}
+\label{def:conj-seq}
+q_n(x) : = \sum_{k=0}^n {\FF_{f^k}(x^n)} \frac{x^k}{\gamma_{k,\alpha}},
+\quad n= 0,1,2,\dots.
+\end{equation}
+We provide several examples of Appell-Dunkl, associated Dunkl and conjugated Dunkl sequences in Section~\ref{sec:ex-appell} and Section~\ref{sec:ex-sheffer}.
+
+Following the same arguments of \cite[Chapter~2, \S\,3]{Rom}, some relevant results about Sheffer-Dunkl sequences can be proved. 
+
+\begin{theorem}
+\label{thm:expan-oper}
+Let $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$ be the Sheffer-Dunkl sequence for $(g(t),f(t))$. Then:
+\begin{enumerate}
+\item For each $h(t) \in \Sa$,
+\[
+h(t) = \sum_{k=0}^{\infty} {\FF_h(s_{k,\alpha}(x))} g(t) \frac{f(t)^k}{\gamma_{k,\alpha}}.
+\]
+\item For every polynomial $p(x) \in \calP$ of degree $n$, 
+\[
+p(x) = \sum_{k=0}^n \FF_{gf^k}(p(x)) \frac{s_{k,\alpha}(x)}{\gamma_{k,\alpha}}.
+\] 
+\end{enumerate}
+\end{theorem}
+
+We can also obtain several characterizations of the Sheffer-Dunkl sequences. 
+
+\begin{theorem}
+\label{thm:charact} 
+Let $f(t) \in \Sa$ be a delta series, and let $g(t) \in \Sa$ be an invertible series. Let $\{p_{n,\alpha}(x)\}_{n=0}^\infty$ be the associated Dunkl sequences for $f(t)$.
+Then, the following statements are equivalent:
+\begin{enumerate}
+\item $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$ is the Sheffer-Dunkl sequence for $(g(t),f(t))$.
+\item If $\overline{f}(t)$ denotes the compositional inverse of $f(t)$, then
+\begin{equation}
+\label{eq:gener-func}
+\frac{1}{g(\overline{f}(t))}\Ea(x\overline{f}(t)) 
+= \sum_{k=0}^{\infty} {s_{k,\alpha}(x)} \frac{t^k}{\gamma_{k,\alpha}};
+\end{equation}
+in this way, we say that the left hand side of \eqref{eq:gener-func} is the generating function of the Sheffer-Dunkl sequence $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$.
+\item The polynomial $s_{n,\alpha}(x)$ can be written by 
+\begin{equation}
+\label{eq:s-expl}
+s_{n,\alpha}(x) = \sum_{k=0}^n \FF_{g(\overline{f}(t))^{-1} \overline{f}(t)^k}(x^n) 
+\frac{x^k}{\gamma_{k,\alpha}}.
+\end{equation}
+\item The sequence $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$ satisfies
+\begin{equation*}
+%\label{eq:f-sn}
+\LL_fs_{n,\alpha}(x) = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}s_{n-1,\alpha}(x);
+\end{equation*}
+ this can also be denoted as $f(\La) s_{n,\alpha} = \theta_{n,\alpha} s_{n-1,\alpha}$.
+\item The sequence $\{\LL_gs_{n,\alpha}(x)\}_{n=0}^{\infty}$ is the associated Dunkl sequence for $f(t)$, that is, 
+\begin{equation}
+\label{eq:g-aso}
+\LL_g s_{n,\alpha}(x) = p_{n,\alpha}(x).
+\end{equation}
+\item 
+The sequence $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$ holds the so-called Sheffer-Dunkl identity, that is,
+\begin{equation}
+\label{eq:ident-S}
+\tau_y(s_{n,\alpha})(x) = \sum_{k=0}^{n} \binoma{n}{k} p_{k,\alpha}(y)s_{n-k,\alpha}(x).
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+A similar property to the Sheffer-Dunkl identity, is the binomial-Dunkl identity
+\begin{equation*}
+%\label{def:binom-type}
+\tau_y(r_{n,\alpha}(x)) = \sum_{k=0}^{n} \binoma{n}{k} r_{k,\alpha}(x) r_{n-k,\alpha}(y).
+\end{equation*}
+A sequence of polynomials that satisfies this property will be called \textit{of binomial-Dunkl type}. By the above theorem, it is easy to see that every associated Dunkl sequence $p_{n,\alpha}(x)$ is of binomial type. The converse is also true: every sequence of binomial type is an associated Dunkl sequence for some delta series $f(t)$. An easy example is the sequence $p_{n,\alpha}(x) = x^n$, which is the associated Dunkl sequence for $f(t) = t$. Their binomial identity is just the definition of Dunkl translation for~$x^n$:
+\[
+\tau_y((\cdot)^n)(x) = \sum_{k=0}^{n} \binoma{n}{k} x^n y^{n-k}.
+\]
+For conjugated Dunkl sequences, again,  we have that every conjugated Dunkl sequence is of binomial-Dunkl type and every sequence of binomial-Dunkl type is a conjugated Dunkl sequence for certain $f(t)$. Hence, both associated Dunkl and conjugated Dunkl sequences are of binomial-Dunkl type and vice versa (but associated Dunkl sequences are of binomial-Dunkl type for $(1,f(t))$ and conjugated Dunkl sequences for $(1,\overline{f}(t)))$. Likewise, every sequence of binomial-Dunkl type, $p_{n,\alpha}(x)$, is an associated Dunkl sequence for a delta function $f(t)$ and a conjugated Dunkl sequence for a delta function $\overline{f}(t)$. When $f(t) = \overline{f}(t)$, we have $p_{n,\alpha}(x) = q_{n,\alpha}(x)$ and we will say that $p_{n,\alpha}(x)$ is self-reciprocal for $f(t)$ and that $f(t)$ is a self-reciprocal function. For example, when $f(t) = t$ it is easy to verify that $q_n(x) = x^n$ is the conjugated Dunkl sequence of $f(t)$ and hence, $x^n$ is self-conjugated for $f(t) = t$.
+
+The next result gives us other characterizations of Sheffer-Dunkl sequences. 
+
+\begin{theorem}
+\label{thm:main}
+Let $\{p_{n,\alpha}(x)\}_{n=0}^{\infty}$ be the associated Dunkl sequence for a delta series $f(t) \in \Sa$ and let $g(t) \in \Sa$ be an invertible series. Let $\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$ be the  Sheffer-Dunkl sequence for $(g(t),f(t))$. Then, 
+\begin{equation}
+\label{eq:func2}
+\FF_g(\tau_{x}(s_{n,\alpha})) = p_{n,\alpha}(x),\ n\ge 0,
+\end{equation}
+or, equivalently,
+\begin{equation}
+\label{eq:func1}
+\FF_g(s_{0,\alpha}) = 1,\quad \FF_g(s_{n,\alpha}) = 0,\ n\ge 1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+From Theorem~\ref{thm:isomor},
+\[
+\FF_g(\tau_{x}(s_{n,\alpha}))=\LL_gs_{n,\alpha}(x).
+\] 
+So \eqref{eq:func2} is reduced to~\eqref{eq:g-aso}.
+
+To prove the equivalence between \eqref{eq:func2} and \eqref{eq:func1}, first note that taking $x=0$ in~\eqref{eq:func2}, we obtain
+\[
+\FF_g(\tau_0 (s_{n,\alpha})) = \FF_g(s_{n,\alpha}) = p_{n,\alpha}(0),
+\]
+and using \eqref{eq:asociados} we have \eqref{eq:func1}.
+
+Now, applying $\FF_g$ to \eqref{eq:ident-S}  ($\{s_{n,\alpha}(x)\}_{n=0}^{\infty}$ is a Sheffer-Dunkl sequence) we get
+\[
+\FF_g(\tau_x(s_{n,\alpha})(y))=\sum_{k=0}^n\binoma{n}{k}p_{k,\alpha}(x)\FF_g(s_{n-k,\alpha}(y)),
+\]
+and, by \eqref{eq:func1}, this is the same as $p_{n,\alpha}(x)$. Therefore, we have proved~\eqref{eq:func2}.
+\end{proof}
+
+
+In \cite{CH}, Sheffer sequences are characterized using functionals. We are going to extend the characterization for Sheffer-Dunkl sequences.
+
+\begin{theorem}
+\label{thm:nuevo}
+Let $f(t) \in \Sa$ be a delta series and $\LL_f$ its associated operator. For each $x_0 \in \CC$, let us define an operator $\mathcal{L}^{-1}_{f,x_0} : \calP \to \calP$ given by
+\begin{equation}
+\label{eq:oper-inver}
+\mathcal{L}_{f,x_0}^{-1}p(x) = \frac{\LL_t}{\LL_f}\left(\oint_{x_0}^x p(s)\,d_{\alpha}s\right)
+\end{equation}
+(let us recall that $\frac{\LL_t}{\LL_f}$ exists via \eqref{eq:fracLgLf}, and Dunkl integrals are defined in~\eqref{eq:primDxn}), that satisfies $\LL_f \circ \mathcal{L}_{f,x_0}^{-1} = \operatorname{Id}$.
+With this operator, the Sheffer-Dunkl sequence for $(g(t),f(t))$ with $g(t)$ an invertible series can be calculated recursively by $s_{0,\alpha} = 1/g(0)$ and
+\begin{equation} 
+\label{eq:recur}
+s_{n,\alpha} = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} 
+\mathcal{L}_{f,x_0}^{-1} s_{n-1,\alpha}
+- \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}s_{0,\alpha}} 
+\FF_g(\mathcal{L}_{f,x_0}^{-1} s_{n-1,\alpha}),
+\quad n\ge 1. 
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+First of all, note that from \eqref{eq:fracLgLf} the inverse operator~\eqref{eq:oper-inver} can be written in different ways:
+\[
+\mathcal{L}_{f,x_0}^{-1}p(x) = \frac{\LL_t}{\LL_{f}} \left(\oint_{x_0}^x p(s)\,d_{\alpha}s\right)
+= \LL_t\circ\LL_{\frac{1}{f}}\left(\oint_{x_0}^x p(s)\,d_{\alpha}s\right)
+= \LL_{\frac{t}{f}}\left(\oint_{x_0}^x p(s)\,d_{\alpha}s\right).
+\]
+We can write $\LL_f = \LL_t\circ\LL_{f/t}$ where $\LL_{f/t}$ is invertible and $\LL_{f/t}^{-1} =\LL_{t/f}$ (recall~\eqref{eq:invcLgLf}). Then
+\[
+\LL_f\circ \mathcal{L}_{f,x_0}^{-1}p(x) 
+= \LL_t\circ \LL_{f/t}\circ \LL_{t/f}\left(\oint_{x_0}^x p(s)\,d_{\alpha}s\right) 
+= \LL_t\left(\oint_{x_0}^x p(s)\,d_{\alpha}s\right).
+\]
+As $\LL_t=\La$, we have 
+\[
+\LL_f\circ \mathcal{L}_{f,x_0}^{-1}p(x)=p(x).
+\]
+Now, let $\hat{s}_{0,\alpha} = s_{0,\alpha} = 1/g(0)$ and $\hat{s}_{n,\alpha}(x)$ be the sequence generated by~\eqref{eq:recur}. When we apply $\LL_f$ to $\hat{s}_{n,\alpha}(x)$ we have
+\[
+\LL_f\hat{s}_{n,\alpha} = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}\hat{s}_{n-1,\alpha}.
+\]
+From Theorem~\ref{thm:charact}, this implies that $\{\hat{s}_{n,\alpha}(x)\}$ is a Sheffer-Dunkl sequence. Applying $\FF_g$ to $\hat{s}_{n,\alpha}$ we obtain
+\[
+\FF_g(\hat{s}_{n,\alpha}) = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} 
+\FF_g(\mathcal{L}_{f,x_0}^{-1}\hat{s}_{n-1,\alpha}) 
+- \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}s_{0,\alpha}} 
+\FF_g(\mathcal{L}_{f,x_0}^{-1}\hat{s}_{n-1,\alpha})g(0) = 0,
+\]
+for all $n\ge 1$. From Theorem~\ref{thm:main}, $\{\hat{s}_{n,\alpha}(x)\}$ satisfies \eqref{eq:func2} which, as we have seen, it is the same of \eqref{eq:g-aso}. From Theorem~\ref{thm:charact}, $\{\hat{s}_{n,\alpha}(x)\}$ is the Sheffer-Dunkl sequence for $(g(t),f(t))$, so $s_{n,\alpha} = \hat{s}_{n,\alpha}$.
+\end{proof}
+
+Finally, in this section, we take a look on Appell-Dunkl sequences (or polynomials). Since an Appell-Dunkl sequence is a Sheffer-Dunkl sequence with $f(t) = t$ their associated Dunkl sequence is $p_{n,\alpha}(x) = x^n$ (and also their conjugated Dunkl sequence). Of course, that means that an Appell-Dunkl sequence $\{a_{n,\alpha}(x)\}_{n=0}^\infty$ can be defined with the generating function
+\begin{equation}
+\label{eq:genfun-A}
+    A(t) \Ea(xt) = \sum_{n=0}^\infty a_{n,\alpha}(x) \frac{t^n}{\gamma_{n,\alpha}},
+\end{equation}
+and this is equivalent (by Theorem~\ref{thm:charact}) to
+\begin{equation}
+\label{eq:der-A}
+\Lambda_\alpha(a_{n,\alpha}(x)) = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}a_{n-1,\alpha}(x),
+\qquad n \ge 1.
+\end{equation}
+These are the equivalent characterizations \eqref{eq:def-AD} and~\eqref{eq:der-AD} explained in the introduction. As we pointed there,
+%As we pointed in the introduction, 
+Sheffer-Dunkl sequences have not appeared (with this denomination at least and as far as we know) in the literature, but Appell-Dunkl sequences have. First, Hermite-Dunkl polynomials were defined in~\cite{Ros} (they are usually so-called generalized Hermite polynomials), followed by Bernoulli-Dunkl \cite{CDPV} and Euler-Dunkl polynomials~\cite{DPV}. 
+
+A nice property of Appell-Dunkl that was already known (see, for instance, \cite{Ros}) is
+\begin{equation}
+\label{eq:A-D-iden}
+\tau_y(a_{n,\alpha})(x) = \sum_{k=0}^{n} \binoma{n}{k} y^k a_{n-k,\alpha}(x),
+\end{equation}
+which, in this framework, can be seen as a particular case of the Sheffer-Dunkl identity~\eqref{eq:ident-S}.
+
+As a particular case of Theorems~\ref{thm:main} and~\ref{thm:nuevo}, we have this result concerning Appell-Dunkl sequences.
+
+\begin{theorem}
+\label{thm:Appell-Dunkl}
+Let $\{a_{n,\alpha}(x)\}_{n=0}^{\infty}$ be an Appell-Dunkl sequence for $g(t)$. This sequence is the unique Appell-Dunkl  that satisfies
+\[
+\FF_g(\tau_{x_0}(a_{n,\alpha})) = x_0^n,\quad n\ge 0,\ x_0 \in \CC.
+\]
+Moreover,
+\begin{equation}
+\label{eq:recur-Appell}
+a_{n,\alpha}(x) = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}
+\oint_{x_0}^x a_{n-1,\alpha}(s)\,d_{\alpha}s 
+- \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}a_{0,\alpha}}
+\FF_g\left( \oint_{x_0}^x a_{n-1,\alpha}(s)\,d_{\alpha}s\right).
+\end{equation}
+\end{theorem}
+
+%----------
+\section{Examples of Appell-Dunkl sequences}
+\label{sec:ex-appell}
+%----------
+
+In this section we are going to see some of the properties of Appell-Dunkl sequences. By Theorem~\ref{thm:charact} we know many properties that are true for every Appell-Dunkl sequences like \eqref{eq:genfun-A}, \eqref{eq:der-A} and~\eqref{eq:A-D-iden}.
+
+%----------
+\subsection{Generalized Hermite polynomials}
+%----------
+
+Generalized Hermite polynomials, $\{H^{\mu}_{n}(x)\}_{n=0}^\infty$, were first defined in \cite{Ros}. They have the nice property of being orthogonal polynomials, as the classical Hermite polynomials. By some small modifications in \cite[(2.5.8)]{Ros}  (like $\mu = \alpha + 1/2$, $\Ea(2xt) \mapsto \Ea(xt)$ and $n! \mapsto \gamma_{n,\alpha}$), we can consider these polynomials to be of Sheffer-Dunkl type for $f(t) = t$ and $g(t) = e^{t^2}$. Let $h_{k,\alpha}(x) = H^\alpha_{k}(\frac{x}{2})\frac{\gamma_{k,\alpha}}{k!}$ (valid for $\alpha > -1$) be the Sheffer-Dunkl version of the generalized Hermite polynomials. Then, $\{h_{k,\alpha}(x)\}_{k=0}^\infty$ can be defined through their generating function, which is
+\[
+e^{-t^2} \Ea(xt) = \sum_{k=0}^{\infty} h_{k,\alpha}(x) \frac{t^k}{\gamma_{k,\alpha}},
+\qquad t \in \CC.
+\]
+By \cite[(2.6.7)]{Ros} we get
+\[
+x^n = \sum_{k=0}^{\lfloor \frac{n}{2} \rfloor} \frac{h_{n-2k,\alpha}(x)}{k! \,\gamma_{n-2k,\alpha}},
+\]
+that is also obtained when applying \eqref{eq:g-aso} to $h_{n,\alpha}(x)$, i.e.,
+\[
+\LL_{e^{t^2}}(h_{n,\alpha}(x)) 
+= \sum_{k=0}^{\lfloor \frac{n}{2} \rfloor} \frac{h_{n-2k,\alpha}(x)}{k! \,\gamma_{n-2k,\alpha}} = x^n.
+\]
+
+%----------
+\subsection{Generalized Bernoulli-Dunkl polynomials}
+%----------
+
+%\begin{example}
+The generalized Bernoulli-Dunkl polynomials of order $r$, $\{\B^{(r)}_{n,\alpha}(x)\}_{n=0}^\infty$, have been defined and studied in \cite{CDPV}, \cite{CMV} and~\cite{MV}. They are Appell-Dunkl polynomials with $g(t) = (\I_{\alpha+1}(t))^r$. When $r=1$, we call these polynomials Bernoulli-Dunkl polynomials, $\{\B_{n,\alpha}(x)\}_{n=0}^\infty$.
+
+From \eqref{eq:gener-func}, the generating function is
+\[
+\frac{\Ea(xt)}{\I_{\alpha+1}(t)^r} 
+= \sum_{k=0}^{\infty} {\B^{(r)}_{k,\alpha}(x)} \frac{t^k}{\gamma_{k,\alpha}}
+\]
+(the radius of convergence is $|t| < j_{1,\alpha+1}$, where $j_{1,\alpha+1}$ denotes the first positive zero of the Bessel function~$J_{\alpha+1}$).
+
+For $n\geq 0$, $\B_{2n}^{(r)}$ is an even polynomial and $\B_{2n+1}^{(r)}$ is an odd polynomial. Aside from the properties that they hold for being Appell-Dunkl polynomials, they also satisfy some interesting formulas that connect generalized Bernoulli-Dunkl polynomials of different orders, such as (see~\cite{CMV})
+\[
+\Lambda_\alpha(\B_k^{(r)})(x) = (\alpha+1)(\tau_1\B_k^{(r+1)}(x) - \tau_{-1}\B_k^{(r+1)}(x))
+\]
+and
+\[
+\tau_y(\B_k^{(r+s)})(x) = \sum_{j=0}^{k}\binoma{k}{j} \B_j^{(r)}(x)\B_{k-j}^{(s)}(y).
+\]
+From \eqref{eq:g-aso} and $r=1$, when we apply $\LL_{\I_{\alpha+1}(t)}$ to $\B_{n,\alpha}$ we obtain $x^n$. 
+Then we have the recurrence relations of the Proposition 2.2 of \cite{CDPV}, that is,
+\begin{equation}
+\label{eq:rec-par}
+x^{2n} = (\alpha+1) \sum_{j=0}^n\frac{1}{\alpha+1+n-j} \binoma{2n}{2j} \B_{2j,\alpha}(x),
+\end{equation}
+\begin{equation}
+\label{eq:rec-impar}
+x^{2n+1} = (\alpha+1) \sum_{j=0}^{n}\frac{1}{\alpha+1+n-j} \binoma{2n+1}{2j} \B_{2j+1,\alpha}(x).
+\end{equation}
+In order to verify \eqref{eq:rec-par} and \eqref{eq:rec-impar}, we are going to apply the linear operator to the Bernoulli-Dunkl polynomials of degree even, $\B_{2n,\alpha}(x)$. Then, using~\eqref{eq:bernoulli},
+\begin{align*}
+x^{2n} &= \LL_{\I_{\alpha+1}}\B_{2n,\alpha}(x) \\
+&= 2(\alpha+1)\sum_{k=0}^n \frac{1}{\gamma_{2k+1,\alpha}}
+\frac{\gamma_{2k,\alpha}}{\gamma_{2n-2k,\alpha}} \B_{2n-2k,\alpha}(x)\\
+&= 2(\alpha+1) \sum_{k=0}^n \binoma{2n}{2k} 
+\frac{\gamma_{2k,\alpha}}{\gamma_{2k+1,\alpha}} \B_{2n-2k,\alpha}(x)\\
+&= (\alpha+1)\sum_{k=0}^n \binoma{2n}{2k}\frac{1}{\alpha+1+k} \B_{2n-2k,\alpha}(x)\\
+&= (\alpha+1)\sum_{j = 0}^n \binoma{2n}{2j}\frac{1}{\alpha+1+n-j} \B_{2j,\alpha}(x).
+\end{align*}
+In the same way, we obtain the recurrence for the Bernoulli-Dunkl polynomials of degree odd, $\B_{2n+1,\alpha}$, that becomes \eqref{eq:rec-impar}. The formula \eqref{eq:func1} for the Bernoulli-Dunkl polynomials is obtained evaluating \eqref{eq:rec-par} and \eqref{eq:rec-impar} in $x = 0$. The formula \eqref{eq:func2} is equivalent to \eqref{eq:rec-par} and \eqref{eq:rec-impar} for even and odd Bernoulli-Dunkl polynomials.
+
+It is also easy to verify using \eqref{eq:bernoulli} the relation proved in Theorem~4.5 of~\cite{CMV}:
+\[
+(\alpha+1)(\tau_1(\B_{n,\alpha})(x)-\tau_{-1}(\B_{n,\alpha})(x)) 
+= \LL_{\I_{\alpha+1}}\B_{n,\alpha}(x) = \La(x^n).
+\]
+The recurrence relation \eqref{eq:recur-Appell} is given by
+\[
+\B_{n,\alpha}(x) = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}
+\oint_{x_0}^x \B_{n-1,\alpha}(s)\,d_{\alpha}s - \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}
+\FF_{\I_{\alpha+1}(t)} \left(\oint_{x_0}^x\B_{n-1,\alpha}(s)\,d_{\alpha}s\right).
+\]
+%\end{example}
+
+%----------
+\subsection{Euler-Dunkl polynomials}
+%----------
+
+%\begin{example}
+The generalized Euler-Dunkl polynomials of order $r>0$, $\{\E_{n,\alpha}^{(r)}(x)\}_{n=0}^\infty$, have been defined and studied in \cite{DPV}, \cite{CMV} and~\cite{MV}. They are Appell-Dunkl polynomials for the series $g(t) = \I_{\alpha}(t)^r$. When $r=1$ we get the Euler-Dunkl polynomials.
+From~\eqref{eq:gener-func}, their generating function is
+\[
+\frac{\Ea(xt)}{\I_{\alpha}(t)^r} 
+= \sum_{k=0}^{\infty} {\E_{k,\alpha}^{(r)}(x)} \frac{t^k}{\gamma_{k,\alpha}}
+\]
+(the radius of convergence is $|t| < j_{1,\alpha}$, the first positive zero of the Bessel function~$J_{\alpha}$).
+
+Some properties that these polynomials satisfy (see \cite{CMV}) are
+\[
+\E_k^{(r)}(x) = \frac{1}{2}(\tau_1\E_k^{(r+1)}(x) + \tau_{-1}\E_k^{(r+1)}(x))
+\]
+and
+\[
+\tau_y(\E_k^{(r+s)})(x) = \sum_{j=0}^{k}\binoma{k}{j} \E_j^{(r)}(x)\E_{k-j}^{(s)}(y).
+\]
+From \eqref{eq:g-aso}, when we apply $\LL_{\I_{\alpha}(t)}$ to $\E_{n,\alpha}$ we obtain $x^n$. Applying the operator to the Euler-Dunkl polynomials of degree even and odd, respectively, we obtain the recurrence relations (7.1) and (7.2) of~\cite{CMV}, that is,
+\begin{equation}
+\label{eq:rec-parE}
+x^{2n} = \sum_{j=0}^n \binoma{2n}{2j}\E_{2j,\alpha}(x),
+\end{equation}
+\begin{equation}
+\label{eq:rec-imparE}
+x^{2n+1} = \sum_{j=0}^n \binoma{2n+1}{2j+1} \E_{2j+1,\alpha}(x).
+\end{equation}
+The formula \eqref{eq:func1} for the Euler-Dunkl polynomials is obtained evaluating \eqref{eq:rec-parE} and \eqref{eq:rec-imparE} in $x = 0$. The formula \eqref{eq:func2} is equivalent to \eqref{eq:rec-parE} and \eqref{eq:rec-imparE} for even and odd Euler-Dunkl polynomials.
+
+Note also that, from~\eqref{eq:rel-euler},
+\[
+\LL_{\I_{\alpha}}\E_{n,\alpha}(x) = \frac{\tau_1\E_{n,\alpha}(x)+\tau_{-1}\E_{n,\alpha}(x)}{2}.
+\]
+So, from \eqref{eq:g-aso},
+\[
+x^n = \frac{\tau_1\E_{n,\alpha}(x)+\tau_{-1}\E_{n,\alpha}(x)}{2},
+\]
+that was proved in \cite{CMV}.
+
+The recurrence relation \eqref{eq:recur-Appell} is given by
+\[
+\E_{n,\alpha}(x) = \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}}
+\oint_{x_0}^x \E_{n-1,\alpha}(s)\,d_{\alpha}s 
+- \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} 
+\FF_{\I_{\alpha}(t)} \left(\oint_{x_0}^x\E_{n-1,\alpha}(s)\,d_{\alpha}s\right).
+\]
+%\end{example}
+
+%----------
+\subsection{Truncated polynomials}
+%----------
+
+%\begin{example}
+Let $\{P_{n,\alpha}^{(1-)}(x)\}_{n=0}^{\infty}$ be the Appell-Dunkl sequence with $g(t) = 1-t$. These polynomials were studied in \cite{JMC}. The generating function is
+\[
+\frac{\Ea(xt)}{1-t} = \sum_{k=0}^{\infty}P_{k,\alpha}^{(1-)}(x)\frac{t^k}{\gamma_{k,\alpha}},\quad |t|<1.
+\]
+In this case, it is easy to check \eqref{eq:s-expl} to obtain
+\[
+P_{n,\alpha}^{(1-)}(x) = \sum_{k=0}^n 
+\FF_{\frac{t^k}{1-t}}(x^n) \frac{x^k}{\gamma_{k,\alpha}} 
+= \gamma_{n,\alpha} \sum_{k=0}^n \frac{x^k}{\gamma_{k,\alpha}}.
+\]
+The relation \eqref{eq:g-aso} for these polynomials is translated as 
+\[
+\LL_{1-t}P_{n,\alpha}^{(1-)}(x) = P_{n,\alpha}^{(1-)}(x)
+- \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} P_{n-1,\alpha}^{(1-)}(x) = x^n,
+\]
+that was just proved in Theorem~3.2 of~\cite{JMC}.
+
+The recurrence formula \eqref{eq:recur-Appell} for these polynomials will be
+\[
+P_{n,\alpha}^{(1-)}(x) 
+= \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} 
+\oint_{x_0}^x P_{n-1,\alpha}^{(1-)}(s)\,d_{\alpha}s
+- \frac{\gamma_{n,\alpha}}{\gamma_{n-1,\alpha}} 
+\FF_{1-t}\left(\oint_{x_0}^x P_{n-1,\alpha}^{(1-)}(s)\,d_{\alpha}s\right).
+\]
+In the same way we obtain formulas for the Appell-Dunkl polynomials for $g(t) = 1-t^m$, with $m \in \NN$, that were proved in~\cite{JMC}.
+%\end{example}
+
+%----------
+\section{Examples of Sheffer sequences}
+\label{sec:ex-sheffer}
+%----------
+
+%----------
+\subsection{Discrete Appell-Dunkl sequences}
+%----------
+
+%\begin{example}
+Particular cases of Sheffer sequences are the discrete Appell-Dunkl sequences, which are given taking the function $f(t) = G_\alpha(t)$ defined in \eqref{eq:def-G}. Their associated Dunkl sequence is the Dunkl factorials $\{f_{n,\alpha}(x)\}_{n=0}^{\infty}$ first defined in \cite{ELMV}. We check this fact. By \cite[(27)]{MV2}, we have
+\[
+\overline{G_\alpha}(t)^k = \sum_{n=k}^\infty s^\alpha(n,k) \frac{\gamma_{k,\alpha}}{\gamma_{n,\alpha}} \,t^n,
+\]
+and by \eqref{eq:pn-fk}, we get
+\[
+f_{n,\alpha}(x) = \sum_{k=0}^n s^\alpha(n,k) x^k,
+\]
+where $s^\alpha(n,k)$ are the Stirling-Dunkl numbers of the first kind (see  \cite[\S 3]{MV2}). This is the definition of Dunkl factorials.
+
+Of course, any discrete Appell-Dunkl sequence $\{d_{n,\alpha}(x)\}_{n=0}^{\infty}$ satisfies
+\[
+\tau_y(d_{n,\alpha})(x) = \sum_{k=0}^{n} \binoma{n}{k}f_{k,\alpha}(y)d_{n-k,\alpha}(x).
+\]
+
+The conjugated Dunkl sequence for $f(t)$ can be computed using \cite[(33)]{MV2}:
+\[
+G_\alpha(t)^k = \gamma_{k,\alpha} \sum_{i=k}^{\infty} {S_\alpha(i,k)} \frac{t^i}{\gamma_{i,\alpha}}
+= \sum_{i=k}^{\infty} {a_i}\, \frac{t^i}{\gamma_{i,\alpha}},
+\]
+where $S_\alpha(n,k)$ are the Stirling-Dunkl numbers of the second-kind (see \cite[\S\,4]{MV2}), and
+\[
+a_i =
+\begin{cases}
+0, & i>k, \\
+\gamma_{k,\alpha}S_\alpha(i,k), & i\leq k.
+\end{cases}
+\]
+Then, by \eqref{def:conj-seq} we get that the Bell-Dunkl polynomials (defined in \cite[(45)]{MV2})
+\[
+q_n(x) = \Bell_n^\alpha(x) = \sum_{k=0}^{n}S_\alpha(n,k)x^k
+\]
+are the conjugated Dunkl sequence for $G_\alpha(t)$. Hence, Bell-Dunkl polynomials are of binomial type, which implies
+\[
+\tau_y( \Bell_n^\alpha(x)) = \sum_{k=0}^n \Bell_k^\alpha(x) \Bell_{n-k}^\alpha(y).
+\]
+Other examples of discrete Appell-Dunkl polynomials are the generalized Bernoulli-Dunkl polynomials of the second kind, $\{b_{n,\alpha}^{(r)}(x)\}_{n=0}^{\infty}$, which are defined at \cite{ELMV} as
+\begin{equation*}
+%\label{eq:bna}
+  \left(\frac{t}{\overline{G_{\alpha}}(t)}\right)^r \Ea(x \overline{G_{\alpha}}(t)) 
+  = \sum_{n=0}^{\infty} b_{n,\alpha}^{(r)}(x) \frac{t^n}{\gamma_{n,\alpha}}
+\end{equation*}
+and the generalized Boole-Dunkl polynomials, $\{e_{n,\alpha}^{(r)}(x)\}_{n=0}^{\infty}$, defined at \cite{GLMV} as
+\begin{equation*}
+%\label{eq:ena}
+  \frac{1}{\I_\alpha(\overline{G_{\alpha}}(t))^r} \Ea(x \overline{G_{\alpha}}(t)) 
+  = \sum_{n=0}^{\infty} e_{n,\alpha}^{(r)}(x) \frac{t^n}{\gamma_{n,\alpha}}.
+\end{equation*}
+
+%----------
+\subsection{Abel-Dunkl polynomials}
+%----------
+
+Let $h(t) = t\Ea(yt)$ the function defined in \eqref{def:a-d} for a fixed~$y$. Recall that $\FF_h(p(\cdot)) = \La(p)(y)$ and $\LL_h(p(\cdot)) = \La \tau_y (p(\cdot))$. We define Abel-Dunkl polynomials $\{l_{n,\alpha}(x)\}_{n=0}^\infty$ as
+\[
+\Ea(x\overline{h}(t)) = \sum_{n=0}^{\infty} {l_{n,\alpha}(x)} \frac{t^n}{\gamma_{n,\alpha}},
+\]
+where $\overline{h}(t)$ is the compositional inverse of $h(t)$. In this case, we need some results concerning associated Dunkl sequences to get $\{l_{n,\alpha}(x)\}_{n=0}^\infty$.
+
+Given a delta series $f(t)$ and its associated Dunkl sequence $\{p_{n,\alpha}(x)\}_{n=0}^\infty$, we call $\theta_{f(t)}$ a \textit{Dunkl-umbral shift} when it maps the associated Dunkl sequence $p_{n,\alpha}(x)$ for $f(t)$ as
+\[
+\theta_{f(t)}:p_{n,\alpha}(x) \mapsto \frac{(n+1)\gamma_{n,\alpha}}{\gamma_{n+1,\alpha}} \,p_{n+1,\alpha}(x).
+\]
+Notice that, since $x^n$ is the associated Dunkl sequence for $f(t) = t$, we have
+\[
+\theta_{t}:x^n \mapsto \frac{(n+1)\gamma_{n,\alpha}}{\gamma_{n+1,\alpha}} \,x^{n+1}
+\]
+(this plays the role of the classical ``multiplication by~$x$'' operator in Dunkl-umbral calculus). Dunkl-umbral shift can be used to prove some useful formulas that serve to compute associated Dunkl sequences. These are the so-called transfer formulas (see \cite[Theorem 6.2.10]{Rom} for $c_n = \gamma_{n,\alpha}$):
+
+\begin{theorem}[Transfer formulas]
+Let $\{p_{n,\alpha}(x)\}_{n=0}^\infty$ be the associated Dunkl sequence for $f(t)$ a delta series. Then the equations
+\begin{equation*}
+%\label{eq:tf-1}
+p_{n,\alpha}(x) = \LL_{f'(t)}\left(\LL_{\big(\frac{f(t)}{t}\big)^{-n-1}}(x^{n})\right), \quad n=1,2,\dots,
+\end{equation*}
+and
+\begin{equation}
+\label{eq:tf-2}
+p_{n,\alpha}(x) = \frac{\gamma_{n,\alpha}}{n\gamma_{n-1,\alpha}}
+\theta_t\left(\LL_{\big(\frac{f(t)}{t}\big)^{-n}}(x^{n-1})\right), \quad n=1,2,\dots,
+\end{equation}
+holds (here, $f'(t)$ is the ordinary derivative).
+\end{theorem}
+
+Therefore, applying \eqref{eq:tf-2} to $f(t) = t\Ea(yt)$ (for fixed~$y$) we get
+\begin{equation*}
+l_{n,\alpha}(x)  = \frac{\gamma_{n,\alpha}}{n\gamma_{n-1,\alpha}} \theta_t(\LL_{\Ea(yt)^{-n}}(x^{n-1})) 
+= \frac{\gamma_{n,\alpha}}{n\gamma_{n-1,\alpha}} \theta_t(\tau_y^{-n}((\cdot)^{n-1}))(x).
+\end{equation*}
+
+The classical Abel polynomials are $l_0(x) = 1$ and $l_n(x) = x(x-yn)^{n-1}$, $n=1,2,\dots$ Hence, $\tau_y^{-n}((\cdot)^{n-1})(x)$ plays the role of the part $(x-yn)^{n-1}$ and $\theta_t$ the role of the multiplication by~$x$.
+
+%----------
+\section*{Conflicts of interests}
+The authors declare to have no conflicts of interest to disclose.
+%----------
+
+%----------
+\begin{thebibliography}{99}
+%----------
+
+%\bibitem{AdLe}
+%J. A. Adell and A. Lekuona,
+%Binomial convolution and transformations of Appell polynomials,
+%\textit{J. Math. Anal. Appl.}
+%\textbf{456} (2017), 16--33.
+
+%\bibitem{AdJ} 
+%N. B. Andersen and M. de Jeu,
+%{Elementary proofs of Paley-Wiener theorems
+%for the Dunkl transform on the real line,}
+%\textit{Int. Math. Res. Not.}
+%\textbf{30} (2005), 1817--1831.
+
+%\bibitem{AlS}
+%W. A. Al-Salam,
+%Characterization theorems for orthogonal polynomials,
+%\textit{Orthogonal Polynomials: Theory and Practice}
+%(Columbus, OH, 1989, P.~Nevai, ed.), 1--24,
+%NATO Adv. Sci. Inst. Ser. C Math. Phys. Sci., 294,
+%Kluwer Acad. Publ., Dordrecht, 1990.
+% NATO ASI Series, Volume 294 (1990)
+% http://link.springer.com/book/10.1007/978-94-009-0501-6
+
+%\bibitem{Ap}
+%T. M. Apostol,
+%On the Lerch zeta function,
+%\textit{Pacific J. Math.} \textbf{1} (1951), 161--167;
+%addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+%\bibitem{Bab}
+%{J. Babini},
+%Polinomios generalizados de Bernoulli y sus correlativos,
+%%\textit{Revista Matem\'atica Hispano-Americana (2.\textsuperscript{a} serie)}
+%\textit{Rev. Mat. Hisp.-Amer. (4)}
+%\textbf{10} (1935), 23--25.
+
+
+
+%\bibitem{BCV}
+%J. J. Betancor, \'O. Ciaurri and J. L. Varona,
+%{The multiplier of the interval $[-1,1]$ for the Dunkl transform on the real line},
+%\textit{J. Funct. Anal.}
+%\textbf{242} (2007), 327--336.
+
+%% NO ES LO QUE QUEREMOS.
+%% Le salen series de funciones de Bessel como inversa de otra funi\'on 2F1.
+% MR0130999
+%\bibitem{CarDuke}
+%{L. Carlitz},
+%The inverse of certain formulas involving Bessel functions.
+%\textit{Duke Math. J.}
+%\textbf{28} (1961), 431--438.
+
+\bibitem{Bell}
+E. T. Bell, 
+The history of Blissard's symbolic method, with a sketch of its inventor's life,
+\textit{Amer. Math. Monthly}
+\textbf{45} (1938), 414--421.
+
+\bibitem{BG}
+Y. Ben Cheikh and M. Gaied,
+Dunkl-Appell $d$-orthogonal polynomials,
+\textit{Integral Transforms Spec. Funct.}
+\textbf{18} (2007), 581--597.
+
+
+%\bibitem{Car}
+%{L. Carlitz},
+%A note on Bernoulli and Euler polynomials of the second kind,
+%\textit{Scripta Math.}
+%\textbf{25} (1961), 323--330.
+
+\bibitem{CH}
+S. A. Carrillo and M. Hurtado,
+Appell and Sheffer sequences: on their characterizations through functional and examples,
+\textit{C. R. Math. Acad. Sci. Paris}  
+\textbf{359} (2021), 205--217.
+
+\bibitem{Cho} 
+F. M. Cholewinski, 
+\textit{The finite calculus associated with Bessel functions}, 
+Contemporary Mathematics, 75, American Mathematical Society, 
+Providence, RI, 1988.
+
+\bibitem{CDPV}
+\'O. Ciaurri, A. J. Dur\'an, M. P\'erez and J. L. Varona,
+Bernoulli-Dunkl and Apostol-Euler-Dunkl polynomials with applications to series involving
+zeros of Bessel functions,
+\textit{J. Approx. Theory}
+\textbf{235} (2018), 20--45.
+% https://doi.org/10.1016/j.jat.2018.06.001
+
+\bibitem{CMV}
+\'O. Ciaurri, J. M\'inguez Ceniceros and J. L. Varona,
+{Bernoulli-Dunkl and Euler-Dunkl polynomials and their generalizations},
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM} 
+\textbf{113} (2019), 2853--2876.
+% https://doi.org/10.1007/s13398-019-00662-z
+
+%\bibitem{CPRV}
+%\'O. Ciaurri, M. P\'erez, J. M. Reyes and J. L. Varona,
+%Mean convergence of Fourier-Dunkl series,
+%\textit{J. Math. Anal. Appl.}
+%\textbf{372} (2010), 470--485.
+%% http://www.unirioja.es/cu/jvarona/downloads/Fourier-Dunkl-series.pdf
+
+%\bibitem{CV}
+%\'O. Ciaurri and J. L. Varona,
+%{A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform},
+%\textit{Proc. Amer. Math. Soc.}
+%\textbf{135} (2007), 2939--2947.
+
+%\bibitem{CRV}
+%\'O. Ciaurri, L. Roncal and J. L. Varona,
+%The multiplier of the interval $[-1,1]$ for the Dunkl transform of arbitrary order on the real line, 
+%\textit{Integral Transforms Spec. Funct.} 
+%\textbf{26} (2015), 728--736.
+
+% MR1414285
+%\bibitem{CGHJK}
+%R. M. Corless, G. H. Gonnet, D. E. G. Hare, D. J. Jeffrey and D. E. %Knuth,
+%On the Lambert $W$ function,
+%\textit{Adv. Comput. Math.}
+%\textbf{5} (1996), 329--359. % no.~4
+
+\bibitem{DeSimSri}
+R. Dere, Y. Simsek and H. M. Srivastava, 
+A unified presentation of three families of generalized Apostol type polynomials based upon the theory of the umbral calculus and the umbral algebra,
+\textit{J. Number Theory}
+\textbf{133} (2013), 3245--3263. % no.~10
+
+
+% \bibitem{Dil-NIST}
+% K. Dilcher,
+% Bernoulli and Euler polynomials,
+% \textit{NIST handbook of mathematical functions},
+% % (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+% 587--599, % Es el Chapter 24
+% U.S. Dept. Commerce, Washington, DC, 2010.
+%% LONG CITE:
+% % National Institute of Standards and Technology, Washington, DC, 
+% % and Cambridge University Press, Cambridge, 2010.
+%Available online in \url{http://dlmf.nist.gov/24}
+
+\bibitem{DH}
+I. H. Dimovski and V. Z. Hristov,
+Nonlocal operational calculi for Dunkl operators,
+\textit{SIGMA Symmetry Integrability Geom. Methods Appl.}
+\textbf{5} (2009), Paper 030, 16~pp.
+
+\bibitem{Du}
+C. F. Dunkl,
+{Differential-difference operators associated to reflection groups},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{311} (1989), 167--183.
+
+\bibitem{DPV}
+A. J. Dur\'an, M. P\'erez and J. L. Varona,
+Fourier-Dunkl system of the second kind and Euler-Dunkl polynomials,
+\textit{J. Approx. Theory}
+\textbf{245} (2019), 23--39.
+% https://doi.org/10.1016/j.jat.2019.04.007
+
+%\bibitem{EMOT2}
+%A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. G. Tricomi,
+%\textit{Tables of integral transforms},
+%vol.~II, McGraw-Hill, New York, 1954.
+
+% \bibitem{DW}
+% % Dai, Feng (3-AB-MS); Wang, Heping (PRC-CAP-SM)
+% F. Day and H. Wang, 
+% Interpolation by weighted Paley-Wiener spaces associated with the Dunkl transform, 
+% \textit{J. Math. Anal. Appl.} 
+% \textbf{390} (2012), 556--572. 
+
+\bibitem{ELMV}
+J. I. Extremiana Aldana, E. Labarga, J. M\'inguez Ceniceros and J. L. Varona,
+{Discrete Appell-Dunkl sequences and Bernoulli-Dunkl polynomials of the second kind},
+\textit{J. Math. Anal. Appl.} 
+\textbf{507} (2022), 125832, 20~pp. 
+
+\bibitem{GLMV}
+A. Gil Asensi, E. Labarga, J. M\'inguez Ceniceros and J. L. Varona,
+{Boole-Dunkl polynomials and generalizations},
+\textit{Rev. Real Acad. Cienc. Exactas F\'is. Nat. Ser. A-Mat. RACSAM} 
+\textbf{118} (2024), Paper No.~16, 18~pp.
+
+%\bibitem{Gold}
+%L. Gold,
+%{Inverse Bessel functions: Solution for the zeros},
+%\textit{J. Math. and Phys.}
+%\textbf{36} (1957), 167--171.
+
+%\bibitem{GKP}
+%R. L. Graham, D. E. Knuth and O. Patashnik,
+%\textit{Concrete Mathematics: A Foundation for Computer Science}, 2nd ed.,
+%Addison-Wesley, Reading, MA, 1994.
+
+\bibitem{Jeu}
+M. F. E. de Jeu,
+{The Dunkl transform},
+\textit{Invent. Math.}
+\textbf{113} (1993), 147--162.
+
+% \bibitem{Jor} % Charles Jordan
+% C. Jordan,
+% Sur les polynomes analogues aux polynomes de Bernoulli et sur des formules de sommation analogues \`a celle de MacLaurin-Euler,
+% %\textit{Acta Scientarium Mathematicarum} 
+% \textit{Acta Szeged} 
+% \textbf{4} (1929), 130--150.
+
+% \bibitem{Jor2} % Charles Jordan
+% C. Jordan,
+% \textit{Calculus of finite differences},
+% 2nd ed., Chelsea Publishing Company, New York, 1950. 
+
+\bibitem{Kilar-Simsek}
+N. Kilar and Y. Simsek,
+Computational formulas and identities for new classes of Hermite-based Milne-Thomson type polynomials: Analysis of generating functions with Euler's formula,
+\textit{Math. Methods Appl. Sci.}
+\textbf{44} (2021), 6731--6762. % no.~8
+
+
+% \bibitem{KKS}
+% D. S. Kim, T. Kim and J. Seo,
+% A note on Changhee polynomials and numbers,
+% \textit{Adv. Stud. Theor. Phys.}
+% \textbf{7} (2013), 993--1003.
+% %% LA REVISTA DEJ\'O DE ESTAR EN MathSciNet EN 2013.
+% %% ESTE ART\'ICULO YA NO EST\'A.
+
+% \bibitem{Knuth}
+% D. E. Knuth, 
+% Two notes on notation, 
+% \textit{Amer. Math. Monthly} 
+% \textbf{99} (1992), 403--422. % no.~5
+% %arXiv:math/9205211, 
+% %doi:10.2307/2325085, 
+% %JSTOR 2325085 
+
+\bibitem{Kuc}
+I. Kucukoglu,
+Unification of the generating functions for Sheffer type sequences and their applications, 
+\textit{Montes Taurus J. Pure Appl. Math.}
+\textbf{5} (2023), 71--88. % no.~2
+
+
+\bibitem{KucSim}
+I. Kucukoglu and Y. Simsek,
+Unified presentations of the generating functions for a comprehensive class of numbers and polynomials,
+\textit{Montes Taurus J. Pure Appl. Math.}
+\textbf{6} (2024), 40--63. % no.~1
+
+
+% \bibitem{LY}
+% A. F. Loureiro and S. Yakubovich, 
+% Central factorials under the Kontorovich-Lebedev transform of polynomials, 
+% \textit{Integral Transforms Spec. Funct.}
+% \textbf{24} (2013), 217--238.
+
+% % MR3341193
+% \bibitem{MO}
+% H. Mejjaoli and A. Ould Ahmed Salem, 
+% On the Dunkl convolution equations in spaces of $\mathcal{D}_\alpha^p$ type, 
+% \textit{Integral Transforms Spec. Funct.}
+% \textbf{26} (2015), 619--634.
+
+%\bibitem{MSV}
+%D. Merlini, R. Sprugnoli and M. C. Verri,
+%The Cauchy numbers,
+%\textit{Discrete Math.}
+%\textbf{306} (2006), 1906--1920.
+
+% MR0043339 (realmente es un ``reprinted from the first edition of 1933'')
+% \bibitem{MT}
+% L. M. Milne-Thomson, 
+% \textit{The Calculus of Finite Differences}, 
+% Macmillan and Co., London, 1951.
+
+\bibitem{JMC}
+J. M\'inguez Ceniceros,
+Some Appell-Dunkl sequences,
+\textit{Bull. Malays. Math. Sci. Soc.} 
+\textbf{46} (2023), Paper No.~64, 18~pp.
+
+\bibitem{MV}
+J. M\'inguez Ceniceros and J. L. Varona,
+Asymptotic behavior of Bernoulli-Dunkl and Euler-Dunkl polynomials and their zeros,
+\textit{Funct. Approx. Comment. Math.} 
+\textbf{65} (2021), 211--226.
+
+% MR4532738
+\bibitem{MV2}
+J. M\'inguez Ceniceros and J. L. Varona,
+Stirling-Dunkl numbers,
+\textit{J. Math. Anal. Appl.} 
+\textbf{518} (2023), 126698, 17~pp.
+
+% \bibitem{NRV-Brno}
+% L. M. Navas, F. J. Ruiz and J. L. Varona, 
+% Existence and reduction of generalized Apostol-Bernoulli, Apostol-Euler and Apostol-Genocchi polynomials, 
+% \textit{Arch. Math. (Brno)} 
+% \textbf{52} (2019), 157--165. 
+
+% \bibitem{Nor}
+% N. E. N{\o}rlund, 
+% M\'emoire sur les polyn\^omes de Bernoulli, 
+% \textit{Acta. Math.} 
+% \textbf{43} (1922), 121--196.
+
+%% Aqu\'i define Euler generalizado:
+%N. E. N{\o}rlund, 
+%Vorlesungen \"uber Differenzenrechnung, 1st ed., 
+%Springer-Verlag, Berlin-Heidelberg, 1924.
+
+% \bibitem{NS}
+% A. Nowak and K. Stempak, 
+% Relating transplantation and multipliers for Dunkl and Hankel transforms, 
+% \textit{Math. Nachr.} 
+% \textbf{281} (2008), 1604--1611. 
+
+\bibitem{OlMa-NIST}
+F. W. J. Olver and L. C. Maximon,
+Bessel Functions,
+\textit{NIST handbook of mathematical functions},
+% (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+215--286, % Es el Chapter 10
+U.S. Dept. Commerce, Washington, DC, 2010.
+%% LONG CITE:
+% National Institute of Standards and Technology, Washington, DC, 
+% and Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/10}
+
+\bibitem{OzSim}
+S. S. Ozbek Simsek and Y. Simsek,
+Formulas and relations for Bernoulli-type numbers and polynomials derive from Bessel function,
+\textit{Commun. Korean Math. Soc.}
+\textbf{38} (2023), 1175--1189. % no.~4
+
+
+
+%\bibitem{Ph} % Lo cita OEIS
+%G. M. Phillips, 
+%Gregory's method for numerical integration, 
+%\textit{Amer. Math. Monthly}
+%\textbf{79} (1972), 270--274.
+
+%\bibitem{RP-BSMA}
+%{J. Rey Pastor},
+%Polinomios correlativos de los de Bernoulli,
+%%\textit{Bolet\'in del Seminario Matem\'atico Argentino}
+%\textit{Bolet\'in Seminario Mat. Argentino}
+%\textbf{1} (1929), no.~3, 1--10.
+
+% \bibitem{Riordan}
+% J. Riordan, 
+% \textit{Combinatorial Identities}, 
+% Wiley, New York, 1968.
+
+\bibitem{RomV1}
+S. Roman,
+The theory of the umbral calculus. I,
+\textit{J. Math. Anal. Appl.}
+\textbf{87} (1982), 58--115.
+
+\bibitem{RomV2}
+S. Roman,
+The theory of the umbral calculus. II,
+\textit{J. Math. Anal. Appl.}
+\textbf{89} (1982), 290--314.
+
+\bibitem{RomV3}
+S. Roman,
+The theory of the umbral calculus. III,
+\textit{J. Math. Anal. Appl.}
+\textbf{95} (1983), 528--563.
+
+% MR0741185
+\bibitem{Rom}
+S. Roman,
+\textit{The Umbral Calculus},
+Academic Press, Orlando, 1984.
+
+% MR0485417
+\bibitem{RomRot}
+S. Roman and G.-C. Rota, % Realmente, aqu\'i figura como S. M. Roman (es el mismo que antes, claro)
+{The umbral calculus},
+\textit{Advances in Math.} \textbf{27} (1978), 95--188. % no.~2
+
+\bibitem{Ros}
+M. Rosenblum,
+{Generalized Hermite polynomials and the Bose-like oscillator calculus},
+\textit{Oper. Theory Adv. Appl.}
+\textbf{73} (1994), 369--396.
+
+% \bibitem{Rosler-LN}
+% M. R\"osler,
+% Dunkl operators: theory and applications,
+% \textit{Orthogonal polynomials and special functions 
+% (Leuven, 2002)}, 93--135, 
+% Lecture Notes in Math., 1817, Springer, Berlin, 2003.
+
+\bibitem{Rosler03}
+M. R\"osler,
+A positive radial product formula for the Dunkl kernel,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{355} (2003), 2413--2438.
+
+% \bibitem{Tem}
+% P. Tempesta,
+% On Appell sequences of polynomials of Bernoulli and Euler type,
+% \textit{J. Math. Anal. Appl.} 
+% \textbf{341} (2008), 1295--1310.
+
+\bibitem{Sim}
+B. Simsek,
+Formulas derived from moment generating functions and Bernstein polynomials,
+\textit{Appl. Anal. Discrete Math.}
+\textbf{13} (2019), 839--848. % no.~3
+
+
+
+\bibitem{ThX}
+S. Thangavelu and Y. Xu,
+Riesz transform and Riesz potentials for Dunkl transform,
+\textit{J. Comput. Appl. Math.}
+\textbf{199} (2007), 181--195.
+
+% \bibitem{Tr}
+% K. Trim\`eche,
+% Paley-Wiener theorems for the Dunkl transform and Dunkl translation operators,
+% \textit{Integral Transforms Spec. Funct.} 
+% \textbf{13} (2002), 17--38.
+
+\bibitem{Wat}
+G. N. Watson,
+\textit{A treatise on the theory of Bessel functions},
+Cambridge University Press, Cambridge, 1958.
+
+%\bibitem{WuPan}
+%% Ming Wu and Hao Pan, 
+%M. Wu and H. Pan, 
+%Sums of products of Bernoulli numbers of the second kind, 
+%\textit{Fib. Quart.} \textbf{45} (2007), 146--150.
+
+%\bibitem{Zh}
+%F.-Z. Zhao, % Feng-Zhen Zhao
+%Sums of products of Cauchy numbers,
+%\textit{Discrete Math.}
+%\textbf{309} (2009), 3830--3842.
+
+
+%----------
+\end{thebibliography}
+%----------
+
+%----------
+\end{document}
+%---------- 

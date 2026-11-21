@@ -1,0 +1,941 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Some functional relations derived from the Lindel\"of-Wirtinger expansion
+% of the Lerch transcendent function,
+% by
+% L. M. Navas, F. J. Ruiz and J. L. Varona
+%
+% Date of first version: January 11, 2011
+% Date of last modification: July 28, 2013
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass[reqno]{amsart}
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+
+% \usepackage[hyperpageref]{backref} % For drafts
+
+%\date{July 28, 2013}
+\renewcommand{\datename}{\textbf{THIS PAPER HAS PUBLISHED IN:}}
+\date{\textit{Mathematics of Computation} \textbf{84} (2015), no.~292, 803--813.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+%\renewcommand{\epsilon}{\varepsilon}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Functional relations from the Lindel\"of-Wirtinger expansion]%
+{Some functional relations derived from the Lindel\"of-Wirtinger expansion of the Lerch transcendent function}
+
+
+%\author{L.~M.~Navas, F.~J.~Ruiz and J.~L.~Varona}
+
+\author[L.~M.~Navas]{Luis M. Navas}
+\address{%
+        Departamento de Matem\'aticas,
+        Universidad de Salamanca,
+        Plaza de la Merced 1-4,
+        37008 Salamanca, Spain}
+\email{navas@usal.es}
+
+\author[F.~J.~Ruiz]{Francisco J. Ruiz}
+\address{%
+        Departamento de Matem\'aticas,
+        Universidad de Zaragoza,
+        Campus de la Plaza de San Francisco,
+        50009 Zaragoza, Spain}
+\email{fjruiz@unizar.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address{%
+        Departamento de Matem\'aticas y Computaci\'on,
+        Universidad de La Rioja,
+        Calle Luis de Ulloa s/n,
+        26004 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/welcome.html}
+
+\thanks{The authors were supported by grant MTM2012-36732-C03-02 of the DGI}
+
+\keywords{Lerch transcendent function, M\"obius inversion, Fourier series}
+
+\subjclass[2010]{Primary 41A60; Secondary 11M35, 42A10}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%--------------------------------------
+\begin{abstract}
+The Lindel\"of-Wirtinger expansion of the Lerch transcendent function implies, as a limiting case, Hurwitz's formula for the eponymous zeta function. A generalized form of M\"obius inversion applies to the Lindel\"of-Wirtinger expansion and also implies an inversion formula for the Hurwitz zeta function as a limiting case. The inverted formulas involve the dynamical system of rotations of the circle and yield an arithmetical functional equation.
+\end{abstract}
+%--------------------------------------
+
+%--------------------------------------
+\maketitle
+%--------------------------------------
+
+%------------------
+\section{Introduction}
+\label{sec:intro}
+%------------------
+
+
+The Lerch transcendent function is given by the series
+%
+\begin{equation}
+\label{eq:Lerch}
+  \Phi(\lambda,s,z) = \sum_{k=0}^\infty\frac{\lambda^k}{(k+z)^s};
+\end{equation}
+%
+see \cite[\S1.11, p.~27]{Bate} or \cite[\S25.14]{Ap-NIST}, for example.
+Logarithms and complex powers are always assumed to be principal.
+If $|\lambda| < 1$, then for any $s \in \C$, the series converges uniformly in $z$ over  $\C \setminus (-\infty,0]$, thus defining a holomorphic function of $z$ in this region. If $|\lambda| = 1$, then the series converges in this same region provided $\Re s > 1$. The value $\lambda = 0$ is considered trivial since it yields $\Phi(0,s,z) = z^{-s}$, and thus is usually excluded. There are multiple ways of defining analytic continuations of $\Phi$ in each parameter.
+
+This function, defined by Mathias Lerch in 1887 in his paper \cite{Lerch},
+includes as special cases of the parameters the Hurwitz and Riemann zeta functions
+and the polylogarithms, among others, and has applications ranging from number theory to physics. It is often used to obtain functional identities; see, for instance, \cite{BaSa, Boy, GuiS, SC-book}.
+
+
+One often extends the domain to $z \in \C\setminus \{0,-1,-2,\dots\}$ by including the branch discontinuity of the principal argument.
+In addition, in this paper we shall only be considering $s \in \C$ with $\Re s < 0$, in which case the summand $(k+z)^{-s}$ (with $k \in \N$) in~\eqref{eq:Lerch} continuously extends to $z = -k$ by defining $0^{-s} = 0$. Thus for $\Re s < 0$ we can define $\Phi(\lambda,s,z)$ for all $z \in \C$.
+For the parameter $s$, we shall often denote $\sigma = \Re s$.
+Also, we shall use the notation $\C^{*} = \C \setminus \{0\}$. 
+
+In light of the remarks made above, one concludes that given $|\lambda| < 1$ and $\Re s < 0$, the function $\Phi(\lambda,s,x)$ extends continuously as a function of $x \in [0,1]$, with $\Phi(\lambda,s,0) = \Phi(\lambda,s,1)$.
+In particular, it may be expanded in a Fourier series on this interval. The resulting formula is classical and is the point of departure for what follows.
+
+
+\begin{theorem}[Lindel\"of-Wirtinger expansion]
+\label{th:L-W}
+Let $\lambda$ and $s$ be complex parameters with $0<|\lambda|<1$ and $\Re s<0$. Then
+%
+\begin{equation}
+\label{eq:L-W}
+  \Phi(\lambda,s,x)
+  = \lambda^{-x}\,\Gamma(1-s) \sum_{n\in\Z} (2\pi i n - \log\lambda)^{s-1}e^{2\pi i n x},
+  \quad x\in[0,1].
+\end{equation}
+%
+The convergence is uniform in~$x$.
+\end{theorem}
+
+\begin{proof}
+Wirtinger's paper \cite{Wir} is one of the original sources. The result has been reproved often by various means. See for example~\cite{Bate}, for the traditional approach using complex analytic techniques, or~\cite{NRV-JAT2}, for a short proof using basic Fourier Analysis.
+\end{proof}
+
+\begin{remark}
+Note that changing the branch of the logarithm in~\eqref{eq:L-W} shifts the summation index $n$, and hence does not affect the validity of the expansion, as long as the same branch is used for both $\log\lambda$ and~$\lambda^{-x}$.
+\end{remark}
+
+
+The special values $s = 1 - k$ (with $k \in \N$) give the \emph{Apostol-Bernoulli polynomials} $\B_{k}(x;\lambda)$ first defined in~\cite{Ap}:
+%
+\begin{equation}
+\label{eq:A-B}
+  \Phi(\lambda,1-k,x) = -\frac{\B_k(x;\lambda)}{k}.
+\end{equation}
+%
+$\B_{k}(x;\lambda)$ is a polynomial in $x$ of degree $k-1$ over whose coefficients are rational functions in $\lambda$ having a unique pole at $\lambda = 1$.
+By~\eqref{eq:L-W} we obtain their Fourier series
+%
+\begin{equation}
+\label{eq:A-BFourier}
+  \B_k(x;\lambda) = -\lambda^{-x}\,k!\, \sum_{n\in\Z} \frac{e^{2n\pi i x}}{(2n\pi i-\log\lambda)^k},
+  \quad x\in[0,1],
+\end{equation}
+%
+which is initially valid for $|\lambda|<1$, but is extended by analytic continuation to all $\lambda\neq 0,1$. In~\cite{NRV-MC}, \eqref{eq:A-BFourier} is proved directly using the algebraic properties of this polynomial family.
+
+The structure of the paper is as follows. In Section~\ref{sec:LW-inv}, we look at the Lindel\"of-Wirtinger expansion in a manner analogous to Hurwitz's formula for the Hurwitz zeta function. The expansion~\eqref{eq:L-W} is separated into two parts involving a three-parameter function which specializes to the periodic zeta function. Next, we observe that one may apply to this new function an inversion formula for a certain generalized form of convolution, which contains the M\"obius inversion formula of analytic number theory as a special case (this general framework, discussed previously in~\cite{BNV}, is described in Section~\ref{sec:MobiusInvGen}). This yields an inverted form of the Lindel\"of-Wirtinger expansion. In Section~\ref{sec:HW}, by studying the logarithmic singularity of $\Phi$ at $\lambda = 1$, we show how to deduce Hurwitz's formula from the Lindel\"of-Wirtinger expansion and in Section~\ref{sec:HW-Inv}, using the same technique, we obtain the corresponding inverted form of Hurwitz's formula from the
+inverted form of the Lindel\"of-Wirtinger expansion.
+As special cases we obtain relations for the Apostol-Bernoulli polynomials.
+Finally, in Section~\ref{sec:functionaleq}, for rational $x$, it is shown that the inverted form of Hurwitz's formula generalizes the functional equation of the Riemann zeta function. 
+
+
+%------------------
+\section{Generalized M\"obius inversion}
+\label{sec:MobiusInvGen}
+%------------------
+
+
+In \cite{BNV} and \cite{BNV2}, an abstract framework for M\"obius inversion is established along with numerous examples. We will show that the Lindel\"of-Wirtinger formula (Theorem~\ref{th:L-W}) provides another application of this mechanism. In order to formulate the result, first we need to summarize its main features.
+Although the results in \cite{BNV} are valid in a rather general setting, here we will only need the following special case.
+
+Consider a dynamical system consisting of the natural numbers $\N$ acting on
+a space $X$, in other words, a function $\varphi : \N \times X \to X$ such that $\varphi(1,x) = x$ and $\varphi(m,\varphi(n,x)) = \varphi(mn,x)$.
+The action of $\N$ induces an action of the ring of complex-valued arithmetical functions on suitable spaces of functions $f : X \to \C$, where an arithmetical function $\alpha : \N \to \C$ acts on a function $f$ via
+%
+\begin{equation}
+\label{eq:defAction}
+	(\alpha \odot f)(x) = \sum_{n \in \N} \alpha(n) f(\varphi(n,x)),
+	\quad
+	x \in X.
+\end{equation}
+%
+In other words, one has
+%
+\begin{equation*}
+%\label{eq:Action}
+	\alpha \odot (\beta \odot f) = (\alpha \ast \beta) \odot f
+\end{equation*}
+%
+where $\ast$ denotes Dirichlet convolution of arithmetical functions, given by
+\[
+	(\alpha * \beta)(n) = \sum_{kl = n}	\alpha(k)\beta(l).
+\]
+Here, ``suitable'' means that the series~\eqref{eq:defAction} should converge fast enough. See~\cite{BNV} for the technical details. 
+
+If $\alpha$ is invertible under convolution then, again under suitable convergence hypotheses, we have
+%
+\begin{equation*}
+%\label{eq:inv}
+	g = \alpha \odot f \implies f = \alpha^{-1} \odot g
+\end{equation*}
+%
+where $\alpha^{-1}$ denotes the convolution inverse of $\alpha$. In particular, if $\alpha$ is completely multiplicative, its Dirichlet inverse is $\alpha^{-1} = \mu \alpha$, where $\mu$ is the M\"obius function. Thus we may expect in this case that
+%
+\begin{equation}
+\label{eq:invCM}
+	g = \alpha \odot f \implies f = (\mu \alpha) \odot g
+\end{equation}
+%
+if the appropriate convergence conditions are satisfied.
+
+
+%------------------
+\section{M\"obius inversion of the Lindel\"of-Wirtinger formula}
+\label{sec:LW-inv}
+%------------------
+
+We will apply the method of generalized M\"obius inversion outlined in Section~\ref{sec:MobiusInvGen} to the Lindel\"of-Wirtinger formula. This cannot be done directly with~\eqref{eq:L-W} as it stands, but rather after some manipulation of the series. Actually, we can separate the sum over all integers in~\eqref{eq:L-W} into a sum over positive and negative integers and invert each separately. For this purpose, consider the function defined by
+%
+\begin{equation}
+\label{eq:L-defi}
+	L(\lambda,s,x) = \sum_{n=1}^{\infty} (2\pi i n - \log\lambda)^{-s} e^{2\pi i nx}.
+\end{equation}
+%
+This series is normally convergent for $x \in \R$ and on compact subsets of the domains defined by $\lambda \neq 0$, $\Re s > 1$. The principal branch of the logarithm is assumed throughout. Since $L$ is $1$-periodic in $x$ we may restrict to $x \in [0,1]$.
+
+
+\begin{prop}
+\label{prop:LW-sep}
+With $L(\lambda,s,x)$ defined by~\eqref{eq:L-defi} and $0 < |\lambda| < 1$, $\Re s > 1$ and $x \in [0,1]$, we have
+%
+\begin{equation}
+\label{eq:LW-sep}
+	  \frac{\lambda^{x}}{\Gamma(s)}\Phi(\lambda,1-s,x) - (-\log \lambda)^{-s}
+	= L(\lambda,s,x) + e^{\pi i s} L(\lambda^{-1},s,1-x).
+\end{equation}
+%
+\end{prop}
+
+\begin{proof}
+Starting from the Lindel\"of-Wirtinger expansion~\eqref{eq:L-W}, with $s$ changed to $1-s$, and separating the term in the sum corresponding to $n=0$, gives
+%
+\begin{align*}
+	   \frac{\lambda^{x}}{\Gamma(s)}\Phi(\lambda,1-s,x) - (-\log \lambda)^{-s}
+	&= \sum_{n \in \Z \setminus \{0\}} (2 \pi i n - \log\lambda)^{-s} e^{2\pi i n x}.
+\end{align*}
+%
+The sum over positive $n$ corresponds to $L(\lambda,s,x)$, while the sum over negative integers is
+%
+\begin{multline*}
+	   \sum_{n=-\infty}^{-1} (2 \pi i n - \log\lambda)^{-s} e^{2\pi i n x}
+	 = \sum_{n=1}^{\infty} (-2 \pi i n - \log\lambda)^{-s} e^{-2\pi i n x}
+	\\
+	 = e^{\pi i s} \sum_{n=1}^{\infty} (2 \pi i n + \log\lambda)^{-s} e^{2\pi i n (1-x)} 
+	 = e^{\pi i s} L(\lambda^{-1},s,1-x),
+\end{multline*}
+%
+since $\log \lambda^{-1} = -\log\lambda$ for $\lambda \notin (-\infty,0]$,
+so that we obtain~\eqref{eq:LW-sep}.
+\end{proof}
+
+
+Next, we apply M\"obius inversion to~\eqref{eq:L-defi}.
+
+\begin{prop}
+\label{prop:L-inv}
+For $\lambda \neq 0$, $\Re s > 1$ and $x \in [0,1]$ we have
+%
+\begin{equation}
+\label{eq:L-inv}
+	  (2 \pi i - \log \lambda)^{-s} e^{2\pi i x}
+	= \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} L(\lambda^{1/n},s,\{nx\})
+\end{equation}
+% 
+where $L(\lambda,s,x)$ is defined in~\eqref{eq:L-defi}, $\{x\}$ denotes the fractional part of a real number, and $\mu(n)$ is the M\"obius function, given by
+\[
+	  \mu(n)
+	= \begin{cases}
+	  0        & \text{if $n$ is not squarefree,}
+	  \\
+	  (-1)^{k} & \text{if $n$ is the product of $k$ distinct primes.}
+	  \end{cases}
+\]
+\end{prop}
+
+\begin{proof}
+Consider the action of $\N$ on the space $\C^{*} \times [0,1)$ given by 
+%
+\begin{equation}
+\label{eq:action}
+	\varphi(n,(\lambda,x)) = \bigl(\lambda^{1/n}, \{nx\}\bigr). 
+\end{equation}
+%
+It is straightforward to verify that $(\lambda^{a})^{b} = \lambda^{ab}$ holds for the principal power if $a,b \in (0,1]$, so that $(n,\lambda) \mapsto \lambda^{1/n}$ is an action on $\C^{*}$, and that $(n,x) \mapsto \{nx\}$ is an action on $[0,1]$. The action~\eqref{eq:action} is the direct product of these two.
+
+Consider $\alpha(n) = n^{-s} : \N \to \C$, which is a completely multiplicative arithmetical function, and $f_{s} : \C^{*} \times [0,1] \to \C$ given by $f_{s}(\lambda,x) = (2 \pi i - \log \lambda)^{-s} e^{2\pi i x}$.
+Now, observe that, if $s$ is considered fixed, $L$ is $\alpha \odot f_{s}$ as defined in~\eqref{eq:defAction}.
+
+
+Thus~\eqref{eq:L-inv} is a consequence of~\eqref{eq:invCM}, assuming that the convergence is fast enough. This is so because $\alpha$ and $f_{s}$  satisfy the hypotheses of Theorems~3 and~4 of~\cite{BNV}, which justify the inversion formula. Briefly, since $\alpha(n)$ is a power, all that is needed is the estimate
+$d(n) = o(n^{\epsilon})$ for any $\epsilon > 0$, where $d(n)$ is the number of divisors of~$n$.
+\end{proof}
+
+
+Using~\eqref{eq:LW-sep}, we obtain an inversion formula involving the Lerch function. 
+
+
+\begin{theorem}
+\label{th:LW-inv}
+For $0 < |\lambda| < 1$, $\Re s > 1$ and $x \in [0,1]$, we have
+%
+\begin{equation}
+\label{eq:LW-inv}
+\begin{aligned}
+	& (2 \pi i - \log \lambda)^{-s} e^{2 \pi i x}
+	  + e^{\pi i s} (2 \pi i + \log \lambda)^{-s} e^{-2 \pi i x}
+	\\
+	&\quad = \sum_{n=1}^{\infty} \mu(n) \, n^{-s}
+	  \left(
+	  \frac{\lambda^{\{nx\}/n}}{\Gamma(s)} \Phi(\lambda^{1/n},1-s,\{nx\}) - n^{s} (-\log \lambda)^{-s}
+	  \right).
+\end{aligned}
+\end{equation}
+%
+\end{theorem}
+
+\begin{proof}
+Changing $\lambda$ to $\lambda^{-1}$ and $x$ to $1-x$ in~\eqref{eq:L-inv}, noting that $\{-x\} = 1 - \{x\}$ for $x \notin \Z$, since $L$ is $1$-periodic in $x$, we have
+\[
+	  (2\pi i + \log\lambda)^{-s} e^{-2\pi i x}
+	= \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} L(\lambda^{-1/n},s,1 - \{nx)\}).
+\]
+Adding this to~\eqref{eq:L-inv} and using~\eqref{eq:LW-sep} we obtain~\eqref{eq:LW-inv}.
+\end{proof}
+
+\begin{cor}
+\label{cor:AB-inv}
+For $k \in \N$, $k \ge 2$, $\lambda \neq 0,1$ and $x \in [0,1]$, we have
+%
+\begin{equation*}
+%\label{eq:AB-inv}
+\begin{aligned}
+	& (2 \pi i - \log \lambda)^{-k} e^{2 \pi i x}
+	  + e^{\pi i k} (2 \pi i + \log \lambda)^{-k} e^{-2 \pi i x}
+	\\
+	&\qquad = - \sum_{n=1}^{\infty} \mu(n) \, n^{-k}
+	  \left(
+	  \frac{\lambda^{\{nx\}/n}}{k!} \B_{k}(\{nx\};\lambda^{1/n}) + \frac{n^{k}}{(-\log \lambda)^{k}}
+	  \right)
+\end{aligned}
+\end{equation*}
+%
+where $\B_{k}(x;\lambda)$ denotes the $k$th Apostol-Bernoulli polynomial.
+\end{cor}
+
+\begin{proof}
+In the case $0 < |\lambda| < 1$, set $s = k$ for $k \in \N$ in~\eqref{eq:LW-inv} and use~\eqref{eq:A-B}.
+Then, since the Apostol-Bernoulli polynomials are defined for $\lambda \neq 0$ and have a unique pole at $\lambda = 1$, the result extends immediately to $\lambda \neq 0,1$ by analytic continuation.
+\end{proof}
+
+\begin{remark}
+Corollary~\ref{cor:AB-inv} is Theorem~2 of~\cite{Bayad}. There is also a corresponding formula for the Apostol-Euler polynomials $E_{n}(x;\lambda)$ via the simple relation $E_n(x;\lambda) = -\frac{2}{n+1} B_{n+1}(x;-\lambda)$, that was first proved in Lemma~2 of~\cite{NRV-MC}. It should be noted that, although Apostol-Bernoulli and Apostol-Euler polynomials are often dealt with as separate parametrized families, probably due to their specializations to the classical Bernoulli and Euler polynomials, they are essentially one and the same.
+\end{remark}
+
+%------------------
+\section{Hurwitz's Formula as a limit formula of the Lindel\"of-Wirtinger expansion}
+\label{sec:HW}
+%------------------
+
+
+Setting $\lambda = 1$ in the series~\eqref{eq:Lerch} defining the Lerch transcendent $\Phi$ one obtains the definition of the Hurwitz zeta function,
+\[
+	\zeta(s,z) = \Phi(1,s,z) = \sum_{n=0}^{\infty} \frac{1}{(n + z)^{s}},
+\]
+where the series converges absolutely	 for $\Re s > 1$ and $z \in \C$, $z \neq 0,-1,-2,\dots$. One often adopts the convention that summands with $n + z = 0$ are omitted. This makes $\zeta(s,0)$ equal by definition to the Riemann zeta function $\zeta(s)$. For $\Re s < 0$, which is the case we consider, one also has $\zeta(s,0) = \zeta(s)$ by analytic continuation.
+
+The Hurwitz zeta function $\zeta(s,z)$ has a well-known analytic continuation to all $s \neq 1$ given by
+%
+\begin{equation}
+\label{eq:HZ-int}
+	\zeta(s,x) = \frac{\Gamma(1-s) e^{-\pi i s}}{2\pi i} I(s,x),
+	\quad
+	I(s,x) = \int_{\mathcal{L}_{\rho}} \frac{z^{s-1} e^{-xz}}{1-e^{-z}} \, dz
+\end{equation}
+%
+where $0 < \rho < 2\pi$ and $\mathcal{L}_{\rho}$ is the path along the positive real axis from $\infty$ to $\rho$, with argument $0$, the counterclockwise circle of radius $\rho$ around the origin, and the path from $\rho$ back to $\infty$, with argument~$2\pi$.
+
+A key relation satisfied by $\zeta(s,z)$ is \emph{Hurwitz's formula}, which is
+%
+\begin{equation}
+	\label{eq:HF}
+	\zeta(1-s,x) = \frac{\Gamma(s)}{(2\pi)^{s}}
+	               \left( e^{-\pi i s/2} H(s,x) + e^{\pi i s/2} H(s,1-x) \right)
+\end{equation}
+%
+where $\Re s > 1$, $x \in [0,1]$ 
+% ($x=0$ is also included if one omits singular terms in the defining series)
+and
+%
+\begin{equation*}
+%	\label{eq:periodicZeta}
+	H(s,x) = \sum_{n=1}^{\infty} \frac{e^{2 \pi i n x}}{n^{s}}
+\end{equation*}
+%
+is known as the \emph{periodic zeta function.} 
+
+The importance of Hurwitz's formula rests on the fact that at $x = 1$ it specializes to the functional equation of the Riemann zeta function. Many proofs of~\eqref{eq:HF} using different techniques are found in the literature. We will show how Hurwitz's formula can be derived as a limit formula from the Lindel\"of-Wirtinger expansion for the Lerch transcendent and, likewise, M\"obius inversion of Hurwitz's formula from the corresponding inversion of the Lindel\"of-Wirtinger formula given in Theorem~\ref{th:LW-inv}.
+
+Clearly $H(s,x) = (2\pi i)^{s} L(1,s,x)$, where $L$ is defined in~\eqref{eq:L-defi}, and~\eqref{eq:HF} bears an obvious resemblance to~\eqref{eq:LW-sep}.
+However, one cannot directly substitute $\lambda = 1$ in formulas such as the Lindel\"of-Wirtinger expansion and obtain a valid result, since $\lambda = 1$ is a logarithmic singularity of $\Phi(\lambda,s,x)$. Rather, the correct approach is to cancel the singularity by subtracting the term corresponding to $n=0$ in~\eqref{eq:L-W}. This is done via an important auxiliary result, namely, the expansion of $\Phi$ in powers of $\log\lambda$. Erd\'elyi showed (see formula~(8) on p.~29 of~\cite{Bate} or formula~(3) in~\cite{Johnson}) that
+%
+\begin{equation}
+\label{eq:Phi-logser}
+  \Phi(\lambda,s,x) - \lambda^{-x} \Gamma(1-s){(\log \lambda^{-1})}^{s-1}
+  = \lambda^{-x} \sum_{k=0}^{\infty} \zeta(s-k,x) \frac{(\log\lambda)^{k}}{k!}
+\end{equation}
+%
+for $|\log \lambda| < 2 \pi$, $0 < x \leq 1$ and $s \neq 1,2,3,\dots$; for $\Re s < 0$ we may also include $x = 0$.
+% This region contains the much smaller disk $|\lambda - 1| \leq \frac{1}{2}$, 
+% in which $\log \lambda^{-1} = -\log \lambda$. 
+
+We shall need to justify exchanging the limit as $\lambda \to 1$ with the various infinite sums which appear. This means finding suitable uniform bounds.
+
+
+\begin{lemma}
+\label{lemma:int-bd}
+Given $0 < \rho < 2 \pi$ and a compact subset $S$ of the left half-plane $\Re s < 0$, there is a constant $C$ depending only on $S,\rho$, such that the contour integral in~\eqref{eq:HZ-int} satisfies
+%
+\begin{equation}
+\label{eq:int-bd}
+	|I(s-k,x)| \leq C \rho^{\sigma-k}
+\end{equation}
+%
+for all $x \in [0,1]$, $s \in S$ and $k \geq 0$
+(recall that $\sigma = \Re s$).
+\end{lemma}
+
+\begin{proof}
+For $\sigma = \Re s < 0$ and $t = \Im s$, we have the estimate $|z^{s-1}| \leq |z|^{\sigma - 1} e^{2 \pi |t|}$, while along the positive real axis we have $|e^{-xz}| = e^{-x \Re z} \leq 1$ and $1 - e^{-z} \geq 1 - e^{-\rho}$. Thus, on either branch along the real axis,
+\[
+	\left| 
+		\int_{\rho}^{\infty} \frac{z^{s-1} e^{-xz}}{1 - e^{-z}} dz
+	\right|
+	\leq
+	  \frac{e^{2\pi |t|}}{1 - e^{-\rho}} \int_{\rho}^{\infty} u^{\sigma - 1} \, du
+	= \frac{e^{2\pi |t|}}{1 - e^{-\rho}} \cdot \frac{\rho^{\sigma}}{-\sigma}
+\]
+and for $|z| = \rho$ we have $|1 - e^{-z}| \geq 1 - e^{\rho - 2\pi}$ and $|e^{-xz}| \leq e^{\rho}$, hence
+\[
+	\left| 
+		\int_{|z|=\rho} \frac{z^{s-1} e^{-xz}}{1 - e^{-z}} dz
+	\right|
+	\leq	 \frac{2 \pi e^{\rho}  e^{2\pi |t|}}{1 - e^{\rho - 2\pi}} \cdot \rho^{\sigma}.
+\]
+For any $k \geq 0$, shifting $s$ to $s - k$ with $k \geq 0$, since $k - \sigma \geq -\sigma > 0$, we have $\rho^{\sigma - k}/(k-\sigma) \leq \rho^{\sigma - k}/(-\sigma)$ and hence we obtain the bound
+\[
+	     |I(s-k,x)|
+	\leq   \frac{2e^{2\pi |t|}}{1 - e^{-\rho}} \cdot \frac{\rho^{\sigma-k}}{-\sigma}
+	     + \frac{2 \pi e^{\rho}  e^{2\pi |t|}}{1 - e^{\rho - 2\pi}} \cdot \rho^{\sigma-k}.
+\]
+These bounds clearly imply~\eqref{eq:int-bd} over a compact subset of $\{ \Re s < 0 \}$.
+\end{proof}
+
+
+
+
+\begin{prop}
+\label{prop:HZ-bd}
+Given $0 < \rho < 2\pi$ and a compact subset $S$ of the left half-plane $\Re s < 0$, there is a constant $C$ depending only on $S,\rho$, such that
+%
+\begin{equation*}
+%\label{eq:HZ-bd}
+	|\zeta(s-k,x)| \leq C k!\, (2\rho^{-1})^{k}
+\end{equation*}
+%
+for all $x \in [0,1]$ and $k = 0,1,2,\dots$.
+\end{prop}
+
+
+\begin{proof}
+We use the integral representation~\eqref{eq:HZ-int}, shifted by~$k$:
+\[
+	  \zeta(s-k,x) 
+%	= \frac{\Gamma(1-s+k) e^{-\pi i(s-k)}}{2\pi i} I(s-k,x)
+	= \frac{(-1)^{k} \Gamma(1-s+k) e^{-\pi i s}}{2\pi i} I(s-k,x).
+\]
+By Lemma~\ref{lemma:int-bd}, we have $|I(s-k,x)| \leq C \rho^{\sigma - k}$ where $C$ depends only on $S,\rho$.
+On the other hand, since $\Gamma(1-s+k) = (k-s)(k-s-1)\cdots(-s+1)\Gamma(1-s)$, if $m \in \Z$ is such that $|s| \leq m < |s| + 1$, we have
+%%
+\begin{align*}
+	      \frac{|\Gamma(1-s+k)|}{k!}
+%	&\leq \frac{1}{k!}(k + |s|)(k -1 + |s|) \cdots (1 + |s|) |\Gamma(1-s)|
+%	\\
+	&\leq \frac{1}{k!}(k + m)(k - 1 + m) \cdots (1 + m) |\Gamma(1-s)|
+	\\
+	&=    \binom{m+k}{k} |\Gamma(1-s)|
+	 \leq 2^{m+k} |\Gamma(1-s)|
+	 \leq 2^{k + 1 + |s|} |\Gamma(1-s)|.
+\end{align*}
+Thus, for any $x \in [0,1]$ and $s \in S$, with $\sigma = \Re s$, $t = \Im s$, we have
+%%
+\begin{align*}
+	      \frac{1}{k!}|\zeta(s-k,x)|
+	&=    \frac{|\Gamma(1-s+k)| \cdot e^{\pi t}}{2\pi k!} \cdot |I(s-k,x)|
+	\\
+	&\leq \pi^{-1} 2^{k+|s|} \cdot |\Gamma(1-s)| \cdot e^{\pi |t|} \cdot C\rho^{\sigma-k}
+	 \leq C' (2 \rho^{-1})^{k}
+\end{align*}
+%%
+where $C'$ is another constant depending only on $S,\rho$.
+\end{proof}
+
+
+\begin{prop}
+\label{prop:logser-unifconv}
+The tails of the series~\eqref{eq:Phi-logser} satisfy a bound of the form
+%
+\begin{equation}
+\label{eq:tail-bd}
+     \sum_{k=m}^{\infty} \left| \zeta(s-k,x) \frac{\log^{k}\lambda}{k!}\right|
+\leq C |\log\lambda|^{m}
+\end{equation}
+%
+for $x \in [0,1]$ and $\lambda,s$ in respective compact subsets $\Lambda,S$ of the domains $|\log\lambda| < \pi$ and $\Re s < 0$, where $C > 0$ is a constant depending only on $\Lambda,S$. Thus~\eqref{eq:Phi-logser} is normally convergent for $x \in [0,1]$ and on compact subsets of $\Re s < 0$ and $|\log\lambda| < \pi$.
+\end{prop}
+
+\begin{proof}
+By Proposition~\ref{prop:HZ-bd}, given $0 < \rho < 2\pi$ and a compact subset $S$ of the left half-plane $\Re s < 0$, there is a constant $C(S,\rho)$ depending only on $\rho$ and~$S$, such that $\frac{1}{k!}|\zeta(s-k,x)| \leq C(S,\rho) (2\rho^{-1})^{k}$ for all $s \in S$, $x \in [0,1]$, and $k \geq 0$.
+
+For $\lambda$ in a compact subset $\Lambda$ of the domain $|\log\lambda|<\pi$, there is a uniform bound $|\log \lambda| \leq \ell < \pi$. Since $0 < \rho < 2\pi$ is arbitrary, choosing $2 \ell < \rho < 2\pi$ with $\rho$ close enough to $2\pi$ makes $2 \rho^{-1} \ell < 1$ and $2\rho^{-1} < 1$, hence for $(\lambda,s,x) \in \Lambda \times S \times [0,1]$, the series~\eqref{eq:tail-bd} is dominated by a convergent geometric series, yielding the bound
+\[
+	 \sum_{k=m}^{\infty} \frac{1}{k!}|\zeta(s-k,x)| \, |\log\lambda|^{k}
+	 \leq \frac{C(S,\rho)}{1 - 2\rho^{-1}\ell} \, {|2\rho^{-1}\log\lambda|}^{m}
+	 \leq C(S,\Lambda) |\log\lambda|^{m}
+\]
+for all $m \geq 0$, where $C(S,\Lambda) > 0$ is a constant depending only on $S,\Lambda$.
+\end{proof}
+
+\begin{cor}
+\label{cor:Hardy-rel}
+For $x \in [0,1]$ and $\lambda,s$ lying in respective compact subsets $\Lambda,S$ of the domains $|\log \lambda| < \pi$, $0 < |\lambda| < 1$, and $\Re s < 0$, there is a constant $C > 0$ depending only on $\Lambda,S$ such that
+%
+\begin{equation}
+\label{eq:Hardy-bd}
+	\big|\Phi(\lambda,s,x) - \lambda^{-x}\Gamma(1-s){(\log \lambda^{-1})}^{s-1} - \lambda^{-x}\zeta(s,x)\big| 
+	\leq C |\log \lambda|
+\end{equation}
+%
+for $(\lambda,s,x) \in \Lambda \times S \times [0,1]$.
+In particular, \emph{Hardy's relation} (formula (4) in~\cite{Johnson}) holds uniformly:
+%
+\begin{equation}
+\label{eq:Hardy-rel}
+	\lim_{\lambda \to 1} \left( \Phi(\lambda,s,x) - \lambda^{-x} \Gamma(1-s){(\log \lambda^{-1})}^{s-1}\right) 
+	= \zeta(s,x)
+\end{equation}
+%
+for $(s,x) \in S \times [0,1]$.
+\end{cor}
+
+\begin{proof}
+Assume $s$ lies in a compact subset $S$ of $\{ \Re s < 0 \}$ and $\lambda$ in a compact subset $\Lambda$ of $|\log \lambda| < \pi$. Separating the summand corresponding to $k = 0$ in Erd\'elyi's expansion~\eqref{eq:Phi-logser}, the bound~\eqref{eq:tail-bd} of Proposition~\ref{prop:logser-unifconv} shows that
+\[
+	\big|\Phi(\lambda,s,x) - \lambda^{-x}\Gamma(1-s){(\log \lambda^{-1})}^{s-1} - \lambda^{-x}\zeta(s,x)\big| 
+%	= \lambda^{-x} \sum_{k=1}^{\infty} \zeta(s-k,x) \frac{\log^{k}\lambda}{k!}.
+	\leq C |\lambda|^{-x} |\log \lambda|
+\]
+where $C > 0$ is a constant depending only on $S,\Lambda$. Now, $\min(1,|\lambda|) \leq |\lambda^{x}| \leq \max(1,|\lambda|)$ for $x \in [0,1]$, and the mean value inequality for the exponential gives $|e^{z}-1| \leq |z| e^{\Re^{+} z}$ where $\Re^{+} = \max(0,\Re)$. Thus we have
+\[
+    |\lambda^{x} - 1| \leq |x \log\lambda| e^{x \Re^{+} \log\lambda} \leq |\log\lambda|\cdot \max(1,|\lambda|)
+\]
+for $x \in [0,1]$ and hence, since $\zeta(s,x)$ is bounded on $S \times [0,1]$,
+\begin{multline*}
+\qquad
+	\big|\Phi(\lambda,s,x) - \lambda^{-x}\Gamma(1-s){(\log \lambda^{-1})}^{s-1} - \zeta(s,x)\big| 
+	\\
+  \begin{aligned}
+	&\leq C |\lambda|^{-x} |\log \lambda| + |\lambda^{-x} - 1| |\zeta(s,x)|
+	\\
+	&\leq C |\lambda|^{-x} |\log \lambda| + |\lambda|^{-x}|\lambda^{x} - 1| \cdot \|\zeta\|_{S \times [0,1]}
+%	\\
+%	&\leq C |\lambda|^{-x} |\log \lambda| + |\lambda|^{-x} |\log\lambda| \max(1,|\lambda|) \cdot \|\zeta\|_{S \times [0,1]}
+	\\
+	&\leq \frac{C  + \max(1,|\lambda|) \cdot \|\zeta\|_{S \times [0,1]}}{\min(1,|\lambda|)} \,|\log\lambda| 
+%	\\
+	\leq C' |\log\lambda|
+  \end{aligned}
+\qquad
+\end{multline*}
+for another constant $C'$ depending only on $S,\Lambda$. Finally, note that $|\log \lambda| = O(|\lambda-1|)$ as $\lambda \to 1$.
+\end{proof}
+
+\begin{cor}
+\label{cor:LW->HF}
+The Lindel\"of-Wirtinger expansion~\eqref{eq:L-W} implies Hurwitz's formula~\eqref{eq:HF}.
+\end{cor}
+
+\begin{proof}
+By Hardy's relation~\eqref{eq:Hardy-rel}, changing $s$ to $1-s$ and hence assuming $\Re s > 1$, we have
+\[
+	\lim_{\lambda \to 1} \left(\Phi(\lambda,s,x) - \lambda^{-x}\Gamma(s){(\log \lambda^{-1})}^{-s}\right) = \zeta(1-s,x).
+\]
+Now take the limit as $\lambda \to 1$ in the modified form~\eqref{eq:LW-sep} of the Lindel\"of-Wirtinger relation, noting that $\log \lambda^{-1} = -\log \lambda$ for $0 < |\lambda| < 1$:
+%
+\begin{multline*}
+  \qquad\qquad
+	  \Phi(\lambda,1-s,x) - \lambda^{-x}\Gamma(s){(\log \lambda^{-1})}^{-s} \\
+	  = \lambda^{-x}\Gamma(s)\left(L(\lambda,s,x) + e^{\pi i s} L(\lambda^{-1},s,1-x)\right)
+  \qquad\qquad
+\end{multline*}
+%
+to obtain, since $L(\lambda,s,x)$ is holomorphic for $\lambda \notin (-\infty,0]$,
+%%
+\begin{align*}
+	   \zeta(1-s,x) 
+	&= \Gamma(s)\left(L(1,s,x) + e^{\pi i s}L(1,s,1-x)\right)
+	\\
+	&= \Gamma(s)(2\pi i)^{-s}\left(H(s,x) + e^{\pi i s}H(s,1-x)\right)
+%	\\
+%	&= \frac{\Gamma(s)}{(2\pi)^{s}} e^{-\pi i s/2}\left(H(s,x) + e^{\pi i s}H(s,1-x)\right)
+	\\
+	&= \frac{\Gamma(s)}{(2\pi)^{s}} \left(e^{-\pi i s/2}H(s,x) + e^{\pi i s/2}H(s,1-x)\right),
+\end{align*}
+%%
+which is Hurwitz's formula.
+\end{proof}
+
+
+%------------------
+\section{M\"obius inversion of Hurwitz's formula}
+\label{sec:HW-Inv}
+%------------------
+
+
+One can apply the method of M\"obius inversion outlined in Section~\ref{sec:MobiusInvGen} to Hurwitz's formula~\eqref{eq:HF} in the same manner as it was used to invert the Lindel\"of-Wirtinger expansion in Section~\ref{sec:LW-inv}. Rather than repeating the process, we may derive the result as a limit formula of~\eqref{eq:LW-inv} when $\lambda \to 1$, by subtracting the logarithmic singularity using the technique outlined in the previous section.
+
+
+\begin{prop}
+\label{prop:LW-inv-conv}
+The series~\eqref{eq:LW-inv} resulting from M\"obius inversion of the Lindel\"of-Wirtinger expansion in the form~\eqref{eq:LW-sep}, is normally convergent for $x \in [0,1]$, $s$ in a compact subset of the half-plane $\Re s > 1$, and $\lambda$ in a compact subset of the domain $|\log\lambda|<\pi$, $0 < |\lambda| < 1$. The following limit formula holds:
+%
+\begin{equation}
+\label{HF-inv}
+	e^{-\pi i s/2} e^{2 \pi i x} + e^{\pi i s/2} e^{-2 \pi i x}
+	= \frac{(2\pi)^{s}}{\Gamma(s)} \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} \zeta(1-s,\{nx\})
+\end{equation}
+%
+where $\{x\}$ denotes the fractional part of~$x$.
+\end{prop}
+
+
+\begin{proof}
+Changing $s$ to $1-s$ in the bound~\eqref{eq:Hardy-bd} which implies Hardy's relation~\eqref{eq:Hardy-rel}, we have
+\[
+	\big|\Phi(\lambda,1-s,x) - \lambda^{-x}\Gamma(s){(\log \lambda^{-1})}^{-s} - \zeta(1-s,x)\big| \leq C |\log\lambda|
+\]
+for $x \in [0,1]$ and $\lambda,s$ in respective compact subsets $\Lambda,S$ of $|\log\lambda|<\pi$ and $\Re s > 1$, where $C > 0$ depends only on $\Lambda,S$.
+Given $n = 1,2,3,\dots$, changing $\lambda$ to $\lambda^{1/n}$ (the principal branch) and $x$ to the fractional part $\{nx\}$, we obtain, assuming also that $\lambda \notin (-\infty,0]$,
+%
+\begin{multline*}
+	\big|\Phi(\lambda^{1/n},1-s,\{nx\}) - \lambda^{-\{nx\}/n}\Gamma(s) \, n^{s} {(\log \lambda^{-1})}^{-s} - \zeta(1-s,\{nx\})\big|
+	\\ 
+	\leq C n^{-1} |\log\lambda|
+	\leq C |\log\lambda|,
+\end{multline*}
+%
+so that the limit as $\lambda \to 1$ is uniform in $s,x$.
+Now, rewrite~\eqref{eq:LW-inv} as
+%
+\begin{multline*}
+	(2 \pi i - \log \lambda)^{-s} e^{2 \pi i x}
+	  + e^{\pi i s} (2 \pi i + \log \lambda)^{-s} e^{-2 \pi i x}
+	\\
+	= \frac{1}{\Gamma(s)}
+	  \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} \, \lambda^{\{nx\}/n}
+	  \left(
+		\Phi(\lambda^{1/n},1-s,\{nx\}) - \lambda^{-\{nx\}/n} \Gamma(s) n^{s} (-\log \lambda)^{-s}
+	  \right)
+\end{multline*}
+%
+and note that $|\lambda^{\{nx\}/n}| \leq \max(1,|\lambda|)$, so that the series 
+\[
+	\frac{1}{\Gamma(s)} \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} \, \lambda^{\{nx\}/n},
+	\quad
+	\frac{1}{\Gamma(s)} \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} \, \lambda^{\{nx\}/n} \zeta(1-s,\{nx\})
+\]
+are both normally convergent for $(\lambda,s,x) \in \Lambda \times S \times [0,1]$, and hence taking the limit as $\lambda \to 1$ in~\eqref{eq:LW-inv} yields
+\[
+	(2\pi i)^{-s} \left(e^{2\pi i x} + e^{\pi i s} e^{-2\pi i x}\right)
+	= \frac{1}{\Gamma(s)} \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} \, \zeta(1-s,\{nx\})
+\]
+which is equivalent to~\eqref{HF-inv}.
+\end{proof}
+
+
+\begin{remark}
+Note that~\eqref{HF-inv} has the equivalent form
+%
+\begin{equation}
+\label{eq:HF-inv-cos}
+	  2 (2 \pi)^{-s} \Gamma(s) \cos\left(\pi\left(\frac{s}{2} - 2 x\right)\right)
+	= \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} \, \zeta(1-s,\{nx\}).
+\end{equation}
+%
+\end{remark}
+
+
+\begin{cor}
+\label{cor:Ber-inv}
+For $k = 2,3,4,\dots$ and $x \in [0,1]$, we have
+%
+\begin{equation*}
+%\label{eq:Ber-inv}
+	  \cos\left( \frac{\pi k}{2} - 2 \pi x \right)
+	= - \frac{(2\pi)^{k}}{2 (k!)} \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{k}} B_{k}(\{nx\}),
+\end{equation*}
+%
+where $B_{k}(x)$ is the $k$th Bernoulli polynomial. Equivalently, separating according to the parity of $k$, we obtain the pair of formulas ((2.4) and (2.5) of~\cite{NRV-JAT})
+%
+\begin{equation*}
+%	\label{eq:Ber-inv-sep}
+	\begin{aligned}
+		\cos(2 \pi x) &= (-1)^{k-1} \frac{(2\pi)^{2k}}{2 (2k)!}
+		                 \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{2k}} B_{2k}(\{nx\}),
+					  \\
+		\sin(2 \pi x) &= (-1)^{k-1} \frac{(2\pi)^{2k+1}}{2 (2k+1)!}
+		                 \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{2k+1}} B_{2k+1}(\{nx\}).
+	\end{aligned}
+\end{equation*}
+%
+\end{cor}
+
+\begin{proof}
+Let $s = k$ with $k \in \N$, $k > 1$, in~\eqref{HF-inv}.
+The Hurwitz zeta function then evaluates to
+%
+\begin{equation*}
+%	\label{eq:HZ-ber}
+	\zeta(1-k,x) = - \frac{B_{k}(x)}{k}
+\end{equation*}
+%
+for $0 \leq x \leq 1.$
+\end{proof}
+
+
+
+%------------------
+\section{A Functional Equation}
+\label{sec:functionaleq}
+%------------------
+
+
+Since $\sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} = \zeta(s)^{-1}$, for $x = 1$ and $\Re s > 1$, the expansion~\eqref{HF-inv} and its equivalent~\eqref{eq:HF-inv-cos} reduce to the functional equation of the Riemann zeta function, in the form
+\[
+	\zeta(1-s) = 2 (2 \pi)^{-s} \Gamma(s) \cos\left(\frac{\pi s}{2}\right) \zeta(s)
+\]
+(using the reflection formula for the gamma function yields a similar relation but with the sine function).
+
+
+In general, \eqref{HF-inv} may be regarded as a combination of the functional equation with the discrete dynamical system of fractional parts of multiples of a real number, which is conjugate to the rotations of the circle. Recall that $\{nx\}$ is equidistributed in $[0,1]$ when $x$ is irrational, while it is a periodic sequence when $x$ is rational. 
+
+For example, consider the Dirichlet series
+%
+\begin{equation*}
+%	\label{eq:Zinv-mod}
+		  \zeta^{*}(m,r,s)
+		= \sum_{n \equiv r \bmod m} \frac{\mu(n)}{n^{s}},
+		\qquad
+		\Re s > 1,
+\end{equation*}
+%
+for $r,m \in \N$ with $1 \leq r \leq m$.
+If $x \in \Q$ has denominator equal to $m$, then $\{nx\}$ is $m$-periodic and for $\Re s > 1$ we can group terms in~\eqref{eq:HF-inv-cos} according to their residue modulo~$m$. We obtain
+%
+\begin{equation*}
+%	\label{eq:HF-inv-cos-rat}
+%	\begin{aligned}
+	   2 (2 \pi)^{-s} \Gamma(s) \cos\left(\pi\left(\frac{s}{2} - 2 x\right)\right)
+%	&=  \sum_{n=1}^{\infty} \frac{\mu(n)}{n^{s}} \zeta(1-s,\{nx\})
+%	\\
+	= \sum_{r=1}^{m} \zeta^{*}(m,r,s) \zeta(1-s,\{rx\}),
+%	\end{aligned}
+\end{equation*}
+%
+which again reduces to the functional equation for $\zeta(s)$ for $r = m = 1$.
+
+
+%:bibliography
+%--------------------------------------
+\begin{thebibliography}{00}
+%--------------------------------------
+
+\bibitem{Ap}
+T. M. Apostol,
+On the Lerch zeta function,
+\textit{Pacific J. Math.}
+\textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+\bibitem{Ap-NIST}
+T. M. Apostol,
+Zeta and related functions,
+\textit{NIST handbook of mathematical functions}
+(edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+601--616,
+National Institute of Standards and Technology, Washington, DC, and
+Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/25}
+
+\bibitem{BaSa}
+E. P. Balanzario and J. S\'{a}nchez-Ortiz,
+Riemann-Siegel integral formula for the Lerch zeta function,
+\textit{Math. Comp.}
+\textbf{81} (2012), 2319--2333.
+% DOI: \url{http://dx.doi.org/10.1090/S0025-5718-2011-02566-4}
+
+\bibitem{Bayad}
+A. Bayad and J. Chikhi,
+M\"obius inversion formulae for Apostol-Bernoulli type polynomials and numbers,
+\textit{Math. Comp.}
+\textbf{82} (2013), 2327--2332.
+
+\bibitem{BNV}
+M. Benito, L. M. Navas and J. L. Varona,
+M\"{o}bius inversion formulas for flows on arithmetic semigroups,
+\textit{Journal of Number Theory}
+\textbf{128} (2008), 390--412.
+
+
+\bibitem{BNV2}
+M. Benito, L. M. Navas and J. L. Varona,
+M\"{o}bius inversion from the point of view of arithemtical semigroup flows, in
+Proceedings of the ``Segundas Jornadas de Teor\'{\i}a de N\'{u}meros'', Madrid (2007),
+\textit{Bibl. Rev. Mat. Iberoamericana}
+(2008), 63--81.
+
+
+\bibitem{Boy}
+K. N. Boyadzhiev,
+Apostol-Bernoulli functions, derivative polynomials and Eulerian polynomials,
+\textit{Adv. Appl. Discrete Math.}
+\textbf{1} (2008), 109--122.
+
+\bibitem{Bate} % Bateman project
+A. Erd\'{e}lyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+\textit{Higher Transcendental Functions}, Volume I,
+McGraw-Hill, New York, 1953.
+
+\bibitem{GuiS}
+J. Guillera and J. Sondow,
+Double integrals and infinite products for some classical constants via analytic continuations of Lerch's transcendent,
+\textit{Ramanujan J.}
+\textbf{16} (2008), 247--270.
+% Preprint in \url{http://arxiv.org/abs/math.NT/0506319}
+
+\bibitem{Johnson}
+B. R. Johnson,
+Generalized Lerch Zeta Function,
+\textit{Pac. J. Math.}
+\textbf{53} (1974), 189--193.
+
+\bibitem{Lerch}
+M. Lerch,
+Note sur la fonction $\mathfrak{K}(w,x,s) = \sum_{k=0}^{\infty} e^{2\pi ikx}(w+k)^{-s}$,
+\textit{Acta Math.}
+\textbf{11} (1887), 19--24.
+% \url{http://www.springerlink.com/content/bpn8104100w31667/}
+% http://www.springerlink.com/content/0001-5962/11/1-4/
+
+\bibitem{NRV-JAT}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+The M\"obius inversion formula for Fourier series
+applied to Bernoulli and Euler polynomials,
+\textit{J. Approx. Theory}
+\textbf{163} (2011), 22--40.
+
+\bibitem{NRV-MC}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Asymptotic estimates for Apostol-Bernoulli and Apostol-Euler polynomials,
+\textit{Math. Comp.}
+\textbf{81} (2012), 1707--1722.
+
+\bibitem{NRV-JAT2}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Asymptotic behavior of the Lerch transcendent function,
+\textit{J. Approx. Theory}
+\textbf{170} (2013), 21--31. 
+% DOI: \url{http://dx.doi.org/10.1016/j.jat.2012.03.006}
+
+\bibitem{SC-book}
+H. M. Srivastava and J. Choi,
+\textit{Series associated with the zeta and related functions},
+Kluwer Academic, Dordrecht, 2001.
+
+\bibitem{Wir}
+W. Wirtinger,
+\"Uber eine besondere Dirichletsche Reihe,
+\textit{J. Reine Angew. Math.} \textbf{129} (1905), 214--219.
+% % Journal f\"ur die Reine und Angewandte Mathematik
+
+%--------------------------------------
+\end{thebibliography}
+%--------------------------------------
+
+%--------------------------------------
+\end{document}
+%--------------------------------------

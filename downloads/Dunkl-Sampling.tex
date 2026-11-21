@@ -1,0 +1,643 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% A WSK sampling theorem related to the Dunkl transform              %
+% by                                                                 %
+% \'Oscar Ciaurri and Juan L. Varona                                 %
+%                                                                    %
+% Last modification: February 9, 2007                                %
+%                                                                    %
+% Written with AMS-LaTeX 2.0                                         %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass{amsproc}
+\documentclass[11pt]{amsart}
+
+\theoremstyle{plain}
+\newtheorem{Theo}{Theorem}
+\newtheorem{Prop}{Proposition}
+\newtheorem{Lem}{Lemma}
+
+%\theoremstyle{definition}
+%\newtheorem{Def}{Definition}
+
+%\theoremstyle{remark}
+%\newtheorem{Rem}{Remark}
+
+%\renewcommand{\Im}{\mathop{\rm Im}}
+%\renewcommand{\Re}{\mathop{\rm Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\Re}{\operatorname{Re}}
+
+%\date{9 - February - 2007}
+% \newcommand{\datename}{\textit{Date}:} %% <- Original
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+\date{\textit{Proc.\@ Amer.\@ Math.\@ Soc.\@} \textbf{135} (2007), 2939--2947.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[A WSK sampling theorem related to the Dunkl transform]{A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{oscar.ciaurri@dmc.unirioja.es}
+
+\author[J. L. Varona]{Juan~L.~Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+\thanks{Research supported by grant MTM2006-13000-C03-03 of the DGI}
+
+
+\keywords{WSK sampling theorem, reproducing kernel, Dunkl transform, orthonormal system, Bessel functions}
+\subjclass[2000]{Primary 94A20; Secondary 42A38}
+
+\begin{abstract}
+A Whittaker-Shannon-Kotel'nikov sampling theorem related to the
+Dunkl transform on the real line is proved.
+To this end we state, in terms of Bessel functions, an orthonormal system
+which is complete in $L^2((-1,1), |x|^{2\alpha+1}\,dx)$.
+This orthonormal system is a generalization of the classical
+exponential system defining Fourier series.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The fundamental result in sampling theory states that if a signal $f(t)$ contains no frequencies higher than $w$ cycles per second, then $f(t)$ is completely determined by its values $f(k/(2w))$ at a discrete sequence of sample points with
+spacing $1/(2w)$ and can be reconstructed from these values by the formula
+\begin{equation}
+\label{eq:shannon}
+  f(t) = \sum_{k = -\infty}^{\infty} f\left(\frac{k}{2w}\right)
+  \frac{\sin(\pi(2wt-k))}{\pi(2wt-k)}.
+\end{equation}
+
+A signal $f(t)$ that contains no frequencies beyond $w$ cycles per second is said to be, in engineering and mathematical terminology, a signal bandlimited to $(-2\pi w,2\pi w)$. Equivalently, its Fourier transform $F$ is zero outside of this interval:
+\[
+  f(t) = \frac{1}{\sqrt{2\pi}}\int_{-2\pi w}^{2\pi w}F(x)e^{ixt}\, dx.
+\]
+An important underlying engineering principle in \eqref{eq:shannon} is that all the information contained
+in a such signal $f(t)$ is stored in its samples $f(k/(2w))$.
+
+The previous result is taken from the classical Shannon's work ``Communication in the presence of noise''~\cite{Shannon}. A series as in \eqref{eq:shannon} is known as a \textit{cardinal series} from the work of J. M. Whittaker \cite{Whitson}, where he makes a refinement of the work of his father in \cite{Whitfather}. The result given by \eqref{eq:shannon} is usually known in mathematical literature as the Whittaker-Shannon-Kotel'nikov theorem (or WSK theorem). An historical overview about the WSK sampling theorem, explaining the reasons for its name, can be seen in the first chapter of~\cite{Zayed}. 
+
+There are other examples of sampling theorems, and the main idea under them is the relation between a continuous transform and its discrete counterpart. The classical WSK sampling theorem involves the Fourier transform and the Fourier series. Higgins, in \cite{Higgins}, describes a very general situation in which a sampling theorem is possible. As an example of the theory developed he show a sampling theorem for the pair Fourier-Bessel series/Hankel transform. In \cite{Zayed} we can find a great variety of extensions and generalizations of the classical results (see also the expository paper \cite{Garcia}). More recently $q$-analogues of these results have appeared. In \cite{Ismail-Zayed}, considering a $q$-exponential function, a $q$-version of the classical WSK was proved. The $q$-version of Higgins' result was established in \cite{Abreu}. 
+
+The Dunkl transform in the real line is a generalization of the Fourier transform;
+it was introduced (before Dunkl, but in a different context) by Roosenraad in his Ph.D. thesis \cite{Roosenraad}, written under the direction of Richard Askey.
+The main aim of this paper is a generalization of \eqref{eq:shannon} in the setting of the Dunkl transform. The corresponding sampling theorem related to the Hankel transform will also be covered by our result, because the even part of the Dunkl transform is the Hankel transform.
+To prove our sampling theorem we obtain an orthonormal system related to the Dunkl transform. This orthonormal system is an extension of the classical trigonometric system.
+
+This paper is organized as follows. In Section~\ref{seq:main} we give the facts that are needed about the Dunkl transform, and we state our main results: the orthogonality (Theorem~\ref{theo:ortho}) and the sampling theorem (Theorem~\ref{theo:sampling}).
+The proof of the orthogonality, and the completeness of the orthogonal system, is given in Section~\ref{seq:ortho}.
+Section~\ref{seq:repro} is devoted to providing some technical results about reproducing kernels; in it, we summarize the general theory of reproducing kernels, showing the properties
+that will be applied in the rest of the paper.
+Then, the proof of the sampling theorem is given in Section~\ref{seq:sampling}.
+We finalize with an example.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Main results}
+\label{seq:main}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For $\alpha > -1$, let $J_\alpha$ denote the Bessel function of order $\alpha$ and,
+for complex values of the variable $z$, let
+\[
+  \mathcal{I}_\alpha(z)
+  = 2^\alpha \Gamma(\alpha+1)\, \frac{J_\alpha(iz)}{(iz)^\alpha}
+  = \Gamma(\alpha+1) \sum_{n=0}^\infty \frac{(z/2)^{2n}}{n!\,\Gamma(n+\alpha+1)}
+\]
+($\mathcal{I}_\alpha$ is a small variation of the so-called modified Bessel function of the first kind and order~$\alpha$, usually denoted by $I_\alpha$; see~\cite{Watson}).
+Moreover, let us take
+\[
+  E_\alpha(z) = \mathcal{I}_\alpha(z) + \frac{z}{2(\alpha+1)}\,
+    \mathcal{I}_{\alpha+1}(z),
+  \qquad z \in \mathbb{C}.
+\]
+
+The Dunkl operators on $\mathbb{R}^n$ are differential-difference operators associated with some finite reflection groups (see~\cite{Dunkl}). We consider the Dunkl operator $\Lambda_\alpha$, $\alpha \ge -1/2$, associated with the reflection group $\mathbb{Z}_2$ on $\mathbb{R}$ given by
+\begin{equation*}
+  \Lambda_\alpha f(x) = \frac{d}{dx}f(x)
+    + \frac{2\alpha+1}{x} \left(\frac{f(x)-f(-x)}{2}\right).
+\end{equation*}
+For $\alpha \ge -1/2$ and $\lambda\in \mathbb{C}$, the initial value problem
+\begin{equation}
+\label{eq:dunklproblem}
+\begin{cases}
+  \Lambda_\alpha f(x) = \lambda f(x),\quad x\in \mathbb{R},\\
+  f(0) = 1
+\end{cases}
+\end{equation}
+has $E_\alpha(\lambda x)$ as its unique solution (see \cite{Dunkl2} and~\cite{Jeu});
+this function is called the Dunkl kernel.
+For $\alpha=-1/2$, it is clear that $\Lambda_{-1/2} = d/dx$, and $E_{-1/2}(\lambda x) = e^{\lambda x}$.
+
+Let $d\mu_{\alpha}(x) = (2^{\alpha+1}\Gamma(\alpha+1))^{-1}|x|^{2\alpha+1}\, dx$.
+In a similar way to the Fourier transform (which is the particular case $\alpha = -1/2$),
+the Dunkl transform of order $\alpha \ge -1/2$ is given by
+\begin{equation}
+\label{eq:Du-T}
+  \mathcal{F}_\alpha f(y) = \int_{\mathbb{R}}f(x)E_{\alpha}(-iyx)\,d\mu_{\alpha}(x),
+  \quad y\in \mathbb{R},
+\end{equation}
+for $f\in L^1(\mathbb{R},d\mu_{\alpha})$. By means of the Schwartz class $\mathcal{S}(\mathbb{R})$, the definition is extended to $L^2(\mathbb{R},d\mu_{\alpha})$ in the usual way. 
+In \cite{Jeu}, it is showed that $\mathcal{F}_{\alpha}$ is an isometric isomorphism on $L^2(\mathbb{R},d\mu_{\alpha})$ and that 
+\[
+  \mathcal{F}_{\alpha}^{-1}f(y) = \mathcal{F}_{\alpha}f(-y)
+\]
+for functions such that $f, \mathcal{F}_{\alpha}f \in L^1(\mathbb{R}, d\mu_{\alpha})$.
+% Of course, the classical Fourier transform and their properties correspond
+% to the case $\alpha = -1/2$.
+
+Actually, the Dunkl transform $\mathcal{F}_{\alpha}$ can also be defined in $L^2(\mathbb{R},d\mu_{\alpha})$ for $-1 < \alpha \le -1/2$, although the expression \eqref{eq:Du-T} is no longer valid for $f\in L^1(\mathbb{R},d\mu_{\alpha})$ in general. However, it preserves the same properties in $L^2(\mathbb{R},d\mu_{\alpha})$; see~\cite{Rosenblum} for details.
+This allows us to extend our study to the case $\alpha > -1$.
+
+The function $\mathcal{I}_{\alpha}(x)$ is even, and $E_\alpha(ix)$ can be expressed as
+\begin{equation*}
+  E_\alpha(ix) = 2^\alpha \Gamma(\alpha+1) \left( \frac{J_\alpha(x)}{x^\alpha}
+  + \frac{J_{\alpha+1}(x)}{x^{\alpha+1}}\,xi \right).
+\end{equation*}
+It is well-known that the Bessel function $J_{\alpha+1}(x)$ has an 
+increasing sequence of positive zeros $\{s_j\}_{j\ge1}$.
+Then, the real function
+$\Im(E_{\alpha}(ix)) = \frac{x}{2(\alpha+1)}\,\mathcal{I}_{\alpha+1}(ix)$
+is odd and it has an infinite sequence of zeros $\{s_j\}_{j\in \mathbb{Z}}$
+(with $s_{-j} = -s_j$ and $s_0 = 0$). With them, let us define the functions
+\begin{equation}
+\label{eq:eaj}
+  e_{\alpha,j}(r) = \frac{2^{\alpha/2}(\Gamma(\alpha+1))^{1/2}}
+    {|\mathcal{I}_{\alpha}(is_j)|} E_{\alpha}(is_j r),
+  \quad j\in \mathbb{Z} \setminus\{0\}, \quad r \in (-1,1),
+\end{equation}
+and $e_{\alpha,0}(r) = 2^{(\alpha+1)/2}(\Gamma(\alpha+2))^{1/2}$ (beware of the difference of a constant factor $(2\alpha+2)^{1/2}$ from~\eqref{eq:eaj} with $j=0$).
+
+With this notation, we have
+
+\begin{Theo}
+\label{theo:ortho}
+Let $\alpha > -1$. Then, the sequence of functions
+$\{e_{\alpha,j}\}_{j\in \mathbb{Z}}$
+is a complete orthonormal system in $L^2((-1,1),d\mu_{\alpha})$.
+\end{Theo}
+
+Now, as usual in sampling theory, we take the space of Paley-Wiener type that,
+under our setting, is defined as
+\begin{equation}
+\label{eq:PWa}
+  PW_\alpha = \left\{ f\in L^2(\mathbb{R},d\mu_\alpha):
+  f(x) = \int_{-1}^{1}u(y)E_{\alpha}(ixy)\,d\mu_{\alpha}(y),\;
+  u\in L^{2}((-1,1),d\mu_\alpha) \right\}
+\end{equation}
+endowed with the norm of $L^{2}(\mathbb{R},d\mu_\alpha)$.
+
+In this way, our sampling theorem is
+
+\begin{Theo}
+\label{theo:sampling}
+If $f\in PW_\alpha$, $\alpha > -1$, then $f$ has the representation
+\[
+  f(x) = f(s_0) \mathcal{I}_{\alpha+1}(ix)
+  + \sum_{j\in\mathbb{Z} \setminus\{0\}} f(s_j)
+    \frac{x\mathcal{I}_{\alpha+1}(ix)}{2(\alpha+1)\mathcal{I}_{\alpha}(is_j)(x-s_j)},
+\]
+that converges in the norm of $L^{2}(\mathbb{R},d\mu_\alpha)$.
+Moreover, the series converges uniformly in compact subsets of~$\mathbb{R}$.
+\end{Theo}
+
+Finally, it is interesting to note that an alternative description for the Paley-Wiener space $PW_\alpha$ (with $\alpha \ge -1/2$) can be found in \cite[\S\,5]{And-Jeu}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{An orthonormal system related to the Dunkl transform}
+\section{Proof of Theorem~\ref{theo:ortho}}
+\label{seq:ortho}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The identities in the following lemma will be the main tool to show the orthonormality.
+This is a small variation of \cite[Lemma~1]{BCV}, but we reproduce it for completeness.
+
+\begin{Lem}
+\label{lem:kernel}
+Let $\alpha > -1$ and $x,y\in \mathbb{C}$. Then, for $x \not=  y$,
+\begin{equation}
+\label{eq:kernel1}
+  \int_{-1}^1 E_{\alpha}(ixr)\overline{E_{\alpha}(iyr)}\, d\mu_{\alpha}(r)
+% = \frac{1}{2^{\alpha+1}\Gamma(\alpha+1)}
+%  \frac{E_{\alpha}(ix)E_{\alpha}(-iy) - E_{\alpha}(-ix)E_{\alpha}(iy)}{i(x-y)}.
+ = \frac{1}{2^{\alpha+1}\Gamma(\alpha+2)}
+   \frac{x\mathcal{I}_{\alpha+1}(ix)\mathcal{I}_{\alpha}(iy)
+     - y\mathcal{I}_{\alpha+1}(iy)\mathcal{I}_{\alpha}(ix)}{x-y},
+\end{equation}
+and, for $x = y$,
+\begin{multline}
+\label{eq:kernel2}
+  \int_{-1}^1 |E_{\alpha}(ixr)|^2\, d\mu_{\alpha}(r)
+  = \frac{1}{2^{\alpha+1}\Gamma(\alpha+2)}
+  \Big( \frac{x^2}{2(\alpha+1)}\mathcal{I}_{\alpha+1}^2(ix) \\
+  - (2\alpha+1)\mathcal{I}_{\alpha+1}(ix)\mathcal{I}_{\alpha}(ix)
+  + 2(\alpha+1)\mathcal{I}_{\alpha}^2(ix) \Big).
+\end{multline}
+\end{Lem}
+
+\begin{proof}
+We start proving \eqref{eq:kernel1}.
+From \eqref{eq:dunklproblem} and integrating by parts, it is not difficult to find
+\[
+  \int_{-1}^1 E_{\alpha}(ixr)E_{\alpha}(-iyr)\, d\mu_{\alpha}(r)
+  = \frac{1}{2^{\alpha+1}\Gamma(\alpha+1)}
+  \frac{E_{\alpha}(ix)E_{\alpha}(-iy) - E_{\alpha}(-ix)E_{\alpha}(iy)}{i(x-y)};
+\]
+see the details in \cite[Lemma~1]{BCV}.
+Now, using that $\overline{E_{\alpha}(it)} = E_{\alpha}(-it)$
+and that, for $a,b\in\mathbb{C}$,
+$ab-\overline{a}\overline{b} = 2i\Im(ab) = 2i(\Re(a)\Im(b)+\Im(a)\Re(b))$,
+part~\eqref{eq:kernel1} follows.
+ 
+To prove \eqref{eq:kernel2} it is enough to evaluate
+\[
+  \lim_{y\to x}\frac{1}{2^{\alpha+1}\Gamma(\alpha+2)}
+  \frac{x\mathcal{I}_{\alpha+1}(ix)\mathcal{I}_{\alpha}(iy)
+  - y\mathcal{I}_{\alpha+1}(iy)\mathcal{I}_{\alpha}(ix)}{x-y}.
+\]
+The result is obtained by using L'Hopital rule and the identities
+\[
+  \frac{d\mathcal{I}_{\alpha}(iy)}{dy}
+  = -\frac{y}{2(\alpha+1)}\mathcal{I}_{\alpha+1}(iy)
+\]
+and
+\[
+  \mathcal{I}_{\alpha+2}(ix) = \frac{4(\alpha+1)(\alpha+2)}{x^2}
+    (\mathcal{I}_{\alpha+1}(ix)-\mathcal{I}_{\alpha}(ix)).
+  \qedhere
+\]
+\end{proof}
+
+Before starting the proof of Theorem~\ref{theo:ortho}, let us recall some facts from the theory of Dini series (see \cite[p.~134]{Watson}). Given $\nu>-1$, let $J_\nu$ denote the Bessel function of order~$\nu$; and, for $\rho\in{\mathbb{R}}$, let $\{\mu_n\}_{n\ge 1}$ be the sequence of successive positive zeros of the equation
+\begin{equation}
+\label{eq:Dini}
+  xJ_{\nu}'(x)+\rho J_\nu(x) = 0.
+\end{equation}
+Then, the functions
+\[
+  \theta_n^{\nu,\rho}(x) = b_n\sqrt{x}J_{\nu}(\mu_n x),\qquad b_n^{-2}
+  = \int_0^1 \left(\theta_n^{\nu,\rho}(x)\right)^2\, dx,
+\]
+$n = 1,2,\dots$, form an orthonormal system in $L^2((0,1),dx)$.
+Moreover, the system $\{\theta_n^{\nu,\rho}\}_{n\ge 1}$ is complete if $\nu+\rho>0$;
+and, if $\nu+\rho = 0$, the system becomes complete after adding
+to it the function $\theta_0^{\nu,\rho}(x) = \sqrt{2(\nu+1)}\,x^{\nu+1/2}$.
+
+By considering the identity
+\[
+  xJ'_{\nu}(x) = \nu J_{\nu}(x)-xJ_{\nu+1}(x)
+\]
+we can rewrite equation \eqref{eq:Dini} as
+\[
+  -xJ_{\nu+1}(x)+(\rho+\nu)J_{\nu}(x) = 0.
+\]
+In this way, it is easy to check that the sequences
+$\phi_n(x) = x^{-\alpha-1/2} \theta_n^{\alpha,-\alpha}(x)$,
+for $n = 0,1,2,\dots$ (with $\phi_0(x) = \sqrt{2(\alpha+1)}$\,),
+and $\psi_n(x) = x^{-\alpha-1/2}\theta_n^{\alpha+1,-\alpha}(x)$,
+for $n = 1,2,\dots$, are two complete orthonormal systems in
+$L^2((0,1),x^{2\alpha+1}\,dx)$.
+
+Then, we have all the tools for
+
+\begin{proof}[Proof of Theorem \ref{theo:ortho}]
+Letting $x = s_j$ and $y = s_k$, with $j\not = k$, from \eqref{eq:kernel1} it follows that
+\[
+  \int_{-1}^1 e_{\alpha,j}(r)\overline{e_{\alpha,k}(r)}\, d\mu_{\alpha}(r) = 0.
+\]
+For $j = k \ne 0$, we have
+\[
+  \int_{-1}^1 |e_{\alpha,j}(r)|^2\,d\mu_{\alpha}(r)
+  = \frac{2^{\alpha}\Gamma(\alpha+1)}{\mathcal{I}_\alpha^2(is_j)}
+  \int_{-1}^1 |E_\alpha(is_jr)|^2\,d\mu_{\alpha}(r) = 1,
+\]
+where we have considered~\eqref{eq:kernel2}. The case $j = k = 0$ is similar, but taking into account that $s_0 = 0$ and $\mathcal{I}_{\alpha+1}(is_0) = 1$.
+
+Let's see the completeness. We consider a function $\phi\in L^2((-1,1),d\mu_{\alpha})$ such that
+\[
+  \int_{-1}^1\phi(r) \overline{e_{\alpha,j}(r)}\, d\mu_{\alpha}(r) = 0,
+  \quad j\in \mathbb{Z}.
+\]
+Showing that $\phi\equiv 0$ we obtain the completeness.
+We suppose that
+$\phi(r) = a_{\text{o}}(r) + a_{\text{e}}(r) + i(b_{\text{o}}(r) + b_{\text{e}}(r))$,
+where $a_{\text{o}}$ and $b_{\text{o}}$ are odd functions, and $a_{\text{e}}$
+and $b_{\text{e}}$ are even functions. By using the fact that $\mathcal{I}_{\alpha}$ is an even function and $s_{-j} = -s_j$, it is clear that the identity 
+\[
+  \int_{-1}^1\phi(r) \overline{e_{\alpha,j}(r)}\, d\mu_{\alpha}(r)
+  + \int_{-1}^1\phi(r) \overline{e_{\alpha,-j}(r)}\, d\mu_{\alpha}(r) = 0
+\]
+implies that
+\[
+  \int_{0}^1 a_{\text{o}}(r) \mathcal{I}_{\alpha}(is_j r)r^{2\alpha+1}\,dr
+  = \int_{0}^1 b_{\text{o}}(r) \mathcal{I}_{\alpha}(is_j r)r^{2\alpha+1}\,dr = 0, 
+\]
+for $j = 0,1,\dots$, and
+\[
+  \int_{0}^1 a_{\text{e}}(r)(s_j r) \mathcal{I}_{\alpha+1}(is_j r)r^{2\alpha+1}\,dr
+  = \int_{0}^1 b_{\text{e}}(r)(s_j r) \mathcal{I}_{\alpha+1}(is_j r)r^{2\alpha+1}\,dr = 0, 
+\]
+for $j = 1,2,\dots$. Now, taking into account that
+$\mathcal{I}_{\alpha}(is_j r) = c_j\phi_j(r)$
+and $(s_j r)\mathcal{I}_{\alpha+1}(is_j r) = d_j\psi_j(r)$,
+for some non-vanishing constants $c_j$ and~$d_j$, and the fact that the
+systems $\{\phi_j\}_{j\ge0}$ and $\{\psi_j\}_{j\ge1}$
+are orthonormal and complete in $L^2((0,1),r^{2\alpha+1}\,dr)$, we conclude that
+$a_{\text{o}}(r) = a_{\text{e}}(r) = b_{\text{o}}(r) = b_{\text{e}}(r) = 0$.
+Then, $\phi\equiv 0$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Preliminaries on reproducing kernels}
+\label{seq:repro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $X$ denote a subset of $\mathbb{R}$, and $d\mu$ a measure on~$X$.
+As usual, the inner product in $L^2(X,d\mu)$ is given by
+\[
+  \langle u, v \rangle_{L^2(X,d\mu)}
+  = \int_X u(x) \overline{v(x)}\,d\mu(x).
+\]
+Also, let $\mathcal{H}$ be a class of complex-valued functions defined on~$X$,
+and such that $\mathcal{H}$ is a Hilbert space with the norm of $L^{2}(X,d\mu)$.
+It is said that $g(s,x)$ (with $s,x \in X$) is a \emph{reproducing kernel} for
+$\mathcal{H}$ if
+\begin{enumerate}
+\item[(i)] $g(\cdot,x) \in \mathcal{H}$ for every $x\in X;$
+
+\item[(ii)] $f(x)  = \langle f(\cdot),g(\cdot,x) \rangle_{L^2(X,d\mu)}$ for every $f\in \mathcal{H}$, $x\in X.$
+\end{enumerate}
+It is easy to check that, if a reproducing kernel exists for $\mathcal{H}$, it is unique.
+
+The next proposition describes some facts related to Hilbert spaces with reproducing
+kernel that will be used in the remainder. Properties~(a), 
+(c) and~(d) are proved in \cite{Higgins}. Property (b) is a well-known result of the reproducing kernels, of primary
+importance, because it relates two different kinds of convergence. A proof
+of~(b) can be found in~\cite{Mate}.
+
+\begin{Prop}
+\label{prop:dabu}
+Let $(a,b)$ be an interval included on~$X$,
+and $K(x,t)$ (with $x \in X$ and $t \in (a,b)$) a function such that
+$K(x,\cdot) \in L^{2}((a,b),d\mu)$ for every $x \in X$.
+In $L^{2}((a,b),d\mu)$, an operator $\mathcal{K}$ is defined by
+\begin{equation*}
+\label{nucleo}
+  \mathcal{K}u(x) = \langle K(x,\cdot), u(\cdot)\rangle_{L^{2}((a,b),d\mu)},
+  \quad x \in X.
+\end{equation*}
+Then,
+\begin{enumerate}
+\item[(a)] If $\mathcal{K}$ is one to one and $\mathcal{K}^{-1}$ is bounded,
+the range of $\mathcal{K}$,
+denoted by~$\mathcal{N}$, is a Hilbert space with reproducing kernel.
+\end{enumerate}
+In general, if $\mathcal{H}$ has reproducing kernel~$g$,
+the following properties hold:
+\begin{enumerate}
+\item[(b)] If the sequence $\{f_{n}\}$ converges to $f$ in the norm of~$\mathcal{H}$,
+then $\{f_{n}\}$ converges pointwise in $X$ to~$f$. The convergence is uniform in every set of $X$ where $g(x,x)$ is bounded.
+
+\item[(c)] If $\mathcal{K}$ is an isometry, then
+$g(s,x) = \langle K(s,\cdot), K(x,\cdot)\rangle_{L^{2}((a,b),d\mu)}$.
+
+\item[(d)] Let $\{g_{n}\}$ be a complete orthogonal sequence in~$\mathcal{H}$
+and $\{s_{n}\}$ a sequence such that $g_{n}(s_{m}) = \delta_{nm}$. Then
+\begin{equation*}
+  g_{n}(x)  = \frac{g(x,s_{n})}{g(s_{n},s_{n})}, \quad x \in X.
+\end{equation*}
+\end{enumerate}
+\end{Prop}
+
+The usual case is when $\mathcal{N} \subset L^{2}(X,d\mu)$, $\mathcal{K}$ is an isometry,
+and $\{K(s_n,\cdot)\}$ forms a complete orthogonal system in $L^2((a,b),d\mu)$.
+The fact $\mathcal{N} \subset L^{2}(X,d\mu)$ implies that $\mathcal{K}$ is bounded.
+By $\mathcal{K}$ being an isometry, from the orthogonality and completeness
+of $\{K(s_n,\cdot)\}$ it follows that
+$\{\langle K(x,\cdot), K(s_n,\cdot)\rangle_{L^{2}((a,b),d\mu)}\}$
+is a complete orthogonal system in~$\mathcal{N}$.
+Under these circumstances, $\mathcal{K}$ is one to one, and $\mathcal{K}^{-1}$ is a transformation of $\mathcal{N}$ over $L^{2}((a,b),d\mu)$, also bounded.
+In particular, part (a) guarantees that
+$\mathcal{N}$ is a Hilbert space with reproducing kernel.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{theo:sampling}}
+\label{seq:sampling}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us recall that, for $\alpha > -1$, we have taken the Paley-Wiener space $PW_\alpha$ defined in~\eqref{eq:PWa}.
+Then, in the language of the previous section, let us take $X = \mathbb{R}$,
+$d\mu = d\mu_\alpha$, $(a,b) = (-1,1)$ and the kernel $K(x,y) = E_{\alpha}(ixy)$.
+The corresponding operator $\mathcal{K}$ is given by
+\begin{equation}
+\label{eq:K-op}
+  \mathcal{K}u(x) = \langle K(x,y),u(y)\rangle_{L^2((-1,1),d\mu_{\alpha})}
+  = \int_{-1}^{1} u(y)E_{\alpha}(ixy)\,d\mu_{\alpha}(y).
+\end{equation}
+From the fact that the Dunkl transform is an isometry, we can deduce that $\mathcal{K}$ is also an isometry. Clearly, the range of $\mathcal{K}$, denoted by $\mathcal{N}$ in the previous section, is $PW_\alpha$. Finally, let us take $\{s_j\}_{j\in\mathbb{Z}}$ (that corresponds to $\{s_n\}$ in~(d)) as the infinite sequence of zeros of the real function $\Im(E_{\alpha}(ix))$.
+
+By definition, $PW_\alpha \subset L^2(\mathbb{R},d\mu_\alpha)$, which implies that $\mathcal{K}$ is bounded.
+Moreover, $K(s_j,r) = E_\alpha(is_jr)$ and, according Theorem~\ref{theo:ortho}, it forms a complete orthogonal system in $L^2((-1,1),d\mu_\alpha)$.
+Then, $\mathcal{K}$ is one to one and $\mathcal{K}^{-1}$ is a transformation of $PW_\alpha$ over $L^2((-1,1),d\mu_\alpha)$, also bounded.
+In this manner, by Proposition~\ref{prop:dabu}~(a), the set $PW_\alpha$ is a space with reproducing kernel.
+
+An appropriate expression for this kernel is
+
+\begin{Lem}
+Let $\alpha>-1$. The reproducing kernel for $PW_\alpha$ is
+\begin{equation}
+\label{eq:repro-ker}
+  g_\alpha(x,y) = \frac{1}{2^{\alpha+1}\Gamma(\alpha+2)}
+  \frac{x\mathcal{I}_{\alpha+1}(ix) \mathcal{I}_{\alpha}(iy)
+    - y\mathcal{I}_{\alpha+1}(iy) \mathcal{I}_{\alpha}(ix)}{x-y}.
+\end{equation}
+\end{Lem}
+
+\begin{proof}
+From Proposition~\ref{prop:dabu}~(c), since $\mathcal{K}$ is an isometry, the reproducing kernel is given by
+\[
+  g_\alpha(x,y) = \langle K(x,r), K(y,r)\rangle_{L^2((-1,1),d\mu_\alpha)}
+  = \int_{-1}^{1}E_\alpha(ixr)\overline{E_\alpha(iyr)}\,d\mu_{\alpha}(r).
+\]
+Then, by using~\eqref{eq:kernel1}, we have \eqref{eq:repro-ker}.
+\end{proof}
+
+Let us observe that, taking $\alpha = -1/2$ in the above lemma we recover the 
+Bateman reproducing kernel
+\[
+  g_{-1/2}(x,y) = \sqrt{\frac{2}{\pi}}\,\frac{\sin x \cos y - \cos x \sin y}{x-y}
+  = \sqrt{\frac{2}{\pi}}\,\frac{\sin(x-y)}{x-y}.
+\]
+
+Now, we are in a position to prove the sampling theorem:
+
+\begin{proof}[Proof of Theorem \ref{theo:sampling}]
+Let us take the functions $e_j(x) = e_{\alpha,j}(x)$, $j\in \mathbb{Z}$,
+such as they are defined in~\eqref{eq:eaj}.
+By Theorem~\ref{theo:ortho} the sequence $\{e_j\}_{j\in \mathbb{Z}}$ is a complete orthonormal system for $L^2((-1,1),d\mu_\alpha)$. By using the fact that the operator $\mathcal{K}$, given by \eqref{eq:K-op}, is an isometry, the sequence $\{\mathcal{K}e_j\}_{j\in \mathbb{Z}}$ is also orthonormal and complete in $PW_\alpha$. Let's consider 
+\[
+  g_j(x) = \frac{\mathcal{K}e_j(x)}{\mathcal{K}e_j(s_j)},
+  \quad j\in \mathbb{Z}. 
+\]
+The orthogonality of the system $\{e_j\}_{j\in \mathbb{Z}}$ gives that $g_j(s_k) = \delta_{jk}$ and then, by (d) in Proposition~\ref{prop:dabu}, we have
+\[
+  g_j(x) = \frac{g_\alpha(x,s_j)}{g_\alpha(s_j,s_j)},
+\]
+where $g$ is given by~\eqref{eq:repro-ker}. With the identities in Lemma~\ref{lem:kernel}, we can rewrite
+\[
+  g_j(x) = \frac{x\mathcal{I}_{\alpha+1}(ix)}
+    {2(\alpha+1)\mathcal{I}_{\alpha}(is_j)(x-s_j)},
+    \quad j\ne 0,
+\]
+and $g_0(x) = \mathcal{I}_{\alpha+1}(ix)$.
+The functions $\{g_j\}_{j\in \mathbb{Z}}$ form a complete orthonormal system in $PW_\alpha$ and then, for $f\in PW_\alpha$, we obtain 
+\begin{equation}
+\label{eq:sampling}
+  f(x) = \sum_{j\in \mathbb{Z}} a_j g_j(x),
+\end{equation}
+where $a_j$ are the Fourier coefficients of $f$ with respect to $\{g_j\}_{j\in \mathbb{Z}}$. The previous series is convergent in the norm of $L^2((-1,1),d\mu_\alpha)$ and also in the norm of $PW_\alpha$. Taking into account that $g_\alpha(x,x)$ is a continuous function, and then bounded in each compact subset of $\mathbb{R}$, by applying part (b) in Proposition~\ref{prop:dabu}, it follows that the series \eqref{eq:sampling} converges uniformly in compact subsets of $\mathbb{R}$ (of course, $f_n$ in (b) corresponds to the partial sum~$\sum_{j=-n}^n$). To finish the proof, we have to observe that $a_j = f(s_j)$ because $g_j(s_k) = \delta_{jk}$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{An example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In \cite{CGPV}, the following identity was proved: For $\alpha, \beta, \alpha+\beta > -1$,
+\begin{multline*}
+%\label{eq:Jacobi}
+  \int_0^{\infty} \frac{J_{\alpha+\beta+2n+1}(t)}{t^{\alpha+\beta+1}}
+  \frac{J_{\alpha}(xt)}{(xt)^{\alpha}}t^{2\alpha+1}\,dt \\
+  = \frac{\Gamma(n+1)}{2^{\beta}\Gamma(\beta+n+1)}(1-x^2)^{\beta}
+    P_n^{(\alpha,\beta)}(1-2x^2) \chi_{[0,1]}(x),
+  \quad n = 0,1,2,\dots,
+\end{multline*}
+where $P_n^{(\alpha,\beta)}$ denotes the $n$-th Jacobi polynomial of order $(\alpha,\beta)$,
+and $\chi_{[0,1]}$ is the characteristic function of the interval $[0,1]$.
+From this formula, it is clear that the function
+$x^{2n}E_{\alpha+\beta+2n+1}(ix)$, $x\in\mathbb{R}$, belongs to $PW_{\alpha}$.
+Then, from Theorem~\ref{theo:sampling} we have
+\[
+  x^{2n} E_{\alpha+\beta+2n+1}(ix) = \sum_{j\in\mathbb{Z} \setminus\{0\}} 
+    s_j^{2n} E_{\alpha+\beta+2n+1}(i s_j)
+    \frac{x\mathcal{I}_{\alpha+1}(ix)}{2(\alpha+1)\mathcal{I}_{\alpha}(is_j)(x-s_j)},
+\]
+which is valid for $\alpha, \beta, \alpha+\beta>-1$, and $n = 1,2,\dots$; and
+\[
+  E_{\alpha+\beta+1}(ix) = \mathcal{I}_{\alpha+1}(ix) 
+    + \sum_{j\in\mathbb{Z} \setminus\{0\}} 
+    E_{\alpha+\beta+1}(i s_j)
+    \frac{x\mathcal{I}_{\alpha+1}(ix)}{2(\alpha+1)\mathcal{I}_{\alpha}(is_j)(x-s_j)}
+\]
+when $n=0$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{Abreu} L. D. Abreu,
+{A $q$-sampling theorem related to the $q$-Hankel transform,}
+\textit{Proc. Amer. Math. Soc.}
+\textbf{133} (2005), 1197--1203.
+
+\bibitem{And-Jeu} N. B. Andersen and M. de Jeu,
+{Elementary proofs of Paley-Wiener theorems 
+for the Dunkl transform on the real line,}
+\textit{Int. Math. Res. Not.}
+\textbf{30} (2005), 1817--1831.
+
+\bibitem{BCV} J. Betancor, \'O. Ciaurri, and J. L. Varona,
+{The multiplier of the interval $[-1,1]$ for the Dunkl transform on the real line,}
+\textit{J. Funct. Anal.}, to appear.
+
+\bibitem{CGPV} \'O. Ciaurri, J. J. Guadalupe, M. P\'erez, and J. L. Varona,  
+{Mean and almost everywhere convergence of Fourier-Neumann series,} 
+\textit{J. Math. Anal. Appl.} 
+\textbf{236} (1999), 125--147. 
+
+\bibitem{Dunkl} C. F. Dunkl,
+{Differential-difference operators associated with reflections groups,}
+\textit{Trans. Amer. Math. Soc.}
+\textbf{311} (1989), 167--183.
+
+\bibitem{Dunkl2} C. F. Dunkl,
+{Integral kernels with reflections group invariance,}
+\textit{Canad. J. Math.}
+\textbf{43} (1991), 1213--1227.
+
+\bibitem{Jeu} M. F. E. de Jeu,
+{The Dunkl transform,}
+\textit{Invent. Math.}
+\textbf{113} (1993), 147--162.
+
+\bibitem{Garcia} A. G. Garc\'{\i}a,
+{Orthogonal sampling formulas: a unified approach,}
+\textit{SIAM Rev.}
+\textbf{42} (2000), 499--512.
+
+\bibitem{Higgins} J. R. Higgins, 
+{An interpolation series associated with the Bessel-Hankel transform}, 
+\textit{J. Lond. Math. Soc.} \textbf{5} (1972), 707--714.
+
+\bibitem{Ismail-Zayed} M. E. Ismail and A. I. Zayed,
+{A $q$-analogue of the Whittaker-Shannon-Kotel'nikov sampling theorem,}
+\textit{Proc. Amer. Math. Soc.}
+\textbf{131} (2003), 3711--3719.
+
+\bibitem{Mate} L. M\'{a}t\'{e}, 
+{``Hilbert space methods in science and engineering'',} 
+Adam Hilger, Bristol, 1989.
+
+\bibitem{Roosenraad} C. T. Roosenraad, 
+{``Inequalities with orthogonal polynomials'',} 
+Ph.D. thesis,
+University of Wisconsin-Madison, 1969.
+
+\bibitem{Rosenblum} M. Rosenblum,
+{Generalized Hermite polynomials and the Bose-like oscillator calculus,}
+\textit{Oper. Theory Adv. Appl.}
+\textbf{73} (1994), 369--396.
+
+\bibitem{Shannon} C. E. Shannon,
+{Communication in the presence of noise,}
+\textit{Proc. IRE}
+\textbf{137} (1949), 10--21.
+
+\bibitem{Watson} G. N. Watson, 
+{``A treatise on the theory of Bessel functions'',}
+Cambridge University Press, Cambridge, 1958.
+
+\bibitem{Whitfather} E. T. Whittaker, 
+{On the functions which are represented by the expansion of the interpolation theory,}
+\textit{Proc. Roy. Soc. Edinburgh Sect. A}
+\textbf{35} (1915), 181--194.
+
+\bibitem{Whitson} J. M. Whittaker, 
+{``Interpolatory Function Theory'',} 
+Cambridge University Press, Cambridge, 1935.
+
+\bibitem{Zayed} A. I. Zayed,
+{``Advances in Shannon's sampling theory'',} CRC Press, Boca Raton, FL, 1993.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

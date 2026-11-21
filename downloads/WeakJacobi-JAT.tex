@@ -1,0 +1,1093 @@
+%&pdflatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% Weak behaviour of Fourier-Jacobi series,                           %
+% by                                                                 %
+% J. J. Guadalupe, M. P\'erez and J. L. Varona                       %
+%                                                                    %
+% PUBLISHED IN:                                                      %
+% J. Approx. Theory 61 (1990), 222-238                               %
+%                                                                    %
+% Rewrited with LaTeX2e: 1-September-2004                            %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,a4paper]{article}
+
+\nofiles % The file .aux is not necessary
+
+\usepackage{amsmath,amsfonts,amsthm}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\longto}{\longrightarrow}
+
+\def\hugelimto{\mathop{\,\relbar\joinrel\relbar\joinrel%
+  \longrightarrow\,}\limits}
+
+
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\centering \normalfont\large\scshape}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem*{theoremMNT}{Theorem}
+\newtheorem*{lemmaOne}{Lema 1}
+\newtheorem*{lemmaTwo}{Lema 2}
+\newtheorem*{theoOne}{Theorem 1}
+\newtheorem*{theoTwo}{Theorem 2}
+\newtheorem*{theoThree}{Theorem 3}
+\newtheorem*{corOne}{Corollary 1}
+
+\theoremstyle{remark}
+\newtheorem*{remOne}{Remark 1}
+\newtheorem*{remTwo}{Remark 2}
+\newtheorem*{remThree}{Remark 3}
+\newtheorem*{remReferee}{Remarks}
+
+\title{\sffamily Weak behaviour of Fourier-Jacobi series}
+
+\author{\scshape Jos\'{e} J. Guadalupe,\footnote{This author has been
+supported in part by CAICYT Grant PB85-0338.}
+\ Mario P\'{e}rez, and Juan L. Varona\\[5pt]
+\textit{Departamento de Matem\'{a}ticas,}
+\textit{Universidad de Zaragoza,}\\
+\textit{50009 Zaragoza, Spain}
+}
+
+%% 1980 Mathematics Subject Classification:
+%% \subjclass{42C15, 42A50, 46E30}
+
+%% Key words and phrases:
+% \keywords{Orthogonal expansions, Jacobi polynomials,
+% weak convergence, $A_p$ weights, Lorentz spaces.}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\renewcommand\thefootnote{}%
+\renewcommand\footnotemark{}%
+\footnote{THIS PAPER HAS BEEN PUBLISHED IN:
+\textit{J.\ Approx.\ Theory}
+\textbf{61}, no.~2 (1990), 222--238.}%
+\footnote{Copyright \copyright\ 1990 by Academic Press, Inc.}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\vspace*{-24pt}
+\textit{Communicated by Paul Nevai}\\[4pt]
+\textrm{Received April 11, 1988; revised July 17, 1988}\\[12pt]
+DEDICATED TO THE MEMORY OF J. L. RUBIO DE FRANCIA
+\end{center}
+
+\begin{abstract}
+Necessary conditions for the weak convergence of
+Fourier series in orthogonal polynomials are given and it is
+also shown that the partial sum operator associated with the
+Jacobi series is restricted weak type, but not weak type, for
+the endpoints of the mean convergence interval.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $d\alpha$ be a finite positive Borel measure on an interval
+$I \subset \R$ such that $\supp(d\alpha)$ is an infinite set
+and let $p_{n}(d\alpha)$ denote the corresponding orthonormal
+polynomials. For $f \in L^{1}(d\alpha)$, $S_{n}f$ stands for
+the $n$th partial sum of the orthogonal Fourier expansion of $f$
+in $\{p_{n}(d\alpha)\}_{n=0}^{\infty}$, that is,
+$$
+S_{n}(f,x) = \sum_{k=0}^{n} a_{k}p_{k}(x),
+\qquad a_{k} = a_{k}(f) = \int_{I} fp_{k}\,d\alpha.
+$$
+
+The study of the convergence of $S_{n}f$ in $L^{p}(d\alpha)$
+($p \neq 2$) has been discussed for several classes of orthogonal
+polynomials (c.f.\ Askey-Wainger [1], Badkov [2--4], Muckenhoupt
+[11--13], Newman-Rudin [16], Pollard [17--19], Wing [24]). For
+instance, in the case of Jacobi polynomials
+$\{P_{n}^{(\alpha,\beta)}(x)\}_{n=0}^{\infty}$
+which are orthogonal in $[-1,1]$ with respect to the weight
+$w(x) = (1-x)^{\alpha}(1+x)^{\beta}$, $\alpha, \beta \geq -1/2$,
+Pollard proved that $|1/p-1/2| < \min\{1/(4\alpha+4),1/(4\beta+4)\}$
+is a sufficient condition for the uniform boundedness
+$\|S_{n}f\|_{p,w} \leq C\|f\|_{p,w}$,
+which is equivalent to the convergence in $L^{p}(w)$, $1 < p < \infty$.
+Newman and Rudin showed that the previous
+condition is also necessary and later Muckenhoupt extended these
+results to $\alpha, \beta > -1$.
+
+The aim of this paper is to examine the weak behaviour of the
+Fourier-Jacobi expansion, that is, to study if there exists a
+constant $C$, independent of $n$, $y$ and $f$, such that
+$$
+\int_{|S_{n}(f,x)| > y} w(x)\,dx
+\leq Cy^{-p} \int_{-1}^{1} |f(x)|^{p}w(x)\,dx,
+\qquad y > 0,
+$$
+i.e., if $S_{n}$ is uniformly bounded from $L^{p}(w)$ into $L^{p}_{*}(w)$,
+$1 < p < \infty$.
+
+By using interpolation [22, Th.~3.15, p.~197], the range of $p$'s
+for which there exists convergence of $S_{n}f$ in $L^{p}(w)$ is always
+an interval, named mean convergence interval. Moreover, the previous
+weak inequality only can be true, beside the mean convergence
+interval, in its endpoints. Since for $-1 < \alpha, \beta \leq -1/2$,
+the conditions $|1/p-1/2| < \min\{1/(4\alpha+4),1/(4\beta+4)\}$
+are trivial for $p \in (1,\infty)$, we suppose, by symmetry,
+$\alpha \geq \beta$ and $\alpha > -1/2$. Then
+the mean convergence interval is
+$4(\alpha+1)/(2\alpha+3) < p < 4(\alpha+1)/(2\alpha+1)$.
+For the Fourier-Legendre
+expansion ($\alpha = \beta = 0$) and $p = 4$ Chanillo [5]
+proved that the partial sum operator is not weak type $(4,4)$,
+but is restricted weak type $(4,4)$ (and $(4/3,4/3)$, by duality),
+i.e., it is weakly bounded on characteristic functions.
+
+On the other hand, M\'{a}t\'{e}, Nevai and Totik [10] obtained, in
+a general way, necessary conditions for the mean convergence
+of Fourier expansions.
+
+%% Theorem (Mate-Nevai-Totik)
+\begin{theoremMNT}[M\'at\'e-Nevai-Totik]
+Let $d\alpha$ be such that
+$\supp(d\alpha) = [-1,1]$, $\alpha' > 0$ almost everywhere,
+$U$ and $V$ nonnegative Borel measurable functions such that neither
+of them vanishes almost everywhere in $[-1,1]$ and $V$ is finite
+on a set with positive Lebesgue measure. If $S_{n}$ is uniformly
+bounded from $L^{p}(V(x)^{p}\,d\alpha)$ into $L^{p}(U(x)^{p}\,d\alpha)$,
+then
+\begin{itemize}
+\item[(i)] $U(x)^{p} \in L^{1}(d\alpha)$, $V(x)^{-q} \in L^{1}(d\alpha)$,
+$q = p/(p-1)$,
+\item[(ii)] $\displaystyle \int_{-1}^{1} U(x)^{p}\alpha'(x)^{1-p/2} (1-x^{2})^{-p/4}\,dx
+< \infty$,
+\item[(iii)] $\displaystyle \int_{-1}^{1} V(x)^{-q}\alpha'(x)^{1-q/2} (1-x^{2})^{-q/4}\,dx
+< \infty.$
+\end{itemize}
+\end{theoremMNT}
+
+When $d\alpha$ and $d\beta = U(x)^{p}\,d\alpha = V(x)^{p}\,d\alpha$
+are generalized Jacobi measures, these conditions turn out to
+be sufficient too [2--4].
+
+This paper is organized as follows. In Section~1 we obtain necessary
+conditions for the weak convergence. These allow us to prove
+that $S_{n}$ is not weak type $(p,p)$ for $p = 4(\alpha+1)/(2\alpha+3)$.
+From these conditions it follows that (i), (ii) and (iii) are necessary
+not only for the mean convergence but also for the weak convergence.
+We end this section giving an example which shows that they are
+not sufficient. In Section~2 we prove, by using similar arguments
+to~[5], that $S_{n}$ is not weak type for $p = 4(\alpha+1)/(2\alpha+1)$.
+Finally, in Section~3, we obtain that the partial sum operator
+is restricted weak type $(p,p)$ for both endpoints of the mean
+convergence interval when $\alpha, \beta \geq -1/2$
+and one of them is bigger than~$-1/2$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Section 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Assume $\supp(d\alpha) = [-1,1]$, $\alpha' > 0$ a.e.,
+and let $\{p_{n}(x)\}_{n=0}^{\infty}$ be the corresponding
+orthonormal polynomials. $C$ is used to denote positive constants
+not necessarily the same in each occurrence and $q = p/(p-1)$.
+For $f \in L^{1}(d\alpha)$ let $S_{n}f$ denote the $n$th partial
+sum of the orthogonal Fourier expansion of $f$
+in $\{p_{n}(x)\}_{n=0}^{\infty}$.
+We want to find necessary conditions for the weak convergence
+of~$S_{n}$.
+
+%% \textsc{Lemma} 1.
+\begin{lemmaOne}
+Let $U$ and $V$ be weights and let $1 < p < \infty$.
+If there exists a constant $C$ such that for every
+$f \in L^{p}(V^{p}\,d\alpha)$ the inequality
+\begin{equation}
+\|S_{n}f\|_{L^{p}_{*}(U^{p}\,d\alpha)}
+\leq C\|f\|_{L^{p}(V^{p}\,d\alpha)}
+\tag{1.1}
+\end{equation}
+holds for all integers $n \geq 0$, then
+\begin{equation}
+\|p_{n}\|_{L^{q}(V^{-q}\,d\alpha)}
+\|p_{n}\|_{L^{p}_{*}(U^{p}\,d\alpha)} \leq C.
+\tag{1.2}
+\end{equation}
+\end{lemmaOne}
+
+\begin{proof}
+It follows from (1.1) that
+$$
+\|a_{n}(f)p_{n}\|_{L^{p}_{*}(U^{p}\,d\alpha)}
+= \|S_{n}f-S_{n-1}f\|_{L^{p}_{*}(U^{p}\,d\alpha)}
+\leq C\|f\|_{L^{p}(V^{p}\,d\alpha)}.
+$$
+Thus,
+$$
+|a_{n}(f)| \leq C \left( \|p_{n}\|_{L^{p}_{*}(U^{p}\,d\alpha)} \right)^{-1}
+\|f\|_{L^{p}(V^{p}\,d\alpha)}.
+$$
+Therefore, every operator
+\begin{align*}
+p_{n}/V^{p} : L^{p}(V^{p}\,d\alpha) &\longto \R \\
+f &\longmapsto \left(\int_{-1}^{1} (p_{n}/V^{p})fV^{p}\,d\alpha \right)
+= a_{n}(f)
+\end{align*}
+is bounded and, by duality, its norm as operator coincides with
+the norm as function in $L^{q}(V^{p}\,d\alpha)$. Thus
+$$
+\|p_{n}/V^{p}\|_{L^{q}(V^{p}\,d\alpha)}
+\leq C \left(\|p_{n}\|_{L^{p}_{*}(U^{p}\,d\alpha)} \right)^{-1}
+$$
+and (1.2) indeed holds.
+\end{proof}
+
+
+
+In order to prove the main theorem, we will use the following
+result established by M\'{a}t\'{e}, Nevai and Totik [10, Th.~2].
+
+%% \textsc{Lemma} 2.
+\begin{lemmaTwo}
+Let $\supp(d\alpha) = [-1,1]$, $\alpha' > 0$
+a.e.\ in $[-1,1]$ and $0 < p \leq \infty$. There exists
+a constant $C$ such that if $g$ is a Lebesgue-measurable function
+in $[-1,1]$, then
+$$
+\|\alpha'(x)^{-1/2} (1-x^{2})^{-1/4} \|_{L^{p}(|g|^{p}\,dx)}
+\leq \liminf_{n \to \infty} \|p_{n}\|_{L^{p}(|g|^{p}\,dx)}.
+$$
+In particular, if
+$$
+\liminf_{n \to \infty}\|p_{n}\|_{L^{p}(|g|^{p}\,dx)} = 0
+$$
+then $g = 0$ a.e.
+\end{lemmaTwo}
+
+%% \textsc{Theorem} 1.
+\begin{theoOne}
+Let $d\alpha$, $U$ and $V$ be as in Lemma~1. If
+there exists a constant $C$ such that
+$$
+\|S_{n}f\|_{L^{p}_{*}(U^{p}\,d\alpha)}
+\leq C\|f\|_{L^{p}(V^{p}\,d\alpha)}
+$$
+holds for all integers $n \geq 0$ and every $f \in L^{p}(V^{p}\,d\alpha)$,
+then
+\begin{equation}
+U^{p}, V^{-q} \in L^{1}(d\alpha),
+\tag{1.3}
+\end{equation}
+\begin{equation}
+\alpha'(x)^{-1/2} (1-x^{2})^{-1/4} \in L^{p}_{*}(U^{p}\alpha'\,dx),
+\tag{1.4}
+\end{equation}
+\begin{equation}
+\alpha'(x)^{-1/2} (1-x^{2})^{-1/4} \in L^{q}(V^{-q}\alpha'\,dx).
+\tag{1.5}
+\end{equation}
+\end{theoOne}
+
+\begin{proof}
+Taking $n = 0$ in Lemma~1 we obtain (1.3).
+
+In order to proof (1.4) and (1.5), we use the following result:
+$$
+\|f\|_{L^{p}_{*}(dm)} \leq \sup_{E}
+\frac{\|f\chi_{E}\|_{r}}{\|\chi_{E}\|_{s}}
+\leq \left(\frac{p}{p-r}\right)^{1/r} \|f\|_{L^{p}_{*}(dm)},
+$$
+where $dm$ is a Borel measure, $0 < r < p < \infty$,
+$1/s = 1/r - 1/p$ and the supremum is taken over all measurable
+sets $E$ such that $0 < m(E) < \infty$ [7, Lemma~V.2.8,
+p.~485]. From Lemma~2 and this inequality, it follows that
+$$
+\|\alpha'(x)^{-1/2} (1-x^{2})^{-1/4} \|_{L^{p}_{*}(|g|^{p}\,dx)}
+\leq \liminf_{n \to \infty} \|p_{n}\|_{L^{p}_{*}(|g|^{p}\,dx)}.
+$$
+Now, taking $\liminf_{n \to \infty}$
+in (1.2), we obtain
+$$
+\|\alpha'(x)^{-1/2} (1-x^{2})^{-1/4} \|_{L^{q}(V^{-q}\alpha'\,dx)}
+\|\alpha'(x)^{-1/2} (1-x^{2})^{-1/4} \|_{L^{p}_{*}(U^{p}\alpha'\,dx)} \leq C.
+$$
+As none of this norms can vanish, we get (1.4) and (1.5).
+\end{proof}
+
+An easy consequence from Theorem~1 is
+
+%% \textsc{Corollary} 1.
+\begin{corOne}
+If $d\alpha$, $U$ and $V$ are as in Lemma~1 and if
+$S_{n}$ is uniformly bounded from $L^{p}(V(x)^{p}\,d\alpha)$ into
+$L^{p}_{*}(U(x)^{p}\,d\alpha)$
+and from $L^{q}(U(x)^{-q}\,d\alpha)$ into $L^{q}_{*}(V(x)^{-q}\,d\alpha)$,
+then we have
+\begin{equation}
+U(x)^{p} \in L^{1}(d\alpha),\qquad V(x)^{-q} \in L^{1}(d\alpha),
+\tag{1.6}
+\end{equation}
+\begin{equation}
+\int_{-1}^{1} V(x)^{-q}\alpha'(x)^{1-q/2} (1-x^{2})^{-q/4}\,dx < \infty,
+\tag{1.7}
+\end{equation}
+\begin{equation}
+\int_{-1}^{1} U(x)^{p}\alpha'(x)^{1-p/2} (1-x^{2})^{-p/4}\,dx < \infty.
+\tag{1.8}
+\end{equation}
+\end{corOne}
+
+%% {\underline {Remark 1}}
+\begin{remOne}
+Let $S_{n}$ denote the $n$th partial sum of the Fourier-Jacobi
+expansion ($\alpha'(x) = (1-x)^{\alpha}(1+x)^{\beta}$,
+$\alpha, \beta \geq -1/2$, $\alpha > -1/2$)
+and $U(x) = V(x) = 1$. Because of (1.3) and (1.5) in Theorem~1
+we obtain the following conditions
+$$
+|A+1| |1/p-1/2| < (A+1)/2,
+\qquad (A+1)(1/p-1/2) < 1/4,
+$$
+where $A$ is $\alpha$ or $\beta$, the same in each statement.
+As the latter inequality is not satisfied for $p = 4(\alpha+1)/(2\alpha+3)$,
+it implies that $S_{n}$ is not weak type $(p,p)$ for the lower endpoint
+of the interval of mean convergence. The same happens with generalized
+Jacobi polynomials.
+\end{remOne}
+
+%% {\underline {Remark 2}}.
+\begin{remTwo}
+The conditions (1.6), (1.7) and (1.8) are the
+same that (i), (ii) and (iii) in the Introduction. These are necessary
+conditions for the boundedness of $S_{n}$ from $L^{p}(V(x)^{p}\,d\alpha)$
+into $L^{p}(U(x)^{p}\,d\alpha)$ or equivalently from $L^{q}(U(x)^{-q}\,d\alpha)$
+into $L^{q}(V(x)^{-q}\,d\alpha)$. This points out that the conditions
+obtained by M\'{a}t\'{e}, Nevai and Totik are necessary not only
+for the mean convergence but also for the weak convergence.
+\end{remTwo}
+
+%% {\underline {Remark 3}}.
+\begin{remThree}
+Let us prove that M\'{a}t\'{e}-Nevai-Totik conditions
+are not sufficient for the weak convergence. Consider the Fourier-Legendre
+expansion ($d\alpha = dx$), $p = 4$, and take
+\begin{align*}
+U(x) &= \left|\log \left( \frac{1+x}{4} \right) \right|^{-5/8}
+\left|\log \left( \frac{1-x}{4} \right) \right|^{-5/8}, \\
+V(x) &= \left|\log \left( \frac{1+x}{4} \right) \right|^{-3/8}
+\left|\log \left( \frac{1-x}{4} \right) \right|^{-3/8}.
+\end{align*}
+It is immediate that $U$ and $V$ satisfy (1.6) in Corollary~1. In
+order to prove the remaining conditions (1.7) and (1.8) we will
+show that the weights $U$ and $V$ satisfy even stronger ones, that
+is
+\begin{align}
+((1-x^{2})^{\delta} U(x)^{4\delta}, (1-x^{2})^{\delta} V(x)^{4\delta})
+&\in A_{4}(-1,1) \quad\text{for some }\delta > 1,
+\tag{1.9}\\
+((1-x^{2})^{-1} U(x)^{4}, (1-x^{2})^{-1} V(x)^{4})
+&\in A_{4}(-1,1),
+\tag{1.10}
+\end{align}
+where $A_{p}(-1,1)$ stands for the Muckenhoupt $A_{p}$ classes [9, 14],
+i.e.\ $(u,v) \in A_{p}(-1,1)$, $1 < p < \infty$, if
+$$
+\int_{I} u(x)\,dx \left( \int_{I} v(x)^{-1/(p-1)}\,dx \right)^{p-1}
+\leq C|I|^{p}
+$$
+for every interval $I \subset [-1,1]$, and $|I|$
+denotes the Lebesgue measure of the interval~$I$. The weight $w$
+belongs to $A_{1}$ if $Mw(x) \leq Cw(x)$ a.e., where $M$ denotes
+the Hardy-Littlewood function.
+
+In order to prove (1.9), by using symmetry and change of variable,
+it suffices to show that
+$$
+(u,v) = (x^{\delta} |\log x|^{-5\delta/2}, x^{\delta} |\log x|^{-3\delta/2})
+\in A_{4}(0,1/2).
+$$
+Let
+$$
+w(x) = x|\log x|^{-2} = x^{-1/2} \left(x^{-1/2} |\log x|^{2/3} \right)^{-3}
+= w_{1}(x)w_{2}(x)^{-3}.
+$$
+It is known that $w_{1} \in A_{1}$ and it is not difficult to
+prove that $w_{2} \in A_{1}$. Thus, $w \in A_{4}$ by using
+the factorization theorem for $A_{p}$ weights~[6]. Now, (1.9) follows
+from [15, Th.~2] and it implies that the Hilbert transform $H$
+is bounded from $L^{p}(v)$ into $L^{p}(u)$, which will be used later.
+
+On the other hand, if $u(x) = x^{-1} |\log x|^{b}$
+and $v(x) = x^{-1}|\log x|^{B}$, it can be shown
+that $(u,v) \in A_{p}(0,1/2)$ if and only if $-b > 1$ and
+$b+1 \leq B$. Then (1.10) follows obviously.
+
+If $p_{n}(x)$ stands for the Legendre orthonormal polynomials, the
+partial sum operator can be decomposed [17] as
+\begin{align}
+S_{n}(f,x) &= \alpha_{n}p_{n+1}(x)
+\int_{-1}^{1} \frac{p_{n}(t)-p_{n+2}(t)}{x-t}\, f(t)\,dt \notag \\
+&\qquad\null + \alpha_{n}(p_{n+2}(x)-p_{n}(x))
+\int_{-1}^{1} \frac{p_{n+1}(t)}{x-t}\, f(t)\,dt \notag \\
+&\qquad\null - \beta_{n}p_{n+1}(x) \int_{-1}^{1} p_{n+1}(t)f(t)\,dt,
+\tag{1.11}
+\end{align}
+where $\alpha_{n}$ and $\beta_{n}$ are bounded and
+\begin{equation}
+(1-x^{2})^{1/4} |p_{n}(x)| \leq C,
+\qquad (1-x^{2})^{-1/4} |p_{n}(x)-p_{n+2}(x)| \leq C.
+\tag{1.12}
+\end{equation}
+We now try to estimate the three summands of the equation (1.11).
+We begin by estimating the last term using H\"{o}lder's inequality,
+the first part of (1.12) and~(1.10). We have
+\begin{align*}
+\int_{-1}^{1} |p_{n+1}(t)f(t)|\,dt
+&\leq C \left( \int_{-1}^{1} (1-t^{2})^{-1/3} V(t)^{-4/3}\,dt \right)^{3/4} \\
+&\qquad \times \left(\int_{-1}^{1} |f(t)V(t)|^{4}\,dt \right)^{1/4} \\
+&= C_{1}\|fV\|_{4}.
+\end{align*}
+Therefore
+\begin{multline*}
+\int_{-1}^{1} \left| p_{n+1}(x)\int_{-1}^{1} p_{n+1}(t)f(t) \,dt
+\right|^{4}U(x)^{4}\,dx \\
+\leq C \int_{-1}^{1} (1-x^{2})^{-1}U(x)^{4}\,dx \int_{-1}^{1} |f(t)V(t)|^{4}\,dt
+= C_{1}\|fV\|_{4}^{4}.
+\end{multline*}
+We now estimate the middle term using (1.9) and (1.12):
+\begin{align*}
+&\int_{-1}^{1} \left| (p_{n+2}(x)-p_{n}(x))
+\int_{-1}^{1} \frac{p_{n+1}(t)f(t)}{x-t} \,dt \right|^{4}U(x)^{4}\,dx \\
+&\qquad\qquad\leq C\int_{-1}^{1} |H(p_{n+1}f,x)|^{4}(1-x^{2})U(x)^{4}\,dx \\
+&\qquad\qquad\leq C_{1}\int_{-1}^{1} |p_{n+1}(x)f(x)|^{4}(1-x^{2})V(x)^{4}\,dx
+\leq C_{2}\|fV\|_{4}^{4}.
+\end{align*}
+Finally, we will prove that the first term is not weakly bounded.
+The proof is by contradiction. Let us assume that there exists
+a constant $C$, independent of $n$ and $f \in L^{4}(V^{4})$, such
+that
+$$
+\int_{|p_{n+1}(x)| |H((p_{n}-p_{n-2})f,x)| > y} U(x)^{4}\,dx
+\leq Cy^{-4} \|fV\|_{4}^{4}.
+$$
+Then, it will be enough to construct a sequence of functions
+$\{f_{n}(t)\}$ such that the constant appearing in the above inequality
+grows with~$n$. A slight modification of the argument used by Chanillo
+proves that $C \geq (\log n)^{3/2}$.
+Therefore, the partial sum operator is not weak type $(4,4)$.
+\end{remThree}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Section 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $S_{n}$ denote the $n$th partial sum of the Fourier-Jacobi expansion
+with respect to $w(x) = (1-x)^{\alpha}(1+x)^{\beta}$, being
+$\alpha \geq \beta$ and $\alpha > -1/2$. Then,
+the interval of mean convergence is given by
+$4(\alpha+1)/(2\alpha+3)  < p < 4(\alpha+1)/(2\alpha+1)$.
+Theorem~1 works to prove that $S_{n}$ is not weak type on
+$L^{p}(w)$ for $p = 4(\alpha+1)/(2\alpha+3)$,
+since (1.5) is not satisfied. But it is not useful to show that
+$S_{n}$ is not weak type for $p = 4(\alpha+1)/(2\alpha+1)$.
+It leads us to make use of other arguments.
+
+%% \textsc{Theorem} 2.
+Let $r = 4(\alpha+1)/(2\alpha+1)$. Then,
+there exists no constant $C$, independent of $n$ and $f \in L^{r}(w)$, such that
+\begin{equation}
+\|S_{n}f\|_{L^{r}_{*}(w)} \leq C\|f\|_{L^{r}(w)}.
+\tag{2.1}
+\end{equation}
+
+\begin{proof}
+In what follows assume $\supp(f) \subset [0,1]$.
+Let $p_{n}(x)$ denote the orthonormal polynomials with respect to
+$w(x)$ and $q_{n}(x)$ the orthonormal polynomials with respect to
+$w(x)(1-x^{2})$. Moreover, if (2.1) is true, the same happens if
+the left integral is only taken over the set
+$\{ x \in (0,1), |S_{n}(f,x)| > y \}$. Then,
+we will suppose all integrals are restricted by the condition
+$x \in (0,1)$.
+
+Pollard [18] proved that in
+$$
+S_{n}(f,x) = \int_{-1}^{1} f(t)K_{n}(x,t)w(t)\,dt
+$$
+the kernel $K_{n}(x,t)$ can be decomposed in the form
+\begin{equation}
+K_{n}(x,t) = r_{n}T_{1}(n,x,t) + s_{n}T_{2}(n,x,t) + s_{n}T_{3}(n,x,t)
+\tag{2.2}
+\end{equation}
+where $r_{n}$ and $s_{n}$ are bounded and
+\begin{align}
+T_{1}(n,x,t) &= p_{n}(x)p_{n}(t)
+\tag{2.3} \\
+T_{2}(n,x,t) &= (1-t^{2}) \frac{p_{n}(x)q_{n-1}(t)}{x-t}
+\tag{2.4} \\
+T_{3}(n,x,t) &= T_{2}(n,t,x) = (1-x^{2}) \frac{p_{n}(t)q_{n-1}(x)}{t-x}.
+\tag{2.5}
+\end{align}
+As $\alpha \geq -1/2$, from [23, p.~169], if $x \in [0,1]$,
+we have the following estimates:
+\begin{align}
+|p_{n}(x)| &\leq C(1-x)^{-\alpha/2-1/4},
+\tag{2.6} \\
+|q_{n}(x)| &\leq C(1-x)^{-\alpha/2-3/4}.
+\tag{2.7}
+\end{align}
+Let
+$$
+W_{i}(f,x) = W_{i,n}(f,x) = \int_{-1}^{1} f(t)T_{i}(n,x,t)w(t)\,dt
+\qquad (i = 1, 2, 3).
+$$
+We try to estimate the three terms
+$$
+\int_{|W_{i}(f,x)| > y} w(x)\,dx
+\qquad (i = 1, 2, 3).
+$$
+
+($i = 1$) By using (2.6) and H\"{o}lder's inequality, we have
+\begin{align*}
+|W_{1}(f,x)| &= \left| p_{n}(x) \int_{0}^{1} f(t)p_{n}(t)w(t)\,dt \right| \\
+&\leq C(1-x)^{-\alpha/2-1/4}
+\left(\int_{0}^{1} |f(t)|^{p}w(t)\,dt \right)^{1/p} \\
+&\qquad\times \left( \int_{0}^{1} (1-t)^{q(-\alpha/2-1/4)} w(t)\,dt \right)^{1/q} \\
+&= C_{1}(1-x)^{-\alpha/2-1/4} \|f\|_{p,w}
+\end{align*}
+if $q(-\alpha/2-1/4)+\alpha > -1$.
+Applying this to $p = r$ we get
+$$
+\int_{|W_{1}(f,x)| > y} w(x)\,dx
+\leq \int_{(1-x)^{-1/4-\alpha/2} > y/(C\|f\|_{r,w})} w(x)\,dx
+\leq C_{1}y^{-r} \|f\|_{r,w}^{r}
+$$
+what shows that $W_{1}$ is weakly bounded.
+
+($i = 3$) Let $H$ denote the Hilbert transform. It is well
+known that $H$ is bounded from $L^{p}(u)$ into $L^{p}(u)$ if and only
+if the weight $u$ belongs to $A_{p}$ [9]. By using (2.6) and (2.7),
+we get
+\begin{multline}
+\int_{0}^{1} |W_{3}(f,x)|^{p}w(x)\,dx \notag \\
+\leq C \int_{0}^{1} |H(f(t)p_{n}(t)w(t),x)|^{p} (1-x)^{(1/4-\alpha/2)p+\alpha}\,dx.
+\tag{2.8}
+\end{multline}
+Recalling that $(1-x)^{(1/4-\alpha/2)p+\alpha} \in A_{p}(0,1)$
+iff $-1 < (1/4-\alpha/2)p+\alpha < p-1$, [21], and it is verified
+for $p = r$, then (2.8) and (2.6) yield
+\begin{multline*}
+\int_{0}^{1} |W_{3}(f,x)|^{r}w(x)\,dx \\
+\leq C \int_{0}^{1} |f(x)p_{n}(x)w(x)|^{r} (1-x)^{(1/4-\alpha/2)r+\alpha}\,dx
+\leq C_{1} \|f\|_{r,w}^{r}
+\end{multline*}
+and therefore $W_{3}$ is strongly bounded.
+
+($i = 2$) We shall prove that there is not any constant $C$,
+independent of $n$ and $f$, such that
+\begin{equation}
+\int_{|p_{n}(x)H(f(t)q_{n-1}(t)(1-t^{2})w(t),x)| > y} w(x)\,dx
+\leq Cy^{-r} \|f\|^{r}_{r,w}.
+\tag{2.9}
+\end{equation}
+The proof is by contradition, constructing a sequence of functions
+$\{f_{m,n}(t)\}$ such that the constant $C$ appearing in the previous
+inequality grows with~$m$. In order to get it we try to remove
+the term $(x-t)^{-1}$ in the Hilbert transform and we need sharper forms
+of (2.6) and (2.7).
+
+Because of [23, Th.~8.21.13], if $N = n+(\alpha+\beta+1)/2$
+and $\gamma = -(\alpha+1/2)\pi/2$ we have
+\begin{multline*}
+p_{n}(\cos\theta) = (2^{\alpha^+\beta}\pi)^{-1/2}
+(\sin(\theta/2))^{-\alpha-1/2} (\cos(\theta/2))^{-\beta-1/2} \\
+\times [\cos(N\theta+\gamma)+(n\sin\theta)^{-1}O(1)]
+\end{multline*}
+where $c/n \leq \theta \leq \pi-c/n$,
+$c$ being a fixed positive number.
+
+We will restrict our attention to $\theta \leq \pi/2$
+and choose $M$ large enough and such that $M-\alpha /2$
+is a positive integer.
+If $M\pi/n \leq \theta \leq (M+1/8)\pi/n$, we have
+\begin{align*}
+N\theta+\gamma
+&\leq \left(n+ \frac{\alpha+\beta+1}{2}\right)
+\left(M+ \frac{1}{8} \right) \frac{\pi}{n} \\
+&\qquad\qquad\null- \left(\alpha+ \frac{1}{2} \right) \frac{\pi}{2}
+\hugelimto_{n \to \infty} \left(M- \frac{\alpha}{2} \right) \pi
+- \frac{\pi}{8}
+\end{align*}
+and
+$$
+N\theta+\gamma
+\geq \left(n+ \frac{\alpha+\beta+1}{2} \right) \frac{M\pi}{n}
+- \left(\alpha+ \frac{1}{2} \right) \frac{\pi}{2}
+\hugelimto_{n \to \infty} \left(M- \frac{\alpha}{2} \right) \pi
+- \frac{\pi}{4}.
+$$
+Hence, for every $\varepsilon > 0$ there exists $n_{0}$ such that
+$$
+\left(M- \frac{\alpha}{2} \right) \pi - \frac{\pi}{4}
+- \varepsilon \leq N\theta+\gamma
+\leq \left(M- \frac{\alpha}{2} \right) \pi
+- \frac{\pi}{8} + \varepsilon,
+\qquad n \geq n_{0}.
+$$
+Therefore $|\cos(N\theta+\gamma)|$
+is bounded below by a positive constant for $n$ large enough, and
+the same happens to $|\cos(N\theta+\gamma)| - |(n\sin\theta)^{-1}O(1)|$.
+Then $p_{n}(\cos\theta) \geq C(\sin(\theta/2))^{-\alpha-1/2}$,
+and taking $x = \cos\theta$ we get
+\begin{equation}
+|p_{n}(x)| \geq C(1-x^{2})^{-\alpha/2-1/4}
+\geq C_{1}(1-x)^{-\alpha/2-1/4} \geq C_{2}n^{\alpha+1/2}
+\tag{2.10}
+\end{equation}
+for $n \geq n_{0}$ and
+$x \in [\cos \frac{(M+1/8)\pi}{n}, \cos \frac{M\pi}{n}] = I_{n}$.
+
+We define
+$$
+f_{m,n}(t) = \frac{\sgn q_{n-1}(t)}{(1-t)^{\alpha/2+1/4}}
+\qquad\text{if}\quad
+0 \leq t \leq \cos \left(\frac{2M\pi}{m} \right),\ m < n,
+$$
+and $f_{m,n}(t) = 0$ elsewhere.
+
+Now, we are going to estimate the left side in (2.9).
+If $x \in I_{n}$ and $t \in \supp(f_{m,n})$ then $0 < x-t < 1-t$.
+With the aid of Lemma~2, then there exists a subsequence of $n$'s
+for which
+\begin{multline}
+|H(f_{m,n}(t)q_{n-1}(t)(1-t)^{\alpha+1} (1+t)^{\beta+1},x)| \notag \\
+= \left| \int_{0}^{\cos(2M\pi/m)}
+\frac{|q_{n-1}(t)|(1-t)^{\alpha+1} (1+t)^{\beta+1}}
+{(1-t)^{\alpha/2+1/4}(x-t)}\,dt \right| \geq C\log m.
+\tag{2.11}
+\end{multline}
+Thus, this and (2.10) imply
+\begin{align}
+&|p_{n}(x)| |H(f_{m,n}(t)q_{n-1}(t(1-t)^{\alpha+1} (1+t)^{\beta+1},x)| \notag \\
+&\qquad\qquad \geq C n^{\alpha+1/2} \log m, \qquad x \in I_{n}.
+\tag{2.12}
+\end{align}
+On the other hand, it is easy to check up
+\begin{equation}
+\int_{0}^{1} |f_{m,n}(t)|^{r}(1-t)^{\alpha}(1+t)^{\beta}\,dt
+\leq C \int_{0}^{\cos(2M\pi/m)} (1-t)^{-1}\,dt \leq C_{1}\log m.
+\tag{2.13}
+\end{equation}
+Finally, assume (2.9). By using (2.13) it follows that
+\begin{multline}
+y^{-r} \log n \geq Cy^{-r}  \int_{0}^{1} |f_{m,n}(t)|^{r}w(t)\,dt \notag \\
+\geq C_{1} \int_{|p_{n}(x)H(f_{m,n}(t)q_{n-1}(t)(1-t^{2})w(t),x)| > y} w(x)\,dx.
+\tag{2.14}
+\end{multline}
+Choose $y = Cn^{\alpha+1/2} \log m$. As $|I_{n}| = O(n^{-2})$,
+using (2.12) and (2.14) we have
+\begin{multline*}
+Cn^{-2-2\alpha} (\log m)^{-(2\alpha+3)/(2\alpha+1)} \\
+\geq C_{1} \int_{I_{n}} (1-x)^{\alpha}(1+x)^{\beta}\,dx
+\geq C_{2}|I_{n}|n^{-2\alpha}
+\geq C_{3}n^{-2-2\alpha},
+\end{multline*}
+i.e., $(\log m)^{-(2\alpha+3)/(2\alpha^+1)} \geq C$, which is absurd.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Section 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The aim of this part is to examine the restricted weak behaviour
+of the $n$th partial sum of the Fourier-Jacobi expansion. Assume
+$w(x) = (1-x)^{\alpha}(1+x)^{\beta}$ with $\alpha \geq
+\beta \geq -1/2$ and $\alpha > -1/2$, and so the
+interval of mean convergence turns out to be
+$4(\alpha+1)/(2\alpha+3) < p < 4(\alpha+1)/(2\alpha+1)$.
+We need some notations to establish our result.
+The Lebesgue measure of any set $E \subset (-1,1)$ will be denoted $|E|$,
+and $\chi_{E}(x)$ will as usual denote the characteristic
+function of the set~$E$. The reader is refered to [8] or [22] for
+notations and results about Lorentz spaces.
+
+%% \textsc{Theorem} 3.
+\begin{theoThree}
+Let $p = 4(\alpha+1)/(2\alpha+1)$ or
+$p = 4(\alpha+1)/(2\alpha+3)$. Then, there exists a constant
+$C$, independent of $n$ and $E \subset (-1,1)$, such that
+$$
+\int_{|S_{n}(\chi_{E},x)| > y} w(x)\,dx
+\leq Cy^{-p} \int_{E} w(x)\,dx.
+$$
+\end{theoThree}
+
+\begin{proof}
+By standard duality arguments it is enough to prove
+this for $p = 4(\alpha+1)/(2\alpha+1)$. Since $\beta \geq -1/2$,
+we have analogous estimates to (2.6) and (2.7)
+in the interval $(-1,0)$,
+\begin{align}
+|p_{n}(x)| &\leq C(1-x^{2})^{-1/4} w(x)^{-1/2}, \notag \\
+|q_{n}(x)| &\leq C(1-x^{2})^{-3/4} w(x)^{-1/2} ,
+\qquad x \in (-1,1).
+\tag{3.1}
+\end{align}
+We proceed as in Section~2 by making the same decomposition for
+the kernel in $S_{n}(\chi_{E},x)$, and we can see that $W_{1}$
+and $W_{3}$ are weakly bounded. Therefore we only need to prove
+that
+$$
+\int_{\left| \int_{-1}^{1} \chi_{E}(t)T_{2}(n,x,t)w(t)\,dt \right| > y}
+w(x)\,dx \leq Cy^{-p} \int_{E} w(x)\,dx
+$$
+for every measurable set $E \subset (-1,1)$. By (3.1),
+\begin{multline*}
+\left| \int_{-1}^{1} \chi_{E}(t)T_{2}(n,x,t)w(t)\,dt \right| \\
+\leq C(1-x^{2})^{-1/4} w(x)^{-1/2} |H(\chi_{E}(t)q_{n-1}(t)(1-t^{2})w(t),x)|.
+\end{multline*}
+Therefore, if we denote
+\begin{align*}
+U &= U(E,y,n) \\
+&= \{x \in (-1,1) : (1-x^{2})^{-1/4} \\
+&\qquad\qquad\times w(x)^{-1/2}
+|H(\chi_{E}(t)q_{n-1}(t)(1-t^{2})w(t),x)| > y\}
+\end{align*}
+it suffices to prove
+$$
+y^{p} \int_{U} w(x)\,dx \leq C \int_{E} w(x)\,dx.
+$$
+
+We can write a similar proof to that of [5].
+Decompose $E = E_{1} \cup E_{2}$,
+$E_{1} = E \cap [0,1)$, $E_{2} = E \cap (-1,0)$, and let
+$U_{1} = U(E_{1},y,n)$, $U_{2} = U(E_{2},y,n)$. Since in
+$|x| \leq 3/4$ both $(1-x)$ and $(1+x)$ have lower and upper positive
+bounds and since the Hilbert transform is a bounded operator
+in $L^{p}(dx)$, $1 < p < \infty$ (M. Riesz's Theorem
+[20]), the following inequality holds:
+$$
+y^{p} \int_{U \cap \{|x| \leq 3/4\}} w(x)\,dx \leq C \int_{E} w(x)\,dx.
+$$
+Hence, we must show that
+\begin{equation}
+y^{p} \int_{U_{i} \cap \{3/4 < |x| < 1\}} w(x)\,dx
+\leq C \int_{E} w(x)\,dx, \qquad i = 1, 2.
+\tag{3.2}
+\end{equation}
+We only prove (3.2) for $i = 1$ since the estimates for $i = 2$ are
+made in similar way. We begin considering $x \in (-1,-3/4)$.
+As $E_{1} \subset [0,1]$, the term $(x-t)^{-1}$ in the Hilbert transform
+can be dropped. By using (3.1) and H\"{o}lder's inequality for
+$p = 4(\alpha+1)/(2\alpha+1)$ and $q = 4(\alpha+1)/(2\alpha+3)$,
+we easily get
+$$
+|H(\chi_{E_{1}}(t)q_{n-1}(t)(1-t^{2})w(t),x)|
+\leq C \left( \int_{E_{1}} w(t)\,dt \right)^{1/p}.
+$$
+Then, if $\alpha = \beta$, by using (3.1) again, we have
+$$
+y^{p} \int_{U_{1} \cap \{-1 < x < -3/4\}} w(x)\,dx
+\leq C y^{p} \int_{B} (1+x)^{\alpha}\,dx,
+$$
+where $B$ is the set
+$$
+\left\{ x \in (-1,-3/4) : C(1+x)^{-\alpha/2-1/4}
+\left(\int_{E_{1}} w(t)\,dt \right)^{1/p} > y \right\}.
+$$
+Then
+$$
+y^{p} \int_{U_{1} \cap \{-1 < x < -3/4\}} w(x)\,dx)
+\leq C \int_{E_{1}} w(x)\,dx
+$$
+is obtained straightforward.
+
+The previous inequality is also true when $\beta < \alpha$
+and it can be easily shown taking into account that the weak
+norm is smaller than the strong norm.
+
+Consequently (3.2) will be proved if we show
+\begin{equation}
+y^{p} \int_{U_{1} \cap \{3/4 < x < 1\}} w(x)\,dx
+\leq C \int_{E} w(x)\,dx.
+\tag{3.3}
+\end{equation}
+Let us define the sets
+\begin{align*}
+A &= U_{1} \cap \{3/4 < x < 1\},\\
+I_{k} &= \{x \in (0,1) : 2^{-k-1} \leq 1-x < 2^{-k}\}, \\
+A_{k} &= A \cap I_{k},\qquad k \geq 2.
+\end{align*}
+We have
+$$
+A = \bigcup_{k=2}^{\infty} A_{k},\qquad
+A_{k} \cap A_{j} = \emptyset \ \forall k \neq j, \qquad
+\bigcup_{k=2}^{\infty} I_{k} = (3/4,1).
+$$
+Let us also set for $k \geq 2$
+\begin{align*}
+E_{11}^{(k)} &= E_{1} \cap [0,1-2^{-k+1}), \\
+E_{12}^{(k)} &= E_{1} \cap [1-2^{-k+1},1-2^{-k-2}), \\
+E_{13}^{(k)} &= E_{1} \cap [1-2^{-k-2},1).
+\end{align*}
+For every $k \geq 2$, $E_{1m}^{(k)}$ ($m = 1,2,3$) are non intersecting
+sets whose union is $E_{1}$. If we denote by $\chi_{m}^{(k)}$
+the characteristic function of the set
+$E_{1m}^{(k)}$ ($m = 1,2,3$, $k \geq 2$), then
+$$
+\chi_{E_{1}} = \chi_{1}^{(k)} + \chi_{2}^{(k)}
++ \chi_{3}^{(k)},\qquad k \geq 2.
+$$
+Again for $k \geq 2$ and $m = 1,2,3$, let
+$$
+A_{k}^{(m)} = \{ x \in I_{k} : |(1-x^{2})^{-1/4} w(x)^{-1/2}
+H(\chi_{m}^{(k)}(t)q_{n-1}(t)(1-t^{2})w(t),x)|  > y/3 \}.
+$$
+Since $A_{k} \subset A_{k}^{(1)} \cup A_{k}^{(2)} \cup A_{k}^{(3)}$, then
+$$
+A \subset \left[ \bigcup_{k=2}^{\infty} A_{k}^{(1)} \cup A_{k}^{(3)} \right]
+\cup \left[ \bigcup_{k=2}^{\infty} A_{k}^{(2)} \right].
+$$
+Therefore, in order to prove (3.3) it is enough to show that
+\begin{equation}
+y^{p} \int_{\bigcup_{k=2}^{\infty} (A_{k}^{(1)} \cup A_{k}^{(3)})} w(x)\,dx
+\leq C \int_{E} w(x)\,dx.
+\tag{3.4}
+\end{equation}
+and
+\begin{equation}
+\sum_{k=2}^{\infty} y^{p} \int_{A_{k}^{(2)}} w(x)\,dx
+\leq C \int_{E} w(x)\,dx.
+\tag{3.5}
+\end{equation}
+
+We start with $A_{k}^{(1)}$. Since $x \in I_{k}$ and
+$t \in E_{11}^{(k)}$, then $1-t \geq x-t \geq 2^{-1}(1-t)$. By
+using this, (3.1) and $(\alpha+1)/q - (2\alpha+3)/4 \leq 0$, we obtain
+\begin{align}
+&|(1-x^{2})^{-1/4} w(x)^{-1/2} H(\chi_{1}^{(k)}(t)q_{n-1}(t)(1-t^{2})w(t),x)|
+\notag \\
+&\qquad\leq C(1-x)^{-\alpha/2-1/4}
+\int_{-1}^{1} \chi_{1}^{(k)}(t) (1-t)^{-\alpha/2-3/4} w(t)\,dt
+\notag \\
+&\qquad\leq C(1-x)^{-(\alpha+1)/p}
+\int_{-1}^{1} \chi_{1}^{(k)}(t) (1-t)^{-(\alpha+1)/q} w(t)\,dt.
+\tag{3.6}
+\end{align}
+By H\"{o}lder's inequality for Lorentz spaces we have
+\begin{align}
+&\int_{-1}^{1} \chi_{1}^{(k)}(t) (1-t)^{-(\alpha+1)/q} w(t)\,dt \notag \\
+&\qquad= \|\chi_{1}^{(k)}(t) (1-t)^{-(\alpha+1)/q}\|_{(1,1),w} \notag \\
+&\qquad\leq C\|\chi_{1}^{(k)}(t)\|_{(p,1),w}
+\|(1-t)^{-(\alpha+1)/q}\|_{(q,\infty),w}.
+\tag{3.7}
+\end{align}
+Also
+\begin{align}
+\|\chi_{1}^{(k)}(t)\|_{(p,1),w}
+&\leq C\|\chi_{1}^{(k)}(t)\|^{*}_{(p,1),w} \notag \\
+&= C \left( \int_{E_{11}^{(k)}} w(x)\,dx \right)^{1/p}
+\leq C \left( \int_{E} w(x)\,dx \right)^{1/p}.
+\tag{3.8}
+\end{align}
+Finally, we get
+\begin{equation}
+\|(1-t)^{-(\alpha+1)/q}\|_{(q,\infty),w}
+= \sup_{y > 0} y^{q} \int_{|(1-t)^{-(\alpha+1)/q}| > y} w(t)\,dt < \infty.
+\tag{3.9}
+\end{equation}
+Using (3.6), (3.7), (3.8) and (3.9) in turn we obtain for $x \in A_{k}^{(1)}$
+\begin{multline}
+|(1-x^{2})^{-1/4} w(x)^{-1/2} H(\chi_{1}^{(k)}(t)q_{n-1}(t)(1-t^{2})w(t),x)|
+\notag \\
+\leq C(1-x)^{-(\alpha+1)/p} \left( \int_{E} w(x)\,dx \right)^{1/p}.
+\tag{3.10}
+\end{multline}
+This argument can be made analogously for $A_{k}^{(3)}$ ($k \geq 2$)
+and we have the same estimates. Thus
+$$
+A_{k}^{(1)} \cup A_{k}^{(3)} \subset \left\{ x \in
+(0,1) : C(1-x)^{-(\alpha+1)/p} \left( \int_{E} w(x)\,dx \right)^{1/p}
+> y \right\},
+$$
+and as the same is true for
+$\bigcup_{k=2}^{\infty} (A_{k}^{(1)} \cup A_{k}^{(3)})$,
+then (3.4) follows.
+
+Let us see now what happens to $A_{k}^{(2)}$, $k \geq 2$.
+As $x \in I_{k}$ we can remove the term $(1+x)^{-\beta/2-1/4}$,
+and so
+\begin{multline*}
+A_{k}^{(2)} \subset \{ x : 2^{-k-1} < 1-x < 2^{-k},\ w(x)^{-1/p} \\
+\times |H(\chi_{2}^{(k)}(t)q_{n-1}(t)(1-t^{2})w(t),x)|
+> C 2^{-k(\alpha/2+1/4)+\alpha k/p} y \}.
+\end{multline*}
+Then, by using (3.1) and M. Riesz's Theorem and the location
+of $E_{12}^{(k)}$, we obtain
+$$
+y^{p} \int_{A_{k}^{(2)}} w(x)\,dx \leq C \int_{E_{12}^{(k)}} w(x)\,dx.
+$$
+As $x$ may belong to at most three intervals of the form
+$\{ 1-2^{-k+1} \leq x < 1-2^{-k-2} \}$ and the
+$A_{k}^{(2)}$ are non-overlapping intervals, we have
+\begin{align*}
+y^{p} \int_{\bigcup_{k=2}^{\infty} A_{k}^{(2)}} w(x)\,dx
+&= y^{p} \sum_{k=2}^{\infty} \int_{A_{k}^{(2)}} w(x)\,dx \\
+&\leq C \sum_{k=2}^{\infty} \int_{E_{12}^{(k)}} w(x)\,dx
+\leq C_{1} \int_{E} w(x)\,dx,
+\end{align*}
+and the theorem is shown.
+\end{proof}
+
+%% \textsc{Remarks}
+\begin{remReferee}
+(1) As the referee has pointed out to us,
+lastly L. Colzani, S. Giulini, and G. Travaglini [25] have considered weak
+type boundedness of polyhedral partial sum operators on certain
+compact Lie groups, proving that weak type fails in the lower
+endpoint. As a consequence, results for some Jacobi-Fourier series
+can be obtained from their work.
+
+(2) We also have a proof of Theorem~3 when either $\alpha$ or
+$\beta$ are less than~$-1/2$. It can be done by modifying slightly
+the proof together with the use of non-uniform estimates of Jacobi
+polynomials (see~[11]).
+\end{remReferee}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frenchspacing
+
+\bibitem{1.}
+\textsc{R. Askey and S. Wainger}, Mean convergence of expansions
+in Laguerre and Hermite series, \textit{Amer. J. Math.} \textbf{87} (1965),
+695--708.
+
+\bibitem{2.}
+\textsc{V. M. Badkov}, Convergence in the mean of Fourier series
+in orthogonal polynomials, \textit{Math. Notes} \textbf{14} (1973), 651--657.
+
+\bibitem{3.}
+\textsc{V. M. Badkov}, Convergence in the mean and almost everywhere
+of Fourier series in polynomials orthogonal on an interval,
+\textit{Math. USSR Sbornik} \textbf{24} (1974), 223--256.
+
+\bibitem{4.}
+\textsc{V. M. Badkov}, Approximation properties of Fourier series
+in orthogonal polynomials, \textit{Russian Math. Surveys} \textbf{33} (1978),
+53--117.
+
+\bibitem{5.}
+\textsc{S. Chanillo}, On the weak behaviour of partial
+sums of Legendre series, \textit{Trans. Amer. Math. Soc.} \textbf{268}
+(1981), 367--376.
+
+\bibitem{6.}
+\textsc{R. Coifman, P. W. Jones, and J. L. Rubio de Francia},
+Constructive decomposition of B.M.O. functions and
+factorization of $A_p$ weights, \textit{Proc. Amer. Math. Soc.} \textbf{87}
+(1983), 675--676.
+
+\bibitem{7.}
+\textsc{J. Garc\i{\i}a Cuerva and J. L. Rubio de Francia}, ``Weighted
+norm inequalities and related topics'', North Holland,
+1985.
+
+\bibitem{8.}
+\textsc{R. A. Hunt}, On $L(p,q)$ spaces, \textit{Enseign. Math.}
+\textbf{12} (1966), 249--275.
+
+\bibitem{9.}
+\textsc{R. A. Hunt, B. Muckenhoupt, and R. L. Wheeden}, Weighted
+norm inequalities for the conjugate function and the Hilbert
+transform, \textit{Trans. Amer. Math. Soc.} \textbf{176} (1973), 227--251.
+
+\bibitem{10.}
+\textsc{A. M\'at\'e, P. Nevai, and V. Totik}, Necessary conditions
+for weighted mean convergence of Fourier series in orthogonal
+polynomials, \textit{J. Approx. Theory} \textbf{46} (1986), 314--322.
+
+\bibitem{11.}
+\textsc{B. Muckenhoupt}, Mean convergence of Jacobi series,
+\textit{Proc. Amer. Math. Soc.} \textbf{23} (1969), 306--310.
+
+\bibitem{12.}
+\textsc{B. Muckenhoupt}, Mean convergence of Hermite and Laguerre
+series~I, \textit{Trans. Amer. Math. Soc.} \textbf{147} (1970), 419--431.
+
+\bibitem{13.}
+\textsc{B. Muckenhoupt}, Mean convergence of Hermite and Laguerre
+series~II, \textit{Trans. Amer. Math. Soc.} \textbf{147} (1970), 433--460.
+
+\bibitem{14.}
+\textsc{B. Muckenhoupt and R. L. Wheeden}, Two weight function
+norm inequalities for the Hardy-Littlewood maximal function and
+the Hilbert transform, \textit{Studia Math.} \textbf{55} (1976), 227--251.
+
+\bibitem{15.}
+\textsc{C. J. Neugebauer}, Inserting $A_p$-weights, \textit{Proc.
+Amer. Math. Soc.} \textbf{87} (1983), 644--648.
+
+\bibitem{16.}
+\textsc{J. Newman and W. Rudin}, Mean convergence of orthogonal
+series, \textit{Proc. Amer. Math. Soc.} \textbf{3} (1952), 219--222.
+
+\bibitem{17.}
+\textsc{H. Pollard}, The mean convergence of orthogonal series~I,
+\textit{Trans. Amer. Math. Soc.} \textbf{62} (1947), 387--403.
+
+\bibitem{18.}
+\textsc{H. Pollard}, The mean convergence of orthogonal series~II,
+\textit{Trans. Amer. Math. Soc.} \textbf{63} (1948), 355--367.
+
+\bibitem{19.}
+\textsc{H. Pollard}, The mean convergence of orthogonal series~III,
+\textit{Duke Math. J.} \textbf{16} (1949), 189--191.
+
+\bibitem{20.}
+\textsc{M. Riesz}, Sur les fonctions conjugu\'{e}es, \textit{Math. Z.}
+\textbf{27} (1927), 218--244.
+
+\bibitem{21.}
+\textsc{E. M. Stein}, ``Singular integrals and differentiability
+properties of functions'', Princeton Univ. Press, Cambridge,
+1970.
+
+\bibitem{22.}
+\textsc{E. M. Stein and G. Weiss}, ``Introduction to
+Fourier Analysis on Euclidean Spaces'', Princeton Univ.
+Press, New Jersey, 1975.
+
+\bibitem{23.}
+\textsc{G. Szeg\H{o}}, ``Orthogonal Polynomials'',
+Amer. Math. Soc. Colloq. Publ., Vol.~23, Amer. Math. Soc., Providence,
+RI, 1959.
+
+\bibitem{24.}
+\textsc{G. M. Wing}, The mean convergence of orthogonal
+series, \textit{Amer. J. Math.} \textbf{72} (1950), 792-808.
+
+\bibitem{25.}
+\textsc{L. Colzani, S. Giulini, and G. Travaglini}, ``Sharp results
+for the mean summability of Fourier series on compact Lie groups'',
+Universit\`{a} degli Studi di Milano, Quaderno No.~12, 1988.
+
+\end{thebibliography}
+
+\end{document}
+

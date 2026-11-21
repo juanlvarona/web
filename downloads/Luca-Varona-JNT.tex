@@ -1,0 +1,1184 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% Multiperfect numbers on lines of the Pascal triangle,              %
+% by                                                                 %
+% Florian Luca and Juan Luis Varona                                  %
+%                                                                    %
+% Journal of Approximation Theory                                    %
+%                                                                    %
+% DATE OF LAST MODIFICATION OF THIS FILE: November 26, 2008          %
+%                                                                    %
+% Written with Elsevier's elsart class                               %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[twoside,amsthm]{elsart}
+
+%-------------------------------
+\journal{J.\ Number Theory}
+\volume{129}
+%\issue{5}
+\pubyear{2009}
+%\copyear{2008}
+\firstpage{1136}
+\lastpage{1148}
+%\company{Elsevier Science}
+%\copyrightholder{Elsevier Science}
+
+\runauthor{F. Luca and J. L. Varona}
+\runtitle{Multiperfect numbers on lines of the Pascal triangle}
+\AtBeginDocument{\pagestyle{myheadings}}
+%-------------------------------
+
+% \usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath,amssymb} % <- elsart loads amsthm
+
+\usepackage{url}
+
+\journal{Journal of Number Theory}
+
+%\newtheorem{lem}{Lemma}
+%\newtheorem{lemma}[lem]{Lemma}
+
+\newtheorem{lemma}{Lemma} % <-- To have its own numbers
+
+%\newtheorem{prop}{Proposition}
+%\newtheorem{proposition}[prop]{Proposition}
+
+%%% La clase elsart ya incluye \newtheorem{thm}{Theorem} en sus definiciones:
+% \newtheorem{thm}{Theorem}
+%\newtheorem{theorem}[thm]{Theorem}
+
+%\newtheorem{cor}{Corollary}
+%\newtheorem{corollary}[cor]{Corollary}
+
+%\newtheorem{conj}{Conjecture}
+%\newtheorem{conjecture}[conj]{Conjecture}
+
+%\newtheorem{defi}{Definition}
+%\newtheorem{definition}[defi]{Definition}
+
+%\newtheorem{exam}{Example}
+%\newtheorem{example}[exam]{Example}
+
+%\newtheorem{prob}{Problem}
+%\newtheorem{problem}[prob]{Problem}
+
+%\newtheorem{ques}{Question}
+%\newtheorem{question}[ques]{Question}
+
+%% DEFINITIONS
+
+\def\cA{\mathcal{A}}
+\def\cB{\mathcal{B}}
+%\def\cC{\mathcal{C}}
+%\def\cE{\mathcal{E}}
+%\def\cF{\mathcal{F}}
+\def\cI{\mathcal{I}}
+%\def\cL{\mathcal{L}}
+%\def\cM{\mathcal{M}}
+%\def\cN{\mathcal{N}}
+%\def\cR{\mathcal{R}}
+%\def\cS{\mathcal{S}}
+\def\cP{\mathcal{P}}
+\def\cQ{\mathcal{Q}}
+%\def\cT{\mathcal{T}}
+%\def\cX{\mathcal{X}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+%\def\R{\mathbb{R}}
+%\def\C{\mathbb{C}}
+%\def\eps{\varepsilon}
+
+
+%--------------------------------------------------------------
+%%%% CAMBIOS PARA ADAPTAR (aproximadamente) LA CLASE alsart QUE DISTRIBUYE Elsevier
+%%%% CON LA QUE LUEGO REALMENTE UTILIZAN PARA PRODUCIR LAS VERSIONES FINALES DE
+%%%% LOS ARTICULOS.
+\makeatletter
+%% Truco para poder mostrar las p\'aginas del art\'{\i}culo tal como
+%% lo public\'o Elsevier:
+% \def\@jou@vol@pag{\@journal\ \@volume\ (\the\@pubyear)\ \@pagerange} % <- ORIGINAL
+\newcounter{publishedfirstpage}\setcounter{publishedfirstpage}{\thefirstpage}
+\firstpage{1}
+\newcounter{publishedlastpage}\setcounter{publishedlastpage}{\thelastpage}
+\def\@jou@vol@pag{\@journal\ \@volume\ (\the\@pubyear)
+  \thepublishedfirstpage--\thepublishedlastpage.}
+%% MODIFICACIONES A LAS keywords y AL MSC
+\def\@keywordheading{{\it Keywords:\ }}
+\let\originalkeyword\keyword
+\def\keyword{\originalkeyword
+  \def\sep{\unskip; }
+  \def\MSC{\par\leavevmode\hbox {\it MSC:\ }}%
+  \ignorespaces}
+%% ESTOS DOS PARAMETROS NO SE PARA QUE VALEN, PERO LOS HE CAMBIADO POR SI ACASO
+%% (salvo el \@abstractsize que lo he dejado como estaba):
+\def\@abstractsize{\fontsize{\@ixpt}{11pt}\selectfont} %% {\@ixpt}{11pt}
+\def\@articletypesize{\fontsize{\@xpt}{10pt}\selectfont} %% {\@xiiipt}{13pt}
+%% ESTOS TAMANOS {letra}{interlineado} LOS HE PUESTO MAS PEQUENOS
+%% (a la derecha pongo lo que venia en la clase elsart por defecto):
+\def\normalsize{\@setfontsize\normalsize\@xpt{12pt}% %% \@xiipt{14.5pt}
+\abovedisplayskip 12\p@ \@plus 2\p@ \@minus 2\p@%
+\belowdisplayskip \abovedisplayskip
+\abovedisplayshortskip \z@ \@plus 2\p@%
+\belowdisplayshortskip 3.5\p@ \@plus 2\p@ \@minus 2\p@
+\let\@listi\@listI}
+\def\small{\@setfontsize\small\@ixpt{10.5}% %% \@xipt{13.6}
+\abovedisplayskip 11\p@ \@plus3\p@ minus6\p@
+\belowdisplayskip \abovedisplayskip
+\abovedisplayshortskip  \z@ \@plus3\p@
+\belowdisplayshortskip  6.5\p@ \@plus3.5\p@ minus3\p@
+\def\@listi{\leftmargin\leftmargini
+ \parsep 2.5\p@ \@plus1\p@ minus0.5\p@ \itemsep \parsep %% 4.5   2   1
+            \topsep 3\p@ \@plus1\p@ minus1\p@}}      %% 9   3   5
+\let\footnotesize=\small
+\let\@xviiipt\@xviipt
+\def\scriptsize{\@setfontsize\scriptsize\@viipt{8.5}} %% \@viiipt{9.5}
+\def\tiny{\@setfontsize\tiny\@vpt{6}} %% \@vipt{7}
+\def\large{\@setfontsize\large\@xiipt{14}} %% \@xivpt{18}
+\def\Large{\@setfontsize\Large\@xivpt{18}} %% \@xviipt{22}
+\def\LARGE{\@setfontsize\LARGE\@xviipt{19}} %% \@xxpt{22}
+\def\huge{\@setfontsize\huge\@xxpt{22}} %% \@xxvpt{27}
+\let\Huge=\huge
+%% ESTOS ESPACIOS {antes}{despues} LOS HE PUESTO MAS PEQUENOS:
+\def\section{\@startsection{section}{1}{\z@}{0.8\@bls %% default elsart: 1.5\@bls
+  \@plus .3\@bls \@minus .2\@bls}{0.4\@bls}{\normalsize\bfseries}}
+\def\subsection{\@startsection{subsection}{2}{\z@}{0.6\@bls
+  \@plus .2\@bls \@minus .1\@bls}{0.3\@bls}{\normalsize\itshape}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{0.4\@bls
+  \@plus .1\@bls}{0.0001pt}{\normalsize\itshape}}
+\def\paragraph{\@startsection{paragraph}{4}{\z@}{1.25ex \@plus %% default elsart: 3.25ex
+  0.2ex \@minus 0.2ex}{-1em}{\normalsize\bfseries}}
+\parskip 2\p@ \@plus 1\p@ %% DEFAULT elsart: \parskip 1pc \@plus 1\p@
+\parindent 12pt           %% DEFAULT elsart: \parindent \z@
+\def\Elproofname{Proof.}  %% DEFAULT elsart: PROOF.
+  \def\th@plain{%
+    \thm@preskip\medskipamount %% DEFAULT elsart: \parskip
+    \thm@postskip\z@
+    \itshape % body font
+  }
+%% ANALOGAMENTE PODRIA MODIFICAR \th@definition Y \th@remark
+\makeatother
+
+%%%% CAMBIOS PARA QUE PONGA "HEADINGS":
+\makeatletter
+% \ps@myheadings est\'a en article.cls:
+\def\ps@myheadings{%
+    \let\@oddfoot\@empty\let\@evenfoot\@empty
+    \def\@evenhead{\thepage\hfil\small\slshape\leftmark\hfil}%
+    \def\@oddhead{\hfil{\small\slshape\rightmark}\hfil\thepage}%
+    \let\@mkboth\@gobbletwo
+    \let\sectionmark\@gobble
+    \let\subsectionmark\@gobble
+    }
+\def\leftmark{\@runauthor}
+\def\rightmark{\@runtitle}
+\headheight \baselineskip %% DEFAULT elsart: \z@
+\headsep 20\p@            %% DEFAULT elsart: \z@
+\makeatother
+%--------------------------------------------------------------
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frontmatter}
+
+\title{Multiperfect numbers on lines of the Pascal triangle}
+
+\author{Florian Luca\thanksref{SEP}}
+\ead{fluca@matmor.unam.mx}
+\address{Instituto de Matem\'aticas,
+Universidad Nacional Aut\'onoma de M\'exico,\\
+C.P.~58089, Morelia, Michoac\'an, Mexico} % "Mexico" written in English
+\thanks[SEP]{Supported in part by Grant SEP-CONACyT 79685.}
+
+\author{Juan Luis Varona\thanksref{MTM2006}}
+\ead{jvarona@unirioja.es}
+% \ead[url]{http://www.unirioja.es/cu/jvarona/}
+\address{Dpto. de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,\\
+Calle Luis de Ulloa s/n,
+C.P.~26004, Logro\~no, Spain}
+\thanks[MTM2006]{Supported by grant MTM2006-13000-C03-03 of the DGI.}
+
+\date{Received 16 March 2008. Revised 27 October 2008}
+
+%\maketitle
+
+\begin{abstract}
+A number $n$ is said to be multiperfect (or multiply perfect) if $n$
+divides its sum of divisors $\sigma(n)$. In this paper, we study the
+multiperfect numbers on straight lines through the Pascal triangle.
+Except for the lines parallel to the edges, we show that all other
+lines through the Pascal triangle contain at most finitely many
+multiperfect numbers. We also study the distribution of the numbers
+$\sigma(n)/n$ whenever the positive integer $n$ ranges through the
+binomial coefficients on a fixed line through the Pascal triangle.
+\end{abstract}
+
+\begin{keyword}
+Multiperfect \sep multiply perfect \sep perfect \sep
+sum of divisors \sep
+Pascal triangle \sep binomial coefficients \sep
+Catalan numbers.
+\smallskip
+\MSC 11A25 \sep 11B65.
+\end{keyword}
+
+\end{frontmatter}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction and main results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For a positive integer $n$ we put $\sigma(n)$ for the sum of its
+divisors. Given an integer $k$, the number $n$ is said to be
+multiperfect, multiply perfect, or $k$-fold perfect if $\sigma(n) =
+kn$. Of course, ordinary perfect numbers are $2$-fold perfect. The
+single $1$-fold perfect is the trivial case $n=1$. The $3$-fold
+perfect numbers are also called triperfect, and only six of them are
+known: they are $120$, $672$, $523776$, $459818240$, $1476304896$, 
+$51001180160$. All of them were already known by the seventeenth
+century. Several multiperfect numbers are also known for every $k\le
+11$. Their number varies from thousands for $k=8,9,10$, to only one
+for $k=11$ which has more than a thousand decimal digits and was
+discovered in 2001. Descartes discovered the first $4$-fold number,
+and Fermat the first $5$-fold number, respectively. Dickson's
+\textit{History of the Theory of Numbers} \cite[p.~33--38]{D}
+records a long interest in such numbers. See
+also~\cite[Section~B2]{Guy}, or the web page~\cite{njas} for more
+details and references.
+
+Except for the well-known Euclid-Euler rule for $k=2$, no formula to
+generate multiperfect numbers is known.  Lehmer~\cite{Leh} proved
+that if $n$ is odd, then $n$ is perfect just if $2n$ is $3$-fold
+perfect. Moreover, no odd multiperfect number is known. There are
+several conjectures on the size of $k$ in what relates to the size
+of~$n$. For example, from the maximal order of the sum of divisors
+function, it is known that there exists a positive constant $c$ such
+that the inequality $\sigma(n)/n>c\log\log n$ holds for infinitely
+many positive integers $n$, where here and from now on we use $\log
+$ for the natural logarithm. Contrary to this inequality, Erd\H{o}s
+conjectured that if there were infinitely many multiperfect numbers,
+then $k = o(\log\log n)$ as $n\to\infty$ through multiperfect
+numbers. It has even been suggested there may be only finitely many
+$k$-fold perfect numbers altogether with $k \ge 3$, and it is
+further believed that all multiperfect numbers with $k=3$, $4$, $5$,
+$6$, and $7$ are known.
+
+There are several results in the literature addressing perfect and
+multiperfect numbers of various shapes. For example, Pomerance
+\cite{Po} proposed as a problem to find all positive integers $n$ such
+that $n!$ is multiperfect. In the solution \cite{Ev} to the above
+problem, it is shown that this happens only for $n=1$, $3$,~$5$. In
+\cite{Lu1}, it is shown that there is no Fibonacci number which is
+perfect and in \cite{Lu3} it was shown that there are at most
+finitely many Fibonacci numbers which are multiperfect.
+In~\cite{Lu2}, it is shown that no Fermat number; i.e., number of
+the form $2^{2^n}+1$ for some non-negative integer $n$, is perfect,
+and the method of proof shows easily that such numbers are not
+multiperfect either.
+
+There are various extensions of perfect and multiperfect numbers in
+the literature. For example, a number $n$ is called superperfect if
+$\sigma(\sigma(n))=2n$. More generally, a number $n$ is called
+$(m,k)$-perfect if $\sigma^{(m)}(n)=kn$, where $\sigma^{(m)}$
+denotes the $m$th fold iterate of the sum of divisors function.
+
+It has been shown that there are only finitely many multiperfect
+numbers of the form $\binom{2n}{n}$ (see~\cite{L-P, L-S}). In this
+paper, we take a closer look at this problem and we study the
+multiperfect as well as $(2,k)$-perfect numbers (for any positive
+integer~$k$) on straight lines on the Pascal triangle.
+Our theorem here is the following:
+
+\begin{thm}
+\label{thm:main} Let $L$ be a line passing through the Pascal
+triangle and not parallel to any of its sides. Then the following
+hold:
+\begin{itemize}\leftskip=10pt\labelsep=6pt
+\item[\normalfont (i)] There are only finitely many binomial 
+coefficients $x$ belonging to $L$ such that $x\mid \sigma(x)$.
+\item[\normalfont (ii)] There are only finitely many binomial 
+coefficients $x$ belonging to $L$ such that 
+$x\mid \sigma(\sigma(x))$.
+\end{itemize}
+\end{thm}
+
+Our theorem above does not say anything about the lines parallel to
+the edges; they are $\{\binom{n}{m}:n\ge m \}$ with a fixed value of
+$m$ or their symmetries with respect to the middle axis
+$\{\binom{n}{n-m}:n\ge m\}$. When $m=1$, we have $\binom{n}{1} = n$,
+so saying something about these numbers amounts to saying something
+about all the numbers which are multiperfect. When $m=2$, we have
+$\binom{n}{2} = \frac{n(n-1)}{2}$. All even perfect numbers are of
+this form with $n=2^r$, where $2^r-1$ is a prime number. However,
+for $m \ge 3$, and limiting ourselves to perfect numbers only, we
+have the following result.
+
+\begin{thm}
+\label{thm:kge3} There is no perfect number of the form
+$\binom{n}{m}$ with $n\ge 2m\ge 6$.
+\end{thm}
+
+The proof of Theorem~\ref{thm:main} is effective and relies on the
+Prime Number Theorem and the Primitive Divisor Theorem for the
+Mersenne numbers, which have the form $M_n=2^n-1$ for all $n\ge 1$.
+That is, given the line $L$, one can write down an explicit upper
+bound for the size of the largest possible multiperfect number on~$L$.
+Below we give a result identifying all the multiperfect numbers
+as well as the $(2,k)$-perfect numbers (for any positive integer~$k$) 
+on the central line of the Pascal triangle. For a positive
+integer $n$ let $B_n=\binom{2n}{n}$ be the $n$th middle binomial
+coefficient and $C_n=\frac{1}{n+1}B_n$ be the $n$th Catalan number.
+
+
+\begin{thm}
+\label{thm:2nn}
+\begin{itemize}\item[]\end{itemize} % <--- Dirty trick to change the line.
+\begin{itemize}\leftskip=10pt\labelsep=6pt
+\item[\normalfont (i)]
+The only $n$ such that $B_n$ is multiperfect is $n=2$. The only $n$
+such that $C_n$ is multiperfect is $n=1$.
+\item[\normalfont (ii)] The only
+$n$ such that $B_n\mid \sigma(\sigma(B_n))$ is $n=1$. Furthermore,
+the only $n$ such that $C_n\mid\sigma(\sigma(C_n))$ are $n=1,~2$ 
+and~$5$.
+\end{itemize}
+\end{thm}
+
+The occurrence of members of specific sequences on lines in the
+Pascal triangle is a question that has been studied before. For
+example, in \cite{LuPa} it is shown that if $(u_n)_{n\ge 0}$ is any
+fixed binary recurrent sequence of integers and $L$ is any line of
+the Pascal triangle, except for an edge or a line of the form
+$\{\binom{n}{1}:n\ge 1\}$ or its symmetric $\{\binom{n}{n-1}:n\ge
+1\}$, there are at most finitely many members of the sequence
+$(u_n)_{n\ge 0}$ belonging to~$L$. The problem~\cite{Lu4P} asks to
+show that the largest Fibonacci number which is also a Catalan
+number is~$5$.
+
+Divisor sums of binomial coefficients have been studied also in the
+recent paper \cite{Lu6} in the following context. It is known that
+the average value of $\sigma(n)/n$ when $n$ ranges in the interval
+$[1,x]$ approaches $\pi^2/6$ as $x$ tends to infinity. When
+$(u_n)_{n\ge 0}$ is a nondegenerate linearly recurrent sequence of
+integers, then the average value of $\sigma(|u_n|)/|u_n|$ when $n$
+ranges in the interval $[1,x]$  through values such that $u_n\ne 0$
+approaches a finite limit when $x\to\infty$. This is a result of
+Shparlinski from \cite{Shp} (see also~\cite{LuSh}). For binomial
+coefficients, the situation is different. Indeed, it is shown
+in~\cite{Lu6} that there exists a positive constant $c$ such that the
+inequality
+$$
+\frac{1}{n+1}\sum_{0\le m\le n}
+\frac{\sigma\left(\binom{n}{m}\right)}{\binom{n}{m}}
+> c\log\log\log n
+$$
+holds for all sufficiently large $n$ and further that
+$$
+\frac{1}{2^n} \sum_{0\le m\le n} \sigma\left(\binom{n}{m}\right)
+\to \infty
+\quad {\text{as}}~n\to\infty.
+$$
+The above estimates should be consistent with our intuition that
+most binomial coefficients are divisible by many small primes,
+therefore their divisor sums should be quite a bit larger than the
+numbers themselves.
+
+In the present paper, we take again a line $L$ passing through the
+Pascal triangle and study the distribution of the numbers
+$\sigma(x)/x$, when $x$ ranges through members of~$L$. For the
+purpose of the next result, we shall assume that $L$ contains
+infinitely many members of the Pascal triangle. The next result
+shows that numbers $\sigma(x)/x$ tend to behave differently when $x$
+ranges through a line $L$ nonparallel to the sides than when $x$
+ranges through one line that is parallel to the sides. Informally
+speaking, $\sigma(x)/x$ tends to infinity when $L$ is not parallel
+to the sides, while these numbers form a dense set in $[1,\infty)$
+when the line is parallel to the sides.
+
+\begin{thm}
+\label{thm:dens} Let $L$ be a fixed line through the Pascal triangle
+containing infinitely many binomial coefficients and which is not
+one of the two edges.
+\begin{itemize}\leftskip=10pt\labelsep=6pt
+\item[\normalfont (i)] If $L$ is not parallel to any of the edges, 
+then there exists a positive constant $c_L$ depending on the line such 
+that the inequality $\sigma(x)/x>(\log\log x)^{c_L}$ holds for all 
+binomial coefficients $x$ on $L$ which are sufficiently large.
+\item[\normalfont (ii)] If $L=\{\binom{n}{m}~:~n\ge m\}$, where 
+$m\ge 1$ is a fixed positive integer, then $\{\sigma(x)/x:x\in L\}$ 
+is dense in $[1,\infty)$.
+\end{itemize}
+\end{thm}
+
+Density questions for the set $\{\sigma(u_n)/u_n:n\ge 1\}$, where
+$(u_n)_{n\ge 1}$ is some interesting sequence of positive integers
+have been studied before. For example, it was shown in~\cite{Lu5}
+that $\{\sigma(M_n)/M_n:n\ge 1\}$ is dense in $[1,\infty)$, where
+again $M_n=2^n-1$ is the $n$th Mersenne number. The proof of this
+result applies also when the sequence of Mersenne numbers is
+replaced by the sequence of Fibonacci numbers. In \cite{LuPo}, it is
+shown that $\{\sigma(\phi(n))/n : n\ge 1\}$ is dense in
+$[\frac{1}{2}+\frac{1}{2^{34}-1},\infty)$, where $\phi(n)$ is the
+Euler totient function. It is not very hard to
+prove that $\{\sigma(\sigma(n))/n:n\ge 1\}$ is dense in
+$[1,\infty)$, but it is not known whether
+$\{\sigma(\sigma(\sigma(n)))/n:n\ge 1\}$ is dense in $[1,\infty)$.
+
+As usual, we will use the Landau symbols $O$ and $o$ as well as the
+Vinogradov symbols $\gg$, $\ll$ and $\asymp$ with their regular
+meaning. Recall that the statements $A=O(B),~A\ll B$ and $B\gg A$
+are all equivalent to the fact that $|A|<cB$ holds for some positive
+constant~$c$, $A\asymp B$ means that both $A\ll B$ and $B\ll A$
+hold, and $A=o(B)$ means that $A/B$ approaches zero. We use $\pi(t)$
+for the number of primes $p\le t$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{thm:main}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us start by presenting a parametrization of the lines in the
+Pascal triangle.
+
+\begin{lemma}
+\label{lem:param}
+Let $L \subseteq \{(n,m):n\ge m\}$ be a line of the Pascal triangle
+not parallel to any of its sides and containing infinitely
+many elements. Then, $L$ can be parametrized as
+\begin{equation}
+\label{eq:system}
+\begin{cases}
+n=at+b,\\
+m=ct+d,
+\end{cases}
+\qquad t \in \Z,\quad t \ge t_0,
+\end{equation}
+for some integers $a,b,c,d$ with $a$ and $c$ coprime and $0< c < a$.
+\end{lemma}
+
+\begin{pf}
+If the line $L$ is parallel to one of the sides,
+then either $m$ is a constant or $n-m$ is a constant.
+Otherwise, there exist rational numbers $A,~B$ such that $n=Am+B$.
+Writing $A=a/c$ with coprime integers $a$ and $c>0$, and writing
+$m=ct+r$, where $r\in \{0,1,\ldots,c-1\}$ and $t$ is an integer, we
+get that
+$$
+n=at+\left(\frac{ar}{c}+\frac{e}{f}\right),
+$$
+where we put $B=e/f$ with coprime integers $e$ and $f>0$. Since $r$
+can take only finitely many values, we may assume that $r$ is fixed.
+Since $ar/c+e/f$ is an integer, we get that $f\mid c$, therefore
+$c=fc_1$ holds with some positive integer $c_1$, and further
+$r=c_1r_1$ holds with some nonzero integer~$r_1$. Furthermore,
+$(ar_1+e)/f$ is an integer. Thus, putting $b:=(ar_1+e)/f$ and
+$d:=r$, we get~\eqref{eq:system}.
+Since $c>0$ and $m$ is positive, it follows that $t>0$ if $m$ is
+sufficiently large. The first relation above together with the fact
+that $n\ge m$ can be arbitrarily large implies first that $a \ge 1$.
+Next, again since $n\ge m$, it follows by looking at large values of
+$t$ that $0< c \le a$.
+Finally, we can assume that $0<c<a$, otherwise if $a=c$ we
+get that $n-m$ remains constant.
+\end{pf}
+
+Let us now prove Theorem \ref{thm:main}. Let $L \subseteq
+\{(n,m) : n\ge m\}$ be the line of the Pascal triangle; by Lemma
+\ref{lem:param} above, it can be parametrized as shown
+in~\eqref{eq:system}. Furthermore, by the symmetry $\binom{n}{m} =
+\binom{n}{n-m}$, and by replacing $m$ with $n-m$ if needed, it
+follows that we may assume that $0<c\le a/2$.
+
+Now let us look at the binomial coefficient:
+$$
+x := \binom{n}{m} = \binom{at+b}{ct+d} = \frac{(at+b)(at+b-1) \cdots
+((a-c)t+b-d+1)}{(ct+d)!}.
+$$
+Since $a-c\ge c$, it follows that for large $t$, all primes $p$ in
+the interval $\cI = [(a-c)t+b-d+1, at+b]$ divide $x$ with at
+most $O(1)$ exceptions. These exceptional values can occur only when
+$a-c=c$ (i.e., $a=2c$, therefore $c=1$ and $a=2$, since we have
+already assumed that $a$ and $c$ are coprime), and $b-d+1<d$, in
+which case we can take the constant implied by the above $O(1)$ to
+be $\max\{|d|+1,|b|+1\}$. Let $\cA$ be the above set of primes. For
+large $t$, we have that $2\notin \cA$.
+
+Let $p\in \cA$. Clearly, $2p\ge 2(a-c)t+2(b-d+1)$. Since $a\ge 2c$,
+it follows, by an argument similar to the previous one, that the
+inequality $2p>at+b$ holds for large values of $t$ unless
+$a=2,~c=1$, in which case the inequality $2p>at+b$ also holds for
+all primes $p\in \cA$ with $O(1)$ exceptions.
+
+The above argument shows that there exists a positive constant $c_1$
+(depending on $a,~b,~c,~d$), such that if $t$ is sufficiently large,
+then all primes $p\in \cA$ except for at most $c_1$ of them divide
+exactly $x$ (namely, such primes are divisors of the above number
+but the squares of these primes are not). Thus, writing $\cB$ for
+the subset of $\cA$ such that $p\parallel x$, and putting $u =
+\prod_{p \in \cB} p$, it follows that $x = uv$ holds with some
+positive integer $v$ coprime to~$u$. Hence,
+$$
+\sigma(x) = \sigma(u)\sigma(v) = \sigma(v)\prod_{p \in \cB} (p+1).
+$$
+The factor $p+1$ is even for all $p\in \cB$, and there are
+$$
+\#\cB \ge \pi(at+b) - \pi((a-c)t+b-d)-c_1
+$$
+such factors $p+1$. By the Prime Number Theorem, we have that the
+inequality $\#\cB\ge ct/(2\log t)$ holds for large values of~$t$.
+Hence, writing $\alpha$ for the exponent of the prime $2$ in
+$\sigma(x)$, we get that the inequality $\alpha\ge ct/(2\log t)$
+holds for large values of~$t$.
+
+By a well-known theorem of Kummer (see, for instance,
+Exercise~5.36, p.~245, of the chapter ``Binomial Coefficients''
+in~\cite{GKP}),
+the exponent $\beta$ of $2$ in
+$\binom{n}{m}$ equals the number of carries when adding $m$ and
+$n-m$ in base~$2$. In particular, $\beta<c_2 \log t$ for large
+values of $t$, where $c_2$ is any fixed constant in $(0,1/\log 2)$.
+We are now ready to prove the theorem.
+
+For~(i), let us suppose that $x$ is multiperfect. Then the relation
+$$
+\sigma(x) = kx
+$$
+holds for some positive integer~$k$. Letting $\gamma$ be the
+exponent of $2$ in the factorization of $k$, we get, by the previous
+arguments, that
+\begin{equation}
+\label{eq:orderof2ink} 
+\gamma \ge \alpha-\beta\ge \frac{ct}{2\log t}
+- c_2\log t>\frac{ct}{3\log t}
+\end{equation}
+for large values of~$t$.
+
+On the other hand, since the inequality $x \le 2^n<2^{2at}$ holds
+for large values of $t$, we have, by the maximal order of the sum of
+divisors function, that
+\begin{equation}
+\label{eq:cotasup} 
+k = \frac{\sigma(x)}{x}\ll \log\log x \le
+\log\log(2^{2at}) \le 2\log t
+\end{equation}
+if $t$ is sufficiently large. Comparing
+inequalities~\eqref{eq:orderof2ink} and~\eqref{eq:cotasup}, we get that
+$$
+2^{ct/(3\log t)} \le 2^{\gamma}\le k\ll \log t,
+$$
+which shows that $t$ is, in fact, bounded. This completes the proof
+of part~(i) of this theorem.
+
+For~(ii), let us suppose that $x$ is $(2,k)$-perfect for some
+positive integer~$k$. Then
+$$
+\sigma(\sigma(x))=kx.
+$$
+Since $2^{\alpha} \parallel \sigma(x)$, we get that $2^{\alpha+1}-1\mid
+\sigma(\sigma(x))$. Recall that if $u\ge 1$ is any positive integer,
+then a {\it primitive divisor} of the number $2^u-1$ is a prime
+factor of $2^u-1$ which does not divide $2^v-1$ for any positive
+integer $1\le v<u$. It is known that a primitive divisor $p$ of
+$2^u-1$, whenever it exists, is congruent to $1\pmod u$. It is also
+known that if we write
+$$
+2^u-1=AB,
+$$
+where $A$ and $B$ are positive integers such that every prime factor
+of $A$ is primitive for $2^u-1$ and no prime factor of $B$ is
+primitive for $2^u-1$, then  $A>2^{\phi(u)/2}$ holds for all large
+values of~$u$. For us, writing
+$$
+2^{\alpha+1}-1=AB
+$$
+as described previously, then $A>2^{\phi(\alpha+1)/2}$ provided that
+$\alpha$ is large. Since $\alpha>ct/(2\log t)$, and the inequality
+$\phi(u)\gg u/\log\log u$ holds for all large positive integers $u$,
+it follows that there exists a positive constant $c_3$ such that
+\begin{equation}
+\label{eq:lowA}
+A > \exp\left(\frac{c_3 t}{\log t\log\log t}\right)
+\end{equation}
+provided that $t$ is sufficiently large. On the other hand, all
+prime factors dividing $A$ divide also $kx$. Note that
+\begin{equation}
+\label{eq:k}
+k = \frac{\sigma(\sigma(x))}{x} 
+= \frac{\sigma(\sigma(x))}{\sigma(x)} \cdot
+\frac{\sigma(x)}{x} \ll (\log\log \sigma(x))\log\log x \ll (\log t)^2,
+\end{equation}
+where the last inequalities above follow as in part~(i) because
+$x<2^{2at}$. If $p\mid A$, then $p\equiv 1\pmod{\alpha+1}$. In
+particular, $p>\alpha+1>ct/(2\log t)$, therefore, by inequality
+\eqref{eq:k}, we have that $p>k$ for large values of~$t$. Thus,
+$p\mid x$. The exponent of $p$ in $x$ is, by Kummer's theorem, at
+most $\log t$ for large values of~$t$. Furthermore, $p\le at+b$ and
+$p\equiv 1\pmod  {\alpha+1}$, therefore the number of possibilities
+for $t$ is at most (even discarding the condition that $p$ is a
+prime) $\lfloor (at+b)/(\alpha+1)\rfloor+1<c_4\log t$ for large $t$,
+where we can take $c_4=3a/c$. Hence, we have just showed that
+\begin{equation}
+\label{eq:upA}
+A \le \prod_{\substack{p\mid x\\ p\equiv 1\pmod
+{\alpha+1}}} p^{\log t}<(at+b)^{c_4(\log t)^2}
+< \exp(2c_4(\log t)^3)
+\end{equation}
+provided that $y$ is sufficiently large. Comparing
+inequalities~\eqref{eq:lowA} and~\eqref{eq:upA}, we get that
+$$
+\frac{c_3 t}{\log t\log\log t} < 2c_4 (\log t)^3,
+$$
+which obviously implies that $t$ is bounded. This finishes the proof
+of part~(ii) of this theorem.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{thm:kge3}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Assume that $x:=\binom{n}{m}$ is perfect, where $n\ge 2m\ge 6$.
+Assume that $n\ge 30$. Corollary~3 in \cite{SaSh} shows that
+\begin{equation}
+\label{eq:prod}
+n(n-1)\cdots (n-m+1)
+\end{equation}
+is divisible by at least two primes exceeding~$m$. Since $x$ is
+perfect, it then follows by a result of Euler that $x=pu^2$ for some
+odd prime $p$ and positive integer $u$ (here, $p=2^r-1$ and
+$u=2^{(r-1)/2}$ when the perfect number is even). Now $u$ is
+divisible by a prime $q$ exceeding~$m$. Hence, $q^2$ divides the
+number shown at~\eqref{eq:prod}, and since $q$ exceeds $m$, we get
+that $q^2\mid n-i$ for some $i=0,\ldots,m-1$. In particular, $n\ge
+(m+1)^2=m^2+2m+1$, therefore $n-m+1>m^2$. Now let $j$ be an integer
+in $\{0,1,\ldots,m-1\}$ such that $n-m+1+j$ is a multiple of $p$
+(note that $j$ is unique if $p>m$). Since the number shown at
+\eqref{eq:prod} is of the form $k!\,pu^2$, it follows easily that if
+we remove from this product the number $n-m+1+j$ we get an equation
+of the form
+$$
+(n-m+1)\cdots (n-m+1+(j-1))(n-m+1+(j+1))\cdots n = bw^2,
+$$
+where $b$ is a positive integer whose largest prime factor is at
+most~$m$. This is impossible for $m\ge 3$ by Theorem~2 in~\cite{SaSh}. 
+Thus, $n\le 30$, and now a short calculation reveals no
+perfect number of the form $\binom{n}{m}$ with $3\le m\le n/2$ and
+$n\le 30$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{thm:2nn}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We follow the proof of Theorem~\ref{thm:main} but make it
+effective. By Corollary~2 (p.~69) in~\cite{RS}, we have
+$$
+\alpha \ge \pi(2n)-\pi(n) \ge \frac{3n}{5\log n}
+$$
+for $n\ge 21$. Now, let us observe that $\sigma(\binom{2n}{n})$ is a
+multiple of $\prod_{n<p\le 2n} (p+1)$, therefore also of
+$2^{\pi(2n)-\pi(n)}$. Letting $\beta$ be the power of $2$ in the
+prime factorization of $\binom{2n}{n}$, Kummer's theorem gives us
+$2^{\beta}\le 2n$.
+
+We now prove~(i). Assume that $\binom{2n}{n}$ is multiperfect. Let
+$k$ be an integer such that $\sigma(\binom{2n}{n}) =
+k\binom{2n}{n}$. Then, $2^\gamma\mid k$, where
+\begin{equation}
+\label{eq:2a} 
+2^\gamma \ge 2^{\pi(2n)-\pi(n)-\beta} \ge
+\frac{2^{\frac{3n}{5\log n}}}{2n}.
+\end{equation}
+On the other hand,
+$$
+k = \frac{\sigma(\binom{2n}{n})}{\binom{2n}{n}} < \sum_{d\le 2^{2n}}
+\frac{1}{d} \le 1 + \int_1^{2^{2n}} \frac{dt}{t} \le \log(2^{2n}) +
+1 = 2n\log 2 + 1.
+$$
+Thus, when $n>1$,
+$$
+\frac{2^{\frac{3n}{5 \log n}}}{2n} \le 2n\log 2 + 1 < 2n,
+$$
+and then
+$$
+3 n\log 2 < 10(\log n)\log (2n),
+$$
+whose largest solution is $n=130$. In this way, we have proved that
+$\binom{2n}{n}$ is not multiperfect when $n>130$. For $n \le 130$, a
+quick computer search confirmed that $\binom{2n}{n}$ is multiperfect
+only when $n=2$.
+
+Assume now that the Catalan number $C_n$ is multiply perfect. Then
+the exponent of $2$ in $\sigma(C_n)$ is at least $\pi(2n)-\pi(n)-1$
+(by $1$ smaller than before since $n+1$ might be a prime), while the
+power of $2$ in $C_n$ does not exceed the power of $2$ in
+$\binom{2n}{n}$. Hence, the lower bound on $\gamma$, the power of
+$2$ in $k$ defined analogously as $\sigma(C_n)=kC_n$, satisfies the
+inequality
+\begin{equation}
+\label{eq:2aCatalan} 
+2^\gamma \ge \frac{2^{\frac{3n}{5\log n}}}{4n}
+> \frac{2^{\frac{3n}{5\log n}}}{(2n)^2} .
+\end{equation}
+Thus, following the same arguments as before, we arrive at
+$$
+3 n\log 2 < 15(\log n)\log (2n),
+$$
+whose largest solution is $n=247$. A quick computer check confirmed
+that the only $n\le 247$ for which $C_n$ is multiply perfect is
+$n=1$.
+
+We now look at~(ii). Let $x=B_n$ or $C_n$ and let $\alpha$ be the
+power of $2$ in either $\sigma(B_n)$ or $\sigma(C_n)$. Then the
+arguments from part~(i) show that
+$$
+\alpha\ge \pi(2n)-\pi(n)-1\ge \frac{3n}{5\log n}-1
+\qquad {\text{for}}~n\ge 1.
+$$
+Now $2^{\alpha+1}-1$ divides $\sigma(\sigma(x))=kx$. Clearly,
+$\sigma(x)<x^2<2^{4n}$, so the arguments from~(i) show that
+\begin{align*}
+k & = \frac{\sigma(\sigma(x))}{\sigma(x)} \cdot \frac{\sigma(x)}{x}
+< \left(1+\int_1^{2^{2n}} \frac{dt}{t}\right)
+\left(1+\int_1^{2^{4n}} \frac{dt}{t}\right) \\
+& <  (1+2n\log 2)(1+2n\log 4) < (2n)^2,
+\end{align*}
+where the last inequality holds for $n>30$, which we are assuming
+from now on. Now write
+$$
+2^{\alpha+1}-1=AB,
+$$
+where all prime factors of $A$ are congruent to $1$ modulo
+$\alpha+1$. It is well-known, from the proof of the Primitive
+Divisor Theorem (see, for example, \cite{Z}), that
+$$
+A > \frac{2^{\phi(\alpha+1) - 2^{\omega(\alpha+1)-1}}}{\alpha+1},
+$$
+where for a positive integer $m$ we put $\omega(m)$ for the number
+of distinct prime factors of~$m$. We now assume that $n>135$. Then
+$$
+\alpha+1 > \frac{3n}{5\log n} > 12
+$$
+(where the last inequality holds for $n>90$), therefore, by a result
+of Schinzel, \cite{Sch}, we have that $A$ has a prime factor at
+least as large as $2(\alpha+1)+1$. This prime factor either divides
+$x$ (so it is $<2n$), or it divides $k<4n^2$, therefore
+$\alpha+1<2n^2$. Thus,
+\begin{equation}
+\label{eq:Alow}
+A > \frac{2^{\phi(\alpha+1)}-2^{\omega(\alpha+1)-1}}{2n^2}.
+\end{equation}
+Now every prime factor dividing $A$, either divides $k$, or divides~$x$.
+Let $p$ be a prime factor dividing both $A$ and~$x$. Then
+$$
+p^2 > (\alpha+1)^2 > \left(\frac{3 n}{5\log n}\right)^2 > 2n,
+$$
+where the last inequality holds for all $n>135$, which we are
+assuming. Thus, $p \parallel x$. Furthermore, the number of such primes is
+$\le 2n/(\alpha+1)$ and every one of such primes is~$<2n$. This
+shows that
+$$
+A\le k(2n)^{2n/(\alpha+1)}<(2n)^{2/(\alpha+1)+2}.
+$$
+Thus, comparing the above upper bound on $A$ with the lower bound
+\eqref{eq:Alow}, we get
+\begin{equation}
+\label{eq:master}
+\phi(\alpha+1) - 2^{\omega(\alpha+1)-1} 
+< \left(\frac{2n}{\alpha+1}+4\right)
+\frac{\log(2n)}{\log 2}.
+\end{equation}
+This is the master inequality. Since $\alpha+1>3n/(5\log n)$, we get
+that
+\begin{equation}
+\label{eq:up}
+\phi(\alpha+1)-2^{\omega(\alpha+1)-1} 
+< \left(\frac{10\log n}{3}+4\right) \frac{\log(2n)}{\log 2}.
+\end{equation}
+Let $s$ be the number of prime factors of $\alpha+1$. Clearly,
+$2^s\le \alpha+1$, so $s\le (\log(\alpha+1))/\log 2$, therefore
+$$
+\phi(\alpha+1) \ge
+(\alpha+1) \prod_{i=2}^{s+1}\left(1-\frac{1}{i}\right) \ge
+\frac{\alpha+1}{s+1}\ge \frac{(\alpha+1)\log 2}{\log(2(\alpha+1))}.
+$$
+Finally, writing $\tau(m)$ for the number of divisors of $m$, and
+observing that
+$$
+2^{\omega(\alpha+1)-1}\le \frac{\tau(\alpha+1)}{2} \le
+\frac{\sqrt{3(\alpha+1)}}{2},
+$$
+we get that
+$$
+\phi(\alpha+1)-2^{\omega(\alpha+1)-1}
+\ge \frac{(\alpha+1)\log 2}{\log(2(\alpha+1))}
+- \frac{\sqrt{3(\alpha+1)}}{2}.
+$$
+The function
+$$
+t\mapsto \frac{t\log 2}{\log(2t)} - \frac{\sqrt{3t}}{2}
+$$
+is increasing for $t\ge 8$, and since for us 
+$\alpha+1\ge 3n/(5\log n)>12$, we have that
+\begin{equation}
+\label{eq:down} 
+\phi(\alpha+1)-2^{\omega(\alpha+1)-1} \ge
+\frac{3n\log 2}{5(\log n)\log(6n/(5\log n))}
+- \frac{3}{2}\left(\frac{n\log 2}{5}\right)^{1/2}.
+\end{equation}
+From inequalities~\eqref{eq:up} and~\eqref{eq:down}, we get that
+$$
+\frac{3n\log 2}{5(\log n)\log(6n/(5\log n))}
+- \frac{3}{2}\left(\frac{n\log 2}{5\log n}\right)^{1/2}
+< \left(\frac{10\log n}{3}+4\right) \frac{\log(2n)}{\log 2},
+$$
+giving $n\le 310000$. Thus, there is no solution with $n>310000$.
+
+Now we start lowering the upper bound on~$n$. Assume  still $n>135$
+but $n\le 310000$. Here, we have that $\alpha+1\le \pi(2n)+1<51000$.
+The product of the first $7$ primes exceeds $51000$, therefore
+$$
+\frac{\phi(\alpha+1)}{\alpha+1}\ge \prod_{2\le q\le 13}
+\left(1-\frac{1}{q}\right)=\frac{192}{1001}.
+$$
+Moreover, for $\alpha+1<51000$, we have $\tau(\alpha+1)\le 108$,
+therefore the largest power of $2$ which is $\le \tau(\alpha+1)/2$
+is at most~$32$. Hence, we get the inequality
+$$
+\phi(\alpha+1)-2^{\omega(\alpha+1)-1} \ge
+\frac{192(\alpha+1)}{1001}-32\ge \frac{594n}{5005\log n}.
+$$
+Comparing the last inequality above with inequality~\eqref{eq:up},
+we get
+$$
+\frac{594 n}{5005 \log n}-32 
+< \left(\frac{10\log n}{\log 3}+4\right)
+\frac{\log(2n)}{\log 2},
+$$
+giving $n\le 72000$. Thus, there is no solution with $n>72000$.
+Assume now that $n>20000$. We have checked with Mathematica that
+$\pi(2n)-\pi(n)>0.95 n/\log n$ for all $n\in [20000,80000]$. Thus,
+instead of the inequality $\alpha+1>3 n/(5\log n)$, we can use the
+inequality $\alpha+1>0.95 n/\log n$, in which case we also have
+$2n/(\alpha+1)<40(\log n)/19$. Furthermore, since $2n<144000$ and
+$\alpha+1<\pi(144000)<14000$, but the product of the first $6$
+primes exceeds $14000$, it follows that
+$$
+\frac{\phi(\alpha+1)}{\alpha+1}\ge \prod_{2\le q\le 11}
+\left(1-\frac{1}{q}\right)=\frac{16}{77}.
+$$
+Thus,
+$$
+\phi(\alpha+1)-2^{\omega(\alpha+1)-1}
+\ge \frac{15.2 n}{77\log n}-32,
+$$
+and comparing this with the bound~\eqref{eq:master}, we get
+$$
+\frac{15.2 n}{5\log n}-32 < \left(\frac{40\log n}{19}
++ 4\right) \frac{\log(2n)}{\log 2},
+$$
+giving $n<20000$. Thus, there is no solution with $n\ge 20000$.
+
+Next we checked that there is no solution with $n>1100$ in the
+following way. For each $n\in [1100,20000]$, we used Mathematica to
+find the exact value of~$\alpha$. In order to do so, for each $n$ we
+factored the integer $B_n$ and $C_n$ (which are large integers all
+whose prime factors are smaller than $2n$), and then
+$$
+\alpha = \sum_{\substack{p^{\alpha_p}\mid B_n\\
+\alpha_p~{\text{odd}}}} \operatorname{ord}_2
+\left(\frac{p^{\alpha_p+1}-1}{p-1}\right),
+$$
+where for a positive integer $m$ we write $\operatorname{ord}_2(m)$
+for the exponent of $2$ in the factorization of~$m$. We then checked
+whether the master inequality~\eqref{eq:master} holds. No solution
+for either $x=B_n$ or $x=C_n$ was found with $n>1100$. We then
+checked that the only $n\le 1100$ for which $x \mid
+\sigma(\sigma(x))$ are the claimed ones.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{thm:dens}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We start with part~(i) and assume, as in the proof of
+Theorem~\ref{thm:main}, that we are looking at pairs $(n,m)$
+parameterized as in Lemma~\ref{lem:param}. Let $t$ be large and put
+$z_1=\exp((\log t)^{1/2})$ and $z_2=t^{1/4}$. Lemma 5.1 with $J=1$
+and $\varepsilon=1/10$ in~\cite{GrR} shows that for any two
+constants $0<\sigma_0<\sigma_1<1$ there exists some positive
+constant $c_1$ such that uniformly in $y\le x$ we have that the set
+of prime numbers $p\le y$ such that $\{x/p\} \in (\sigma_0,\sigma_1)$
+has cardinality
+$$
+(\sigma_1-\sigma_0)\pi(y) + O\left((y^{1-c_1(\log y)^2/\log x}
++ y^{8/5}x^{-1/2})(\log x)^4\right).
+$$
+From the way we have chosen $z_1$ and $z_2$, we deduct that for
+large $t$, there are
+$$
+(\sigma_1-\sigma_0) \pi(y) \left(1+O\left(\frac{1}{\log y}\right)\right)
+$$
+primes $p\le y$ such that $\{t/p\}\in (\sigma_0,\sigma_1)$ and this
+holds for all $y\in [z_1,z_2]$. We now put
+$\sigma_0=1-1/(4c(a-c)),~\sigma_1=1-1/(5c(a-c))$, and deduct that if
+we put $\cP_y$ for the set of primes $p\in (y,2y)$ with $\{t/p\}$ in
+the above interval, then the inequality
+$$
+\# \cP_y\ge \frac{y}{30c(a-c)\log y}
+$$
+holds uniformly for all $y\in [z_1,z_2/2]$ once $t$ is sufficiently
+large. Since all such primes are at most as large as $y$, we get
+that
+\begin{equation}
+\label{eq:sum1overp} 
+\sum_{p\in \cP_y}\frac{1}{p} \ge
+\frac{c_1}{\log y},
+\end{equation}
+where we put $c_1=1/(30c(a-c))$. Observe that if $p$ is such a
+prime, then
+$$
+\left\{\frac{(a-c)t+(b-d)}{p}\right\} \in \left(1-\frac{1}{3c},
+1-\frac{1}{6c}\right),
+$$
+and
+$$
+\left\{\frac{ct+d}{p}\right\} \in \left(1-\frac{1}{3(a-c)},
+1-\frac{1}{6(a-c)}\right),
+$$
+provided that $t$ is large. In particular, since
+$$
+\left(1-\frac{1}{3c}\right) + \left(1-\frac{1}{3(a-c)}\right) > 1
+$$
+for all $c\ge 1$ and $a-c\ge 1$, we get that for large $t$, the
+binomial coefficient $x=\binom{n}{m}$ is a multiple of such a prime
+$p$ since there is at least one carry when adding $(a-c)t+(b-d)$
+with $ct+d$ in base~$p$.
+
+Now give $y$ the values $2^{\ell}$, where $\ell$ is an integer.
+Since $2^{\ell}$ must belong to the interval $[z_1,z_2/2]$, it
+follows that we can take $\ell\in [L_1,L_2]$, where
+$$
+L_1 = \left\lfloor \frac{(\log t)^{1/2}}{\log 2}\right\rfloor + 1
+\qquad {\text{and}}\qquad L_2
+= \left\lfloor \frac{\log t}{4\log 2}\right\rfloor-1.
+$$
+Thus, $x$ is divisible by all primes in $\bigcup_{L_1\le \ell
+\le L_2} \cP_{2^{\ell}}$, and the sets making up the above
+union are disjoint. Hence, using~\eqref{eq:sum1overp}, we get
+\begin{align*}
+\frac{\sigma\left(x\right)}{x}
+& \ge \prod_{L_1\le \ell\le L_2}
+\prod_{p\in \cP_{2^{\ell}}}\left(1+\frac{1}{p}\right)
+= \exp\left(\sum_{\substack{L_1\le \ell\le L_2\\ p\in \cP_{2^{\ell}}}}
+\frac{1}{p} + O\left(\sum_{p\ge 2} \frac{1}{p^2}\right)\right)\\
+& \ge \exp\left(c_2\sum_{L_1\le \ell\le L_2} \frac{1}{\ell} +
+O(1)\right)
+\gg \exp\left(c_2\int_{L_1}^{L_2}\frac{ds}{s}\right) 
+\gg \exp\left(c_2\log\frac{L_1}{L_2}\right) \gg (\log t)^{c_L},
+\end{align*}
+where we put $c_2=c_1/\log 2$ and $c_L=c_2/2$. Since $x\le 2^{2at}$
+for large values of $t$, we get that
+$$
+\frac{\sigma(x)}{x} \gg \left(\log\log x\right)^{c_L},
+$$
+where $c_L$ depends only on the line $L$, which is what we wanted to
+prove.
+
+Finally, for~(ii) let $m$ be fixed, $\alpha\in [1,\infty)$, and
+$\varepsilon>0$ be arbitrary. Choose $m$ disjoint finite sets of
+primes $\cP_i$ for $i=1,\ldots,m$ all exceeding $m$ such
+that
+$$
+\prod_{p\in \cP_i}\left(1+\frac{1}{p}\right)\in
+[\alpha^{1/m}(1-\varepsilon),\alpha^{1/m}(1+\varepsilon)].
+$$
+Let also $t$ be some positive real number whose natural logarithm
+exceeds all members of $\bigcup_{1\le i\le m} \cP_i$ and
+let $\cQ$ be the set of primes $p\in (m,\log t)$ not
+belonging to any of the sets $\cP_i$ for $i=1,\ldots,m$.
+Put $M=(m!)^2$, $P_i=\prod_{p\in \cP_i} p$,
+$P=\prod_{i=1}^m P_i$, $Q=\prod_{q\in \cQ} q$ and consider
+the following system of congruences
+$$
+n\equiv 0\pmod {MQ}\qquad \text{and}\qquad n+i\equiv P_i\pmod
+{P_i^2} \quad \text{for}~i=1,\ldots,m.
+$$
+By the Chinese Remainder Theorem, the above system of congruences
+puts $n$ into an arithmetic progression $n\equiv n_0\pmod {N}$,
+where $N=MQP^2$. The size of the modulus is, by the Prime Number
+Theorem,
+$$
+N\le M\left(\prod_{p\le \log t} p\right)^2=Me^{2(1+o(1))\log t}
+$$
+as $t\to\infty$, therefore $N<t^3$ for large values of~$t$. Hence,
+there is a number $n\in [t^3,2t^3)$ in the above progression once
+$t$ is sufficiently large. Observe that
+$$
+x=\binom{n+m}{m}=\prod_{i=1}^m\left(1+\frac{n}{i}\right).
+$$
+Putting $m_i=1+n/i$, it is easy to see that $m_i\equiv 1\pmod {m!}$,
+that $m_i$ is divisible by all primes $p$ in $\cP_i$ but
+not by their squares, and $m_i$ is not divisible by any member of
+$\cQ$ for any $i=1,\ldots,m$. Hence, $m_i=P_iM_i$, where
+$M_i$ is a positive integer whose prime factors exceed $\log t$.
+Since $M_i<2t^3+1$, we get that $\omega(M_i)=O(\log t/\log\log t)$
+for all $i=1,\ldots,m$. Thus,
+$$
+x=\binom{n+m}{m} = \prod_{i=1}^m P_i\prod_{i=1}^m M_i,
+$$
+where the two products above are coprime. Thus,
+$$
+\frac{\sigma(x)}{x} 
+= \frac{\sigma\left(\prod_{i=1}^m P_i\right)}{\prod_{i=1}^m P_i}
+\, \frac{\sigma\left(\prod_{i=1}^m M_i\right)}{\prod_{i=1}^m M_i}.
+$$
+Note that, from the way we have chosen our sets $\cP_i$, we
+have
+$$
+\frac{\sigma\left(\prod_{i=1}^m P_i\right)}{\prod_{i=1}^m P_i}
+= \prod_{i=1}^m \prod_{p\in \cP_i}
+\left(1+\frac{1}{p}\right) \in
+[\alpha(1-\varepsilon)^m,\alpha(1+\varepsilon)^m],
+$$
+while
+$$
+1\le \frac{\sigma\left(\prod_{i=1}^m M_i\right)}{\prod_{i=1}^m M_i}
+\le \left(1+\frac{1}{\log t}\right)^{O(m\log t/\log\log t)}
+= 1+O\left(\frac{m}{\log\log t}\right),
+$$
+so this last number is in $[1,1+\varepsilon)$ for sufficiently large
+values of~$t$. Since $\alpha$ and $\varepsilon$ were arbitrary and
+$m$ was fixed, we get that $\alpha$ can be approximated arbitrarily
+well by rational numbers of the form $\sigma(x)/x$ with
+$x=\binom{n+m}{m}\in L$, which is what we wanted to prove.
+
+
+\paragraph*{Acknowledgements.} We thank Professor Igor Shparlinski for a
+useful discussion. We also thank the anonymous referee and Professor
+Carl Pomerance for useful suggestions.
+
+
+%   --- --- --- --- --- ---
+%
+%   \url{http://www.research.att.com/~njas/sequences/A007691}
+%
+%   \url{http://en.wikipedia.org/wiki/Multiply_perfect_number}
+%
+%   \url{http://mathworld.wolfram.com/MultiperfectNumber.html}
+%
+%   \url{http://wwwhomes.uni-bielefeld.de/achim/mpn.html}
+%
+%   --- --- --- --- --- ---
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{D} L. E. Dickson, 
+\textit{History of the Theory of Numbers}, vol.~1,
+Carnegie Institute of Whashington, 1919. Reprinted by Chelsea,
+1971.
+
+\bibitem{Ev} U. Everling, Solution to ``Problem 10331'',
+\textit{Amer. Math. Monthly} \textbf{103} (1996), 701--702.
+
+\bibitem{GKP} R.~L.~Graham, D.~E.~Knuth and O.~Patashnik,
+% "Binomial Coefficients." Ch. 5 (pp. 153--242) in
+\textit{Concrete Mathematics: A Foundation for Computer Science},
+Addison-Wesley, Reading, MA, 1989.
+
+\bibitem{GrR} A.~Granville and O.~Ramar\'e, Explicit bounds
+on exponential sums and the scarcity of squarefree binomial
+coefficients, \textit{Mathematika} \textbf{43} (1996), 73--107.
+
+\bibitem{Guy} R.~K.~Guy, \textit{Unsolved Problems in Number Theory},
+third ed., Springer, 2004.
+
+\bibitem{Leh} D.~N.~Lehmer, Multiply perfect numbers,
+\textit{Ann. of Math. (2)} \textbf{2}
+(1900/1901), 103--104.
+
+\bibitem{Lu1} F.~Luca, Perfect Fibonacci and Lucas numbers, \textit{Rend. Circ.
+Mat. Palermo (2)} \textbf{49} (2000), 313--318.
+
+\bibitem{Lu2} F.~Luca, The anti-social Fermat number, \textit{Amer. Math.
+Monthly} \textbf{107} (2000), 171--173.
+
+\bibitem{Lu3} F.~Luca, Multiply perfect numbers in Lucas sequences with
+odd parameters, \textit{Publ. Math. Debrecen} \textbf{58} (2001),
+121--155.
+
+\bibitem{Lu4P} F.~Luca, Problem H-599, % (Catalan Fibonacci numbers)
+\textit{Fibonacci Quart.} \textbf{41} (2003), 380.
+
+%\bibitem{Lu4S} F.~Luca, Solution to ``Problem H-599'',
+%\textit{Fibonacci Quart.} \textbf{?}, ???
+
+\bibitem{Lu5} F.~Luca, On the sum of divisors of the Mersenne numbers,
+\textit{Math. Slovaca} \textbf{53} (2003),  457--466.
+
+\bibitem{Lu6} F.~Luca, Sums of divisors of
+binomial coefficients, \textit{Int. Math. Res. Not. IMRN}
+\textbf{2007}, Article ID rnm101.
+
+\bibitem{L-P} F.~Luca, Problem 73,
+\textit{Gac. R. Soc. Mat. Esp.} \textbf{10} (2007), 145 (in
+Spanish).
+
+\bibitem{L-S} F.~Luca, Solution to ``Problem 73'',
+\textit{Gac. R. Soc. Mat. Esp.} \textbf{11} (2008), 98--99 (in
+Spanish).
+
+\bibitem{LuPa} F.~Luca and F.~Pappalardi, Members of binary recurrences
+on lines of the Pascal triangle, \textit{Publ. Math. Debrecen}
+\textbf{67} (2005), 103--113.
+
+\bibitem{LuPo} F.~Luca and C.~Pomerance,
+On some problems of M\c{a}kowski-Schinzel and Erd\H{o}s concerning the
+arithmetical functions $\phi$ and~$\sigma$,
+\textit{Colloq. Math.} \textbf{92} (2002),
+111--130.
+
+\bibitem{LuSh} F.~Luca and I.~E.~Shparlinski, Arithmetic functions with
+linear recurrence sequences, \textit{J. Number Theory} \textbf{125}
+(2007), 459--472.
+
+\bibitem{Po} C. Pomerance, Problem 10331,
+\textit{Amer. Math. Monthly} \textbf{100} (1993), 796.
+
+\bibitem{RS} J.~B.~Rosser and L.~Schoenfeld, Approximate formulas
+for some functions of prime numbers, \textit{Illinois J. Math.}
+\textbf{6} (1962), 64--94.
+
+\bibitem{SaSh} N.~Saradha and T.~N.~Shorey, Almost squares and factorisations in
+consecutive integers, \textit{Compositio Math.}  \textbf{138}
+(2003), 113--124.
+
+\bibitem{Sch} A.~Schinzel, On primitive prime factors of $a^n-b^n$,
+\textit{Proc. Cambridge Philos. Soc.} \textbf{58} (1962), 555--562.
+
+\bibitem{Shp} I.~E.~Shparlinski,
+Some arithmetic properties of recurrence sequences, \textit{Mat.
+Zametki} (\textit{Math. Notes}) \textbf{47} (1990), 612--617 (in Russian).
+
+\bibitem{njas}
+N. J. A. Sloane, Multiply-perfect numbers, \textit{The On-Line
+Encyclopedia of Integer Sequences},
+\url{http://www.research.att.com/~njas/sequences/A007691}
+
+\bibitem{Z} K.~Zsigmondy, Z\"ur Theorie der Potenzreste, \textit{Monatsh. Math.}
+\textbf{3} (1892), 265--284.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,378 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paper for the talk in
+%%    9th Conference on Orthogonal Polynomials,
+%%    Special Functions and Applications, 
+%%    International Center for Mathematical Meeting,
+%%    July, 2nd-6th 2007 - Marseille
+%% http://www.cpt.univ-mrs.fr/~cosmo/WEB_OPSFA9/OPSFA9.html
+%%
+%% The surprising almost everywhere convergence 
+%% of Fourier-Neumann series,
+%% by
+%% \'Oscar Ciaurri and Juan Luis Varona
+%%
+%% DATE: first version, 31-may-2007
+%% DATE: last modification, 10-january-2008
+%% DATE: galley proofs corrected, 8-march-2009
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% FIVE PAGES:
+\documentclass[10pt,a4paper]{article}
+\addtolength{\textwidth}{1.0cm}
+\addtolength{\textheight}{1.8cm}
+\hoffset=-0.5cm
+\voffset=-0.9cm
+
+\usepackage{amsfonts}
+\usepackage{amsmath, amsthm}
+
+\newcommand{\htr}{H_{\alpha}} %%%% \ht already exists in TeX
+\newcommand{\ma}{M_{\alpha}}
+\newcommand{\mua}{d\mu_\alpha}
+\newcommand{\jna}{j_n^{\alpha}}
+\newcommand{\jka}{j_k^{\alpha}}
+\newcommand{\cna}{c_n^{\alpha}}
+\newcommand{\cka}{c_k^{\alpha}}
+\newcommand{\Sna}{S_n^{\alpha}}
+\newcommand{\Ska}{S_k^{\alpha}}
+\newcommand{\Rna}{R_n^{\alpha}}
+
+\newcommand{\spa}{\operatornamewithlimits{span}} %%%% \span already exists in TeX
+
+\newcommand{\lpnorm}[3]{\|{#1}\|_{L^{#2}({#3})}} % L^p-norm of a function
+%\newcommand{\Biglpnorm}[3]{\Big\|{#1}\Big\|_{L^{#2}({#3})}} % L^p-norm of a function
+
+\theoremstyle{plain}
+\newtheorem*{theor}{Theorem}
+%\newtheorem{propo}{Proposition}
+\newtheorem{lem}{Lemma}
+
+%\theoremstyle{remark}
+%\newtheorem*{rem}{Remark}
+
+
+%% Title of the talk:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{The surprising almost everywhere convergence 
+of Fourier-Neumann series\thanks{THIS PAPER HAS BEEN PUBLISHED IN 
+\textit{J.\@ Comput.\@ Appl.\@ Math.\@} \textbf{233} (2009), 663--666.}}
+
+%% Authors:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{\'Oscar Ciaurri and Juan Luis Varona\\
+{\small Dpto.\ de Matem\'aticas y Computaci\'on, Univ.\ de La Rioja,}\\[-2pt]
+{\small 26004 Logro\~no, Spain}\\
+{\small \texttt{oscar.ciaurri@unirioja.es, jvarona@unirioja.es}}\\[-2pt]
+{\small \texttt{http://www.unirioja.es/dptos/dmc/jvarona}}}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+For most orthogonal systems and their corresponding Fourier series, the study of the almost everywhere convergence for functions in $L^p$ requires very complicated research, harder than in the case of the mean convergence. For instance, for trigonometric series, the almost everywhere convergence for functions in $L^2$ is the celebrated Carleson theorem, proved in 1966 (and extended to $L^p$ by Hunt in 1967). 
+
+In this paper, we take the system 
+\begin{equation*}
+  j_n^{\alpha}(x) = \sqrt{2(\alpha+2n+1)}\,J_{\alpha+2n+1}(x) x^{-\alpha-1},
+  \qquad n = 0,1,2,\dots\,
+\end{equation*}
+(with $J_\mu$ being the Bessel function of the first kind and of the order~$\mu$),
+which is orthonormal in $L^2((0,\infty),x^{2\alpha+1}\,dx)$, and whose Fourier series are the so-called Fourier-Neumann series. We study the almost everywhere convergence of Fourier-Neumann series for functions in $L^p((0,\infty),x^{2\alpha+1}\,dx)$ and we show that, surprisingly, the proof is relatively simple (inasmuch as the mean convergence has already been established).
+
+\medskip
+
+\textit{Keywords}: Bessel functions,
+Fourier-Neumann series, almost everywhere convergence.
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction and main theorem}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+Let $J_\mu$ denote the Bessel function of the first kind and of the order~$\mu$.
+It is well-known that, for $\alpha \ge -1/2$, we have 
+\begin{equation*}
+   \int_0^\infty J_{\alpha+2n+1}(x) J_{\alpha+2m+1}(x) \, \frac{dx}{x}
+   = \frac{\delta_{nm}}{2(2n+\alpha+1)},
+   \quad n, m = 0,1,2, \dots
+\end{equation*}
+(see~\cite[Ch.~XIII, 13.41 (7), p.~404]{Wat} and~\cite[Ch.~XIII, 13.42 (1), p.~405]{Wat}).
+Then, the system
+\begin{equation*}
+  \jna(x) = \sqrt{2(\alpha+2n+1)}\,J_{\alpha+2n+1}(x) x^{-\alpha-1},
+  \qquad n = 0,1,2,\dots\,
+\end{equation*}
+is orthonormal in $L^2((0,\infty),\mua)$ ($L^2(\mua)$ from now on), with $\mua(x) = x^{2\alpha+1}\,dx$.
+For each suitable function $f$, take
+\begin{equation*}
+  \Sna f(x) = \sum_{k=0}^n \cka(f) \jka(x),
+  \quad
+  \cka(f) = \int_0^\infty f(y) \jka(y)\,\mua(y), 
+\end{equation*}
+so $\Sna f$ denotes the $n$-th partial sum of its Fourier series with respect to the system
+$\{\jna\}_{n=0}^\infty$, which is usually called the Fourier-Neumann series.
+
+Most orthogonal systems (the trigonometric system, Jacobi, Hermite and Laguerre orthogonal polynomials and functions, etc.\@) are complete in their corresponding $L^2$ space. However, this does not happen with $\{\jna\}_{n=0}^\infty$. To see this, let us consider the so-called modified Hankel transform $H_\alpha$, that is 
+\begin{equation}
+\label{eq:htr}
+  \htr f(x) = \int_0^\infty \frac{J_\alpha(xy)}{(xy)^\alpha} \, f(y)
+    y^{2\alpha+1} \, dy,
+  \quad x>0,
+\end{equation}
+(defined for suitable functions).
+In the usual way, $\htr$ can be extended to functions $f \in L^2(\mua)$: it becomes an isometry on $L^2(\mua)$, where $\htr^2$ is the identity. 
+Moreover, the Bessel functions and the Jacobi polynomials are related by means of
+\begin{equation}
+\label{eq:Jaco}
+   \int_0^\infty J_{\alpha +2n+1}(t) J_\alpha (xt)\,dt =
+   x^\alpha P_n^{(\alpha,0)}(1-2x^2) \chi_{[0,1]}(x);
+\end{equation}
+see, for instance,~\cite[Ch.~8.11, (5), p.~47]{E-TIT}.
+From this formula, $\htr \jna$ is supported on $[0,1]$, so consequently $\{\jna\}_{n=0}^\infty$ is not complete in $L^2(\mua)$. 
+Furthermore, \eqref{eq:Jaco} allows expressing $\htr \jna$ in terms of the Jacobi polynomials (which are a complete system). Then, by using that $\htr$ is an isometry on $L^2(\mua)$, the subspace $B_{2,\alpha} = \overline{\spa\{\jna\}_{n=0}^\infty}$ (closure in $L^2(\mua)$)
+can be identified with
+$E_{2,\alpha} = \{ f \in L^2(\mua): \ma f = f \}$,
+where $\ma$ is the multiplier defined by
+$$
+  \htr(\ma f) = \chi_{[0,1]}\htr f.
+$$
+Let us point out that, as $\htr \jna$ is supported on $[0,1]$, we have $\ma \jna = \jna$ so $\jna \in E_{2,\alpha}$ indeed.
+
+The $L^p(\mua)$-mean convergence of the Fourier-Neumann series was studied by one of the authors in~\cite{V}, and later extended in~\cite{CiGPV}.
+% , where also a partial study of the almost everywhere convergence is done. 
+% Recently, we have analysed the Heat and Poisson semigroups 
+% for Fourier-Neumann expansions (see~\cite{BCiMPTV}).
+%
+An important part of these papers is devoted to identifying $B_{p,\alpha} = \overline{\spa\{\jna\}_{n=0}^\infty}$ (closure in $L^p(\mua)$). When $p \ne 2$, $\htr$ can be defined on $L^p(\mua)$ under some circumstances, but it is not an isometry, and then the relation \eqref{eq:Jaco} can no longer be used. However, for a certain range of~$p$'s (summed up in~\eqref{eq:rangeMa}), the extension of the multiplier $\ma$ as a bounded operator from $L^p(\mua)$ into itself can be done in the usual way, by using suitable bounds of the Bessel functions. The operator $\ma$ has several interesting properties, such as 
+$\ma^2 f = \ma f$ and
+\begin{equation}
+\label{eq:multi}
+   \int_0^\infty f(y) \ma g(y) \,\mua(y) = \int_0^\infty \ma f(y) g(y) \,\mua(y),
+\end{equation}
+which is valid whenever $f \in L^p(\mua)$ and $g \in L^{p'}(\mua)$ (with $1/p+1/p'=1$).
+Moreover, the space $E_{p,\alpha} = \{ f \in L^p(\mua): \ma f = f \}$ can be defined, and some of its properties proved: $E_{s,\alpha} \subseteq E_{r,\alpha}$ when $s<r$ (the inclusion being continuous and dense), the duality $E'_{p,\alpha} = E_{p',\alpha}$ and, finally, $B_{p,\alpha} = E_{p,\alpha}$. The details can be found in~\cite{V, CiStV}.
+
+The goal of this paper is to analyze the almost everywhere convergence of the Fourier-Neumann series $\Sna f$ for functions $f \in L^p(\mua)$, with $\alpha \ge -1/2$. A partial study is done in~\cite{CiGPV}, but now we are going to extend it, showing a further result. 
+
+For most orthogonal systems and their corresponding Fourier series, the study of the almost everywhere convergence for functions in $L^p$ is rather complicated, much more than that of the mean convergence. 
+For instance, for trigonometric series, the almost everywhere convergence for functions in $L^2$ was conjectured by Lusin in 1915, and proved by Carleson in 1966 (extended by Hunt in 1967 for $L^p$ with $1<p<\infty$). However, we are going to see that the proofs of the almost everywhere convergence of the Fourier-Neumann series for functions in $L^p(\mua)$ are, surprisingly, relatively simple (supposing that the mean convergence has been previously established).
+
+We will restrict our analysis to the ``natural'' interval $p \in (p_0(\alpha),p_1(\alpha))$ given by
+\begin{equation}
+\label{eq:rangeMa}
+  p_0(\alpha) = \frac{4(\alpha+1)}{2\alpha+3} < p 
+  < \frac{4(\alpha+1)}{2\alpha+1} = p_1(\alpha).
+\end{equation}
+In fact, the first requirement for having the partial sum of the Fourier-Neumann series in 
+$L^p(\mua)$ (with $1<p<\infty$) is that $\jna \in L^p(\mua)$ for every~$n$. 
+By using well-known estimates for the Bessel functions (namely~\eqref{eq:zero} and~\eqref{eq:infty}), this is equivalent to 
+$p > p_0(\alpha)$. And, since the Fourier coefficients $\cna(f)$
+must exist for every $f \in L^p(\mua)$, we must have $\jna \in L^{p'}(\mua)$ for 
+every~$n$, where $1/p+1/p'=1$. This is equivalent to $p < p_1(\alpha)$.
+
+As we can see in~\cite{V}, the range~\eqref{eq:rangeMa} is just the one for which the multiplier $\ma: L^p(\mua) \to L^p(\mua)$ is a bounded operator, which allows defining the subspaces $E_{p,\alpha}$.
+However, the interval of mean convergence of the Fourier-Neumann series is not all of the range~\eqref{eq:rangeMa},
+but
+\begin{equation}
+\label{eq:range434}
+  \max\left\{\frac43, p_0(\alpha) \right\} < p 
+    < \min\left\{4, p_1(\alpha) \right\}.
+\end{equation}
+That is, if $p$ satisfies \eqref{eq:range434} and $f \in E_{p,\alpha}$, then $\Sna f \to f$ when $n \to \infty$ in the $L^p(\mua)$-norm. Conversely, \eqref{eq:range434} is a necessary condition for the mean convergence. When $f \in L^p(\mua)$, the Fourier-Neumann series converges to $\ma f$ (recall that $\ma f = f$ for functions in $E_{p,\alpha}$).
+
+In~\cite{CiGPV} we prove that, if $p$ satisfies~\eqref{eq:range434}, $\Sna f \to f$ almost everywhere for every $f \in E_{p,\alpha}$ (and the convergence is to $\ma f$ for $f \in L^p(\mua)$). Here, we extend this result by removing the condition $4/3 < p < 4$ (which affects the case $-1/2 \le \alpha < 0$) for the almost everywhere convergence. Thus, we have
+
+\begin{theor}
+Let us have $\alpha \ge -1/2$ and $p$ satisfying~\eqref{eq:rangeMa}. Then,
+$$
+  \Sna f \to \ma f
+$$
+almost everywhere for every $f \in L^p(\mua)$. 
+\end{theor}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Auxiliary results}
+%%%%%%%%%%%%%%%%%%%%%%
+
+The Bessel functions satisfy the asymptotic formulas
+(see, for instance,~\cite[Ch.~III, 3.1 (8), p.~40]{Wat} and~\cite[Ch.~VII, 7.21 (1),
+p.~199]{Wat})
+\begin{equation}
+\label{eq:zero}
+  J_\nu(x) = \frac{x^\nu}{2^\nu \Gamma(\nu+1)} + O(x^{\nu+2}),
+    \qquad x \to 0^+,
+\end{equation}
+\begin{equation}
+\label{eq:infty}
+  J_\nu(x) = \left(\frac{2}{\pi x}\right)^{1/2}\left[ \cos\left(x-\frac{\nu\pi}2
+    - \frac\pi4 \right) + O(x^{-1}) \right], \qquad x \to \infty.
+\end{equation}
+
+We will also use bounds with constants independent of the parameter $\nu$ of the Bessel function. These bounds are a consequence of the very precise estimates that appear in~\cite{BaCo}. To be more precise, we will use the following bound that can be found in~\cite{CiGPV,V}:
+\begin{equation}
+\label{eq:jnu}
+   |J_\nu(x)| \le C x^{-1/4} \left( |x - \nu| + \nu^{1/3} \right)^{-1/4},
+   \quad x \in (0,\infty),
+\end{equation}
+where $C$ is a positive constant independent of~$\nu$. 
+
+With this information, let us estimate $\lpnorm{\jna}{p}{\mua}$:
+
+\begin{lem}
+\label{lem:normajn}
+Let $\alpha \ge -1/2$ and $p > p_0(\alpha)$.
+Then, $\{\jna\}_{n=0}^\infty \subseteq L^p(\mua)$ and
+\begin{equation*}
+  \lpnorm{\jna}{p}{\mua} \le C
+    \begin{cases}
+      n^{-(\alpha+1) + 2(\alpha+1)/p},
+      &\text{ if \ } p < 4, \\[2pt]
+      n^{-(\alpha+1)/2} (\log n)^{1/4},
+      &\text{ if \ } p = 4, \\[2pt]
+      n^{-(5/6+\alpha) + (6\alpha + 4)/(3p)},
+      &\text{ if \ } p > 4,
+    \end{cases}
+\end{equation*}
+with $C$ a positive constant independent of~$n$. 
+\end{lem}
+
+\begin{proof}
+The assertion that $\jna \in L^p(\mua)$ for every $n=0,1,2,\dots$
+follows from~\eqref{eq:zero} and~\eqref{eq:infty}. Then,
+estimates \eqref{eq:jnu} show that $\lpnorm{\jna}{p}{\mua}$ is bounded above by a constant times the right hand side. For a similar expression, see~\cite{St-Guo}.
+\end{proof}
+
+Now, let us note that, for $x \in (0,\infty)$ fixed, the Bessel function $|J_\nu(x)|$ has a huge decay when $\nu$ grows to $\infty$ (and consequently the same happens with $|\jna(x)|$ when $n \to \infty$). In fact, according to~\cite[Ch.~III, 3.31 (1), p.~49]{Wat}, we have
+\begin{equation}
+\label{eq:pointJnu}
+   |J_\nu(x)| \leq \frac{2^{-\nu} x^\nu}{\Gamma(\nu+1)},
+   \qquad \nu \ge -1/2.
+\end{equation}
+
+Then, we have
+
+\begin{lem}
+\label{lem:convae}
+Let $\alpha \ge -1/2$ and $p$ with $1 < p < p_1(\alpha)$.
+Then, for any $f \in L^p(\mua)$ the Fourier series $\sum_{n=0}^\infty \cna(f)\jna(x)$ converges absolutely for every $x \in (0,\infty)$. (Note that we do not assert that this convergence is to $f(x)$, not even almost everywhere.)
+\end{lem}
+
+\begin{proof}
+Recall that
+\begin{equation}
+\label{eq:fourier}
+  \cna(f) = \int_0^\infty f(y) \jna(y) y^{2\alpha+1} \, dy.
+\end{equation}
+Since $p < p_1(\alpha)$, it follows that $p' > p_0(\alpha)$ (with $1/p + 1/p' = 1$).
+Then, from Lemma~\ref{lem:normajn}, we have
+$\jna \in L^{p'}(\mua)$ and, moreover,
+$\lpnorm{\jna}{p'}{\mua} \le C n^\delta$
+for some constant $\delta = \delta(p,\alpha)$. Thus,
+by H\"older's inequality,
+\begin{equation*}
+   |\cna(f)|
+   \le \lpnorm{f}p{\mua}
+       \lpnorm{\jna}{p'}{\mua}
+   \le C \lpnorm{f}p{\mua}\,n^\delta.
+\end{equation*}
+On the other hand, as a consequence of~\eqref{eq:pointJnu}, we have
+\begin{align*} 
+   |\jna(x)|
+   &= \sqrt{2(\alpha+2n+1)}\,|J_{\alpha+2n+1}(x)|
+   \,x^{-\alpha-1} \\
+   &\leq \frac{\sqrt{2(\alpha+2n+1)}\,2^{-(\alpha+2n+1)} x^{2n}}
+             {\Gamma(\alpha+2n+2)}.
+\end{align*}
+Therefore,
+\begin{equation}
+\label{eq:summand}
+   |\cna(f) \jna(x)| \leq C \lpnorm{f}p{\mua}
+   \,\frac{n^{\delta+1/2} (x/2)^{2n}}{\Gamma(\alpha+2n+2)}
+\end{equation}
+and the series $\sum_{n=0}^\infty \cna(f) \jna(x)$ converges absolutely.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of the theorem}
+%%%%%%%%%%%%%%%%%%%%%%
+
+By Lemma~\ref{lem:convae}, $\Sna f$ converges to some $g$ pointwise when $p$ satisfies~\eqref{eq:rangeMa}. We want to prove that, almost everywhere, $g = f$ if $f \in E_{p,\alpha}$,
+or, more generally, $g = \ma f$ if $f \in L^p(\mua)$.
+
+As established in the introduction, we know that, when $p$ satisfies~\eqref{eq:range434}, $\Sna f$ converges to $\ma f$ in the $L^p(\mua)$-norm; then, $\Sna f$ has a subsequence that converges to $\ma f$  almost everywhere. Consequently $g = \ma f$ and the convergence $\Sna f \to \ma f$ almost everywhere is proved under the hypothesis~\eqref{eq:range434}.
+
+This is the argument used in~\cite{CiGPV}. Let us see how to remove the condition $4/3 < p < 4$. For that, we are going to apply the summation process used in~\cite{CiStV}.
+Thus, let us take
+$$
+  \Rna f = \frac{\lambda_0 S_0^{\alpha}f + \cdots
+  + \lambda_n \Sna f}{\lambda_0 + \cdots + \lambda_n}
+$$
+with $\lambda_k = 2(\alpha+2k+2)$. Actually, as established in that paper, this method is equivalent to the one given by the Ces\`aro means of order~$1$, but the kernels that appear with $\Rna$ are easier to handle, and consequently the use of $\Rna$ is more convenient for studying the uniform boundedness of the operators involved (and hence the mean convergence). 
+
+In~\cite{CiStV} it is proved that, when $p$ satisfies~\eqref{eq:rangeMa} (i.e., without $4/3 < p < 4$), $B_{p,\alpha} = E_{p,\alpha}$ and $\Rna f \to f$ in the $L^p(\mua)$-norm for every $f \in E_{p,\alpha}$. For general $f \in L^p(\mua)$, we always have $\ma f \in E_{p,\alpha}$ (because $\ma^2 f = \ma f$). Moreover, by using~\eqref{eq:multi} and $\ma \jka = \jka$, it follows that $\cka(f) = \cka(\ma f)$ for every~$k$, and so $\Rna f = \Rna(\ma f)$. As $\Rna(\ma f)$ converges in mean to $\ma f$, also $\Rna f$ converges in mean to $\ma f$. Then, there exists a subsequence of $\Rna f$ that converges almost everywhere to $\ma f$.
+
+On the other hand, $\Rna$ is a regular summation process. Then, by Lemma~\ref{lem:convae}, given $f \in L^p(\mua)$ with $p$ satisfying~\eqref{eq:rangeMa}, we have that $\Rna f(x)$ converges for every $x \in (0,\infty)$ to the same function $g(x)$ that is the pointwise limit of $\Sna f(x)$. 
+
+Thus, for $p$ satisfying~\eqref{eq:rangeMa}, we have:
+a subsequence of $\Rna f$ converges almost everywhere to $\ma f$,
+$\Sna f$ converges almost everywhere to $g$,
+and $\Rna f$ converges almost everywhere to $g$.
+From these facts, $g = \ma f$ and the theorem is proved.
+
+\paragraph{Open question.} What happens for $\Sna f$ with $f \in L^{p}(\mua)$ and $1 < p \le p_0(\alpha)$? Under these conditions, every $\cka(f)$ exists, so the partial sums $\Sna f$ are well defined. Futhermore, Lemma~\ref{lem:convae} ensures that, pointwise, $\Sna f(x)$ converges to some function $g(x)$. But, what is $g(x)$?
+Let us note that, when $1 < p \le p_0(\alpha)$, the bounded multiplier $\ma: L^p(\mua) \to L^p(\mua)$ no longer exists.
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{9}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{Wat} G. N. Watson,
+\textit{A Treatise on the Theory of Bessel Functions} (2nd edition),
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+\bibitem{E-TIT} A. Erd\'elyi, W. Magnus, F. Oberhettinger, and F. Tricomi,
+\textit{Tables of Integral Transforms}, Vol.~II,
+McGraw-Hill, New York, 1954.
+
+\bibitem{V} J. L. Varona,
+{Fourier series of functions whose Hankel transform is supported on $[0,1]$},
+\textit{Constr. Approx.}
+\textbf{10} (1994), 65--75.
+
+\bibitem{CiGPV} \'O. Ciaurri, J. J. Guadalupe, M. P\'erez, and J. L. Varona,
+{Mean and almost everywhere convergence of Fourier-Neumann series},
+\textit{J. Math. Anal. Appl.}
+\textbf{236} (1999), 125--147.
+
+\bibitem{CiStV} \'O. Ciaurri, K. Stempak, and J. L. Varona,
+{Mean Ces\`aro-type summability of Fourier-Neumann series},
+\textit{Studia Sci. Math. Hung.}
+\textbf{42} (2005), 413--430.
+
+\bibitem{BaCo}
+J. A. Barcel\'o and A. C\'ordoba, 
+{Band-limited functions: $L^p$-convergence}, 
+\textit{Trans. Amer. Math. Soc.} 
+\textbf{313} (1989), 655--669.
+
+\bibitem{St-Guo} K. Stempak,
+{A weighted uniform $L^p$-estimate of Bessel functions: a note on a paper of Guo},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{128} (2000), 2943--2945.
+
+\end{thebibliography}
+
+\end{document}

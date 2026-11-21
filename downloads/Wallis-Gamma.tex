@@ -1,0 +1,148 @@
+% !TEX encoding = UTF-8 Unicode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             %
+% El producto de Wallis                                       %
+% y $\Gamma(1/2) = \sqrt{\pi}$ son lo mismo                   %
+% by                                                          %
+% \'Oscar Ciaurri y Juan Luis Varona                          %
+%                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[autocontact]{gaceta}
+
+%---------------------
+% La Gaceta se har\'a con esto activado,
+% pero no hace falta ahora si no quieres:
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Puedes usar esto (u otra codificaci\'on) si quieres:
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+%\decimalpoint
+%---------------------
+
+%---------------------
+% Esto ya lo carga el estilo de La Gaceta:
+%\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{url} % <-- Para p\'aginas web o similar: \url{...}
+%\usepackage{graphicx}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+% \usepackage{wrapfig}
+%---------------------
+
+%---------------------
+%\usepackage{tikz}
+%---------------------
+
+%---------------------
+% <<< ESTO SE AJUSTAR\'A AL EDITAR CADA N\'UMERO DE LA GACETA >>>
+%\provisional
+\newcounter{pageforminiatura}
+\setcounter{pageforminiatura}{566} % Siempre ser\'a p\'agina par
+\setcounter{page}{1} % No se usa (dejarlo como 1)
+\journame{La Gaceta de la RSME}
+\yearofpublication{2018}
+\volume{21}
+\issuenumber{3}
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+%\belongstopart{Art\'{\i}culos}
+%\belongstopart{Secciones}
+%\belongstopart{Noticias de la Sociedad}
+%\belongstopart{Actualidad}
+\nopart
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+\supertitle{\large Miniaturas matem\'aticas de \thejourname\\[1mm]
+\hfill\footnotesize
+Vol.~\thevolume\ (\theyearofpublication),
+N\'um.~\theissuenumber, P\'ag.~\thepageforminiatura\theprovisional}
+%
+\noeditor
+%---------------------
+
+\let\contacturl\relax
+
+%---------------------
+\title{El producto de Wallis y $\Gamma(1/2) = \sqrt{\pi}$ son lo mismo}
+%\author{} % Poner \author{} o no poner nada, da igual.
+\contact{\'Oscar Ciaurri, Emilio Fern\'andez y Juan Luis Varona,
+Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja}{\texttt{oscar.ciaurri@unirioja.es}, \texttt{eferna35@gmail.com}, \texttt{jvarona@unirioja.es}}
+{}
+%---------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deja esto as\'{\i}:
+\previousvspace{-1.8cm}
+\makesupertitle
+\previousvspace{-0.25cm}
+\maketitle
+\vspace*{-0.4cm}
+\thispagestyle{empty} % <<<<< Importante
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Con el objetivo de interpolar entre los términos de la sucesión de factoriales, Euler define la función Gamma en una carta a Goldbach fechada el 13 de octubre de 1729, y lo hace con una expresión que con notación actual se puede escribir como
+% Carta a Goldbach fechada el 13 de octubre de 1729
+% http://eulerarchive.maa.org/correspondence/correspondents/Goldbach.html
+\begin{equation}
+\label{eq:Gz}
+  \Gamma(z) = \frac{1}{z} \prod_{n=1}^{\infty} \frac{\left(1+\frac{1}{n}\right)^z}{\left(1+\frac{z}{n}\right)}
+\end{equation}
+(en realidad, Euler usa lo que sería nuestra $\Gamma(z+1)$, y ni el nombre de Gamma ni la notación $\Gamma$ son suyos, sino que los dio Legendre alrededor de 1811). 
+% Más adelante, en un artículo publicado en \textit{Commentarii academiae scientiarum Petropolitanae} 
+% (vol.~5 (1730/1), 1738, págs.~36--57), da una expresión integral equivalente 
+% a la que ahora se toma como definición habitual.
+Poco después, en un artículo presentado a la Academia de San Petersburgo el 28 de noviembre de 1729 (publicado en \textit{Comment. acad. sc. Petrop.} \textbf{5} (1730/1), 1738, 36--57), da una expresión integral equivalente a la que ahora se toma como definición habitual.
+
+Usando una versión logarítmica de la identidad $e^{i \pi} = -1$, Euler se da cuenta de que $\text{«}(1/2)!\text{»} = \Gamma(3/2) = \sqrt{\pi}/2$ y lo comunica a Goldbach en la carta antes citada. Además, en el artículo posterior observa ya que esa igualdad (de la que se sigue $\Gamma(1/2) = \sqrt{\pi}$\,) se reduce al producto de Wallis
+\[
+ \prod_{n=1}^{\infty} \left(\frac{2n}{2n-1} \cdot \frac{2n}{2n+1} \right) =
+ \frac{2}{1} \cdot \frac{2}{3} \cdot \frac{4}{3} \cdot \frac{4}{5} \cdot \frac{6}{5}
+ \cdot \frac{6}{7} \cdot \frac{8}{7} \cdot \frac{8}{9}  \cdots = \frac{\pi}{2}.
+\]
+% http://eulerarchive.maa.org//pages/E019.html
+Pero este hecho es poco conocido, y el objetivo de esta miniatura es dar una prueba sencilla, con rigor y notación moderna, de que la fórmula $\Gamma(1/2) = \sqrt{\pi}$ y el producto de Wallis son realmente lo mismo.
+
+Para nuestros propósitos, la mejor manera de conectar la función Gamma con un producto infinito es usar \eqref{eq:Gz}, la definición original que dio Euler. Esto implica
+\[
+\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+ = \frac{x+y}{xy} \prod_{n=1}^{\infty}
+ \frac{\left(1+\frac{x+y}{n}\right)}{\left(1+\frac{x}{n}\right)\left(1+\frac{y}{n}\right)}
+ = \frac{x+y}{xy} \prod_{n=1}^{\infty}
+ \frac{n(n+x+y)}{(n+x)(n+y)}.
+\]
+Tomando $x=y=1/2$ en esta expresión y usando $\Gamma(1)=1$, lo que obtenemos es
+\begin{align*}
+  \Gamma(1/2)^2
+  &= \frac{1}{1/4} \prod_{n=1}^{\infty} \frac{n(n+1)}{(n+1/2)(n+1/2)}
+  = 4 \prod_{n=1}^{\infty} \frac{2n(2n+2)}{(2n+1)(2n+1)} \\
+  &= 4 \cdot \frac{1}{2} \cdot \left( \frac{2}{1} \cdot \frac{2}{3} \cdot \frac{4}{3} \cdot \frac{4}{5}
+  \cdot \frac{6}{5} \cdot \frac{6}{7} \cdot \frac{8}{7} \cdot \frac{8}{9}  \cdots\right),
+\end{align*}
+así que $\Gamma(1/2) = \sqrt{\pi}$ y el producto de Wallis se deducen directamente uno del otro, tal como queríamos comprobar.
+% DUDA: "se deducen directamente uno del otro" o "son lo mismo",  
+% para que "son lo mismo" no salga tres veces.
+
+\bigskip
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

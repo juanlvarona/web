@@ -1,0 +1,1146 @@
+% !TEX spellcheck = English
+
+\documentclass[10pt, a4paper]{amsart}
+
+\usepackage{amsmath,amsthm,amssymb}
+
+%\usepackage[foot]{amsaddr}
+
+\numberwithin{equation}{section}
+
+\usepackage{hyperref}
+
+\newcommand\la{\lambda}
+\newcommand\La{\Lambda}
+\newcommand\De{\Delta}
+\newcommand\al{{\alpha}}
+\newcommand\eps{\varepsilon}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{propn}[thm]{Proposition} 
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary} 
+
+\theoremstyle{definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{exa}[thm]{Example}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zo}{\mathbb{Z}_{\ge0}}
+\newcommand{\Zp}{\mathbb{Z}_{>0}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+
+
+% FOR DRAFTS:
+%\usepackage[notcite,notref]{showkeys}
+
+%----------------
+\title[Continued fractions and irrationality exponents]{Continued fractions\\
+and irrationality exponents\\
+for modified Engel and Pierce series}
+%----------------
+
+%----------------
+\author{Andrew N. W. Hone}
+%\address[A. N. W. Hone]{School of Mathematics, 
+%Statistics and Actuarial Science, University of Kent,
+%Canterbury CT2 7FS, UK. Currently on leave at School of Mathematics and Statistics, 
+%University of New South Wales, Sydney, NSW 2052, Australia}
+\address[A. N. W. Hone]{School of Mathematics, 
+Statistics and Actuarial Science, University of Kent,
+Canterbury CT2 7FS, UK}
+\curraddr{School of Mathematics and Statistics, 
+University of New South Wales, Sydney, NSW 2052, Australia}
+%\email[A. N. W. Hone]{anwh@kent.ac.uk}
+\email{anwh@kent.ac.uk}
+
+\author{Juan Luis Varona}
+\address[J. L. Varona]{Departamento de Matem\'aticas y Computaci\'on, 
+Universidad de La Rioja, 26006 Logro\~no, Spain}
+%\email[J. L. Varona]{jvarona@unirioja.es}
+\email{jvarona@unirioja.es}
+%\urladdr{http://www.unirioja.es/cu/jvarona/}
+%----------------
+
+%----------------
+\subjclass[2010]{Primary: 11J70; Secondary: 11B37, 11J81}
+\keywords{Continued fractions, Engel series, Pierce series, irrationality degree}
+%----------------
+
+\renewcommand{\datename}{\textbf{This paper has been published in}:}
+\date{\textit{Monatsh.\@ Math.\@} \textbf{190} (2019), 501--516, 
+\url{https://doi.org/10.1007/s00605-018-1244-1}.}
+
+%----------------
+\begin{document}
+%----------------
+
+\begin{abstract} 
+An Engel series is a sum of reciprocals of a non-decreasing 
+sequence $(x_n)$ of positive integers, which is such that 
+each term is divisible by the previous one, and a Pierce series 
+is an alternating sum of the reciprocals of a sequence with the 
+same property. Given an arbitrary rational number, we show that 
+there is a family of Engel series which when added to it  
+produces a transcendental number $\alpha$ whose continued fraction 
+expansion is determined explicitly by the corresponding 
+sequence $(x_n)$, where the latter is generated 
+by a certain  nonlinear recurrence of second order. 
+We also present an analogous result for a rational number with 
+a Pierce series added to or subtracted from it. In both situations 
+(a~rational number combined with either an Engel or a Pierce series), 
+the irrationality exponent is bounded 
+below by $(3+\sqrt{5})/2$, and we further identify 
+infinite families of transcendental numbers $\alpha$ whose 
+irrationality exponent can be computed precisely. 
+In addition, we construct the continued fraction expansion for 
+an arbitrary rational number added to an Engel series with the 
+stronger property that $x_j^2$ divides $x_{j+1}$ for all~$j$.
+\end{abstract}
+
+%----------------
+\maketitle
+%----------------
+
+
+%----------------
+\section{Introduction} 
+\label{sec:intro}
+%----------------
+
+
+Given a sequence of positive integers $(x_n)$, which is such that $x_n | x_{n+1}$ 
+ for all $n$, the sum of the reciprocals is the Engel series
+\begin{equation}
+\label{eq:Engel}
+  \sum_{j=1}^{\infty} \frac{1}{x_j}
+  = \sum_{j=1}^{\infty} \frac{1}{y_1y_2 \cdots y_j},
+\end{equation}
+where $y_1 = x_1$ and $y_{n+1} = x_{n+1}/x_n$ for $n \ge 1$,
+and the alternating sum of the reciprocals is the Pierce series
+\begin{equation}
+\label{eq:Pierce}
+  \sum_{j=1}^{\infty} \frac{(-1)^{j+1}}{x_j}
+  = \sum_{j=1}^{\infty} \frac{(-1)^{j+1}}{y_1y_2 \cdots y_j}.
+\end{equation}
+(It should be assumed that $(x_n)$ is eventually increasing, in the 
+sense that for all $n$ there is some $n'>n$ with $x_{n'}>x_n$, 
+which guarantees the convergence of both sums~\eqref{eq:Engel} and~\eqref{eq:Pierce}.) 
+Every positive real number admits both an Engel expansion, of the 
+form \eqref{eq:Engel}, and a Pierce expansion \eqref{eq:Pierce} \cite{duverney}. 
+Although they are not quite so well known, 
+Engel expansions and Pierce expansions are in many ways analogous to 
+continued fraction expansions, both in the sense that they are determined recursively, 
+and from a metrical point of view; for instance, see~\cite{erdosetal} 
+for the case of Engel series. 
+
+In recent work \cite{Hone1}, %, Hone2}, A.N.W. Hone 
+the first author presented a family of sequences $(x_n)$ 
+generated by a nonlinear recurrences of second order, 
+of the form 
+\begin{equation}
+\label{2nd} 
+x_{n+1}x_{n-1} = x_n^2 \,\Big(1+x_n\,G(x_n)\Big), \qquad n\geq 2,  \qquad G(x)\in \Z [x], 
+\end{equation} 
+where the polynomial $G$ takes positive values at positive arguments, such 
+that the corresponding Engel series~\eqref{eq:Engel} yields a transcendental number 
+whose 
+continued fraction expansion is explicitly given in terms of the~$x_n$. 
+More recently \cite{Var2}, the second 
+author proved that, when the sequence $(x_n)$ is generated by a recurrence like~\eqref{2nd}, 
+an analogous result holds for the associated Pierce series~\eqref{eq:Pierce}, 
+although the structure of the corresponding continued fractions is different. 
+In fact, in the latter 
+work the polynomial $G(x_n)$  was replaced by an arbitrary sequence of 
+positive integers,  as it had already been noted in \cite{Hone3} that 
+the recurrence \eqref{2nd} could be modified in this way and further allow the 
+explicit continued fraction expansion to be determined for the sum 
+of an arbitrary rational number $r=p/q$ and an Engel series, that is 
+\begin{equation}
+\label{pqengel} 
+\al = \frac{p}{q} + \sum_{j=2}^\infty  \frac{1}{x_j}, \qquad 
+\text{with}\,\,\, x_1=q.
+\end{equation}   
+
+In the next section we show that 
+the initial conditions for the sequence $(x_n)$ can be specified 
+more generally than  in %compared with 
+\cite{Hone3},   
+allowing dependence on a non-negative integer parameter $m$, 
+and present analogous 
+results for a  
+family of transcendental numbers defined by a rational number with 
+a Pierce series added to or subtracted from it, of the form 
+\begin{equation}
+\label{pqpierce} 
+\al = \frac{p}{q} \pm \sum_{j=2}^\infty  \frac{(-1)^j}{x_j}.
+\end{equation} 
+%where once again the sequence $(x_n)$ is generated 
+%by a nonlinear recurrence of second order that generalizes \eqref{2nd}. 
+%Furthermore, 
+In Section~\ref{sec:exponents} it is proved that, 
+in both cases \eqref{pqengel} and~\eqref{pqpierce},  %we show  that 
+$\al$ has 
+irrationality exponent $\mu(\al)\geq (3+\sqrt{5})/2$, and 
+if the 
+nonlinear recurrence for $(x_n)$  has a particular form then 
+%the irrationality exponent of 
+$\mu(\al)$ can be computed precisely. 
+Explicit continued fractions for series of the form \eqref{pqengel} 
+with the stronger property that $x_j^2|x_{j+1}$
+for all $j$ are constructed in 
+the final section, generalizing the results in~\cite{Hone2}. 
+
+%----------------
+\section{Explicit continued fractions}
+%----------------
+
+Before proceeding, we fix our notation for continued fractions and briefly mention some of their  
+standard properties, which can be found in many books %, for instance, 
+\cite{Cas, duverney, Khin}. 
+We denote a finite continued fraction by  
+\begin{equation}
+\label{ficf}
+  [a_0;a_1,a_2,\dots,a_n]
+  = a_0 + \cfrac{1}{ a_1 + \cfrac{1}{ a_2 + \cfrac{1}{ \cdots +\cfrac{1}{a_n}} } }
+  = \frac{p_n}{q_n},
+\end{equation}
+where  $a_0 \in \Z$, $a_j \in \Zp$  and $p_n/q_n$ is in lowest terms with $q_n>0$. Every $r\in\Q$ 
+can be written as a finite continued fraction \eqref{ficf}, although 
+this representation is not unique (see~\eqref{props} below). Each $\al\in\R\setminus\Q$ 
+is given uniquely by an infinite continued fraction with convergents $p_n/q_n$ 
+of the form~\eqref{ficf}, that is (with $a_0=\left \lfloor{\al}\right \rfloor $) 
+\begin{equation}
+\label{al}
+\al = 
+  [a_0;a_1,a_2,\dots] = \lim_{n\to\infty} [a_0;a_1,a_2,\dots,a_n] = \lim_{n\to\infty}\frac{p_n}{q_n}.
+\end{equation} 
+%and this limit always exists. 
+
+The three-term recurrence relation satisfied by the  numerators and denominators of the convergents 
+%can be conveniently 
+is encoded in the matrix relation 
+\begin{equation}
+\label{mat} 
+\begin{pmatrix} 
+p_{n+1} & p_n \\ 
+q_{n+1} & q_n 
+\end{pmatrix} 
+= \begin{pmatrix}  
+p_n &  p_{n-1}\\ 
+q_n &  q_{n-1}
+\end{pmatrix} 
+\begin{pmatrix} 
+a_{n+1} & 1 \\ 
+1 & 0
+\end{pmatrix}, 
+\end{equation} 
+valid for $n\geq -1$, with
+\[  
+\begin{pmatrix}  
+p_{-1} & p_{-2} \\ 
+q_{-1} & q_{-2} 
+\end{pmatrix}  
+= \begin{pmatrix} 
+1 & 0 \\ 
+0 & 1
+\end{pmatrix}.
+\]
+By taking the determinant of both sides of \eqref{mat}, one obtains the
+identity  
+\begin{equation}
+\label{detid} 
+p_j q_{j-1} - p_{j-1} q_j = (-1)^{j-1}, \qquad j \ge 1. 
+\end{equation} 
+
+Note that  any finite continued fraction can be rewritten as another one of 
+different length, since   one can always apply one of two 
+operations, namely 
+\begin{equation}
+\label{props} 
+  [a_0;a_1,a_2,\dots,a_{j}] =
+\begin{cases}
+  [a_0;a_1,a_2,\dots,a_{j}-1,1], & \text{if $j=0$ or $a_j >1$},\\
+  [a_0;a_1,a_2,\dots,a_{j-1}+1], & \text{if $a_j = 1$},
+\end{cases}
+\end{equation} 
+and both operations change the parity of the length.
+
+Henceforth we  fix a rational number $r=p/q$ in lowest terms, with $q \ge 1$, and an integer parameter $m\in\Zo$. 
+Without loss of 
+generality, because of~\eqref{props}, we may specify the continued fraction of $r$ to be 
+\begin{equation}
+\label{evencf} 
+\frac{p}{q}=  [a_0;a_1,a_2,\dots,a_{2k}], 
+\end{equation} 
+with the index of the last partial quotient being even 
+(and shifting $r$ by an integer changes $a_0$ but 
+otherwise makes no difference). Given %a positive integer 
+$y_0\in\Zp$, which 
+in due course will be fixed differently  according to the context, we define two sequences 
+$(y_n)_{n\geq 0}$ and $(x_n)_{n\geq 1}$ via the recursion relations 
+\begin{equation}
+\label{recrels} 
+y_{j}=y_{j-1}(1+u_{j}x_{j}), \quad 
+x_{j+1}= x_{j}y_j, \quad \text{for} \,\,j\geq 1, \, \, \text{with}\,\, x_1=q, 
+\end{equation}  
+where $(u_n)_{n\geq 1}$ is an arbitrary sequence of positive integers. Note that 
+the second relation guarantees the property $x_j|x_{j+1}$ required 
+for an Engel series or a Pierce series. It is an 
+immediate consequence of \eqref{recrels} that, given $x_1=q$ and 
+$x_2=x_1y_1=qy_0(1+u_1q)$, the subsequent terms of the 
+sequence $(x_n)$ are determined by the nonlinear recurrence 
+\begin{equation}
+\label{nonl} 
+x_{n+1}x_{n-1} = x_n^2 \,(1+u_n\, x_n), \qquad n\geq 2. 
+\end{equation}  
+It may happen that the sequence $(u_n)$ is defined entirely in terms of 
+the sequence $(x_n)$, by specifying a function $G$ such that 
+\begin{equation}
+\label{aut} 
+u_n = G(x_n), \qquad G: \, \Zp\rightarrow\Zp, 
+\end{equation} 
+which means that \eqref{nonl} becomes an autonomous recurrence of the 
+form~\eqref{2nd}, although the function $G$ need not necessarily be a polynomial. 
+Yet in general the recurrence \eqref{nonl} is non-autonomous, whenever % the sequence 
+$(u_n)$ is specified by 
+\begin{equation}
+\label{naut} 
+u_n = \widehat{G}(x_n,n), \qquad \widehat{G}: \, \Zp\times\Zp\rightarrow\Zp, 
+\end{equation} 
+where $\widehat{G}$ is a non-trivial function of its second argument. 
+
+The following theorem extends the results of~\cite{Hone3} (corresponding to the case $m=0$), 
+being themselves extensions of~\cite{Hone1} (corresponding to $p/q=1$). 
+
+\begin{thm} 
+\label{engelthm}
+Let $\al$ be given by the series  
+\begin{equation} 
+\label{aleng} 
+\al = \frac{p}{q}+\sum_{j=2}^\infty \frac{1}{x_j}, 
+\end{equation} 
+for $(x_n)$ defined by \eqref{recrels} with 
+%generated from  the reciprocals of the terms of the  sequence $(x_n)$ defined by \eqref{recrels} with 
+\begin{equation}
+\label{y0valeng}
+y_0=mq+q_{2k-1}+1, 
+\end{equation} 
+where $q_{2k-1}$ is the denominator of the $(2k-1)$th convergent of~\eqref{evencf}. 
+Then the continued fraction expansion of $\al$ has the form~\eqref{al}, 
+where the partial quotients $a_j$ coincide with those of 
+\eqref{evencf} for $0\leq j\leq 2k$, while  
+\begin{equation}
+\label{engcf}
+a_{2k+1}=m+u_1 y_0, \quad and \quad
+a_{2k+2j}=x_j, \, \, a_{2k+2j+1}=u_{j+1}y_j, \,\, 
+\forall j\geq 1.
+\end{equation} 
+\end{thm} 
+
+\begin{proof} 
+The proof  consists of showing that the partial sums of the series \eqref{aleng} 
+coincide with the convergents with even index, that is 
+\begin{equation}
+\label{parts} 
+\frac{p}{q}+\sum_{j=2}^{N}\frac{1}{x_j} = \frac{p_{2k+2N-2}}{q_{2k+2N-2}}, 
+\end{equation}
+and then taking the limit $N\to\infty$. We omit the details, 
+since the inductive proof of \eqref{parts} %by induction on $N$ 
+is almost identical to that of Theorem~2.1 
+in~\cite{Hone3}, with part of the %inductive 
+hypothesis being that the denominators 
+of the convergents are %given by 
+\begin{equation}
+\label{cvgtseng} 
+q_{2k+2N-3}=y_{N-1}-1, \qquad q_{2k+2N-2}=x_N
+\end{equation}  
+for $N\geq 1$.  The only difference is in verifying the base step: 
+%of the induction: 
+specifically, %checking  
+that, for $N=1$, the three-term recurrence 
+$q_{2k+2N-1} = a_{2k+2N-1}q_{2k+2N-2} + q_{2k+2N-3}$ 
+gives the correct expression for $q_{2k+1}$. But when $N=1$, 
+by using \eqref{y0valeng} and~\eqref{engcf}, together with the first recursive 
+relation in~\eqref{recrels}, 
+the right-hand side %of the above 
+becomes 
+$(m+u_1 y_0)q+ y_0 - mq-1 = y_0(1+u_1x_1)-1=y_1-1$,
+which is the required formula for $q_{2k+1}$. 
+%All other steps of the proof are the same as in~\cite{Hone3}.
+\end{proof} 
+
+Continued fractions for some alternating series whose
+sum is a transcendental number were considered in~\cite{DaSha}, 
+and the Pierce series in \cite{Var2} provide other examples. 
+As a first attempt at generalizing the latter results, 
+we consider a rational number added to a Pierce series. 
+
+\begin{thm}
+\label{pierce1} 
+Suppose $x_1=q>1$, and let $\al$ be given by the series  
+\begin{equation} 
+\label{alpie1} 
+\al = \frac{p}{q}+\sum_{j=2}^\infty \frac{(-1)^j}{x_j}, 
+\end{equation} 
+for $(x_n)$ defined by \eqref{recrels} with 
+\begin{equation}
+\label{y0valpie1}
+y_0=mq+q_{2k-1}-1, 
+\end{equation} 
+where $q_{2k-1}$ is the denominator of the $(2k-1)$th convergent 
+of~\eqref{evencf}, and the restriction $m\geq 1$ should be imposed 
+if $q_{2k-1}=1$. 
+Then  the continued fraction expansion of $\al$ has the form~\eqref{al}, 
+where the partial quotients $a_j$ coincide with those of 
+\eqref{evencf} for $0\leq j\leq 2k$, while 
+\begin{equation}
+\label{pie1cf} 
+a_{2k+1}=m+u_1 y_0-1, 
+\end{equation} 
+and 
+\begin{equation} 
+\label{pie1coeff}
+a_{2k+3j-1}=1, \, \, a_{2k+3j}=x_j-1, \, \, a_{2k+3j+1}=u_{j+1}y_j-1,\,\,\, 
+\forall j\geq 1.
+\end{equation} 
+\end{thm} 
+
+\begin{proof} 
+Let $S_N$ denote the $N$th partial sum of the series~\eqref{alpie1}, that is
+\[ 
+S_N= \frac{p}{q}+\sum_{j=2}^N \frac{(-1)^j}{x_j}. 
+\]
+We will show by induction that 
+\[ 
+S_N=[a_0; a_1, a_2,\ldots, a_{2k+3N-3}],
+\]
+and then the result follows in the limit $N\to\infty$. 
+As part of the inductive hypothesis, we also require 
+the following expressions for the denominators 
+of the convergents, for $N\geq 1$: 
+\begin{equation}
+\label{cvgtspie1} 
+q_{2k+3N-3}=x_{N}, \,\, q_{2k+3N-2}=y_N-x_N+1, 
+\,\,  q_{2k+3N-1}=y_N+1 . 
+\end{equation}   
+For the base case $N=1$ it is clear that 
+$S_1=p/q$ is given by~\eqref{evencf}, and 
+$q_{2k}=q=x_1$, while by using the three-term recurrence 
+it follows from~\eqref{y0valpie1}, \eqref{pie1cf} 
+and~\eqref{recrels} that 
+\begin{align*} 
+q_{2k+1} = a_{2k+1}q_{2k}+ q_{2k-1}
+&= (m+u_1 y_0-1)q +y_0 -mq+1 \\ 
+&= y_0(1+u_1x_1) -x_1+1  \\
+&= y_1-x_1+1,
+\end{align*} 
+and 
+$q_{2k+2}=a_{2k+2}q_{2k+1}+q_{2k} =y_1-x_1+1+x_1=y_1+1$, 
+which confirms \eqref{cvgtspie1} in this case. For the inductive step, 
+the first expression in \eqref{cvgtspie1} 
+is also verified with the three-term recurrence,  as 
+\begin{align*}
+q_{2k+3N} &= a_{2k+3N} q_{2k+3N-1}+q_{2k+3N-2}\\
+&= (x_N-1)(y_N+1)+y_N-x_N+1\\ 
+&= x_Ny_N=x_{N+1}, 
+\end{align*}
+using \eqref{recrels} once more, 
+and the other two expressions for the denominators of the 
+convergents are verified similarly. 
+Now let $\mathbf{M}_{n+1}$ denote the matrix on the left-hand 
+side of~\eqref{mat}, and let 
+\[ 
+\mathbf{A}_n = \begin{pmatrix} a_n & 1 \\ 1 & 0 \end{pmatrix}; 
+\] 
+then observe that
+\begin{align*}
+\mathbf{M}_{2k+3N} 
+&= \mathbf{M}_{2k+3N-3} \, \mathbf{A}_{2k+3N-2} \,
+\mathbf{A}_{2k+3N-1} \, \mathbf{A}_{2k+3N}  \\
+&= \mathbf{M}_{2k+3N-3} 
+\begin{pmatrix} u_N x_N y_{N-1}-1 & u_N y_{N-1} \\ x_N & 1 \end{pmatrix}.
+\end{align*} 
+The first column of the above identity yields the formula 
+\begin{equation}
+\label{pform} 
+p_{2k+3N}=(u_N x_N y_{N-1}-1)p_{2k+3N-3} + x_N p_{2k+3N-4} ,
+\end{equation} 
+and the analogous expression for $q_{2k+3N}$. 
+Hence 
+\begin{align*}
+p_{2k+3N}  
+&= (y_N - y_{N-1}-1)p_{2k+3N-3} + x_N p_{2k+3N-4} \\
+&= (y_N - q_{2k+3N-4})p_{2k+3N-3} + q_{3k+3N-3} p_{2k+3N-4} \\ 
+&= y_N p_{2k+3N-3} + (-1)^{N+1}, 
+\end{align*}
+where we have used \eqref{cvgtspie1} and the first relation in~\eqref{recrels}, 
+followed by~\eqref{detid}. (Note that the calculation leading to the latter 
+expression is slightly different in the base case $N=1$, involving 
+the use of \eqref{y0valpie1} and~\eqref{pie1cf}, but the 
+conclusion is the same.) Thus, using the first formula in~\eqref{cvgtspie1}, 
+and the fact that $y_N /x_{N+1}=1/x_N$, we have 
+\begin{align*}
+{p_{2k+3N}}/{q_{2k+3N}} 
+&= x_{N+1}^{-1} \left(y_N p_{2k+3N-3} + (-1)^{N+1}\right) \\
+&= {p_{2k+3N-3}}/{q_{2k+3N-3}} + {(-1)^{N+1}}/{x_{N+1}}. 
+\end{align*}
+So by the inductive hypothesis, 
+\[ 
+\frac{p_{2k+3N}}{q_{2k+3N}} 
+= S_N +  \frac{(-1)^{N+1}}{x_{N+1}} = S_{N+1}, 
+\] 
+as required.
+\end{proof}
+
+\begin{rem} 
+ The assumption that $q>1$ implies $k\geq 1$ in~\eqref{evencf}, and is made 
+to ensure that $a_{2k+3}>0$. 
+However, when $q=1$, the appearance of a zero in the continued fraction 
+can be dealt with by applying the concatenation operation 
+\begin{equation}
+\label{concat} 
+[\ldots, A, 0, B, \ldots] \mapsto  [\ldots, A+B, \ldots]
+\end{equation} 
+(see Proposition~3 in~\cite{folded}, for instance).   
+\end{rem}
+
+In the same spirit as~\cite{Hone3}, 
+it is perhaps more natural to replace the first term in \eqref{eq:Pierce} with 
+an arbitrary $r\in\Q$, resulting in a rational number minus a Pierce series. 
+Such a modified Pierce series can be obtained immediately from~\eqref{alpie1}, 
+simply by regrouping the terms as 
+\begin{equation}
+\label{regroup}
+\left(\frac{p}{q} + \frac{1}{x_2}\right)-\frac{1}{x_2} 
++ \frac{1}{x_3}-\cdots 
+= \frac{p'}{q'}-\sum_{j=2}^\infty \frac{(-1)^j}{x_j'}, 
+\end{equation}
+where, since $q=x_1$ divides $x_2$,  $p'=p (x_2/q) +1\in\Z$, $q'=x_2$ and $x_j'=x_{j+1}$ 
+for $j\geq 1$. In the proof of the preceding theorem, the initial term of the regrouped 
+series appears with the continued fraction expansion   
+$p'/q'=S_2=[a_0;a_1,\ldots, a_{2k+3}]$, ending in a partial quotient with an odd index. 
+
+In order to formulate the most general result possible, we once again 
+start with an arbitrary $r=p/q\in\Q$ and $m\in\Zo$, but this time 
+take the continued fraction expansion 
+\begin{equation}
+\label{oddcf} 
+\frac{p}{q}=  [a_0;a_1,a_2,\dots,a_{2k+1}], 
+\end{equation}  
+ending in an odd index, which is always possible by~\eqref{props}. 
+The following result includes the regrouped series \eqref{regroup} 
+obtained from Theorem~\ref{pierce1} as the special case $m=0$. 
+ 
+\begin{thm}
+\label{pierce2} 
+Suppose $x_1=q>1$, and let $\al$ be given by the series  
+\begin{equation} 
+\label{alpie2} 
+\al = \frac{p}{q}-\sum_{j=2}^\infty \frac{(-1)^j}{x_j}, 
+\end{equation} 
+for $(x_n)$ defined by \eqref{recrels} with 
+\begin{equation}
+\label{y0valpie2}
+y_0=mq+q_{2k}-1, 
+\end{equation} 
+where $q_{2k}$ is the denominator of the $2k$th convergent of~\eqref{oddcf}, 
+and the restriction $m\geq 1$ should be imposed if $q_{2k}=1$. 
+Then  the continued fraction expansion of $\al$ has the form~\eqref{al}, 
+where the partial quotients $a_j$ coincide with those of 
+\eqref{oddcf} for $0\leq j\leq 2k+1$, while  
+\begin{equation}
+\label{pie2cf} 
+a_{2k+2}=m+u_1 y_0-1, 
+\end{equation} 
+and 
+\begin{equation}
+\label{pie2coeff}
+a_{2k+3j}=1, \, \, a_{2k+3j+1}=x_j-1, \, \, a_{2k+3j+2}=u_{j+1}y_j-1, \,\,\, 
+\forall j\geq 1, 
+\end{equation} 
+with the denominators of the convergents being given by 
+\begin{equation}
+\label{cvgtspie2} 
+q_{2k+3j-2}=x_j, \,\, 
+q_{2k+3j-1}=y_j-x_j+1, \,\,
+q_{2k+3j}=y_j+1, \,\, \, \forall j\geq 1. 
+\end{equation} 
+\end{thm} 
+
+We omit the proof of the above,  based on showing that the partial sums are given by 
+\[ 
+\frac{p}{q}-\sum_{j=2}^N \frac{1}{x_j}= \frac{p_{2k+3N-2}}{q_{2k+3N-2}}, 
+\] 
+since the steps are essentially the same 
+as for Theorem~\ref{pierce1}, but the formulae \eqref{cvgtspie2}
+%for the denominators of the convergents 
+have been included for completeness.
+
+\begin{rem} Similarly to~\eqref{regroup}, the case $m=0$ of Theorem~\ref{pierce1} can be 
+obtained from Theorem~\ref{pierce2} by combining the first two terms of the series 
+\eqref{alpie2} into one. The series \eqref{aleng} can be reduced to the case $m=0$ 
+of Theorem~\ref{engelthm} in the same way.
+\end{rem}
+
+%----------------
+\section{Irrationality exponents }
+\label{sec:exponents}
+%----------------
+
+The irrationality exponent $\mu(\al)$ of a real number $\al$ is defined to be the 
+supremum of the set of real numbers $\mu$ such that there are  infinitely many 
+rational numbers $P/Q$ satisfying the  inequality 
+$0<|\al - P/Q|<1/Q^\mu$. For an irrational number, $\mu(\al)\geq 2$, since 
+the convergents of its continued fraction expansion \eqref{al} provide 
+infinitely many $P/Q$ with $|\al - P/Q|<1/Q^2$. In fact, in the sense 
+of Lebesgue measure, almost all real numbers 
+have irrationality exponent equal to $2$, while a famous theorem 
+of Roth \cite{Roth} says that every algebraic irrational number 
+has $\mu(\al)=2$. Large classes of transcendental numbers with $\mu(\al)=2$ 
+are presented in~\cite{bugeaudetal}, but as we shall see, the 
+transcendental numbers defined by the modified 
+Engel and Pierce series above do not belong to these classes.  
+
+The transcendence of each of the numbers $\al$ defined  in the previous section 
+is essentially a consequence of the rapid growth of the associated sequence $(x_n)$.  
+According to the result of Lemma~2.2 in~\cite{Hone3}, 
+$x_{n+1}>x_n^{5/2}$ for $n\geq3$,  which allows one to show that 
+$\mu(\al)\geq 5/2$, but here  
+we present a significant improvement on this result. 
+
+\begin{lem} For all $\eps>0$, there is some $N$ such that   
+\begin{equation}
+\label{xbd} 
+x_{n+1}>x_n^{\mu^* -\eps}, \qquad \mu^*=\frac{3+\sqrt{5}}{2}, 
+\end{equation} 
+for all $n\geq N$. 
+\end{lem} 
+
+\begin{proof}
+From \eqref{nonl} and the fact that $y_n = x_{n+1}/x_n>1$ for $n\geq 1$, 
+it is clear that $x_{n+1}>x_n^2$ for $n\geq 2$, which implies that 
+$x_{n-1}<x_n^{1/2}$ for $n\geq 3$. Thus,  using \eqref{nonl} once again 
+it follows that $x_{n+1}>x_n^3/x_{n-1}>x_n^{5/2}$, which 
+is the basic estimate given in \cite{Hone1, Hone3}. To improve on 
+this, we proceed by induction, assuming that 
+\[ 
+x_{n+1}>x_n^{\rho_k}\quad \text{for} \,\, n\geq k+2, 
+\]
+and then from~\eqref{nonl}, the same argument as before (for $k=0$) 
+gives  
+\begin{equation}
+\label{rho} 
+x_{n+1}>x_n^3/x_{n-1}>x_n^{\rho_{k+1}} 
+\,\,\,\text{for} \,\, n\geq k+3, \quad 
+\text{where} \,\, \rho_{k+1}=3-\rho_k^{-1},
+\end{equation} 
+with $\rho_0=2$. 
+The solution of the recurrence for 
+$\rho_k$ in \eqref{rho} is obtained via 
+$\rho_k=f_{k+1}/f_k$, which implies $f_{k+2}-3f_{k+1}+f_k=0$,  
+so that the sequence $(f_k)$ is just $1,2,5,13,34,\ldots$, i.e.\ 
+a bisection of the Fibonacci numbers. Hence 
+$\lim_{k\to\infty}\rho_k = (3+\sqrt{5})/2=\mu^*$, and the 
+result follows. 
+\end{proof}  
+
+\begin{cor} 
+All of the numbers $\al$ defined in Theorems~\ref{engelthm}, 
+\ref{pierce1} and~\ref{pierce2} are transcendental, with irrationality 
+exponent $\mu(\al)\geq (3+\sqrt{5})/2$. 
+\end{cor} 
+
+\begin{proof} 
+This follows from the same argument  as used to prove Theorem~4
+in~\cite{Hone1}, and  Theorem~2.3 in~\cite{Hone3}, so we only sketch the details. 
+For any $\eps>0$, the terms of the sequence $(x_n)$ satisfy the inequality 
+\eqref{xbd} for sufficiently large~$n$. 
+Due to the fact that the partial sums 
+of the series \eqref{aleng}, \eqref{alpie1} and \eqref{alpie2} coincide with 
+particular convergents of the continued fraction expansion of $\al$, 
+and the fact that, from \eqref{cvgtseng}, \eqref{cvgtspie1} and \eqref{cvgtspie2}, 
+the denominators of these convergents coincide with the terms 
+of the sequence $(x_n)$,  a comparison with a geometric series 
+shows that for all $\delta>0$, the inequality 
+\[ 
+\left|\al -\frac{P}{Q}\right| < \frac{1}{Q^{\mu^*-\delta}}
+\]  
+holds for infinitely many rational approximations $P/Q$.
+\end{proof} 
+
+The irrationality exponent can be computed explicitly in terms of 
+the continued fraction expansion of $\al$, using one of the formulae below: 
+\begin{equation}
+\label{limsup} 
+\mu(\al) = 1+ \limsup\limits_{n\rightarrow\infty} \frac{\log q_{n+1}}{\log q_n} 
+=2+\limsup\limits_{n\rightarrow\infty} \frac{\log a_{n+1}}{\log q_n} 
+\end{equation} 
+(see~\cite{bugeaudetal}, or Theorem~1 in~\cite{sondow}, for instance).
+If the function $\widehat{G}$ in \eqref{naut} is chosen suitably, 
+then these limits can be evaluated precisely.
+
+\begin{thm} 
+For some integer $d\geq 1$, let 
+\begin{equation}
+\label{las}
+\la = \frac{d+2+\sqrt{d(d+4)}}{2},
+\end{equation} 
+and let $\al$ be given by a modified Engel or Pierce series, defined according to one 
+of Theorems~\ref{engelthm}, 
+\ref{pierce1} or~\ref{pierce2}, with the sequence $(u_n)$ in \eqref{recrels} 
+being specified by a polynomial in $x_n$, namely 
+\begin{equation} 
+\label{un} 
+u_n = \sum_{j=0}^{d-1} v_n^{(j)} x_n^{d-1-j},
+\end{equation} 
+where for each $j$, the coefficient $(v_n^{(j)})$ is an integer sequence, with 
+$ v_n^{(0)}\in \Zp$, $n\geq 1$, and as $n\to\infty$, for some $\nu<\la$, 
+\begin{equation}
+\label{vbds} 
+\log v_n^{(0)}=O(\nu^n),  \quad and \quad v_n^{(j)}=O( v_n^{(0)}), \,\, j=1,\ldots, d-1.
+\end{equation}  
+Then $\al$ has irrationality exponent $\mu(\al)=\la$. 
+%be the largest root of the quadratic  
+\end{thm}
+
+\begin{proof}
+If $u_n$ is given by \eqref{un}, then setting 
+$\La_n=\log x_n$ and taking logarithms in \eqref{nonl} yields
+\begin{equation}
+\label{qualin}
+\La_{n+1}-(d+2)\La_n + \La_{n-1} = \De_n, 
+\end{equation} 
+where, with 
+$v_n^{(d)}=1$, 
+\[ 
+\De_n  = \log v_n^{(0)} + 
+\log \left(1+ \sum_{j=1}^{d} \frac{v_n^{(j)}}{v_n^{(0)}} \, x_n^{-j}\right) 
+= \log v_n^{(0)} + O(x_n^{-1})=O(\nu^n)
+\]
+as $n\to \infty$, by~\eqref{vbds}.
+By adapting the method of~\cite{ahosloane}, the solution of \eqref{qualin} 
+is found formally as 
+\begin{equation} 
+\label{form}
+\La_n = A\, \la^n + B\, \la^{-n} + \sum_{j=1}^{n-1} 
+\left(\frac{\la^{n-j}-\la^{j-n}}{\la-\la^{-1}}\right) \De_j, 
+\end{equation} 
+for constants $A,B$ which can be fixed from the 
+initial values $\La_1=\log q$, $\La_2=\log x_2$ 
+(cf.\ Proposition~5 in~\cite{Hone1}).  Hence 
+\begin{equation}
+\label{asy} 
+\La_n\sim C\,\la^n, \qquad C = A + \sum_{j=1}^\infty \frac{\la^{-j}\De_j}{\la-\la^{-1}}, 
+\end{equation} 
+and $C>0$ since $x_n\to\infty$ as $n\to\infty$. Then in the case 
+of modified Engel series, from the formulae \eqref{cvgtseng} there are two different 
+cases for the first limit in~\eqref{limsup}: when $n$ is even, the limit is 
+\[ 
+1+\lim_{N\to\infty}\frac{\log (y_N-1)}{\log x_N}=
+1+ \lim_{N\to\infty}\frac{\La_{N+1}-\La_N}{\La_N}=\la 
+\] 
+from the asymptotic behaviour \eqref{asy}, while for odd $n$ it is 
+$1+1/(\la-1)\leq \la$, 
+where this inequality holds for all $\la\geq(3+\sqrt{5})/2$; 
+so the limit superior is $\la$. For the modified Pierce 
+series in Theorem~\ref{pierce1}, from \eqref{cvgtspie1} 
+the corresponding limit varies with $n\bmod 3$, and 
+gives $\la$, $2$ or $1+\la/(\la -1)\leq\la$, so again the limit superior is $\la$, 
+and the case of Theorem~\ref{pierce2} is identical. 
+\end{proof}
+
+\begin{thm} 
+For all $\nu\geq(3+\sqrt{5})/2$ there are 
+infinitely many $\al$ defined by modified Engel or Pierce series 
+with irrationality exponent $\mu(\al)=\nu$.   
+\end{thm} 
+
+\begin{proof} 
+If $\nu$ is one of the special values \eqref{las}  
+then for any fixed $r=p/q$ and $m$ there are 
+uncountably many choices of the sequence $(u_n)$ that 
+take the form~\eqref{un}, satisfy \eqref{vbds} and produce $\al$ with 
+distinct continued fraction expansions. So suppose that 
+$d\geq 1$ (and hence $\la$) is fixed, and take any $\nu>\la$ and 
+$(u_n)$ of the same form as in \eqref{un}, except that now 
+\begin{equation}
+\label{vasy}
+\log v_n^{(0)} \sim C' \, \nu^n,  \quad \text{and} \,\,\, v_n^{(j)}=O( v_n^{(0)}), \,\, j=1,\ldots, d-1
+\end{equation}  
+for some $C'>0$ (for instance, one could take 
+$ v_n^{(0)}=\left \lceil{\exp (C'\nu^n)}\right \rceil$). 
+Then the formal expression \eqref{form} for the solution of \eqref{qualin} 
+is still valid, but now from \eqref{vasy} 
+the sum on the right is the dominant term, growing like 
+$\nu^n$ as $n\to\infty$. Substituting this leading order asymptotic behaviour 
+back into \eqref{qualin} yields 
+\[ 
+\La_n\sim C\, \nu^n, \qquad C=\Big(\nu-(d+2)+\nu^{-1}\Big)^{-1}\, C'>0, 
+\] 
+and then the first limit 
+in \eqref{limsup} is evaluated as before to yield $\mu(\al)=\nu$. 
+\end{proof}
+
+%----------------
+\section{More explicit continued fractions} 
+%----------------
+
+In~\cite{Hone2} one of us obtained the explicit continued fraction expansion 
+for an Engel series \eqref{eq:Engel} with %$x_1=1$ and 
+the stronger 
+divisibility property 
+\begin{equation}
+\label{strong} 
+x_j^2|x_{j+1},  \qquad 
+\text{with} \,\,\,
+%positive  integers \begin{equation}\label{zseq}
+z_{j+1}=\frac{x_{j+1}}{x_j^2} \in \Zp, \quad  j\geq 1
+\end{equation}
+being an arbitrary sequence of ratios. 
+(In fact the condition $z_j\geq 2$ was imposed in~\cite{Hone2},
+but it was explained how to deal with some $z_j=1$ by applying the 
+operation~\eqref{concat}.) 
+Series of this particular form include  %the sum 
+\begin{equation}
+\label{kempner} 
+\sum_{n=0}^\infty \frac{1}{u^{2^n}} 
+\end{equation} 
+for integer $u\geq 2$, which for $u=2$ is known as the Kempner number. 
+All of the numbers \eqref{kempner} 
+are transcendental, with irrationality exponent~$2$~\cite{bugeaudetal}; 
+their continued fraction expansions were  found in 
+recursive form in~\cite{shallit1}, with a non-recursive representation 
+described in~\cite{shallit2}, and further generalizations with a 
+similar recursive structure being given in \cite{shallit3} and later~\cite{folded}. 
+The continued fraction expansion of an Engel 
+series \eqref{eq:Engel} %having this 
+with the stronger 
+divisibility property above has the same sort of 
+recursive structure, defined by a particular subsequence of the 
+convergents with finite continued fractions  whose length approximately 
+doubles at each step. Here we 
+further generalize this result by considering an arbitrary 
+$r=p/q\in\Q$ added to an Engel series of this type, 
+of the form \eqref{pqengel} with the property~\eqref{strong}. 
+
+%In order to present the more general result
+Given a finite continued fraction \eqref{ficf} for $n\geq 2$, written  as 
+$
+[a_0; \mathbf{a}]$, where $\mathbf{a}=(a_1,a_2,\ldots,a_n)$ is the word 
+defining the fractional part, it is 
+convenient to define the following family of transformations:
+\begin{equation}
+\label{zfam} 
+\varphi_z : \quad [a_0; \mathbf{a}] \mapsto [a_0; \mathbf{a}, z-1, \hat{\mathbf{a}}], 
+\end{equation} 
+where 
+the word $\hat{\mathbf{a}}$ is given by 
+\[ 
+\hat{\mathbf{a}}=(1,a_n-1,a_{n-1},\ldots,a_2,a_1). 
+\] 
+For each $z$, starting from   a continued fraction whose 
+final partial quotient has index $n$, 
+$\varphi_z$ produces a new continued fraction
+$\varphi_z([a_0;\mathbf{a}])$ whose 
+final partial quotient has index $2n+2$. It is also 
+helpful to define the one-parameter family of transformations 
+\begin{equation}
+\label{zsfam} 
+\varphi_z^* : \quad [a_0; \mathbf{a}] \mapsto [a_0; \mathbf{a}, z-1, \mathbf{a}^*], 
+\end{equation} 
+where the word at the end is  
+\[ 
+\mathbf{a}^*=(a_{n-1}+1,a_{n-2},\ldots,a_2,a_1). 
+\] 
+For the latter family, $[a_0;\mathbf{a}]$ is sent to 
+$\varphi_z^*([a_0;\mathbf{a}])$, whose 
+final partial quotient has index~$2n$. 
+The transformation $\varphi^*_z$ is just the result of applying 
+$\varphi_z$ to a continued fraction \eqref{ficf} for which $a_n=1$, 
+followed by using the concatenation operation \eqref{concat} 
+to remove the zero that appears. 
+
+Our interest in the above transformations is due to 
+
+\begin{lem}
+\label{trans} 
+\[ 
+\frac{p_n}{q_n}+ \frac{(-1)^n}{zq_n^2} = \varphi_z([a_0;\mathbf{a}]). 
+\]  
+\end{lem}
+
+\begin{proof} 
+This is a corollary of Proposition~2 in~\cite{folded}, and 
+follows from the remarks made beneath the proof given  there. 
+The case of even $n=2k$
+%, which is the only case of interest in the sequel, 
+also follows from the proof of 
+Proposition~2.1 in~\cite{Hone2}. 
+\end{proof}
+
+We now consider a rational number $r=p/q$ added to an Engel series 
+with the property~\eqref{strong}.  Without loss of generality, we 
+exclude the case $r\in \Z$ (when $q=x_1=1$), since when 
+$x_2\geq 2$ one can instead take $p'/q'=p/q+1/x_2$ 
+as the initial rational term. 
+
+\begin{thm}\label{modstreng}
+Let $p/q\in\Q\setminus\Z$ be a rational number in lowest 
+terms, with continued fraction expansion 
+\[ 
+\mathcal{C}_1 = [a_0; \mathbf{a}] 
+\] 
+taken in the form \eqref{evencf}, and let $(x_n)_{n\geq 1}$ be the integer 
+sequence defined by 
+\[
+x_1=q, \qquad x_{j+1}=x_j^2 z_{j+1}, \quad j\geq 1, 
+\] 
+where $(z_n)_{n\geq 2} $ is an arbitrary 
+sequence of positive integers. Define a 
+sequence of finite 
+continued fractions according to 
+\[ 
+\mathcal{C}_2 = 
+\begin{cases}
+  \varphi_{z_2}^*(\mathcal{C}_1), & \text{if $a_{2k}=1$},\\
+   \varphi_{z_2}(\mathcal{C}_1), & \text{otherwise},
+\end{cases}
+\]  
+and, for all $j\geq 2$, with  
+ the restriction $z_j\geq 2$ imposed, 
+\[ 
+\mathcal{C}_{j+1} = 
+\begin{cases}
+  \varphi_{z_{j+1}}^*(\mathcal{C}_j), & \text{if $a_{1}=1$},\\
+   \varphi_{z_{j+1}}(\mathcal{C}_j), & \text{otherwise}.
+\end{cases}
+\] 
+Then the modified Engel series 
+\begin{equation} 
+\label{alstreng} 
+\al = \frac{p}{q}+\sum_{j=2}^\infty \frac{1}{x_j}
+\end{equation} 
+has continued fraction expansion $\lim_{N\to\infty}\mathcal{C}_N$. 
+\end{thm} 
+
+\begin{proof} 
+We show by induction 
+that the partial sum 
+\[ 
+S_N = \frac{p}{q}+\sum_{j=2}^N \frac{1}{x_j}
+\] 
+has continued fraction expansion $\mathcal{C}_N$, 
+and then the result for $\al$ given by \eqref{alstreng} 
+follows in the limit $N\to\infty$. 
+When $N=1$ we have 
+$
+S_1=%\frac{p}{q}=\frac{p_{n_1}}{q_{n_1}}
+p/q=p_{n_1}/q_{n_1}=\mathcal{C}_1
+$,
+where $n_1=2k$ is the index of the final 
+partial quotient of $\mathcal{C}_1$, chosen to be even 
+as in~\eqref{evencf}. 
+If $a_{n_1}=a_{2k}=1$, then we apply 
+the transformation \eqref{zsfam} with $z=z_2$, 
+and otherwise we apply~\eqref{zfam}. 
+In either case we obtain a new continued fraction 
+$\mathcal{C}_2$ whose final partial quotient has an even index, 
+$n_2$ say, with $a_{n_2}=a_1$. 
+ At each subsequent step $N=j$, 
+we have a continued fraction $\mathcal{C}_j$, 
+with an even number $n_j$ being the index 
+of its final partial quotient, that is $a_{n_j}=a_1$, 
+so that to obtain  $\mathcal{C}_{j+1}$,  if $a_1=1$ then
+we must apply \eqref{zsfam} with $z=z_{j+1}$, 
+or \eqref{zfam} otherwise. 
+Then, from Lemma~\ref{trans} we have
+\[ 
+S_{j+1}=S_j+\frac{1}{x_{j+1}}
+= \frac{p_{n_j}}{q_{n_j}}+\frac{1}{z_{j+1}q_{n_j}^2}
+= \mathcal{C}_{j+1},
+\]
+where  we used the additional hypothesis that $q_{n_j}=x_j$.  
+So the 
+induction is almost complete, apart from the verification that 
+$q_{n_{j+1}}=x_{j+1}$ is also a consequence of the above. However,  
+$\mathcal{C}_{j+1}$ equals 
+\[ 
+\frac{p_{n_{j+1}}}{q_{n_{j+1}}} = \frac{ p_{n_j} (x_{j+1}/q_{n_j})+1}
+{x_{j+1}} =\frac{p_{n_j}x_jz_{j+1}+1}{x_{j+1}}, 
+\] 
+since $q_{n_j}=x_j$ and  $x_{j+1}=x_j^2z_{j+1}$. 
+Now any prime $P$ that divides $x_{j+1}$ must divide 
+$x_j$ or $z_{j+1}$, so  the numerator on the right-hand side above is 
+congruent to $1\bmod P$. Thus the fraction on the right-hand side, 
+with denominator $x_{j+1}$, is in lowest terms, 
+and since the convergent  $p_{n_{j+1}}/q_{n_{j+1}}$ 
+is also in lowest terms this means that $q_{n_{j+1}}=x_{j+1}$ as required. 
+\end{proof} 
+
+\begin{rem}
+The case where one or more of the $z_j=1$  (as in the sum~\eqref{kempner}, 
+for instance) can be dealt with 
+by applying~\eqref{concat}. For various examples of this, see~\cite{Hone2}. 
+\end{rem}
+
+\begin{exa} 
+For a given denominator $q$ it is sufficient to consider $0<p/q<1$, so 
+picking $q=x_1=5$ and $z_j=(j+1)^2+1$ for $j\geq 2$, $\al$ is the sum 
+\[ 
+%\al= 
+\frac{p}{5} + \frac{1}{5^2 \cdot 10} + \frac{1}{5^4\cdot 10^2\cdot 17}
++ \frac{1}{5^8\cdot 10^4\cdot 17^2\cdot 26}
++ \frac{1}{5^{16}\cdot 10^8\cdot 17^4\cdot 26^2\cdot 37}
++ \cdots,
+\] 
+and we list the continued fractions for $1\leq p\leq 4$ in order: 
+\begin{align*}
+& 
+[0; 4,1,9,5,16,1,4,9,1,4,25,1,3,1,9,4,1,16,5,9,1,4,36,1,3,1,9,5,16,\ldots],
+\\ 
+& 
+[0; 2,2,9,1,1,2,16,1,1,1,1,9,2,2,25,1,1,2,9,1,1,1,1,16,2,1,1,9,2,2,\ldots],
+\\
+& 
+[0;1,1,1,1,9,2,1,1,16,2,2,9,1,1,1,1,25,2,1,1,9,2,2,16,1,1,2,9,1,1,\ldots ],
+\\
+& 
+[0;1,4,9,1,3,1,16,4,1,9,4,1,25,5,9,1,4,16,1,3,1,9,4,1,36,5,9,1,3,\ldots].
+\end{align*} 
+\end{exa} 
+
+\subsection*{Acknowledgments.} 
+ANWH is funded by EPSRC Fellowship EP/M004333/1, 
+and thanks the School of Mathematics \& Statistics, UNSW for 
+hospitality and support under the Distinguished Researcher Visitor Scheme.
+JLV is supported by Grant MTM2015-65888-C4-4-P from MINECO/FEDER. 
+
+
+%----------------
+\begin{thebibliography}{00}
+%----------------
+
+\bibitem{ahosloane} 
+A. V. Aho and N. J. A. Sloane, 
+Some doubly exponential sequences, 
+\textit{Fibonacci Quart.} \textbf{11} (1973), 429--437.
+
+\bibitem{bugeaudetal} 
+Y. Bugeaud, G.-N. Han, Z.-Y. Wen and J.-Y. Yao, 
+Hankel determinants, Pad\'{e} approximations, 
+and irrationality exponents, 
+\textit{Int. Mat. Res. Not. IMRN} \textbf{2016} (2016),
+1467--1496. 
+ 
+\bibitem{Cas}
+J. W. S. Cassels, 
+\textit{An Introduction to Diophantine Approximation}, 
+Cambridge University Press, 1957.
+
+\bibitem{DaSha}
+J. L. Davison and J. O. Shallit, 
+Continued fractions for some alternating series, 
+\textit{Monatsh. Math.} \textbf{111} (1991), 119--126.
+
+\bibitem{duverney} 
+D. Duverney, 
+\textit{Number Theory: 
+An Elementary Introduction Through Diophantine Problems}, 
+World Scientific, 2010.
+
+\bibitem{erdosetal}
+P. Erd\H{o}s, A. R\'{e}nyi and P. Sz\"{u}sz,
+On Engel's and Sylvester's series, 
+\textit{Ann. Univ. Sci.
+Budapest. Eotvos Sect. Math.} \textbf{1} (1958), 7--12.
+
+\bibitem{Hone1}
+A. N. W. Hone, 
+Curious continued fractions, nonlinear recurrences and transcendental numbers, 
+\textit{J. Integer Seq.} \textbf{18} (2015), %no.~8, 
+article 15.8.4, 10~pp.
+
+\bibitem{Hone2}
+A. N. W. Hone, 
+On the continued fraction expansion of certain Engel series, 
+\textit{J. Number Theory} \textbf{164} (2016), 269--281.
+
+\bibitem{Hone3}
+A. N. W. Hone, 
+Continued fractions for some transcendental numbers,
+\textit{Monatsh. Math.} \textbf{182} (2017), %no.~1, 
+33--38.
+
+%\bibitem{Hua}
+%Hua Loo Keng, \textit{Introduction to Number Theory}, 
+%Springer-Verlag, 1982.
+
+\bibitem{Khin}
+A. Ya. Khinchin, 
+\textit{Continued Fractions}, 
+University of Chicago Press, 1964.
+Reprint: Dover, 1997.
+
+%\bibitem{NZM}
+%I. Niven, H. S. Zuckerman and H. L. Montgomery, 
+%\textit{An introduction to the Theory of Numbers}, 
+%5th ed., Wiley, 1991.
+
+\bibitem{Roth}
+K. F. Roth, 
+Rational approximation of algebraic numbers, 
+\textit{Mathematika} \textbf{2} (1955), 1--20; 
+Corrigendum, \textit{Mathematika} \textbf{2} (1955), 168.
+
+\bibitem{shallit1} 
+J. O. Shallit, 
+Simple continued fractions for some irrational numbers, 
+\textit{J. Number Theory} \textbf{11} (1979), 209--217.
+
+\bibitem{shallit2} 
+J. O. Shallit, 
+Explicit descriptions of some continued fractions,
+\textit{Fibonacci Quart.} \textbf{20} (1982), 77--81.
+
+\bibitem{shallit3} 
+J. O. Shallit, 
+Simple continued fractions for some irrational numbers. II, 
+\textit{J. Number Theory} \textbf{14} (1982), 228--231.
+
+\bibitem{sondow} 
+J. Sondow, 
+Irrationality measures, irrationality bases, and 
+a theorem of Jarn\'{i}k, 
+talk at \textit{Journ\'{e}es Arithm\'{e}tiques XXIII}, Graz, 2003; 
+preprint \texttt{arXiv:math/0406300}.
+
+\bibitem{folded} 
+A. J. van der Poorten and J. Shallit, 
+Folded continued fractions, 
+\textit{J. Number Theory} \textbf{40} (1992), 237--250.
+
+%\bibitem{Var}
+%J. L. Varona, 
+%\textit{Recorridos por la Teor\'ia de N\'umeros} (Spanish),
+%Electolibris \& Real Sociedad Matem\'atica Espa\~nola, Murcia, 2014.
+
+\bibitem{Var2}
+J. L. Varona, 
+The continued fraction expansion of certain Pierce series, 
+\textit{J. Number Theory}
+\textbf{180} (2017), 573--578.
+
+%----------------
+\end{thebibliography}
+%----------------
+
+%----------------
+\end{document}
+%----------------
+
+

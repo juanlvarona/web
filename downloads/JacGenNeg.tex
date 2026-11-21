@@ -1,0 +1,636 @@
+%&pdftex
+
+\magnification=1200
+\font\peq=cmr8
+\font\peqit=cmti8
+\font\peqbf=cmbx8
+\font\msym=msbm10
+\def\R{\hbox{\msym R}}
+\def\N{\hbox{\msym N}}
+%\def\R{\hbox{\bf R}}
+%\def\N{\hbox{\bf N}}
+\def\proof{{\it Proof.} }
+\outer\def\art #1;#2;#3;#4;#5;#6;#7\par{\item {\bf [#1]} {\rm #2,{\it
+#3},#4{\bf #5} (#6),#7}}
+
+\centerline{\bf WEIGHTED $L^p$-BOUNDEDNESS OF FOURIER SERIES}
+\centerline{\bf RELATIVE TO GENERALIZED JACOBI WEIGHTS.}
+
+\bigskip
+
+\centerline{Jos\'e J. Guadalupe
+   \footnote{$^1$}{\peq Dpto. de Matem\'aticas. Universidad de Zaragoza. 50009
+Zaragoza. Spain.}, Mario P\'erez $^1$,  Francisco J. Ruiz $^1$ and  Juan L.
+Varona
+   \footnote{$^2$}{\peq Dpto. de Matem\'atica Aplicada. Colegio Universitario de
+La Rioja. 26001 Logro\~no. Spain.}}
+\footnote{}{\peq A.M.S. (1985) Subject Classification: 42C10.}
+\bigskip
+
+\footnote{}{\peq AN UPDATED VERSION OF THIS MANUSCRIPT WERE PUBLISHED AS:
+{\peqit Weighted $L^p$-boun\-ded\-ness of Fourier series with respect to generalized
+Jacobi weights}, Publicacions Matem\`atiques {\peqbf 35} (1991), 449--459.}
+
+{\narrower\narrower{\bf Abstract. }{\sl Let $w$ be a generalized Jacobi weight
+on the interval $[-1,1]$ and, for each function $f$, let $S_nf$ denote the
+$n$-th partial sum of the Fourier series of $f$ with respect to the orthogonal
+polynomials relative to $w$. We prove a result about uniform boundedness of the
+operators $S_n$ in some weighted $L^p$ spaces. The study of the norms of the
+kernels $K_n$ associated with the operators $S_n$ allows us to obtain a relation
+between the Fourier series relative to different generalized Jacobi
+weights.}\smallskip}
+
+\bigskip
+
+Let $w$ be a generalized Jacobi weight, that is,
+$$
+   w(x) = h(x) (1-x)^\alpha(1+x)^\beta\prod_{i=1}^N| x-t_i|^{\gamma_i}\ ,\ 
+   x\in [-1,1]
+$$
+where
+
+a) $\alpha$,$\beta$,$\gamma_i>-1$, $t_i \in (-1,1)$, $t_i \not= t_j$ $\forall
+i \not= j$;
+
+b) $h$ is a positive, continuous function on $[-1,1]$ and
+$w(h,\delta)\delta^{-1} \in L^1(0,1)$, $w(h,\delta)$ being the
+modulus of continuity of~$h$.
+
+Let $d\mu = w(x)\ dx$ on $[-1,1]$ and let $S_n$ $(n \geq 0)$ be the $n$-th
+partial sum of the Fourier series in the orthonormal polynomials with respect to
+$d\mu$. The study of the boundedness
+$$
+   \Vert S_nf \Vert _{L^p(u^pd\mu)} \leq C \Vert f \Vert
+   _{L^p(v^pd\mu)},\eqno (1)
+$$
+$$
+   u(x) = (1-x)^a (1+ x)^b \prod_{i=1}^N \vert x-t_i \vert ^{g_i}, \qquad
+   a,b,g_i \in \R \leqno{\rm where}
+$$
+$$
+   v(x) = (1-x)^A (1+ x)^B \prod_{i=1}^N \vert x-t_i \vert ^{G_i}, \qquad
+   A,B,G_i \in \R \leqno{\rm and}
+$$
+was done by Badkov ([1]) in the case $u = v$ by means of a direct estimation of
+the kernels $K_n(x,y)$ associated with the polynomials orthogonal with
+respect to $d\mu$. Later, one of us ([10]) considered the same problem, with $u$
+and $v$ not necessarily equal; his method consists of an appropriate use of the
+theory of $A_p$ weights. He found conditions for (1) which generalized those
+obtained for $u = v$ by Badkov. However, this result, which we state below,
+follows only in the case $\gamma _i \geq 0$, $i=1,\dots,N$.
+
+\proclaim {Theorem 1}. Let $\gamma_i \geq 0$, $i=1,\dots,N$ and $1<p<\infty$. If
+the inequalities
+$$ \cases {
+   A + (\alpha +1) ({1 \over p} - {1 \over 2})
+   < \min \{{1 \over 4},{\alpha +1 \over 2}\}
+   \cr
+   B + (\beta +1) ({1 \over p} - {1 \over 2})
+   < \min \{{1 \over 4},{\beta +1 \over 2}\}
+   \cr
+   G_i + (\gamma_i +1) ({1 \over p} - {1 \over 2})
+   < \min \{{1 \over 2},{\gamma_i +1 \over 2}\} \quad (i=1,\dots,N)
+   \cr}
+   \eqno (2)
+$$
+$$ \cases {
+   a + (\alpha +1) ({1 \over p} - {1 \over 2})
+   > - \min \{{1 \over 4},{\alpha +1 \over 2}\}
+   \cr
+   b + (\beta +1) ({1 \over p} - {1 \over 2})
+   > - \min \{{1 \over 4},{\beta +1 \over 2}\}
+   \cr
+   g_i + (\gamma_i +1) ({1 \over p} - {1 \over 2})
+   > - \min \{{1 \over 2},{\gamma_i +1 \over 2}\} \quad (i=1,\dots,N)
+   \cr}
+   \eqno (3)
+$$
+and
+$$
+   \vbox{\halign{\hfil #  & \qquad \hfil #  &  \qquad \hfil # \hfil \cr
+   $A \leq a$, & $B \leq b$, & $G_i \leq g_i$ \cr
+   }} \eqno (4)
+$$
+hold, then
+$$
+   \exists C>0\ \ such\ that\ \ \Vert S_nf \Vert _{L^p(u^pd\mu)}
+   \leq C \Vert f \Vert _{L^p(v^pd\mu)}\ \ \forall f \in L^p(v^pd\mu),
+   \ \forall n \in \N.
+$$
+
+The objective of this paper is to show that the result remains true without the
+restriction $\gamma_i \geq 0$ and that conditions (2), (3) and (4) are also
+necessary for the uniform boundedness:
+
+\proclaim{Theorem 2}. Let $1<p<\infty$. Then, there exists $C>0$ such that
+$$
+   \Vert S_nf \Vert _{L^p(u^pd\mu)} \leq C \Vert f \Vert _{L^p(v^pd\mu)}
+   \quad \forall f \in L^p(v^pd\mu), \ \forall n \in \N,
+$$
+if and only if the inequalities $(2)$, $(3)$ and $(4)$ are satisfied.
+
+For the sake of completeness, we give a brief sketch of the proof of theorem 1
+(see also [10]). By using Pollard's decomposition of the kernels $K_n(x,y)$ (see
+[8], [5]), the uniform boundedness of $S_n$ can be reduced to that of the Hilbert
+transform with pairs of weights
+$$
+   (\vert P_{n+1}(x) \vert ^p u(x)^p w(x),
+   \vert Q_n(x) \vert ^{-p} (1-x^2)^{-p} v(x)^p w(x)^{1-p})
+$$
+and
+$$
+   (\vert Q_n(x) \vert ^p (1-x^2)^p u(x)^p w(x),
+   \vert P_{n+1}(x) \vert ^{-p} v(x)^p w(x)^{1-p}),
+$$
+$Q_n$ being the $n$-th orthonormal polynomial relative to the measure
+$(1-x^2)d\mu$. Using now Hunt-Muckenhoupt-Wheeden and Neugebauer results (see
+[2], [6]), together with some known estimates for generalized Jacobi polynomials
+(see $(8)$ below), for the above uniform boundedness the following conditions
+turn out to be sufficient:
+$$
+   (u_n^\delta,v_n^\delta) \in A_p ((-1,1))
+$$
+and
+$$
+   (\bar u_n^\delta,\bar v_n^\delta) \in A_p ((-1,1))
+$$
+for some $\delta >1$, with $A_p$ constants independent of $n$, where
+$$
+   \eqalign{
+   u_n(x) &= (1-x)^{ap+\alpha}(1-x+n^{-2})^{-p(2\alpha+1)/4}
+   \cr
+   &\times (1+x)^{bp+\beta}(1+x+n^{-2})^{-p(2\beta+1)/4}
+   \cr
+   &\times \prod_{i=1}^N \vert x-t_i \vert^{g_ip+\gamma_i}
+   (\vert x-t_i \vert + n^{-1})^{-p\gamma_i/2},
+   \cr}
+$$
+$$
+   \eqalign{
+   v_n(x) &= (1-x)^{Ap+\alpha(1-p)+p}(1-x+n^{-2})^{p(2\alpha+3)/4}
+   \cr
+   &\times (1+x)^{Bp+\beta(1-p)+p}(1+x+n^{-2})^{p(2\beta+3)/4}
+   \cr
+   &\times \prod_{i=1}^N \vert x-t_i \vert^{G_ip+\gamma_i(1-p)}
+   (\vert x-t_i \vert + n^{-1})^{p\gamma_i/2}
+   \cr}
+$$
+and similar expressions for $\bar u_n$ and $\bar v_n$.
+
+These conditions are easy to check using the simpler result (see [10]):
+
+\proclaim {Lemma 3}. Let $\{x_n\}_{n\geq 0}$ be a sequence of positive numbers
+converging to $0$. Let $r,s,R,S \in \R$. Then,
+$$
+   (\vert x \vert ^r(\vert x \vert +x_n)^s,
+   \vert x \vert ^R(\vert x \vert +x_n)^S) \in A_p((-1,1)) $$
+with a constant independent of $n$ if and only if the following inequalities
+hold:
+$$
+   \vbox {\halign{\hfil #  & \qquad \hfil #  &  \qquad \hfil # \hfil \cr
+   $r>-1$; & $R < p-1$; & $R \leq r$; \cr
+   $r+s>-1$; & $R+S < p-1$; & $R+S \leq r+s$. \cr
+   }}
+$$
+
+At least in the case $u=v$ (thus $g_i=G_i$, $\forall i$), inequality $R \leq r$
+requires $\gamma_i \geq 0$ $\forall i$. But, with this assumption, theorem $1$
+follows.
+
+Let us introduce now some notation: $\{P_n(x)\}$, $\{k_n\}$ and $\{K_n(x,y)\}$
+will be, respectively, the orthonormal polynomials, their leading coefficients
+and the kernels relatives to $d\mu$; if $c \in (-1,1)$, $\{P_n^c(x)\}$,
+$\{k_n^c\}$ and $\{K_n^c(x,y)\}$ will be the corresponding to $(x-c)^2d\mu$.
+Then, it is not difficult to establish $\forall n \in \N$ the relations
+$$
+   K_n(x,y) = (x-c) (y-c)
+   K_{n-1}^c(x,y) + {K_n(x,c) K_n(c,y) \over K_n(c,c)}; \eqno (5)
+$$
+$$
+   K_n(x,c) = {k_n \over k_n^c} P_n(c) P_n^c(x) - {k_{n-1}^c \over k_{n+1}}
+   P_{n+1}(c) P_{n-1}^c(x). \eqno (6)
+$$
+
+It can be also shown (see [4], theorems $10$ and $11$,
+and [9], pag.~$212$) that
+$$
+   \lim_{n \to \infty} {k_n \over k_n^c} = 
+   \lim_{n \to \infty} {k_{n-1}^c \over k_{n+1}} =  {1 \over 2}. \eqno (7)
+$$
+
+If we define
+$$
+   d(x,n) = (1-x+n^{-2})^{-(2\alpha+1)/4}(1+x+n^{-2})^{-(2\beta+1)/4}
+   \prod_{i=1}^N (\vert x-t_i \vert + n^{-1})^{-\gamma_i/2},
+$$
+it is known ([1]) that there exists a constant $C$ such that
+$\forall x \in [-1,1]$, $\forall n \in \N$
+$$
+   \vert P_n(x) \vert \leq C d(x,n). \eqno (8)
+$$
+
+There are also some well-known estimates for the kernels, one of them being this
+([7], pag.~$4$ and pag.~$119$, theorem $25$): if $c \in (-1,1)$ and the
+factor $\vert x-c \vert$ occurs in $w$ with an exponent $\gamma$, there
+exist some positive constants $C_1$ and $C_2$, depending on $c$, such that
+$\forall n \in \N$
+$$
+   C_1 n^{\gamma +1} \leq K_n(c,c) \leq C_2 n^{\gamma +1}. \eqno (9)
+$$
+
+From now on, all constants will be denoted $C$, so by $C$ we will mean a
+constant, possibly different in each occurrence. Using $(6)$, $(7)$ and $(8)$
+we obtain the following result:
+
+\proclaim {Proposition 4}. Let $1<p<\infty$, $1/p+1/q = 1$ and suppose the
+inequality $(3)$ holds. Let $-1<c<1$ and let $\gamma$ and $g$ be the
+exponents of $\vert x-c \vert$ in $w$ and $u$, respectively. Then, there exists a
+positive constant $C$ such that $\forall n \geq 0$:
+$$
+   \Vert K_n(x,c) \Vert _{L^p(u^pw)} \leq \cases { C n^{(\gamma +1)/q-g} &if\quad
+   $g < (\gamma +1)(1/2-1/p)+1/2$ \cr
+   C n^{\gamma /2}(\log n)^{1/p} &if\quad $g = (\gamma +1)(1/2-1/p)+1/2$ \cr
+   C n^{\gamma /2} &if\quad $(\gamma +1)(1/2-1/p)+1/2 < g$ \cr}
+$$
+
+\proof From $(8)$ it follows that $\vert P_n(c) \vert \leq C
+n^{\gamma/2}$. Since $\{P_n^c\}$ is the sequence associated with $(x-c)^2d\mu$,
+it also follows from $(8)$ that
+$$
+   \vert P_n^c(x) \vert \leq C ( \vert x-c \vert + n^{-1})^{-1} d(x,n).
+$$
+Now, from $(6)$ and $(7)$ we get:
+$$
+   \vert K_n(x,c) \vert \leq C n^{\gamma/2} ( \vert x-c \vert + n^{-1})^{-1}
+   d(x,n). \eqno (10)
+$$
+Let us take $\varepsilon > 0$ such that $\vert t_i-c \vert > \varepsilon$ for all
+$t_i \not= c$. We can write:
+$$
+   \Vert K_n(x,c) \Vert ^p_{L^p(u^pw)}
+$$
+$$
+   =\int_{\vert x-c \vert \geq \varepsilon} \vert K_n(x,c)\vert ^p u(x)^p w(x)dx
+   + \int_{\vert x-c \vert < \varepsilon} \vert K_n(x,c)\vert ^p u(x)^p w(x) dx
+$$
+Using $(10)$, we obtain for the first term
+$$
+   \int_{\vert x-c \vert \geq \varepsilon} \vert K_n(x,c)\vert ^p u(x)^p w(x) dx
+   \leq C n^{p\gamma/2} \int_{\vert x-c \vert \geq \varepsilon}
+   (\vert x-c \vert + n^{-1})^{-p} d(x,n)^p u(x)^p w(x) dx
+$$
+$$
+   \leq C n^{p\gamma/2} \int_{-1}^1 d(x,n)^p u(x)^p w(x) dx.
+$$
+It is easy to deduce from $(3)$ that this last integral is bounded by
+a constant which does not depend on $n$, so
+$$
+   \int_{\vert x-c \vert \geq \varepsilon} \vert K_n(x,c)\vert ^p u(x)^p w(x) dx
+   \leq C n^{p\gamma/2}. \eqno (11)
+$$
+Let us take now the second term; since for $ \vert x-c \vert < \varepsilon$ there
+exists a constant $C$ such that $\forall n$ $d(x,n) \leq C 
+( \vert x-c \vert + n^{-1})^{-\gamma /2}$, $u(x) \leq C \vert x-c \vert ^g$ and
+$w(x) \leq C \vert x-c \vert ^\gamma$, we have
+$$
+   \int_{\vert x-c \vert < \varepsilon} \vert K_n(x,c)\vert ^p u(x)^p w(x) dx
+   \leq C n^{p\gamma/2} \int_{\vert x-c \vert < \varepsilon}
+   (\vert x-c \vert + n^{-1})^{-p} d(x,n)^p u(x)^p w(x) dx
+$$
+$$
+   \leq C n^{p\gamma/2} \int_{\vert x-c \vert < \varepsilon}(\vert x-c \vert
+   + n^{-1})^{-p(1+\gamma /2)} \vert x-c \vert^{gp+\gamma} dx
+$$
+$$
+   \leq C n^{p\gamma/2} \int_0^1 (y+ n^{-1})^{-p(1+\gamma /2)}y^{gp+\gamma} dy
+$$
+$$
+   = C n^{p\gamma/2+p(1+\gamma /2)-gp-\gamma-1} \int_0^1(ny+1)^{-p(1+\gamma
+   /2)}(ny)^{gp+\gamma} ndy
+$$
+$$
+   = C n^{p\gamma/2+p(1+\gamma /2)-gp-\gamma-1} \int_0^n(r+1)^{-p(1+\gamma
+   /2)}r^{gp+\gamma} dr.
+$$
+Taking into account that
+$p(1+\gamma/2)-gp-\gamma-1= p[(\gamma +1)(1/2-1/p)-g+1/2]$ and there exist some
+constants $C_1$ and $C_2$ such that $C_1 \leq r+1 \leq C_2$ on $[0,1]$ and $C_1r
+\leq r+1 \leq C_2r$ on $[1,n]$, we finally get the inequality
+$$
+   \eqalign{
+   \int_{\vert x-c \vert < \varepsilon} &\vert K_n(x,c)\vert ^p u(x)^p w(x) dx
+   \leq C n^{p\gamma/2+p[(\gamma +1)(1/2-1/p)-g+1/2]} \int_0^1 r^{gp+\gamma}dr
+   \cr
+   + &C n^{p\gamma/2+p[(\gamma +1)(1/2-1/p)-g+1/2]} \int_1^n
+   r^{-p[(\gamma +1)(1/2-1/p)-g+1/2]-1}dr.\cr} \eqno (12)
+$$
+Since $(3)$ implies $gp+\gamma > -1$, the first term is bounded by
+$$
+   C n^{p\gamma/2+p[(\gamma +1)(1/2-1/p)-g+1/2]} \int_0^1 r^{gp+\gamma}dr
+   \leq C n^{p\gamma/2+p[(\gamma +1)(1/2-1/p)-g+1/2]}. \eqno (13)
+$$
+For the second term, let us consider separately the three cases in the statement.
+
+a) If $g < (\gamma +1)(1/2 - 1/p) + 1/2$, then
+$-p[(\gamma +1)(1/2-1/p)-g+1/2] -1 < -1$. Thus
+$$
+   \int_1^n r^{-p[(\gamma +1)(1/2-1/p)-g+1/2]-1}dr \leq C.
+$$
+In this case, $(12)$ and $(13)$ imply:
+$$
+   \int_{\vert x-c \vert < \varepsilon} \vert K_n(x,c)\vert ^p u(x)^p w(x) dx
+   \leq C n^{p\gamma/2+p[(\gamma +1)(1/2-1/p)-g+1/2]}.
+$$
+Since $p[(\gamma +1)(1/2 -1/p)-g+1/2] > 0$, from this inequality and $(11)$ we
+obtain
+$$
+   \Vert K_n(x,c) \Vert ^p_{L^p(u^pw)} \leq
+   C n^{p\gamma/2+p[(\gamma +1)(1/2-1/p)-g+1/2]}
+$$
+$$
+   = C n^{p[(\gamma+1)(1-1/p)-g]} = C n^{p[(\gamma+1)/q-g]},
+$$
+as we had to prove.
+
+b) If $(\gamma +1)(1/2-1/p)+1/2 < g$, then $-p[(g +1)(1/2-1/p)-g+1/2]-1 > -1$.
+Therefore
+$$
+   \int_1^n r^{-p[(\gamma +1)(1/2-1/p)-g+1/2]-1}dr \leq C
+   n^{-p[(\gamma +1)(1/2-1/p)-g+1/2]}.
+$$
+By $(12)$ and $(13)$, it follows
+$$
+   \int_{\vert x-c \vert < \varepsilon} \vert K_n(x,c)\vert ^p u(x)^p w(x) dx
+   \leq C n^{p\gamma/2}
+$$
+and
+$$
+   \Vert K_n(x,c) \Vert ^p_{L^p(u^pw)} \leq C n^{p\gamma/2}.
+$$
+
+c) If $g = (\gamma +1)  (1/2 - 1/p) + 1/2$
+$$
+   \int_1^n r^{-p[(\gamma +1)(1/2-1/p)-g+1/2]-1}dr = \log n;
+$$
+hence,
+$$
+   \int_{\vert x-c \vert < \varepsilon} \vert K_n(x,c)\vert ^p u(x)^p w(x) dx
+   \leq C n^{p\gamma/2} \log n
+$$
+and
+$$
+   \Vert K_n(x,c) \Vert ^p_{L^p(u^pw)} \leq C n^{p\gamma/2} \log n.
+$$
+This concludes the proof of the proposition.
+
+\proclaim {Corollary 5}. Let $1<p<\infty$, $1/p+1/q=1$ and suppose the
+inequality $(2)$ holds. Let $-1<c<1$ and $\gamma$ and $G$ be the
+exponents of $\vert x-c \vert$ in $w$ and $v$, respectively. Then, there exists a
+positive constant $C$ such that $\forall n \in \N$
+$$
+   \Vert K_n(x,c) \Vert _{L^q(v^{-q}w)} \leq \cases { C n^{\gamma /2} &if\quad
+   $G < (\gamma +1)(1/2-1/p)+1/2$ \cr
+   C n^{\gamma /2}(\log n)^{1/q} &if\quad $G = (\gamma +1)(1/2-1/p)+1/2$ \cr
+   C n^{(\gamma +1)/p+G} &if\quad $(\gamma +1)(1/2-1/p)+1/2 < G$ \cr}
+$$
+
+\proof Just apply proposition $4$ to the weight $v^{-1}$ and keep in mind
+the equality $1/2 - 1/p = 1/q - 1/2$.
+
+\medskip
+
+The following result is just what we need to extend theorem $1$ to the general
+case $\gamma_i > -1$.
+
+\proclaim {Corollary 6}. Let $1 < p < \infty$, $1/p + 1/q = 1$. Suppose the
+inequalities $(2)$, $(3)$ and $(4)$ hold. Let $-1<c<1$. Then, there exists a
+positive constant $C$ such that $\forall n \geq 0$:
+$$
+   \Vert K_n(x,c) \Vert _{L^p(u^pw)} \Vert K_n(x,c) \Vert _{L^q(v^{-q}w)}
+   \leq C K_n(c,c).
+$$
+
+\proof It is a simple consequence of proposition $4$, corollary $5$ and the
+estimate $(9)$. The only thing we must do is to consider each case in these
+results separately.
+
+\medskip
+
+{\noindent \bf Note.} Although it will not be used in what follows, corollary
+$6$ also holds when $c= \pm 1$. The proof is similar: starting from other
+expressions for $K_n(x,\pm 1)$, analogous results to proposition $4$ and
+corollary $5$ can be obtained, and then corollary $6$ follows.
+
+\medskip
+
+We are now ready to prove our main result:
+
+\medskip
+
+{\it Proof of theorem 2}. a) Let us assume first that the inequalities (2), (3)
+and (4) hold. We prove that the operators $S_n$ are uniformly bounded by
+induction on the number of negative exponents $\gamma_i$. If $\gamma_i \geq 0$
+$\forall i$, the result is true, as we saw before (theorem $1$). Now, suppose
+there exist $k$ negative exponents $\gamma_i$, with $k>0$, and the result is
+true for $k-1$. Let $c \in (-1,1)$ be a point with a negative exponent $\gamma$.
+Let us remember the formula $(5)$:
+$$
+   K_n(x,y) = (x-c) (y-c) K_{n-1}^c(x,y) + {K_n(x,c) K_n(c,y) \over K_n(c,c)}.
+$$
+We define the operators:
+$$
+   T_nf(x) = \int_{-1}^1 {K_n(x,c) K_n(c,y) \over K_n(c,c)}f(y)w(y)dy,
+$$
+$$
+   R_nf(x) = \int_{-1}^1 (x-c)(y-c)K_{n-1}^c(x,y)f(y)w(y)dy.
+$$
+Then, $S_n = T_n + R_n$. We are going to study firstly the operators $T_n$:
+
+$$
+   T_nf(x) = {K_n(x,c) \over K_n(c,c)} \int_{-1}^1 K_n(c,y)f(y)w(y)dy;
+$$
+thus
+$$
+   \Vert T_nf \Vert_{L^p(u^pw)} \leq {\int_{-1}^1 \vert K_n(c,y)\vert v(y)^{-1}
+   \vert f(y)\vert v(y) w(y)dy \over K_n(c,c)}\ \Vert K_n(x,c) \Vert_{L^p(u^pw)}
+$$
+$$
+   \leq {\Vert K_n(x,c) \Vert_{L^p(u^pw)} \Vert K_n(x,c)v(x)^{-1} \Vert_{L^q(w)}
+   \over K_n(c,c)}\ \Vert fv \Vert_{L^p(w)}
+$$
+$$
+   = {\Vert K_n(x,c) \Vert_{L^p(u^pw)} \Vert K_n(x,c) \Vert_{L^q(v^{-q}w)}
+   \over K_n(c,c)}\ \Vert f \Vert_{L^p(v^pw)}.
+$$
+From corollary $6$ it follows
+$$
+   \Vert T_nf \Vert_{L^p(u^pd\mu)} \leq C \Vert f \Vert_{L^p(v^pd\mu)}\
+   \forall f \in L^p(v^pd\mu),\ \forall n \in \N.
+$$
+So, we only need to prove the same bound for the operators $R_n$. But, if we
+denote by $S_n^c$ the partial sums of the Fourier series with respect to the
+measure $(x-c)^2w(x)dx$, it turns out that
+$$
+   R_nf(x) = (x-c) \int_{-1}^1(y-c) K_{n-1}^c(x,y) f(y) w(y) dy =
+   (x-c) S_{n-1}^c({f(y) \over y-c},x),
+$$
+whence
+$$ \eqalign{
+   &\Vert R_nf \Vert _{L^p(u^pw)} \leq C \Vert f \Vert _{L^p(v^pw)}
+   \ \forall f \in L^p(v^pw),\ \forall n \in \N
+   \cr
+   &\iff \Vert (x-c) S_{n-1}^c({f(y) \over y-c},x) \Vert _{L^p(u^pw)} \leq C 
+   \Vert f \Vert _{L^p(v^pw)}\ \forall f \in L^p(v^pw),\ \forall n \in \N
+   \cr
+   &\iff \Vert (x-c) S_{n-1}^cg(x) \Vert _{L^p(u^pw)} \leq C
+   \Vert (x-c)g \Vert_{L^p(v^pw)}\ \forall g \in L^p(\vert x-c \vert^pv^pw),
+   \ \forall n \in \N
+   \cr
+   &\iff \Vert S_{n-1}^cg(x) \Vert _{L^p(\vert x-c \vert^pu^pw)} \leq C
+   \Vert g \Vert_{L^p(\vert x-c \vert^pv^pw)}
+   \ \forall g \in L^p(\vert x-c \vert^pv^pw),\ \forall n \in \N
+   \cr
+   &\iff \Vert S_{n-1}^cg(x) \Vert _{L^p(\tilde u^p(x-c)^2w)} \leq C
+   \Vert g \Vert_{L^p(\tilde v^p(x-c)^2w)}
+   \ \forall g \in L^p(\tilde v^p(x-c)^2w),\ \forall n \in \N,
+   }
+$$
+where $\tilde u(x) = \vert x-c \vert ^{1-2/p}u(x)$ and $\tilde v(x) = \vert x-c \vert
+^{1-2/p}v(x)$.
+
+Therefore, we must prove the boundedness of the partial sums $S_n^c$ with the
+pair of weights $(\tilde u,\tilde v)$. But the Fourier series we are considering
+now corresponds to the Jacobi generalized weight $(x-c)^2w(x)$, which has only
+$k-1$ negative exponents $\gamma_i$, since on the point $c$ the exponent is
+$\gamma+2>1$. By hypothesis, the theorem holds in this case and we only have to
+see that the conditions in the statement hold for the weights
+$(x-c)^2w(x)$, $\vert x-c \vert^{1-2/p}u(x)$ and $\vert x-c \vert ^{1-2/p}v(x)$.
+
+Except for the point $c$, these weights have the same exponents as $w$, $u$ and
+$v$. Thus, those conditions are the same and therefore they are satisfied. At
+the point $c$, the exponents are, respectively: $\gamma + 2$,  $g + 1 - 2/p$, 
+$G + 1 - 2/p$.
+
+So, we have to check the inequalities
+$$
+   (G + 1 - {2 \over p}) + (\gamma + 2 + 1)({1 \over p}-{1 \over 2})
+   < \min \{{1 \over 2}, {\gamma + 2 + 1 \over 2}\},
+$$
+$$
+   (g + 1 - {2 \over p}) + (\gamma + 2 + 1)({1 \over p}-{1 \over 2})
+   > - \min \{{1 \over 2}, {\gamma + 2 + 1 \over 2}\}
+$$
+and
+$$
+   G + 1 - {2 \over p} \leq g + 1 - {2 \over p}.
+$$
+It is clear, from our hypothesis, that they are satisfied. Consequently, we have
+$$
+   \Vert S_{n-1}^cg(x) \Vert _{L^p(\tilde u^p(x-c)^2w)} \leq
+   C \Vert g \Vert_{L^p(\tilde v^p(x-c)^2w)}
+   \ \forall g \in L^p(\tilde v^p(x-c)^2w),\quad \forall n \in \N.
+$$
+Thus,
+$$
+   \Vert R_nf \Vert _{L^p(u^pw)} \leq C \Vert f \Vert _{L^p(v^pw)}
+   \ \forall f \in L^p(v^pw),\quad \forall n \in \N
+$$
+and
+$$
+   \Vert S_nf \Vert _{L^p(u^p\mu)} \leq C \Vert f \Vert _{L^p(v^p\mu)}
+   \ \forall f \in L^p(v^p\mu),\quad \forall n \in \N.
+$$
+
+Therefore, the result is true for $k$ negative exponents $\gamma_i$. By
+induction, it is true in general and the first part of the theorem is proved.
+
+\medskip
+
+b) Now, assume that the operators $S_n$ are uniformly bounded. Let us prove
+that (2), (3) and (4) are satisfied.
+
+From a result of M\'at\'e, Nevai and Totik ([3], theorem $1$), it follows
+$$ \eqalign{
+   u &\in L^p(d\mu);
+   \cr
+   v^{-1} &\in L^q(d\mu);
+   \cr
+   w(x)^{-1/2}(1-x^2)^{-1/4}u(x) &\in L^p(w(x)dx);
+   \cr
+   w(x)^{-1/2}(1-x^2)^{-1/4}v(x)^{-1} &\in L^q(w(x)dx).
+   \cr}
+$$
+These conditions are equivalent to $(2)$ and $(3)$. Thus, we only need to prove
+$(4)$, that is:
+$$
+   \exists C>0\ \ such\ that\ \ u \leq C v \ \ \mu - a.e.
+$$
+In fact, we are going to show that the same $C$ of the hypothesis works. First
+of all, let us note that from the hypothesis it follows
+$$
+   \Vert R \Vert _{L^p(u^pd\mu)} \leq C \Vert R \Vert _{L^p(v^pd\mu)} \eqno(14)
+$$
+for every polynomial $R$, since $S_nR=R$ if $n$ is big enough.
+
+It is clear that there exists a polynomial $Q$ such that both $\vert Q
+\vert^pu^p$ and $\vert Q \vert^pv^p$ are $\mu$-integrable. Let us denote
+$u'=\vert Q \vert^pu^p$ and $v'=\vert Q \vert^pv^p$. Then, for every $f \in
+L^p(u'd\mu) \cap L^p(v'd\mu)$ there exists a sequence of polynomials $R_n$ such
+that $$
+   \lim_{n\to\infty} \int_{-1}^1 \vert f-R_n \vert ^p (u'+v')d\mu = 0.
+$$
+From this and $(14)$ we obtain
+$$
+   \int_{-1}^1 \vert f \vert ^p u'd\mu =
+   \lim_{n\to\infty} \int_{-1}^1 \vert R_nQ \vert ^p u^p d\mu \leq
+   C^p \lim_{n\to\infty} \int_{-1}^1 \vert R_nQ \vert ^p v^p d\mu =
+   C^p \int_{-1}^1 \vert f \vert ^p v'd\mu.
+$$
+Taking now $E=\{x \in [-1,1] ; u(x) > Cv(x)\}$ and $f$ the characteristic
+function on $E$, we deduce $\mu(E)=0$.
+
+\bigskip
+
+\centerline {\bf REFERENCES}
+
+\bigskip
+
+\frenchspacing
+
+\art 1;V. M. Badkov; Convergence in the mean and almost everywhere of Fourier
+series in polynomials orthogonal on an interval; Math. USSR Sb.; 24;1974;
+223--256.
+
+\art 2;R. Hunt, B. Muckenhoupt and R. Wheeden; Weighted norm inequalities for
+the conjugate function and Hilbert transform; Trans. Amer. Math. Soc.;
+176;1973; 227--251.
+
+\art 3;A. M\'at\'e, P. Nevai and V. Totik; Necessary conditions for weighted
+mean convergence of Fourier series in orthogonal polynomials; J. Approx.
+Theory; 46;1986; 314--322.
+
+\art 4;A. M\'at\'e, P. Nevai and V. Totik; Extensions of Szeg\H o's
+Theory of Orthogonal Polynomials. II; Constr. Approx.; 3;1987; 51--72.
+
+\art 5;B. Muckenhoupt; Mean convergence of Jacobi series; Proc. Amer. Math.
+Soc.; 23;1969; 306--310.
+
+\art 6;C. J. Neugebauer; Inserting $A_p$ weights; Proc. Amer. Math. Soc.;
+87;1983; 644--648.
+
+\item {\bf [7]} {\rm P. Nevai, {\it \lq \lq Orthogonal Polynomials"}, Memoirs of
+the Amer. Math. Soc., vol.~18, n.~213, Providence, RI, U.S.A., 1979.}
+
+\art 8;H. Pollard; The mean convergence of orthogonal series. II; Trans. Amer.
+Math. Soc.; 63;1948; 355--367.
+
+\art 9;E. A. Rahmanov; On the asymptotics of the ratio of orthogonal
+polynomials; Math. USSR. Sb.; 32;1977; 199--213.
+
+\item {\bf [10]} {\rm J. L. Varona, {\it \lq \lq Convergencia en $L^p$ con pesos
+de la serie de Fourier respecto de algunos sistemas ortogonales"}, Doctoral
+dissertation, Sem. Mat. Garc\'\i a de Galdeano, sec.~2, n.~22, Zaragoza, Spain,
+1989.}
+
+
+\bye

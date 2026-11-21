@@ -1,0 +1,940 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Some conjectures on Wronskian and Casorati determinants
+% of orthogonal polynomials,
+% by
+% A. J. Dur\'an, M. P\'erez and J. L. Varona
+%
+% email: duran@us.es, mperez@unizar.es, jvarona@unirioja.es
+%
+% COMIENZO DE ESCRITURA: 2013/09/26
+% LAST MODIFICATION: 2014/05/13
+% LAST MODIFICATION (after galley proofs): 2014/12/30
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass[10pt,leqno]{article}
+\documentclass[10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb} % For \varsubsetneq
+
+%%% ONLY FOR DRAFTS:
+%\usepackage[latin1]{inputenc} 
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{color}
+
+%\usepackage{hyperref}
+
+%%% ONLY FOR DRAFTS (put it after hyperref)
+%\usepackage{backref}
+%\usepackage{refcheck}
+
+%%% \allowdisplaybreaks es una orden de amsmath que permite cortes de
+%%% p\'agina dentro de una f\'ormula de varias l\'ineas (align, multline, gather, ...)
+\allowdisplaybreaks[3]
+%%% Escala de 1 (permite algo) a 4 (ninguna traba para cortar).
+%%% Si en alg\'un sitio queremos impedir un posible corte, usar \\* en vez de \\
+
+
+
+%% NUMERATION OF THEOREMS-LIKE IN OUR ORIGINAL MANUSCRIPT:
+%----------------------------------------
+%\theoremstyle{plain}
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{conjecture}{Conjecture}
+%\setcounter{conjecture}{-1}% To start numbering by 0
+%\newtheorem{subconj}{Conjecture}% Subconjecture associated to a conjecture 
+%
+%\theoremstyle{definition}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem*{remark}{Remark}
+%
+%% IMPORTANT:
+%\numberwithin{subconj}{conjecture} % To include the number of the previous conjecture
+%----------------------------------------
+
+%% NUMERATION OF THEOREMS-LIKE IN THE PUBLISHED PAPER:
+%----------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{subconj}[theorem]{Conjecture}% Subconjecture associated to a conjecture 
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+%----------------------------------------
+
+\numberwithin{equation}{section} % To include the number of section
+
+\newcommand\Ad{\mathcal{A}}
+\newcommand\W{\mathcal{W}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\NN{\mathbb{N}}
+\newcommand\M{\mathfrak{M}}
+\newcommand\supp{\operatorname{supp}}
+\newcommand\sign{\operatorname{sign}}
+\newcommand\rank{\operatorname{rank}}
+
+\title{Some conjectures on Wronskian and Casorati determinants of orthogonal polynomials%
+\footnote{\textbf{THIS PAPER HAS PUBLISHED IN:}
+\textit{Experimental Mathematics} \textbf{24} (2015), 123--132.}}
+
+\author{Antonio J. Dur\'an\textsuperscript{1}, Mario P\'erez\textsuperscript{2} and Juan L. Varona\textsuperscript{3}\\[6pt]
+\small\textsuperscript{1}Departamento de An\'alisis Matem\'atico,
+Universidad de Sevilla,\\[-2pt]
+\small 41080 Sevilla, Spain. Email: {duran@us.es}\\[6pt]
+\small\textsuperscript{2}Departamento de Matem\'aticas and IUMA,
+Universidad de Zaragoza,\\[-2pt]
+\small 50009 Zaragoza, Spain. Email: {mperez@unizar.es}\\[6pt]
+\small\textsuperscript{3}Departamento de Matem\'aticas y
+Computaci\'on, Universidad de La Rioja,\\[-2pt]
+\small 26004 Logro\~no, Spain. Email: {jvarona@unirioja.es}}
+
+\date{}
+
+
+%%%%%%%%%
+\begin{document}
+%%%%%%%%%
+
+% To completely avoid underfulls and overfulls in this manuscript:
+\sloppy
+
+%%%%%%%%%
+\maketitle
+%%%%%%%%%
+
+\begin{abstract}
+In this paper we conjecture some regularity properties for the zeros of Wronskian and Casorati determinants whose entries are orthogonal polynomials.
+These determinants are formed by choosing orthogonal polynomials whose degrees run on a finite set $F$ of nonnegative integers.
+The case when $F$ is formed by consecutive integers was studied by Karlin and Szeg\H{o}.
+
+2010 Mathematics Subject Classification: Primary 42C05; Secondary 15B05, 26C10.
+
+Keywords: Orthogonal polynomials, Wronskian determinants, Casorati determinants, number of zeros, conjectures.
+\end{abstract}
+
+%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%
+
+Wronskian and Casorati determinants whose entries are orthogonal polynomials have been considered in the literature from long time ago. For instance,
+Karlin and Szeg\H{o} considered such determinants in their celebrated paper \cite{KS}, devoted to extending Tur\'an's inequality for Legendre polynomials \cite{Tu} to Hankel determinants whose entries are ultraspherical, Laguerre and Hermite  polynomials (see, also, \cite{KMc}, \cite{DD}, \cite{Is}, \cite{IL}, \cite{FHV}, \cite{FZ}).
+
+Wronskian and Casorati determinants whose entries are classical orthogonal polynomials are nowadays receiving increasing interest because of their role in the construction of the so-called exceptional  and exceptional discrete polynomials. Exceptional polynomials $p_n$, $n\in X \varsubsetneq \NN$, are complete orthogonal polynomial systems with respect to a positive measure which in addition
+are eigenfunctions of a second order differential operator.
+They extend the  classical families of Hermite, Laguerre and Jacobi. The most apparent difference between classical polynomials and exceptional polynomials
+is that the exceptional families have gaps in their degrees, in the
+sense that not all degrees are present in the sequence of polynomials. In the same way, exceptional discrete  polynomials are complete orthogonal polynomial systems with respect to a positive measure which in addition are eigenfunctions of a second order difference operator, extending the discrete classical families of Charlier, Meixner, Krawtchouk and Hahn.
+The last few years have seen a great deal of activity in the area of exceptional polynomials (see \cite{du1}, \cite{du2}, \cite{GUKM1}, \cite{GUGM}, \cite{STZ}, and the references therein).
+
+It turns out that the regularity of the second order differential operator associated to exceptional polynomials (no singularities in the operator's domain) is very much related with the zeros of certain Wronskians constructed from  classical  polynomials. And the same role is played by Casorati determinants constructed from  classical discrete polynomials in relation with the regularity of the second order difference operator associated to exceptional discrete polynomials.
+
+The purpose of this paper is to conjecture some regularity properties for the zeros of Wronskian and Casorati determinants whose entries are orthogonal polynomials. These conjectures are displayed in Sections~\ref{sec:Wronskians} (Wronskian) and~\ref{sec:Casorati} (Casorati), while in Section~\ref{sec:Discussion} we discuss all the evidences we have found to give support to these conjectures.
+
+%%%%%%%%%
+\section{Conjectures on Wronskians}
+\label{sec:Wronskians}
+%%%%%%%%%
+
+Along this paper, $\M _K$ denotes the set of positive measures $\mu$ on $\RR$
+with finite moments of order $i$, $0\le i\le 2K$, so that we can
+integrate polynomials of degree less than or equal to $2K$ with
+respect to $\mu$. We also assume that $\mu$ has at least $2K$
+points in its support. Hence, each measure $\mu \in \M_K$ has
+associated a sequence of polynomials $(p_n)_{n=0}^K$, $p_n$
+of degree $n$, orthogonal with respect to $\mu$ and with positive norm. We normalize the
+sequence $(p_n)_{n=0}^K$ by assuming that the leading coefficient
+of each $p_n$ is equal to~$1$.
+
+From now on, $F$ will denote a finite set of nonnegative integers.
+We will write $F=\{ f_1,\dots, f_k\}$, with $f_i<f_{i+1}$.
+Hence $k$ is the number of elements of $F$ and $f_k$ is the maximum element of $F$.
+A finite set of (nonnegative) consecutive integers will be called a segment.
+
+Given a finite set $F$ of nonnegative integers and a measure $\mu\in \M _{\max F}$, we consider the $k\times k$ Wronskian $W_F^\mu$ defined by
+\begin{equation}\label{defwrons}
+   W_F^\mu (x)=|p_{f_i}^{(j-1)}(x)|_{i,j=1,\dots, k}.
+\end{equation}
+To simplify the notation, we sometimes write $W_F=W_F^\mu$.
+
+% In \cite{KS}, Karlin and Szeg\H{o} studied the zeros of these Wronskian determinants when $F$ is a segment. 
+% More precisely, they proved the following theorem:
+
+Karlin and Szeg\H{o} studied the zeros of these Wronskian determinants when $F$ is a segment. 
+More precisely, they proved the following theorem (see \cite{KS}):
+
+%%%%%%%%%
+\begin{theorem}[Theorems 1 and 2 of~\cite{KS}]
+\label{KST12}
+Given the segment $F_n=\{n,\allowbreak n+1,\allowbreak\dots,\allowbreak n+k-1\}$, where $n$ is a nonnegative integer, then:
+\begin{enumerate}
+\item If $k$ is even the Wronskian $W_{F_n}^\mu$ has no zeros in $\RR$.
+\item If $k$ is odd the Wronskian $W_{F_n}^\mu$ has exactly $n$ simple zeros in~$\RR$. Moreover, the zeros lie in the convex hull of $\supp\mu$, and the zeros of $W_{F_n}$ separate the zeros of $W_{F_{n+1}}$.
+\end{enumerate}
+\end{theorem}
+
+Karlin and Szeg\H{o}'s proof for this result shows that, when $F$ is a segment, this regularity for the zeros of the Wronskian $W_F^\mu$ is a relative of the usual regularity properties for the zeros of a sequence of orthogonal polynomials  with respect to a positive measure.
+
+In this section, we conjecture some regularity properties for the zeros of the Wronskian $W_F^\mu$ when $F$ is not a segment.
+
+Using standard determinantal techniques, it is not difficult to see that,
+for any set $F$, the Wronskian $W_F^\mu$ is a polynomial of degree
+\begin{equation}\label{degWf}
+\deg W^\mu _F=\sum_{f\in F}f-\frac{k(k-1)}{2},
+\end{equation}
+and leading coefficient equal
+to $\prod_{1\le i<j\le k}(f_j-f_i)$. Hence,
+neither the degree nor the
+leading coefficient of the Wronskian $W_F^\mu$ depend on the
+measure~$\mu$. On the other hand, with the normalization of the
+set $F$, the leading coefficient of $W_F^\mu$ is always positive.
+
+Our first conjecture is related to the location of the zeros of $W_F^\mu$. We guess that Karlin and Szeg\H{o}'s result on the zero location for the Wronskian of segments is true for any finite set $F$ of nonnegative integers.
+
+%%%%%%%%%
+\begin{conjecture}
+Given a finite set $F$ of nonnegative integers and a measure $\mu\in \M _{\max F}$, the real zeros of the Wronskian $W_F^\mu$ (if any) always lie in the convex hull of $\supp \mu$.
+\end{conjecture}
+
+To study the number of real zeros of the Wronskian $W_F^\mu$, we have first to clarify how to count the zeros of a Wronskian. Denote by $\W _F^\mu$ the Wronskian matrix  $\W_F^\mu (x)=(p_{f_i}^{(j-1)}(x))_{i,j=1,\dots, k}$. From this definition, it follows at once that  $x_0$ is  a zero of the Wronskian $W_F^\mu$ if and only if $0$ is an eigenvalue of  $\W_F^\mu (x_0)$.
+
+\begin{definition}\label{defgm}
+We  define the geometric multiplicity of a zero $x_0$ of the Wronskian $W_F^\mu$ as the geometric multiplicity of $0$ as an eigenvalue of the $k \times k$ matrix $\W_F^\mu (x_0)$. That is, the geometric multiplicity of $x_0$ is $k-\rank \W_F^\mu (x_0)$.
+\end{definition}
+
+We have the following straightforward lemma.
+
+\begin{lemma}
+The geometric multiplicity of a zero $x_0$ of the Wronskian $W_F^\mu$ is less than or equal to its usual multiplicity. In particular, if $x_0$ is a simple zero of $W_F^\mu$ then its geometric multiplicity is~$1$.
+\end{lemma}
+
+According to this lemma, for simple zeros there is no difference between the geometric and the usual multiplicity. For multiple zeros the difference can be quite large. For instance, take a symmetric measure~$\mu$. This means that each orthogonal polynomial $p_{2n+1}(x)$, $n\ge 0$, is an odd function, and hence $0$ is a root of $p_{2n+1}^{(2j)}(x)$, $j\ge 0$. Take now  a set $F$ formed by $k$ odd numbers. A simple computation shows that the multiplicity of $0$ as a root of $W_F^\mu$ is at least  $\binom{k+1}{2}$; on the other hand, its geometric multiplicity is at most $k-1$.
+
+We now introduce the so-called Wronskian zero counting set for~$F$.
+
+%%%%%%%%%
+\begin{definition}
+Let $F$ be a finite set of nonnegative integers. The Wronskian zero counting set for $F$, denoted by $Z_F$, is formed by all nonnegative integers~$l$ for which there exists a measure $\mu\in \M _{\max F}$ such that the Wronskian $W_F^\mu$ has exactly $l$ real zeros, counted according to their geometric multiplicities (see Definition~\ref{defgm}).
+\end{definition}
+
+Since $\deg W_F=\sum_{f\in F}f-\frac{k(k-1)}{2}$, we trivially have
+\[
+  Z_F\subset \bigg\{0,1,\dots, \sum_{f\in F}f-\frac{k(k-1)}{2}\bigg\}.
+\]
+
+The key concept to study the Wronskian zero counting set $Z_F$ is that of admissible sets. In order to define the admissibility of a set $F$, we first need to consider the segment decomposition of~$F$:
+
+%%%%%%%%%
+\begin{definition}
+%\label{defsd}
+Given a finite set of nonnegative integers $F$, the segment $\{0,1,\allowbreak 2,\dots,\allowbreak \max F\}$ has a unique decomposition of the following form:
+\[
+   \{0,1,2,\dots,\max F\}
+   = X_0 \cup Y_1 \cup X_1 \cup Y_2 \cup X_2 \cup
+   \dotsb \cup Y_{g_F} \cup X_{g_F},
+\]
+where $X_0$ and $X_i, Y_i$, $i=1,\dots, g_F$, satisfy
+\begin{enumerate}
+\item $X_0 = \emptyset$ if $0 \notin F$; otherwise, $0 \in X_0$ and $X_0$ is a segment;
+\item all $X_i$ and $Y_i$, $i = 1, \dots g_F$, are nonempty segments (that is, they are formed by consecutive numbers);
+\item $F = X_0 \cup X_1 \cup \dotsb \cup X_{g_F}$;
+\item $Y_i\cap F=\emptyset$, $i=1,\dots,g_F$;
+\item $1+\max Y_i=\min X_i$, $1+\max X_i=\min Y_{i+1}$.
+\end{enumerate}
+The segments $X_i$, $i=0,\dots,g_F$, will be called the segment decomposition of $F$, while the segments $Y_i$, $i=1,\dots,g_F$,
+will be called the complementary segment decomposition of~$F$. The number $g_F$ will be called the genre of~$F$.
+
+In other words: $Y_i$ are the gaps in $F$, $X_i$ are the maximal segments in $F$, and we start at $X_0$ if $0 \in F$, at $X_1$ otherwise.
+\end{definition}
+
+All the segments $X_0$, $Y_1$, $X_1$, \dots, $Y_{g_F}$, $X_{g_F}$ are pairwise disjoint.
+
+%%%%%%%%%
+\begin{definition}
+A finite set of nonnegative integers $F$ is called admissible if  each segment $X_i$, $i=1,\dots, g_F$, in the segment decomposition of $F$ has an even number of elements. Notice that $X_0$ is not required to have an even number of elements.
+\end{definition}
+
+It is easy to see that admissible sets $F$ are also characterized from the following property: $\prod_{f\in F}(x-f)\ge 0$ for any nonnegative integer~$x$.
+This concept of admissibility has appeared several times in the literature. Relevant to this paper are \cite{Kr} and \cite{Ad}, because of the relationship with zeros of certain Wronskians. Indeed, consider a second order differential operator $T$ of the form $T=-d^2/dx^2+U$. Write $\phi_n$, $n\ge 0$, for a sequence of eigenfunctions for $T$, and form the Wronskian $\Omega_F^T(x)=|\phi_{f_l}^{(j-1)}(x)|_{l,j=1}^k$.
+For operators defined on a half-line, and under certain boundary conditions, Krein proved \cite{Kr} that $F$ is admissible if and only if $\Omega _F^T$ does not vanish on the real line. A similar result was proved by Adler \cite{Ad} for operators defined on a bounded interval (although Adler's result extends easily  to the whole real line and, in fact, he considered in \cite{Ad} the case of Wronskian determinants of Hermite polynomials). Admissibility appeared also in \cite{KS} in connection with the sign of some Casorati determinants, though in a subordinate form.
+
+Our next conjecture can be considered an improvement of part (1) in Theorem~\ref{KST12} of Karlin and Szeg\H{o} above.
+
+%%%%%%%%%
+\begin{conjecture}
+\label{c-adm}
+A finite set $F$ of nonnegative integers is admissible if and only if $Z_F=\{0\}$. In other words, if and only if
+the Wronskian $W_F^\mu$ has no zeros in $\RR$ for any measure  $\mu\in \M _{\max F}$.
+\end{conjecture}
+
+When $F$ is not admissible, our conjecture is that the structure of $Z_F$ is somehow determined by the distance of $F$ to the admissible sets. This distance is defined as follows.
+
+We will write $\Ad$ for the set formed by all admissible sets of nonnegative integers.
+
+%%%%%%%%%
+\begin{definition}
+For a finite set $F$ of nonnegative integers we define the distance of $F$ to
+$\Ad$ by
+\[
+   d(F,\Ad) = \min \big\{l: \exists x_1, \dots, x_l \notin F
+   \text{ such that }
+   F\cup \{x_1,\dots, x_l\} \in \Ad \big\}.
+\]
+\end{definition}
+
+Some easy consequences of this definition are included in the next lemma.
+
+%%%%%%%%%
+\begin{lemma}
+\label{lem1}
+Let $F$ be a finite set of nonnegative integers. Then we have
+\[
+   d(F,\Ad) = \min \big\{l: \exists x_1, \dots, x_l \in F
+   \text{ such that }
+   F\setminus \{x_1,\dots, x_l\} \in \Ad \big\}.
+\]
+Moreover, $d(F,\Ad) = |\{l \geq 1: X_l \text{ has an odd number of elements} \}|$,
+where $F = X_0 \cup X_1 \cup \dotsb \cup X_{g_F}$ is the segment decomposition of~$F$.
+\end{lemma}
+
+According to this Lemma~\ref{lem1}, if $d(F,\Ad)=m$, there are $m$ positive integers $0<l_1<l_2<\cdots <l_m\le g_F$ such that $X_{l_i}$ are the only odd segments in the segment decomposition of $F$ (apart, possibly, from~$X_0$). We set $l_0=0$ and write
+\begin{equation}\label{defxi}
+\xi _j=\sum_{i=l_{j-1}+1}^{l_j}|Y_i|,\quad j=1,\dots,m,
+\end{equation}
+where $\{Y_j\}$ is the complementary segment decomposition of~$F$.
+
+\begin{definition}\label{clg} 
+For a finite set of nonnegative integers $F$ with $d(F,\Ad)=m$, the numbers $\xi _i$, $i=1,\dots, m$, defined by~\eqref{defxi} are called the characteristic gap lengths of~$F$.
+\end{definition}
+
+The next conjecture characterizes the sets $F$ with $Z_F=\{m\}$ for some
+$m \geq 1$ as those whose distance to the admissible sets is just~$1$.
+
+%%%%%%%%%
+\begin{conjecture}
+\label{c-dist1}
+A finite set $F$ of nonnegative integers satisfies $d(F,\Ad)=1$ if and only if $Z_F$ is a singleton other than~$\{0\}$.
+\end{conjecture}
+
+When $d(F,\Ad)=1$, we can also conjecture the value of the unique element of $Z_F$ in terms of the characteristic gap lengths
+of~$F$ (see Definition~\ref{clg}).
+
+%%%%%%%%%
+\begin{subconj}
+\label{sc-dist1}
+If $d(F,\Ad)=1$ then
+\[
+   Z_F=\{\xi_1\}.
+\]
+\end{subconj}
+
+We will prove in Section~\ref{sec:Discussion} (see Theorem~\ref{c1-c2}) that conjecture~\ref{sc-dist1} is a consequence of conjeture~\ref{c-adm}.
+
+The structure of $Z_F$ is more complicated when $d(F,\Ad)\ge 2$. Indeed, according to Conjectures~\ref{c-adm} and~\ref{c-dist1}, the number of zeros of $W_F^\mu$ does not depend on $\mu$ when $d(F,\Ad)$ equals $0$ or $1$. This situation changes when $d(F,\Ad)\ge 2$. Anyway, there seems to be still some regularity in the structure of~$Z_F$.
+
+\begin{conjecture}\label{c-ZFd}
+Let $F$ be a finite set of nonnegative integers satisfying $d(F,\Ad)=m\ge 2$. Then
+\begin{enumerate}
+\item $Z_F$ is formed either by consecutive odd numbers or by consecutive even numbers, depending on whether $\deg W_F$ (see~\eqref{degWf}) is odd or even, respectively;
+\item $d(F,\Ad)\le |Z_F|\le \sum_{f\in F}f-\frac{k(k-1)}{2}$.
+\end{enumerate}
+\end{conjecture}
+
+When one counts multiple zeros according to the usual multiplicity, the number of real zeros of a polynomial with real coefficients has always the  same parity as the degree of the polynomial, but this no longer holds when the geometric multiplicity is used. Since we are using geometric multiplicity, it is not clear at all that $Z_F$ is formed by numbers with the same parity as $\deg W_F$, and this statement is hence a genuine part of the conjecture.
+
+According to Conjecture~\ref{c-ZFd}, the set $Z_F$ is completely described by its maximum and minimum values, $\max Z_F$ and $\min Z_F$.
+
+For $m=2$, our conjecture for these values is:
+
+%%%%%%%%%
+\begin{subconj}
+\label{sc-ZFd2}
+If $d(F,\Ad)=2$, then
+\begin{align*}
+   \max Z_F &= 2 \xi_1 + \xi_2,
+   \\
+   \min Z_F &= \xi_2.
+\end{align*}
+\end{subconj}
+
+We will prove in Section~\ref{sec:Discussion} (see Theorem~\ref{dFA2}) that the bound
+$\max Z_F \le 2 \xi_1 + \xi_2$ in Conjecture~\ref{sc-ZFd2} is a consequence of Conjecture~\ref{c-adm}.
+
+Notice that in this case the set $Z_F$ depends only on the characteristic gap lengths~$\xi_j$, $j=1,2$, of~$F$ (see Definition~\ref{clg}). This is also the case when $d(F,\Ad)$ equals $0$ or $1$. Is this dependence of $Z_F$ only on the characteristic gap lengths of $F$ true for all finite sets $F$? If the answer if yes, it would be quite a surprising result. Our numerical experiments are not conclusive enough neither to propose this result as a conjecture nor to forget~it.
+
+Our last conjecture is about the zeros of Wronskians whose entries belong to the most important families of orthogonal polynomials.
+
+\begin{conjecture}\label{c-ZFdclas}
+Let $F$ be a finite set of nonnegative integers with  $d(F,\Ad)=m$ and write $\xi_j$, $j=1,\dots,m$, for its characteristic gap lengths (see Definition~\ref{clg}). If $\mu$ is any of the classical weights of Hermite, Laguerre or Jacobi, then the number of zeros of $W_F^\mu$, counted according to their geometric multiplicities (see Definition~\ref{defgm}) is always
+\[
+  \sum_{j=1}^{[(m+1)/2]}\xi _{m-2j+2}.
+\]
+\end{conjecture}
+
+In particular, Conjecture~\ref{c-ZFdclas} is saying that the set $W_F^\mu$ does not depend on the parameters of the classical orthogonal polynomials. This is not true even if we change the classical families by any of the classical discrete families, which in many senses are so closely related. For instance, if we consider the Charlier measure
+\[
+  \mu=\sum_{n=0}^\infty \frac{a^n}{n!} \,\delta _n,\quad a>0,
+\]
+then the set $W_F^\mu$ depends on the parameter~$a$.
+(For  results concerning zeros of classical orthogonal polynomials see \cite[Ch.~VI]{Sz}, \cite{Kt1,Kt2}).
+
+After this paper was accepted for publication, we earned that this conjecture has been partially proved in~\cite{GFGU14}.
+
+%%%%%%%%%
+\section{Conjectures on Casorati determinants}
+\label{sec:Casorati}
+%%%%%%%%%
+
+In this section we denote by $\tilde \M _K$ the subset of $\M_K$ formed by
+all discrete measures of the form
+\begin{equation}\label{dismes}
+\mu =\sum _{n=0}^\Upsilon \alpha _n \delta _{a_n},
+\end{equation}
+where $\Upsilon$ is either a positive integer or infinity and, for every $n$, $\alpha _n>0$, $a_n \in \RR$ and $a_n<a_{n+1}$.
+
+Given two finite sets $F$ and $G$ of nonnegative integers  with $k$-elements satisfying
+\begin{itemize}
+\item $F=\{ f_1,\dots, f_k\}$, $f_i<f_{i+1}$,
+\item $G=\{ g_1,\dots, g_k\}\subseteq \{0,1,\dots,\Upsilon\}$, $g_i<g_{i+1}$,
+\end{itemize}
+and a discrete measure
+$\mu\in \tilde \M _{\max F}$ as in~\eqref{dismes}, we consider the $k\times k$ Casorati determinant $C_F^{G,\mu}$ defined by
+\begin{equation*}%\label{defcasg}
+   C_F^{G,\mu} =|p_{f_i}(a_{g_j})|_{i,j=1,\dots, k}.
+\end{equation*}
+Notice that the Casorati determinant $C_F^{G,\mu}$ is a number, while the Wronskian $W_F^\mu$ \eqref{defwrons} is a polynomial in~$x$.
+
+% In \cite{KS}, Karlin and Szeg\H{o} studied the sign of these Casorati determinants when $F$ is a segment. 
+% More precisely, they proved the following theorem:
+
+Karlin and Szeg\H{o} studied the sign of these Casorati determinants when $F$ is a segment. 
+More precisely, they proved the following theorem (see \cite{KS}):
+
+
+%%%%%%%%%
+\begin{theorem}[Theorem 3' of~\cite{KS}]
+%\label{KST3}
+Given the segment $F=\{m,\allowbreak m+1,\allowbreak\dots,\allowbreak m+k-1\}$, where $m$ is a nonnegative integer,
+and $k$ is an even positive integer, then the Casorati determinant $C_{F}^{G,\mu}$ is positive for any admissible set $G$ and any discrete measure $\mu\in \tilde \M_{\max F}$.
+\end{theorem}
+
+We have found examples of admissible sets $F$ and $G$ for which there exist discrete measures $\mu\in \tilde \M _{\max F}$ such that $C_F^{G,\mu}$ is negative. However, we can conjecture what can be considered a (strong) dual version of the previous theorem.
+
+%%%%%%%%%
+\begin{conjecture}
+\label{ccas}
+A finite set $F$ of nonnegative integers is admissible if and only if
+the Casorati determinant $C_F^{G,\mu}$ is positive for any segment $G$ and any discrete measure $\mu\in \tilde \M _{\max F}$.
+\end{conjecture}
+
+%%%%%%%%%
+\section{Discussion}
+\label{sec:Discussion}
+%%%%%%%%%
+
+%%%%%%%%%
+\subsection{``Logical'' evidences for the conjectures on Wronskians}
+%%%%%%%%%
+
+For any set $F$ and any measure $\mu \in \M_{\max F}$, let $Z(W^\mu_{F})$ be the number of real zeros of the Wronskian $W^\mu_{F}$ counted according to their usual multiplicity. Notice that for $Z(W^\mu_{F})$ we are counting the zeros in a different way that for $Z_F$, where the geometric multiplicity is used (see Definition~\ref{defgm}).
+
+%%%%%%%%%
+\begin{lemma}
+\label{lemaf1f2}
+Let $F_1$ and $F_2$ be two sets such that $F_1 = (F_1 \cap F_2) \cup \{p\}$, $F_2 = (F_1 \cap F_2) \cup \{q\}$ for some integers $p < q$, $p \notin F_2$, $q \notin F_1$. Then, for any measure $\mu \in \M_{\max F_2}$,
+\begin{equation}
+\label{z2-z1-1}
+   \left| Z(W^\mu_{F_2}) - Z(W^\mu_{F_1}) - 1 \right|
+   \leq Z(W^\mu_{F_1 \cup F_2}) + Z(W^\mu_{F_1 \cap F_2}).
+\end{equation}
+Moreover, every zero of $W^\mu_{F_1}W^\mu_{F_2}$ with multiplicity $m$ is a zero of $W^\mu_{F_1 \cup F_2} W^\mu_{F_1 \cap F_2}$ with multiplicity at least $m-1$.
+\end{lemma}
+
+%%%%%%%%%
+\begin{proof}
+The proof is based in the proof of Theorem~2 in \cite[p.~6]{KS}. We write $W_F$ instead of $W_F^\mu$ throughout the proof.
+
+Consider the Wronskian $W_{F_1\cup F_2}$. Applying Sylvester's identity (see, for instance, \cite[p.~26]{KS}) to the rows corresponding to the elements $p$ and $q$ of $F_1\cup F_2$ and the last two columns gives
+\begin{equation}
+\label{sylv}
+   W_{F_1\cup F_2} W_{F_1\cap F_2} = W_{F_1}W'_{F_2}-W'_{F_1}W_{F_2}.
+\end{equation}
+This proves the last part of the lemma: every zero of $W_{F_1}W_{F_2}$ with multiplicity $m$ is a zero of $W_{F_1 \cup F_2} W_{F_1 \cap F_2}$ with multiplicity at least $m-1$.
+Furthermore, equation~\eqref{sylv} gives
+\[
+   \left(\frac{W_{F_1}}{W_{F_2}}\right)'
+   = - \frac{W_{F_1\cup F_2} W_{F_1\cap F_2}}{W_{F_2}^2}.
+\]
+Let $\varphi$ be the greatest common divisor of $W_{F_1}$ and $W_{F_2}$, so that $W_{F_1} = \varphi g_1$, $W_{F_2} = \varphi g_2$, and $g_1$ and $g_2$ have no common zeros. Then
+\[
+   \left(\frac{g_1}{g_2}\right)'
+   = - \frac{W_{F_1\cup F_2} W_{F_1\cap F_2}}{W_{F_2}^2}.
+\]
+If $a_1 < a_2 < \dots < a_m$ are the distinct poles of the rational function $g_1/g_2$, then in each interval $(a_j,a_{j+1})$ there must be at least one zero or one critical point of $g_1/g_2$. In other words, in each interval $(a_j,a_{j+1})$ there is at least one zero of~$g_1$, $W_{F_1\cup F_2}$ or $W_{F_1\cap F_2}$. This proves that
+\begin{multline}
+\label{zg1}
+   m-1 \leq Z(g_1)
+   +
+   \left| \left\{\text{zeros of }W_{F_1 \cup F_2}
+   \text{ which are not zeros of } g_2 \right\} \right|
+   \\
+   +
+   \left| \left\{\text{zeros of }W_{F_1 \cap F_2}
+   \text{ which are not zeros of } g_2 \right\} \right|.
+\end{multline}
+Now, for each $j = 1, \dots,m$, it follows from~\eqref{sylv} that if $a_j$ is a zero of $g_2$ with multiplicity $r_j$, then it is a zero of $W_{F_1\cup F_2} W_{F_1\cap F_2}$ with multiplicity at least $r_j-1$. In other words,
+\begin{multline}
+\label{comunes}
+   Z(g_2) - m \leq
+   \left| \left\{\text{zeros of }W_{F_1 \cup F_2}
+   \text{ which are zeros of } g_2 \right\} \right|
+   \\
+   +
+   \left| \left\{\text{zeros of }W_{F_1 \cap F_2}
+   \text{ which are zeros of } g_2 \right\} \right|.
+\end{multline}
+Adding~\eqref{zg1} and~\eqref{comunes} gives
+\[
+   Z(g_2) - 1
+   \leq Z(g_1) + Z(W_{F_1 \cup F_2}) + Z(W_{F_1 \cap F_2})
+\]
+and
+\begin{equation}
+\label{mitad1}
+   Z(W_{F_2}) - 1
+   \leq Z(W_{F_1}) + Z(W_{F_1 \cup F_2}) + Z(W_{F_1 \cap F_2}).
+\end{equation}
+On the other hand, if $W_{F_1 \cup F_2} W_{F_1 \cap F_2}$ has $k$ zeros in any interval $(a_j, a_{j+1})$, then $g_1$ has at most $k+1$ zeros there. In the intervals $(-\infty,a_1)$ and $(a_m,+\infty)$ the situation is slightly different: if $W_{F_1 \cup F_2} W_{F_1 \cap F_2}$ has $k$ zeros in one of the intervals $(-\infty,a_1)$ and $(a_m,+\infty)$, then $g_1$ has at most $k$ zeros there: the reason is that $\lim\limits_{x\to\pm\infty} \frac{g_1}{g_2} = 0$. Therefore,
+\begin{multline*}
+   Z(g_1) \leq
+   \left| \left\{\text{zeros of }W_{F_1 \cup F_2}
+   \text{ which are not zeros of } g_2 \right\} \right|
+   \\
+   +
+   \left| \left\{\text{zeros of }W_{F_1 \cap F_2}
+   \text{ which are not zeros of } g_2 \right\} \right|
+   + m -1.
+\end{multline*}
+Adding~\eqref{comunes} gives now
+\[
+   Z(g_1) + Z(g_2) - m
+   \leq Z(W_{F_1 \cup F_2}) + Z(W_{F_1 \cap F_2}) + m - 1.
+\]
+Since $m \leq Z(g_2)$, this leads to
+\[
+   Z(g_1) - Z(g_2) +1
+   \leq Z(W_{F_1 \cup F_2}) + Z(W_{F_1 \cap F_2})
+\]
+and
+\[
+   Z(W_{F_1}) - Z(W_{F_2}) +1
+   \leq Z(W_{F_1 \cup F_2}) + Z(W_{F_1 \cap F_2}),
+\]
+which, together with~\eqref{mitad1}, proves~\eqref{z2-z1-1}.
+\end{proof}
+%%%%%%%%%
+
+As a particular case, the following result states that if $d(F,\Ad)=1$, moving the unique odd segment one place to the right increases the number of zeros of the Wronskian in one unit, for each measure. For each integer $k$, let $\tau_k(n) = n+k$.
+
+%%%%%%%%%
+\begin{lemma}\label{lp}
+Assume that every admissible set $F$ has $Z_F = \{0\}$.
+Let $F_1$ be such that $d(F_1,\Ad) =1$, with a segment decomposition
+\[
+   F_1 = X_0 \cup X_1 \cup \dotsb \cup X_l \cup \dotsb \cup X_{g_{F_1}},
+\]
+where for some $l$ ($1 \leq l \leq g_{F_1}$) $X_l$ is the unique odd segment apart, possibly, from $X_0$. Let
+\[
+   F_2 = X_0 \cup X_1 \cup \dotsb \cup \tau_1(X_l) \cup \dotsb \cup X_{g_{F_1}}.
+\]
+All zeros of $W_{F_1}^\mu$ are simple. Moreover, if $W_{F_1}^\mu$ has $m$ zeros for some measure $\mu \in \M_{\max F_2}$, then $W_{F_2}^\mu$ has $m+1$ zeros.
+\end{lemma}
+
+%%%%%%%%%
+\begin{proof}
+The sets $F_1$ and $F_2$ are under the hypothesis of Lemma~\ref{lemaf1f2}, and both $F_1 \cap F_2$ and $F_1 \cup F_2$ are admissible sets. Therefore,~\eqref{z2-z1-1} proves that $Z(W^\mu_{F_2}) = Z(W^\mu_{F_1}) + 1$. Since $W^\mu_{F_1 \cup F_2} W^\mu_{F_1 \cap F_2}$ has no zeros, the last part of Lemma~\ref{lemaf1f2} proves that all zeros of $W_{F_1}^\mu$ are simple.
+\end{proof}
+
+Then, the assumption that admissible sets $F$ have $Z_F=\{0\}$ proves Conjecture~\ref{sc-dist1}:
+
+%%%%%%%%%
+\begin{theorem}
+\label{c1-c2}
+Assume that every admissible set $F$ has $Z_F = \{0\}$. Then, for every set $F$ of nonnegative integers with $d(F,\Ad)=1$, the Wronskian zero counting set is
+\begin{equation}
+\label{num-m}
+  Z_F = \{\xi_1 \} .
+\end{equation}
+\end{theorem}
+
+%%%%%%%%%
+\begin{proof}
+According to Lemma~\ref{lp} the zeros of $W_F^\mu$ are simple, so the geometric and the usual multiplicity coincides, and hence we count the zeros in  $Z_F$ and $Z(W_F^\mu)$ in the same way.
+
+Since $d(F,\Ad)=1$, the segment decomposition of $F$ is of the form
+\[
+   F = X_0 \cup X_1 \cup \dotsb \cup X_l \cup \dotsb \cup X_{g_F},
+\]
+where for some $l$ ($1 \leq l \leq g_F$) $X_l$ is the unique odd segment apart, possibly, from~$X_0$.
+
+Lemma~\ref{lp} shows that $Z_F = \{m\}$ for some $m \geq 1$ if and only if the set
+\[
+   F_{\pm 1} = X_0 \cup X_1 \cup \dotsb \cup \tau_{\pm 1}(X_l) \cup
+   \dotsb \cup X_{g_F}
+\]
+has Wronskian zero counting set $Z_{F_{\pm 1}} = \{m \pm 1\}$. Moreover, $m$ is given by~\eqref{num-m} if and only if $m\pm 1$ corresponds to $F_{\pm 1}$ by the same rule. In other words, we can move the odd segment $X_l$ to the left and to the right one position.
+
+We proceed by induction on the number $g_F$ of segments. If $g_F = 1$, then either
+\[
+   F = X_1 = \{ m, m+1,\dots, m+k \}
+\]
+for some $m \geq 1$ and an even integer $k$, or
+\[
+   F = X_0 \cup X_1 = \{ 0,\dots,n \} \cup \{ m, m+1,\dots, m+k \}
+\]
+with $n+1 < m$ and an even integer $k$. In the first case, Theorem~2 of \cite[p.~6]{KS} proves that the Wronskian $W_F$ has exactly $m$ zeros. That is, $Z_F = \{m\}$, which is consistent with~\eqref{num-m}. In the second case, the set
+\[
+   F_{n+1-m} = X_0 \cup \tau_{n+1-m}(X_1)
+   = \{0,1,\dots,n+1+k\}
+\]
+has Wronskian zero counting set $Z_{F_{n+1-m}} = \{0\}$. An iterated application of Lemma~\ref{lp} shows that $Z_F = \{m-n-1\}$, which is consistent with~\eqref{num-m}.
+
+Let us now suppose that $g_F > 1$. Assume, for instance, that $X_l$ is not the rightmost segment of $F$; if
+\[
+   k + 1 + \max X_l = \min X_{l+1},
+\]
+then repeating the moves we have that $Z_F = \{m\}$ if and only if the set
+\[
+   F_k = X_0 \cup X_1 \cup \dotsb \cup \tau_k(X_l) \cup X_{l+1} \cup
+   \dotsb \cup X_{g_F}
+\]
+has Wronskian zero counting set $Z_{F_k} = \{m + k\}$.
+Now, $\tau_k(X_l) \cup X_{l+1}$ is a consecutive segment, so that $F_k$ decomposes in $g_F-1$ segments, exactly one of them being odd. Thus, $Z_{F_k}$ is given by the analogous to formula~\eqref{num-m} and the same holds for~$Z_F$.
+
+A similar procedure works if the odd segment $X_l$ is not $X_1$: in this case we arrive at a set
+\[
+   F_{-k}
+   = X_0 \cup X_1 \cup \dotsb \cup X_{l-1} \cup \tau_{-k}(X_l) \cup
+   \dotsb \cup X_{g_F}
+\]
+which decomposes in $g_F-1$ segments, exactly one of them being odd.
+\end{proof}
+
+The assumptions that admissible sets $F$ have $Z_F=\{0\}$ proves also part of Conjecture~\ref{sc-ZFd2}:
+
+%%%%%%%%%
+\begin{theorem}
+\label{dFA2}
+Assume that every admissible set $F$ has $Z_F = \{0\}$. Then, for every set $F$ of nonnegative integers with $d(F,\Ad)=2$ the Wronskian zero counting set $Z_F$ satisfies the inequality
+\begin{equation}
+\label{maxZF}
+  \max Z_F \leq  2 \xi_1 + \xi_2,
+\end{equation}
+where $\xi_1$ and $\xi_2$ are the characteristic gap lengths of $F$ (see Definition~\ref{clg}).
+\end{theorem}
+
+%%%%%%%%%
+\begin{proof}
+Let
+\[
+   F
+   = X_0 \cup X_1 \cup \dotsb \cup X_{l_1} \cup \dotsb \cup X_{l_2} \cup
+   \dotsb \cup X_n
+\]
+be the segment decomposition of $F$, where $X_{l_1}$ and $X_{l_2}$ are the unique odd segments apart, possibly, from $X_0$. We choose $F_1$ by removing the first element of $X_{l_2}$ and adding the first element after~$X_{l_1}$:
+\begin{align*}
+   \tilde{X}_{l_1} &= X_{l_1} \cup \{1+ \max X_{l_1}\},
+   \\
+   \tilde{X}_{l_2} &= X_{l_2} \setminus \{\min X_{l_2}\},
+   \\
+   F_1 &= X_0 \cup X_1 \cup \dotsb \cup \tilde{X}_{l_1} \cup \dotsb \cup
+   \tilde{X}_{l_2} \cup \dotsb \cup X_n.
+\end{align*}
+Observe that this decomposition of $F_1$ might not be the segment decomposition, for $\tilde{X}_{l_1} \cup X_{l_1+1}$ might be a joint segment and $\tilde{X}_{l_2}$ might be the empty set. Anyway, both $\tilde{X}_{l_1}$ and $\tilde{X}_{l_2}$ are even segments, so that $F_1$ is admissible and $Z_{F_1} = \{0\}$.
+
+The sets $F_1 \cup F$ and $F_1 \cap F$ are as follow:
+\begin{align*}
+   F_1 \cup F &= X_0 \cup X_1 \cup \dotsb \cup \tilde{X}_{l_1} \cup \dotsb \cup
+   X_{l_2} \cup \dotsb \cup X_n,
+   \\
+   F_1 \cap F &= X_0 \cup X_1 \cup \dotsb \cup X_{l_1} \cup \dotsb \cup
+   \tilde{X}_{l_2} \cup \dotsb \cup X_n.
+\end{align*}
+Apart from $X_0$, only $X_{l_2}$ is odd in the first decomposition; only $X_{l_1}$ is odd in the second one. Again, they might not be the segment decompositions, but it is easy to check that this does not affect the following calculations. Firstly, this proves that $d(F_1 \cup F,\Ad) = d(F_1 \cap F,\Ad) = 1$. Secondly, according to Theorem~\ref{c1-c2},
+\begin{align*}
+   Z_{F_1 \cap F} &= \Big\{ \sum_{j \leq l_1} |Y_j|
+   + (|Y_{l_1+1}|-1) + \sum_{l_1+2 \leq j \leq l_2} |Y_j| \Big\}
+   = \Big\{-1 + \sum_{j \leq l_2} |Y_j| \Big\},
+   \\
+   Z_{F_1 \cap F} &= \Big\{ \sum_{j \leq l_1} |Y_j| \Big\},
+\end{align*}
+even in the cases where the above decompositions are not the segment decompositions. By Lemma~\ref{lemaf1f2},
+\[
+   Z(W^\mu_{F})
+   \leq 1 + Z(W^\mu_{F_1 \cup F}) + Z(W^\mu_{F_1 \cap F})
+   = 2 \sum_{j \leq l_1} |Y_j| + \sum_{l_1 < j \leq l_2} |Y_j|
+\]
+for every measure $\mu \in \M_{\max F}$, and this proves~\eqref{maxZF}.
+\end{proof}
+
+%%%%%%%%%
+\begin{remark}
+Since all zeros of $Z(W^\mu_{F_1 \cup F})$ or $Z(W^\mu_{F_1 \cap F})$ are simple, Lemma~\ref{lemaf1f2} proves that all zeros of $Z(W^\mu_F)$ have multiplicity at most~$3$, if $d(F,\Ad)=2$.
+\end{remark}
+
+%%%%%%%%%
+\begin{remark}
+For any set $F$ with $d(F,\Ad)=2$, it is worthwhile mentioning that $\xi_2 = \sum\limits_{l_1 < j \leq l_2} |Y_j|$ has the same parity as the degree of the Wronskian $W_F^\mu$, which is
+\[
+   \deg W_F^\mu=\sum_{f\in F}f-\frac{|F|(|F|-1)}{2}.
+\]
+Indeed, it is easy to see that both quantities keep their parity if two consecutive numbers are removed from~$F$. Thus, it is enough to consider the obvious case $F = \{p,q\}$, with $p+1 < q$.
+\end{remark}
+
+%%%%%%%%%
+\begin{remark}
+As we mentioned before, for any set $F$ and any measure $\mu \in \M_{\max F}$, the Wronskian $W^\mu_F$ is a polynomial of degree
+\[
+   \sum_{f \in F} f - \frac{|F| (|F|-1)}{2},
+\]
+so obviously $\max Z_F \leq \sum_{f \in F} f - \frac{|F| (|F|-1)}{2}$.
+Let $F = \{f_1, f_2, \dots\}$ with a segment decomposition
+\[
+   F = X_0 \cup X_1 \cup \dotsb \cup X_n
+\]
+and complementary segments $Y_1$, \dots, $Y_n$. One can see with no much effort that $f_j = j-1 + |Y_1| + |Y_2| + \dots + |Y_l|$, if $f_j \in X_l$. Therefore,
+\begin{align*}
+   \sum_{f \in F} f - \frac{|F| (|F|-1)}{2}
+   &= \sum_{j=1}^{|F|} (f_j - j + 1)
+   = \sum_{l=1}^n |X_l| \sum_{j=1}^l |Y_j|
+   \\
+   &= \sum_{j=1}^n |Y_j| \sum_{l=j}^n |X_l|.
+\end{align*}
+In particular,
+\[
+   \sum_{f \in F} f - \frac{|F| (|F|-1)}{2}
+   \geq \sum_{j=1}^n (n+1-j) |Y_j|
+\]
+and the equality holds when all segments $X_1$, \dots, $X_n$ consist of just
+one element.
+Under the conditions of Theorem~\ref{dFA2}, it follows that
+\[
+   2\xi_1 + \xi_2 = 2 \sum_{j\leq l_1} |Y_j|
+   + \sum_{l_1 < j \leq l_2} |Y_j|
+   \leq \sum_{f \in F} f - \frac{|F| (|F|-1)}{2},
+\]
+and again the equality holds when all segments $X_1$, \dots, $X_n$ consist of
+just one element (and $n=2$). That is, \eqref{maxZF} gives a non trivial
+bound on $\max Z_F$.
+\end{remark}
+
+\begin{remark}
+A common impression after all the conjectures and results is that the segment $X_0$ plays no role. This is reinforced by the fact that the contribution of $X_0$ to the Wronskian matrix $\W _F^\mu$ is an upper diagonal block with non zero constant entries in the diagonal. For instance, it is easy to conclude that the Wronskians $W_F^\mu$ associated to $F=[0,1,\dots,n,n+k]$ have $k-1$ simple real zeros. For the admissible sets $F=[0,1,\dots,n,n+k,n+k+1]$, the Wronskians have no real zeros, as predicted by Conjecture~\ref{c-adm}. This is consequence of the fact that, given two orthogonal polynomials, their derivatives belong to another sequence of orthogonal polynomials: the interlacing of zeros of orthogonal polynomials is preserved under differentiation (see, for instance, \cite[Theorem 1.47]{Fi}), and the corresponding interlacing property for the derivatives guarantee that the derivatives of the two polynomials belong to a sequence of orthogonal polynomials (see \cite{We}).
+\end{remark}
+
+%%%%%%%%%
+\subsection{Computational evidences for the conjectures on Wronskians}
+%%%%%%%%%
+
+In the process of establishing and fine tuning our conjectures, we have done billions of symbolic and numerical experiments. We have used Maple, Mathematica and Sage.
+
+The main goal of this paper is to describe the set $Z_F$ for every finite set $F$ of nonnegative integers.
+A way to establish that some $k \in Z_F$ is to find a positive measure $\mu$ whose Wronskian $W_{F}^{\mu}$ has $k$ zeros in~$\RR$.
+Let us also note that, by Favard's Theorem, for each three term recurrence relation
+\begin{equation}
+\label{recur}
+  p_{n+1}(x) = (x-a_n) p_{n}(x) - b_n p_{n-1}(x),
+  \qquad p_0(x) = 1,\quad p_1(x) = x-a_0,
+\end{equation}
+where $a_n \in \RR$ and $b_n > 0$ for every~$n$,
+there exists a measure $\mu$ such that $(p_n)_{n\ge0}$ are the monic orthogonal polynomials with respect to~$\mu$.
+Consequently, producing sequences $a_n$ and $b_n$ as in~\eqref{recur} is a way to compute orthogonal polynomial sequences and, then, the Wronskians $W_{F}^{\mu}$.
+Actually, we only need to compute $p_{n}$ up to $\max F$, so it is enough to have finite sequences $a_n$ and~$b_n$.
+
+In our numerical experiments, for a fixed $F$ we have generated many random finite sequences $a_n$ and $b_n$ and their corresponding Wronskians.
+To avoid numerical rounding errors, we have always taken $a_n$ and $b_n$ to be rational numbers generated by mean of pseudorandom procedures.
+Then, we use~\eqref{recur} to compute the polynomials and the Wronskian by mean of computer algebra systems.
+Finally, we find the number of real roots of the Wronskian using appropriate procedures. For this kind of random experiments, it is virtually impossible to obtain examples with multiple roots, so there is no need to worry about the multiplicity.
+
+After repeating this procedure a huge number of times, it becomes apparent that $Z_F$ has the form $\{j, j+2,\dots,j+2t\}$, but the ``central elements'' of $Z_F$ appear in the experiments really much more often than the extremes, which sometimes are very unusual.
+Whatever the number of experiments we perform, we can not ensure that we have found $\max Z_F$ and $\min Z_F$, except when a Wronskian appears with exactly $0$ or $1$ roots, what clearly implies that $\min Z_F = 0$ or $1$, respectively.
+
+Then, in the search for $Z_F$ for a given $F$ (in particular, to identify $\min Z_F$ and $\max Z_F$) we typically do millions of experiments. Unfortunately, the computer time increases very fast with the size of the determinant and the degree of the polynomials, so it is not possible to do many experiments for big sets~$F$. Then, we have performed a reasonable number of experiments for sets $F$ with distance $d(F,\Ad)$ up to~$6$, and only with $\max F < 25$. Although, the corresponding conjectures are best experimentally checked for small values of $d(F,\Ad)$. With this kind of experiments we have found many computational evidences of conjectures~\ref{c-adm}, \ref{c-dist1}, \ref{sc-dist1}, \ref{c-ZFd} and~\ref{sc-ZFd2}.
+
+For instance, the set $F = [5,7,10]$ has $d(F,\Ad) = 3$ and characteristic gap lengths $\xi_1 = 5$, $\xi_2 = 1$, $\xi_3 = 2$, and the same happens with the sets
+\[
+[5,6,7,9,12], \quad
+[5,7,8,9,12], \quad
+[5,7,10,11,12], \quad
+[5,7,9,10,12,13,14].
+\]
+With any of these sets $F$ we have found the number of roots of $W_F^\mu$ for at least one million measures randomly generated as explained above, and we have always found Wronskians with $3, 5, 7, 9$ and $11$ roots (and no other number of roots). Strictly speaking, we can only ensure that $\{3, 5, 7, 9, 11\} \subset Z_F$, but it seems reasonable to conjecture that $Z_F = \{3, 5, 7, 9, 11\}$ for all those sets~$F$.
+
+Another kind of experiments have been done to come across conjecture~\ref{c-ZFdclas}. Now, there is no need to use the three term recurrence relation, for the Jacobi, Laguerre and Hermite polynomials are already defined in the software. Then, given $F$, we have randomly generated the parameters for the orthogonal polynomials and, again, computed the number of roots of the corresponding Wronskian. For Laguerre polynomials and Jacobi polynomials with $\alpha - \beta$ not an even integer, the geometric multiplicity of the roots (as explained in Definition~\ref{defgm}) is involved only in a few cases, which can be detected checking if $\gcd(W_F(x),W'_F(x))$ is a polynomial of degree greater than~$0$.
+But computing the geometric multiplicity without really having the roots is not easy (and, moreover, it is slow), so our routines do not consider it; when one of those few cases occurs, it must be checked apart.
+
+For instance, for Laguerre polynomials with $\alpha=7/5$ and $F=[1,5]$ (so that $\xi_1=1$, $\xi_2=3$) the Wronskian $W_F(x)$
+has the roots $12/5$ (triple) and $(99 \pm 5\sqrt{33})/{10}$. The Wronskian matrix is $\W_F(12/5) = \left(\begin{smallmatrix}0 & 0 \\ -1 & 72/25\end{smallmatrix}\right)$, whose rank is~$1$, so the geometric multiplicity of $12/5$ is~$1$. Then, the number of real roots of $W_F(x)$, according with the geometric multiplicity, is~$3$, as predicted by conjecture~\ref{c-ZFdclas}.
+
+In the case of Hermite polynomials, $H_{2n+1}(x)$ is odd and $H_{2n}(x)$ is even for every $n$, so it is essential to take into account the geometric multiplicity of the root $x_0=0$.
+This applies also to Jacobi polynomials with parameters $\alpha=\beta$ (that is, Gegenbauer polynomials). Multiplicity bigger than $1$ at $x_0=0$ also appears when $\alpha$ and $\beta$ differ by an even integer.
+In those cases, according to Definition~\ref{defgm}, we have effectively computed the rank of the matrix $\W_F(0)$ so as to find the geometric multiplicity. In each case, the numerical experiments agree with our conjecture.
+
+%%%%%%%%%
+\subsection{Computational evidences for the conjectures on Casorati determinants}
+%%%%%%%%%
+
+Regarding Casorati determinants, we have again done a huge number of symbolic experiments with Maple, Mathematica and Sage.
+
+Now, to produce a measure $\mu$ as in~\eqref{dismes}, we only need to generate finite sequences of pseudorandom numbers $a_n$ and $\alpha_n$.
+To avoid the usual problems of float numbers and their algorithms (rounding, truncating, instability), we take the points $a_n$ and the mass points $\alpha_n$ of the measure to be integers (this is not an essential restriction). Then, we compute the moments of the measure by
+\[
+  \mu_k = \sum_{n=0}^{\Upsilon} \alpha_n a_n^k, \qquad k = 0,\dots, \Upsilon,
+\]
+and use the moments to compute the orthogonal polynomials $p_n$ (with positive leading coefficient). These are well known standard procedures. With an appropriate normalization of the orthogonal polynomials, only integer numbers are involved.
+
+Given a set $F$ (which can be built through pseudorandom procedures, as well), we can generate many measures $\mu$, compute the Casorati determinant $C_F^{G,\mu}$ for many sets~$G$, and check whether $C_F^{G,\mu}$ is positive or not. In all the cases, the numerical experiments agree with our conjecture.
+
+In the process of stating conjecture~\ref{ccas}, we have performed millions of these experiments, with $\Upsilon$ up to $150$, and Casorati determinants up to $15 \times 15$. We have thus observed that the result fails if $G$ is an admissible set other than a segment. It is worth while remarking that in the course of these experiments we discovered a relevant bug of Mathematica when computing determinants of big integers (see~\cite{DPV}).
+
+%%%%%%%%%
+\section*{Funding}
+%%%%%%%%%
+
+This research was partially supported by MTM2012-36732-C03-02 and MTM2012-36732-C03-03 (Ministerio de Econom\'ia y Competitividad),
+FQM-262, FQM-4643, FQM-7276 (Junta de Andaluc\'ia) and Feder Funds (European Union).
+
+
+%%%%%%%%%
+\begin{thebibliography}{00}
+%%%%%%%%%
+
+\bibitem[Adler 94]{Ad}
+V. \`E. Adler,
+On a modification of Crum's method,
+\textit{Teoret. Mat. Fiz.} \textbf{101} (1994), no.~3, 323--330; translation in
+\textit{Theoret. and Math. Phys.} \textbf{101} (1995), 1381--1386.
+
+\bibitem[Dimitrov 98]{DD}
+D. K. Dimitrov,
+Higher order Tur\'an inequalities,
+\textit{Proc. Amer. Math. Soc.} \textbf{126} (1998), 2033--2037.
+
+\bibitem[Driver el al.\ 11]{Kt1}
+K. Driver, A. Jooste and K. Jordaan,
+Stieltjes interlacing of zeros of Jacobi polynomials from different sequences,
+\textit{Electron. Trans. Numer. Anal.} \textbf{38} (2011), 317--326.
+
+\bibitem[Driver and Jordaan 11]{Kt2}
+K. Driver and K. Jordaan,
+Stieltjes interlacing of zeros of Laguerre polynomials from different sequences,
+\textit{Indag. Math. (N.S.)} \textbf{21} (2011), no.~3-4, 204--211.
+
+\bibitem[Dur\'an 14a]{du1}
+A. J. Dur\'an,
+Exceptional Charlier and Hermite orthogonal polynomials, 
+\textit{J. Approx. Theory} \textbf{182} (2014), 29--58.
+
+\bibitem[Dur\'an 14b]{du2} 
+A. J. Dur\'an,
+Exceptional Meixner and Laguerre orthogonal polynomials,
+\textit{J. Approx. Theory} \textbf{184} (2014), 176--208.
+% arXiv:1309.1175
+
+\bibitem[Dur\'an et al.\ 14]{DPV}
+A. J. Dur\'an, M. P\'erez and J. L. Varona,
+The misfortunes of a trio of mathematicians using Computer Algebra Systems. Can we trust in them?,
+\textit{Notices Amer. Math. Soc.} \textbf{61} (2014), 1249--1252. 
+% DOI: \texttt{http://dx.doi.org/10.1090/noti1173}
+% arXiv:1312.3270 [cs.SC].
+
+\bibitem[Felder et al.\ 12]{FHV}
+G. Felder, A. D. Hemery and A. P. Veselov,
+Zeros of Wronskians of Hermite polynomials and Young diagrams,
+\textit{Phys. D} \textbf{241} (2012), no.~23-24, 2131--2137.
+
+\bibitem[Filipuk and Zhang 14]{FZ}
+G. Filipuk and L. Zhang,
+On certain Wronskians of multiple orthogonal polynomials,
+arXiv:1402.1569 [math.CA], 2014.
+
+\bibitem[Fisk 08]{Fi}
+S. Fisk,
+Polynomials, roots, and interlacing,
+arXiv:math/0612833 [math.CA], 2008.
+
+\bibitem[G\'omez-Ullate et al.\ 09]{GUKM1}
+D. G\'omez-Ullate, N. Kamran and R. Milson,
+An extended class of orthogonal polynomials defined by a Sturm-Liouville problem,
+\textit{J. Math. Anal. Appl.} \textbf{359} (2009), 352--367.
+
+\bibitem[G\'omez-Ullate et al.\ 14a]{GUGM}
+D. G\'omez-Ullate, Y. Grandati and R. Milson,
+Rational extensions of the quantum Harmonic oscillator and exceptional Hermite polynomials,
+\textit{J. Phys. A} \textbf{47} (2014), 015203.
+% arXiv:1306.5143v1 [math-ph].
+
+\bibitem[Garc\'ia-Ferrero and G\'omez-Ullate 14b]{GFGU14}
+M. \'A. Garc\'ia-Ferrero and D. G\'omez-Ullate,
+Oscillation theorems for the Wronskian of an arbitrary sequence of eigenfunctions of Schr\"odinger's equation,
+arXiv:1408.0883 [math-ph], 2014.
+
+\bibitem[Ismail 05]{Is}
+M. E. Ismail,
+Determinants with orthogonal polynomial entries,
+\textit{J. Comput. Appl. Math.} \textbf{178} (2005), 255--266.
+
+\bibitem[Ismail and Laforgia 07]{IL}
+M. E. Ismail and A. Laforgia,
+Monotonicity properties of determinants of special functions,
+\textit{Constr. Approx.} \textbf{26} (2007), 1--9.
+
+\bibitem[Karlin and McGregor 59]{KMc}
+S. Karlin and J. L. McGregor,
+Coincidence properties of birth and death processes,
+\textit{Pacific J. Math.} \textbf{9} (1959), 1109--1140.
+
+\bibitem[Karlin and Szeg\H{o} 60/61]{KS}
+S. Karlin and G. Szeg\H{o},
+On certain determinants whose elements are orthogonal polynomials,
+\textit{J. Analyse Math.} \textbf{8} (1960/1961), 1--157.
+
+\bibitem[Krein 57]{Kr}
+M. G. Krein,
+On a continual analogue of a Christoffel formula from the theory of orthogonal polynomials,
+\textit{Dokl. Akad. Nauk SSSR (N.S.)} \textbf{113} (1957), 970--973.
+
+\bibitem[Sasaki et al.\ 10]{STZ}
+R. Sasaki, S. Tsujimoto and A. Zhedanov,
+Exceptional Laguerre and Jacobi polynomials and the corresponding potentials through Darboux-Crum transformations,
+\textit{J. Phys. A} \textbf{43} (2010), 315204.
+
+\bibitem[Szeg\H{o} 59]{Sz} 
+G. Szeg\H{o},
+\textit{Orthogonal Polynomials},
+American Mathematical Society, Providence, RI, 1959.
+
+\bibitem[Tur\'an 50]{Tu} 
+P. Tur\'an,
+On the zeros of the polynomials of Legendre,
+\textit{\v{C}asopis P\v{e}st. Mat. Fys.} \textbf{75} (1950), 113--122.
+
+\bibitem[Wendroff 61]{We} 
+B. Wendroff,
+On orthogonal polynomials,
+\textit{Proc. Amer. Math. Soc.} \textbf{12} (1961), 554--555.
+
+%%%%%%%%%
+\end{thebibliography}
+%%%%%%%%%
+
+%%%%%%%%%
+\end{document}
+%%%%%%%%%

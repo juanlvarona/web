@@ -1,0 +1,1448 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                           %
+% JUAN LUIS VARONA - MARIO PEREZ RIERA                      %
+%                                                           %
+% BEGINNING DATE: 5 - MAY - 1998                            %
+% LAST MODIFICATION DATE: 8 - MARZO - 1999                  %
+%                                                           %
+% Written with AMS-LaTeX 1.2                                %
+%                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beginning of the paper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% AMS-LaTeX 1.2 file for journals:
+%
+\documentclass[reqno]{amsart}
+% QUITAR LA LINEA ANTERIOR SI SE USA EL FORMATO LaTeX2e/amsart
+
+%%%% \renewcommand{\baselinestretch}{2} % DOBLE ESPACIO
+%%%% \setcounter{page}{3}
+
+%\date{November 12, 1998.}
+
+\date{PUBLISHED IN \textit{J.\ Math.\ Anal.\ Appl.}
+\textbf{236} (1999), no.~1, 125--147.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{Thm}{Theorem}
+\newtheorem{Cor}[Thm]{Corollary} % Same numering sequence than Thm
+\newtheorem{Lem}{Lemma}
+\theoremstyle{definition}
+\newtheorem{Defn}{Definition}
+\newtheorem*{Ackn}{Acknowledgement}
+\theoremstyle{remark}
+\newtheorem*{Rem}{Remark}
+
+\newcommand{\supp}{\operatorname{supp}} % support
+\newcommand{\lpnorm}[3]{\|{#1}\|_{L^{#2}({#3})}} % L^p-norm of a function
+\newcommand{\Id}{\operatorname{Id}} % identity map
+\newcommand{\spa}{\operatorname{span}} % span 
+\newcommand{\htr}{\mathcal{H}_\alpha} % Hankel transform of order \alpha
+\newcommand{\hf}{{\,{}_2F_1}} % hypergeometric function
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a fix suggested by the AMS TeX office to prevent overfulls in
+% running heads containing accented characters
+%
+\makeatletter
+\renewcommand{\leftmark}{%
+  \vbox to\headheight{\vss
+    \hbox{\expandafter \@firstoftwo \topmark {}{}}%
+  }%
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% End of the fix %%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title[Fourier-Neumann series]{Mean and almost everywhere
+convergence of Fourier-Neumann series}
+
+\author[\'O. Ciaurri]{\'Oscar Ciaurri}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{osciaurr@dmc.unirioja.es}
+\thanks{Research of the first author supported by grant ATUR97/013 of the UR}
+
+\author[J. J. Guadalupe]{Jos\'e J. Guadalupe}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{joguadal@dmc.unirioja.es}
+
+\author[M. P\'erez]{Mario P\'erez}
+\address{Departamento de Matem\'aticas,
+Universidad de Zaragoza, Edificio de Matem\'aticas,
+Ciudad Universitaria s/n, 50009 Zaragoza, Spain}
+\email{mperez@posta.unizar.es}
+
+\author[J. L. Varona]{Juan L. Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja, Edificio J.~L.~Vives,
+Calle Luis de Ulloa s/n, 26004 Logro\~no, Spain}
+\email{jvarona@dmc.unirioja.es}
+\urladdr{http://www.unirioja.es/dptos/dmc/jvarona/welcome.html}
+\thanks{Research of the second, third and fourth authors supported by grants
+PB96-0120-C03-02 of the DGES and API-98/B12 of the UR}
+
+\subjclass{Primary 42C10; Secondary 44A05}
+
+\keywords{Bessel functions, Fourier series, Neumann series, mean convergence,
+almost everywhere convergence, Hankel transform.}
+
+\begin{abstract}
+Let $J_\mu$ denote the Bessel function of order $\mu$. The functions
+$x^{-\alpha/2-\beta/2-1/2}J_{\alpha+\beta+2n+1}(x^{1/2})$, $n = 0, 1, 2, \dots$,
+form an orthogonal system in $L^2((0,\infty),x^{\alpha+\beta}dx)$
+when $\alpha+\beta>-1$.
+In this paper we analyze the range of $p$, $\alpha$ and $\beta$ for which the
+Fourier series with respect to this system converges in the
+$L^p((0,\infty),x^\alpha dx)$-norm. Also, we describe the space in which the
+$\spa$ of the system is dense and we show some of its properties.
+Finally, we study the almost everywhere convergence of the Fourier series
+for functions in such spaces.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction and notation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $J_\mu$ be the Bessel function of order $\mu$.
+For $\alpha>-1$, the formula
+\begin{equation*}
+   \int_0^\infty J_{\alpha+2n+1}(x) J_{\alpha+2m+1}(x) \, \frac{dx}{x}
+   = \frac{\delta_{nm}}{2(2n+\alpha+1)},
+   \quad n, m = 0,1,2, \dots
+\end{equation*}
+(see~\cite[Ch.~XIII, 13.41 (7), p.~404]{Wat} and~\cite[Ch.~XIII, 13.42 (1),
+p.~405]{Wat}), provides an orthonormal system $\{j_n^\alpha\}_{n=0}^\infty$ in
+$L^2((0,\infty), x^\alpha \, dx)$ [$L^2(x^\alpha)$, from now on], given by
+\begin{equation*}
+   j_n^\alpha(x)
+   = \sqrt{\alpha+2n+1} J_{\alpha+2n+1}(\sqrt x) \, x^{-\alpha/2-1/2},
+   \quad n = 0,1,2, \dots.
+\end{equation*}
+For each suitable function $f$, let $S_nf$ be the
+$n$-th partial sum of its Fourier series with respect to the system
+$\{j_n^\alpha\}_{n=0}^\infty$. Series of this kind are a particular case of
+series $\sum_{n\ge0} a_n J_{\alpha+n}$, which are usually called Neumann
+series, so that we will refer to $S_nf$ as a Fourier-Neumann series.
+In~\cite{Var}, one of the authors studied the mean convergence in
+$L^p(x^\alpha)$ of these Fourier series. In this context, some operators and
+spaces were introduced. In this paper we extend these results and also
+study the almost everywhere convergence.
+
+For $\alpha > -1$, let us define the integral operator $\htr$ by
+\begin{equation*}
+    \htr(f,x) = \frac{x^{-\alpha/2}}{2}
+     \int_0^\infty {f(t)J_\alpha (\sqrt {xt})t^{\alpha /2}\,dt},
+     \quad x > 0,
+\end{equation*}
+for suitable functions $f$. This is a modified Hankel transform: the
+(non-modified) Hankel transform is the integral operator with kernel
+$J_\alpha(xt) (xt)^{1/2}$ and unweighted Lebesgue measure.
+See~\cite{Dur},~\cite{St-Tr},~\cite{Me-So} for some modified and non-modified
+Hankel transforms. In the case $\alpha \ge -1/2$, the Hankel transform
+satisfies
+\begin{equation*}
+    \lpnorm{\htr f}\infty{x^\alpha}
+      \le C \lpnorm{f}1{x^\alpha},
+      \quad f \in L^1(x^\alpha)
+\end{equation*}
+with some constant $C$ independent of $f$.
+Moreover, $\htr$ can be defined in $L^2(x^\alpha)$ satisfying
+$\int_0^\infty (\htr f)g x^\alpha\,dx = \int_0^\infty (\htr g)f x^\alpha\,dx$,
+$\htr^2 = \Id$, and $\lpnorm{\htr f}2{x^\alpha} =
+\lpnorm{f}2{x^\alpha}$. From these results and interpolation we obtain
+\begin{equation*}
+    \lpnorm{\htr f}q{x^\alpha}
+      \le C \lpnorm{f}p{x^\alpha},
+      \quad f \in L^p(x^\alpha)
+\end{equation*}
+for $1\le p\le2$, where $q$ denotes, here and in the rest of the paper, the
+conjugate of $p$, that is, $1/p+1/q=1$.
+
+The Hankel transform of the function $j_n^\alpha$ is
+\begin{equation*}
+   \htr(j_n^\alpha,x) = \sqrt{\alpha+2n+1} P_n^{(\alpha,0)}(1-2x)
+   \chi_{[0,1]}(x),
+\end{equation*}
+where $P_n^{(\alpha,\beta)}(x)$ is the $n$-th Jacobi polynomial of order
+$(\alpha,\beta)$; see, for instance,~\cite[Ch.~8.11, (5), p.~47]{E-TIT} (a
+thorough description of Jacobi polynomials can be found in~\cite[Ch.~X]{E-HTF}
+or~\cite{Sze}). 
+
+\begin{Rem}
+There is a delicacy with this formula. Actually, $\htr$ was defined, as a
+first step, as a Lebesgue integral for suitably integrable functions. Then,
+$\htr$ is extended to $L^p$ spaces where the integral representation is no
+longer valid for some functions. Now, the integrals from~\cite[Ch.~8.11, (5),
+p.~47]{E-TIT} are improper Riemann integrals. Hence, the proper understanding
+of those integrals should be
+\begin{equation*}
+   \lim_{N\to\infty}
+   \frac{x^{-\alpha/2}}{2}
+   \int_0^N {j_n^\alpha(t) J_\alpha (\sqrt {xt})t^{\alpha /2}\,dt} =
+   \sqrt{\alpha+2n+1} P_n^{(\alpha,0)}(1-2x) \chi_{[0,1]}(x).
+\end{equation*}
+Since $j_n^\alpha \chi_{[0,N]}$ is an integrable function, the integral form
+of $\htr$ is valid here and we can conclude that
+\begin{equation*}
+   \lim_{N\to\infty}
+   \htr(j_n^\alpha \chi_{[0,N]},x)
+   = \sqrt{\alpha+2n+1} P_n^{(\alpha,0)}(1-2x) \chi_{[0,1]}(x),
+\end{equation*}
+where the limit holds in the almost everywhere sense. Finally, the $L^p$
+boundedness of the operator $\htr$ for $\frac{4(\alpha+1)}{2\alpha+3} < p < 2$
+and the fact that $\lim_{N\to\infty} j_n^\alpha \chi_{[0,N]} = j_n^\alpha$ in
+$L^p$ yields $\htr(j_n^\alpha,x) = \sqrt{\alpha+2n+1} P_n^{(\alpha,0)}(1-2x)
+\chi_{[0,1]}(x)$ in $L^p$. Similar comments apply to Lemma~\ref{lem:HTjnab}
+below.
+\end{Rem}
+
+Since the Hankel transform of $j_n^\alpha$ is supported on
+$[0,1]$, not every function $f \in L^p(x^\alpha)$, $1 < p \leq 2$,
+can be approximated in norm by its Fourier series $S_nf$. As a first approach,
+any such function should, at least, have its Hankel transform supported
+on $[0,1]$. But we also deal with spaces $L^p(x^\alpha)$, $p>2$,
+where $\htr$ is not defined and so, we need to describe the functions that
+we want to approximate in a different, but, in some sense, similar way.
+
+The main tool here is $M_\alpha$, the multiplier for the Hankel transform. For
+$\alpha \geq -1/2$ and $-\frac14 < (\alpha+1)(\frac12-\frac1p) < \frac14$,
+$M_\alpha$ is a bounded operator from $L^p(x^\alpha)$ into itself (this is
+known as Herz's theorem, see~\cite{Herz}). Also,
+\begin{equation*}
+    \htr(M_\alpha f) = \htr(f) \chi_{[0,1]}
+\end{equation*}
+for $f \in L^p(x^\alpha) \cap L^2(x^\alpha)$, $M_\alpha^2 f = M_\alpha f$ for
+$f \in L^p(x^\alpha)$ and
+\begin{equation}
+\label{ec:Mafg}
+    \int_0^\infty f(x) M_\alpha(g,x) x^\alpha\,dx
+    = \int_0^\infty g(x) M_\alpha(f,x) x^\alpha\,dx
+\end{equation}
+for $f \in L^p(x^\alpha)$ and $g \in L^q(x^\alpha)$.
+
+\begin{Defn}
+For each $\alpha$ and $p$ with $\alpha \geq -1/2$ and
+$-\frac14 < (\alpha+1)(\frac12-\frac1p) < \frac14$, let us define the
+$L^p(x^\alpha)$ subspace
+\begin{equation*}
+    E_{p,\alpha} = \{ f \in L^p(x^\alpha): M_\alpha f = f\}
+    = M_\alpha(L^p(x^\alpha)).
+\end{equation*}
+\end{Defn}
+
+It is clear that, for $f \in E_{p,\alpha} \cap L^2(x^\alpha)$, the Hankel
+transform of $f$ is supported on $[0,1]$ and so these spaces are suitable
+for our purposes.
+The spaces $E_{p,\alpha}$ have some interesting properties: For $s<r$,
+$E_{s,\alpha} \subset E_{r,\alpha}$ and the inclusion is continuous and dense.
+Besides, the dual space is $(E_{p,\alpha})' = E_{q,\alpha}$.
+
+Let us also consider, for each $\alpha \geq -1$ and each suitable $p$ (we will
+go into the details later), the $L^p(x^\alpha)$ subspace
+\begin{equation*}
+	B_{p,\alpha} = \overline{\spa} \{j_n^\alpha(x)\}_{n=0}^\infty
+   \quad (\text{closure in } L^p(x^\alpha)).
+\end{equation*}
+In~\cite{Var}, one of us showed that $S_nf \to f$ in the $L^p(x^\alpha)$-norm
+for any $f \in B_{p,\alpha}$, if $\alpha \geq -1/2$ and
+\begin{equation*}
+    \max\left\{ \frac43, \frac{4(\alpha+1)}{2\alpha+3} \right\}
+    < p <
+    \min\left\{ 4, \frac{4(\alpha+1)}{2\alpha+1}\right\};
+\end{equation*}
+moreover, for this range of $p$, we showed that
+$B_{p,\alpha} = E_{p,\alpha}$. Therefore,
+$\{j_n^\alpha\}_{n=0}^\infty$ is a basis for the space $E_{p,\alpha}$. By the
+way, notice that for $\alpha \geq -1/2$,
+\begin{gather*}
+   \frac{4(\alpha+1)}{2\alpha+3} < p
+   \iff -\frac14 < (\alpha+1) \left( \frac12 - \frac1p \right), \\
+   p < \frac{4(\alpha+1)}{2\alpha+1}
+   \iff (\alpha+1) \left( \frac12 - \frac1p \right) < \frac 14.
+\end{gather*}
+
+Our purpose in this paper is to improve and extend these convergence
+results, and show additional properties of the $E_{p,\alpha}$ spaces.
+In particular, we find some conditions on $\alpha$, $\beta$, and $p$ under
+which the functions $j_n^{\alpha+\beta}$ ($n=0,1,2,\dots$) are a basis for
+$E_{p,\alpha}$. For instance, $\beta$ can be taken so that $\alpha + \beta$ is
+half an integer, which makes the functions $j_n^{\alpha+\beta}$ better known.
+The almost everywhere convergence of $S_nf$ is studied, as well.
+
+Also, we can interpret the convergence in the following way:
+changing the parameters, we take
+$\{j_n^{\lambda}\}_{n=0}^\infty$, which is orthogonal in $L^2(x^\lambda)$,
+and we study the convergence in $L^p(x^\mu)$. This is a typical situation
+in the study of mean convergence of Fourier series. For instance, in the case
+of Jacobi polynomials $\{P_n^{(\alpha,\beta)}(x)\}_{n=0}^\infty$,
+Pollard~\cite{Pol-III} studied the convergence in the natural space
+$L^p((-1,1),(1-x)^\alpha(1+x)^\beta)$ and, later, Muckenhoupt~\cite{Muck}
+described the behaviour in $L^p((-1,1),(1-x)^a(1+x)^b)$. Similar situations
+occur with other orthogonal systems (Laguerre, Hermite, Freud weights,
+Bessel and Dini).
+
+We are interested in the approximation of functions in $L^p(x^\alpha)$
+by Fourier series in the system $\{j_n^{\alpha+\beta}\}_{n=0}^\infty$.
+So, our first target is to determine the range of $p$, $\alpha$, and $\beta$
+for which $j_n^{\alpha+\beta} \in L^p(x^\alpha)$ for all $n \in \mathbb{N}$.
+We do this in section~\ref{sec:Bpab}.
+
+In section~\ref{sec:convergence} we state some of the main results of this
+paper: the uniform boundedness and convergence of the partial sum operator of
+Fourier-Neumann series. The proofs are given in sections~\ref{sec:proofboundSn}
+and~\ref{sec:proofconvae}. The mean convergence can only hold for functions in
+the closure of the linear combinations of the functions $j_n^{\alpha+\beta}$.
+In section~\ref{sec:Bpab=Epa} this space is shown to coincide with
+$E_{p,\alpha}$ under some conditions on $p$, $\alpha$, and $\beta$. Some
+applications are given in section~\ref{sec:applications}.
+
+Throughout this paper, unless otherwise stated, we will use $C$ (or $C_1$)
+to denote a positive constant independent of $n$ (and all other variables),
+which can assume different values in different occurrences. Also, in what
+follows, $a_n \sim b_n$, for $a_n, b_n>0$, means $C \le a_n/b_n \le C_1$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The spaces $B_{p,\alpha,\beta}$}
+\label{sec:Bpab}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We will use here the well known estimates (see~\cite{E-HTF}
+or~\cite[Ch.~III, 3.1 (8), p.~40]{Wat} and~\cite[Ch.~VII, 7.21 (1),
+p.~199]{Wat})
+\begin{equation}
+\label{ec:bessel0}
+   J_\mu(x) = \frac{x^\mu}{2^\mu \Gamma(\mu+1)} + O(x^{\mu+2}),
+   \quad x\to 0+,
+\end{equation}
+and
+\begin{equation}
+\label{ec:besselinfty}
+   J_\mu(x) = \sqrt{\frac2{\pi x}}
+   \left[\cos\left(x-\frac{\mu\pi}2-\frac\pi4\right) + O(x^{-1})\right],
+   \quad x\to\infty.
+\end{equation}
+
+\begin{Lem}
+\label{lem:normajn}
+Let $a>-1$, $1 < p < \infty$. Then, $j_n^a \in L^p(x^b)$ for all
+$n=0,1,2,\dots$ if and only if $b > -1$ and $-\frac14 < (b+1)\left(\frac12 -
+\frac1p\right) + \frac{a-b}2$. Furthermore, in this case,
+\begin{equation*}
+   \|j_n^a\|_{L^p(x^b)} \sim
+      \begin{cases}
+        n^{-(a+1) + 2(b+1)/p},
+        &\text{ if } p < 4, \\[2pt]
+        n^{-(2a-b+1)/2} (\log n)^{1/4},
+        &\text{ if } p = 4, \\[2pt]
+        n^{-(5/6+a) + (6b + 4)/(3p)},
+        &\text{ if } p > 4.
+      \end{cases}
+\end{equation*}
+\end{Lem}
+
+\begin{proof}
+Inequalities $b > -1$ and $-\frac14 < (b+1)\left(\frac12 - \frac1p\right) +
+\frac{a-b}2$ follow from~(\ref{ec:bessel0}) and~(\ref{ec:besselinfty}). Then,
+estimates such as~(\ref{ec:jnu}) below (see~\cite{Bar-Cor} and~\cite{Cord}) 
+show that $\|j_n^a\|_{L^p(x^b)}$ is bounded above by a constant times the
+right hand side. The lower bound follows from more precise estimates for the
+Bessel functions, as shown in~\cite{Bar-Cor} and~\cite{Cord}. For a similar
+expression, see~\cite{Stem}.
+\end{proof}
+
+As a consequence, the following definition makes sense.
+
+\begin{Defn}
+\label{defn:Bp}
+For each $\alpha$, $\beta$, and $p$ with $\alpha > -1$, $\alpha + \beta > -1$,
+$1< p < \infty$, and
+\begin{equation*}
+    -\frac14 < (\alpha+1)\left(\frac12-\frac1p\right) + \frac{\beta}2,
+\end{equation*}
+let us define
+\begin{equation*}
+	  B_{p,\alpha,\beta} = \overline{\spa} \{j_n^{\alpha+\beta}(x)\}_{n=0}^\infty
+   \quad (\text{closure in } L^p(x^\alpha)).
+\end{equation*}
+\end{Defn}
+
+Note that we assume $\alpha>-1$ in the definition of $B_{p,\alpha,\beta}$;
+however, we require $\alpha\ge-1/2$ for $E_{p,\alpha}$. Actually, the
+boundedness of $M_\alpha$ can be studied also for $\alpha>-1$, so that the
+definition of $E_{p,\alpha}$ can be extended to the whole range $\alpha >
+-1$. But in the case $\alpha < -1/2$, the $\htr$ transform does not have as
+good properties as in the case $\alpha\ge-1/2$. As a consequence, the spaces
+$E_{p,\alpha}$ do not behave for $\alpha<-1/2$ like for $\alpha\ge-1/2$. Thus,
+some of the results in this paper will be established for $\alpha>-1$, but we
+will require $\alpha\ge-1/2$ when $E_{p,\alpha}$ appears.
+
+The following Lemma proves that $B_{p,\alpha} \subset B_{p,\alpha,\beta}$,
+under some conditions on $\alpha$, $\beta$, and $p$.
+
+\begin{Lem}
+\label{lem:jnajna+b}
+Let $\alpha>-1$, $\alpha + \beta > -1$, and $1<p<4$ such that
+\begin{equation*}
+    \frac{-1}4 < (\alpha+1)\left(\frac12-\frac1p\right) - \frac{|\beta|}2.
+\end{equation*}
+Then,
+\begin{equation}
+\label{ec:jnajna+b}
+    j_n^\alpha = \sum_{k=n}^\infty a_{n,k} j_k^{\alpha+\beta}
+\end{equation}
+pointwise and in $L^p(x^\alpha)$, where
+\begin{equation}
+\label{ec:ank}
+    a_{n,k} = \frac{2^\beta \, \sqrt{\alpha + 2n + 1} \,
+        \sqrt{\alpha+\beta+2k+1} \,
+        \Gamma(1-\beta) \, \Gamma(\alpha+\beta+k+n+1)}
+       {\Gamma(1+k-n) \, \Gamma(1-\beta-k+n)\,
+        \Gamma(\alpha+k+n+2)}.
+\end{equation}
+\end{Lem}
+
+\begin{Rem}
+If $\beta \in \mathbb{N}$, then $\Gamma(1-\beta) / \Gamma(1-\beta-k+n)$ should
+be replaced by $-\beta (-\beta -1) (-\beta -2) \dots (1-\beta-k+n)$ in
+formula~(\ref{ec:ank}).
+\end{Rem}
+
+\begin{proof}
+The pointwise convergence and (\ref{ec:ank}) follow from~\cite[Ch.~V,
+5.21 (1), p.~139]{Wat} (conditions $\alpha > -1$ and $\alpha + \beta > -1$ are
+required). Strictly speaking, condition $\beta \notin \mathbb{N}$ should also
+be assumed, following~\cite{Wat}. But this is only a formal requirement to get
+$a_{n,k}$ in the form of~(\ref{ec:ank}).
+
+For the $L^p$ convergence, we need only prove that the series converges:
+that the sum is precisely $j_n^\alpha$ will then follow from the fact that
+this holds in the almost everywhere sense.
+
+If $\beta$ is an integer, then there are only finitely many $a_{n,k} \not= 0$
+and the series in~(\ref{ec:jnajna+b}) is a finite sum. If $\beta$ is not an
+integer, Stirling's formula for the Gamma function gives, for each fixed
+$n$,
+\begin{equation*}
+    |a_{n,k}| \sim k^{2\beta-3/2}, \quad k \to \infty.
+\end{equation*}
+Also, from Lemma~\ref{lem:normajn}, $p < 4$ and $\frac{-1}4 <
+(\alpha+1)\left(\frac12-\frac1p\right) + \frac{\beta}2$, we have
+\begin{equation*}
+    \lpnorm{j_k^{\alpha+\beta}}{p}{x^\alpha}
+      \sim k^{-(\alpha+\beta+1)+2(\alpha+1)/p}.
+\end{equation*}
+These estimates and $\frac{-1}4 < (\alpha+1)\left(\frac12-\frac1p\right) -
+\frac{\beta}2$ prove that
+\begin{equation*}
+    \sum_{k=n}^\infty |a_{n,k}| \, \lpnorm{j_k^{\alpha+\beta}}{p}{x^\alpha}
+   < \infty.
+\end{equation*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Uniform boundedness and convergence of Fourier-Neumann series}
+\label{sec:convergence}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us consider the partial sums of the Fourier series with respect to the
+system
+$\{j_n^{\alpha+\beta}\}_{n=0}^\infty$:
+\begin{equation*}
+   S_n(f,x) = \sum_{k=0}^n {c_k(f) j_k^{\alpha+\beta} (x)}, \qquad
+   c_k(f) = \int_0^\infty {f(t) j_k^{\alpha+\beta}(t) t^{\alpha+\beta}\,dt}.
+\end{equation*}
+We are interested in the study of the uniform boundedness of
+the partial sum operators
+\begin{equation*}
+    S_n \colon L^p(x^\alpha) \longrightarrow L^p(x^\alpha).
+\end{equation*}
+Our result is the following:
+
+\begin{Thm}
+\label{th:boundSn}
+Let $\alpha>-1$, $\alpha+\beta>-1$, and $1 < p < \infty$. There exists a
+constant $C>0$ such that
+\begin{equation*}
+    \lpnorm{S_nf}p{x^\alpha} \le C\lpnorm{f}p{x^\alpha},
+    \quad f \in L^p(x^\alpha), \quad n \in \mathbb{N},
+\end{equation*}
+if and only if $\frac43<p<4$ and
+\begin{equation}
+\label{ec:range}
+\begin{split}
+   - \frac{\alpha+\beta+1}2
+   &< (\alpha+1) \left( \frac12 - \frac1p \right) + \frac\beta2,
+   \\
+   - \frac14
+   &< (\alpha+1) \left( \frac12 - \frac1p \right) + \frac\beta2 < \frac14.
+\end{split}
+\end{equation}
+\end{Thm}
+
+\begin{proof}
+See section~\ref{sec:proofboundSn}.
+\end{proof}
+
+\begin{Cor}
+\label{cor:conv}
+Let $\alpha > -1$, $\alpha+\beta> -1$, $\frac43 < p < 4$, and
+\begin{equation*}
+\begin{split}
+   - \frac{\alpha+\beta+1}2
+   &< (\alpha+1) \left( \frac12 - \frac1p \right) + \frac\beta2,
+   \\
+   - \frac14
+   &< (\alpha+1) \left( \frac12 - \frac1p \right) + \frac\beta2 < \frac14.
+\end{split}
+\end{equation*}
+Then, $S_nf \to f$ in $L^p(x^\alpha)$ for all $f \in B_{p,\alpha,\beta}$.
+\end{Cor}
+
+\begin{proof}
+$B_{p,\alpha,\beta}$ is the closure in $L^p(x^\alpha)$ of the orthogonal
+system, so this is just a standard consequence of Theorem~\ref{th:boundSn}.
+\end{proof}
+
+Regarding the almost everywhere convergence of Fourier-Neumann series, we have
+the following.
+
+\begin{Thm}
+\label{th:convae}
+Let $\alpha > -1$, $\alpha+\beta> -1$, $\frac43 < p < 4$, and
+\begin{equation*}
+\begin{split}
+   - \frac{\alpha+\beta+1}2
+   &< (\alpha+1) \left( \frac12 - \frac1p \right) + \frac\beta2,
+   \\
+   - \frac14
+   &< (\alpha+1) \left( \frac12 - \frac1p \right) + \frac\beta2 < \frac14.
+\end{split}
+\end{equation*}
+Then, $S_nf \to f$ almost everywhere for any $f \in B_{p,\alpha,\beta}$.
+\end{Thm}
+
+\begin{proof}
+See section~\ref{sec:proofconvae}.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Hankel transform of order $\alpha$ for $j_n^{\alpha+\beta}$\\
+and the spaces $B_{p,\alpha,\beta}$ and $E_{p,\alpha}$}
+\label{sec:Bpab=Epa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Theorem~\ref{th:boundSn} and Corollary~\ref{cor:conv} are more interesting if
+we can describe the space $B_{p,\alpha,\beta}$. In this section, we will find
+some conditions under which $B_{p,\alpha,\beta}$ and $E_{p,\alpha}$ coincide.
+
+As we pointed out, the Hankel transform of order $\alpha$ for $j_n^\alpha$ can
+be written in terms of the $n$-th Jacobi polynomial of order $(\alpha,0)$. It
+is not difficult to obtain $\htr(j_n^{\alpha+\beta})$ from known results about
+integrals of products of Bessel functions that can be expressed in terms of
+hypergeometric $\hf$ functions. But the relation between
+$\htr(j_n^{\alpha+\beta})$ and the Jacobi polynomials of order
+$(\alpha,\beta)$ is not easily found in the literature. For instance, it does
+not appear in the standard references~\cite{E-HTF,Wat, E-TIT}. For the sake of
+completeness, in this section we obtain $\htr(j_n^{\alpha+\beta})$ explicitly
+in terms of $P_n^{(\alpha,\beta)}$.
+
+\begin{Lem}
+\label{lem:HTjnab}
+For $\alpha,\beta>-1$ with $\alpha + \beta > -1$,
+\begin{equation*}
+    \htr(j_n^{\alpha+\beta},x)
+      = 2^{-\beta} \tfrac{\sqrt{\alpha+\beta+2n+1} \, \Gamma(n+1)}
+        {\Gamma(\beta+n+1)}
+        (1-x)^\beta P^{(\alpha,\beta)}_n(1-2x) \chi_{[0,1]}(x).
+\end{equation*}
+In particular,
+$\supp (\htr(j^{\alpha+\beta}_n)) \subseteq [0,1]$.
+\end{Lem}
+
+\begin{proof}
+We use the formula
+\begin{multline}
+\label{ec:hforig}
+   \int_0^\infty t^{-\lambda} J_\mu(at) J_\nu(bt)\,dt
+   \\
+   = \frac{b^\nu a^{\lambda-\nu-1}
+         \Gamma(\frac{\mu+\nu-\lambda+1}2)}
+         {2^\lambda \Gamma(\nu+1) \Gamma(\frac{\lambda+\mu-\nu+1}2)}
+       \hf\left( \frac{\mu+\nu-\lambda+1}2,
+          \frac{\nu-\lambda-\mu+1}2; \nu+1;
+          \frac{b^2}{a^2} \right),
+\end{multline}
+valid when $0<b<a$, $\mu+\nu-\lambda>-1$ and $\lambda>-1$; here, $\hf$ denotes
+the hypergeometric function (see~\cite[Ch.~8.11, (9), p.~48]{E-TIT} or
+\cite[Ch.~XIII, 13.4 (2), p.~401]{Wat}).
+
+Taking $a=1$ and $x=b^2$ in~(\ref{ec:hforig}), and making the
+corresponding changes of variable and parameters ($\nu=\alpha$,
+$\mu=\alpha+\beta+2n+1$, $\lambda=\beta$) we get
+\begin{equation*}
+    \htr(j_n^{\alpha+\beta},x)
+    = \tfrac{\sqrt{2n+\alpha+\beta+1}\,\Gamma(\alpha+n+1)}
+      {2^\beta \Gamma(\beta+n+1) \Gamma(\alpha+1)}
+      \hf(\alpha+n+1,-n-\beta;\alpha+1;x),
+\end{equation*}
+which is valid for $\alpha>-1$ and $\beta>-1$ in the interval $0<x<1$.
+Now, we have
+\begin{equation*}
+    \hf(\alpha+n+1,-n-\beta;\alpha+1;x)
+    = (1-x)^\beta \hf(-n,\alpha+\beta+n+1;\alpha+1;x),
+\end{equation*}
+where $\alpha,\beta>-1$, $n=0,1,2,\dots$, and
+\begin{equation*}
+    P_n^{(\alpha,\beta)}(x) =
+      \tfrac{\Gamma(n+\alpha+1)}{\Gamma(\alpha+1)\Gamma(n+1)}
+      \hf(-n, \alpha+\beta+n+1; \alpha+1; \tfrac{1-x}2),
+      \quad \alpha, \beta > -1.
+\end{equation*}
+Therefore,
+\begin{equation*}
+    \htr(j_n^{\alpha+\beta},x)
+      = \tfrac{\sqrt{\alpha+\beta+2n+1} \, \Gamma(n+1)}
+        {2^\beta \Gamma(\beta+n+1)} (1-x)^\beta P^{(\alpha,\beta)}_n(1-2x),
+        \quad x \in (0,1).
+\end{equation*}
+Now, let us calculate $\htr(j_n^{\alpha+\beta},x)$ for $x>1$. To do that, let
+us take $x=a^2$, $b=1$, $\nu=\alpha+\beta+2n+1$, $\mu=\alpha$, and
+$\lambda=\beta$ in~(\ref{ec:hforig}). In this way,
+$\frac12(\lambda+\mu-\nu+1) = 0,-1, -2, \dots$, so the coefficient
+$1/\Gamma(\frac12(\lambda+\mu-\nu+1))$ vanishes and we get
+$\htr(j_n^{\alpha+\beta},x) = 0$.
+\end{proof}
+
+\begin{Thm}
+\label{th:Bp=Ep}
+Let $\alpha\ge-1/2$, $\beta > -1/2$, $4/3 < p$, with
+\begin{equation*}
+   -\frac14 < (\alpha+1) \left( \frac12 - \frac1p \right) < \frac14.
+\end{equation*}
+If $p < 2$, assume further
+\begin{equation*}
+   -\frac14 < (\alpha+1) \left(\frac12 - \frac1p \right) - \frac{|\beta|} 2. 
+\end{equation*}
+Then $B_{p,\alpha,\beta} = E_{p,\alpha}$.
+\end{Thm}
+   
+\begin{proof}
+{\it Case $p=2$.} The spaces $B_{2,\alpha,\beta}$ and $E_{2,\alpha}$
+are well defined. Also $M_\alpha(j_n^{\alpha+\beta}) = j_n^{\alpha+\beta}$. In
+other words, $B_{2,\alpha,\beta} \subset E_{2,\alpha}$. If they were not
+equal, by the Hahn-Banach theorem there should exist some $T \in
+(E_{2,\alpha})'$, $T \ne 0$, such that $T(j_n^{\alpha+\beta}) = 0$ $\forall
+n$. But $(E_{2,\alpha})' = E_{2,\alpha}$, so there exists $\varphi \in
+E_{2,\alpha}$, $\varphi\ne0$, such that $\int_0^\infty \varphi
+j_n^{\alpha+\beta} x^\alpha \, dx = 0$ for every
+$n$. Then
+\begin{align*}
+    0 &= \int_0^\infty \varphi j_n^{\alpha+\beta} x^\alpha \, dx
+    = \int_0^\infty (\htr \varphi) (\htr j_n^{\alpha+\beta}) x^\alpha \, dx \\
+    &= k_n \int_0^1 (\htr \varphi) P_n^{(\alpha,\beta)}(1-2x)
+      (1-x)^\beta x^\alpha \, dx
+\end{align*}
+for every nonnegative integer $n$. Now, the Jacobi polynomials
+$P_n^{(\alpha,\beta)}(x)$ are a complete orthogonal system with respect to the
+measure $(1-x)^\alpha(1+x)^\beta \, dx$ on $(-1,1)$. A change of variable
+proves that the polynomials $P_n^{(\alpha,\beta)}(1-2x)$ are a complete
+orthogonal system with respect to the measure $(1-x)^\beta x^\alpha \, dx$ on
+$(0,1)$. Thus, $\htr \varphi = 0$ on $(0,1)$. Since $\varphi \in
+E_{2,\alpha}$, we also have $\htr \varphi = 0$ on $(1,\infty)$. Therefore,
+$\htr \varphi = 0$ and we arrive at the contradiction $\varphi = 0$.
+
+{\it Case $p>2$.} Note that $\alpha$, $\beta$, and $p$ meet the
+requirements of Definition~\ref{defn:Bp}. Also, by the preceding case, we
+have $j_n^{\alpha+\beta}\in E_{2,\alpha} \subset E_{p,\alpha}$. Thus,
+$B_{p,\alpha,\beta}\subset E_{p,\alpha}$.
+
+Now, let $f\in E_{p,\alpha}$. Given $\varepsilon>0$, there exists a function
+$g\in L^2(x^\alpha)\cap L^p(x^\alpha)$ such that
+$\lpnorm{f-g}{p}{x^\alpha}<\varepsilon$. Let $h=M_\alpha g$; then $h \in
+L^2(x^\alpha)\cap L^p(x^\alpha)$ and $M_\alpha h = h$, so that $h\in
+E_{2,\alpha}\cap E_{p,\alpha} = B_{2,\alpha,\beta}\cap E_{p,\alpha}$. Since
+$M_\alpha$ is continuous, $\lpnorm{f-h}{p}{x^\alpha} = \lpnorm{M_\alpha
+f-M_\alpha g}{p}{x^\alpha} < C\varepsilon$. As $h\in B_{2,\alpha,\beta}$,
+there exists $h'\in \spa\{j_n^{\alpha+\beta}\}_{n=0}^\infty$ such that
+$\lpnorm{h-h'}{2}{x^\alpha}<\varepsilon$. The inclusion $E_{2,\alpha} \subset
+E_{p,\alpha}$ gives $\lpnorm{h-h'}{p}{x^\alpha}< C_1 \varepsilon$, so that, by
+the triangle inequality, $\lpnorm{f-h'}{p}{x^\alpha}<C_2\varepsilon$.
+This gives the inclusion $E_{p,\alpha}\subset B_{p,\alpha,\beta}$.
+
+{\it Case $p<2$.} By Lemmas~\ref{lem:normajn} and~\ref{lem:HTjnab},
+$j_n^{\alpha+\beta} \in L^2(x^\alpha)$ and $\htr(j_n^{\alpha+\beta})$ is
+supported on $[0,1]$, so that $M_\alpha j_n^{\alpha+\beta} =
+j_n^{\alpha+\beta}$. Since $j_n^{\alpha+\beta} \in L^p(x^\alpha)$ by
+Lemma~\ref{lem:normajn}, it follows that $j_n^{\alpha+\beta} \in
+E_{p,\alpha}$. Therefore, $B_{p,\alpha,\beta} \subset E_{p,\alpha}$.
+
+The equality will follow if we prove that the only operator $T \in
+(E_{p,\alpha})'$ such that $T(f) = 0$ for all $f \in B_{p,\alpha,\beta}$ is $T
+= 0$. For such an operator, we have $T(j_n^\alpha) = 0$ for every $n \ge 0$,
+since $j_n^\alpha \in B_{p,\alpha,\beta}$ by Lemma~\ref{lem:jnajna+b}. On the
+other hand, by the duality $(E_{p,\alpha})'=E_{q,\alpha}$, where $1/p+1/q=1$,
+there exists some $\varphi \in E_{q,\alpha}$ such that
+\begin{equation*}
+    T(f) = \int_0^\infty \varphi f x^\alpha\,dx, \quad f \in E_{p,\alpha}.
+\end{equation*}
+In particular,
+\begin{equation}
+\label{ec:cn=0}
+   \int_0^\infty \varphi j_n^\alpha x^\alpha \, dx = 0, \quad n \ge 0.
+\end{equation}
+Under the present conditions on $p$ and $\alpha$, the preceding case
+gives $B_{q,\alpha,0} = E_{q,\alpha}$, so that $\varphi \in B_{q,\alpha,0}$.
+This, together with (\ref{ec:cn=0}) and Corollary~\ref{cor:conv}, gives
+$\varphi = 0$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Applications}
+\label{sec:applications}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Some properties of the spaces $E_{p,\alpha}$ can be obtained from
+Theorem~\ref{th:Bp=Ep}. Two examples will be given here, after this
+preliminary result. 
+
+\begin{Cor}
+\label{cor:convMa}
+Let $\alpha\ge-1/2$, $\beta=0$ and $4/3 < p < 4$ verifying
+\begin{equation*}
+   -\frac14 < (\alpha+1) \left( \frac12 - \frac1p \right) < \frac14.
+\end{equation*}
+Then, $S_nf \to M_\alpha f$ in $L^p(x^\alpha)$ and almost everywhere for all $f
+\in L^p(x^\alpha)$.
+\end{Cor}
+
+\begin{proof}
+Let $f \in L^p(x^\alpha)$, and so $M_\alpha f \in E_{p,\alpha}$.
+Then, by Theorem~\ref{th:Bp=Ep} and Theorem~\ref{th:convae},
+$S_n(M_\alpha f) \to M_\alpha f$ in $L^p(x^\alpha)$ and almost everywhere.
+So, we only need to show that $S_n(M_\alpha f) = S_n(f)$, and
+this is clear because, by~(\ref{ec:Mafg}),
+\begin{equation*}
+    \int_0^\infty (M_\alpha f) j_n^{\alpha+\beta} x^\alpha \,dx
+    = \int_0^\infty f (M_\alpha j_n^{\alpha+\beta}) x^\alpha \,dx
+    = \int_0^\infty f j_n^{\alpha+\beta} x^\alpha \,dx.
+\end{equation*}
+\end{proof}
+
+\begin{Cor}
+\label{cor:EpaEpa+b}
+Let $\alpha\ge-1/2$, $-1/2 < \beta < 1$, $4/3 < p < 4$ with
+$\alpha+\beta\ge-1/2$,
+\begin{gather*}
+    - \frac14 < (\alpha+\beta+1) \left(\frac12 - \frac1p \right) < \frac14,
+   \\
+   \max\left\{ -\frac14, -\frac14 - \frac\beta2, - \frac{\alpha+1}2 - \beta
+       \right\}
+   < (\alpha+1) \left(\frac12 - \frac1p \right) <
+   \min\left\{ \frac14, \frac14 - \frac\beta2 \right\}.
+\end{gather*}
+If $p<2$, assume further $\beta<1/2$ and $-\frac14 + \frac\beta2 <
+(\alpha+1) \left(\frac12 - \frac1p \right)$.
+
+Then, $E_{p,\alpha} \cap L^p(x^{\alpha+\beta}) \subset E_{p,\alpha+\beta}$.
+\end{Cor}
+
+\begin{proof}
+Let $f \in E_{p,\alpha} \cap L^p(x^{\alpha+\beta})$. By Theorem~\ref{th:Bp=Ep}
+and Theorem~\ref{th:convae}, $S_n f \to f$ almost everywhere. Since $f \in
+L^p(x^{\alpha+\beta})$, Corollary~\ref{cor:convMa} (with $\alpha +\beta$
+instead of $\alpha$) gives $S_n f \to M_{\alpha+\beta}f$ almost everywhere.
+Then, $f = M_{\alpha+\beta}f$ almost everywhere, that is,
+$f \in E_{p,\alpha+\beta}$.
+\end{proof}
+
+\begin{Cor}
+Let $\alpha\ge-1/2$, $\beta\in(-\frac12,\frac12)$, $4/3 < p < 4$ with
+$\alpha+\beta\ge-1/2$,
+\begin{gather*}
+   \max\left\{ -\frac14, -\frac14 - \frac\beta2, - \frac{\alpha+1}2 - \beta
+       \right\}
+   < (\alpha+1) \left(\frac12 - \frac1p \right) <
+   \min\left\{ \frac14, \frac14 - \frac\beta2 \right\},
+   \\
+   \max\left\{
+   -\frac14, -\frac14 + \frac\beta2, - \frac{\alpha+1}2 + \frac\beta2
+       \right\}
+   < (\alpha+\beta+1) \left(\frac12 - \frac1p \right) <
+   \min\left\{ \frac14, \frac14 + \frac\beta2 \right\}.
+\end{gather*}
+If $p<2$, assume further $-\frac14 + \frac\beta2 <
+(\alpha+1) \left(\frac12 - \frac1p \right)$ and $-\frac14 - \frac\beta2 <
+(\alpha+\beta+1) \left(\frac12 - \frac1p \right)$.
+
+Then, $E_{p,\alpha} \cap L^p(x^{\alpha+\beta}) = E_{p,\alpha+\beta} \cap
+L^p(x^\alpha)$.
+\end{Cor}
+
+\begin{proof}
+The inclusion ``$\subseteq$'' is clear by Corollary~\ref{cor:EpaEpa+b}.
+The inclusion ``$\supseteq$'' follows also by Corollary~\ref{cor:EpaEpa+b} with
+$\alpha+\beta$ instead of $\alpha$, and $\beta$ instead of $-\beta$.
+\end{proof}
+
+Theorem~\ref{th:Bp=Ep} gives different basis for $E_{p,\alpha}$ for different
+values of $\beta$. It seems interesting to obtain the expressions for the
+change of basis between $\{j_n^\alpha\}_{n=0}^\infty$ and
+$\{j_n^{\alpha+\beta}\}_{n=0}^\infty$ in $E_{p,\alpha}$.
+
+\begin{Cor}
+Let $\alpha\ge-1/2$, $-1/2 < \beta < 1$, $4/3 < p < 4$ with
+\begin{equation*}
+   \max\left\{ -\frac14, -\frac14 - \frac\beta2, - \frac{\alpha+1}2 - \beta
+       \right\}
+   < (\alpha+1) \left(\frac12 - \frac1p \right) <
+   \min\left\{ \frac14, \frac14 - \frac\beta2 \right\}.
+\end{equation*}
+If $p<2$, assume further $-\frac14 + \frac\beta2 < (\alpha+1) \left(\frac12 -
+\frac1p \right)$.
+Then, both $\{j_n^\alpha\}_{n=0}^\infty$ and
+$\{j_n^{\alpha+\beta}\}_{n=0}^\infty$ are bases of the space $E_{p,\alpha}$
+and the change of basis is given by
+\begin{equation*}
+    j_n^\alpha = \sum_{k=n}^\infty a_{n,k} j_k^{\alpha+\beta},
+    \qquad
+    j_n^{\alpha+\beta} = \sum_{k=n}^\infty b_{n,k} j_k^\alpha,
+\end{equation*}
+where
+\begin{equation}
+\label{ec:ankbnk}
+\begin{split}
+    a_{n,k} &= \frac{2^\beta \, \sqrt{\alpha + 2n + 1} \,
+        \sqrt{\alpha+\beta+2k+1} \,
+        \Gamma(1-\beta) \, \Gamma(\alpha+\beta+k+n+1)}
+       {\Gamma(1+k-n) \, \Gamma(1-\beta-k+n)\,
+        \Gamma(\alpha+k+n+2)},
+    \\
+    b_{n,k} &= \frac{ 2^{-\beta} \, \sqrt{\alpha+\beta+2n+1} \,
+        \sqrt{\alpha+2k+1} \,
+        \Gamma(1+\beta) \, \Gamma(\alpha+k+n+1) }
+      { \Gamma(1+k-n) \, \Gamma(1+\beta-k+n)\,
+        \Gamma(\alpha+\beta+k+n+2) }.
+\end{split}
+\end{equation}
+\end{Cor}
+
+\begin{proof}
+By Theorem~\ref{th:Bp=Ep}, $B_{p,\alpha,0} = E_{p,\alpha}$, so that
+$j_n^\alpha \in E_{p,\alpha}$. Also, by Theorem~\ref{th:Bp=Ep}, $E_{p,\alpha}
+= B_{p,\alpha,\beta}$. Then, Corollary~\ref{cor:conv} gives $S_N j_n^\alpha
+\to j_n^\alpha$ in $L^p(x^\alpha)$ as $N\to\infty$, that is,
+\begin{equation*}
+   j_n^\alpha = \sum_{k=0}^\infty a_{n,k} j_k^{\alpha+\beta}
+\end{equation*}
+in $L^p(x^\alpha)$, where
+\begin{equation*}
+   a_{n,k} =
+   \int_0^\infty j_n^\alpha j_k^{\alpha+\beta} x^{\alpha+\beta} \, dx.
+\end{equation*}
+In a similar way, $j_n^{\alpha+\beta} \in B_{p,\alpha,\beta} = B_{p,\alpha,0}$
+and $j_n^{\alpha+\beta} = \sum_{k=0}^\infty b_{n,k} j_k^\alpha$ in
+$L^p(x^\alpha)$, where
+\begin{equation*}
+   b_{n,k} =
+   \int_0^\infty j_n^{\alpha+\beta} j_k^\alpha x^\alpha \, dx.
+\end{equation*}
+Finally, \cite[Ch.~XIII, 13.41 (2), p.~403]{Wat} gives $a_{n,k} = b_{n,k} = 0$
+for $k<n$ and~(\ref{ec:ankbnk}) for $k \geq n$.
+\end{proof}
+
+Similar expressions for the change of basis between different bases
+$\{j_n^{\alpha+\beta}\}_{n=0}^\infty$ and
+$\{j_n^{\alpha+\beta'}\}_{n=0}^\infty$ in $E_{p,\alpha}$ can be obtained.
+Details are left to the reader.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{th:boundSn}}
+\label{sec:proofboundSn}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Necessary conditions}
+
+Let us begin by showing that conditions~(\ref{ec:range})
+are necessary for the uniform boundedness in Theorem~\ref{th:boundSn}.
+Assume $S_n$ is uniformly bounded. Then the operators given by
+\begin{equation*}
+   T_n(f,x) = S_n(f,x) - S_{n-1}(f,x) =
+   j_n^{\alpha+\beta}(x) \int_0^\infty f(t) j^{\alpha+\beta}_n(t)
+   t^{\alpha+\beta} \, dt
+\end{equation*}
+are uniformly bounded as well, i.e.
+\begin{equation*}
+    \lpnorm{T_nf}p{x^\alpha}
+    = \left| \int_0^\infty f(t) j_n^{\alpha+\beta}(t) t^{\alpha+\beta} \, dt
+      \right| \lpnorm{j_n^{\alpha+\beta}}p{x^\alpha}
+    \le C \lpnorm{f}p{x^\alpha}
+\end{equation*}
+with a constant $C$ independent of $n$ and $f$.
+By duality, this means
+\begin{equation*}
+    \lpnorm{t^\beta j_n^{\alpha+\beta}}q{t^\alpha}
+    \lpnorm{j_n^{\alpha+\beta}}p{x^\alpha}
+    \le C,
+\end{equation*}
+where $1/p+1/q=1$. Taking $n$ fixed (it suffices $n=0$) and applying the first
+part of Lemma~\ref{lem:normajn} gives~(\ref{ec:range}). Now,
+provided~(\ref{ec:range}) holds, the norm estimates of Lemma~\ref{lem:normajn}
+give
+\begin{equation*}
+    \lpnorm{j_n^{\alpha+\beta}}{p}{x^\alpha} \sim
+    \begin{cases}
+    n^{-(\alpha+\beta+1)+2(\alpha+1)/p}, & \text{if $p<4$,} \\
+    n^{-(\alpha+2\beta+1)/2}(\log n)^{1/4}, & \text{if $p=4$,} \\
+    n^{-(5/6+\alpha+\beta)+(6\alpha+4)/(3p)}, & \text{if $p>4$,}
+    \end{cases}
+\end{equation*}
+and
+\begin{equation*}
+    \lpnorm{x^\beta j_n^{\alpha+\beta}}{q}{x^\alpha} \sim
+    \begin{cases}
+    n^{-(\alpha-\beta+1)+2(\alpha+1)/q}, & \text{if $q<4$ (i.e., $p>4/3$)}, \\
+    n^{-(\alpha-2\beta+1)/2}(\log n)^{1/4}, & \text{if $q=4$ (i.e., $p=4/3$)},
+      \\
+    n^{-(5/6+\alpha-\beta)+(6\alpha+4)/(3q)}, & \text{if $q>4$ (i.e.,
+      $p<4/3$)}.
+    \end{cases}
+\end{equation*}
+This implies $4/3<p<4$.
+
+%--------------------
+
+\subsection{Sufficient conditions}
+
+Let us now assume $\frac43<p<4$ and~(\ref{ec:range}), and prove the uniform
+boundedness of the partial sum operators $S_n$. They can be written as
+\begin{equation*}
+   S_n(f,x) = \int_0^\infty {f(t) K_n(x,t) t^{\alpha+\beta}\,dt}, \quad
+   \text{where \quad}
+   K_n(x,t) = \sum_{k=0}^n j_k^{\alpha+\beta}(x) j_k^{\alpha+\beta}(t).
+\end{equation*}
+The next lemma gives a suitable decomposition of the kernel $K_n(x,t)$
+associated to $S_n$. For a similar formula, with a different proof,
+see~\cite{Var}.
+
+\begin{Lem}
+\label{lem:decomp}
+Let $n \in \mathbb{N}$ and $\lambda > -1$. Then
+\begin{multline*}
+   \sum_{k=0}^n 2 (\lambda+2k+1) J_{\lambda+2k+1}(x) J_{\lambda+2k+1}(t)
+   \\
+   = \frac{xt}{x^2-t^2} \, [
+   x J_{\lambda+1}(x) J_\lambda(t) - t J_\lambda(x) J_{\lambda+1}(t)
+   \\
+   + x J'_{\lambda+2n+2}(x) J_{\lambda+2n+2}(t)
+   - t J_{\lambda+2n+2}(x) J'_{\lambda+2n+2}(t)
+   ].
+\end{multline*}
+\end{Lem}
+
+\begin{proof}
+Using the equality $J_{\nu-1}(z) + J_{\nu+1}(z) = \frac{2 \nu}z J_\nu(z)$
+(see~\cite[Ch.~III, 3.2, p.~45]{Wat}) to express $J_{\mu-1}$ and $J_{\mu+2}$ in
+terms of $J_\mu$ and $J_{\mu+1}$ yields the formula
+\begin{gather*}
+  \frac{xt}{x^2-t^2} \left[
+   x J_\mu(x) J_{\mu-1}(t) - t J_{\mu-1}(x) J_\mu(t)
+   - x J_{\mu+2}(x) J_{\mu+1}(t)
+   + t J_{\mu+1}(x) J_{\mu+2}(t)
+   \right]
+   \\
+   = 2 \mu J_\mu(x) J_\mu(t).
+\end{gather*}
+This now gives
+\begin{multline*}
+   \sum_{k=0}^n
+   2 (\lambda+2k+1) J_{\lambda+2k+1}(x) J_{\lambda+2k+1}(t)
+   \\
+   = \frac{xt}{x^2-t^2} \, [
+   x J_{\lambda+1}(x) J_\lambda(t) - t J_\lambda(x) J_{\lambda+1}(t)
+   \\
+   - x J_{\lambda+2n+3}(x) J_{\lambda+2n+2}(t)
+   + t J_{\lambda+2n+2}(x) J_{\lambda+2n+3}(t)
+   ].
+\end{multline*}
+Finally, use the formula $z J_{\nu+1}(z) = \nu J_\nu(z) - z J'_\nu(z)$
+(see~\cite[Ch.~III, 3.2, p.~45]{Wat}) to take out $J_{\lambda+2n+3}$.
+\end{proof}
+
+{}From the definition, we have
+\begin{multline*}
+   S_n(f,x)
+   = x^{-\alpha/2-\beta/2-1/2} \int_0^\infty
+   \bigg( \sum_{k=0}^n (\alpha+\beta+2k+1)
+   \\
+   \times J_{\alpha+\beta+2k+1}(\sqrt x)
+   J_{\alpha+\beta+2k+1}(\sqrt t)
+   \bigg) t^{\alpha/2+\beta/2-1/2} f(t) \, dt
+\end{multline*}
+so that Lemma~\ref{lem:decomp} with $\lambda=\alpha+\beta$ leads to
+\begin{equation*}
+   S_n f = W_1 f - W_2 f + W_{3,n} f - W_{4,n} f,
+\end{equation*}
+where
+\begin{align*}
+   W_1(f,x) &= \tfrac12 x^{-\alpha/2-\beta/2+1/2} J_{\alpha+\beta+1}(x^{1/2})
+   \, H\big( t^{\alpha/2+\beta/2} J_{\alpha+\beta}(t^{1/2}) f(t), x \big),
+   \\
+   W_2(f,x) &= \tfrac12 x^{-\alpha/2-\beta/2} J_{\alpha+\beta}(x^{1/2})
+   \, H\big(t^{\alpha/2+\beta/2+1/2} J_{\alpha+\beta+1}(t^{1/2}) f(t), x \big),
+   \\
+   W_{3,n}(f,x) &= \tfrac12 x^{-\alpha/2-\beta/2+1/2} J_\nu'(x^{1/2})
+   \, H\big(t^{\alpha/2+\beta/2} J_\nu(t^{1/2}) f(t), x\big),
+   \\
+   W_{4,n}(f,x) &= \tfrac12 x^{-\alpha/2-\beta/2} J_\nu(x^{1/2})
+   \, H\big(t^{\alpha/2+\beta/2+1/2} J_\nu'(t^{1/2}) f(t), x\big)
+\end{align*}
+and $\nu = \lambda+2n+2 = \alpha+\beta+2n+2$. Here, $H$ denotes the
+Hilbert transform on $(0,\infty)$, which is defined by
+\begin{equation*}
+    H(g,x) = \int_0^\infty \frac{g(t)}{x-t}\,dt
+\end{equation*}
+(the integral must be considered as a principal value).
+
+Thus, we can conclude that the partial sum operators $S_n$ are uniformly
+bounded if we can prove that the operators $W_1$, $W_2$ are bounded and the
+operators $W_{3,n}$, $W_{4,n}$ are uniformly bounded for $n \ge 0$. We will
+use good estimates for the Bessel functions and the $A_p$ theory of weights to
+prove the boundedness of the Hilbert transform.
+
+Let us start with the bounds for the Bessel functions and their derivatives.
+
+{}From the estimates~(\ref{ec:bessel0}) and~(\ref{ec:besselinfty}) it
+follows that, for $\mu>-1$,
+\begin{equation}
+\label{ec:cota01}
+    |J_\mu(x)| \le C_\mu x^\mu,
+    \quad x \in (0,1],
+\end{equation}
+\begin{equation}
+\label{ec:cota1infty}
+    |J_\mu(x)| \le C_\mu x^{-1/2},
+    \quad x \in [1,\infty),
+\end{equation}
+with a $C_\mu$ constant depending on $\mu$.
+
+Moreover, we will need bounds for the Bessel functions
+$J_{\alpha+\beta+2n+2}$ (and their derivatives) with constants independent of
+$n$. So, we will make use of the bounds
+\begin{equation}
+\label{ec:jnu}
+   |J_\nu(x)| \le C x^{-1/4} \left( |x - \nu| + \nu^{1/3} \right)^{-1/4},
+   \quad x \in (0,\infty),
+\end{equation}
+\begin{equation}
+\label{ec:jnu'}
+   |J_\nu'(x)| \le C x^{-3/4} \left( |x - \nu| + \nu^{1/3} \right)^{1/4},
+   \quad x \in (0,\infty),
+\end{equation}
+with some constant $C$ independent of~$\nu$. They follow from those
+of~\cite{Bar-Cor,Cord}, for instance, and were already used in~\cite{Var}.
+
+%--------------------
+
+\subsection{Some results on Hilbert transforms and $A_p$ theory}
+
+To analyze the boundedness of the Hilbert transform, some notation and
+previous results will be necessary. As usual, for $1 < p < \infty$ we
+write $q = p/(p-1)$, i.e., $1/p + 1/q = 1$. A weight is a nonnegative
+Lebesgue-measurable function on $(0,\infty)$. The class $A_p(0,\infty)$
+[$A_p$, for short] consists of those weights $w$ such that, for
+every subinterval $I \subseteq (0, \infty)$,
+\begin{equation*}
+   \left(\frac1{|I|} \int_I w \right)
+   \left( \frac1{|I|} \int_I w^{-q/p} \right)^{p/q} \le C,
+\end{equation*}
+where $C$ is a positive constant independent of $I$, and $|I|$ denotes the
+length of $I$. The $A_p$ constant of $w$ is the least constant $C$
+verifying this inequality and will be denoted by $A_p(w)$. We refer the reader
+to~\cite{GC-RF} for further details on $A_p$ classes.
+
+Fix $1 < p < \infty$; then the Hilbert transform $H$ is a bounded linear
+operator on $L^p(w)$, for any weight $w \in A_p$. The norm of $H \colon L^p(w)
+\longrightarrow L^p(w)$ and the $A_p$ constant of $w$ depend only on
+each other, in the sense that given some constant $C$ which verifies the $A_p$
+condition for $w$, another constant $C_1$ depending only on $C$ can be chosen
+so that $\| H\| \le C_1$, and viceversa. Therefore, for a sequence $\{w_n\}_{n
+\in \mathbb{N}}$ uniformly in $A_p$, i.e., with some constant $C$ verifying
+the $A_p$ condition for every $w_n$, the Hilbert transform is uniformly
+bounded on $L^p(w_n)$, $n \in \mathbb{N}$.
+
+Let us see some auxiliary results related with $A_p$ weights:
+
+\begin{Lem}
+\label{lem:Ap1}
+Let $u$, $v$, $w$ be weights on $(0, \infty)$ and $\gamma$ be a positive
+constant. Then
+\begin{itemize}
+\item[(a)] $w(x) \in A_p$ if and only if $w(\gamma x) \in A_p$;
+both weights have the same $A_p$ constant.
+\item[(b)] $w \in A_p$ if and only if $\gamma w \in A_p$; both weights
+have also the same $A_p$ constant.
+\item[(c)] If $u, v \in A_p$, then $u + v \in A_p$ and
+$A_p(u + v) \le A_p(u) + A_p(v)$.
+\item[(d)] If $u, v \in A_p$ and $1/w = 1/u + 1/v$, then $w \in A_p$
+and $A_p(w) \le C [A_p(u) + A_p(v)]$.
+\end{itemize}
+\end{Lem}
+
+\begin{proof}
+Parts (a) and (b) are trivial. Part (c) follows easily from
+the inequality
+\begin{equation*}
+   \left(
+   \frac1{|I|} \int_I (u + v)^{-{q/p}} \right)^{p/q}
+   \le
+   \min\left\{
+   \left( \frac1{|I|} \int_I u^{-{q/p}} \right)^{p/q},
+   \left( \frac1{|I|} \int_I v^{-{q/p}} \right)^{p/q}
+   \right\}.
+\end{equation*}
+Part (d) is a consequence of (c) and the fact that $u \in A_p \iff
+u^{-q/p} \in A_{q}$, with $A_{q}(u^{-q/p}) = [A_p(u)]^{q/p}$.
+\end{proof}
+
+The proof of the next lemma is not difficult, but cumbersome, so we omit it.
+For the weight in~(c), observe that $x^r |x^{1/2} - 1|^s \sim x^r$ near
+$0$, $x^r |x^{1/2} - 1|^s \sim |x-1|^s$ near $1$ and $x^r |x^{1/2} - 1|^s \sim
+x^{r+s/2}$ near $\infty$, whence the three conditions follow.
+
+\begin{Lem}
+\label{lem:Ap2}
+Let $r, s \in \mathbb{R}$. We have
+\begin{itemize}
+\item[(a)] $x^r \in A_p \iff -1 < r < p-1$.
+\item[(b)] Set $\Phi(x) = x^r$ if $x \in (0,1)$ and $\Phi(x) = x^s$ if $x
+\in (1,\infty)$. Then, $\Phi \in A_p$ if and only if $-1 < r < p-1$ and $-1 <
+s < p-1$.
+\item[(c)] $x^r |x^{1/2} - 1|^s \in A_p \iff -1 < r < p-1, \ -1 < s < p-1$ and
+$-1 < r + s/2 < p-1$.
+\end{itemize}
+\end{Lem}
+
+To simplify the notation, in the rest of this section we write
+$\lambda=\alpha+\beta$ and $\nu=\alpha+\beta+2n+2$.
+
+%--------------------
+
+\subsection{Boundedness of the operators $W_1$ and $W_2$.}
+
+{}From the definition, it follows that
+\begin{equation*}
+   \lpnorm{W_1f}p{x^\alpha} \le C \lpnorm{f}p{x^\alpha}
+\end{equation*}
+if and only if
+\begin{equation*}
+   \lpnorm{Hg}p{x^{\alpha - \lambda p/2 + p/2} |J_{\lambda+1}(x^{1/2})|^p}
+   \le C \lpnorm{g}p{x^{\alpha - \lambda p/2} |J_\lambda(x^{1/2})|^{-p}}.
+\end{equation*}
+Proving that there is a weight $\Phi \in A_p$ with
+\begin{equation}
+\label{ec:cotaPhi}
+   C x^{\alpha - \lambda p/2 + p/2} |J_{\lambda+1}(x^{1/2})|^p
+   \le \Phi(x) \le
+   C_1 x^{\alpha - \lambda p/2} |J_\lambda(x^{1/2})|^{-p}
+\end{equation}
+will be enough. According to the bounds~(\ref{ec:cota01})
+and~(\ref{ec:cota1infty}), we have
+\begin{align*}
+   x^{\alpha - \lambda p/2 + p/2} |J_{\lambda+1}(x^{1/2})|^p
+   &\le
+   \begin{cases}
+   C x^{\alpha + p}, &{\text{ if }} x \in (0,1), \\
+   C x^{\alpha - \lambda p/2 + p/4}, &{\text{ if }} x \in (1,\infty),
+   \end{cases}   
+   \\
+   x^{\alpha - \lambda p/2} |J_\lambda(x^{1/2})|^{-p}
+   &\ge
+   \begin{cases}
+   C x^{\alpha - \lambda p}, &{\text{ if }} x \in (0,1), \\
+   C x^{\alpha - \lambda p/2 + p/4}, &{\text{ if }} x \in (1,\infty).
+   \end{cases}
+\end{align*}
+Let us try
+\begin{equation*}
+   \Phi(x) = \begin{cases}
+   x^r, &{\text{ if }} x \in (0,1), \\
+   x^{\alpha - \lambda p/2 + p/4},
+   &{\text{ if }} x \in (1,\infty).
+   \end{cases}
+\end{equation*}
+By (b) in Lemma~\ref{lem:Ap2}, conditions~(\ref{ec:cotaPhi}) and $\Phi \in A_p$
+will hold if
+\begin{equation}
+\label{ec:ineqW1}
+   \begin{cases}
+   \alpha - \lambda p \le r \le \alpha + p, \\
+   -1 < r < p - 1, \\
+   -1 < \alpha - \lambda p/2 + p/4 < p - 1.
+   \end{cases}
+\end{equation}
+The third line is equivalent to
+\begin{equation*}
+    \frac{-1}4 < (\alpha+1) \left( \frac12 - \frac1p \right) + \frac\beta2
+    < \frac34,
+\end{equation*}
+which follows from~(\ref{ec:range}).
+For the inequalities in~(\ref{ec:ineqW1}) involving $r$, it suffices to show
+that
+\begin{equation*}
+   \max\{-1, \alpha - \lambda p\} < \min\{p - 1, \alpha + p\}.
+\end{equation*}
+This follows from $\alpha > -1$, $\alpha+\beta > -1$, $1 < p < \infty$,
+and~(\ref{ec:range}), as well. The case of $W_2$ is entirely similar.
+
+%--------------------
+
+\subsection{Uniform boundedness of the operators $W_{3,n}$.}
+
+Here,
+\begin{equation*}
+   \lpnorm{W_{3,n}f}p{x^\alpha} \le C \lpnorm{f}p{x^\alpha}
+\end{equation*}
+if and only if
+\begin{equation*}
+   \lpnorm{Hg}p{x^{\alpha - \lambda p/2 + {p/2}} |J_\nu'(x^{1/2})|^p}
+   \le C \lpnorm{g}p{x^{\alpha - \lambda p/2} |J_\nu(x^{1/2})|^{-p}}.
+\end{equation*}
+{}From the bounds~(\ref{ec:jnu'}) and~(\ref{ec:jnu}),
+\begin{align*}
+   x^{\alpha - \lambda p/2 + {p/2}} |J_\nu'(x^{1/2})|^p
+   &\le C x^{\alpha - \lambda p/2 + p/8}
+   \left[|x^{1/2} - \nu| + \nu^{1/3} \right]^{p/4},
+   \\
+   x^{\alpha - \lambda p/2} |J_\nu(x^{1/2})|^{-p}
+   &\ge C x^{\alpha - \lambda p/2 + p/8}
+   \left[|x^{1/2} - \nu| + \nu^{1/3} \right]^{p/4}.
+\end{align*}
+It will suffice to prove that $\varphi_\nu \in A_p$ uniformly in $n$ (recall
+that $\nu = \alpha + \beta + 2n + 2$), with
+\begin{equation*}
+   \varphi_\nu(x) = x^{\alpha - \lambda p/2 + p/8}
+   \left[|x^{1/2} - \nu| + \nu^{1/3} \right]^{p/4}.
+\end{equation*}
+{}From Lemma~\ref{lem:Ap1}, we have
+\begin{align*}
+   \varphi_\nu(x) \in A_p {\text{ unif.}}
+   &\iff \varphi_\nu(\nu^2 x) \in A_p {\text{ unif.}}
+   \\
+   &\iff x^{\alpha - \lambda p/2 + p/8}
+   \left[ |x^{1/2} - 1| + \nu^{-2/3} \right]^{p/4} \in A_p {\text{ unif.}}
+   \\
+   &\iff x^{\alpha - \lambda p/2 + p/8} |x^{1/2} - 1|^{p/4}
+   + \nu^{-p/6} x^{\alpha - \lambda p/2 + p/8}
+   \in A_p {\text{ unif.}},
+\end{align*}
+where the last equivalence follows from
+\begin{equation*}
+   \left[ |x^{1/2} - 1| + \nu^{-2/3} \right]^{p/4}
+   \sim |x^{1/2} - 1|^{p/4} + \nu^{-p/6}.
+\end{equation*}
+Now, Lemmas~\ref{lem:Ap1} and~\ref{lem:Ap2} prove that those weights belong to
+$A_p$ uniformly.
+
+%--------------------
+
+\subsection{Uniform boundedness of the operators $W_{4,n}$.}
+
+Finally,
+\begin{equation*}
+   \lpnorm{W_{4,n}f}p{x^\alpha} \le C \lpnorm{f}p{x^\alpha}
+\end{equation*}
+if and only if
+\begin{equation*}
+   \lpnorm{Hg}p{x^{\alpha - \lambda p/2} |J_\nu(x^{1/2})|^p}
+    \le C \lpnorm{g}p{x^{\alpha - \lambda p/2 - p/2} |J_\nu'(x^{1/2})|^{-p}}.
+\end{equation*}
+Also,
+\begin{align*}
+   x^{\alpha - \lambda p/2} |J_\nu(x^{1/2})|^p
+   &\le C x^{\alpha - \lambda p/2 - p/8}
+   \left[|x^{1/2} - \nu| + \nu^{1/3} \right]^{-p/4},
+   \\
+   x^{\alpha - \lambda p/2 - {p/2}} |J_\nu'(x^{1/2})|^{-p}
+   &\ge C x^{\alpha - \lambda p/2 - p/8}
+   \left[|x^{1/2} - \nu| + \nu^{1/3} \right]^{-p/4},
+\end{align*}
+so let us put
+\begin{equation*}
+   \psi_\nu(x) = x^{\alpha - \lambda p/2 - p/8}
+   \left[ |x^{1/2} - \nu| + \nu^{1/3} \right]^{-p/4}
+\end{equation*}
+and show that $\psi_\nu \in A_p$ uniformly in $n$. Indeed,
+\begin{align*}
+   \psi_\nu(x) \in A_p {\text{ unif.}}
+   &\iff \psi_\nu(\nu^2 x) \in A_p {\text{ unif.}}
+   \\
+   &\iff x^{\alpha - \lambda p/2 - p/8}
+   \left[ |x^{1/2} - 1| + \nu^{-2/3} \right]^{-p/4} \in A_p {\text{ unif.}}
+\end{align*}
+and
+\begin{multline*}
+   \Big(x^{\alpha - \lambda p/2 - p/8}
+   \left[ |x^{1/2} - 1| + \nu^{-2/3} \right]^{-p/4}
+   \Big)^{-1}
+   \\
+   \sim x^{-\alpha + \lambda p/2 + p/8}
+   \left[|x^{1/2} - 1|^{p/4} + \nu^{-p/6} \right]
+   \\
+   = \left[x^{\alpha - \lambda p/2 - p/8}
+   |x^{1/2} - 1|^{-p/4} \right]^{-1}
+   + \left[ \nu^{p/6} x^{\alpha - \lambda p/2 - p/8}
+   \right]^{-1},
+\end{multline*}
+so that Lemmas~\ref{lem:Ap1} and~\ref{lem:Ap2} lead to the desired conclusion.
+The proof of Theorem~\ref{th:boundSn} is now complete.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{th:convae}}
+\label{sec:proofconvae}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We only need to prove that $S_n(f,x)$ converges to some $g(x)$ almost
+everywhere. This, together with Corollary~\ref{cor:conv}, gives $g = f$ almost
+everywhere. Now, recall that $S_n f = \sum_{k=0}^n c_k(f) j_k^{\alpha+\beta}$,
+where
+\begin{equation*}
+   c_k(f) = \int_0^\infty f(t) j_k^{\alpha+\beta}(t) t^{\alpha+\beta} \, dt.
+\end{equation*}
+It follows from Lemma~\ref{lem:normajn} that
+$x^\beta j_n^{\alpha+\beta} \in L^q(x^\alpha)$; moreover,
+$\lpnorm{x^\beta j_n^{\alpha+\beta}}{q}{x^\alpha} \le C n^\delta$
+for some constant $\delta = \delta(p,\alpha,\beta)$. Thus,
+\begin{equation*}
+   |c_n(f)|
+   \le \lpnorm{f}p{x^\alpha}
+       \lpnorm{x^\beta j_n^{\alpha+\beta}}q{x^\alpha}
+   \le C \lpnorm{f}p{x^\alpha}\ n^\delta.
+\end{equation*}
+Now, according to~\cite[Ch.~III, 3.31 (1), p.~49]{Wat} we have
+\begin{equation*}
+   |J_\nu(x)| \leq \frac{2^{-\nu} x^\nu}{\Gamma(\nu+1)},
+   \qquad \nu > -1/2.
+\end{equation*}
+Therefore,
+\begin{align*}
+   |j_n^{\alpha+\beta}(x)|
+   &= \sqrt{\alpha+\beta+2n+1}\ |J_{\alpha+\beta+2n+1}(\sqrt{x})|
+   \ x^{-\frac{\alpha+\beta+1}{2}} \\
+   &\leq \frac{\sqrt{\alpha+\beta+2n+1}\ 2^{-(\alpha+\beta+2n+1)} x^n}
+             {\Gamma(\alpha+\beta+2n+2)},
+\end{align*}
+so that
+\begin{equation*}
+   |c_n(f) j_n^{\alpha+\beta}(x)| \leq C \lpnorm{f}p{x^\alpha}
+   \ \frac{n^{\delta+1/2} (x/4)^n}{\Gamma(\alpha+\beta+2n+2)}
+\end{equation*}
+and the series $\sum_{n=0}^\infty c_n(f) j_n^{\alpha+\beta}(x)$ converges.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{Ackn} The authors thank the referees for their valuable
+comments, which helped us to improve this paper in its final version.
+\end{Ackn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{amsplain}
+
+\begin{thebibliography}{99}
+
+\bibitem{Bar-Cor} J. A. Barcel\'o and A. C\'ordoba,
+{Band-limited functions: $L^p$-convergence},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{313} (1989), 655--669.
+
+\bibitem{Cord} A. C\'ordoba,
+{The disc multiplier},
+\textit{Duke Math. J.}
+\textbf{58} (1989), 21--27.
+
+\bibitem{Dur} A. J. Dur\'an,
+{On Hankel transform},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{110} (1990), 417--424.
+
+\bibitem{E-HTF} A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+{``Higher Transcendental Functions,''} Vol.~II,
+McGraw-Hill, New York, 1953.
+
+\bibitem{E-TIT} A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+{``Tables of Integral Transforms,''} Vol.~II,
+McGraw-Hill, New York, 1954.
+
+\bibitem{GC-RF} J. Garc\'{\i}a-Cuerva and J. L. Rubio de Francia,
+{``Weighted Norm Inequalities and Related Topics,''}
+Math. Studies \textbf{116},
+North-Holland, Amsterdam, 1985.
+
+\bibitem{Herz} C. S. Herz,
+{On the mean inversion of Fourier and Hankel transforms},
+\textit{Proc. Nat. Acad. Sci. U.S.A.}
+\textbf{40} (1954), 996--999.
+
+\bibitem{Me-So} J. M. M\'endez and M. M. Socas,
+{A pair of generalized Hankel-Clifford transformations and their applications},
+\textit{J. Math. Anal. Appl.}
+\textbf{154} (1991), 543--557.
+
+\bibitem{Muck} B. Muckenhoupt,
+{Mean convergence of Jacobi series},
+\textit{Proc. Amer. Math. Soc.}
+\textbf{23} (1969), 306--310.
+
+\bibitem{Pol-III} H. Pollard,
+{The mean convergence of orthogonal series. III},
+\textit{Duke Math. J.}
+\textbf{16} (1949), 189--191.
+
+\bibitem{Stem} K. Stempak,
+{A uniform $L^p$ estimate of Bessel functions: a note on Guo's paper},
+\textit{Proc. Amer. Math. Soc.} (to appear).
+
+\bibitem{St-Tr} K. Stempak and W. Trebels,
+{Hankel multipliers and transplanting operators},
+\textit{Studia Math.}
+\textbf{126} (1997), 51--66.
+
+\bibitem{Sze} G. Szeg\H{o},
+{``Orthogonal Polynomials''} (4th edition),
+Amer. Math. Soc. Colloq. Publ. \textbf{23},
+Amer. Math. Soc.,
+Providence, RI, 1975.
+
+\bibitem{Var} J. L. Varona,
+{Fourier series of functions whose Hankel transform is supported on $[0,1]$},
+\textit{Constr. Approx.}
+\textbf{10} (1994), 65--75.
+
+\bibitem{Wat} G. N. Watson,
+{``A Treatise on the Theory of Bessel Functions''} (2nd edition),
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+\end{thebibliography}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End of the paper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

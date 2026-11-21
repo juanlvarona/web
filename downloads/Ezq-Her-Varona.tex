@@ -1,0 +1,621 @@
+\documentclass[11pt,twoside,letterpaper]{article} %% The same for {book}
+
+\usepackage{times,fancyhdr}
+
+%\usepackage[dvips]{graphicx}
+
+%\usepackage{cite}
+
+\sloppy
+
+%----------- [New Nova Template 7x10 Regular, 8.5 x 5.5] ---------------------
+\setlength{\topmargin}{-0.35in}
+\setlength{\textheight}{8.5in}   % 11.0 - 1.125 - 0.875
+\setlength{\textwidth}{5.5in}    %  8.5 - 1.375 - 1.125
+\setlength{\oddsidemargin}{0.5in}
+\setlength{\evensidemargin}{0.5in}
+\setlength{\headheight}{26pt}
+\setlength{\headsep}{10pt} 
+%-----------------------------------------------------------------------------
+
+
+%[Float at the top formula]
+\makeatletter
+\setlength\@fptop{0\p@}
+\makeatother
+
+
+% [Clears Header Style on the Last Empty Odd pages]
+\makeatletter 
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else% 
+    \hbox{}% 
+    \thispagestyle{empty}%
+    \newpage% 
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi} 
+\makeatother 
+
+
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}.}
+
+
+\def\figurename{Figure}
+\makeatletter
+\renewcommand{\fnum@figure}[1]{\figurename~\thefigure.}
+\makeatother
+
+
+\def\tablename{Table}
+\makeatletter
+\renewcommand{\fnum@table}[1]{\tablename~\thetable.}
+\makeatother
+
+%%++ Other useful packages to be used when needed ----------------------------------------------------
+%\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm,amscd}
+\usepackage{amsbsy}
+%\usepackage{latexsym}
+%\usepackage{bm}
+%\usepackage{url}       %% Nicely format and linebreak URLs in the bibliography (and elsewhere).
+%\usepackage{layout}
+%\usepackage{pslatex}
+%\usepackage{cite}
+%\usepackage{fleqn}     % displayed formulas flush left (default is centered).
+%\usepackage{makeidx}
+%\makeindex             % Creates index at the end of the book (with makeidx).
+%\usepackage{layout}    % To see the current values of these dimensions, use the layout package, 
+%                       % which defines a \layout command.
+%\usepackage{epstopdf}  % Automatically converts EPS files to encapsulated PDF files (using ghostscript).
+%\usepackage{color}
+%\usepackage{hyperref}
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}
+%\raggedbottom                         %%% do NOT increase spaces between
+%                                      %%% paragraphs in order to fill always
+%                                      %%% the whole page
+%\usepackage{poligraf} %% Color separation
+%\usepackage[letter,cam,center]{crop} %% Printing crop-marks
+%\usepackage{type1cm}  %% Use scalable, PostScript Type 1 versions of the Computer Modern fonts.
+%\usepackage{courier}  %% Replace the standard Computer Modern Typewriter font LaTeX uses
+%    %% for monospace text with the PostScript font Adobe Courier.
+%\usepackage{lscape}   % for landscape section
+%\input tcilatex       %% for Sci Word files
+%%++------------------------------------------------------------------------------
+
+\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{note}[theorem]{Note}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{assumption}[theorem]{Assumption}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%%\newenvironment{proof}[Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+%\newtheorem{Lemma}{LEMMA}%[section]
+%\newtheorem{Theorem}[Lemma]{Theorem}
+%\newtheorem{Proposition}[Lemma]{Proposition}
+%\newtheorem{Corollary}[Lemma]{Corollary}
+%\newtheorem{Remark}[Lemma]{Remark}
+%\newtheorem{Assumption}[Lemma]{Assumption}
+%\newtheorem{Definition}[Lemma]{Definition}
+%\def\bassum{\begin{Assumption}}
+%\def\eassum{\end{Assumption}}
+%\def\bas{\begin{Assumption}}
+%\def\eas{\end{Assumption}}
+%----------------------------------
+%---------------------------------------------
+%\def\bd{\begin{Definition}}
+%\def\ed{\end{Definition}}
+%\def\bt{\begin{Theorem}}
+%\def\et{\end{Theorem}}
+%\def\bl{\begin{Lemma}}
+%\def\el{\end{Lemma}}
+%\def\bp{\begin{Proposition}}
+%\def\ep{\end{Proposition}}
+%\def\bcor{\begin{Corollary}}
+%\def\ecor{\end{Corollary}}
+%\def\brem{\begin{Remark}}
+%\def\erem{\end{Remark}}
+%\newtheorem{Example}[Lemma]{Example}
+%---------------------------------
+%\def\bc{\begin{center}}
+%  \def\ec{\end{center}}
+%\def\noi{\noindent}
+%\def\vsh{\vskip .5cm}
+%\def\vso{\vskip 1cm}
+%\def\vsq{\vskip .25cm}
+%\def\beq{\begin{equation}}
+%  \def\eeq{\end{equation}}
+%\def\beqarray{\begin{eqnarray*}}
+%  \def\eeqarray{\end{eqnarray*}}
+%\def\bexample{\begin{Example}}
+%  \def\eexample{\end{Example}}
+
+\begin{document}
+\title{
+{\begin{flushleft}
+\vskip 0.45in
+{\normalsize\bfseries\textit{Chapter~18}}
+\end{flushleft}
+\vskip 0.45in
+\bfseries\scshape Approximating Inverse Operators\\
+by a Fourth--Order Iterative Method}}
+\author{\bfseries\itshape J. A. Ezquerro\thanks{Corresponding Author E-mail address: jezquer@unirioja.es} ,
+\bfseries\itshape M. A. Hern\'andez--Ver\'on\thanks{Email address: mahernan@unirioja.es}\ \ and
+\bfseries\itshape J. L. Varona\thanks{Email address: jvarona@unirioja.es}\\
+Department of Mathematics and Computer Sciences\\
+University of La Rioja, Logro\~no, Spain
+}
+\date{}
+\maketitle
+\thispagestyle{empty}
+\setcounter{page}{199}
+%% ------- [First Page Running Head] - place it immediately after title! ------
+\thispagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{In: Understanding Banach Spaces\\ 
+Editor: Daniel Gonz\'alez S\'anchez} 
+\fancyhead[R]{ISBN: 978-1-53616-745-0\\
+\copyright~2020 Nova Science Publishers, Inc.}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+%%------------------------------------------------------------------------------
+% ------- [First Page Running Head] - place it immediately after title! ------
+
+%\thispagestyle{fancy}
+%\fancyhead{}
+%\fancyhead[L]{In: Book Title \\
+%Editor: Editor Name %, pp. {\thepage-\pageref{lastpage-01}}
+%} % needs \label{lastpage-01} on the last page.
+%\fancyhead[R]{ISBN: 0000000000 \\
+%\copyright~2019 Nova Science Publishers, Inc.}
+%\fancyfoot{}
+%\renewcommand{\headrulewidth}{0pt}
+%------------------------------------------------------------------------------
+
+\begin{abstract}
+From a known uniparametric family of one--point third--order iterative methods, we obtain a fourth--order iterative method to approximate inverse operators without using inverse operators, analyse the convergence of the method and illustrate the analysis with two numerical examples.
+\end{abstract}
+
+\noindent\textbf{Keywords:} inverse operator, iterative method, convergence, integral equation
+
+\vspace{.08in}
+
+\noindent\textbf{AMS Subject Classification:} 65J17, 65J22.
+
+%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\scshape Introduction}
+%\label{se:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+When we are interested in solving a nonlinear equation $F(x)=0$, where $F:\Omega\subseteq X\to Y$ is an operator defined on a nonempty open convex domain $\Omega$ of a Banach space $X$ with values in a Banach space $Y$, we usually turn to one--point iterative methods, which are of form
+\begin{equation}
+\label{eq:onepoint}
+x_{n+1}=\Phi(x_n),\quad n\geq 0,
+\quad\mbox{for given } x_0,
+\end{equation}
+and, among these, we generally use the well--known Newton's method,
+\begin{equation}
+\label{eq:newton}
+x_{n+1}=x_n-[F'(x_n)]^{-1}F(x_n),\quad n\geq 0,
+\quad\mbox{for given } x_0,
+\end{equation}
+since it is an efficient method as a consequence of its quadratic order of convergence and its low operational cost.
+
+When choosing an iterative method, we must pay special attention to two aspects: the speed of convergence, which is measured through the order of convergence, and the operational cost of the method. For one--point iterative methods of form~\eqref{eq:onepoint}, it is well--known that the order of convergence depends explicitly on the derivatives of the operator $F$ involved, so that if iteration~\eqref{eq:onepoint} has order of convergence $p$,  \eqref{eq:onepoint} depends on the first $p-1$ derivatives of $F$ (p.~98 of~\cite{Tra}, Theorem~5.3). As a consequence of this fact, when we want to solve nonlinear systems or infinite dimensional problems, the operational cost of using derivatives of high orders is high, so that it is common to resort to Newton's method because of its efficiency. However, for certain operators $F$, we may be interested in using iterative methods with higher order of convergence, as, for example, in solving quadratic equations (\cite{LT1,LT2}).
+
+% ------------ [Running Heads - for odd and even pages] - please insert it only on page 2!
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[EC]{J. A. Ezquerro, M. A. Hern\'andez--Ver\'on and J. L. Varona}
+\fancyhead[EL,OR]{\thepage}
+\fancyhead[OC]{Approximating Inverse Operators by a Fourth--Order Iterative Method}
+\fancyfoot{}
+\renewcommand\headrulewidth{0.pt} 
+%------------------------------------------------------------------------------
+
+If we now pay attention to one--point third--order iterative methods and, in particular, to Chebyshev's method,
+$$
+x_{n+1}=x_n-\left(I+\frac{1}{2}L_{F}(x_n)\right)
+[F(x_n)]^{-1}F(x_n),\quad n\geq 0,
+\quad\mbox{for given } x_0,
+$$
+where $I$ is the identity operator on $X$ and $L_F(x)=[F'(x)]^{-1}F''(x)[F'(x)]^{-1}F(x)$, $x\in X$, provided that $[F'(x_n)]^{-1}$ exists at each step, we see that the only inverse operator that we have to calculate in each step is $[F'(x_n)]^{-1}$, which is the same inverse that calculate in
+each step of Newton's method. However, the algorithm of other third--order one--point iterative methods, as for example the Halley and super-Halley methods, involves the calculation of other different inverse operators. So, from this point of view, we can see Chebyshev's method as the third--order one--point iterative method with less operational cost.
+
+Following the last two ideas, it is introduced in~\cite{EGHS} and used in~\cite{ABG} the following uniparametric family of one-point iterative methods
+\begin{equation}
+\label{eq:chebytype}
+x_{n+1}=x_n-\left(I+\frac{1}{2}L_{F}(x_n)+\alpha L_{F}(x_n)^2\right)
+[F(x_n)]^{-1}F(x_n),\quad n\geq 0,
+\quad\mbox{for given } x_0,
+\end{equation}
+with $\alpha\in[0,1/2]$, that only needs the calculation of the inverse $[F(x_n)]^{-1}$ in each step and has an important peculiarity: for the value of the parameter $\alpha=1/2$, the order of convergence is four when it is applied to solve quadratic equations. Observe that~\eqref{eq:chebytype} is reduced to Chebyshev's method for $\alpha=0$. In~\cite{EGHS}, we can see that iterations of~\eqref{eq:chebytype} have a faster convergence than Chebyshev's method.
+
+The origin of iterations given in~\eqref{eq:chebytype} is a Gander's result~\cite{Gan} on third--order one--point iterative methods in the real case. In~\cite{Gan}, Gander proves that, for a real function $f$ of real variable, the iteration of form
+$$
+x_{n+1} = x_n - \psi\left(L_f(x_n)\right){f(x_n) \over f'(x_n)},\quad n\geq 0,
+\quad\mbox{for given } x_0, 
+$$
+with $L_f(x)=\frac{f(x)f''(x)}{f'(x)^2}$, is of order three if $\psi$ is a function such that $\psi(0)=1$, $\psi'(0)=1/2$ and $|\psi''(0)|<+\infty$.
+For~\eqref{eq:chebytype}, we consider $\psi(t)=\left(1+\frac{1}{2}L_f(t)+\alpha L_f(t)^2\right)$ with a finite Taylor's series and its generalization to Banach spaces. It is obvious that there are other functions $\psi$ that led to third--order one--point iterative methods. But, for instance, the functions that originate the Halley or super--Halley methods does not have a non finite Taylor's series, so that the operational cost is higher.
+
+On the other hand, as we can see in~\cite{Yur}, approximation of inverse operators often appears in mathematics, mechanics, physics, electronics, meteorology, geophysics, and other branches of the natural sciences. Also, they play an important role in solving nonlinear evolution equations of mathematical physics and its interest is increasing permanently. In this work, we ask if in the same way that we obtain a method of order four of family~\eqref{eq:chebytype} to solve quadratic equations, we can obtain a method of order four to approximate inverse operators with the important characteristic of not using inverse operators. The answer is yes and we see that~\eqref{eq:chebytype} with $\alpha=1/4$ has order of convergence four when it is applied to the approximation of inverse operators without using inverse operators.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\scshape Preliminaires}
+%\label{se:prelim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We consider operator equations $Tz=\varphi$ for operators between Banach spaces $X$ and $Y$. We are interested in approximating solutions of $Tz=\varphi$, so that there is a solution $x=T^{-1}(\varphi)$ if $\varphi$ is in the domain of $T^{-1}$, by means of iterative methods that do not use inverse operators in their algorithms. To approximate the inverse operator $T^{-1}$ we use the well-known Newton and Chebyshev methods and iteration~\eqref{eq:chebytype}.
+
+For the last, we consider the set 
+$GL(X,Y)=\{T\in\mathcal{L}(X,Y):\, T^{-1}\,\text{exists}\}$, where $\mathcal{L}(X,Y)$ is the set of bounded linear operators from the Banach space $X$ into the Banach space $Y$, and approximate an operator $T^{-1}$ with $T\in GL(X,Y)$.
+Then, we choose $\mathcal{F}(Z)=Z^{-1}-T$, where $\mathcal{F}:GL(Y,X)\rightarrow\mathcal{L}(X,Y)$, so that $T^{-1}$ is the solution of $\mathcal{F}(Z)=0$.
+
+We first consider Newton's and Chebyshev's methods and see that they approximate inverse operators without using any inverse operator in their algorithm. From this peculiarity of both methods, our interest focuses then on approximating $T^{-1}$ by iteration~\eqref{eq:chebytype} and without using inverse operators. After that, we will prove that iteration~\eqref{eq:chebytype} with $\alpha=1/4$ has order of convergence four.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\scshape Newton's Method}
+%\label{se:newton}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If we apply Newton's method,
+\begin{equation*}
+Z_{n+1}=Z_n-[\mathcal{F}(Z_n)]^{-1}\mathcal{F}(Z_n),\quad n\geq 0,
+\quad\mbox{for given } Z_0\in GL(Y,X),
+\end{equation*}
+to the problem of approximating $T^{-1}$, it is clear that we can avoid the use of inverse operators for approximating $Z_{n+1}$, just write the last algorithm in the form
+\begin{equation*}
+\mathcal{F}(Z_n)+\mathcal{F}'(Z_n)(Z_{n+1}-Z_n)=0,\quad n\geq 0,
+\end{equation*}
+and calculate $\mathcal{F}'(Z_n)$.
+
+So, given $Z\in GL(Y,X)$, as $Z^{-1}$ exists,
+$$
+\|I-Z^{-1}(Z+\beta P)\|\leq\|Z^{-1}\| \|\beta P\|,
+$$
+so that we obtain $Z+\beta P\in GL(Y,X)$ and
+$\|\beta{P}\|<\frac{1}{\|Z^{-1}\|}$ with ${P}\in GL(Y,X)$ if
+$$
+0 < \beta < \dfrac{1}{\|{P}\|\|Z^{-1}\|}.
+$$
+Then, $T+\beta{P}\in GL(Y,X)$ and
+$$
+\mathcal{F}'(Z){P}=
+\lim_{\beta\rightarrow 0}\frac{1}{\beta}
+\left(\mathcal{F}(Z+\beta{P})-\mathcal{F}(Z)\right)
+= -Z^{-1}{P} Z^{-1}.
+$$
+Taking into account the last, it is now easy to write Newton's method as
+\begin{equation}
+\label{eq:newinv}
+Z_{n+1} = 2Z_n-Z_nTZ_n,\quad n\geq 0,
+\quad\mbox{for given } Z_0.
+\end{equation}
+As we can see, algorithm~\eqref{eq:newinv} does not use inverse operators to appoximate $T^{-1}$. Notice that the quadratic order of the method is held.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Chebyshev's Method}
+%\label{se:chebyshev}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If we now apply Chebyshev's method,
+\begin{equation*}
+Z_{n+1} = Z_n-\left(I+\frac{1}{2}L_{\mathcal{F}}(Z_n)\right)[\mathcal{F}'(Z_n)]^{-1}\mathcal{F}(Z_n),\quad n\geq 0,
+\quad\mbox{for given } Z_0\in GL(Y,X),
+\end{equation*}
+where $L_{\mathcal{F}}(Z_n)=[\mathcal{F}'(Z_n)]^{-1}\mathcal{F}''(Z_n)[\mathcal{F}'(Z_n)]^{-1}\mathcal{F}(Z_n)$, and do the same as in Newton's method, we observe that the method does not use inverse operators to approximate $T^{-1}$ if the method is written as
+\begin{equation*}
+\left\{
+\begin{array}{l}
+Z_0\ \text{given}, \\[1ex]
+\mathcal{F}(Z_n)+\mathcal{F}'(Z_n)(U_n-Z_n)=0,\quad n\geq 0,\\[1ex]
+\mathcal{F}''(Z_n)(U_n-Z_n)^2+2\mathcal{F}'(Z_n)(Z_{n+1}-U_n)=0.
+\end{array}
+\right.
+\end{equation*}
+
+So, as before, given $P,Q\in GL(Y,X)$, as $Z^{-1}$ exists, if
+$$
+0 < \beta < \dfrac{1}{\|{Q}\|\|Z^{-1}\|},
+$$
+then $Z+\beta{Q}\in GL(Y,X)$ and
+$$
+\mathcal{F}''(Z){P}{Q}=
+\lim_{\beta\rightarrow 0}\frac{1}{\beta}
+\left(\mathcal{F}'(Z+\beta{Q}){P}-\mathcal{F}'(Z){P}\right)
+= Z^{-1}{P} Z^{-1}{Q} Z^{-1} + Z^{-1}{Q} Z^{-1}{P} Z^{-1}.
+$$
+Taking into account the last, it is now easy to write Chebyshev's method as
+\begin{equation}
+\label{eq:chebyinv}
+Z_{n+1} = 3Z_n-3Z_nTZ_n+Z_nTZ_nTZ_n,\quad n\geq 0,
+\quad\mbox{for given } Z_0.
+\end{equation}
+As we can see, algorithm~\eqref{eq:chebyinv} does not use inverse operators to appoximate $T^{-1}$. Notice that the cubical order of the method is held.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Chebyshev--Type Methods}
+%\label{se:family}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If we now apply the family of iterations given in~\eqref{eq:chebytype} to approximate $T^{-1}$,
+\begin{equation*}
+Z_{n+1} = Z_n-\left(I+\frac{1}{2}L_{\mathcal{F}}(Z_n)+\alpha L_{\mathcal{F}}(Z_n)^2\right)[\mathcal{F}'(Z_n)]^{-1}\mathcal{F}(Z_n),\quad n\geq 0,
+\end{equation*}
+for given $Z_0\in GL(Y,X)$, and do the same as in the Newton and Chebyshev methods, we see that these iterations do not use inverse operators to approximate $T^{-1}$ if they are written as
+$$
+\left\{
+\begin{array}{l}
+Z_0\ \text{given}, \\[1ex]
+\mathcal{F}(Z_n)+\mathcal{F}'(Z_n)(U_n-Z_n)=0,\quad n\geq 0,\\[1ex]
+\mathcal{F}''(Z_n)(U_n-Z_n)^2+\mathcal{F}'(Z_n)V_n=0,\\[1ex]
+\mathcal{F}''(Z_n)(U_n-Z_n)
+\left((U_n-Z_n)+2\alpha V_n\right)
++2\mathcal{F}'(Z_n)(Z_{n+1}-U_n)=0.
+\end{array}
+\right.
+$$
+
+Proceeding as for Chebyshev's method, we can write the iterations as
+\begin{equation}
+\label{eq:faminv}
+\left\{
+\begin{array}{l}
+Z_0\ \text{given}, \\[1ex]
+Z_{n+1} = (3+4\alpha)Z_n-3(1+4\alpha)Z_nTZ_n \\[1ex]
+\qquad\quad +(1+12\alpha)Z_nTZ_nTZ_n-4\alpha Z_nTZ_nTZ_nTZ_n,\quad n\geq 0,
+\end{array}
+\right.
+\end{equation}
+and see that algorithm~\eqref{eq:faminv} does not use inverse operators to approximate $T^{-1}$. Notice that the cubical order of the method is held.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\scshape Convergence Analysis}
+%\label{se:anal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section, we study the convergence of iterations given in~\eqref{eq:faminv}. For this, we use a simple technique which is different from the commonly used, which are based on the majorant principle and on recurrence relations. We fist see that four is the order of convergence of~\eqref{eq:faminv} for $\alpha=1/4$.
+
+\begin{theorem}
+Iteration~\eqref{eq:faminv} has order of convergence at least four if $\alpha=1/4$.
+\end{theorem}
+
+\begin{proof}[\normalfont\textbf{Proof.}]
+If ${r}_n=Z_n-T^{-1}$, then
+\begin{align*}
+{r}_{n+1}+T^{-1} &= Z_{n+1} \\
+&= T^{-1}\left(
+(3+4\alpha)TZ_{n}-3(1+4\alpha)(TZ_{n})^{2}+(1+12\alpha)(TZ_{n})^{3}-4\alpha(TZ_{n})^{4}\right).
+\end{align*}
+Observe that, if $\alpha=1/4$, the last expression is then reduced to
+$$
+{r}_{n+1}+T^{-1} = Z_{n+1}
+= T^{-1}\left(I-(T{r}_n)^{4}\right)
+= T^{-1}-{r}_n(T{r}_n)^{3},
+$$
+so that ${r}_{n+1}=-{r}_n(T{r}_n)^3$ and
+$\|{r}_{n+1}\| \leq \|T\|^3\|{r}_n\|^4$.
+Therefore, the order of convergence at least four is guaranteed for $\alpha=1/4$.
+\end{proof}
+
+Taking then into account that we have order of convergence four for method~\eqref{eq:faminv} with $\alpha=1/4$, namely,
+\begin{equation}
+\label{eq:iter4}
+\left\{
+\begin{array}{l}
+Z_0\ \text{given}, \\[1ex]
+Z_{n+1} = 4Z_n-6Z_nTZ_n+4Z_nTZ_nTZ_n-Z_nTZ_nTZ_nTZ_n,
+\quad n\geq 0,
+\end{array}
+\right.
+\end{equation}
+we establish now the convergence of this method.
+
+\begin{theorem}
+\label{th:conv}
+If $\|I-TZ_0\|<1$, iteration~\eqref{eq:iter4} is convergent.
+In addition, if $TZ_0=Z_0T$, then $\lim_{n\rightarrow\infty}Z_n=T^{-1}$.
+\end{theorem}
+
+\begin{proof}[\normalfont\textbf{Proof.}]
+If $I-TZ_n=\varepsilon_n$, then
+$$
+\varepsilon_{n+1} = I-TZ_{n+1}
+= I-4TZ_n + 6(TZ_n)^{2} - 4(TZ_n)^{3} + (TZ_n)^{4}
+= \varepsilon_{n}^{4}.
+$$
+After that, from $\|\varepsilon_0\|=\|I-TZ_0\|<1$, it follows that
+$\lim_{n\rightarrow\infty}(I-TZ_n)=0$ and, as a consequence, $TZ^{\ast}=I$, where $Z^{\ast}=\lim_{n\rightarrow\infty}Z_n$.
+
+Next, as $TZ^{\ast}=I$, if $Z^{\ast}T=I$, we have $G^{\ast}=T^{-1}$.
+For this, it is enough to see that $TZ_n=Z_nT$, for $n\in\mathbb{N}$.
+If $n=1$, then
+\begin{align*}
+TZ_{1} &= 4TZ_0-6(TZ_0)^{2}+4(TZ_0)^{3}-(TZ_0)^{4} \\
+&= Z_0\left(4-6(TZ_{0})+4(TZ_0)^{2}-(TZ_0)^{3}\right)T \\
+&= Z_1T.
+\end{align*}
+Following now mathematical induction on $n$, it is easy to complete the proof.
+\end{proof}
+
+Observe that $TZ^{\ast}=I$ is only satisfied if $TZ_0\neq Z_0T$ and, as a consequence, sequence $\{Z_n\}$ converges to the right inverse of $T$. If we prove that $T^{-1}$ exists, then $Z^{\ast}=T^{-1}$ without demanding the commutativeness of $Z_{0}$ and $T$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\scshape Numerical Examples}
+%\label{se:examples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section, we illustrate the application of iteration~\eqref{eq:iter4} to approximate inverse operators.
+
+\begin{example}
+In general, we do not need to invert a matrix to solve a linear system in most practical applications. It is well--known that techniques based on the decomposition of the matrix involved are much faster than the inversion of the matrix. We can find many fast methods for special kinds of systems of linear equations in the mathematical literature. But, inversion of matrices plays an important role in some specific applications, such as computer graphics and wireless communications.
+In this work, we present an example where the use of method~\eqref{eq:newinv} is made good.
+
+For example, if we follow a process of discretization, by using finite differences, to transform the boundary value problem given by
+$$
+y''(t) = {v}\,y(t)+{w}\,y'(t),
+\qquad y(a)=A,\quad y(b)=B,
+$$
+into a linear system, the $m\times m$ matrix
+$$
+M=\left(
+  \begin{array}{ccccc}
+    x & y & 0 & \cdots & 0 \\
+    z & x & y & \cdots & 0 \\
+    0 & z & x & \cdots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & 0 & \cdots & x \\
+  \end{array}
+\right)
+$$
+is involved in the process, where $x=2+k^{2}{v}$, $y=-1+\frac{k}{2}{w}$, $z=-1-\frac{k}{2}{w}$ (with $k,v,w\in\mathbb{R}$) and ${m}$ is the appropriate integer used to introduce the nodes $t_{i}=a+ih$, with $i=0,1,\ldots,{m}+1$ and $h=\frac{1}{{m}+1}$.
+
+From Table~\ref{ta:inv}, we see that matrix $M$ is badly conditioned, since $\operatorname{cond}(M)=8.7466$.
+But, if we approximate $M^{-1}$ by method~\eqref{eq:iter4}, starting at matrix $Z_0=\operatorname{diag}\{1/x,1/x,\ldots,1/x\}$, which satisfies condition $\|I-TZ_0\|_1<1$ of Theorem~\ref{th:conv}, since $\|I-MZ_0\|_1=0.8<1$, we only need three iterations, $Z_{3}$, to get the inverse matrix $M^{-1}$ without any stability problem.
+
+%------------------- FIGURE 6 --------------------
+\begin{table}[!ht]
+\textbf{\caption{Approximation of $M^{-1}$ by $Z_3$ with $k=1$, ${v}=1/2$, ${w}=2$ and ${m}=32$}}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+$\det(M)$  & $5.4210\times 10^{12}$ \\
+\hline
+$\operatorname{cond}(M)$ & $8.9928$ \\
+\hline
+$\|I-MZ_0\|_1$ & $0.8$ \\
+\hline
+%$\|I-MZ_1\|_1$ & $4.096\times 10^{-1}$ \\
+%\hline
+%$\|I-MZ_2\|_1$ & $2.8147\times 10^{-2}$ \\
+%\hline
+$\|I-MZ_3\|_1$ & $0$ \\
+\hline
+\end{tabular}
+\label{ta:inv}
+\end{center}
+\end{table}
+%-------------------------------------------------
+\end{example}
+
+
+\begin{example}
+Consider the Fredholm integral equation of the second kind given by
+\begin{equation}
+\label{eq:FIE}
+x(s) = \ell(s) + \lambda\int_{a}^{b} K(s,t)x(t)\,dt,
+\end{equation}
+where $-\infty<a<b<+\infty$, $\ell(s)\in\mathcal{C}[a,b]$, the kernel ${K}(s,t)$ is a known function in $[a,b]\times[a,b]$ and $x(s)\in\mathcal{C}[a,b]$ is the unknown function to find.
+
+If we consider the linear operator $\mathfrak{K}:\mathcal{C}[a,b]\to\mathcal{C}[a,b]$, given by $[\mathfrak{K}x](s)=\int_{a}^{b} K(s,t)x(t)\,dt$, we can write equation~\eqref{eq:FIE} as
+$$
+x(s) = \ell(s)+\lambda[\mathfrak{K}x](s),
+$$
+so that $[(I-\lambda\mathfrak{K})x](s)=\ell(s)$.
+So, if operator $[I-\lambda\mathfrak{K}]^{-1}$ exists, we can find a solution of~\eqref{eq:FIE} by solving
+\begin{equation}
+\label{eq:eqFIE}
+x(s) = \left[[I-\lambda\mathfrak{K}]^{-1}\ell\right](s).
+\end{equation}
+
+Following the study presented in this work, if we consider $T=I-\lambda\mathfrak{K}$ and $Z_{0}\in\mathcal{L}(\mathcal{C}[a,b],\mathcal{C}[a,b])$ such that $\|I-TZ_0\|<1$, then method~\eqref{eq:iter4} allows constructing a sequence of linear operators $\{Z_{n}\}$ such that $\lim_{n}Z_{n}=Z^{*}$ with $TZ^{*}=I$.
+Moreover, from the existence of $T^{-1}$, it follows $Z^{*}=T^{-1}$.
+As a consequence, we construct the iterative method
+$$
+x_{n}(s)=[Z_{n}(\ell)](s),\quad n\in\mathbb{N},
+\quad\mbox{for given } Z_0\in\mathcal{L}(\mathcal{C}[a,b],\mathcal{C}[a,b]).
+$$
+As $\{Z_{n}\}$ is convergent, it is a Cauchy sequence, so that $\{x_{n}\}$ is also a Cauchy sequence in $\mathcal{C}[a,b]$, since
+$$
+\|x_{n+m}-x_{n}\| \leq \|Z_{n+m}-Z_{n}\|\|\ell\|.
+$$
+Therefore, there exists $\lim_{n}x_{n}=x^{*}$ and then $x^{*}$ is a solution of~\eqref{eq:FIE}.
+
+Taking now the above, if we consider the Fredholm integral equation of the second kind
+\begin{equation}
+\label{eq:FIEp}
+x(s) = (1+s)^{2} + \frac{1}{2} \int_{-1}^{1} \left(st+s^2t^2\right)x(t)\,dt,
+\end{equation}
+we can approximate the exact solution $x^{*}(s)=1+3s+\frac{5}{3}s^2$. Fredholm integral equations of this type are given in~\cite{Waz}.
+
+Following the Banach lemma on invertible operators and choosing the max--norm, we observe that operator $[I-\lambda\mathfrak{K}]^{-1}$ exists if $\lambda=1/2$, since then $\left\|\lambda\mathfrak{K}\right\|\leq 5/6<1$.
+Next, if $Z_0=I$, we can prove by mathematical induction on $n$ that iteration~\eqref{eq:iter4} is reduced to $Z_{n}=\sum_{i=0}^{2^{2n}-1}\mathfrak{K}^{i}$, for all $n\geq0$. Then, if we choose $x_{0}(s) = (1+s)^{2}$, we obtain the first three iterates given in Table~\ref{ta:appsol}, where we can also see that the iterates converge to the exact solution $x^{*}(s)$ of integral equation~\eqref{eq:FIEp}.
+
+%-------------------------------------------------
+\begin{table}[htb]
+\textbf{\caption{Approximation of solution $x^{*}(s)$ of (\ref{eq:FIEp}) and absolute errors}}
+\begin{center}
+\begin{tabular}{|ccc|}
+\hline
+$n$ & $x_n(s)$ & $\|x^{*}(s)-x_n(s)\|_{\infty}$ \\
+\hline
+0 & $(1+s)^{2}$ & $1.6666$\\
+1 & $1.00000000+2.96296296\,s+1.66133333\,s^{2}$ & $4.2370\times 10^{-2}$\\
+2 & $1.00000000+2.99999993\,s+1.66666666\,s^{2}$ & $6.9713\times 10^{-8}$\\
+3 & $1.00000000+3.00000000\,s+1.66666666\,s^{2}$ & $8.7369\times 10^{-31}$\\
+\hline
+\end{tabular}
+\label{ta:appsol}
+\end{center}
+\end{table}
+%-------------------------------------------------
+
+\end{example}
+
+%\bibliographystyle{amsplain}
+
+\renewcommand{\refname}{\textsc{References}}
+
+\thebibliography{9}
+
+\bibitem{Tra} %6
+Traub, J. F. 1964. \textit{Iterative methods for the solution of equations}. New Jersey: Prentice--Hall.
+
+\bibitem{LT1} %4
+Lasiecka, I. and Triggiani, R. 2000. \textit{Control theory for partial differential equations: continuous and approximation theories, Part 1}. Cambridge: Cambridge University Press.
+
+\bibitem{LT2} %5
+Lasiecka, I. and Triggiani, R. 2000. \textit{Control theory for partial differential equations: continuous and approximation theories, Part 2}. Cambridge: Cambridge University Press.
+
+\bibitem{EGHS} %2
+Ezquerro, J. A., Guti\'errez, J. M., Hern\'andez, M. A. and Salanova, M. A. 1999. ``Chebyshev--like methods and quadratic equations''. \textit{Rev. Anal. Num\'er. Th\'eor. Approx.} 28(1): 23--35.
+
+\bibitem{ABG} %1
+Amat, S., Busquier, S. and Guti\'errez, J. M. 2006.
+``An adaptative version of a fourth--order iterative method for quadratic equations''. \textit{J. Comput. Appl. Math.} 191(2): 259--268.
+
+\bibitem{Gan} %3
+Gander, W. 1985. ``On Halley's iteration method''. \textit{Amer. Math. Monthly}. 92: 131--134.
+
+\bibitem{Yur} %8
+Yurko, V. A. 2000. ``Inverse problems of spectral analysis for differential operators and their applications''. \textit{J. Math. Sci.} 98(3): 319--426.  
+
+\bibitem{Waz} %7
+Wazwaz, A.-M. 2011. \textit{Linear and nonlinear integral equations: methods and applications}. Berlin: Springer--Verlag.
+
+\label{lastpage-01}
+
+\end{document}

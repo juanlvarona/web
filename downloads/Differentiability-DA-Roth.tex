@@ -1,0 +1,555 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% Differentiability of a pathological function,                      % 
+% diophantine approximation,                                         %
+% and a reformulation\\ of the Thue-Siegel-Roth theorem              %
+% by                                                                 %
+% Juan Luis Varona                                                   %
+%                                                                    %
+% DATE (LAST MODIFICATION): October 26, 2009                         %
+%                                                                    %
+% Written with LaTeX2e with amsart classes                           %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass{amsart}
+%\documentclass[11pt]{amsart}
+\documentclass[11pt,a4paper,reqno]{amsart}
+
+\usepackage{amsmath}
+%\usepackage{amssymb}
+
+\usepackage{url}
+
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\Z{\mathbb{Z}}
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition}
+%\newtheorem*{remark}{Remark}
+\newtheorem{remark}{Remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Differentiability and diophantine approximation]%
+{Differentiability of a pathological function,\\ 
+diophantine approximation,\\
+and a reformulation\\ of the Thue-Siegel-Roth theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\thanks{This paper has been published in 
+\textit{Gazette of the Australian Mathematical Society},
+Volume 36, Number 5, November 2009, pp. 353--361.}
+
+\thanks{Received 29 February 2008; accepted for publication 6 October 2009}
+
+
+\author[J. L. Varona]{Juan Luis Varona}
+\address{Departamento de Matem\'aticas y Computaci\'on,
+Universidad de La Rioja,
+Calle Luis de Ulloa s/n,
+26004 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+
+%\subjclass[2000]{Primary 26A30; Secondary 11J25, 11J70}
+
+% \keywords{Pathological function, diophantine approximation, 
+% continued fractions, nowhere differentiable, differentiable almost everywhere, 
+% Thue-Siegel-Roth theorem.}
+
+\thanks{The research of the author is supported by grant MTM2009-12740-C03-03 of the~DGI} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+We study the differentiability of the real function
+$$
+  f_\nu(x) =
+\begin{cases}
+  0, & \text{if } x \in \mathbb{R} \setminus \mathbb{Q}, \\
+  1/q^\nu, & \text{if } x = p/q \in \mathbb{Q}, \text{ an irreducible fraction},
+\end{cases}
+$$
+for different values of~$\nu$.
+For every $\nu > 0$, the function $f_\nu$ is continuous at the irrationals and discontinuous at the rationals. But perhaps the most interesting case is what happens for $\nu > 2$. 
+In this case, it is shown that $f_\nu$ is differentiable in a set $D_\nu$ such that both $D_\nu$ and $\R \setminus D_\nu$ are dense in~$\R$. Moreover, the Lebesgue measure of the set $\R \setminus D_\nu$ is~$0$. 
+In the proofs, the diophantine approximation by means of continued fractions is used.
+Finally, we show a nice reformulation of the Thue-Siegel-Roth theorem in terms of the differentiability of~$f_\nu$ for $\nu > 2$.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A well-known pathological real function is
+$$
+  f(x) =
+\begin{cases}
+  0, & \text{if } x \in \R \setminus \Q, \\
+  1/q, & \text{if } x = p/q \in \Q, \text{ an irreducible fraction},
+\end{cases}
+$$
+where, here and in the rest of the paper, we assume that, when we write a rational number $p/q$, we have $p,q \in \Z$ and $q>0$ (in particular, $f(k) = f(k/1) = 1$ for every $k \in \Z$, including $k=0$). The interest of this function is that it is discontinuous at the rationals and continuous at the irrationals. For completeness, let us prove it.
+
+If $x = p/q \in \Q$, let us take a sequence $\{x_n\}$ of irrational numbers such that $x_n \to x$ when $n \to \infty$; then $f(x_n)=0$ for every~$n$ and the sequence $\{f(x_n)\}$ does not converge to $f(x) = 1/q$, so $f$ is not continuous at~$x$. On the other hand, for $x \in \R \setminus \Q$, let us see that $f$ is continuous at $x$ by checking that $f(x_n) \to f(x) = 0$ for every sequence $\{x_n\}$ that tends to~$x$. As $f(y) = f(x)$ for every irrational number $y$, we can consider, without loss of generality, that $x_n = p_n/q_n \in \Q$ for every~$n$. Now, from $p_n/q_n \to x$, an irrational number, it follows that $q_n \to \infty$. Then, $f(x_n) = 1/q_n \to 0 = f(x)$ and so $f$ is continuous at~$x$.
+
+But, what about the differentiability of $f$?
+
+It is clear that $f$ is not differentiable at rational numbers (it is not continuous); 
+moreover, if the derivative exists for an irrational number, it must be zero. Thus, given $x$ an irrational number, we only need to check whether, for arbitrary sequences $\{x_n\}$ that tend to $x$ 
+(that we can again assume of rationals $x_n = p_n/q_n$), 
+we always have
+\begin{equation}
+\label{eq:deriv}
+  \lim_n \frac{f(x_n) - f(x)}{x_n - x} = 0
+\end{equation}
+or not.
+
+This can be analyzed in terms of the approximation of real numbers by rationals. Let us remember that, for any irrational $x$, there exists a positive constant $C$ such that the inequality 
+\begin{equation}
+\label{eq:Cq2}
+  \left| x - \frac{p}{q} \right| < \frac{C}{q^2}
+\end{equation}
+has infinitely many rational solutions $p/q$; 
+this is Dirichlet's theorem, that is an easy consequence of the pingeonhole principle
+(moreover, Hurwitz's theorem ensures that the smallest constant for which this property is true for every irrational $x$ is $C=1/\sqrt{5}$). Thus, we can build a sequence of different rational numbers $\{p_n/q_n\}$ (where $q_n\to\infty$) such that $| x - p_n/q_n| < {C}/{q_n^2}$. Then,
+$$
+  \left|\frac{f(x_n) - f(x)}{x_n - x} \right| 
+  = \left|\frac{1/q_n - 0}{p_n/q_n - x} \right| > q_n/C,
+$$
+that tends to infinity, so \eqref{eq:deriv} is not satisfied, and $f$ is nowhere differentiable.
+
+Is it possible to build examples similar to $f$ but in such a way that the function is differentiable in some set?
+Perhaps the differentiability will increase by defining 
+$f(p/q) = 1/q^{\nu}$ for big values of~$\nu$?
+So, in this paper we are going to analyze the differentiability of the real function
+$$
+  f_\nu(x) =
+\begin{cases}
+  0, & \text{if } x \in \R \setminus \Q, \\
+  1/q^\nu, & \text{if } x = p/q \in \Q, \text{ irreducible},
+\end{cases}
+$$
+for various values of~$\nu \in \R$.
+Actually, a big part of this study has already been done in the literature; see, for instance, \cite{DaTa, He, No, Ny}. Here we present some results that are already known (usually whith a different proof), and some that seem to be new. 
+In the opinion of this author, 
+$f_\nu$ is a very interesting function, and it is worthwhile to continue analyzing its behaviour.
+
+In this way, we find examples of functions whose properties about continuity and differentiability are pathological at the same time. 
+For every $\nu > 0$, the function $f_\nu$ is continuous at the irrationals and discontinuous at the rationals. And, when $\nu > 2$ (that is the most interesting case), we prove that $f_\nu$ is differentiable in a set $D_\nu$ such that both $D_\nu$ and $\R \setminus D_\nu$
+are dense in~$\R$. Moreover, the Lebesgue measure of the set $\R \setminus D_\nu$ is~$0$.
+It is astonishing that, differentiability being a local concept, $f_\nu$ is differentiable almost everywhere in spite of the fact that it is not continuous at any rational number.
+
+We finish the paper by showing a reformulation of the Thue-Siegel-Roth theorem in terms of the differentiability of~$f_\nu$ for $\nu > 2$ (see Theorem~\ref{theo:Roth-reformulated} and the final Remark). It seems really surprising that a theorem about diophantine approximation is equivalent to another theorem about the differentiablity of a real function: a nice new connection between number theory and analysis! As far as I know, this characterization of the Thue-Siegel-Roth theorem has not been previously observed.
+
+\begin{remark}
+The pathological behavior of functions is a useful source of examples that help to understand the rigorous definitions of the basic concepts in mathematical analysis. In this respect, it is interesting to note that, here, we have shown
+a kind of pathological behaviour that is different from that of the more commonly studied: the existence of continuous nowhere differentiable real functions, whose most typical example is the Weierstrass function $\sum_{n=0}^\infty a^n \cos(b^n \pi x)$, for $0 < a < 1$ and $ab \ge 1$; see~\cite{BaDu} for a recent proof, or \cite{Pinkus, Thim} for a couple of surveys on this subject.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Case $\nu \le 0$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this case, it is clear that $f_\nu$ is nowhere continuous, so nowhere differentiable.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Case $0 < \nu \le 2$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Now, the same proof of the case $\nu=1$ serves to show that, when $0 < \nu \le 2$, the function $f_\nu$ is discontinuous at the rationals, continuous at the irrationals, and nowhere differentiable.
+Actually, this can be found in~\cite{He} (where it is also observed that $f_\nu$ is nowhere Lipschitzian when $0 < \nu < 2$).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Case $\nu > 2$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The key to study the differentiability of $f_\nu$ at an irrational number is to analyze the diophantine approximation of such number. To get good rational approximations of an irrational number, one of the most used methods is to employ continued fractions, so let us briefly introduce it.
+See \cite{Khinchin} or \cite[Chapter~7]{MiTa} for details.
+(Although in a different way, continued fractions are also been used to study the differentiability in~\cite{No}.)
+
+For an irrational number $x$, let be
+\begin{equation}
+\label{eq:fc}
+  x = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{a_3 + \cdots}}}
+\end{equation}
+its expansion as an (infinite) continued fraction; here $a_k \in \Z$ and $a_k > 0$ for $k>0$, and they are called the elements of the continued fraction. Thus, we say that $x$ has bounded elements if there exists a constant $M$ such that $a_k < M$ for every~$k$. 
+
+By truncating~\eqref{eq:fc} up to $a_k$, we get a fraction $p_k/q_k$ (the so-called \textit{convergent} or \textit{approximant} of~$x$); these fractions can be obtained by means of the recurrence relation
+\begin{align*}
+  p_k &= a_k p_{k-1} + p_{k-2}, \\
+  q_k &= a_k q_{k-1} + q_{k-2}
+\end{align*}
+starting with $p_{-1} = 1$, $q_{-1} = 0$, $p_{0} = a_0$, and $q_{0} = 1$.
+%% $p_{1} = a_0a_1 + 1$, $p_{1} = a_1$
+One of the basic facts of the approximation by continued fractions is that
+\begin{equation}
+\label{eq:basic}
+  \frac{1}{q_k(q_k+q_{k+1})}
+  < \left| x - \frac{p_k}{q_k} \right| < \frac{1}{q_kq_{k+1}}
+\end{equation}
+for every $k \ge 0$. From this, and taking into account that $\{q_k\}$ is always an increasing sequence, it follows that $|x - {p_k}/{q_k}| < 1/{q_k^2}$ for every 
+convergent~$p_k/q_k$. In particular, this proves that~\eqref{eq:Cq2} with $C=1$ has infinitely many rational solutions.
+
+Given an irrational number $x$, it is not always possible to get diophantine approximation of order $\varphi(q)$ for functions $\varphi(q)$ that decrease faster than~$1/q^2$. But, by constructing suitable $x$ by means of continued fractions, this is sometimes possible. For instance, if we take $\varphi(q)$ an arbitrary positive function, let us construct a continued fraction $x$ by choosing its elements in such a way that they will satisfy the inequalities
+$$
+  a_{k+1} > \frac{1}{q_k^2 \varphi(q_k)}, \qquad k \ge 0.
+$$
+This, of course, can be done in an infinite number of ways; in particular, $a_0$ can be chosen  arbitrarily. Then, from the right inequality in~\eqref{eq:basic}, we have
+$$
+  \left| x - \frac{p_k}{q_k} \right| < \frac{1}{q_kq_{k+1}}
+  = \frac{1}{q_k(a_{k+1}q_k+q_{k-1})}
+  \le \frac{1}{a_{k+1}q_k^2} < \varphi(q_k).
+$$
+for any $k \ge 0$.
+In this way, we have proved the following (note that $x$ is irrational because the continued fraction does not terminate):
+
+\begin{lemma}[{\cite[Theorem 22, page 35]{Khinchin}}]
+\label{lem:varphi}
+For any positive function $\varphi(q)$ with natural argument $q$, there exist infinitely many irrational numbers $x$ such that the inequality
+\begin{equation}
+\label{eq:phi}
+  \left| x - \frac{p}{q} \right| < \varphi(q)
+\end{equation}
+has an infinite quantity of rational solutions $p/q$.
+\end{lemma}
+
+Also, let us recall the following result, whose proof is also an easy consequence of~\eqref{eq:basic} and other simple properties of the continued fractions:
+
+\begin{lemma}[{\cite[Theorem 23, page 36]{Khinchin}}]
+\label{lem:elements}
+For every irrational number $x$ with bounded elements, and for sufficient small $C$, the inequality
+\begin{equation}
+\label{eq:p/q}
+  \left| x - \frac{p}{q} \right| < \frac{C}{q^2}
+\end{equation}
+has no rational solution $p/q$. On the other hand, for every number $x$ with an unbounded sequence of elements and arbitrary $C > 0$, the inequality \eqref{eq:p/q} has an infinite set of such solutions.
+\end{lemma}
+
+
+Then, we have the following theorem:
+
+\begin{theorem}
+\label{theo:main}
+For $\nu > 2$, the function $f_\nu$ is discontinuous (and consequently not differentiable) at the rationals, and continuous at the irrationals. 
+With respect the differentiability, we have:
+\begin{itemize}
+\item[(a)] For every irrational number~$x$ with bounded elements in its continued fraction expansion, $f_\nu$~is differentiable at~$x$.
+\item[(b)] There exist infinitely many irrational numbers~$x$ such that $f_\nu$~is not differentiable at~$x$.
+\end{itemize}
+Moreover, the sets of numbers that fulfill (a) and (b) are both of them uncountable.
+\end{theorem}
+
+\begin{proof}
+The continuity is treated as in the case $\nu=1$.
+
+(a) For irrational numbers it is clear that, if $f_\nu$ is differentiable at $x$, it must be $f'_\nu(x) = 0$. 
+Let us see that this occurs for irrational numbers $x$ with bounded elements.
+For that, we only need to check that, for every sequence $\{x_n\}$ that tends to $x$ (and with $x_n \ne x$ $\forall n$), we have
+$$
+  \lim_n \frac{f_\nu(x_n) - f_\nu(x)}{x_n-x} = 0.
+$$
+Without loss of generality, we can assume that $\{x_n\}$ is a sequence of rationals, say $x_n = p_n/q_n$.
+The first part of Lemma~\ref{lem:elements} ensures that, for some value of $C$, we have $|x - p_n/q_n| \ge C/q_n^2$ for every~$n$.
+Then, 
+$$
+  \left|\frac{f_\nu(p_n/q_n) - f_\nu(x)}{p_n/q_n - x} \right| 
+  = \left| \frac{1/q_n^\nu - 0}{p_n/q_n - x} \right| 
+  \le \frac{1/q_n^\nu}{C/q_n^2} = \frac{1}{C q_n^{\nu-2}},
+$$
+that tends to $0$ when $n\to\infty$, so $f_\nu$ is differentiable at~$x$.
+
+(b) Finally, let us take, in Lemma~\ref{lem:varphi}, $\varphi(q) = 1/q^{\nu+1}$. Then, for $x$ such that the inequality $|x - p/q| < \varphi(q)$ has infinitely many solutions, let us take $\{p_n/q_n\}$ a sequence of rationals such that $|x - p_n/q_n| < 1/q_n^{\nu+1}$ for every~$n$. In particular, $p_n/q_n \to x$ and verifies
+$$
+  \left|\frac{f_\nu(p_n/q_n) - f_\nu(x)}{p_n/q_n - x} \right| 
+  = \left|\frac{1/q_n^\nu - 0}{p_n/q_n - x} \right| 
+  > \frac{1/q_n^\nu}{1/q_n^{\nu+1}} = q_n,
+$$
+that tends to $\infty$ when $n\to\infty$, so $f_\nu$ is not differentiable at~$x$.
+
+That both sets in (a) and (b) are uncountable is clear by construction of the corresponding $x$ in Lemmas~\ref{lem:elements} and~\ref{lem:varphi}, respectively. (The usual diagonal argument of Cantor to show the uncountability can be used.)
+\end{proof}
+
+In terms of the theory of measure, what is more common for the irrationals, the differentiability or the non differentiability? 
+
+With this purpose, we will use the following result
+(which is usually known as Khinchin's theorem).
+As usually, `almost all $x$' means `every $x$ except a set of measure zero'.
+
+\begin{lemma}[{\cite[Theorem 32, page 69]{Khinchin}}]
+\label{lem:g}
+Suppose that $g(t)$ is a positive continuous function of a positive variable $t$ and such that $tg(t)$ is a non-increasing function. Then, the inequality
+\begin{equation}
+\label{eq:g}
+  \left| x - \frac{p}{q} \right| < \frac{g(q)}{q}
+\end{equation}
+has, for almost all $x$, an infinite quantity of rational solutions $p/q$
+if, for some positive $s$, the integral
+\begin{equation}
+\label{eq:integral}
+  \int_{s}^{\infty} g(t)\, dt
+\end{equation}
+diverges. On the other hand, inequality~\eqref{eq:g} has, for almost all~$x$, only a finite quantity of rational solutions $p/q$ if the integral~\eqref{eq:integral} converges.
+\end{lemma}
+
+The second part of this lemma is the main tool to prove the following theorem, that summarizes the pathological behaviour of $f_\nu$ when $\nu > 2$.
+(Note that a different proof of the almost everywhere differentiability of $f_\nu$, that does not use Khinchin's result, can be found in~\cite{DaTa}. And see~\cite{He} for a proof of the density without explicitely using the measure.)
+
+\begin{theorem}
+For $\nu > 2$, let us denote
+\begin{align*}
+  C_\nu &= \{\,x \in \R : f_\nu \text{ is continuous at } x\,\},\\
+  D_\nu &= \{\,x \in \R : f_\nu \text{ is differentiable at } x\,\}.
+\end{align*}
+Then, the Lebesgue measure of the sets $\R \setminus C_\nu$ and $\R \setminus D_\nu$ is~$0$,
+but the four sets $C_\nu$, $\R \setminus C_\nu$, $D_\nu$, and $\R \setminus D_\nu$
+are dense in~$\R$.
+\end{theorem}
+
+\begin{proof}
+We have $C_\nu = \R \setminus \Q$ (so $\R \setminus C_\nu = \Q$), and it is well known that $\Q$ has measure~$0$, and that both the rational and the irrational numbers are dense in the reals, i.e., $\overline{C_\nu} = \overline{\R \setminus C_\nu} = \R$.
+From this, and noticing that $\R \setminus C_\nu \subset \R \setminus D_\nu$,
+also follows $\overline{\R \setminus D_\nu} = \R$.
+
+To compute the measure of $\R \setminus D_\nu$, let us take $g(t) = 1/(t \log^2(t+1))$.
+As $\int_1^\infty 1/(t \log^2(t+1)) \, dt < \infty$, the second part of Lemma~\ref{lem:g} shows that, for almost all $x$, the inequality
+$$
+  \left| x - \frac{p}{q} \right| < \frac{1}{q^2 \log^2(q+1)}
+$$
+has only a finite quantity of rational solutions.
+From here, it is clear that, for each such $x$, there exists a positive constant $C(x)$ such that
+$$
+  \left| x - \frac{p}{q} \right| < \frac{C(x)}{q^2 \log^2(q+1)}
+$$
+has no rational solution.
+Also, let us note that, as the rationals have measure~$0$, the same can be said for almost all irrational~$x$. 
+We claim that $f_\nu$ is differentiable at these~$x$; consequently, the measure of $\R \setminus D_\nu$ is~$0$.
+
+To prove the claim, let us proceed as in~(a) of Theorem~\ref{theo:main}. For every sequence of rationals ${p_n/q_n}$ that tends to the irrational $x$, we have
+$$
+  \left| x - \frac{p_n}{q_n} \right| \ge \frac{C(x)}{q_n^2 \log^2(q_n+1)}
+$$
+for every~$n$.
+Then, 
+$$
+  \left|\frac{f_\nu(p_n/q_n) - f_\nu(x)}{p_n/q_n - x} \right| 
+%  = \left| \frac{1/q_n^\nu - 0}{p_n/q_n - x} \right| 
+  \le \frac{1/q_n^\nu}{C(x)/(q_n^2 \log^2(q_n+1))} 
+  = \frac{\log^2(q_n+1)}{C(x) q_n^{\nu-2}},
+$$
+which tends to $0$ when $n\to\infty$. This proves that $f_\nu$ is differentiable at~$x$.
+
+Finally, the denseness of $D_\nu$ follows by using that,
+if a set $\R \setminus S$ has Lebesgue measure $0$, then $S$ is dense in~$\R$.
+The proof of this fact is well-known, but we reproduce it for completeness.
+The closure of $S$ is a closed set; if there exists a real number $x$ that does not belong to $\,\overline{\!S}$, there exists an open interval $I$ around $x$ such that $I \cap \,\overline{\!S} = \emptyset$, and consequently also $I \cap S = \emptyset$ and so $I \subset \R \setminus S$; but $I$ has positive measure, which is a contradiction.
+\end{proof}
+
+\begin{remark}
+In terms of the variation of a function, it seems natural that $f_\nu$ to be
+differentiable almost everywhere when $\nu > 2$. Let us recall that, in a closed interval, a real function is differentiable almost everywhere if it is of bounded variation. In any interval $[k,k+1]$ (with $k \in \Z$), $f_\nu$ has are two jumps of height~$1$ (in the extremes), a jump of height~$1/2^\nu$ (in the middle point), two jumps of height~$1/3^\nu$, three jumps of height~$1/4^\nu$, and so on. Then, the variation of $f_\nu$ in $[k,k+1]$ is bounded by
+$$
+  2 + \sum_{q=2}^\infty \frac{q-1}{q^\nu},
+$$
+which is convergent when $\nu > 2$.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The theorem of Thue-Siegel-Roth revisited}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The Thue-Siegel-Roth theorem (also known simply as Roth's theorem) is a fundamental
+result in the field of approximation by rationals.
+It was proved by Roth in 1955 (he received a Fields medal for this result), 
+and it is the final step of the previous efforts
+by Thue, Siegel, Gelfond and Dyson through the first part of the 20th century.
+The original paper from Roth is~\cite{Roth}; but see 
+also~\cite[Chapter~6]{MiTa}, 
+for a detailed proof.
+% where a proof given in full detail can be found.
+
+This theorem asserts that, if $x$ is an algebraic number, 
+and we take an arbitrary $\alpha > 0$, the inequality
+\begin{equation}
+\label{eq:Roth}
+  \left| x - \frac{p}{q} \right| < \frac{1}{q^{2+\alpha}}
+\end{equation}
+only has finitely many rational solutions $p/q$. Or, equivalently,
+if $x$ is an irrational algebraic number, there exists a positive constant 
+$C(x,\alpha)$ such that
+\begin{equation}
+\label{eq:Roth-2}
+  \left| x - \frac{p}{q} \right| 
+  < \frac{C(x,\alpha)}{q^{2+\alpha}}
+\end{equation}
+has no rational solution. 
+
+In the practice, this theorem is frequently used as a criterion for transcendence: 
+if, for some $\alpha>0$, the inequality~\eqref{eq:Roth} has infinitely many 
+rational solutions, $x$ must be a transcendental number. 
+This criterion is much more powerful than the Liouville criterion, 
+that was used by Liouville in 1844 to prove that $\sum_{k=1}^\infty 10^{-k!}$
+is a transcendental number, the first number to be proven transcendental.
+
+Now, we are going to see that the Thue-Siegel-Roth theorem can be reformulated 
+in terms of the differentiability of~$f_\nu$.
+
+Firstly, let us use it to prove the following theorem regarding the 
+differentiabity of~$f_\nu$. Actually, this part has been already 
+done in~\cite{He} and~\cite{Ny}.
+
+\begin{theorem}
+\label{theo:Roth-reformulated}
+Let $\nu > 2$. 
+If $x$ is an algebraic irrational number, then $f_\nu$ 
+is differentiable at~$x$.
+\end{theorem}
+
+\begin{proof}
+Let $x$ be an algebraic irrational number and 
+take $\alpha = (\nu-2)/2 > 0$.
+To prove the differentiability of $f_\nu$ at $x$ it is enough to see that, 
+for any sequence of rationals $\{p_n/q_n\}$ that tends to $x$, we have
+$$
+  \lim_n \frac{f_\nu(p_n/q_n) - f_\nu(x)}{p_n/q_n - x} = 0.
+$$
+Because~\eqref{eq:Roth-2} does not have rational solutions, we have
+$$
+  \left| x - \frac{p_n}{q_n} \right| 
+  \ge \frac{C(x,\alpha)}{q_n^{2+\alpha}}
+$$
+for every $n$, and consequently
+$$
+  \left|\frac{f_\nu(p_n/q_n) - f_\nu(x)}{p_n/q_n - x} \right| 
+  = \left| \frac{1/q_n^\nu - 0}{p_n/q_n - x} \right| 
+  \le \frac{1/q_n^\nu}{C(x,\alpha)/q_n^{2+\alpha}} 
+%  = \frac{1}{C(x,\alpha) q_n^{\nu-2-\alpha}}
+  = \frac{1}{C(x,\alpha) q_n^{(\nu-2)/2}},
+$$
+that tends to $0$ when $n\to\infty$. 
+\end{proof}
+
+Read in a different way, this theorem says that
+`if $f_\nu$ is not differentiable at~$x$, then $x$ is either
+a rational number or a transcendental number'.
+But, as happens with the Thue-Siegel-Roth criterion,
+the nodifferentiability at~$x$ 
+only serves to detect a small proportion of the 
+transcendental numbers. There are many transcendental numbers $x$
+for which $f_\nu$ is differentiable at~$x$.
+
+\begin{remark}
+We have proved Theorem~\ref{theo:Roth-reformulated}
+by using the Thue-Siegel-Roth theorem.
+But we have said that it is a \emph{reformulation}. So, let us see how to deduce 
+the Thue-Siegel-Roth theorem from Theorem~\ref{theo:Roth-reformulated}.
+
+Given $x$ algebraic and irrational, and $\nu > 2$, 
+Theorem~\ref{theo:Roth-reformulated} ensures that $f_\nu$ is differentiable 
+at $x$, so there exists
+$$
+  \lim_{y \to x} \frac{f_\nu(y)-f_\nu(x)}{y-x} = f_\nu'(x).
+$$
+By approximating $y \to x$ by irrationals~$y$, it follows that $f_\nu'(x)=0$.
+Consequently, by approximating $y \to x$ by rationals, i.e., $y=p/q$, we also must have
+$$
+  \lim_{p/q \to x} \frac{f_\nu(p/q)-f_\nu(x)}{p/q-x} 
+  = \lim_{p/q \to x} \frac{1/q^\nu}{p/q-x} = 0.
+$$
+Then, for every $\varepsilon>0$, there exists $\delta>0$ such that
+$$
+  \frac{1}{q^\nu} \le \varepsilon \left| \frac{p}{q} - x \right|
+$$
+when $p/q \in (x-\delta,x+\delta)$. From here, it is easy to
+check that the same happens for every $p/q \in \Q$, perhaps with a greather 
+constant $\varepsilon'$ in the place of $\varepsilon$.
+Thus, \eqref{eq:Roth-2} with $\alpha=\nu-2$ and some positive constant 
+$C(x,\alpha) = 1/\varepsilon'$ has no rational solution, and we have obtained the 
+Thue-Siegel-Roth theorem.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{small}
+%\begin{footnotesize}
+%\subsection*{\MakeUppercase{Acknowledgements}}
+\subsection*{Acknowledgements}
+The author thanks Emilio Fern\'andez, Mario P\'erez, Francisco J. Ruiz 
+and the referee their valuable comments, which helped to improve this paper.\par
+%\end{footnotesize}
+%\end{small}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibitem{BaDu}
+A. Baouche and S. Dubuc,
+{La non-d\'erivabilit\'e de la fonction de Weierstrass},
+\textit{L'Enseignement Math\'ematique} \textbf{38} (1992), 89--94.
+
+\bibitem{DaTa}
+R. B. Darst and G. D. Taylor,
+{Differentiating powers of an old friend},
+\textit{Amer. Math. Monthly} \textbf{103} (1996), 415--416.
+
+\bibitem{He}
+G. A. Heuer and Undergraduate Research Participation Group,
+{Funtions continuous at the irrationals and discontinuous at the irrationals},
+\textit{Amer. Math. Monthly} \textbf{72} (1965), 370--373.
+
+\bibitem{Khinchin}
+A. Ya. Khinchin,
+\textit{Continued fractions},
+The University of Chicago Press, 1964.
+Reprint: Dover, 1997.
+
+\bibitem{MiTa}
+S. J. Miller and R. Takloo-Bighash,
+\textit{An invitation to modern number theory},
+Princeton University Press, 2006.
+
+\bibitem{No}
+A. Norton,
+{Continued fractions and differentiability of functions},
+\textit{Amer. Math. Monthly} \textbf{95} (1988), 639--643.
+
+\bibitem{Ny}
+J. E. Nymann,
+{An application of diophantine approximation},
+\textit{Amer. Math. Monthly} \textbf{76} (1969), 668--671.
+
+\bibitem{Pinkus}
+A. Pinkus,
+{Weierstrass and approximation theory},
+\textit{J. Approx. Theory} \textbf{107} (2000), 1--66. 
+
+\bibitem{Roth}
+K. F. Roth,
+{Rational approximation of algebraic numbers},
+\textit{Mathematika} \textbf{2} (1955), 1--20;
+{Corrigendum},
+\textit{Mathematika} \textbf{2} (1955), 168.
+
+\bibitem{Thim}
+J. Thim,
+\textit{Continuous nowhere differentiable functions},
+Master Thesis, Lule\aa\ University of Technology (Sweden), 2003.
+Available at
+\url{http://epubl.ltu.se/1402-1617/2003/320/index-en.html}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

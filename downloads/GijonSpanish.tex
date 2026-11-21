@@ -1,0 +1,662 @@
+%&pdflatex
+\documentclass[a4paper,12pt]{article}
+
+\addtolength{\textwidth}{1cm}
+
+\usepackage[spanish]{babel}
+
+\usepackage[leqno]{amsmath}
+\usepackage{amsfonts,amsthm}
+
+\nofiles %% .aux files unnecessary
+
+\usepackage{setspace}
+\newcommand{\tab}{\hspace{5mm}}
+
+\theoremstyle{plain}
+\newtheorem*{theoremOne}{Teorema 1}
+\newtheorem*{propTwo}{Proposici\'on 2}
+\newtheorem*{corThree}{Corolario 3}
+\newtheorem*{corFour}{Corolario 4}
+\newtheorem*{theoremFive}{Teorema 5}
+
+\theoremstyle{definition}
+\newtheorem*{note}{Nota}
+
+\newcommand{\N}{\mathbb{N}}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\large \bfseries \boldmath ACOTACI\'ON EN $L^{p}$ DE LOS N\'UCLEOS
+RELATIVOS A PESOS DE JACOBI GENERALIZADOS}
+
+\author{%
+J. J. Guadalupe Hern\'andez$^{(1)}$, M. P\'{e}rez Riera$^{(1)}$,\\[2pt]
+F. J. Ruiz Blasco$^{(1)}$ y J. L. Varona Malumbres$^{(2)}$\\[5pt]
+\small $^{(1)}$ Departamento de Matem\'aticas,\\[-2pt]
+\small Facultad de Ciencias, Universidad de Zaragoza.\\[3pt]
+\small $^{(2)}$ Departamento de Matem\'atica Aplicada,\\[-2pt]
+\small Colegio Universitario de La Rioja, Universidad de Zaragoza.%
+\renewcommand\thefootnote{}%
+\renewcommand\footnotemark{}%
+\footnote{Este art\'{\i}culo es una traducci\'on al espa\~nol de
+\textsc{J.~J.~Guadalupe, M.~P\'{e}rez,
+F.~J.~Ruiz y J.~L.~Varona},
+{$L^{p}$-boundedness of the kernels relative
+to generalized Jacobi weights}, en
+``Polinomios Ortogonales y Aplicaciones''
+(Actas del VI Simposium, Gij\'on, 1989),
+168--178, Universidad de Oviedo, Gij\'on, 1990.}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+\noindent\textit{Clasificaci\'on A.M.S.}: 42C10.
+
+\begin{abstract}
+Sea $w$ un peso de Jacobi generalizado sobre el intervalo $[-1,1]$,
+es decir, $w(x) = h(x)(1-x)^{\alpha} (1+x)^{\beta}
+\prod_{i=1}^{N} |x-x_{i}|^{\gamma_{i}}$, con $\alpha, \beta,
+\gamma_{i} > -1$ y ciertas condiciones de continuidad
+sobre~$h$. Mediante el uso de la teor\'{\i}a de pesos $A_{p}$, se puede
+demostrar la convergencia de la serie de Fourier de polinomios
+ortonormales con respecto a $w$ cuando $\gamma_{i} \geq 0$
+$\forall i$. En este trabajo obtenemos acotaciones
+de las normas en $L^{p}$ de los n\'ucleos relativos a $w$, que permiten
+extender el resultado de la convergencia en media al caso general.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Sea $w$ un peso de Jacobi generalizado, es decir,
+$$
+w(x) = h(x)(1-x)^{\alpha} (1+x)^{\beta}
+\prod_{i=1}^{N} |x-x_{i}|^{\gamma_{i}},
+\qquad x \in [-1,1],
+$$
+donde:
+\begin{itemize}
+\item[(a)] $\alpha, \beta, \gamma_{i} > -1$,
+$t_{i} \in (-1,1)$, $t_{i}\neq t_{j}$ $\forall i \neq j$;
+\item[(b)] $h$ es una funci\'on continua y positiva en $[-1,1]$ y
+$\omega(h,\delta) \delta^{-1} \in L^{1}(0,2)$,
+siendo $\omega(h,\delta)$ el m\'odulo de continuidad de~$h$.
+\end{itemize}
+
+Sea $d\mu = w(x)\,dx$ sobre $[-1,1]$ y $S_{n}$ ($n \geq 0$)
+la suma parcial en\'{e}sima de la serie de Fourier de los polinomios
+ortonormales con respecto a $d\mu$. El estudio de la acotaci\'on
+\begin{equation}
+\| S_{n}f \|_{L^{p}(u^{p}\,d\mu)}
+\leq C \| f \|_{L^{p}(v^{p}\,d\mu)},
+\tag{1}
+\end{equation}
+donde
+$$
+u(x) = (1- x)^{a}(1+ x)^{b} \prod_{i=1}^{N} | x- t_{i} |^{g_{i}}
+$$
+y
+$$
+v(x) = (1- x)^{A}(1+ x)^{B} \prod_{i=1}^{N} | x- t_{i} |^{G_{i}}
+$$
+fue realizado por Badkov ([B]) para el caso $u = v$
+mediante la obtenci\'on directa de estimaciones de los n\'ucleos
+$K_{n}(x,y)$ asociados a los polinomios ortonormales con respecto a~$d\mu$.
+Posteriormente, Varona ([V]) consider\'o el mismo
+problema, con los pesos $u$ y $v$ no no necesariamente iguales; utilizando
+otro m\'{e}todo, que consiste en hacer uso de la teor\'{\i}a de pesos
+$A_{p}$, encontr\'o condiciones para la acotaci\'on (1) que
+generalizan las obtenidas para $u = v$ por Badkov.
+Sin embargo, el resultado, que enunciamos a continuaci\'on,
+se deduce s\'olo en el caso $\gamma_{i} \geq 0$ $\forall i$:
+
+\begin{theoremOne}
+Sea $\gamma_{i} \geq 0$ $\forall i$ y $1 < p < \infty$.
+Si se cumplen las desigualdades
+\begin{equation}
+\left\{
+\begin{aligned}
+A + (\alpha+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{1}{4}, \\
+B + (\beta+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{1}{4}, \\
+G_{i} + (\gamma_{i}+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{1}{2}
+\quad \forall i,
+\end{aligned}
+\right.
+\tag{2}
+\end{equation}
+\begin{equation}
+\left\{
+\begin{aligned}
+A + (\alpha+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{\alpha+1}{2}, \\
+B + (\beta+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{\beta+1}{2}, \\
+G_{i} + (\gamma_{i}+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{\gamma_{i}+1}{2}
+\quad \forall i,
+\end{aligned}
+\right.
+\tag{3}
+\end{equation}
+\begin{equation}
+\left\{
+\begin{aligned}
+a + (\alpha+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{1}{4}, \\
+b + (\beta+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{1}{4}, \\
+g_{i} + (\gamma_{i}+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{1}{2}
+\quad \forall i,
+\end{aligned}
+\right.
+\tag{4}
+\end{equation}
+\begin{equation}
+\left\{
+\begin{aligned}
+a + (\alpha+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{\alpha+1}{2}, \\
+b + (\beta+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{\beta+1}{2}, \\
+g_{i} + (\gamma_{i}+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{\gamma_{i}+1}{2}
+\quad \forall i,
+\end{aligned}
+\right.
+\tag{5}
+\end{equation}
+\begin{equation}
+A \leq a, \qquad B \leq b, \qquad G_{i} \leq g_{i}
+\quad \forall i,
+\tag{6}
+\end{equation}
+entonces existe $C > 0$ tal que
+$$
+\| S_{n}f \|_{L^{p}(u^{p}\,d\mu)}
+\leq C \| f \|_{L^{p}(v^{p}\,d\mu)}
+\quad \forall f \in L^{p}(v^{p}\,d\mu),
+\quad \forall n \in \N.
+$$
+\end{theoremOne}
+
+El objeto de este trabajo es eliminar la restricci\'on $\gamma_{i} \geq 0$,
+mediante el estudio de las normas de los n\'ucleos $K_{n}(x,y)$.
+Utilizaremos la siguiente notaci\'on: $\{P_{n}(x)\}$, $\{k_{n}\}$ y
+$\{K_{n}(x,y)\}$ ser\'an, respectivamente, los polinomios
+ortonormales, sus coeficientes directores y los n\'ucleos relativos
+a~$d\mu$; si $c \in (-1,1)$, $\{P_{n}^{c}(x)\}$,
+$\{k_{n}^{c}\}$ y $\{K_{n}^{c}(x,y)\}$ ser\'an
+los correspondientes a $(x-c)^{2}\,d\mu$.
+No es dif\'{\i}cil entonces establecer las siguientes relaciones,
+$\forall n \geq 1$:
+\begin{equation}
+K_{n}(x,y) = (x-c) (y-c) K_{n-1}^{c}(x,y)
++ \frac{K_{n}(x,c)K_{n}(c,y)}{K_{n}(c,c)}\,,
+\tag{7}
+\end{equation}
+\begin{equation}
+K_{n}(x,c) = \frac{k_{n}}{k_{n}^{c}}\, P_{n}(c) P_{n}^{c}(x)
+- \frac{k_{n-1}^{c}}{k_{n+1}}\, P_{n+1}(c) P_{n-1}^{c}(x).
+\tag{8}
+\end{equation}
+Puede demostrarse adem\'as (v\'{e}ase [MNT], teoremas~10 y~11,
+y~[R], p\'ag.~212) que
+\begin{equation}
+\lim_{n \to \infty} \frac{k_{n}}{k_{n}^{c}}
+= \lim_{n \to \infty} \frac{k_{n-1}^{c}}{k_{n+1}}
+= \frac{1}{2}.
+\tag{9}
+\end{equation}
+
+Si definimos
+$$
+d(x,n) = (1 - x + n^{-2})^{-(2\alpha+1)/4}
+(1 + x + n^{-2})^{-(2\beta+1)/4}
+\prod_{i=1}^{N} ( | x-t_{i}| + n^{-1})^{-\gamma_{i}/2},
+$$
+es conocido ([B]) que existe una constante $C$ tal que
+$\forall x \in [-1,1]$, $\forall n$,
+\begin{equation}
+| P_{n}(x) | \leq C d(x,n).
+\tag{10}
+\end{equation}
+
+Tambi\'{e}n se conocen estimaciones de los n\'ucleos, una de las
+cuales es \'esta ([N], p\'ag.~4 y p\'ag.~119, teorema~25): si
+$c \in (-1,1)$ y el factor $| x - c |$
+est\'a presente en $w$ con un exponente $\gamma$, existen constantes
+positivas $C_{1}$ y $C_{2}$, que dependen de $c$,
+tales que,~$\forall n$,
+\begin{equation}
+C_{1} n^{\gamma+1} \leq K_{n}(c,c) \leq C_{2} n^{\gamma+1}.
+\tag{11}
+\end{equation}
+
+A partir de ahora designaremos por $C$ todas las constantes, con
+lo que $C$ ser\'a una constante posiblemente distinta cada vez
+que aparezca. Utilizando (8), (9) y (10), llegamos al siguiente
+resultado:
+
+\begin{propTwo}
+Sea $1 < p < \infty$, $1/p + 1/q = 1$.
+Supongamos que se cumplen las desigualdades (4) y (5). Sea $-1 < c < 1$
+y sean $\gamma$ y $g$ los exponentes de $| x - c |$
+en $w$ y $u$, respectivamente. Entonces existe una constante positiva
+$C$ tal que, para todo $n \geq 0$, se tiene:
+$$
+\| K_{n}(x,c) \|_{L^{p}(u^{p}w)}
+\leq
+\begin{cases}
+C n^{(\gamma+1)/q - g}, &\text{si}\quad g < (\gamma +1) (1/2 - 1/p) + 1/2,\\
+C n^{\gamma/2} (\log n)^{1/p}, &\text{si}\quad g = (\gamma +1) (1/2 - 1/p) + 1/2,\\
+C n^{\gamma/2}, &\text{si}\quad (\gamma +1) (1/2 - 1/p) + 1/2 < g.
+\end{cases}
+$$
+\end{propTwo}
+
+\begin{proof}
+De (10) se deduce que $| P_{n}(c) | \leq C n^{\gamma/2}$.
+Como $\{P_{n}^{c}\}$ es la sucesi\'on
+asociada a $(x-c)^{2}\,d\mu$, tambi\'{e}n de (10) se deduce que
+$$
+| P_{n}^{c}(x) | \leq C ( | x - c | + n^{-1})^{-1} d(x,n).
+$$
+A partir de (8) y (9) obtenemos, entonces,
+\begin{equation}
+| K_{n}(x,c) | \leq C n^{\gamma/2} ( | x - c | + n^{-1})^{-1} d(x,n).
+\tag{12}
+\end{equation}
+Fijemos ahora $\varepsilon > 0$ tal que $| t_{i} - c | > \varepsilon$
+$\forall i$ que haga $t_{i} \neq c$.
+Podemos poner
+\begin{multline*}
+\| K_{n}(x,c) \|^{p}_{L^{p}(u^{p}w)} \\
+= \int_{| x - c | > \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx
++ \int_{| x - c | < \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx.
+\end{multline*}
+Utilizando la cota (12) obtenemos, para el primer sumando:
+\begin{align*}
+&\int_{| x - c | > \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx \\
+&\qquad\leq C n^{p \gamma/2} \int_{| x - c | > \varepsilon}
+( | x - c | + n^{-1})^{-p} d(x,n)^{p} u(x)^{p} w(x)\,dx \\
+&\qquad\leq C_{1} n^{p \gamma/2} \int_{-1}^{1} d(x,n)^{p} u(x)^{p} w(x)\,dx.
+\end{align*}
+De (4) y (5) es f\'acil deducir que esta \'ultima integral est\'a
+acotada por una constante que no depende de $n$, con lo que
+\begin{equation}
+\int_{| x - c | > \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx
+\leq C n^{p\gamma/2}.
+\tag{13}
+\end{equation}
+Veamos ahora el segundo sumando; como en $| x - c | < \varepsilon$
+existe una constante $C$ tal que, $\forall n$,
+$d(x,n) \leq C ( | x - c | + n^{-1})^{-\gamma/2}$,
+$u(x) \leq C | x - c |^{g}$
+y $w(x) \leq C | x - c |^{\gamma}$, tenemos
+\begin{align*}
+&\int_{| x - c | < \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx \\
+&\qquad\leq C n^{p\gamma/2} \int_{| x - c | < \varepsilon} ( | x - c | + n^{-1})^{-p}
+d(x,n)^{p} u(x)^{p} w(x)\,dx \\
+&\qquad\leq C_{1} n^{p \gamma/2}
+\int_{| x - c | < \varepsilon} ( | x - c | + n^{-1})^{-p(1+\gamma/2)}
+| x - c |^{gp+\gamma} \,dx \\
+&\qquad\leq C _{2} n^{p\gamma/2}
+\int_{0}^{1} (y + n^{-1})^{-p(1+\gamma/2)} y^{gp+\gamma} \,dy \\
+&\qquad= C_{2} n^{p\gamma/2+p(1+\gamma/2)-gp-\gamma-1}
+\int_{0}^{1} (ny + 1)^{-p(1+\gamma/2)} (ny)^{gp+\gamma} n\,dy \\
+&\qquad= C_{2} n^{p\gamma/2+p(1+\gamma/2)-gp-\gamma-1}
+\int_{0}^{n} (r + 1)^{-p(1+\gamma/2)} r^{gp+\gamma} \,dr.
+\end{align*}
+Observando que
+$p (1+\gamma/2) - gp - \gamma - 1 = p [ (\gamma+1) (1/2 - 1/p) - g + 1/2]$
+y que existen constantes $C_{1}$ y $C_{2}$ tales que
+$C_{1} \leq r+1 \leq C_{2}$ en $[0,1]$ y $C_{1}r \leq r+1 \leq C_{2}r$
+en $[1,n]$, llegamos finalmente a la desigualdad
+\begin{equation}
+\begin{aligned}
+&\int_{| x - c | < \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx \\
+&\qquad\leq C n^{p \gamma/2+p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ]}
+\int_{0}^{1} r^{gp+\gamma} \,dr \\
+&\qquad\qquad\null+ C n^{p\gamma/2+p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ]}
+\int_{1}^{n} r^{-p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ] -1} \,dr.
+\end{aligned}
+\tag{14}
+\end{equation}
+Como (5) implica $gp + \gamma > -1$,
+acotamos el primer sumando de esta forma:
+\begin{equation}
+C n^{p\gamma/2+p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ]}
+\int_{0}^{1} r^{gp+\gamma} \,dr
+\leq C n^{p \gamma/2+p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ]}.
+\tag{15}
+\end{equation}
+Distingamos ahora los tres casos del enunciado:
+
+    (a) Si $g < (\gamma +1) (1/2 - 1/p) + 1/2$,
+entonces $-p [ (\gamma +1) (1/2 - 1/p) -g+ 1/2 ] -1 < -1$, con lo que
+$$
+\int_{1}^{n} r^{-p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ] -1} \,dr \leq C.
+$$
+De (14) y (15) se sigue, en este caso,
+$$
+\int_{| x - c | < \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx
+\leq C n^{p\gamma/2+p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ]}.
+$$
+Puesto que $p [ (\gamma +1)(1/2 - 1/p) - g+1/2 ] > 0$,
+de esta desigualdad y (13) se obtiene
+\begin{align*}
+\| K_{n}(x,c) \|^{p}_{L^{p}(u^{p}w)}
+&\leq C n^{p\gamma/2+p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ]} \\
+&= C n^{p [ (\gamma+1)(1 - 1/p) - g ]}
+= C n^{p [ (\gamma+1)/q - g ]},
+\end{align*}
+como quer\'{\i}amos probar.
+
+    (b) Si $(\gamma +1) (1/2 - 1/p) + 1/2 < g$,
+entonces $-p [ (\gamma +1) (1/2 - 1/p) -g+ 1/2 ] -1 > -1$, con lo que
+$$
+\int_{1}^{n} r^{-p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ] -1} \,dr
+\leq C n^{-p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ] }.
+$$
+De (14) y (15) se sigue, ahora,
+$\int_{| x - c | < \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx
+\leq C n^{p\gamma/2}$
+y, finalmente,
+$$
+\| K_{n}(x,c) \|^{p}_{L^{p}(u^{p}w)} \leq C n^{p\gamma/2}.
+$$
+
+    (c) Por \'ultimo, si $g = (\gamma +1) (1/2 - 1/p) + 1/2$,
+$$
+\int_{1}^{n} r^{-p [ (\gamma+1)(1/2 - 1/p) - g+1/2 ] -1} \,dr \leq C \log n;
+$$
+de donde,
+$$
+\int_{| x - c | < \varepsilon} | K_{n}(x,c) |^{p} u(x)^{p} w(x)\,dx
+\leq C n^{p\gamma/2} \log n
+$$
+y
+$$
+\| K_{n}(x,c) \|^{p}_{L^{p}(u^{p}w)} \leq C n^{p\gamma/2} \log n.
+$$
+De esta manera, queda demostrada la proposici\'on.
+\end{proof}
+
+\begin{corThree}
+Sea $1 < p < \infty$, $1/p + 1/q = 1$.
+Supongamos que se cumplen las desigualdades (2) y (3). Sea $-1 < c < 1$
+y sean $\gamma$ y $G$ los exponentes de $| x - c |$
+en $w$ y $v$, respectivamente. Entonces existe una constante positiva
+$C$ tal que, para todo $n \geq 0$, se tiene:
+$$
+\| K_{n}(x,c) \|_{L^{q}(v^{-q}w)}
+\leq
+\begin{cases}
+C n^{\gamma/2}, &\text{si}\quad G < (\gamma +1) (1/2 - 1/p) - 1/2,\\
+C n^{\gamma/2} (\log n)^{1/q}, &\text{si}\quad G = (\gamma +1) (1/2 - 1/p) - 1/2,\\
+C n^{(\gamma+1)/p + G}, &\text{si}\quad (\gamma +1) (1/2 - 1/p) - 1/2 < G.
+\end{cases}
+$$
+\end{corThree}
+
+\begin{proof}
+Basta aplicar la proposici\'on~2 al peso $v^{-1}$ y tener en cuenta
+que $1/2 - 1/p = 1/q - 1/2$.
+\end{proof}
+
+El siguiente resultado es el que necesitamos para ampliar el
+teorema~1 al caso general $\gamma_{i} > -1$:
+
+\begin{corFour}
+Sea $1 < p < \infty$, $1/p + 1/q = 1$.
+Supongamos que se cumplen las desigualdades (2), (3), (4), (5)
+y (6). Sea $-1 < c < 1$.
+Entonces existe una constante positiva $C$ tal que, para todo $n \geq 0$,
+se tiene:
+$$
+\| K_{n}(x,c) \|_{L^{p}(u^{p}w)} \| K_{n}(x,c) \|_{L^{q}(v^{-q}w)}
+\leq C K_{n}(c,c).
+$$
+\end{corFour}
+
+\begin{proof}
+Basta aplicar, caso por caso, la proposici\'on~2, el corolario~3
+y la estimaci\'on~(11).
+\end{proof}
+
+\begin{note}
+Aaunque en lo que sigue no lo vamos a utilizar, el corolario~4 es cierto
+tambi\'{e}n en el caso $c = \pm 1$.
+La demostraci\'on es an\'aloga: partiendo de otras expresiones
+para $K_{n}(x,\pm 1)$, pueden probarse
+resultados similares a la proposici\'on~2 y el corolario~3, de
+donde se deduce el corolario~4.
+\end{note}
+
+Ahora estamos en condiciones de generalizar el teorema~1 al caso
+$\gamma_{i} > -1$, como hab\'{\i}amos dicho:
+
+\begin{theoremFive}
+Sea $1 < p < \infty$.
+Si se verifican las desigualdades
+$$
+\left\{
+\begin{aligned}
+A + (\alpha+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{1}{4}, \\
+B + (\beta+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{1}{4}, \\
+G_{i} + (\gamma_{i}+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{1}{2}
+\quad \forall i,
+\end{aligned}
+\right.
+\quad
+\left\{
+\begin{aligned}
+A + (\alpha+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{\alpha+1}{2}, \\
+B + (\beta+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{\beta+1}{2}, \\
+G_{i} + (\gamma_{i}+1) \left(\frac{1}{p} - \frac{1}{2}\right) &< \frac{\gamma_{i}+1}{2}
+\quad \forall i,
+\end{aligned}
+\right.
+$$
+$$
+\left\{
+\begin{aligned}
+a + (\alpha+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{1}{4}, \\
+b + (\beta+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{1}{4}, \\
+g_{i} + (\gamma_{i}+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{1}{2}
+\quad \forall i,
+\end{aligned}
+\right.
+\quad
+\left\{
+\begin{aligned}
+a + (\alpha+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{\alpha+1}{2}, \\
+b + (\beta+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{\beta+1}{2}, \\
+g_{i} + (\gamma_{i}+1) \left(\frac{1}{p} - \frac{1}{2}\right) &> - \frac{\gamma_{i}+1}{2}
+\quad \forall i,
+\end{aligned}
+\right.
+$$
+$$
+A \leq a, \qquad B \leq b, \qquad G_{i} \leq g_{i}
+\quad \forall i,
+$$
+entonces existe $C > 0$ tal que
+$$
+\| S_{n}f \|_{L^{p}(u^{p}\,d\mu)}
+\leq C \| f \|_{L^{p}(v^{p}\,d\mu)}
+\quad \forall f \in L^{p}(v^{p}\,d\mu),
+\quad \forall n \in \N.
+$$
+\end{theoremFive}
+
+\begin{proof}
+Por inducci\'on sobre el n\'umero de exponentes $\gamma_{i}$ negativos.
+Si $\gamma_{i} \geq 0$ $\forall i$, el resultado es cierto,
+como hemos comentado anteriormente (teorema~1).
+
+Supongamos que hay $k$ exponentes $\gamma_{i}$ negativos,
+con $k > 0$, y que el resultado es cierto para $k-1$. Sea $c \in (-1,1)$
+un punto con exponente $\gamma$ negativo.
+Recordemos la f\'ormula~(7):
+$$
+K_{n}(x,y) = (x-c) (y-c) K_{n-1}^{c}(x,y)
++ \frac{K_{n}(x,c) K_{n}(c,y)}{K_{n}(c,c)}.
+$$
+Definamos los operadores
+\begin{align*}
+T_{n}f(x) &= \int_{-1}^{1}
+\frac{K_{n}(x,c) K_{n}(c,y)}{K_{n}(c,c)}\, f(y) w(y)\,dy,\\
+R_{n}f(x) &= \int_{-1}^{1}
+(x-c) (y-c) K_{n-1}^{c}(x,y) f(y) w(y)\,dy.
+\end{align*}
+Entonces, $S_{n} = T_{n} + R_{n}$. Estudiamos primero
+los operadores~$T_{n}$:
+$$
+T_{n}f(x) = \int{K_{n}(x,c)}{K_{n}(c,c)}
+\int_{-1}^{1} K_{n}(c,y) f(y) w(y)\,dy,
+$$
+luego
+\begin{align*}
+\| T_{n}f \|_{L^{p}(u^{p}w)}
+&\leq \frac{\int_{-1}^{1}  | K_{n}(c,y) | v(y)^{-1} | f(y) | v(y) w(y) \,dy}
+{K_{n}(c,c)}\, \| K_{n}(x,c) \|_{L^{p}(u^{p}w)} \\
+&\leq \frac{\| K_{n}(x,c) \|_{L^{p}(u^{p}w)}
+\| K_{n}(x,c) v(x)^{-1} \|_{L^{q}(w)}}{K_{n}(c,c)}\,
+\| f v \|_{L^{p}(w)} \\
+&= \frac{\| K_{n}(x,c) \|_{L^{p}(u^{p}w)}
+\| K_{n}(x,c) \|_{L^{q}(v^{-q}w)}}{K_{n}(c,c)}\,
+\| f \|_{L^{p}(v^{p}w)}.
+\end{align*}
+Del corolario~4 se deduce entonces que $\| T_{n}f \|_{L^{p}(u^{p}\,d\mu)}
+\leq C \| f \|_{L^{p}(v^{p}\,d\mu)}$
+$\forall f \in L^{p}(v^{p}\,d\mu)$,
+$\forall n \in \N$. S\'olo hace falta probar ahora esta misma
+acotaci\'on para los operadores~$R_{n}$.
+
+Ahora bien, si por $S_{n}^{c}$ denotamos las sumas parciales
+de la serie de Fourier con respecto a la medida $(x-c)^{2}w(x)\,dx$,
+resulta
+$$
+R_{n}f(x) = (x-c) \int_{-1}^{1} (y-c) K_{n-1}^{c}(x,y) f(y) w(y)\,dy
+= (x-c) S_{n-1}^{c} \left(\frac{f(y)}{y-c}, x \right),
+$$
+luego
+\begin{align*}
+&\| R_{n}f \|_{L^{p}(u^{p}w)} \leq C \| f \|_{L^{p}(v^{p}w)}
+\quad\forall f \in L^{p}(v^{p}w) \\
+&\qquad\iff
+\big\| (x-c) S_{n-1}^{c} \big(\tfrac{f(y)}{y-c}, x \big) \big\|_{L^{p}(u^{p}w)}
+\leq C \| f \|_{L^{p}(v^{p}w)}
+\quad\forall f \in L^{p}(v^{p}w) \\
+&\qquad\iff
+\| (x-c) S_{n-1}^{c}g (x) \|_{L^{p}(u^{p}w)}
+\leq C \| (x-c) g \|_{L^{p}(v^{p}w)}
+\quad\forall g \in L^{p}(|x-c|^{p} v^{p}w) \\
+&\qquad\iff
+\| S_{n-1}^{c}g \|_{L^{p}(|x-c|^{p}u^{p}w)}
+\leq C \| g \|_{L^{p}(|x-c|^{p}v^{p}w)}
+\quad\forall g \in L^{p}(|x-c|^{p} v^{p}w) \\
+&\qquad\iff
+\| S_{n-1}^{c}g \|_{L^{p}({\tilde{u}}^{p}(x-c)^{2}w)}
+\leq C \| g \|_{L^{p}({\tilde{v}}^{p}(x-c)^{2}w)}
+\quad\forall g \in L^{p}({\tilde{v}}^{p}(x-c)^{2}w),
+\end{align*}
+donde $\tilde{u}(x) = | x - c |^{1-2/p} u(x)$
+y $\tilde{v}(x) = | x - c |^{1-2/p} v(x)$.
+
+Se trata por lo tanto de la acotaci\'on de las sumas parciales
+$S_{n}^{c}$ con el par de pesos $( \tilde{u}, \tilde{v} )$.
+Pero la serie de Fourier que estamos considerando ahora se refiere
+al peso de Jacobi generalizado $(x-c)^{2}w(x)$, que tiene s\'olo $k-1$
+exponentes $\gamma_{i}$ negativos, puesto que en el
+punto $c$ el exponente es $\gamma + 2 > 1$.
+Por hip\'otesis, el teorema es cierto en este caso y solamente
+tenemos que comprobar que se verifican las condiciones del enunciado,
+pero para los pesos
+$(x-c)^{2}w(x)$, $| x - c |^{1-2/p} u(x)$
+y $| x - c |^{1-2/p} v(x)$.
+
+Salvo en el punto $c$, estos pesos tienen los mismos exponentes
+que $w$, $u$ y $v$, luego dichas condiciones son las mismas y, por
+lo tanto se verifican. En el punto $c$, los exponentes son, respectivamente,
+$$
+\gamma + 2,\qquad g + 1 - 2/p,\qquad G + 1 - 2/p.
+$$
+As\'{\i} que las desigualdades que debemos comprobar son:
+\begin{align*}
+(G + 1 - 2/p) + ( \gamma + 2 + 1 ) (1/p - 1/2 ) &< 1/2,\\
+(G + 1 - 2/p) + ( \gamma + 2 + 1 ) (1/p - 1/2 ) &< ( \gamma + 2 + 1 )/2,\\
+(g + 1 - 2/p) + ( \gamma + 2 + 1 ) (1/p - 1/2 ) &> - 1/2,\\
+(g + 1 - 2/p) + ( \gamma + 2 + 1 ) (1/p - 1/2 ) &> - ( \gamma + 2 + 1 )/2,\\
+G + 1 - 2/p &\leq g + 1 - 2/p.
+\end{align*}
+Es inmediato ver que todas ellas se verifican, a partir de
+las hip\'otesis del enunciado. Por consiguiente, se cumple la
+acotaci\'on
+$$
+\| S_{n-1}^{c}g \|_{L^{p}({\tilde{u}}^{p}(x-c)^{2}w)}
+\leq C \| g \|_{L^{p}({\tilde{v}}^{p}(x-c)^{2}w)}
+\quad\forall g \in L^{p}({\tilde{v}}^{p}(x-c)^{2}w),
+\quad\forall n \in \N;
+$$
+luego tambi\'{e}n
+$$
+\| R_{n}f \|_{L^{p}(u^{p}w)} \leq C \| f \|_{L^{p}(v^{p}w)}
+\quad\forall f \in L^{p}(v^{p}w), \quad\forall n \in \N.
+$$
+Y, por lo tanto,
+$$
+\| S_{n}f \|_{L^{p}(u^{p}\,d\mu)} \leq C \| f \|_{L^{p}(v^{p}\,d\mu)}
+\quad\forall f \in L^{p}(v^{p}\,d\mu), \quad\forall n \in \N.
+$$
+Es decir, el resultado es v\'alido para $k$ exponentes $\gamma_{i}$ negativos.
+Por inducci\'on, es v\'alido en general y el teorema
+queda demostrado.
+\end{proof}
+
+\begin{note}
+Puede demostrarse que el rec\'{\i}proco tambi\'{e}n es
+cierto, es decir, que la acotaci\'on de las sumas parciales $S_{n}$
+implica las cinco condiciones del teorema.
+\end{note}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{MNT}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frenchspacing
+
+\bibitem[B]{B}
+\textsc{V. M. Badkov},
+Convergence in the mean and almost everywhere of Fourier series
+in polynomials orthogonal on an interval,
+\textit{Math USSR Sb.} \textbf{24} (1974), 223--256.
+
+\bibitem[MNT]{MNT}
+\textsc{A. M\'at\'{e}, P. Nevai, V. Totik},
+Extensions of Szeg\H{o}'s theory of orthogonal polynomials.~II,
+\textit{Constr. Approx.} \textbf{3} (1987), 51--72.
+
+\bibitem[N]{N}
+\textsc{P. Nevai},
+``Orthogonal Polynomials'',
+Memoirs of the Amer. Math. Soc., vol.~18,
+n\textsuperscript{o}~213, Providence, R.I., U.S.A., 1979.
+
+\bibitem[R]{R}
+\textsc{E. A. Rahmanov},
+On the asymptotics of the ratio of orthogonal polynomials,
+\textit{Math. USSR Sb.} \textbf{32} (1977), 199--213.
+
+\bibitem[V]{V}
+\textsc{J. L. Varona},
+``Convergencia en L$^{p}$ con pesos de la serie de Fourier
+respecto de algunos sistemas ortogonales'', Tesis doctoral,
+Sem. Mat. Garc\'{\i}a de Galdeano, sec.~2,
+n.\textsuperscript{o}~22. Zaragoza, 1989.
+
+\end{thebibliography}
+
+\end{document}

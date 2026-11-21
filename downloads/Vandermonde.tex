@@ -1,0 +1,163 @@
+% !TEX encoding = UTF-8 Unicode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             %
+% MINIATURAS MATEM\'ATICAS DE LA GACETA DE LA RSME            %
+%                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[autocontact]{gaceta}
+
+%---------------------
+% La Gaceta se har\'a con esto activado, 
+% pero no hace falta ahora si no quieres:
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Puedes usar esto (u otra codificaci\'on) si quieres:
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+%\decimalpoint
+%---------------------
+
+%---------------------
+% Esto ya lo carga el estilo de La Gaceta:
+%\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{url} % <-- Para p\'aginas web o similar: \url{...}
+%\usepackage{graphicx}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+% \usepackage{wrapfig}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+%\usepackage{tikz}
+%\usepackage{pgfplots}
+%---------------------
+
+%---------------------
+% <<< ESTO SE AJUSTAR\'A AL EDITAR CADA N\'UMERO DE LA GACETA >>>
+%\provisional
+\newcounter{pageforminiatura}
+\setcounter{pageforminiatura}{144} % Siempre ser\'a p\'agina par
+\setcounter{page}{1} % No se usa (dejarlo como 1)
+\journame{La Gaceta de la RSME}
+\yearofpublication{2019}
+\volume{22}
+\issuenumber{1}
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+%\belongstopart{Art\'{\i}culos} 
+%\belongstopart{Secciones} 
+%\belongstopart{Noticias de la Sociedad} 
+%\belongstopart{Actualidad} 
+\nopart
+%---------------------
+
+%---------------------
+% Usa este tipo de definiciones si las necesitas:
+%\theoremstyle{plain}
+%\newtheorem*{prop}{Proposici\'on}
+%\newtheorem*{lem}{Lema}
+% \newtheorem*{teo}{Teorema}
+%---------------------
+
+
+%---------------------
+% Deja esto as\'{\i}: 
+\supertitle{\large Miniaturas matem\'aticas de \thejourname\\[1mm]
+\hfill\footnotesize
+Vol.~\thevolume\ (\theyearofpublication), 
+N\'um.~\theissuenumber, P\'ag.~\thepageforminiatura\theprovisional}
+%
+\noeditor
+%---------------------
+
+%---------------------
+\title{Cálculo del determinante de Vandermonde\\con ayuda de un polinomio}
+%\author{} % Poner \author{} o no poner nada, da igual.
+% Para ahorrar espacio, el autor solo se pone en la firma:
+\contact{Juan Luis Varona, Dpto. de Matemáticas y Computación,
+Universidad de La Rioja}{jvarona@unirioja.es}
+{http://www.unirioja.es/cu/jvarona/}
+%---------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deja esto as\'{\i}: 
+\previousvspace{-1.8cm}
+\makesupertitle
+\previousvspace{-0.25cm}
+\maketitle
+\vspace*{-0.4cm}
+\thispagestyle{empty} % <<<<< Importante
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% A PARTIR DE AQU\'I HAY LIBERTAD PARA EL AUTOR:
+
+Se denomina determinante de Vandermonde de orden $n$ a
+\[
+  V_n = 
+  \begin{vmatrix}
+  1 & a_{1} & a_{1}^{2} & \ldots & a_{1}^{n-1} \\ 
+  1 & a_{2} & a_{2}^{2} & \ldots & a_{2}^{n-1} \\ 
+  1 & a_{3} & a_{3}^{2} & \ldots & a_{3}^{n-1} \\ 
+  \vdots & \vdots & \vdots & \ddots & \vdots \\ 
+  1 & a_{n} & a_{n}^{2} & \ldots & a_{n}^{n-1} 
+  \end{vmatrix}.
+\]
+Es muy conocido que el valor de este determinante es
+\begin{equation}
+\label{eq:Vn}
+  V_n = \prod_{1\leq i < j\leq n}(a_{j}-a_{i}).
+\end{equation}
+Las demostraciones habituales de~\eqref{eq:Vn} pasan por precisas pero sencillas manipulaciones de $V_n$ aplicando algunas propiedades típicas de los determinantes (por ejemplo, que si a una columna se le resta otra multiplicada por una constante, el valor del determinante no cambia).
+Damos aquí una demostración alternativa que usa propiedades elementales de los polinomios y que, pese a ser rápida y elegante, es muy poco conocida (aunque, posiblemente, numerosos matemáticos la han descubierto por su cuenta).
+% Posiblemente convendría decir que, sin pérdida de generalidad,
+Podemos suponer que los $a_j$ son distintos pues, si no,~\eqref{eq:Vn} es trivial.
+
+Definamos $P_{n-1}(x)$ añadiendo a $V_{n-1}$ una fila y una columna extra:
+% como se muestra a continuación:
+\[
+  P_{n-1}(x) = 
+  \begin{vmatrix}
+   &  &  &  &  &            a_{1}^{n-1} \\ 
+   &  &  &  &  &            a_{2}^{n-1} \\ 
+   &  & \hspace{-1ex}V_{n-1}\hspace{-1ex} &  &  &     a_{3}^{n-1} \\ 
+   &  &  &  &  &            \vdots \\ 
+   &  &  &  &  &            a_{n-1}^{n-1} \\ 
+  1 & x & x^{2} & \ldots &  x^{n-2} & x^{n-1} 
+  \end{vmatrix}.
+\]
+%Por la propiedades de los determinantes, es claro que
+%\begin{itemize}
+%\item $P_{n-1}(x)$ es un polinomio de grado $n-1$ y coeficiente director $V_{n-1}$ (basta desarrollar por la última fila).
+%\item $P_{n-1}(x)$ se anula en $x = a_1,a_2,\ldots,a_{n-1}$ (el correspondiente determinante tiene dos filas iguales).
+%\end{itemize}
+Es claro que $P_{n-1}(x)$ es un polinomio de grado $n-1$ y coeficiente director $V_{n-1}$ (basta desarrollar por la última fila);
+además, $P_{n-1}(x)$ se anula en $x = a_1,a_2,\ldots,a_{n-1}$ (el correspondiente determinante tiene dos filas iguales).
+Así pues,
+\[
+  P_{n-1}(x) = V_{n-1} \cdot (x-a_1)(x-a_2) \cdots (x-a_{n-1}).
+\]
+Pero
+\[
+  V_n = P_{n-1}(a_n) = V_{n-1} \cdot (a_n-a_1)(a_n-a_2) \cdots (a_n-a_{n-1}),
+\]
+y esto prueba~\eqref{eq:Vn} por inducción.
+
+\enlargethispage{2mm}
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

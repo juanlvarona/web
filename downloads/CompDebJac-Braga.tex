@@ -1,0 +1,463 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = IsoLatin
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                    %
+% COMPORTAMIENTO D\'EBIL DE LAS SERIES DE FOURIER-JACOBI             %
+% por                                                                %
+% M. P\'erez Riera y J. L. Varona Malumbres                          %
+%                                                                    %
+% PUBLICADO EN:                                                      %
+% Actas XII Jornadas Luso-Espanholas de Matem\'atica,                %
+% Vol.~II (Braga, Portugal, 1987), 429--434,                         %
+% Universidade do Minho, Braga, 1990.                                %
+%                                                                    %
+% Lamentablemente, el original estaba escrito con Word 1.0 para      %
+% Macintosh, y posteriormente Word dejó de entender esos archivos.   %
+% Reescrito con LaTeX2e: 31-octubre-2005.                            %
+%                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,leqno]{article}
+
+\usepackage[english,spanish]{babel}
+\usepackage[latin1]{inputenc}
+
+\usepackage{amsmath,amsfonts}
+
+\addtolength{\textwidth}{1.3cm}
+\hoffset-0.65cm
+\parindent=24pt
+
+\sloppy % Pedir a LaTeX que no sea tan escrito en cuanto a sus
+% consideraciones estéticas para ensanchar espacios y cortar líneas
+
+\newcommand{\ab}{{(\alpha,\beta)}}
+\newcommand{\sop}{\operatorname{sop}}
+\newcommand{\sig}{\operatorname{sig}}
+\newcommand{\lon}{\operatorname{long}} % \long ya existe en LaTeX
+\newcommand{\cte}{\operatorname{cte}}
+
+\newcommand{\N}{\mathbb{N}}
+
+\def\limtoenorme{\mathop{\,\relbar\joinrel\relbar\joinrel%
+  \longrightarrow\,}\limits}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{COMPORTAMIENTO D\'EBIL DE LAS SERIES DE FOURIER-JACOBI}
+
+\author{\scshape
+Mario P\'erez Riera\\
+\textit{Universidad de Zaragoza}\\[6pt]
+y\\[6pt]
+\scshape Juan Luis Varona Malumbres\\
+\textit{Colegio Universitario de La Rioja}\\[15pt]
+\normalsize \texttt{Clasificaci\'on AMS: 42C15}%
+\renewcommand\thefootnote{}%
+\renewcommand\footnotemark{}%
+\footnote{ESTE ART\'ICULO APARECI\'O PUBLICADO EN:
+\textit{Actas XII Jornadas Luso-Espanholas de Matem\'atica}, Vol.~II
+(Braga, Portugal, 1987), 429--434,
+Universidade do Minho, Braga, 1990.}%
+}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectlanguage{english}
+\begin{abstract}\noindent
+Let $P_n^\ab(x)$ denote the $n$th Jacobi polynomial with respect to the
+weight function $w(x) = (1-x)^\alpha(1+x)^\beta$ on the interval $(-1,1)$,
+and $S_N(f,x) = \sum_{n=0}^N a_n P_n^\ab(x)$ the $N$th partial sum of the
+Fourier-Jacobi expansion of a function $f \in L^1(w)$. It was proved by
+Pollard and Muckenhoupt that there exists an interval
+$(p_0,p_1) \subseteq (1,\infty)$ determined by the condition
+$|1/p - 1/2| < \min\{1/(4\alpha+4), 1/(4\alpha+4)\}$ such that $S_Nf$
+converges to $f$ in the $L^p(w)$ norm for every $f \in L^p(w)$ when
+$p \in (p_0,p_1)$ and that mean convergence fails if $p = p_0$ or $p = p_1$.
+We show that the partial sum operator is not weak type on the $L^p(w)$
+spaces when $p = p_1$.
+\end{abstract}
+\selectlanguage{spanish}
+\bigskip\bigskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Sean $\{P_n^\ab(x)\}_{n\in\N}$, $\alpha, \beta > -1$, los polinomios de Jacobi,
+ortogonales en el intervalo $(-1,1)$ respecto al peso
+$w(x) = (1-x)^{\alpha}(1+x)^{\beta}$, cumpliéndose
+$$
+  \int_{-1}^{1} P_n^\ab(x) P_m^\ab(x)
+    (1-x)^{\alpha}(1+x)^{\beta}\,dx
+  = h_n^\ab \delta_{nm}
+$$
+con
+$$
+  h_n^\ab = \frac{2^{\alpha+\beta+1} \Gamma(n+\alpha+1)
+    \Gamma(n+\beta+1)}{(2n+\alpha+\beta+1) \Gamma(n+1)
+    \Gamma(n+\alpha+\beta+1)},
+  \qquad
+  h_n^\ab \approx \frac{2^{\alpha+\beta}}{n},
+  \quad n \to \infty.
+$$
+
+Para $\alpha, \beta \ge -1/2$ Pollard \cite{Po} demostró que
+$|1/p - 1/2| < \min\{1/(4\alpha+4), 1/(4\beta+4)\}$ es condición suficiente
+para la acotación uniforme $\|S_nf\|_{p,w} \le C\|f\|_{p,w}$, lo cual es
+equivalente a la convergencia en $L^p(w)$, $1 < p < \infty$.
+Newman-Rudin \cite{NeRu} demostraron que la condición anterior también es necesaria.
+Más adelante Muckhenhoupt \cite{Mu} extendió los resultados anteriores hasta
+$\alpha, \beta > -1$, encontrando la misma condición
+$|1/p - 1/2| < \min\{1/(4\alpha+4), 1/(4\beta+4)\}$.
+
+Una convergencia menos exigente es la débil, que puede expresarse en los términos
+$$
+  \int_{|S_n(f,x)|>y} w(x)\,dx
+  \le C y^{-p} \int_{-1}^1 |f(x)|^pw(x)\,dx.
+$$
+Por otra parte, por interpolación, la desigualdad anterior sólo podría ser cierta
+en los extremos superior o inferior del intervalo de converencia en media.
+Chanillo \cite{Ch} probó que no lo es para series de Fourier-Legendre
+($\alpha=\beta=0$) y $p = 4$. En este trabajo demostraremos que tampoco es cierta
+para Jacobi cualquiera en el extremo superior del intervalo de convergencia en media.
+
+Como para $-1 < \alpha, \beta \le -1/2$, las condiciones
+$|1/p - 1/2| < \min\{1/(4\alpha+4), 1/(4\beta+4)\}$ son triviales para todo
+$p$ en $(1,\infty)$ supondremos que $\alpha$ ó $\beta > -1/2$ (de $p = \infty$ no
+nos ocuparemos). Por simetría, podemos suponer $\alpha > -1/2$. Más aún,
+$\alpha \ge \beta$ y $\alpha > -1/2$. Entonces, el intervalo de convergencia
+en media es
+$$
+  \frac{\alpha+1}{2\alpha+3} < p < \frac{\alpha+1}{2\alpha+1}.
+$$
+
+Demostraremos que no es cierta la convergencia débil para $p = 4(\alpha+1)/(2\alpha+1)$.
+
+Si lo fuera, en particular lo sería cuando $\sop f \subseteq [0,1]$, y,
+con más razón todavía, tendría que cumplirse
+$$
+  \int_{|S_n(f,x)|>y,\,x\in[0,1]} w(x)\,dx
+  \le C y^{-p} \int_0^1 |f(x)|^pw(x)\,dx.
+$$
+
+Supondremos a partir de ahora $\sop f \subseteq [0,1]$ y todas las integrales
+restringidas a $x \in [0,1]$, aunque no lo indiquemos expresamente.
+Esto simplifica las cosas pues nos permitirá utilizar las estimaciones de los
+polinomios de Jacobi con $\alpha > -1/2$, que se mantienen uniformes
+(independientes de~$n$) en todo $[0,1]$.
+
+Por simplicidad, denotaremos únicamente
+$$
+  P_n^\ab(x) = P_n(x)
+  \qquad\text{y}\qquad
+  P_n^{(\alpha+1,\beta+1)}(x) = Q_n(x).
+$$
+Muckenhoupt \cite{Mu} probó que en $S_n(f,x) = \int_{-1}^1 f(t)K_n(x,t)w(t)\,dt$
+puede ponerse
+$$
+  K_n(x,t) = r_nT_1(n,x,t) + s_nT_2(n,x,t) + s_nT_3(n,x,t)
+$$
+con $\{r_n, s_n\}$ acotado, siendo
+\begin{align*}
+  T_1(n,x,t) &= nP_n(x)P_n(t), \\
+  T_2(n,x,t) &= n(1-t^2)\,\frac{P_n(x)Q_{n-1}(t)}{x-t}, \\
+  T_3(n,x,t) &= T_2(n,t,x) = n(1-x^2)\,\frac{P_n(t)Q_{n-1}(x)}{t-x}.
+\end{align*}
+
+Además (ver Szeg\H{o} \cite[(7.32.6), pág.~169]{Sz}), para $x \in [0,1]$ se cumple
+\begin{align}
+\label{eq:1}
+  n^{1/2}|P_n(x)| &\le C(1-x)^{-\alpha/2-1/4}, \\
+\label{eq:2}
+  n^{1/2}|Q_n(x)| &\le C(1-x)^{-\alpha/2-1/2-1/4} = C(1-x)^{-\alpha/2-3/4}.
+\end{align}
+	Si denotamos $W_i(f,x) = W_{i,n}(f,x) = \int_0^1 f(t)T_i(n,x,t)w(t)\,dt$ ($i = 1,2,3$), la acotación débil de estos tres sumandos se expresaría
+$$
+  \int_{|W_i(f,x)|>y} w(x)\,dx
+  \le C y^{-p} \int_0^1 |f(x)|^pw(x)\,dx
+$$
+con $C$ independiente de $n$, $f$ e~$y$.
+
+Analicemos los tres:
+
+$i = 1$) Por \eqref{eq:1} y la desigualdad de Hölder, si $1/p + 1/q =1$, tendremos
+\begin{multline*}
+  |W_1(f,x)| = \left|n^{1/2}P_n(x) \int_0^1 f(t)n^{1/2}P_n(t)w(t)\,dt\right| \\
+  \le C(1-x)^{-\alpha/2-1/4} \left(\int_0^1 |f(t)|^pw(t)\,dt\right)^{1/p}
+    \left(\int_0^1 (1-t)^{q(-\alpha/2-1/4)}w(t)\,dt\right)^{1/q} \\
+  \le C_1(1-x)^{-\alpha/2-1/4} \left(\int_0^1 |f(t)|^pw(t)\,dt\right)^{1/p}
+\end{multline*}
+siempre que $q(-\alpha/2 - 1/4) + \alpha > -1$, o sea $p > 4(\alpha+1)/(2\alpha+3)$.
+Y esto es cierto para $p = 4(\alpha+1)/(2\alpha+1)$. Entonces,
+$$
+  \int_{|W_1(f,x)|>y} w(x)\,dx
+  \le \int_{(1-x)^{-1/4-\alpha/2} > \frac{y}{K\|f\|_{p,w}}} (1-x)^\alpha\,dx
+  = C' y^{-p} \|f\|^p_{p,w}
+$$
+luego se verifica la acotación débil para el primer sumando.
+
+$i = 3$) Veamos que para este sumando hay acotación fuerte luego,
+en particular, también débil. Para ello, si denotamos
+$H: L^p(u) \limtoenorme L^p(u)$ la transformada de Hilbert, $H$ es acotada si y
+sólo si el peso $u$ está en $A_p$ (ver Hunt-Muckenhoupt-Wheeden \cite{HuMuWh}).
+Así, usando \eqref{eq:1} y~\eqref{eq:2},
+\begin{multline*}
+  \int_0^1 |W_3(f,x)|^pw(x)\,dx \\
+  = \int_0^1 \left| n^{1/2}(1-x^2)Q_{n-1}(x)
+      \int_0^1 \frac{n^{1/2}P_n(t)f(t)}{x-t}\,w(t)\,dt \right|^p w(x)\,dx \\
+  \le C\int_0^1 |H(n^{1/2}P_n(t)f(t)w(t),x)|^p(1-x)^{(1/4-\alpha/2)p+\alpha}\,dx.
+\end{multline*}
+Y como $(1-x)^{(1/4-\alpha/2)p+\alpha} \in A_p(0,1)$ para
+$-1 < (1/4-\alpha/2)p+\alpha < p-1$, lo cual es cierto para nuestro $p$,
+podemos seguir acotando, salvo constante, por
+$$
+  \int_0^1 |n^{1/2}P_n(x)f(x)w(x)|^p(1-x)^{(1/4-\alpha/2)p+\alpha}\,dx
+  \le C\int_0^1 |f(x)|^pw(x)\,dx.
+$$
+
+$i = 2$) Como los dos primeros sumandos eran acotados débilmente, demostrar que
+la serie de Fourier no lo es, es equivalente a demostrar que tampoco lo es el
+tercer sumando. Para ello, se trata de probar que no es posible encontrar
+una constante $K$ independiente de $n$, $f$ e $y$ tal que
+$$
+  \int_{|n^{1/2}P_n(x)H(f(t)n^{1/2}Q_{n-1}(t)(1-t^2)w(t),x)| > y} w(x)\,dx
+  \le Ky^{-p} \int_0^1 |f(x)|^pw(x)\,dx.
+$$
+Buscaremos ahora cotas inferiores de $|n^{1/2}P_n(x)|$ en algún subintervalo
+de $[0,1]$ y, para funciones $f(t)$ adecuadas,
+de $|n^{1/2}Q_{n-1}(t)f(t)(1-t^2)w(t)|$ en otro subintervalo de $[0,1]$ disjunto
+con el anterior, para poder así prescindir de $(x-t)^{-1}$ en la transformada de Hilbert.
+Por el teorema 8.21.13 de Szeg\H{o} \cite{Sz}, para $N = n+(\alpha+\beta+1)/2$
+y $\gamma = -(\alpha+1/2)\pi/2$ se cumple
+\begin{multline*}
+  \qquad
+  n^{1/2}P_n(\cos\theta) = \pi^{-1/2}(\sen(\theta/2))^{-\alpha-1/2}
+  (\cos(\theta/2))^{-\beta-1/2} \\
+  \times \{\cos(N\theta+\gamma)+(n\sen\theta)^{-1}O(1)\}
+  \qquad
+\end{multline*}
+uniformemente en $c/n \le \theta \le \pi-c/n$ para cualquier $c > 0$.
+\newline
+A nosotros nos interesa $x = \cos\theta \in [0,1]$, luego $\theta/2 \in [0,\pi/4]$,
+$\sen(\theta/2) \sim \theta$, $\cos(\theta/2) \sim \cte$.
+Elijamos ahora una constante $M$ tal que $M-\alpha/2 \in \N$ ($M$ suficientemente grande,
+como luego veremos). Si además exigimos $\theta \in [M\pi/n,(M+1/8)\pi/n]$, se cumple
+$$
+  N\theta+\gamma \le
+  \left( n + \frac{\alpha+\beta+1}{2} \right) \left( M + \frac18 \right) \frac{\pi}{n}
+  - \left( \alpha + \frac12 \right) \frac\pi2
+  \limtoenorme_{n\to\infty} \left(M-\frac\alpha2\right)\pi - \frac\pi8
+$$
+y
+$$
+  N\theta+\gamma \ge \left( n + \frac{\alpha+\beta+1}{2} \right) \frac{M\pi}{n}
+  - \left(\alpha+\frac12\right) \frac\pi2
+  \ge \left(M-\frac\alpha2\right)\pi - \frac\pi4
+$$
+luego
+$$
+  \left(M-\frac\alpha2\right)\pi - \frac\pi4
+  \le N\theta+\gamma \le \left(M-\frac\alpha2\right)\pi - \frac\pi8 + \varepsilon
+  \qquad\text{para}\quad n \ge n_0.
+$$
+Así, $|\cos(N\theta+\gamma)|$ acotado inferiormente por una constante positiva.
+\newline
+Por otra parte, $(n\sen\theta)^{-1} \sim (n\theta)^{-1} \sim \cte/M$,
+y $|O(1)\cte/M|$ es más pequeño que la cota inferior de $|\cos(N\theta+\gamma)|$
+para $M$ suficientemente grande, con lo que
+$|\cos(N\theta+\gamma)| - |(n\sen\theta)^{-1}O(1)|$ está acotado inferiormente
+por otra constante positiva.
+\newline
+Entonces, $n^{1/2}P_n(\cos\theta) \ge C(\sen(\theta/2))^{-\alpha-1/2}$
+y tomando $x = \cos\theta$,
+$$
+  n^{1/2} |P_n(x)| \ge C(1-x^2)^{-\alpha/2-1/4}
+  \ge C'(1-x)^{-\alpha/2-1/4} \ge C'' n^{\alpha+1/2}
+$$
+para $n \ge n_0$ y
+$x \in \left[\cos\frac{(M+1/8)\pi}{n}, \cos\frac{M\pi}{n} \right] = I_n$.
+\newline
+Definamos ahora las funciones
+$$
+  f_n(t) =
+\begin{cases}
+  \frac{\sig Q_{n-1}(t)}{(1-t)^a(1+t)^b}
+  & \text{ si } 0 \le t \le \cos \frac{2M\pi}{n}, \\
+  0 & \text{ en otro caso},
+\end{cases}
+$$
+siendo $a$ y $b$ tales que  $\alpha-2a = -1/2 = \beta-2b$.
+\newline
+Así, cuando $x \in I_n$ y $t$ lo tomamos en el soporte de $f_n$, tendremos
+\begin{center}
+\setlength{\unitlength}{1.0mm}
+\begin{picture}(100,20)(0,-10)
+\put(0,0){\line(1,0){100}} % intervalo [0,1]
+%\thicklines
+% marca para el punto 0 -> 0
+\put(0,0){\line(0,1){1}\line(0,-1){1}}
+\put(0,4){\makebox(0,0)[c]{$0$}}
+% marca para el punto 1 -> 100
+\put(100,0){\line(0,1){1}\line(0,-1){1}}
+\put(100,4){\makebox(0,0)[c]{$1$}}
+% marca para el punto $\cos(2M\pi/n)$ -> 38
+\put(38,0){\line(0,1){1}\line(0,-1){1}}
+\put(38,4){\makebox(0,0)[c]{ $\cos\big(\frac{2M\pi}{n}\big)$ }}
+% marca para el punto $\cos((M+1/8)\pi/n)$ -> 62
+\put(62,0){\line(0,1){1}\line(0,-1){1}}
+\put(62,4){\makebox(0,0)[c]{ $\cos\big(\frac{(M+1/8)\pi}{n}\big)$ }}
+% marca para el punto $\cos(M\pi/n)$ -> 85
+\put(85,0){\line(0,1){1}\line(0,-1){1}}
+\put(85,4){\makebox(0,0)[c]{ $\cos\big(\frac{M\pi}{n}\big)$ }}
+% underbrace entre los puntos 0 y 38
+\put(0,-2){$\underbrace{\phantom{\line(1,0){38}}}_{\displaystyle t}$}
+% underbrace entre los puntos 62 y 85
+\put(62,-2){$\underbrace{\phantom{\line(1,0){23}}}_{\displaystyle x}$}
+\end{picture}
+\end{center}
+Utilicemos ahora el teorema 8.21.12 de Szeg\H{o} \cite{Sz}, según el cual
+\begin{multline*}
+  \left( \sen\frac\theta2 \right)^\alpha \left( \cos\frac\theta2 \right)^\beta
+  P_n(\cos \theta)
+  = N^{-\alpha}\,\frac{\Gamma(n+\alpha+1)}{n!}
+  \left( \frac{\theta}{\sen\theta} \right)^{1/2} J_\alpha(N\theta) \\
++
+\begin{cases}
+  \theta^{1/2}O(n^{-3/2}), & c/n \le \theta \le \pi/2, \\
+  \theta^{\alpha+2}O(n^\alpha), & 0 \le \theta \le c/n,
+\end{cases}
+\end{multline*}
+con $N = n+(\alpha+\beta+1)/2$, $c$ constante positiva y $J_\alpha(z)$
+la función de Bessel.
+\newline
+Con esto, y por ser $0 < x-t < 1-t < 1-t^2$, haciendo el cambio de variable
+$t = \cos\theta$ es fácil demostrar
+\begin{multline*}
+  |H(n^{1/2}f(t)Q_{n-1}(t) (1-t)^{\alpha+1}(1+t)^{\beta+1},x)| \\
+  = \left| \int_0^{\cos(2M\pi/n)}
+    \frac{n^{1/2} |Q_{n-1}(t)| (1-t)^{\alpha+1}(1+t)^{\beta+1}}
+      {(1-t)^a(1+t)^b(x-t)}\,dt \right| \\
+  \ge K_1 \int_{2M\pi/n}^{\pi/2} n^{1/2}N^{-\alpha-1/2}
+    \,\frac{\Gamma(n+\alpha+1)}{(n-1)!} \,|J_{\alpha+1}(N\theta)|
+    (\sen\theta)^{-1/2}\,d\theta
+  - K_2 \int_{2M\pi/n}^{\pi/2} n^{-1}\,d\theta.
+\end{multline*}
+Además, según la expresión asintótica 1.71.7 de Szeg\H{o} \cite{Sz}
+para funciones de Bessel, por ser
+$N\theta \ge (n+(\alpha+\beta+1)/2)(2M\pi/n) \ge \cte M\pi$,
+para $M$ suficientemente grande se tiene
+$$
+  |J_{\alpha+1}(N\theta)| \ge K(N\theta)^{-1/2}
+  \left| \cos\left(N\theta-\frac{\theta\pi}{2}-\frac\pi4\right) \right|
+  - \frac{K}{(N\theta)^{3/2}}.
+$$
+Combinando esto con la fórmula de Stirling se llega a
+$$
+  |H(n^{1/2}f(t)Q_{n-1}(t) (1-t)^{\alpha+1}(1+t)^{\beta+1},x)|
+  \ge K_1 \log n - K_2 n^{-1} - K_3 \ge C\log n.
+$$
+Y por tanto
+$$
+  n^{1/2} |P_n(x)| |H(n^{1/2}f(t)Q_{n-1}(t) (1-t)^{\alpha+1}(1+t)^{\beta+1},x)|
+  \ge C n^{\alpha+1/2} \log n
+  \quad\text{para }x \in I_n.
+$$
+Esta $Cn^{\alpha+1/2}\log n$ es lo que vamos a tomar como~$y$.
+\newline
+Por otra parte, por ser $p = 4(\alpha+1)/(2\alpha+1)$,  es fácil comprobar
+$$
+  \int_0^1 |f_n(t)|^p (1-t)^\alpha(1+t)^\beta\,dt
+  \le C_1 \int_0^{\cos(2M\pi/n)} (1-t)^{-1}\,dt \le C_2\log n.
+$$
+Y como la longitud del intervalo $I_n$ es del orden $\cte/n^2$,
+si fuese cierta la acotación débil se cumpliría
+\begin{align*}
+  C_1 y^{-p}\log n
+  &\ge C_2 y^{-p} \int_0^1 |f_n(t)|^p w(t)\,dt \\
+  &\ge \int_{|n^{1/2}P_n(x)H(f_n(t)n^{1/2}Q_{n-1}(t)(1-t^2)w(t),x)| > y} w(x)\,dx \\
+  &\ge \int_{I_n} (1-x)^\alpha(1+x)^\beta\,dx
+  \ge \lon(I_n)(C_3/n^2)^\alpha \ge C_4 n^{-2-2\alpha}
+\end{align*}
+que, por ser $y = Cn^{\alpha+1/2}\log n$, se traduce en
+$$
+  n^{-2-2\alpha} \le C {(\log n)}^{\frac{-2\alpha-3}{2\alpha+1}}
+$$
+lo cual es absurdo por ser $(-2\alpha-3)/(2\alpha+1)$ negativo.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\refname}{Bibliograf\'{\i}a}
+
+\frenchspacing
+
+\begin{thebibliography}{6}
+
+\bibitem{Ch}
+%[1]
+\textsc{S. Chanillo}, On the weak behaviour of partial sums of Legendre series,
+\textit{Trans. Amer. Math. Soc.} \textbf{268} (1981), 367--376.
+
+\bibitem{HuMuWh}
+%[2]
+\textsc{R. A. Hunt, B. Muckenhoupt y R. L. Wheeden},
+Weighted norm inequalities for the conjugate function and the Hilbert transform,
+\textit{Trans. Amer. Math. Soc.} \textbf{176} (1973), 227--251.
+
+\bibitem{Mu}
+%[3]
+\textsc{B. Muckenhoupt}, Mean convergence of Jacobi series,
+\textit{Proc. Amer. Math. Soc.} \textbf{23} (1969), 306--310.
+
+\bibitem{NeRu}
+%[4]
+\textsc{J. Newman y W. Rudin}, Mean convergence of orthogonal series,
+\textit{Proc. Amer. Math. Soc.} \textbf{3} (1952), 219--222.
+
+\bibitem{Po}
+%[5]
+\textsc{H. Pollard}, The mean convergence of orthogonal series III,
+\textit{Duke Math. J.} \textbf{16} (1949), 189--191.
+
+\bibitem{Sz}
+%[6]
+\textsc{G. Szeg\H{o}}, ``Orthogonal Polynomials'', 3.\textsuperscript{a}~ed. rev.,
+Amer. Math. Soc. Colloq. Publ., vol.~23, Amer. Math. Soc.,
+Providence, R.I., 1959.
+
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
+\noindent
+\begin{tabular}{@{}l}
+Mario P\'{e}rez Riera\\
+Dpto. de Matem\'{a}ticas\\
+Facultad de Ciencias\\
+Univ. de Zaragoza\\
+50009 Zaragoza (Espa\~{n}a)
+\end{tabular}\hfill
+\begin{tabular}{l@{}}
+Juan Luis Varona Malumbres\\
+Dpto. de Matem\'{a}ticas\\
+Col. Univ. de La Rioja\\
+Univ. de Zaragoza\\
+26001 Logro\~{n}o (La Rioja, Espa\~{n}a)
+\end{tabular}
+

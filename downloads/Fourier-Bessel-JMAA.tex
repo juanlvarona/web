@@ -1,0 +1,1086 @@
+%&pdftex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             MEAN AND WEAK CONVERGENCE OF FOURIER-BESSEL SERIES,             %
+%                                     por                                     %
+%   Jos\'e J. Guadalupe, Mario P\'ez, Francisco J. Ruiz y Juan Luis Varona.   %
+%                                                                             %
+%              ULTIMA MODIFICACION: 29-ENE-93, por Mario P\'erez.             %
+%                                                                             %
+%      PUBLICADO EN EL JOURNAL OF MATHEMATICAL ANALYSIS AND APPLICATIONS.     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\magnification=1200
+
+\font\msbmnormal=msbm10
+\font\msbmpeq=msbm7
+\font\msbmmuypeq=msbm5
+\newfam\numeros
+\textfont\numeros=\msbmnormal
+\scriptfont\numeros=\msbmpeq
+\scriptscriptfont\numeros=\msbmmuypeq
+\def\num{\fam\numeros\msbmnormal}
+\def\R{{\num R}}
+
+\font\rmdiez=cmr10 at 8pt
+
+\def\proof{\hbox{\it Proof.\enspace}}
+\def\por{\thinspace}
+% \baselineskip=24pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% FIRST PAGES WITH INFORMATION %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	\centerline{\bf MEAN AND WEAK CONVERGENCE OF FOURIER-BESSEL SERIES}  
+%	\medskip
+%	\centerline {by}
+%	\medskip
+%	\centerline {J. J. GUADALUPE, M. PEREZ, F. J. RUIZ and J. L. VARONA}
+%	\footnote{}{AMS (1991) Subject Classification: {\bf 42C10}}
+%	\footnote{}{Keywords and phrases: Convergence of Fourier series, Bessel
+%	functions, weighted norm}
+%	\footnote{}{inequalities, $A_p$-weights, weak and restricted weak type.}
+%	\footnote{}{Research supported by DGICYT under grant PB89-0181-C02-02.}
+%	\bigskip
+%
+%	Jos\'e J. Guadalupe, Mario P\'erez, Francisco
+%	J. Ruiz. Departamento de Matem\'aticas. Facultad de Ciencias.
+%	Universidad de Zaragoza, 50009 Zaragoza, SPAIN.
+%
+%	\bigskip
+%
+%	Juan L. Varona. Departamento de Matem\'atica
+%	Aplicada. Colegio Universitario de la Rioja, 26001 Logro\~no, SPAIN.
+%
+%	\vfill
+%	\eject
+%
+%	Proposed running head: Fourier-Bessel series.
+%
+%	\bigskip
+%
+%	Mailing address:
+%
+%	\centerline{Francisco J. Ruiz}
+%	\centerline{Departamento de Matem\'aticas.}
+%	\centerline{Facultad de Ciencias.}
+%	\centerline{Universidad de Zaragoza.}
+%	\centerline{50009 Zaragoza.}
+%	\centerline{Spain.}
+%
+%	e-mail: JVARONA@CC.UNIZAR.ES
+%
+%	\vfill
+%	\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\centerline{\bf MEAN AND WEAK CONVERGENCE OF FOURIER-BESSEL SERIES}  
+\medskip
+\centerline {by}
+\medskip
+\centerline {J. J. GUADALUPE, M. PEREZ, F. J. RUIZ and J. L. VARONA}
+\footnote{}{AMS (1991) Subject Classification: {\bf 42C10}}
+\footnote{}{Keywords and phrases: Convergence of Fourier series, Bessel
+functions, weighted norm}
+\footnote{}{inequalities, $A_p$-weights, weak and restricted weak type.}
+\footnote{}{Research supported by DGICYT under grant PB89-0181-C02-02.}
+\footnote{}{THIS PAPER HAS BEEN PUBLISHED IN: 
+{\it J.\ Math.\ Anal.\ Appl.}\ {\bf 173} (1993), 370--389.}
+\bigskip
+
+\midinsert
+\narrower\narrower
+\noindent ABSTRACT: {\sl We study the uniform boundedness on some weighted $L^p$
+spaces of the partial sum operators associated to Fourier-Bessel series,
+obtaining necessary and sufficient conditions for this boundedness in terms
+of the weights. On the other hand, we study the weak and restricted weak
+type of the partial sum operators in the end points of the interval of
+strong  boundedness.}
+\endinsert
+
+\bigskip
+\noindent {\bf \S 0. Introduction.}\par\nobreak
+\medskip
+Let $J_{\alpha}$ be the Bessel function of order $\alpha >-1$, and  
+$j_n^{\alpha} (x) =  2^{1/2} |J_{\alpha+1}(\alpha_n)|^{-1}\por J_{\alpha}
+(\alpha_nx)$ (where $\{\alpha_n\}$ is the increasing sequence of the zeroes of
+$J_{\alpha}$)  the Bessel system of order $\alpha$, which is orthonormal
+and complete in $L^2 ((0,1);xdx)$, and therefore
+the Fourier series of a function $f\in L^2 ((0,1);xdx)$ with respect to this
+system converges to $f$ in the $L^2$-norm.
+
+The next step is to ask for which $p\in(1,\infty),\  p\ne 2$ the above
+convergence is true. The problem can be posed, by the Banach-Steinhauss theorem,
+in terms of the uniform boundedness on $L^p ((0,1);xdx)$ of the partial sum
+operators 
+$$
+S_n^\alpha f(x) = \sum_{k=1}^n c_k j_k^\alpha (x)\ , \  \  c_k = c_k (f) =
+\int_0^1 j_k^\alpha (y) f(y) y dy.
+$$
+The problem was solved by Wing {\bf [13]} (in the case $\alpha \geq -1/2$) and
+Benedek and Panzone {\bf [1]} (general case). Moreover, these authors obtained
+some weighted norm estimates of the form
+$$
+\Vert S_n^\alpha f(x)U(x)\Vert_p \leq C \Vert f(x)V(x)\Vert_p 
+\eqno (0.1)
+$$
+where $C$ is a constant independent of $n$, $U(x)=V(x)$ are functions of radial
+type $x^{a}$ and by $\Vert.\Vert_p$ we denote the $L^p ((0,1);xdx)$-norm.
+
+The first objective of this paper is to extend inequality (0.1) to a wider
+class of weights $U(x)$ and $V(x)$, not necessarily the same. We obtain
+sufficient conditions in terms of $A_p$-conditions (propositions 1 and 2) and we
+solve completely the problem (theorem 1) when the weights are of the form 
+$$
+U(x)=x^{a}(1-x)^{b}\prod_{k=1}^m |x-x_k|^{b_k} ;\  0<x_1<...<x_m<1;\
+a,b,b_k\in\R. \eqno (0.2)
+$$
+The inequality (0.1) is closely related to the problem of the boundedness of the
+Hilbert transform with two weights. In this sense, the use of pairs of weights
+in the Muckenhoupt $A_p$ classes (see {\bf [9]}, {\bf [10]}) will be one of the
+main ingredients in the proofs. We obtain also checkable necessary conditions of
+integrability on $U,V$ from the inequality (0.1) (theorem 2) in the spirit of
+M\'at\'e, Nevai and Totik's conditions (see {\bf [8]}) for systems of orthogonal
+polynomials on $[-1,1]$.
+
+On the other hand, we shall study a problem related to the end points of the
+interval of mean convergence: by interpolation, the range of $p^,s$ such that
+the uniform boundedness (0.1) holds is always an interval. When $U(x)=V(x)=1$
+(for example), this interval is open, say $(p_0,p_1)$, and then the natural
+question is if  $S_n^\alpha$ are ``uniformly" of weak type $(p_0,p_0)$ or/and 
+$(p_1,p_1)$. That is, if we denote
+$$
+\Vert g\Vert_{L^p_* ((0,1);U(x)^pxdx)}= \{\displaystyle\sup_{\lambda >0}
+\lambda^p\int_{\{x:|g(x)|>\lambda\}}U(x)^pxdx\}^{1/p}
+$$
+then the question is if
+$$
+\Vert S_n^\alpha f\Vert_{L^p_* ((0,1);U(x)^pxdx)}\leq C\Vert f(x)V(x) \Vert_p
+\eqno (0.3)
+$$
+with  a constant $C$ independent of $n$, and $p=p_0$ or $p_1$.
+
+This ``end point problem" has been studied by different authors for another
+operators (see {\bf [2]}, {\bf [3]}, {\bf [6]}, {\bf [11]}), but in the case of
+Fourier-Bessel series it seems to be new, even in the unweighted case. In
+theorem 3, we give necessary conditions on $U,V$ for (0.3) to be true. In the
+particular case $\alpha\geq -1/2$ and $U(x)=V(x)$ of the form (0.2), we show
+that (0.3) is false for both end points (theorem 4). Finally, when  $\alpha\geq
+-1/2$ and $U(x)=V(x)=1$ we show (theorem 5) that $S_n^\alpha$ are ``uniformly" of
+restricted weak type at the end points, i.e., (0.3) is true, but only for
+functions $f=\chi_E$ where $E$ is a measurable set contained in $(0,1)$.
+
+The organization of the paper is as follows: in section 1, we exhibit the main
+results with the notations which are needed to make them understandable. In
+section 2, we collect several technical lemmas concerning $A_p$ weights and
+the boundedness of some operators associated to the problem which we shall use
+for the proofs of the main results which will be given in section 3.
+
+\bigskip
+\noindent {\bf \S 1. Main results.}\par\nobreak
+\medskip
+Let $1 < p < \infty$ and $-\infty\leq a < b \leq \infty$. $A_p(a,b)$ will
+stand for the Muckenhoupt classes (see {\bf [4]}, {\bf [9]}) consisting of 
+those pairs of nonnegative functions $(u,v)$ on $(a,b)$ such that 
+$$
+ (|I|^{-1} \int_I u ) (|I|^{-1} \int_I v^{-p'/p})^{p/p'}
+\leq C \quad {\rm  for\  every\  interval \ } I\subseteq (a,b),
+$$
+where $p+p'=pp'$.
+
+We say that $(u,v)\in A_p^\delta(a,b)$ (where $\delta >1$) if
+$(u^\delta,v^\delta)\in A_p(a,b)$. It is clear from Holder's inequality
+that $A_p^\delta(a,b)\subseteq A_p(a,b)$.
+
+We say that a sequence $\{(u_n,v_n)\}_{n=1}^\infty \in A_p^\delta(a,b)$
+``uniformly" if $(u_n,v_n)\in A_p^\delta(a,b)$ , $\forall n$ and the constant
+appearing in the definition is independent of $n$.
+
+In the inequality \ $\Vert S_n^\alpha f(x)U(x)\Vert_p \leq C \Vert
+f(x)V(x)\Vert_p$\  we shall always mean that $C$ is a constant independent of $f$
+and $n$ (and the same for the weak $L^p_* $-norm).
+
+In our two first results, we distinguish the cases $\alpha\geq -1/2$ and
+$-1<\alpha <-1/2$. The reason for that is the different assymptotic behavior of
+the Bessel functions in each case.
+
+\proclaim {Proposition 1}. (Case $\alpha\geq -1/2$). Let $1 < p < \infty$. Let
+$U$, $V$ be weights on $(0,1)$. If $(U(x)^px^{1-p/2},V(x)^px^{1-p/2})\in
+A_p^\delta(0,1)$ for some $\delta > 1$ ($\delta = 1$ if $U=V$), then
+$$
+   \Vert S_n^\alpha f(x)U(x)\Vert_p\leq C \Vert f(x)V(x)\Vert_p.
+$$
+
+\proclaim {Proposition 2}. (Case $-1<\alpha <-1/2$). Let  $1 < p < \infty$ and
+$M_n=(\alpha_n+\alpha_{n+1})/2$. Let $U$, $V$ be weights on $(0,1)$. If there
+exists $\delta > 1$ ($\delta = 1$ if $U=V$) such that
+$$
+   ((M_n^{-1}+x)^{-p(\alpha+1/2)}U(x)^px^{\alpha p+1},
+   (M_n^{-1}+x)^{-p(\alpha+1/2)}V(x)^px^{\alpha p+1})\in A_p^\delta(0,1),
+   \eqno(1.1)
+$$
+$$
+   ((M_n^{-1}+x)^{p(\alpha+1/2)}U(x)^px^{-\alpha p-p+1},
+   (M_n^{-1}+x)^{p(\alpha+1/2)}V(x)^px^{-\alpha p-p+1})\in A_p^\delta(0,1)
+   \eqno(1.2)
+$$
+``uniformly", then \ $\Vert S_n^\alpha f(x)U(x)\Vert_p \leq C \Vert
+f(x)V(x)\Vert_p$.
+
+\noindent {\bf Note.} When $U=V$ it suffices $\delta = 1$ because from reverse
+Holder's inequality it follows that \ $(u,u)\in A_p \Rightarrow (u,u)\in
+A_p^\delta$ for some $\delta >1$ (see {\bf [4]}).
+
+Applying both propositions to particular weights of the form (0.2), we have
+
+\proclaim {Theorem 1}. Let $\alpha > -1$, $1 < p < \infty$ and the weights
+$$
+U(x)=x^{a}(1-x)^{b}\prod_{k=1}^m |x-x_k|^{b_k} ,\quad
+V(x)=x^{A}(1-x)^{B}\prod_{k=1}^m |x-x_k|^{B_k},
+$$
+where  $0<x_1<...<x_m<1$ and  $a,A,b,B,b_k,B_k\in\R$. If the conditions:
+$$
+   \eqalign{
+   &B \leq b, \qquad p B < p-1, \qquad -1 < p b; \cr
+   &B_k \leq b_k, \qquad p B_k < p-1, \qquad -1 < p b_k \qquad (1 \leq k \leq m);
+   \cr} \eqno(1.3)
+$$
+$$
+   A \leq a, \qquad
+   \vert {1 \over p}-{1 \over 2}+{a \over 4}+{A \over 4} \vert < {a-A \over 4} +
+   \min \{{1 \over 4},{\alpha +1 \over 2} \} 
+   \eqno(1.4)
+$$
+are fullfilled, then \ $\Vert S_n^\alpha f(x)U(x)\Vert_p \leq C \Vert
+f(x)V(x)\Vert_p$.
+
+The following general result about necessary conditions will imply, in
+particular, that (1.3), (1.4) are best possible.
+
+\proclaim {Theorem 2}. If the inequality $\Vert S_n^\alpha f(x)U(x)\Vert_p
+\leq  C \Vert f(x)V(x)\Vert_p$ holds, then $U$, $V$ must satisfy the conditions
+$$
+   \int_0^1 U(x)^px^{\alpha p+1}dx<+\infty, \qquad
+   \int_0^1 U(x)^px^{1-p/2}dx<+\infty
+   \eqno(1.5)
+$$
+$$
+   \int_0^1 V(x)^{-p'}x^{\alpha p'+1}dx<+\infty, \qquad
+   \int_0^1 V(x)^{-p'}x^{1-p'/2}dx<+\infty
+   \eqno(1.6)
+$$
+$$
+   U(x) \leq C\por V(x)\  a.e.
+   \eqno(1.7)
+$$
+
+\proclaim {Corollary 1}. With the same notation as in theorem 1, the
+conditions (1.3) and (1.4) are also necessary for the uniform boundedness
+$ \Vert S_n^\alpha f(x)U(x)\Vert_p \leq C \Vert f(x)V(x)\Vert_p $.
+
+Regarding weak boundedness, we  begin with a version of
+theorem 2 in this case:
+
+\proclaim {Theorem 3}. Let $\alpha > -1$ and $1<p<\infty$. If the inequality
+$$
+\Vert S_n^\alpha f\Vert_{L^p_* ((0,1);U(x)^pxdx)}\leq C\Vert f(x)V(x) \Vert_p
+$$
+holds, then $U$, $V$ must satisfy conditions (1.6), (1.7) and
+$$
+\displaystyle\sup_{\lambda >0}
+\lambda^p\int_{\{x:x^\alpha>\lambda\}}U(x)^pxdx < +\infty ,\quad
+\displaystyle\sup_{\lambda >0}
+\lambda^p\int_{\{x:x^{-1/2}>\lambda\}}U(x)^pxdx < +\infty.\eqno (1.5)'
+$$
+
+From this theorem, straightforward calculations show that the weak boundedness
+(0.3) fails in the lower end point of the interval of strong boundedness
+given by (1.3) and (1.4). However, theorem 3 does not work in the upper end
+point. In this case, we have obtained that the weak boundedness is also false
+(in the particular case $\alpha \geq -1/2$ and $U(x)=V(x)=$ $
+x^{a}(1-x)^{b}\prod_{k=1}^m |x-x_k|^{b_k}$), but the proof is more intricate,
+being necessary a more detailed analysis of the  partial sum operators.
+Something very similar occurs when one considers Jacobi-Fourier series (see {\bf
+[2]}, {\bf [6]}). The result can be stated as follows:
+
+\proclaim {Theorem 4}. Let $\alpha \geq -1/2$ , $1<p<\infty$ and 
+$U(x)= x^{a}(1-x)^{b}\prod_{k=1}^m|x-x_k|^{b_k}$. Then, the
+following are equivalent:
+\item {(i)} $\Vert S_n^\alpha f\Vert_{L^p_* ((0,1);U(x)^pxdx)}\leq C\Vert
+f(x)U(x)\Vert_p$
+\item {(ii)} $ \vert {1 \over p}+{a-1 \over 2}\vert < {1 \over 4};\ -1<pb<p-1;\
+-1<pb_k<p-1\ (1\leq k \leq m)$.
+
+\medskip
+Finally, following the method of {\bf [2, {\rm theorem} 1]}, we establish this
+(p,p)-restricted weak type:
+
+\proclaim {Theorem 5}. Let $\alpha \geq -1/2$ and $p=4$ or $p=4/3$.Then
+$$
+   \Vert S_n^\alpha (\chi_E)\Vert_{L^p_* ((0,1);xdx)}\leq C \Vert
+   \chi_E\Vert_p
+$$
+for every measurable set $E\subseteq (0,1)$.
+
+\medskip
+\noindent {\bf \S 2. Technical lemmas.}\par\nobreak
+\medskip
+We denote by $K_n^\alpha(x,y) = \sum_{k=1}^n j_k^\alpha (x)j_k^\alpha(y)$ the
+kernel of the operator $S_n^\alpha$, that is, 
+$$
+S_n^\alpha f(x) = \int_0^1 K_n^\alpha(x,y) f(y)ydy.
+$$
+It is known the following decomposition of the kernel (see {\bf [1]}, {\bf
+[13]}): $$
+\eqalign{K_n^\alpha(x,y) &= J_\alpha(M_nx)J_{\alpha+1}(M_ny) {M_n \over 2(y-x)}+
+J_\alpha(M_ny)J_{\alpha+1}(M_nx) {M_n \over 2(x-y)}+ \cr
+&+ J_\alpha(M_nx)J_{\alpha+1}(M_ny) {M_n \over 2(y+x)}+
+J_\alpha(M_ny)J_{\alpha+1}(M_nx) {M_n \over 2(x+y)}+ \cr
+&+ O(1) (xy)^\alpha + O(1) { (xy)^{-1/2} \over 2-x-y} =
+\sum_{i=1}^6K_{n,i}^\alpha(x,y).}
+$$
+So, we can decompose
+$$
+S_n^\alpha f(x) = \sum_{i=1}^6 S_{n,i}^\alpha f(x) =
+\sum_{i=1}^6 \int_0^1 K_{n,i}^\alpha(x,y)f(y)ydy.
+$$
+We shall use the following notations
+$$
+Hf(x)=p.v.\int_0^1 {f(y) \over x-y}dy;\quad Jf(x)=\int_0^1 {f(y) \over 2-x-y}dy
+;\quad J'f(x)=\int_0^1 {f(y) \over x+y}dy. 
+$$
+ The main tools for estimating the operators $S_{n,i}^\alpha f$ are:
+$$
+   J_\alpha(z)=z^\alpha2^{-\alpha}\Gamma(\alpha+1)^{-1}+O(z^{\alpha+2}),\quad
+   z\longrightarrow0
+   \eqno(2.1)
+$$
+$$
+   J_\alpha(z)= 2^{1/2} (\pi z)^{-1/2}
+   \cos (z-{ \alpha\pi \over 2}-{ \pi\over 4}) + O(z^{-3/2})
+   \quad z\longrightarrow\infty
+   \eqno(2.2)
+$$
+$$
+   \int_0^1 J_\alpha(\alpha_nx)^2x\por dx \approx {1 \over \pi\alpha_n},
+   \quad n\longrightarrow \infty
+   \eqno(2.3)
+$$
+for $\alpha > -1$ (see {\bf [12]}) and the following results:
+
+\proclaim {Lemma 1 }. Let $1<p<\infty$. If $(u,v)\in
+A_p^\delta(0,1)$ for some $\delta >1$, then
+$$
+\Vert Tf(x)\Vert_{L^p ((0,1);u(x)dx)}\leq 
+C \Vert f(x)\Vert_{L^p ((0,1);v(x)dx)}.
+$$
+where $T=H,\ J$ or $J'$.
+
+\proof The result for $H$ is due to Neugebauer {\bf[10]}. In fact, Neugebauer
+showed that under the hypothesis there exists a $w\in A_p$ (i.e. $(w,w)\in A_p$)
+and constants $C_1, C_2$ such that $C_1u(x)\leq w(x)\leq C_2v(x)$ a.e., and then
+we can apply that $H$ is bounded on $L^p ((0,1);w(x)dx)$ if and only if $w\in
+A_p$ (see {\bf[7]}). The last fact is also true for $Mf$, being $M$ the
+Hardy-Littlewood maximal operator (see {\bf[9]}).
+
+Let now  $T_1f(x)={1 \over x}\int_0^x f(y)dy$ the Hardy function and
+$T_2f(x)=\int_x^1{f(y) \over y}dy$ its adjoint. Then, it is easy to see that
+$$
+|J'f(x)|\leq T_1(|f|)(x) + T_2(|f|)(x);\quad|T_1f(x)|\leq 2J'(|f|)(x) ;
+\quad|T_2f(x)|\leq 2J'(|f|)(x).
+$$
+So, the weighted boundedness for $J'$ is equivalent to the one for $T_1$ and
+$T_2$. The operator  $T_1$ is controlled by $M$; and for its adjoint $T_2$ we use
+the duality property for $A_p$-classes: $(u,v)\in A_p$ if and only if
+$(v^{-p'/p},u^{-p'/p})\in A_{p'}$. So, $J'$ is controlled by operators which
+are bounded under the hypothesis.
+
+Finally, we can deal with the operator $J$ in the same way as  $J'$ by making the
+change of variables $X=1-x, Y=1-y$ which does not change $A_p$ conditions.
+\medskip
+\noindent {\bf Note.} The constants $``C"$ appearing in the weighted norm
+inequalities  depend only on the constants appearing in the definition of the
+$A_p$ classes. Thus, for sequences of weights belonging to
+$A_p^\delta$ ``uniformly", the corresponding weighted norm inequalities are
+also uniform.
+
+For the proof of theorem 1, we  need to analyze when certain sequences of
+weights of radial type belong to $A_p$ classes ``uniformly". For that, we give
+the 
+
+\proclaim {Lemma 2}. Let $r,s,R,S\in \R$ , $1<p<\infty$ and let
+$\{x_n\}_{n=1}^\infty$ be a sequence of positive numbers such that $\lim
+\por x_n=0$. Then
+$$
+(x^r(x+x_n)^s , x^R(x+x_n)^S )\in A_p^\delta (0,1)\quad {\rm for \  some} \ \ 
+\delta >1 \Longleftrightarrow
+$$
+$$
+-1<r;\quad -1<r+s;\quad R<p-1;\quad R+S<p-1;\quad R\leq r;\quad R+S\leq r+s
+\eqno (2.4)
+$$
+
+\proof Straightforward calculations show that for $0\leq a < b \leq 1$, $0\leq c
+\leq 1$, $\gamma >-1$, $\gamma +\mu >-1$, there exists a constant $K$,
+depending only on $\gamma$, $\mu$,  such that 
+$$
+\int_a^b x^\gamma (x+c)^\mu dx \leq \cases {Kb^{\gamma+\mu}(b-a), &if $c\leq
+b$;\cr Kb^\gamma c^\mu (b-a), &if $b\leq c$. \cr}
+$$
+and then (2.4) implies
+$$
+(\int_a^b x^r (x+c)^s dx)(\int_a^b (x^R (x+c)^S)^{-p'/p} dx)^{p/p'}\leq K
+(b-a)^p,
+$$
+that is, $(x^r (x+c)^s,x^R (x+c)^S)\in A_p (0,1)$ ``uniformly" on $c$. Now,
+these pairs of weights belong to $A_p^\delta (0,1)$, for some $\delta>1$ because
+the inequalities $-1<r$; $-1<r+s$; $ R<p-1$; $ R+S<p-1$ are strict.
+
+Reciprocally, the $A_p$ condition implies that  $x^r (x+x_n)^s$ and 
+$(x^R(x+x_n)^S)^{-1/p-1}$ are integrables on $(0,1)$ and  then $-1<r$, $R<p-1$.
+Taking limits on $n$ we get the integrability of $x^{r+s}$ and
+$(x^{R+S})^{-1/p-1}$ (even more, the pair  $(x^{r+s},x^{R+S})\in A_p
+(0,1)$).This gives $-1<r+s$ and $R+S<p-1$. Finally, by using that if $(u,v) \in
+A_p(0,1)$ then $u\leq v\ a.e.$, we have  $R\leq r$,\ $R+S\leq r+s$.
+
+On the other hand, we  also need to deal with products of weights in $A_p$
+classes. In this sense it is not difficult to prove
+
+\proclaim {Lemma 3}. Let $\{u_n(x)\}_{n=0}^\infty$, $\{v_n(x)\}_{n=0}^\infty$,
+$\{U_n(x)\}_{n=0}^\infty$, $\{V_n(x)\}_{n=0}^\infty$ be sequences of weights on
+a finite interval $(a,b)$. Let $c\in (a,b)$ and $\epsilon >0$. Assume that there
+exist positive constants $C_i ,(i=1,2)$ such that $C_1\leq U_n(x)\leq C_2$,
+$C_1\leq V_n(x)\leq C_2$ on $(a,c+\epsilon)$ and $C_1\leq u_n(x)\leq C_2$,
+$C_1\leq v_n(x)\leq C_2$ on $(c-\epsilon ,b)$, $\forall n$. If $\{(u_n,v_n)\}\in
+A_p(a,c)$ ``uniformly" and $\{(U_n,V_n)\}\in A_p(c,b)$ ``uniformly" then
+$\{(u_nU_n,v_nV_n)\}\in A_p(a,b)$ ``uniformly".
+
+In particular, the iterated use of lemma 3 and the fact that \ $(|x-c|^\alpha ,
+|x-c|^\beta )\in A_p^\delta (a,b)$ for some $\delta >1$ (where $a\leq c \leq
+b$) if and only if $-1<\alpha$, $\beta < p-1$ and $\beta \leq \alpha$ gives
+
+\proclaim {Lemma 4}. Let $\alpha > -1$ and the weights
+$$
+U(x)=x^{a}(1-x)^{b}\prod_{k=1}^m |x-x_k|^{b_k} ,\quad
+V(x)=x^{A}(1-x)^{B}\prod_{k=1}^m |x-x_k|^{B_k}
+$$
+where  $0<x_1<...<x_m<1$ and  $a,A,b,B,b_k,B_k\in\R$. Then, $(U,V)\in A_p^\delta
+(0,1)$ if and only if
+$$
+   \eqalign{
+   &A \leq a, \qquad -1 < a, \qquad A < p-1; \cr
+   &B \leq b, \qquad -1 < b, \qquad B < p-1; \cr
+   &B_k \leq b_k, \qquad -1 < b_k, \qquad B_k < p-1 \qquad (1 \leq k \leq m). \cr
+   }
+$$
+
+The following lemma will be crucial in the study of necessary conditions for
+the mean and weak convergence of Fourier Bessel series. It is parallel to the
+one given by M\'at\'e, Nevai and Totik {\bf [8, {\rm theorem} 2]} in the context
+of orthogonal polynomials.
+
+\proclaim {Lemma 5}. Let $\alpha>-1$. Let $h(x)$ be a Lebesgue measurable
+nonnegative function on $[-1,1]$, $\{r_n\}$ a sequence such that
+$\displaystyle\lim_{n \to \infty} r_n = +\infty$ and $1\leq p<\infty$. Then 
+$$
+\displaystyle\lim_{n \to \infty}\int_0^1 |r_n^{1/2}J_{\alpha}(r_nx)|^ph(x)dx
+\geq M \por \int_0^1 h(x)\por x^{-p/2}\por dx 
+$$
+where $M$ is a positive constant independent of $h(x)$ and $\{r_n\}$. In
+particular, (with $r_n=\alpha_n$)
+$$
+\displaystyle\lim_{n \to \infty}\int_0^1 |j_n^{\alpha}(x)|^ph(x)dx \geq M \por
+\int_0^1 h(x)\por x^{-p/2}\por dx. \eqno (2.5)
+$$
+
+\proof It can be seen in {\bf [5]}. There, the proof is  given only in the case
+$r_n=\alpha_n$ but the arguments are the same for any sequence $\{r_n\}$  such
+that $\displaystyle\lim_{n \to \infty} r_n = +\infty$.
+
+\bigskip
+\noindent {\bf \S 3. Proofs of the main results.}\par\nobreak
+\medskip
+{\hbox{\bf Proof of proposition 1.\enspace}} We  use the estimate
+$$
+|J_\alpha (z)| \leq C \por z^{-1/2},\quad z\in (0,\infty),\quad \alpha \geq -1/2
+\eqno (3.1)
+$$
+which can be deduced from (2.1) and (2.2). We are going to prove that all the
+operators $S_{n,i}^\alpha$ ($i=1$ to $6$) are uniformly bounded.
+$$
+\int_0^1 |S_{n,1}^\alpha f(x)U(x)|^pxdx =
+$$
+$$
+=\int_0^1 \vert \int_0^1 { f(y)y^{1/2}(yM_n)^{1/2}J_{\alpha +1}(yM_n) \over
+2(y-x)}dy\vert ^p \vert (xM_n)^{1/2}J_{\alpha}(xM_n)\vert ^p U(x)^px^{1-p/2}dx
+\leq
+$$
+$$
+\leq C\por \int_0^1\vert \int_0^1{ f(y)y^{1/2}(yM_n)^{1/2}J_{\alpha +1}(yM_n)
+\over 2(y-x)}dy \vert ^p U(x)^px^{1-p/2}dx \leq
+$$
+$$
+\leq C\por \int_0^1 |f(x)x^{1/2}(xM_n)^{1/2}J_{\alpha +1}(xM_n)|^p
+V(x)^px^{1-p/2}dx \leq C \por \int_0^1 |f(x)V(x)|^p xdx,
+$$
+where we have used (3.1), the hypothesis on $U,V$ and lemma 1 for the Hilbert
+transform.
+
+The boundedness of $S_{n,2}^\alpha$ is completely similar and the operators
+$S_{n,3}^\alpha$, $S_{n,4}^\alpha$ can be treated as the previous operators but
+using the operator $J'$ instead of the Hilbert transform.
+
+For the boundedness of $S_{n,5}^\alpha$ we only need Holder's inequality and
+the fact that $u$ and $v^{-1/(p-1)}$ are integrable when $(u,v)\in A_p(0,1)$.
+Finally, it is immediate that
+$$
+\Vert S_{n,6}^\alpha f(x)U(x)\Vert_p \leq C \Vert f(x)V(x)\Vert_p
+$$ 
+if and only if 
+$$
+\Vert Jf(x)\Vert_{L^p ((0,1);U(x)^px^{1-p/2}dx)}\leq 
+C \Vert f(x)\Vert_{L^p ((0,1);V(x)^px^{1-p/2}dx)}
+$$
+and then we can apply lemma 1 for $J$.
+\medskip
+{\hbox{\bf Proof of proposition 2.\enspace}} Here, we shall use that there exists
+a constant $C$ such that $\forall z \in (0,\infty)$
+$$
+|z^{1/2}J_\alpha (z)| \leq C \por (1+z^{\alpha+1/2}), \quad
+|z^{1/2}J_{\alpha +1} (z)| \leq C \por (1+z^{\alpha+1/2})^{-1}
+\eqno (3.2)
+$$
+which follows from (2.1) and (2.2). For $\alpha < -1/2$, we have 
+$$
+1+(xM_n)^{\alpha+1/2} \approx (xM_n)^{\alpha+1/2}\por (1+xM_n)^{-\alpha-1/2}
+$$
+and so, condition (1.1) is equivalent to
+$$
+((1+(xM_n)^{\alpha+1/2})^p U(x)^px^{1-p/2}, 
+(1+(xM_n)^{\alpha+1/2})^p V(x)^px^{1-p/2})\in A_p^\delta (0,1)
+$$
+``uniformly". Now, applying (3.2) and lemma 1 we get
+$$
+\int_0^1 |S_{n,1}^\alpha f(x)U(x)|^pxdx =
+$$
+$$
+=\int_0^1 \vert \int_0^1 { f(y)y^{1/2}(yM_n)^{1/2}J_{\alpha +1}(yM_n) \over
+2(y-x)}dy\vert ^p \vert (xM_n)^{1/2}J_{\alpha}(xM_n)\vert ^p U(x)^px^{1-p/2}dx
+\leq
+$$
+$$
+\leq C \por \int_0^1 \vert \int_0^1 { f(y)y^{1/2}(yM_n)^{1/2}J_{\alpha +1}(yM_n)
+\over 2(y-x)}dy\vert ^p (1+(xM_n)^{\alpha+1/2})^p U(x)^px^{1-p/2}dx \leq
+$$
+$$
+\leq C\por \int_0^1 |f(x)x^{1/2}(xM_n)^{1/2}J_{\alpha +1}(xM_n)|^p
+(1+(xM_n)^{\alpha+1/2})^p V(x)^px^{1-p/2}dx \leq 
+$$
+$$
+\leq C \por \int_0^1 |f(x)V(x)|^pxdx.
+$$
+The boundedness of $S_{n,2}^\alpha$ is similar since (1.2) is equivalent to
+$$
+((1+(xM_n)^{\alpha+1/2})^{-p} U(x)^px^{1-p/2}, 
+(1+(xM_n)^{\alpha+1/2})^{-p} V(x)^px^{1-p/2})\in A_p^\delta (0,1).
+$$
+The boundedness of  $S_{n,3}^\alpha$ and $S_{n,4}^\alpha$ is analogous, 
+taking the operator $J'$ instead of $H$. From conditions (1.1) and (1.2)
+(taking $n=1$) it follows that
+$$
+\int_0^1 U(x)^px^{\alpha p+1}dx < + \infty\quad, \quad
+\int_0^1 V(x)^{-p'}x^{\alpha p'+1}dx < + \infty
+$$
+and this fact together with Holder's inequality leads to the boundedness of
+$S_{n,5}^\alpha$.
+
+Finally, taking limits on $n$ in condition (1.1) we get 
+$(U(x)^p x^{1-p/2}, V(x)^p x^{1-p/2})\in A_p^\delta (0,1)$ and then (
+see the proof of proposition 1), $S_{n,6}^\alpha$ is bounded.
+\medskip
+{\hbox{\bf Proof of theorem 1.\enspace}} For $\alpha \geq -1/2$ , the result
+follows from proposition 1 and lemma 4. Let $-1< \alpha < -1/2$; we must check
+conditions (1.1) and (1.2). If we put $U(x) = x^a U_1(x)$ , $V(x) = x^A V_1(x)$,
+then $U_1$ and $V_1$ are  constant-like near 0. Thus, lemma 3 tells us that
+we just need to verify the conditions
+$$
+(U_1(x)^p,V_1(x)^p)\in A_p^\delta (0,1),
+$$
+$$
+((x+{1\over M_n})^{ p(\alpha+1/2)} x^{-\alpha p-p+1+ap},
+(x+{1\over M_n})^{ p(\alpha+1/2)} x^{-\alpha p-p+1+Ap})\in A_p^\delta (0,1),
+$$
+$$
+((x+{1\over M_n})^{-p(\alpha+1/2)} x^{\alpha p+1+ap},
+(x+{1\over M_n})^{-p(\alpha+1/2)} x^{\alpha p+1+Ap})\in A_p^\delta (0,1).
+$$
+With the help of lemma 4 we obtain the first condition  and
+the two last ones are an easy consequence of lemma 2.
+\medskip
+{\hbox{\bf Proof of theorem 2.\enspace}} Let
+$T_nf=S_nf-S_{n-1}f=c_n(f)j_n^\alpha$. From the hypothesis, we have 
+$$
+|c_n(f)|\por \Vert j_n^\alpha(x)U(x) \Vert_p \leq C \Vert f(x)V(x) \Vert_p
+$$
+with constant independent of $n$. Moreover, by applying duality to the
+operator 
+
+\noindent $f \in L^p((0,1);V(x)^pxdx)\ \longrightarrow c_n(f)$ \  we obtain
+$$
+\Vert j_n^\alpha(x)U(x) \Vert_p \por \Vert j_n^\alpha(x)V(x)^{-1}
+\Vert_{p'} \leq C \eqno (3.3)
+$$
+``uniformly" on $n$. Now, by using (2.5) in this inequality we get the two
+second conditions in (1.5) and (1.6).
+
+On the other hand, taking $n=1$ in (3.3) and using that
+$J_\alpha(\alpha_1x)\geq C x^\alpha$ when $x\in (0,1/2)$ (which follows from
+(2.1)), we find the necessary conditions
+$$
+\int_0^{1/2} U(x)^p x^{\alpha p+1}dx<+\infty, \ \ 
+\int_0^{1/2} V(x)^{-p'}x^{\alpha p'+1}dx<+\infty
+$$
+which combined with the two already obtained conditions gives (1.5) and (1.6).
+
+Finally, we take the function $f(x) = \min
+\{U(x),V(x)^{-1},U(x)V(x)^{-1}\}j_0(x)$. By using Holder's inequality and (3.3)
+it is easy to see that $f\in  L^p((0,1);V(x)^pxdx) \cap L^2((0,1);xdx)$. For
+every measurable set $E\subset (0,1)$, let $g(x)=f(x) \chi_E (x)$. Since
+$S_ng \longrightarrow g$ in $L^2(xdx)$, there exists a subsequence such
+that $S_{n_j}g \longrightarrow g$ a.e.. Then, by using Fatou's lemma and the
+uniform boundedness of $\{S_{n_j}\}$ from $L^p((0,1);V(x)^pxdx)$ into
+$L^p((0,1);U(x)^pxdx)$ we obtain
+$$
+\int_E |f(x)|^pU(x)^p x dx = \int_0^1 |g(x)|^pU(x)^p x dx \leq
+\liminf \int_0^1 |S_{n_j}g(x)|^pU(x)^p x dx \leq
+$$
+$$
+\leq C \int_0^1 |g(x)|^pV(x)^p x dx = C \int_E |f(x)|^pV(x)^p x dx
+$$
+$\forall E\subset (0,1)$, which implies (1.7) easily.
+\medskip
+{\hbox{\bf Proof of theorem 3.\enspace}} As in the proof of theorem 2, by
+applying the uniform boundedness of $T_n$ we get
+$$
+\Vert j_n^\alpha(x)\Vert_{L^p_* ((0,1);U(x)^pxdx)} 
+\Vert j_n^\alpha(x)V(x)^{-1}\Vert_{p'} \leq C \eqno (3.4)
+$$
+with $C$ independent of $n$.
+
+We shall use the following ``Kolmogorov's inequality":
+$$
+\Vert g\Vert_{L^p_* (h(x)dx)} \leq
+\displaystyle\sup_{E} \Vert g\chi_E\Vert_{L^r (h(x)dx)}
+\Vert \chi_E\Vert_{L^s (h(x)dx)}^{-1} \leq ({p \over p-r})^{1/r}
+\Vert g\Vert_{L^p_* (h(x)dx)}
+$$
+where $h(x)dx$ is a Borel measure, $0<r<p<\infty$, $1/s=1/r-1/p$ and the
+supremum is taken over all measurable sets $E$ of finite, positive Lebesgue
+measure  (see {\bf [4, {\rm lemma} V.2.8, {\rm p.} 485]}).
+
+This result and (2.5) imply the existence of a positive constant $C$
+independent of $h$ and $n$ such that
+$$
+\displaystyle\liminf_{n\rightarrow \infty} \Vert j_n^\alpha(x)
+\Vert_{L^p_* (h(x)dx)} \geq C \Vert x^{-1/2}\Vert_{L^p_* (h(x)dx)}.
+$$
+By applying this condition and (2.5) again in (3.4) we obtain the second
+conditions in (1.5)' and (1.6). 
+
+In order to obtain the two other conditions in (1.5)' and (1.6), we observe
+firstly that it suffices to prove
+$$
+\Vert x^\alpha \chi_{(0,1/2)}\Vert_{L^p_* ((0,1);U(x)^pxdx)} < \infty,\quad
+\int_0^{1/2} V(x)^{-p'}x^{\alpha p'+1}dx<+\infty \eqno (3.5)
+$$
+since the conditions already obtained imply that we do not have any problems of
+integrability at $1$.
+
+Now, the inequalities (3.5) are easily  obtained from (3.4) (with $n=1$) and the
+estimate (2.1) in a very similar way as it was done in the proof of theorem 2.
+
+In order to verify (1.7), we take the function
+$$
+f_\lambda (x) = \lambda^{1/2} \chi_{\{W(x)>\lambda^{1/2}\}} (x)
+\lambda^{1/2}\chi_{\{|j_0(x)|>\lambda^{1/2}\}} (x)
+$$
+for each $\lambda >0$,
+where $W(x)= \min\{U(x),V(x)^{-1},U(x)V(x)^{-1}\}$. By Holder's inequality and
+(3.4),  $f_\lambda$ belongs to $L^p((0,1);V(x)^pxdx) \cap L^2((0,1);xdx)$.
+The function $g(x)=f_\lambda (x)\chi_E (x)$, ($E$ measurable $\subset (0,1)$)
+satisfies $|g(x)|^p=\lambda^p \chi_{\{|g(x)|>\lambda /2 \}} (x)$ and then, in a
+similar way as in the previous proof, we get
+$$
+\int_E |f_\lambda (x)|^p U(x)^p xdx \leq C\por \int_E |f_\lambda (x)|^p 
+V(x)^p xdx, \quad \forall E \subset (0,1),\quad \forall \lambda >0.
+$$
+Letting $\lambda \rightarrow 0$ and using the dominated convergence
+theorem, we obtain
+$$
+\int_E \chi_{\{W(x)>0\}} (x) U(x)^p x dx \leq C\por
+\int_E \chi_{\{W(x)>0\}} (x) V(x)^p x dx,\quad\forall E\subset (0,1)
+$$
+which implies (1.7).
+\medskip
+{\hbox{\bf Proof of theorem 4.\enspace}} $(ii)\Rightarrow (i)$. Observing that
+$\min \{{1 \over 4},{\alpha +1 \over 2} \}=1/4$ if $\alpha\geq -1/2$,
+it is a particular case of theorem 1. In fact, (ii) implies strong boundedness
+(that is, boundedness on $L^p$).
+
+ $(i)\Rightarrow (ii)$. By theorem 3, (i) implies (1.5)' and (1.6) and easy
+calculations show that the conditions
+$$
+-1/4\leq {1 \over p}+ {a-1 \over 2} <1/4;\  -1<pb < p-1 \ ; \ -1<pb_k < p-1 \ 
+(1\leq k \leq m) \eqno (3.6)
+$$
+follow from (1.5)' and (1.6).
+The strict inequality in ${-1 \over 4}\leq {1 \over p}+ {a-1 \over 2} <{1 \over
+4}$ cannot be deduced from conditions (1.5)' and (1.6).
+
+In what follows, we shall use the following decomposition of the kernel
+$$
+K_n^\alpha(x,y)= K_{n,13}^\alpha(x,y)+K_{n,24}^\alpha(x,y)+K_{n,5}^\alpha(x,y)+
+K_{n,6}^\alpha(x,y)
+$$
+where
+$$
+K_{n,13}^\alpha(x,y)=K_{n,1}^\alpha(x,y)+K_{n,3}^\alpha(x,y),\quad
+K_{n,24}^\alpha(x,y)=K_{n,2}^\alpha(x,y)+K_{n,4}^\alpha(x,y).
+$$
+So, we can decompose
+$$
+S_n^\alpha f(x) = S_{n,13}^\alpha f(x) + S_{n,24}^\alpha f(x) +
+S_{n,5}^\alpha f(x)+S_{n,6}^\alpha f(x)
+$$
+where
+$$
+S_{n,13}^\alpha f(x)=\int_0^1 {M_nJ_\alpha(M_nx)J_{\alpha+1}(M_ny)y \over
+y^2 - x^2 } f(y)ydy
+$$
+and
+$$
+S_{n,24}^\alpha f(x)=\int_0^1 {M_nJ_\alpha(M_ny)J_{\alpha+1}(M_nx)x \over
+x^2 - y^2 } f(y)ydy.
+$$
+
+The plan is to prove that under conditions (3.6), $S_{n,24}^\alpha$, 
+$S_{n,5}^\alpha$, $S_{n,6}^\alpha$ are bounded from $L^p((0,1);U(x)^pxdx)$ into
+$L^p_* ((0,1);U(x)^pxdx)$ (in fact, $S_{n,24}^\alpha$ will be of strong type),
+while $S_{n,13}^\alpha$ is not bounded in the case
+$-{1 \over 4}={1 \over p}+ {a-1 \over 2}$.
+
+\medskip
+
+\noindent {\it Weak boundedness of $S_{n,5}^\alpha$}. It is simply to observe
+that
+$$
+|S_{n,5}^\alpha f(x)| \leq C |\int_0^1 (xy)^\alpha f(y)ydy|\leq
+C x^{-1/2} \int_0^1 y^{-1/2} |f(y)|ydy
+$$
+and  use Holder's inequality.
+
+\medskip
+
+\noindent {\it Weak boundedness of $S_{n,6}^\alpha$}. It would be enough to
+prove (as in the last part of the proof of proposition 1) that
+$U(x)^px^{1-p/2}\in A_p(0,1)$, but this is not true, since   the condition 
+$-{1 \over 4}<{1 \over p}+ {a-1 \over 2}$ is needed as lemma 4 establishes.
+
+We will proceed as follows: we set the operator $S_{n,6}^\alpha$ in terms of
+the operator $J$ and we only need to show 
+$$
+ \Vert x^{-1/2} \chi_{(0,1/2)}(x)Jf(x)\Vert_{L^p_* ((0,1);U(x)^pxdx)} \leq C
+\por \Vert x^{-1/2} f(x)\Vert_{L^p((0,1);U(x)^pxdx)} \eqno (3.7)
+$$
+$$
+\Vert x^{-1/2} \chi_{(1/2,1)}(x)Jf(x)\Vert_{L^p_* ((0,1);U(x)^pxdx)} \leq C
+\por \Vert x^{-1/2} f(x)\Vert_{L^p((0,1);U(x)^pxdx)}. \eqno (3.8)
+$$
+The inequality (3.8)  holds (even with strong norm) because the pair of
+weights
+$$(U(x)^p x^{1-p/2} \chi_{(1/2,1)}(x),U(x)^p x^{1-p/2})\in
+A_p^\delta (0,1)
+$$
+since only the inequality ${1 \over p}+ {a-1 \over 2} <{1 \over 4}$ is needed in
+$x=0$.
+
+For (3.7) notice that if $0<x<1/2$ then $|Jf(x)|\leq C\por \int_0^1 |f(y)|dy$
+and
+$$\eqalign{&
+\Vert x^{-1/2} \chi_{(0,1/2)}(x)Jf(x)\Vert_{L^p_* ((0,1);U(x)^pxdx)} \leq 
+\cr
+& \leq C \por\int_0^1 |f(y)|dy\por 
+\Vert x^{-1/2} \chi_{(0,1/2)}(x)\Vert_{L^p_* ((0,1);U(x)^pxdx)}\leq
+\cr
+&
+\leq C\por \int_0^1 |f(y)|dy\por 
+\Vert x^{-1/2}\Vert_{L^p_* ((0,1);U(x)^pxdx)}\leq
+\cr
+&
+\leq C \por \int_0^1 |f(y)|dy\por\leq
+ C \Vert x^{-1/2}U(x)f(x)\Vert_{L^p (xdx)}
+\Vert x^{-1/2}U(x)^{-1}f(x)\Vert_{L^{p'}(xdx)}\leq
+\cr
+&
+\leq C \Vert x^{-1/2} f(x)\Vert_{L^p((0,1);U(x)^pxdx)},
+\cr}$$
+where we have used Holder's inequality and that
+$$
+x^{-1/2}\in L^p_* ((0,1);U(x)^pxdx)\cap L^{p'}((0,1);U(x)^{p'}xdx)
+$$
+which is immediate from (3.6). The crucial fact is that
+$x^{-1/2}\in L^p_*$ even though we have  the equality in 
+$-{1 \over 4}\leq {1 \over p}+ {a-1 \over 2}$ (this is not true for strong
+$L^p$).
+
+\medskip
+
+\noindent {\it Strong boundedness of $S_{n,24}^\alpha$}. Making the change of
+variables $t=y^2,z=x^2$ and taking the function
+$g(z)=M_n^{1/2}J_\alpha(M_nz^{1/2})f(z^{1/2})$, the boundedness of 
+$S_{n,24}^\alpha$ on $L^p((0,1);U(x)^pxdx)$ turns out to be equivalent to
+$$
+   \Vert M_n^{1/2}J_{\alpha+1}(M_nz^{1/2})z^{1/2}Hg(z)
+   \Vert_{L^p(U(z^{1/2})^pdz)} \leq
+$$
+$$
+   \leq C \Vert M_n^{-1/2}J_\alpha(M_nz^{1/2})^{-1}g(z)
+   \Vert_{L^p(U(z^{1/2})^pdz)}.
+$$
+Now, by using the estimate (3.1), we only need to see that
+$$
+\Vert Hg(z)\Vert _{L^p(U(z^{1/2})^pz^{p/4}dz)} \leq C\por
+\Vert g(z)\Vert _{L^p(U(z^{1/2})^pz^{p/4}dz)}
+$$
+and this is equivalent to check that $(U(z^{1/2})^pz^{p/4})\in A_p(0,1)$. Since
+$1-x^{1/2}\approx 1-x$,\ $|x^{1/2}-x_k|\approx |x-x_k^2|$, the $A_p$-condition
+appears as
+$$
+U(x)=x^{pa/2+p/4}(1-x)^{pb}\prod_{k=1}^m |x-x_k^2|^{pb_k} \in A_p(0,1)
+$$ 
+which is true from lemma 4 under the hypothesis (3.6).
+\medskip
+The last step is to prove that, when $-{1 \over 4}={1 \over p}+ {a-1 \over 2}$
+there exists no constant $C$ such that
+$$
+\Vert S_{n,13}^\alpha f(x) \Vert_{L^p_*((0,1);U(x)^pxdx)} \leq
+C\por \Vert f(x)U(x) \Vert_p \eqno (3.9)
+$$
+``uniformly" on $n$.
+
+ The proof is by contradiction. Assume that (3.9) holds, take $0<d<1$ and
+$f(x)=\chi_{(d,1)}(x)\por {\rm sgn}(J_{\alpha+1}(M_nx))\por |g(x)|\por x^{-1/2}$,
+where $g(x)$ is a suitable function that we will choose below. It is clear that
+for $x\in (0,d)$,
+$$
+\vert S_{n,13}^\alpha f(x) \vert \geq
+M_n^{1/2}|J_\alpha(M_nx)|\int_d^1 M_n^{1/2}|J_{\alpha+1}(M_ny)|y^{-1/2}|g(y)|dy.
+$$
+Then, (3.9) implies
+$$
+(\int_d^1 M_n^{1/2}|J_{\alpha+1}(M_ny)|y^{-1/2}|g(y)|dy)\por
+\Vert M_n^{1/2}J_\alpha(M_nx)\chi_{(0,d)}(x) \Vert_{L^p_*(U(x)^pxdx)}\leq
+$$
+$$
+\leq C\por \Vert \chi_{(d,1)}(x)g(x)x^{-1/2}U(x)\Vert_p
+$$
+with $C$ independent of $d$, $n$ and $g$. As $\lim\por M_n=+\infty$ we can apply
+lemma 5 and its weak version (as it was done in the proof of theorem 3) to the
+two factors in the left hand side of the inequality, and we obtain
+$$
+(\int_d^1 y^{-1}\por |g(y)|dy) \por
+\Vert x^{-1/2}\chi_{(0,d)}(x) \Vert_{L^p_*(U(x)^pxdx)} \leq C
+\Vert x^{-1/2}\chi_{(d,1)}(x)g(x)U(x) \Vert_p. \eqno (3.10)
+$$
+Now, let us take $0<d<r<x_1$ (therefore $U(x) \approx C x^a$ on $(0,r)$) and
+$g=\chi_{(d,r)}$. Then, it is easy to prove that
+$$
+\int_d^1 y^{-1} |g(y)|dy=\log {r \over d}, \quad 
+\Vert x^{-1/2}\chi_{(d,1)}(x)g(x)U(x) \Vert_p \approx C (\log {r \over d})^{1/p},
+$$
+and also that if $-{1 \over 4}={1 \over p}+ {a-1 \over 2}$ then
+$$
+\Vert x^{-1/2}\chi_{(0,d)}(x) \Vert_{L^p_*(U(x)^pxdx)} \approx
+C \Vert x^{-1/2}\chi_{(0,d)}(x) \Vert_{L^p_*(x^{ap+1}dx)} \approx C.
+$$
+Thus, (3.10) implies the existence of a constant $C$ such that
+$$
+\log {r \over d}\leq C\por  (\log {r \over d})^{1/p}
+$$
+which is false.
+
+This concludes the proof of theorem 4.
+
+{\hbox{\bf Proof of theorem 5.\enspace}} Let $\alpha\geq -1/2$ and $p=4$.
+According to the previous proof, we just need to show the $(4,4)$-restricted
+weak type of $S_{n,13}^\alpha$. Making the change of variables $t=y^2,z=x^2$,
+this boundedness is equivalent to
+$$
+|\{z\in (0,1): |M_n^{1/2}J_\alpha(M_nz^{1/2})H(M_n^{1/2}J_{\alpha+1}(M_nt^{1/2})
+t^{1/2} f(t^{1/2}))(z)|>\lambda\}| \leq
+$$
+$$
+\leq C\por \lambda^{-4}\int_0^1 |f(x)|^pxdx
+$$
+where $f$ is a characteristic function. Now, denoting $g(t)=f(t^{1/2})$ and
+using that \hfill \break
+ $|M_n^{1/2}J_\alpha(M_nz^{1/2})|\leq C\por z^{-1/4}$ (see (3.1)),
+it will be enough to prove that
+$$
+|A_{\lambda ,E}|\leq C\por \lambda^{-4} |E|,\quad \forall \lambda > 0,\quad
+\forall E \subseteq  (0,1) \eqno (3.11)
+$$
+where
+$$
+A_{\lambda ,E} = \{z\in (0,1):
+z^{-1/4}|H(M_n^{1/2}J_{\alpha+1}(M_nt^{1/2}) t^{1/2}\chi_E(t))(z)|>\lambda\}.
+$$
+Observe that
+$$
+|A_{\lambda ,E}\cap (1/4,1)|\leq
+C\por \lambda^{-4}\int_0^1
+|H(M_n^{1/2}J_{\alpha+1}(M_nt^{1/2}) t^{1/2}\chi_E(t))(z)|^4dz\leq
+$$
+$$
+\leq C\por \lambda^{-4}\int_0^1
+|M_n^{1/2}J_{\alpha+1}(M_nt^{1/2}) t^{1/2}\chi_E(t)|^4dt \leq
+$$
+$$
+\leq C\por \lambda^{-4}\int_0^1 t^{1/4}|\chi_E(t)|^4
+\leq C\por \lambda^{-4}|E|
+$$
+due to the boundedness of the Hilbert transform on $L^4((0,1);dx)$ and to the
+estimate (3.1).
+
+On the other hand, if $E\subseteq [1/2,1)$ and $z\in (0,1/4)$
+$$
+|H(M_n^{1/2}J_{\alpha+1}(M_nt^{1/2}) t^{1/2}\chi_E(t))(z)|\leq C
+\int_0^1 t^{1/4}\chi_E(t)dt \leq C \por |E|.
+$$
+Hence,
+$$
+|A_{\lambda ,E}\cap (0,1/4)|\leq |\{z\in (0,1/4): z^{-1}\por C \por |E|^4> 
+\lambda^4\}|\leq C\por \lambda^{-4}|E|^4 \leq C\por \lambda^{-4}|E|
+$$
+and (3.11) holds, if $E\subseteq [1/2,1)$.
+
+If $E\subseteq (0,1/2)$, let $I_k=({1\over 2^{k+1}},{1\over 2^{k}})$,
+$k=2,3,...$. We shall use the following notation:
+$$
+I_{k1}=(0,{1\over 2^{k+2}}),\quad  I_{k2}=({1\over 2^{k+2}},{1\over 2^{k-1}}),
+\quad  I_{k3}=({1\over 2^{k-1}},1/2),\quad k=2,3,...
+$$
+$$
+A_{\lambda ,E}^k=A_{\lambda ,E}\cap I_k,\quad
+A_{\lambda ,E}^{km}=A_{\lambda /3 ,E_{km}}^k,\ m=1,2,3
+$$
+where $E_{km}=E\cap I_{km}$, $m=1,2,3$.
+
+Then, $A_{\lambda ,E}^k\subseteq A_{\lambda ,E}^{k1}\cup A_{\lambda ,E}^{k2}\cup
+A_{\lambda ,E}^{k3}$ and
+$$
+|A_{\lambda ,E}\cap (0,1/4)|\leq \sum_{k=2}^\infty |A_{\lambda ,E}^k |\leq
+\sum_{k=2}^\infty \{|A_{\lambda ,E}^{k1}|+|A_{\lambda ,E}^{k2}|+|A_{\lambda
+,E}^{k3}|\}. \eqno (3.12)
+$$
+For $m=3$, notice that if $z\in I_k$ and $t\in I_{k3}$ then $t-z\approx t$.
+Hence, using (3.1)
+$$
+|H(M_n^{1/2}J_{\alpha+1}(M_nt^{1/2}) t^{1/2}\chi_{E_{k3}}(t))(z)|\leq 
+C\por\int_0^1 t^{-3/4}\chi_E(t)dt \leq C\por |E|^{1/4}
+$$
+(the last inequality can be deduced from duality between Lorentz spaces).
+Therefore,
+$$
+|A_{\lambda ,E}^{k3}|\leq |\{z\in I_k : z< C\por \lambda^{-4}|E|\}|. \eqno
+(3.13)
+$$
+The same arguments work in order to prove that  $|A_{\lambda ,E}^{k1}|$ has the
+estimate (3.13).
+
+For $m=2$, we have
+$$\eqalign{
+|A_{\lambda ,E}^{k2}|&\leq |\{z\in I_k :
+|H(M_n^{1/2}J_{\alpha+1}(M_nt^{1/2})
+t^{1/2}\chi_{E_{k2}}(t))(z)|>C\por\lambda\por 2^{-{k\over 4}}\}|\cr
+&\leq C\por \lambda^{-4}\por 2^{k}
+\int_0^1 |H(M_n^{1/2}J_{\alpha+1}(M_nt^{1/2}) t^{1/2}\chi_{E_{k2}}(t))(z)|^4dz
+\cr & \leq C\por \lambda^{-4}\por 2^{k}
+\int_0^1 |M_n^{1/2}J_{\alpha+1}(M_nt^{1/2}) t^{1/2}\chi_{E_{k2}}(t)|^4dt
+\cr & \leq C\por \lambda^{-4}\por 2^{k} \int_0^1 t \chi_{E_{k2}}(t)
+\leq C\por \lambda^{-4} |E_{k2}|.
+\cr}\eqno (3.14)$$
+
+Finally, putting together (3.12), (3.13) and (3.14) we get (3.11) and the proof
+for $p=4$ is concluded.
+
+The proof for $p=4/3$ follows from standard arguments of duality between
+Lorentz spaces.
+\medskip
+\noindent {\bf Remarks.} The decomposition in four terms which we have used to
+study the weak boundedness,  also works to study the strong boundedness,
+instead of using the decomposition in six terms. However, the results are
+somehow different. For instance, to obtain the uniform boundedness of the
+proposition 1, we must change the condition by 
+$$
+(U(x^{1/2})^px^{-p/4},V(x^{1/2})^px^{-p/4})\in A_p^\delta(0,1),\ \ 
+(U(x^{1/2})^px^{p/4},V(x^{1/2})^px^{p/4})\in A_p^\delta(0,1).
+$$
+Something similar happens with proposition 2. If we apply these conditions to
+particular weights as in theorem 1, the inequalities (1.3), (1.4) are the same.
+
+Analogous results can be obtained in a similar way for Fourier-Dini series.
+\bigskip
+\noindent {\bf References.}\par\nobreak
+\medskip
+\item {{\bf 1.}} A. I. Benedek and R. Panzone, Mean convergence of series of
+Bessel functions, {\it Rev. Un. Mat. Arg.} {\bf 26} (1972), 42--61.
+
+\item {{\bf 2.}} S. Chanillo, On the weak behaviour of partial sums of
+Legendre series, {\it Trans. Amer. Math. Soc.} {\bf 268} (1981), 367--376.
+
+\item {{\bf 3.}} S. Chanillo, The multiplier for the ball and radial
+functions, {\it J. Funct. Anal.} {\bf 55} (1984), 18--24.
+
+\item {{\bf 4.}} J. Garc\'\i a Cuerva and J. L. Rubio de Francia, \lq \lq
+Weighted norm inequalities and related topics", North-Holland, Amsterdam, 1985.
+
+\item {{\bf 5.}} J. J. Guadalupe, M. P\'erez, F. J. Ruiz and J. L. Varona,
+Two notes on convergence and divergence a.e. of Fourier series with
+respect to some orthogonal systems, (preprint).
+
+\item {{\bf 6.}} J. J. Guadalupe, M. P\'erez and J. L. Varona, Weak behaviour of
+Fourier-Jacobi series, {\it J. Approx. Theory} {\bf 61} (1990), 222--238.
+
+\item {{\bf 7.}} R. Hunt, B. Muckenhoupt and R. Wheeden, Weighted norm
+inequalities for the conjugate function and Hilbert transform, {\it Trans. Amer.
+Math. Soc.} {\bf 176} (1973), 227--251.
+
+\item {{\bf 8.}} A. M\'at\'e, P. Nevai and V. Totik, Necessary
+conditions for weighted mean convergence of Fourier series in orthogonal
+polynomials, {\it J. Approx. Theory} {\bf 46} (1986), 314--322.
+
+\item {{\bf 9.}} B. Muckenhoupt, Weighted norm inequalities for the
+Hardy maximal function, {\it Trans. Amer. Math. Soc.} {\bf 165} (1972), 207--226.
+
+\item {{\bf 10.}} C. J. Neugebauer, Inserting $A_p$ weights, {\it Proc. Amer.
+Math. Soc.} {\bf 87} (1983), 644--648.
+
+\item {{\bf 11.}} E. Romera and F. Soria, Endpoint estimates for the
+maximal operator associated to spherical partial sums on radial functions,
+(preprint).
+
+\item {{\bf 12.}} G. N. Watson, \lq \lq A treatise on the theory of
+Bessel functions", 2nd. ed., Cambridge Univ. Press, Cambridge, 1958.
+
+\item {{\bf 13.}} G. M. Wing, The mean convergence of orthogonal series,
+{\it Amer. J. Math.} {\bf 72} (1950), 792--808.
+
+\bigskip
+\noindent {\rmdiez Jos\'e J. Guadalupe, Mario P\'erez and Francisco
+J. Ruiz. Departamento de Matem\'aticas. Facultad de Ciencias. Universidad de
+Zaragoza, 50009 Zaragoza, SPAIN.}
+
+\noindent {\rmdiez Juan L. Varona. Departamento de Matem\'atica
+Aplicada. Colegio Universitario de la Rioja, 26001 Logro\~no, SPAIN.}
+
+\bye

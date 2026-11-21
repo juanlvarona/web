@@ -1,0 +1,2779 @@
+%!TEX TS-program = pdflatex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Appell-Dunkl sequences and Hurwitz-Dunkl zeta functions
+% by
+% A. Gil Asensi and J. L. Varona
+%
+% Date of last modification: 2022-11-13
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass[11pt,a4paper]{amsart}
+\documentclass[a4paper]{amsart}
+
+%\usepackage{amssymb}
+
+%%% \allowdisplaybreaks is a command from amsmath that allow page breaks
+%%% inside a multi-line formula (align, multline, gather, ...)
+\allowdisplaybreaks[3] %%% Scale from 1 (weak allow) to 4 (complete allow).
+%%% If a break can be avoided, we can use \\* instead of \\
+
+%\usepackage[inline]{enumitem}
+%\setlist[enumerate,itemize]{font=\bfseries,wide=0pt}
+
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ONLY FOR DRAFTS:
+%\usepackage[utf8]{inputenc}
+%\usepackage{color}
+%\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+%\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+%\newcommand{\verde}[1]{\textcolor{green}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx}
+\usepackage{tikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ONLY FOR DRAFTS:
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{refcheck}
+%\usepackage[hyperpageref]{backref} % For drafts
+%\usepackage{backref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\Ea}{E_{\alpha}}
+\newcommand{\cc}{\gamma}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\E}{\mathfrak{E}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\La}{\Lambda_{\alpha}}
+\newcommand{\Lax}{\Lambda_{\alpha,x}}
+\newcommand{\binoma}[2]{\binom{#1}{#2}_{\!\alpha}}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\newcommand{\Li}{\operatorname{Li}}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+
+\newcommand{\Res}{\operatornamewithlimits{Res}}
+
+%-----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+%-----------
+
+\numberwithin{equation}{section}
+
+%-----------
+\title[Appell-Dunkl sequences and Hurwitz-Dunkl zeta functions]%
+{Appell-Dunkl sequences\\and Hurwitz-Dunkl zeta functions}
+%-----------
+
+
+%-----------
+\author[A. Gil Asensi]{Alejandro Gil Asensi}
+\address{%
+       Departamento de Matem\'aticas y Computaci\'on,
+       Universidad de La Rioja,
+       26006 Logro\~no, Spain}
+\email{algila@unirioja.es}
+
+\author[J.~L.~Varona]{Juan L. Varona}
+\address{%
+       Departamento de Matem\'aticas y Computaci\'on,
+       Universidad de La Rioja,
+       26006 Logro\~no, Spain}
+\email{jvarona@unirioja.es}
+\urladdr{http://www.unirioja.es/cu/jvarona/}
+%-----------
+
+%\date{\today}
+%\date{November 13, 2022}
+
+\renewcommand{\datename}{THIS PAPER HAS BEEN PUBLISHED IN:}
+\date{\textit{J.\ Math.\ Anal.\ Appl.}\ \textbf{520} (2023), no.~1, 126870; 
+DOI: \url{https://doi.org/10.1016/j.jmaa.2022.126870}}
+%%% Online first:
+%\date{\textit{J.\ Math.\ Anal.\ Appl.}, online first December~18, 2022, 
+%doi: 10.1016/j.jmaa.2022.126870.}
+
+\thanks{Research supported by grant PID2021-124332NB-C22 from MINECO (Spain).}
+%% REALMENTE ES ESTO:
+%\thanks{Research supported by grant PID2021-124332NB-C22 from 
+%Ministerio de Ciencia e Innovación (Spain).}
+
+%-----------
+% 11B83 Special sequences and polynomials
+% 11B68 Bernoulli and Euler numbers and polynomials
+% 11M35 Hurwitz and Lerch zeta functions
+% 30B40 Analytic continuation of functions of one complex variable
+% 33C20 Generalized hypergeometric series, pFq
+% 44A20 Integral transforms of special functions
+% 42A38 Fourier and Fourier-Stieltjes transforms and other transforms of Fourier type
+\subjclass[2010]{Primary 11B83; Secondary 11B68, 11M35, 30B40, 33C20, 44A20}
+\keywords{Appell-Dunkl polynomials, 
+Mellin transform, 
+%Hurwitz zeta function, 
+Hurwitz-Dunkl zeta function, 
+%Lerch zeta function, 
+Lerch-Dunkl zeta function, 
+%Bernoulli polynomials, 
+Bernoulli-Dunkl polynomials, 
+%Euler polynomials, 
+Euler-Dunkl polynomials}
+%-----------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%---------------------
+\begin{document}
+%---------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+%% Class amsart Warning:
+%% Abstract should precede \maketitle in AMS document classes
+\begin{abstract}
+Dunkl theory on the real line involves some tools such as the Dunkl derivative
+\[
+\Lambda_\alpha f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{2} \frac{f(x)-f(-x)}{x}
+\]
+or the Dunkl exponential $E_{\alpha}(z)$ that is defined in terms of 
+the Bessel functions. 
+% (also, $\mathcal{I}_\alpha(z) = {}_0F_1(\alpha+1,z^2/4)$)
+Taking $\alpha=-1/2$ we get $\Lambda_{-1/2} = d/dx$ and 
+$E_{-1/2}(z) = e^z$, hence, the classic derivative and exponential
+are particular cases.
+In recent years, some papers have generalized, in a Dunkl sense, 
+number theoretic concepts such as Appell sequences, and then they are called
+Appell-Dunkl sequences; in particular, the so called Bernoulli-Dunkl 
+and Euler-Dunkl polynomials have been defined, among others. 
+Here we generalize, also in a Dunkl sense, some Hurwitz or Lerch 
+zeta functions such as $\zeta(s,x) = \sum_{n=0}^{\infty} 1/(n+x)^s$ 
+and, in addition, we get properties that relate those functions,
+extended to the $s$-complex plane and evaluated at negative integers $s$, 
+with Bernoulli-Dunkl and Euler-Dunkl polynomials. One of the results we get 
+for the ``Dunkl zeta function'' $\zeta_\alpha(s)$ is
+\[
+ \zeta_{\alpha}(1-s) = \Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} 
+    \sum_{n=1}^{\infty} \frac{1}{s_n^s}, 
+    \qquad \operatorname{Re}(s)>1
+\]
+(where $s_n$ are the positive zeros of the 
+Bessel function $J_{\alpha+1}(x)$). This equation 
+provides a generalization of the reflection formula of the 
+Riemann zeta function, where the function $\sum_{n=1}^{\infty} 1/s_n^s$ 
+is playing a similar role as $\sum_{n=1}^{\infty} 1/n^s$.
+\end{abstract}
+%-----------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-----------
+\maketitle
+%-----------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+%\tableofcontents
+%-----------
+
+%-----------
+\section{Introduction}
+%-----------
+
+An Appell sequence $\{P_n(x)\}_{n=0}^{\infty}$ is a sequence of polynomials defined by a Taylor generating expansion
+\begin{equation}
+\label{eq:As}
+  A(t) e^{xt} = \sum_{n=0}^{\infty} P_n(x) \frac{t^n}{n!},
+\end{equation}
+where $A(t)$ is a function analytic at $t=0$ with $A(0) \ne 0$.
+Since the exponential function $e^x$ is invariant under the differential operator ${d}/{dx}$, it is easy to show that $P_n(x)$ is a polynomial of degree $n$ and $P'_n(x) = nP_{n-1}(x)$. Typical examples of Appell sequences are the Bernoulli polynomials $\{B_n(x)\}_{n=0}^{\infty}$, the Euler polynomials $\{E_n(x)\}_{n=0}^{\infty}$, or the probabilistic Hermite polynomials $\{\operatorname{He}_n(x)\}_{n=0}^{\infty}$ that are defined by taking $A(t) = \frac{te^{xt}}{e^t -1}$, $\frac{2e^{xt}}{e^t +1}$ or $e^{-t^2/2}$ respectively (a slight variation is the physicists' Hermite polynomials $\{H_n(x)\}_{n=0}^{\infty}$ defined by $e^{-t^2}e^{2xt} = \sum_{n=0}^{\infty} H_n(x) \frac{t^n}{n!}$).
+
+The Appell sequences of polynomials have been extended in many ways. One of them consists of changing the derivative operator by operators in the context of Dunkl. In \cite{DH} and \cite{CDPV}, the derivative operator was replaced by 
+\begin{equation*}
+%\label{eq:La}
+  \La f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{2}
+  \left(\frac{f(x)-f(-x)}{x}\right),
+\end{equation*}
+where $\alpha > -1$ is a fixed parameter (see \cite{Du, Ros}); observe that the case $\alpha=-1/2$ recovers the classical case $\Lambda_{-1/2} = \frac{d}{dx}$. In that setting, an Appell-Dunkl sequence $\{P_n\}_{n=0}^{\infty}$ is
+a sequence of polynomials that satisfies
+\begin{equation*}
+%\label{eq:LaPk}
+  \La P_n(x) = \big(n+(\alpha+1/2)(1-(-1)^n)\big)P_{n-1}(x)
+\end{equation*}
+(instead of $\La P_n = n P_{n-1}$, the previous definition with 
+a different multiplicative constant in the place of $n$ is used for 
+convenience with the notation). 
+The Appell-Dunkl sequences can be written as a generating expansion similar to~\eqref{eq:As}, namely
+\begin{equation*}
+  A(t) E_\alpha(xt) = \sum_{n=0}^{\infty} \calP_n(x) \frac{t^n}{\cc_{n,\alpha}},
+\end{equation*}
+for a certain function $E_\alpha$ and certain constants $\cc_{n,\alpha}$ (with $E_{-1/2} = \exp$ and $\cc_{n,-1/2}=n!$); we will see the details in Section~\ref{sec:AD}. The first Appell-Dunkl sequence of polynomials studied in the mathematical literature were the so called generalized Hermite polynomials; see~\cite{Ros}. In recent years, also the Bernoulli and the Euler polynomials (among other Appell families) have been extended to the Dunkl context; see, for instance, \cite{CDPV, CMV, DPV}. These polynomials have proved to be very useful to extend some classical properties to a more general context. For instance, the Bernoulli polynomials can be used to find the values of the series $\sum_{m=1}^{\infty} 1/m^{2k}$, and the Bernoulli-Dunkl polynomials can be used to compute the Rayleigh series $\sum_{m=1}^{\infty} 1/s_m^{2k}$, where $\{s_m\}_{m=1}^\infty$ are the positive zeros of a Bessel function (note that, essentially, the sine function is a particular case of a Bessel function, and the positive zeros of the sine are $s_m = \pi m$, $m \ge 1$, so in this case the corresponding Rayleigh series reduces to $\sum_{m=1}^{\infty} 1/m^{2k}$).
+
+In the classical case, there is a large class of Appell sequences $\{P_n(x)\}_{n=0}^\infty$ for which there is a function $H(s,x)$, entire in $s$ for fixed $x$ with $\Re x > 0$, and satisfying $H(-n,x) = P_n(x)$ for $n = 0,1,2,\dots$ For example, in the case of Bernoulli polynomials, $H$ is essentially the Hurwitz zeta function $\zeta(s,x)$ that for $\Re(s)>1$ is defined as $\zeta(s,x) = \sum_{m=0}^{\infty} (m+x)^{-s}$, and whose analytic extension to the $s$-complex plane satisfies $-n\zeta(1-n,x) = B_n(x)$. Another well-known example is the Apostol-Bernoulli polynomials, whose corresponding function $H$ is, essentially, the Lerch transcendent function (see~\cite{Ap}). More examples can be found in~\cite{BayChi, BaySim, SuHu}. The papers \cite{NRV-2018, NRV-2019} show how this can be done, in a very general way, with the help of the Mellin transform $\int_0^\infty f(t) t^{s-1}\,dt$, and provide many additional examples. 
+
+The aim of this paper is to show how to do it in the context of Appell-Dunkl sequences. Here, there are two important difficulties. The first one is the size of $E_\alpha(t)$ when $t \to \pm \infty$. Although $E_\alpha(t)$ is a generalization of $e^t$ to the Dunkl context, it is not true that $E_\alpha(t) \sim e^t$ when $t \to \pm \infty$, but, roughly speaking, $E_\alpha(t) \sim e^{|t|}$ (except for $\alpha=-1/2$). In the above mentioned Mellin transform, a factor $e^{-t}$ in $f(t)$ greatly contributes to the convergence of the integral; however, this does not happen with $E_\alpha(-t)$. In the second place, the classical translation $f(x) \mapsto f(x+m)$ becomes a complicate operator in the Dunkl context, and this affects the summands of type $(x+m)^{-s}$ of the classical Hurwitz zeta function, which are not so simple in the new context.
+
+The organization of this paper is as follows. In Section~\ref{sec:AD} we give the details of the Dunkl context, and the precise definitions of the Appell-Dunkl sequences. Section~\ref{sec:Dtau} gives the details of the Dunkl translation. In Section~\ref{sec:Mellin} we give a general procedure, based on the Mellin transform, to extend an Appell-Dunkl sequence $\{\calP_n(x)\}_{n=0}^{\infty}$ to an analytic function $H(s,x)$ such that $H(-n,x) = \calP_n(x)$ (actually, it is a bit different); due to the above mentioned difficulties, this is not as general as in the classical case studied in~\cite{NRV-2018}, is not valid in the whole range of~$x$, and requires some additional hypotheses. This section also studies several particular cases of Appell-Dunkl polynomials (Bernoulli-Dunkl, Euler-Dunkl, generalized Bernoulli-Dunkl, generalized Euler-Dunkl, and generalized Hermite), giving their corresponding Hurwitz-Dunkl zeta functions. In Section~\ref{sec:prop-hurwitz} we study some additional properties of these Hurwitz-Dunkl zeta functions. In particular, we show how these functions are connected with series of type $\sum_{m=1}^{\infty} 1/j_{m,\alpha}^{s}$ (where $\{j_{m,\alpha}\}_{m=1}^\infty$ are the positive zeros of the Bessel function of order~$\alpha$), by means of some formulas that resembles Riemann's functional equation for the classical $\zeta(s)$ function: if we use $\zeta_\alpha$ to denote the function associated to de Bernoulli-Dunkl polynomials, we have
+\[
+ \zeta_{\alpha}(1-s) = \Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} 
+    \sum_{m=1}^{\infty} \frac{1}{j_{m,\alpha+1}^s}, \qquad \Re(s)>1
+\]
+(see the details in that section). 
+In Section~\ref{sec:zetaR} we study the conection of our results with the analytic continuation to the $s$-complex plane of $Z_\alpha(s) = \sum_{m=1}^{\infty} {1}/{j_{m,\alpha}^s}$, which was studied by Hawkins \cite{Haw}.
+Finally, Section~\ref{sec:proof-of-ths} includes some of the technical proofs of the results presented in Section~\ref{sec:prop-hurwitz}.
+
+%-----------
+\section{Appell-Dunkl sequences}
+\label{sec:AD}
+%-----------
+
+For $\alpha > -1$, let $J_\alpha$ denote the Bessel function of order $\alpha$ and,
+for complex values of the variable $z$, let
+\[
+  \I_\alpha(z)
+  = 2^\alpha \Gamma(\alpha+1)\, \frac{J_\alpha(iz)}{(iz)^\alpha}
+  = \Gamma(\alpha+1) \sum_{n=0}^\infty \frac{(z/2)^{2n}}{n!\,\Gamma(n+\alpha+1)}
+  = {}_0F_1(\alpha+1,z^2/4)
+\]
+(the function $\I_\alpha$ is a small variation of the so-called modified Bessel function of the first kind and order~$\alpha$, usually denoted by $I_\alpha$; see~\cite{Wat} or~\cite{OlMa-NIST}).
+Also, again for $z \in \C$, take % us take
+\begin{equation}
+\label{eq:Ea}
+  \Ea(z) = \I_\alpha(z) + \frac{z}{2(\alpha+1)}\,
+  \I_{\alpha+1}(z)
+  = e^{z} \, {}_1F_1(\alpha+1/2,2\alpha+2,-2z).
+\end{equation}
+
+Following~\cite{Du} for $\alpha\ge-1/2$ and~\cite{Ros} for $\alpha>-1$, in the real line and with the reflection group~$\Z_2$, the Dunkl operator $\La$ is defined as
+\begin{equation}
+\label{eq:Duop}
+  \La f(x) = \frac{d}{dx}f(x) + \frac{2\alpha+1}{2}
+  \left(\frac{f(x)-f(-x)}{x}\right),
+\end{equation}
+where $f$ is a suitable function on $\R$. If we want to specify that the variable involved in the Dunkl operator is $x$, we will use $\Lax$.
+For any $\lambda \in \C$, we have
+\begin{equation}
+\label{eq:LDu}
+  \La \Ea(\lambda x) = \Lax \Ea(\lambda x) = \lambda \Ea(\lambda x).
+\end{equation}
+Let us note that, when $\alpha = -1/2$, we have $\Lambda_{-1/2} = d/dx$ and $E_{-1/2}(\lambda x) = e^{\lambda x}$.
+
+From the definition, it is easy to check that
+\[
+  \Ea(z) = \sum_{n=0}^\infty \frac{z^n}{\cc_{n,\alpha}},
+  \qquad
+  \I_{\alpha}(x) = \sum_{n=0}^\infty \frac{x^{2n}}{\cc_{2n,\alpha}},
+\]
+with 
+\begin{equation}
+\label{eq:ccna}
+\cc_{n,\alpha} =
+\begin{cases} 
+  2^{2k}k!\,(\alpha+1)_k, & \text{if $n=2k$},\\
+  2^{2k+1}k!\,(\alpha+1)_{k+1}, & \text{if $n=2k+1$},
+\end{cases}
+\end{equation}
+and where $(a)_n$ denotes the Pochhammer symbol
+\[
+  (a)_n = a(a+1)(a+2) \cdots (a+n-1) = \frac{\Gamma(a+n)}{\Gamma(a)}
+\]
+(with $a$ a non-negative integer); of course, $\cc_{n,-1/2} = n!$.
+From~\eqref{eq:ccna}, we have
+\begin{equation}
+\label{eq:coccc}
+  \frac{\cc_{n,\alpha}}{\cc_{n-1,\alpha}} = n+(\alpha+1/2)(1-(-1)^n) =: \theta_{n,\alpha}.
+\end{equation}
+We also define
+\[
+  \binoma{n}{j} = \frac{\cc_{n,\alpha}}{\cc_{j,\alpha}\cc_{n-j,\alpha}},
+\]
+which becomes the ordinary binomial coefficient in the case $\alpha=-1/2$.
+To simplify the notation we sometimes write $\cc_n=\cc_{n,\alpha}$ and $\theta_n=\theta_{n,\alpha}$.
+For each function $A(t)$ analytic in a neighborhood of $t=0$ and with $A(0) \ne 0$, we define an Appell-Dunkl sequence $\{P_{n}(x)\}_{n=0}^{\infty}$ by means of the generating function
+\begin{equation}
+\label{eq:ad}
+  A(t)\Ea(xt) = \sum_{n=0}^\infty P_{n}(x) \frac{t^n}{\cc_n}
+\end{equation}
+(additionally to the papers \cite{AlS, Ros} cited in the introduction, Appell-Dunkl sequences have been also considered, for instance, in \cite{BG, BKI, DH}).
+From this definition, it is not difficult to prove that $P_{n,\alpha}(x)$ is a polynomial of degree $n$ and, moreover, $\La P_{n}(x) = \frac{\cc_{n}}{\cc_{n-1}}\, P_{n-1}(x)$ (when $\alpha=-1/2$, this becomes the classical $P'_{n}(x) = nP_{n-1}(x)$ in the Appell sequences). 
+
+Besides the generalized Hermite polynomials that, in the Dunkl context, were studied in~\cite{Ros},  we will use the so called Bernoulli-Dunkl polynomials, Euler-Dunkl polynomials, and their corresponding generalization with an extra parameter. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Table
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!tb]
+\caption{Scheme that describes the process to transform the definition 
+of the classical Bernoulli and Euler polynomials into the definition 
+of the Bernoulli-Dunkl and Euler-Dunkl polynomials 
+(and their generalizations of order~$r$).
+In the classical case, we use the ``basic'' interval $[0,1]$, 
+the function $\exp$ and the factorial~$n!$; in the Dunkl case with $\alpha>-1$, 
+we must use the ``basic'' interval $[-1,1]$, the function $\Ea$ and~$\cc_{n,\alpha}$.}
+%\small
+\newcommand{\suml}{\sum\limits}
+\centering
+\hspace*{-1cm}%
+\begin{tabular}{ccc}
+\hline
+\rule[-4pt]{0pt}{14pt} & Bernoulli $\mapsto$ Bernoulli-Dunkl & Euler $\mapsto$ Euler-Dunkl 
+\\
+\hline
+\rule{0pt}{15pt}
+Classical % definitions
+& $\frac{te^{xt}}{e^t-1} = \suml_{n=0}^{\infty} B_n(x) \frac{t^n}{n!}$
+& $\frac{2e^{xt}}{e^t+1} = \suml_{n=0}^{\infty} E_n(x) \frac{t^n}{n!}$
+\\[9pt]
+$x \mapsto \frac{x+1}{2}$
+& $\frac{te^{xt/2}e^{t/2}}{e^t-1} = \suml_{n=0}^{\infty} B_n(\frac{x+1}{2}) \frac{t^n}{n!}$
+& $\frac{2e^{xt/2}e^{t/2}}{e^t+1} = \suml_{n=0}^{\infty} E_n(\frac{x+1}{2}) \frac{t^n}{n!}$
+\\
+$t \mapsto 2t$
+& $\frac{2te^{xt}e^{t}}{e^{2t}-1} = \suml_{n=0}^{\infty} B_n(\frac{x+1}{2}) \frac{2^n t^n}{n!}$
+& $\frac{2e^{xt}e^{t}}{e^{2t}+1} = \suml_{n=0}^{\infty} E_n(\frac{x+1}{2}) \frac{2^n t^n}{n!}$
+\\[9pt]
+rewrite
+& $\frac{2te^{xt}}{e^{t}-e^{-t}} = \suml_{n=0}^{\infty} B_n(\frac{x+1}{2}) \frac{2^n t^n}{n!}$
+& $\frac{2e^{xt}}{e^t+e^{-t}} = \suml_{n=0}^{\infty} E_n(\frac{x+1}{2}) \frac{2^n t^n}{n!}$
+\\[9pt]
+$\exp \mapsto \Ea$ %, $n! \mapsto \cc_{n,\alpha}$
+& $\frac{2t\Ea(xt)}{\Ea(t)-\Ea(-t)} 
+= \suml_{n=0}^{\infty} B_{n}^{*}(\frac{x+1}{2}) \frac{2^n t^n}{\cc_{n,\alpha}}$
+& $\frac{2\Ea(xt)}{\Ea(t)+\Ea(-t)} 
+= \suml_{n=0}^{\infty} E_{n}^{*}(\frac{x+1}{2}) \frac{2^n t^n}{\cc_{n,\alpha}}$
+\\[9pt]
+rewrite
+& $\frac{2(\alpha+1)\Ea(xt)}{\I_{\alpha+1}(t)} 
+= \suml_{n=0}^{\infty} B_{n}^{*}(\frac{x+1}{2}) \frac{2^n t^n}{\cc_{n,\alpha}}$
+& $\frac{\Ea(xt)}{\I_{\alpha}(t)}
+= \suml_{n=0}^{\infty} E_{n}^{*}(\frac{x+1}{2}) \frac{2^n t^n}{\cc_{n,\alpha}}$
+\\[9pt]
+Dunkl % definition
+& $\frac{\Ea(xt)}{\I_{\alpha+1}(t)} 
+= \suml_{n=0}^{\infty} \B_{n,\alpha}(x) \frac{t^n}{\cc_{n,\alpha}}$
+& $\frac{\Ea(xt)}{\I_{\alpha}(t)}
+= \suml_{n=0}^{\infty} \E_{n,\alpha}(x) \frac{t^n}{\cc_{n,\alpha}}$
+\\[9pt]
+Generalized % definition
+& $\frac{\Ea(xt)}{(\I_{\alpha+1}(t))^r} 
+= \suml_{n=0}^{\infty} \B_{n,\alpha}^{(r)}(x) \frac{t^n}{\cc_{n,\alpha}}$
+& $\frac{\Ea(xt)}{(\I_{\alpha}(t))^r}
+= \suml_{n=0}^{\infty} \E_{n,\alpha}^{(r)}(x) \frac{t^n}{\cc_{n,\alpha}}$
+\\[9pt]
+\hline
+\end{tabular}%
+\hspace*{-1cm}
+%\caption{Scheme that describes the process to transform the definition 
+%of the classical Bernoulli and Euler polynomials into the definition 
+%of the Bernoulli-Dunkl and Euler-Dunkl polynomials 
+%(and their generalizations of order~$r$).
+%In the classical case, we use the ``basic'' interval $[0,1]$, 
+%the function $\exp$ and the factorial~$n!$; in the Dunkl case with $\alpha>-1$, 
+%we must use the ``basic'' interval $[-1,1]$, the function $\Ea$ and~$\cc_{n,\alpha}$.}
+\label{tab:scheme}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bernolli-Dunkl polynomials
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+\subsection{Bernoulli-Dunkl polynomials}
+%-----------
+
+Following~\cite{CDPV}, we define the Bernoulli-Dunkl polynomials $\{\B_{n,\alpha}\}_{n=0}^{\infty}$ by means of the generating function
+\begin{equation}
+\label{eq:defbd}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)}
+  = \sum_{n=0}^\infty \frac{\B_{n,\alpha}(x)}{\cc_{n,\alpha}}\,t^n.
+\end{equation}
+To simplify the notation we sometimes write $\B_n=\B_{n,\alpha}$ (and $\cc_n=\cc_{n,\alpha}$).
+
+The first few Bernoulli-Dunkl polynomials are
+\begin{align*}
+  \B_0(x) &= 1, \quad & \B_1(x) &= x, \\
+  \B_2(x) &= x^2 - \frac{\alpha+1}{\alpha+2},\quad &
+  \B_3(x) &= x^3 - x,\\
+  \B_4(x) &= x^4 - 2x^2 + \frac{(\alpha+4)(\alpha+1)}{(\alpha+3)(\alpha+2)},\quad &
+  \B_5(x) &= x^5 - 2\,\frac{\alpha+3}{\alpha+2}\,x^3 + \frac{\alpha+4}{\alpha+2}\,x.
+\end{align*}
+Some of the properties of these polynomials can be seen in~\cite{CDPV}.
+
+Before we continue, let us explain why we use ``Bernoulli-Dunkl'' to name these polynomials.
+The first reason is that
+\begin{equation}
+\label{eq:BtoB}
+  \frac{\B_{n,-1/2}(2x-1)}{2^n} = B_n(x),
+\end{equation}
+where $\{B_n\}_{n=0}^{\infty}$ are the Bernoulli polynomials (for the definition and properties of the Bernoulli polynomials see, for instance,~\cite{Dil-NIST} or~\cite{DKP}). Indeed, taking into account that
+\[
+  E_{-1/2}(x) = e^x,\quad \I_{1/2}(x) = \frac{\sin(ix)}{ix},
+\]
+the relation \eqref{eq:BtoB} can be deduced substituting $x$ for $2x-1$, $t$ for $t/2$ and $\alpha$ for $-1/2$ in the definition~\eqref{eq:defbd}. 
+Here, we must note that the change $x \mapsto 2x-1$ in~\eqref{eq:BtoB} is very natural, because in the reflection group $\Z_2$, which is key in the standard definition of the Dunkl operator~\eqref{eq:Duop}, the symmetry plays a important role, and thus the role of $x=0$ and $x=1$ on the classical Bernoulli polynomials must be translated to the points $-1$ and~$1$.
+In fact, this is the process that is explained in Table~\ref{tab:scheme} (extracted from~\cite{CMV}) to define Bernoulli-Dunkl polynomials as an extension to the Dunkl case of the classical Bernoulli polynomials. As is shown in the table, this process can be used for other classical polynomials.
+
+Another reason to use the name Bernoulli-Dunkl polynomials for $\B_n$ is the role that they play in certain sums involving the zeros of the Bessel functions (see~\cite{CDPV}), which is a generalization of what happens in the case $\alpha=-1/2$ with the Bernoulli polynomials. 
+This will appear again later in this paper; see Corollary~\ref{cor:sum-sm}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generalized Bernoulli-Dunkl polynomials
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+\subsection{Generalized Bernoulli-Dunkl polynomials}
+%-----------
+
+In the classical case, the generalized Bernoulli polynomials of order $r$ are $\{B_{n}^{(r)}(x)\}_{n=0}^\infty$, defined by
+\[
+  \left(\frac{t}{e^t-1}\right)^r e^{xt} 
+  = \sum_{n=0}^\infty B_{n}^{(r)}(x) \frac{t^n}{n!}.
+\]
+They were introduced by N{\o}rlund in 1922 (see \cite{Nor, Nor-book}).
+% , and they are also known as N{\o}rlund polynomials.
+
+When $\alpha>-1$ we can also define the generalized Bernoulli-Dunkl polynomials $\{\B_{n,\alpha}^{(r)}\}_{n=0}^{\infty}$ (or $\B_n^{(r)}$) of order $r$ by means of the generating function
+\begin{equation}
+\label{eq:defbdr}
+  \frac{\Ea(xt)}{\I_{\alpha+1}(t)^r}
+  = \sum_{n=0}^\infty \frac{\B_{n,\alpha}^{(r)}(x)}{\cc_{n,\alpha}}\,t^n.
+\end{equation}
+% Again, we sometimes write $\B_n^{(r)}=\B_{n,\alpha}^{(r)}$.
+
+In this case, the generalized Bernoulli polynomials and the generalized Bernoulli-Dunkl polynomials are related by
+\[
+  \B_{n,-1/2}^{(r)}(2x-r) = 2^n B_n^{(r)}(x).
+\]
+In the recent paper \cite{ExLaMiVa} we can see how the polynomials $\B_{n,\alpha}^{(r)}$ can be used in the context of Appell-Dunkl discrete sequences, in the same way that $B_n^{(r)}$ appear in the context of Appell discrete sequences and falling factorial polynomials.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Euler-Dunkl polynomials
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+\subsection{Euler-Dunkl polynomials}
+%-----------
+
+We define the Euler-Dunkl polynomials $\{\E_{n,\alpha}\}_{n=0}^{\infty}$ of order $\alpha>-1$ by means of the generating function
+\begin{equation*}
+%\label{eq:defed}
+  \frac{\Ea(xt)}{\I_{\alpha}(t)}
+  = \sum_{n=0}^\infty \frac{\E_{n,\alpha}(x)}{\cc_{n,\alpha}} \,t^n.
+\end{equation*}
+As usual, we will sometimes denote it only by $\E_{n}$, without specifying~$\alpha$.
+The first few Euler-Dunkl polynomials are
+% \footnote{En \cite{CMV} hab\'ia una errata en $\E_5(x)$; aqu\'i est\'a corregida.}
+\begin{align*}
+  \E_0(x) &= 1, \quad & \E_1(x) &= x, \\
+  \E_2(x) &= x^2-1, \quad &
+  \E_3(x) &= x^3 - \frac{\alpha+2}{\alpha+1}\,x, \\
+  \E_4(x) &= x^4 - 2\,\frac{\alpha+2}{\alpha+1}\,x^2 + \frac{\alpha+3}{\alpha+1},\quad &
+  \E_5(x) &= x^5 - 2\,\frac{\alpha+3}{\alpha+1}\,x^3 + \frac{(\alpha+3)^2}{(\alpha+1)^2}\,x.
+\end{align*}
+
+These polynomials are related to the classical Euler polynomials $\{E_n\}_{n=0}^{\infty}$ by
+\begin{equation}
+\label{eq:EtoE}
+  \frac{\E_{n,-1/2}(2x-1)}{2^n} = E_n(x)
+\end{equation}
+(for the definition and properties of the Euler polynomials see, for instance,~\cite{Dil-NIST}).
+This process has been sketched in Table~\ref{tab:scheme}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generalized Euler-Dunkl polynomials
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+\subsection{Generalized Euler-Dunkl polynomials}
+%-----------
+
+When $\alpha>-1$ we can also define the generalized Euler-Dunkl polynomials $\{\E_{n,\alpha}^{(r)}\}_{n=0}^{\infty}$ (or $\E_n^{(r)}$) of order $r$ by means of the generating function
+\begin{equation*}
+%\label{eq:defedr}
+  \frac{\Ea(xt)}{\I_{\alpha}(t)^r}
+  = \sum_{n=0}^\infty \frac{\E_{n,\alpha}^{(r)}(x)}{\cc_{n,\alpha}}\,t^n.
+\end{equation*}
+%Again, we sometimes write $\E_n^{(r)}=\E_{n,\alpha}^{(r)}$. 
+
+In the classical case, the generalized Euler polynomials of order $r$ are $\{E_{n}^{(r)}(x)\}_{n=0}^\infty$ defined by
+\[
+  \left(\frac{2}{e^t+1}\right)^r e^{xt} 
+  = \sum_{n=0}^\infty E_{n}^{(r)}(x) \frac{t^n}{n!}.
+\]
+The generalized Euler polynomials and the generalized Euler-Dunkl polynomials are related by
+\[
+  \E_{n,-1/2}^{(r)}(2x-r) = 2^n E_n^{(r)}(x).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dunkl-traslation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+\section{The Dunkl translation: definition and some properties}
+\label{sec:Dtau}
+%-----------
+
+The Dunkl translation operator of a function $f$ is defined by
+\begin{equation}
+\label{eq:translation}
+  \tau_y f(x) = \sum_{n=0}^\infty \La^{n}f(x) \frac{y^n}{\cc_{n,\alpha}},
+  \qquad \alpha>-1,
+\end{equation}
+where $\La^0$ is the identity operator and $\La^{n+1} = \La(\La^n)$.  
+As in the case of $\Lax = \La$, we sometimes use $\tau_{y,x}$ if we want to indicate that the translation $\tau_{y}$ is acting on a function whose variable is~$x$.
+In the case $\alpha=-1/2$, the translation $\tau_y f$ is just the Taylor expansion of a function $f$ around a fixed point $x$, that is,
+\[
+  f(x+y) = \sum_{n=0}^\infty f^{(n)}(x) \frac{y^n}{n!}.
+\]
+Of course, definition~\eqref{eq:translation} is valid only for $C^{\infty}$ functions, and assuming also that the series on the right is convergent. In particular, this can be guaranteed when $f$ is a polynomial, because the operator $\La$ applied to a polynomial of degree $k$ generates a polynomial of degree $k-1$, so the series~\eqref{eq:translation} has only a finite number of nonzero summands. 
+Other properties of the translation operator $\tau_y$
+can be found in \cite{Ros}, \cite{Rosler-TAMS}, \cite{ThX} and~\cite{LiLiao}, 
+including some integral expressions that can be applied to a wider class of functions than~\eqref{eq:translation}.
+
+From the definition~\eqref{eq:translation}, it is clear that $\tau_y$ commutes with the Dunkl operator~$\La$.
+In what follows, we are going to see some other basic properties.
+It is not difficult to prove these properties, and here we state most of them without a proof; in most cases, more details can be found in~\cite{CMV}.
+
+A nice property of the Dunkl translation, which resembles the Newton binomial $(x+y)^n = \sum_{k=0}^n \binom{n}{k} y^k x^{n-k}$, is the following:
+\begin{equation}
+\label{eq:Newton}
+  \tau_y ((\cdot)^n)(x) = 
+  \sum_{k=0}^n \binoma{n}{k} y^k x^{n-k}.
+\end{equation}
+More generally, and in relation to the Appell-Dunkl sequences $\{P_n(x)\}_{n=0}^{\infty}$ defined as in~\eqref{eq:ad}, the Dunkl translation satisfies 
+\begin{equation*}
+%\label{eq:tau-A}
+  \tau_y(P_k)(x)
+  = \sum_{j=0}^k \binoma{k}{j} P_j(x) y^{k-j},
+\end{equation*}
+which in the classical case $\alpha=-1/2$ becomes $P_k(x+y) = \sum_{j=0}^k \binom{k}{j} P_j(x) y^{k-j}$.
+
+Another important property is the fact
+\begin{equation}
+\label{eq:tyxtxy}
+  \tau_y f(x) = \tau_x f(y).
+\end{equation}
+This is a direct consequence of the above mentioned integral expressions for the Dunkl translation. 
+Moreover, at least for polynomials, it can be easily checked starting from~\eqref{eq:translation} using the linearity of $\tau_y$ and its behaviour on $f(x) = x^n$, $n=0,1,2,\dots$ Indeed, using $\binoma{n}{k} = \binoma{n}{n-k}$ and~\eqref{eq:Newton} we have $\tau_y ((\cdot)^n)(x) = \tau_x ((\cdot)^n)(y)$, and this proves~\eqref{eq:tyxtxy}.
+
+%In particular, observe that
+%$\tau_y f(0) = \tau_0 f(y) = f(y)$,
+%and then, by \eqref{eq:translation}, we get the power expansion
+%\[
+%  f(y) = \sum_{n=0}^\infty \La^{n}f(0) \frac{y^n}{\cc_{n}}.
+%\]
+%% (at least, for polynomials).
+
+The inverse operator of $\tau_y$ defined as in~\eqref{eq:translation} is 
+\begin{equation}
+\label{eq:tau-inv}
+  \tau_y^{-1} f(x) = \sum_{n=0}^\infty \frac{c_n y^n}{\cc_{n,\alpha}}\La^{n}f(x),
+\end{equation}
+where $c_0 = 1$ and $c_n$ for $n\ge1$ is defined by the recurrence $c_n = -\sum_{j=0}^{n-1} \binoma{n}{j} c_j$ (a proof can be found in~\cite[Lemma~4.4]{CMV}). The operator $\tau_y^{-1}$ is not, in general, a translation (in particular, it is not $\tau_{-y}$ except when $\alpha=-1/2$).
+
+Moreover, it is not difficult to check that the operators of type $\tau_a$, $\tau_b$, $\tau_c^{-1}$ and $\tau_d^{-1}$ commute; for instance, $\tau_a \tau_b = \tau_b \tau_a$, $\tau_c^{-1} \tau_d^{-1} = \tau_d^{-1} \tau_c^{-1}$, $\tau_a \tau_c^{-1} = \tau_c^{-1} \tau_a$ and so on. Note that, in general (except when $\alpha=-1/2$), $\tau_a \tau_b$ is not a new translation, even if $a = b$. 
+
+In relation to $\Ea$, the Dunkl translation has a nice behaviour that resembles the classical $e^{t(x+y)} = e^{tx} e^{ty}$, namely
+\begin{equation}
+\label{eq:tauyEa}
+  \tau_y (\Ea(t \cdot))(x) = \Ea(t x)\Ea(t y).
+\end{equation}
+Indeed, using $\Lax (\Ea(tx)) = t \Ea(tx)$ (this is $\frac{d}{dx} e^{tx} = t e^{tx}$ 
+in the classical case), the proof of \eqref{eq:tauyEa} is a simple consequence
+of the definition~\eqref{eq:translation}:
+\begin{align*}
+  \tau_y \big(\Ea(t\cdot)\big)(x)
+  &= \sum_{m=0}^{\infty} \Lambda_{\alpha,x}^m \Ea(tx) \frac{y^m}{\cc_m}
+= \sum_{m=0}^{\infty} \Ea(tx) \frac{(ty)^m}{\cc_m} 
+  = \Ea(tx) \Ea(ty).
+\end{align*}
+It is also easy to check that
+\[
+\tau_y^{-1} \big( \Ea(t\cdot) \big)(x)  = \Ea(tx)/ \Ea(ty).
+\] 
+
+From these relations, we can easily state the following lemmas, which we will use later in this paper:
+
+\begin{lemma}
+\label{lem:tau-n-n}
+Let $\tau_y$ be the Dunkl translation operator. Then the identities
+\[
+\tau_y^n \big( \Ea(t\cdot) \big)(x) = \Ea(tx)\Ea(ty)^n
+\]
+and
+\[
+\tau_y^{-n} \big( \Ea(t\cdot) \big)(x)  = \Ea(tx)/ \Ea(ty)^n
+\] 
+holds for all $n = 0,1,2,3,\dots$
+\end{lemma}
+
+\begin{lemma}
+\label{lem:tau-n-m}
+Let $\tau_y$ and $\tau_z$ be Dunkl translations and let $n$ and $m$ be two non-negative integers. Then
+\[
+\tau_y^n \tau_z^{-m} \big( \Ea(t\cdot) \big) = \Ea(t\cdot)\Ea(ty)^n/\Ea(tz)^{m}. 
+\]
+\end{lemma}
+
+There are still a couple of technical lemmas about the behaviour of the Dunkl translation which we will use later in the paper (Subsections~\ref{subsec:BD} and~\ref{subsec:ED}). We will apply these results only to functions like $\Ea$, so we can use the Dunkl translation operator \eqref{eq:translation}, which is valid only for functions in~$\mathcal{C}^{\infty}$. Then, we can assume in the lemmas and in the proofs that the functions are in~$\mathcal{C}^{\infty}$ (this could be weakened using integral expressions for the translation).
+
+\begin{lemma}
+Let $\Lambda_{\alpha,x}$ be the Dunkl operator acting over the variable $x$ and let $g(t,x)$ be a function such as the integral $\int_{0}^{\infty} g(t,x) \,dt$ converges and $\Lambda_{\alpha,x} g(t,x)$ exists. Then,
+\[
+  \Lambda_{\alpha,x} \int_{0}^{\infty} g(t,x) \,dt 
+  = \int_{0}^{\infty} \Lambda_{\alpha,x} g(t,x) \,dt.
+\]
+\end{lemma}
+
+\begin{proof}
+Using the definition of $\Lambda_{\alpha,x}$, we have
+\begin{align*}
+  \Lambda_{\alpha,x} \int_{0}^{\infty} g(t,x) \,dt
+  &= \frac{d}{dx} \int_{0}^{\infty} g(t,x) \,dt
+  + \frac{2\alpha+1}{2} \frac{\int_{0}^{\infty} g(t,x) \,dt 
+  - \int_{0}^{\infty} g(-t,x) \,dt}{x} \\
+  &= \int_{0}^{\infty} \frac{d}{dx} g(t,x) \,dt
+  + \frac{2\alpha+1}{2} \int_{0}^{\infty} \frac{g(t,x) -  g(-t,x)}{x} \,dt  \\
+  & = \int_{0}^{\infty} \Lambda_{\alpha,x} g(t,x) \,dt.
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+\label{lem:tau-integral}
+Let $g(t,x)$ be a function in $\mathcal{C}^{\infty}$ such that the integral $\int_{0}^{\infty} g(t,x) \,dt$ converges, and let $\tau_{y,x}$ be the Dunkl translation operator. Then
+\[
+  \tau_{y,x} \int_{0}^{\infty} g(t,x) \,dt = \int_{0}^{\infty} \tau_{y,x} g(t,x) \,dt.
+\]
+\end{lemma}
+
+\begin{proof}
+By the previous lemma,
+\begin{align*}
+  \tau_{y,x} \int_{0}^{\infty} g(t,x) \,dt
+  &= \sum_{n=0}^{\infty} \Lambda_{\alpha,x}^n \Big(\int_{0}^{\infty} g(t,x) \,dt \Big)
+  \frac{y^n}{\cc_n}
+  = \sum_{n=0}^{\infty} \Big(\int_{0}^{\infty} \Lambda_{\alpha,x}^n g(t,x) \,dt \Big)
+  \frac{y^n}{\cc_n} \\
+  &=  \int_{0}^{\infty} \sum_{n=0}^{\infty} \Lambda_{\alpha,x}^n g(t,x) \frac{y^n}{\cc_n} \,dt 
+  = \int_{0}^{\infty} \tau_{y,x} g(t,x) \,dt.
+\qedhere
+\end{align*}
+\end{proof}
+
+%-----------
+\section{The Mellin transform to get Appell-Dunkl polynomials as values of Hurwitz-Dunkl zeta functions}
+\label{sec:Mellin}
+%-----------
+
+In this section, we define a special function, $H(s,x)$, which generalizes the Appell-Dunkl polynomials in such way that $H(-n,x)$ will give us the $n$-th Appell-Dunkl polynomial $P_n(x)$ multiplied by some constant. We express $H(s,x)$ in terms of the well-known Mellin transform
+\[
+\mathcal{M}(f)(s) =  \frac{1}{\Gamma(s)} \int_{0}^{\infty} f(t)t^{s-1} \,dt.
+\]
+
+Here we have a very general result, and later we study particular cases of generating functions that involve Bernoulli-Dunkl and Euler-Dunkl polynomials (and also their respective generalized families) and obtain particular special functions, $H(s,x)$ for each one. In Theorem~\ref{teo:mellinBD} we relate this $H(s,x)$ with a function which we call Hurwitz-Dunkl zeta function, $\zeta_{\alpha}(s,x)$ (see Definition~\ref{def:HD-zeta}), because it plays a similar role as the traditional Hurwitz zeta function $\zeta(s,x) = \sum_{n=0}^{\infty}1/(x+n)^s$ and, in addition, it generalizes $\zeta(s,x)$ when changing $\alpha=-1/2$, $x\mapsto 2x-1$ and $t\mapsto t/2$, as we explain with more detail later. On the other hand, we obtain a similar function in the Euler-Dunkl case, $\zeta_{E,\alpha}(s,x)$ (see Definition~\ref{def:HD-zeta-euler}), which generalizes the so-called Hurwitz zeta function of Euler type, $\zeta_E(s,x) = \sum_{n=0}^{\infty}(-1)^n/(x+n)^s$. 
+Note that in this theorem we could assume $k=0$ (which corresponds to the usual case $A(0) \ne 0$), but we allow a more general case.
+
+\begin{theorem}
+\label{teo:MellinAD}
+Let $\{\calP_{n}(x)\}_{n=0}^{\infty}$ be an Appell-Dunkl sequence with generating function $G(x,t) = A(t) \Ea(xt)$ and suppose that $A(t)$ has a zero of order $k$ at $t=0$. 
+We also assume that, for all $x \in (a,b)$, the integral
+\begin{equation}
+\label{eq:MellinAD}
+    H(s,x) = \frac{1}{\Gamma(s)}\int_{0}^{\infty} G(x,-t)\,t^{s-1}\,dt 
+         = \frac{1}{\Gamma(s)} \int_{0}^{\infty} A(-t) \Ea(-xt) t^{s-1}\,dt
+\end{equation}
+converges in the right plane $\Re(s) > -k$ to a holomophic function.
+Then, $H(s,x)$ may be analytically continued to an entire function of $s$ satisfying
+\begin{equation*}
+%\label{E:sinCeros}
+  H(-n,x) = \frac{n!}{\gamma_{n,\alpha}}\calP_{n}(x),\quad n=0,1,2,\dots
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+Suppose $H(s,x)$ converges in the right plane $\Re(s) > -k$ for all $x \in (a,b)$, as was stated in the hypothesis of the theorem.
+Given $N \in \N \cup \{0\}$ with $N \geq k$, the Mellin integral can be analytically continued to the half plane $\Re(s) > -N-1$ as follows. Fix $r$ with $0 < r < R$ and $x$ with $a < x < b$ and separate the complete integral into three parts:
+\begin{align*}
+  H(s,x) &= \frac{1}{\Gamma(s)} \int_r^\infty A(-t) \Ea(-xt)t^{s-1}\,dt \\
+  & \qquad + \frac{1}{\Gamma(s)} \int_0^{r} \left( A(-t) \Ea(-xt)
+  - \sum_{n=0}^N \calP_{n}(x)\frac{(-t)^n}{\gamma_{n,\alpha}} \right)t^{s-1}\,dt \\
+  & \qquad + \frac{1}{\Gamma(s)} \int_0^r \sum_{n=0}^N \calP_{n}(x) 
+  \frac{(-t)^n}{\gamma_{n,\alpha}}t^{s-1} \,dt.
+\end{align*}
+In the first part, the integrand is $\Ea(-xt)A(-t)t^{s-1}$. Since $a<x<b$, it converges when $t \to \infty$, hence the integral is an entire function of $s$, dominated on arbitrary closed vertical strips of finite width. We may conclude that the integral is an entire function of~$s$.
+
+In the second part, the integrand is the product of $t^{s-1}$ with the tail of the generating series, $\sum_{n=N+1}^{\infty} \calP_{n}(x) (-t)^{n}/\gamma_{n,\alpha}$, which, since $|t| \leq r < R$, is $\calO(t^{N+1})$ at $t=0$. Thus, for $\Re(s) > -N-1$, the complete integrand is $\calO(t^{N+\Re(s)})$ at $t=0$ (with the order constant depending only on $x$) and hence is integrable on $[0,r]$ and dominated on closed vertical sub-strips of finite width of this section of the $s$-plane. Therefore the second integral is a holomorphic function of $s$ for $\Re(s) > -N-1$.
+
+In the third part, we have
+\begin{align*}
+\frac{1}{\Gamma(s)} \int_0^r \sum_{n=0}^N 
+\calP_{n}(x) \frac{(-t)^n}{\gamma_{n,\alpha}}t^{s-1} \,dt 
+& = \frac{1}{\Gamma(s)} \sum_{n=0}^N \calP_{n}(x) \frac{(-1)^n}{\gamma_{n,\alpha}}
+\int_0^r t^{s+n-1} \,dt \\ 
+& = \frac{1}{\Gamma(s)}\sum_{n=0}^N \calP_{n}(x) 
+\frac{(-1)^n}{\gamma_{n,\alpha}} \frac{r^{s+n}}{s+n},
+\end{align*}
+which is an entire function of $s$ because of the simple pole of $\Gamma(s)$ at $s = -n$ cancels the simple zero of $s+n$ for $n=0,1,2,\dots$, leaving the non-zero residue $(-1)^n/n!$. 
+
+Finally, if $s = -n$ with $0 \leq n \leq N$, the $1/\Gamma(s)$ factors in front of the first two terms vanish, as well as every term in the sum except the one corresponding to $n$, where the remaining value is $\calP_{n}(x)n!/\gamma_{n,\alpha}$ because of the residue of $\Gamma(s)$ at $-n = 0,1,2,\dots$ Thus $H(-n,x) = \calP_{n}(x)n!/\gamma_{n,\alpha}$ for these $n$ and, as $N \geq k$ was arbitrary, this completes the proof.
+\end{proof}
+
+The previous theorem is very general but needs the convergence of~\eqref{eq:MellinAD}. In the classical case $\alpha=-1/2$ stated in~\cite{NRV-2018}, we have $E_{-1/2}(-t) = e^{-t}$, which tends very quickly to $0$ when $t\to\infty$. This allows us to prove the convergence of 
+\eqref{eq:MellinAD} with very weak hypothesis for $A(t)$. 
+For instance, when $G(x,t)$ is the generating function for the Bernoulli polynomials,
+\eqref{eq:MellinAD} becomes
+\[
+   H(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} G(x,-t)\,t^{s-1}\,dt 
+         = \frac{1}{\Gamma(s)} \int_{0}^{\infty} \frac{t}{1-e^{-t}} e^{-xt} t^{s-1}\,dt
+\]
+and it is clear that this integral is convergent for every $x>0$ when $s$ is in right half-plane $\Re(s) > 0$.
+
+But this is no longer true when $\alpha \ne -1/2$.
+Actually, let us recall that $\Ea(z) = e^{z} \, {}_1F_1(\alpha+1/2,2\alpha+2,-2z)$.
+For proving the convergence of the integral we need to estimate the size of the integrand in~\eqref{eq:MellinAD}; in particular, the size of the factor $\Ea(-xt)$.
+
+With this aim, let us use the asymptotic expansions of the Kummer confluent hypergeometric function ${}_1F_1(\cdot , \cdot , z)$ for $|z| \to \infty$ in the sectors
+\begin{gather*}
+S_+ = \left\lbrace z \in \C: -\pi/2 < \arg(z) < 3\pi/2 \right\rbrace , \\
+S_- = \left\lbrace z \in \C: -3\pi/2 < \arg(z) < \pi/2 \right\rbrace 
+\end{gather*}
+(see, for instance \cite[p.~128]{Rosler-LN}).
+In our case, these asymptotic expansions are, respectively, of the form
+\begin{equation}
+\label{eq:asymptotic-1f1}
+\begin{aligned}
+& {}_1F_1\left(\frac{2\alpha+1}{2},2\alpha+2,z\right) 
+= \frac{\Gamma(2\alpha+2)}{\Gamma(\frac{2\alpha+1}{2})}e^z z^{-\alpha-3/2} 
+\left( 1 + \calO\Big(\frac{1}{|z|}\Big)\right) \\
+&\qquad\qquad\qquad\qquad 
++ \frac{\Gamma(2\alpha+2)}{\Gamma(\frac{2\alpha+3}{2})} e^{\pm{(2\alpha+1)i\pi}/{2}} 
+z^{-\alpha-1/2} \left( 1 + \calO\Big(\frac{1}{|z|}\Big)\right) .
+\end{aligned}
+\end{equation}
+Notice that, in the case $\alpha=-1/2$, the coefficient of the first summand is $\Gamma(1)/\Gamma(0) = 0$, so the first summand vanishes. Otherwise (for simplicity, let us assume here that the variable $z$ is real), the ``exponential parts'' for $\Ea(z) = e^{z} \, {}_1F_1(\alpha+1/2,2\alpha+2,-2z)$ in \eqref{eq:asymptotic-1f1} appears as $e^{-z}$ in the first summand, and as $e^{z}$ in the second summand. Then, the asymptotic size $e^{-t}$ (for $t\to\infty$) of the classical case $\alpha=-1/2$ becomes something similar to $\Ea(-t) \sim e^{|t|}$ for $\alpha\ne-1/2$. In this way, instead of ``a help'' to prove the convergence of~\eqref{eq:MellinAD}, the factor $\Ea(-xt)$ is a handicap, and a further analysis will be necessary to state the convergence of~\eqref{eq:MellinAD}. 
+
+On the other hand, we would like to rewrite the function $H(s,x)$ that appears in Theorem~\ref{teo:MellinAD} as a series, just as it occurs in the classical zeta function.
+
+For the generating function of the Bernoulli polynomials, the Mellin transform of the $G(x,-t)$ is, for $x>0$ and $\Re(s)>0$,
+\begin{equation}
+\label{eq:trickGeo}
+\begin{aligned}
+  H(s,x) &= \frac{1}{\Gamma(s)} \int_{0}^{\infty} G(x,-t)\,e^{-xt}\,t^{s-1}\,dt 
+  = \frac{1}{\Gamma(s)} \int_{0}^{\infty} \frac{t}{1-e^{-t}}\,e^{-xt}\,t^{s-1}\,dt 
+  \\
+  &= \frac{1}{\Gamma(s)} \int_{0}^{\infty} \sum_{n=0}^\infty e^{-nt} \,e^{-xt}\,t^{s}\,dt
+  = \frac{1}{\Gamma(s)} \sum_{n=0}^\infty \int_{0}^{\infty} e^{-(n + x)t}\,t^{s}\,dt
+  \\
+  &= \frac{\Gamma(s+1)}{\Gamma(s)} \sum_{n=0}^\infty \frac{1}{(n + x)^{s+1}}
+  = s \sum_{n=0}^\infty \frac{1}{(n + x)^{s+1}}
+\end{aligned}
+\end{equation}
+(a similar method can be followed for the Euler polynomials, as well as other Appell sequences; see, for instance, \cite{NRV-2018}).
+Then, $H(s,x)$ can be given, for $x>0$ and $\Re(s)>0$, in terms of the Hurwitz zeta function
+\begin{equation}
+\label{eq:zetaserie}
+\zeta(s,x) = \sum_{n=0}^{\infty} \frac{1}{(x+n)^{s}},
+\end{equation}
+so $H(s,x)$ is the analytic continuation (in the variable $s$) of $s\zeta(s+1,x)$ for $\zeta$ defined in~\eqref{eq:zetaserie} by means of a series that converges in a certain domain. Or, with the same meaning, we can say that the analytic continuation of the function $\zeta(s,x)$ defined in~\eqref{eq:zetaserie} is $H(s-1,x)/(s-1)$. 
+
+Let us finally note that, in the previous example related to the Bernoulli polynomials, 
+$A(-t)$ was written, essentially, as a geometric series 
+$\sum_{n=0}^{\infty} {(e^{-t})}^n$, and then $H(s,x)$ was computed as 
+a series where there was a way to compute each summand.
+The analogous behavior for the Dunkl case is much more cumbersome. 
+Not only is it not possible to express the integrals by means of well-known standard functions, but also the summands $1/(x+n)$ of the series become Dunkl translations instead of ordinary translations. 
+
+%-----------
+\subsection{The Bernoulli-Dunkl case}
+\label{subsec:BD}
+%-----------
+
+To adapt Theorem~\ref{teo:MellinAD} to the case of the Bernoulli-Dunkl polynomials defined in~\eqref{eq:defbd}, let us first note that $\I_\alpha(t)$ is an even function, so the denominator in the left hand side of \eqref{eq:defbd} can be written as 
+\begin{equation}
+\label{eq:IEE}
+\I_{\alpha+1}(t) = \frac{\alpha+1}{t}(\Ea(t)-\Ea(-t)).
+\end{equation}
+
+Then, concerning \eqref{eq:MellinAD} for the Bernoulli-Dunkl case, we have the following:
+
+\begin{lemma}
+\label{lem:Mellin-BD}
+For $\alpha>-1$ and $x \in (-1,1)$, the integral
+\[
+    H(s,x) = \frac{1}{\Gamma(s)} 
+    \int_{0}^{\infty} \frac{\Ea(-xt)}{\I_{\alpha+1}(t)} t^{s-1}\,dt
+    = \frac{1}{(\alpha+1)\Gamma(s)}
+    \int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)-\Ea(-t)} t^{s}\,dt
+\]
+converges in the right plane $\Re(s) > 0$ to a holomorphic function.
+\end{lemma}
+
+\begin{proof}
+The convergence of the integral for $t$ near $0$ is clear, 
+so let us analyse what happens when $t \to \infty$.
+By using \eqref{eq:asymptotic-1f1}, we have, for $|z|\to\infty$,
+%% Es m\'as c\'omodo usar $\Ea(-z)$ para no tener que arrastrar 
+%% los $-$ que saldr\'ian si us\'aramos $\Ea(z)$
+\begin{equation*}
+%\label{eq:asymptotic-Ea}
+\begin{aligned}
+\Ea(-z) &= e^{-z} \,{}_1F_1\left(\frac{2\alpha+1}{2},2\alpha+2,2z\right) \\
+&= \frac{\Gamma(2\alpha+2)}{\Gamma(\frac{2\alpha+1}{2})} e^z (2z)^{-\alpha-3/2} 
+\left( 1 + \calO\Big(\frac{1}{|z|}\Big)\right) \\
+&\qquad\quad 
++ \frac{\Gamma(2\alpha+2)}{\Gamma(\frac{2\alpha+3}{2})} e^{\pm{(2\alpha+1)i\pi}/{2}} 
+e^{-z} (2z)^{-\alpha-1/2} \left( 1 + \calO\Big(\frac{1}{|z|}\Big)\right) .
+\end{aligned}
+\end{equation*}
+For simplicity, let us write it as
+\[
+\Ea(-z) = C_1 e^z z^{-\alpha-3/2} \left( 1 + \calO\Big(\frac{1}{|z|}\Big)\right)
++ C_2^{\pm} e^{-z} z^{-\alpha-1/2} \left( 1 + \calO\Big(\frac{1}{|z|}\Big)\right).
+\]
+When $\alpha=-1/2$ then $C_1 = 0$; but this case is well-known and we do not need to analyse it. Then, let us assume that $\alpha \ne -1/2$.
+
+Now, let us suppose that $x > 0$. Then we have, for $t \to \infty$
+(without lost of generality we can assume $|xt|>1$), 
+\begin{equation}
+\label{asint-c3}
+\Big|\frac{\Ea(-xt)}{\Ea(t)-\Ea(-t)} t^{s} \Big| = 
+C_3 \frac{e^{xt} (xt)^{-\alpha-3/2} t^{\Re(s)} ( 1 + \calO(|xt|^{-1})) }
+{e^t t^{-\alpha-1/2} ( 1 + \calO(|t|^{-1}))};
+\end{equation}
+this guarantees the convergence of the integral for $0 \le x < 1$. 
+For $x < 0$ we have
+\begin{equation}
+\label{asint-c4}
+\Big|\frac{\Ea(-xt)}{\Ea(t)-\Ea(-t)} t^{s} \Big| = 
+C_4 \frac{e^{|xt|} |xt|^{-\alpha-1/2} t^{\Re(s)} ( 1 + \calO(|xt|^{-1})) }
+{e^t t^{-\alpha-1/2} ( 1 + \calO(|t|^{-1}))},
+\end{equation}
+and this guarantees the convergence of the integral for $-1 < x \le 0$. 
+
+By standard arguments on differentiation of parametric integrals, together with the above estimates, the function $H(s,x)$ is holomorphic on~$s$.
+\end{proof}
+
+The above lemma proves the hypothesis of Theorem~\ref{teo:MellinAD} for $x\in(-1,1)$. Then, we have the following:
+
+\begin{theorem}
+\label{teo:mellinBD}
+Let $\Ea(xt)/\I_{\alpha+1}(t)$ be the generating function of Bernoulli-Dunkl polynomials. 
+Then for $x \in (-1,1)$, the integral
+\begin{equation}
+\label{eq:mellinBD}
+H(s,x) = \frac{1}{\Gamma(s)} 
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\I_{\alpha+1}(-t)} t^{s-1}\,dt
+= \frac{1}{(\alpha+1)\Gamma(s)}
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)-\Ea(-t)} t^{s}\,dt
+\end{equation}
+converges in the right plane $\Re(s) > 0$ to a holomorphic function, which may be analytically continued to an entire function of $s$ satisfying
+\begin{equation*}
+%\label{eq:H-nx}
+  H(-n,x) = \frac{n!}{\gamma_{n,\alpha}}\B_{n,\alpha}(x),\quad n=0,1,2,\dots
+\end{equation*}
+\end{theorem}
+
+The next step is to try to write $H(s,x)$, for $\Re(s)>0$, as a kind of Hurwitz function similar to \eqref{eq:zetaserie}, as in the classical Bernoulli case.
+% Let us firstly observe what happens in the classical Bernoulli case, 
+% and then we will try to adapt it to the Dunkl context.
+
+In order to compute $H(s,x)$ we may write $A(t) = 1/\I_{\alpha+1}(t)$ as a geometric series. To do that, we use the fact that $\I_{\alpha+1}(t)$ is an even function, and we use the definition of $\Ea(t)$. By \eqref{eq:IEE} we have that 
+%\begin{equation*}
+%\Ea(t) = \I_{\alpha}(t) + \frac{t}{2(\alpha+1)}\I_{\alpha+1}(t), 
+%\quad
+%\Ea(-t) = \I_{\alpha}(t) - \frac{t}{2(\alpha+1)}\I_{\alpha+1}(t),
+%\end{equation*}
+%so
+%\[
+%\I_{\alpha+1}(t) = \frac{\alpha+1}{t}\left( \Ea(t) - \Ea(-t)\right),
+%\]
+%and hence,
+\[
+A(t) = \frac{1}{\I_{\alpha+1}(t)} 
+= \frac{t}{\alpha+1} \frac{1}{\Ea(t)} \frac{1}{1 - \frac{\Ea(-t)}{\Ea(t)}}
+= \frac{t}{\alpha+1} \frac{1}{\Ea(t)} \sum_{n=0}^{\infty} \left(\frac{\Ea(-t)}{\Ea(t)}\right)^n.
+\]
+This is valid for all $t \geq 0$ and it is enough for our purposes since we just need convergence for $t \in [0, \infty)$.
+
+Finally, we have
+\begin{equation}
+\label{eq:sumFBD}
+\begin{aligned}
+H(s,x) & = \frac{1}{\Gamma(s)} \int_{0}^{\infty} 
+\frac{\Ea(-xt)}{\I_{\alpha+1}(t)} t^{s-1} \,dt \\
+& = \frac{1}{\Gamma(s)} \frac{1}{\alpha+1}
+\sum_{n=0}^{\infty} \int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)}
+\left(\frac{\Ea(-t)}{\Ea(t)}\right)^n t^{s} \,dt.
+\end{aligned}
+\end{equation}
+Notice that, in a similar way to the proof of Lemma~\ref{lem:Mellin-BD}, we can easily check that all the integrals in \eqref{eq:sumFBD} are convergent for $x \in (-1,1)$, and the interchange of the sum and the integral is justified.
+However, \eqref{eq:sumFBD} is more complicated than \eqref{eq:trickGeo}; the integrals cannot be written in a closed form and we don't obtain something as simple as~\eqref{eq:zetaserie}.
+
+In any case, we can define a kind of Hurwitz function related to the Bernoulli-Dunkl case in the following way (observe that, with the notation of \eqref{eq:sumFBD} and~\eqref{eq:sumFBD}, now we are changing $s$ to $s-1$):
+
+\begin{definition}
+\label{def:HD-zeta}
+For $x \in (-1, 1)$ and $\Re(s) > 1$, we define the Hurwitz-Dunkl zeta function as
+\begin{equation}
+\label{eq:HD}
+\zeta_{\alpha}(s,x) = \frac{1}{\Gamma(s)} \sum_{n=0}^{\infty}
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)} \left(\frac{\Ea(-t)}{\Ea(t)}\right)^n t^{s-1} \,dt.
+\end{equation}
+Also, we call
+\begin{equation}
+\label{eq:sumandoHD}
+d_{\alpha}(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)} t^{s-1} \,dt
+\end{equation}
+the basic Hurwitz-Dunkl term.
+\end{definition}
+
+Then we have, for $x \in (-1, 1)$ and $\Re(s)>0$,
+\begin{equation}
+\label{eq:HtozetaBD}
+H(s,x) = \frac{s}{\alpha+1} \,\zeta_{\alpha}(s+1,x),
+\end{equation}
+so we can say that the function $H(s,x)$ of Theorem~\ref{teo:MellinAD} (which exists for $s\in\C$) is the analytic extension to the $s$-complex plane 
+of the function $\frac{s}{\alpha+1} \,\zeta_{\alpha}(s+1,x)$; 
+equivalently, we can define the analytic extension of
+\begin{equation}
+\label{eq:HD-zeta1}
+  \zeta_{\alpha}(s,x) =  \frac{1}{\Gamma(s)}
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)-\Ea(-t)} t^{s-1}\,dt, 
+\quad \Re(s) > 1
+\end{equation}
+(which corresponds to~\eqref{eq:HD}) as
+\begin{equation}
+\label{eq:HD-zeta}
+  \zeta_{\alpha}(s,x) = \frac{\alpha+1}{s-1} H(s-1,x),
+  \quad s \in \C,
+\end{equation}
+valid for $x \in (-1,1)$. 
+
+Finally, let us see how it is possible to give an expression for $\zeta_{\alpha}(s,x)$ (valid in the half plane $\Re(s)>1$) which, in some sense, is very similar to the series~\eqref{eq:zetaserie} for the classical Hurwitz zeta function $\zeta(s,x)$, where we have a series of summands translated by means of $x \mapsto x+n$. In the Dunkl case, we are going to find an expression for $\zeta_{\alpha}(s,x)$ that, in the place of classical translations, use the Dunkl transform defined in~\eqref{eq:translation}. 
+
+The following theorem provides an expression of the Hurwitz-Dunkl zeta function by using Dunkl translations. For simplicity, we have defined, here and in what follows, a ``symmetric translation'' $\sigma_1$ as 
+\[
+\sigma_1 = \tau_{1}\tau_{-1}^{-1}
+\]
+(or $\sigma_{1,x} = \tau_{1,x}\tau_{-1,x}^{-1}$ to clarify that it is applied to the variable~$x$). Notice that the composition of translation operators is commutative, and also the composition with inverse translations (see its expression in~\eqref{eq:tau-inv}), so we can use $\sigma_1^n = \tau_{1}^n\tau_{-1}^{-n}$ without paying attention to the order of the operators.
+
+\begin{theorem}
+\label{teo:HD-traslations}
+For $\Re(s) > 1$, the Hurwitz-Dunkl zeta function can be written as
+\begin{equation}
+\label{eq:HD-traslations}
+\zeta_{\alpha}(s,x) = \frac{1}{\Gamma(s)} \sum_{n=0}^{\infty}
+\sigma_1^n \int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)} t^{s-1} \,dt
+= \sum_{n=0}^{\infty} \sigma_1^n  d_{\alpha}(s,x).
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof of Theorem~\ref{teo:HD-traslations}]
+From Lemma~\ref{lem:tau-n-n}, we have that
+\begin{align*}
+\tau_{1}^n \big( \Ea(-t\cdot) \big)(x) & = \Ea(-xt)\Ea(-t)^n, \\
+\tau_{-1}^{-(n+1)} \big( \Ea(-t\cdot) \big)(x) & = \Ea(-xt)/ \Ea(t)^{n+1}
+\end{align*}
+hold. This can be easily proved as it was stated in Lemma~\ref{lem:tau-n-n} by changing $\Ea(t\cdot)$ for $\Ea(-t\cdot)$. So, from Lemma~\ref{lem:tau-n-m} we can conclude that
+\begin{align*}
+\tau_{1}^n \tau_{-1}^{-(n+1)} \big( \Ea(t\cdot) \big)(-x) = 
+\tau_{1}^n \left( \frac{\Ea(-t\cdot)}{\Ea(t)^{n+1}} \right) (x) 
+& = \Ea(-xt)\frac{\Ea(-t)^n}{\Ea(t)^{n+1}}   \\
+& = \frac{\Ea(-xt)}{\Ea(t)}\left(\frac{\Ea(-t)}{\Ea(t)}\right)^n,
+\end{align*}
+and Lemma~\ref{lem:tau-integral} gives us that
+\begin{align*}
+%\label{eq:integrand}
+H(s,x) & = \frac{1}{\Gamma(s)} \frac{1}{\alpha+1}
+\sum_{n=0}^{\infty} \int_{0}^{\infty} \tau_{1}^n \tau_{-1}^{-(n+1)}
+\big( \Ea(-t\cdot) \big)(x) t^{s} \,dt \\
+&  = \frac{1}{\Gamma(s)} \frac{1}{\alpha+1}
+\sum_{n=0}^{\infty} \sigma_1^n  
+\int_{0}^{\infty} \tau_{-1}^{-1} \big( \Ea(-t\cdot) \big)(x) t^{s} \,dt  \\
+&  = \frac{1}{\Gamma(s)} \frac{1}{\alpha+1} 
+\sum_{n=0}^{\infty} \sigma_1^n 
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)} t^{s} \,dt,
+\end{align*}
+and the proof is concluded.
+\end{proof}
+
+Let us see that the role of $\zeta_{\alpha}(s,x)$ with the Mellin transform of Appell-Dunkl sequences is the same as the role of $\zeta(s,x)$ with the Mellin transform of Appell sequences. In fact, it generalizes the traditional Hurwitz zeta function. To see that, we observe that to transform Bernoulli polynomials into Bernoulli-Dunkl polynomials, we had to change $x \mapsto (x+1)/2$ and $t \mapsto 2t$. For that, we need to undo the change to recover the classical Hurwitz zeta function, that means, to take $\alpha=-1/2$, $x\mapsto 2x-1$ and $t\mapsto t/2$ (although many times we will not change~$t$). 
+
+Now, let $\alpha=-1/2$. Then,
+\[
+d_{-1/2}(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} e^{-t(x+1)}t^{s-1} \,dt 
+= \frac{1}{(x+1)^{s}}
+\]
+if $x \in (-1,1)$. In this case, $\tau_{1}^n(f)(x) = f(x+n)$ and $\tau_{-1}^{-n}(f)(x) = f(x+n)$ and hence, 
+\[
+\zeta_{-1/2}(s,x) = \sum_{n=0}^{\infty} \frac{1}{(x+1+2n)^{s}}.
+\]
+And finally, as we are considering Bernoulli-Dunkl polynomials, we need to change $x \mapsto 2x - 1$. Hence,
+\[
+\zeta_{-1/2}(s,2x-1) = \sum_{n=0}^{\infty} \frac{1}{(2x+1-1+2n)^{s}} =
+\frac{1}{2^s}
+\sum_{n=0}^{\infty} \frac{1}{(x+n)^{s}} =  \frac{1}{2^s}\zeta(s,x).
+\]
+Furthermore, \eqref{eq:HD-zeta} is an integral representation of $\zeta_\alpha(s,x)$ which, as expected, generalizes under these changes the classical integral representation of~$\zeta(s,x)$:
+\begin{equation*}
+\zeta(s,x) = \frac{1}{\Gamma(s)}\int_{0}^{\infty} \frac{e^{-xt}}{1-e^{-t}}t^{s-1}\,dt.
+\end{equation*} 
+Next we summarize some of the properties of $\zeta_\alpha(s,x)$ that generalize the ones for $\zeta(s,x)$; we have already proved most of them in the preceding sections, or they are direct consequences:
+
+\begin{proposition}[Properties of $\zeta_\alpha(s,x)$]
+\label{prop:basic-z}
+For $\alpha>-1$ and $x \in (-1,1)$, the function $\zeta_\alpha(s,x)$ satisfies the following:
+\begin{enumerate}
+\item Recurrence identities: let $\sigma_1 = \tau_1 \tau_{-1}^{-1}$; then for $\Re(s)>0$,
+\begin{equation}
+\label{eq:rec-HD}
+    \zeta_{\alpha}(s,x) - \sigma_1(\zeta_{\alpha}(s,\cdot))(x) = d_{\alpha}(s,x),
+\end{equation}
+\begin{equation}
+\label{eq:rec-m-HD}
+    \zeta_{\alpha}(s,x) - \sigma_1^m(\zeta_{\alpha}(s,\cdot))(x) 
+    = \sum_{n=0}^{m-1} \sigma_1^{n}d_{\alpha}(s,x).
+\end{equation}
+\item The Dunkl derivative of $\zeta_{\alpha}$:
+\begin{equation}
+\label{eq:prop-der-dunkl}
+\Lambda_{\alpha,x} (\zeta_{\alpha}(s,x)) = -s \zeta_{\alpha}(s+1,x).
+\end{equation}
+\item Relation of $\zeta_{\alpha}$ with Bernoulli-Dunkl polynomials:
+for $n=0,1,2,\dots$, we have
+\begin{equation}
+\label{eq:HLD-ber-dunkl}
+    \zeta_{\alpha}(-n,x) = -\B_{n+1,\alpha}(x) \frac{(\alpha+1)n!}{\gamma_{n+1,\alpha}}.
+\end{equation}
+\end{enumerate}
+\end{proposition}
+
+
+Now we show that when $\alpha=-1/2$ and $x\mapsto 2x - 1$ we get the corresponding properties of the classical $\zeta(s,x)$. First, for the recurrence identities, we have $\sigma_1^n (f(x)) = f(x+2n)$ so $\sigma_1^n (\zeta_{\alpha}(s,\cdot))(x) = \zeta_{\alpha}(s,x+2n)$ and hence, \eqref{eq:rec-HD} transforms into 
+\begin{equation*}
+%\label{eq:trad-rec-HD}
+    \zeta(s,x) = \zeta(s,x+1) + x^{-s}
+\end{equation*}
+and \eqref{eq:rec-m-HD} transforms into
+\begin{equation*}
+%\label{eq:trad-rec-m-HD}
+    \zeta(s,x) = \zeta(s,x+m) + \sum_{n=0}^{m-1}(x+n)^{-s}
+\end{equation*}
+(see, for instance \cite[25.11.3 and 25.11.4]{OlMa-NIST}). Basically, the Dunkl translation $\sigma_1$ is playing the role of $x+1$ in the Hurwitz function.
+
+In the case $\alpha=-1/2$, we have $\Lambda_{-1/2,x} = d/dx$, so \eqref{eq:prop-der-dunkl} transforms into (see, for instance, \cite[25.11.17]{OlMa-NIST})
+\[
+\frac{d}{dx}\zeta(s,x) = -s \zeta(s+1,x).
+\]
+
+
+We also get the classical relation with Bernoulli polynomials since
+\begin{equation*}
+\zeta_{-1/2}(-n,2x-1) = -\B_{n+1,-1/2}(2x-1)\frac{n!}{(n+1)!}\frac{1}{2} 
+= -B_{n+1}(x)2^{n+1}\frac{1}{n+1}\frac{1}{2}.
+\end{equation*}
+Since $\zeta_{-1/2}(-n,2x-1)=2^{n}\zeta(-n,x)$, we get (see \cite[25.11.14]{OlMa-NIST})
+\begin{equation}
+\label{eq:bern-hurw}
+    \zeta(-n,x) = -\frac{B_{n+1}(x)}{n+1}.
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Euler-Dunkl case
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+\subsection{The Euler-Dunkl case}
+\label{subsec:ED}
+%-----------
+
+This is similar to the Bernoulli-Dunkl case, but with $A(t) = 1/\I_{\alpha}(t)$.
+
+\begin{theorem}
+\label{teo:mellinED}
+Let $\Ea(xt)/\I_{\alpha}(t)$ be the generating function of Euler-Dunkl polynomials.
+Then for $x \in (-1,1)$, the integral
+\begin{equation*}
+%\label{eq:mellinED}
+H(s,x) = \frac{1}{\Gamma(s)} 
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\I_{\alpha}(-t)} t^{s-1}\,dt
+= \frac{2}{\Gamma(s)}
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)+\Ea(-t)} t^{s-1}\,dt
+\end{equation*}
+converges in the right plane $\Re(s) > 0$ to a holomorphic function, which may be analytically continued to an entire function of $s$ satisfying
+\begin{equation*}
+  H(-n,x) = \frac{n!}{\gamma_{n,\alpha}} \E_{n,\alpha}(x),\quad n=0,1,2,\dots
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+The statement that $H(s,x)$ is convergent for $-1<x<1$ holds by the same reasoning we made in the Bernoulli-Dunkl case. Hence, by Theorem~\ref{teo:MellinAD}, we have $H(-n,x) = n!\,\E_{n,\alpha}(x)/\gamma_{n,\alpha}$, for $n=0,1,2,\dots$
+By the same argument as in the Bernoulli-Dunkl case, we can write $A(t)$ as a geometric series as 
+\[
+A(t) = \frac{1}{\I_{\alpha}(t)} 
+= \frac{2}{\Ea(t)}
+\frac{1}{1 + \frac{\Ea(-t)}{\Ea(t)}} 
+=  \frac{2}{\Ea(t)} \sum_{n=0}^{\infty} \left(\frac{-\Ea(-t)}{\Ea(t)}\right)^n.
+\]
+The special function $H(s,x)$ is giving (when $-1<x<1$) by
+\begin{align*}
+H(s,x) & = \frac{1}{\Gamma(s)} \int_{0}^{\infty} \frac{\Ea(-xt)}{\I_{\alpha}(t)} t^{s-1} \,dt 
+= \frac{2}{\Gamma(s)} \sum_{n=0}^{\infty}
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)} \left(\frac{-\Ea(-t)}{\Ea(t)}\right)^n t^{s-1} \,dt \\
+& = \frac{2}{\Gamma(s)} \sum_{n=0}^{\infty}(-1)^n \sigma_1^n 
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)} t^{s-1} \,dt,
+\end{align*}
+which concludes the proof.
+\end{proof}
+
+\begin{definition}
+\label{def:HD-zeta-euler}
+For $x \in (-1, 1)$ and $\Re(s) > 0$, we define the Hurwitz-Dunkl zeta function of Euler type as
+\begin{equation}
+\label{eq:z-euler-dunkl}
+\zeta_{E,\alpha}(s,x) = \frac{1}{\Gamma(s)} \sum_{n=0}^{\infty}
+(-1)^n \sigma_1^n  \int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)} t^{s-1} \,dt.
+\end{equation}
+\end{definition}
+
+Finally, notice that the function $H(s,x)$ may be extended to the entire complex $s$-plane and we have, for $x \in (-1, 1)$ and $\Re(s)>0$,
+\begin{equation*}
+%\label{eq:HtozetaED}
+H(s,x) = 2\zeta_{E,\alpha}(s,x).
+\end{equation*}
+Hence, we can consider, equivalently, that the analytic extension of
+\begin{equation}
+\label{eq:HD-zetaHE0}
+  \zeta_{E,\alpha}(s,x) 
+  =  \frac{1}{\Gamma(s)}
+\int_{0}^{\infty} \frac{\Ea(-xt)}{\Ea(t)+\Ea(-t)} t^{s-1}\,dt,
+\quad \Re(s) >0
+\end{equation}
+(which corresponds to~\eqref{eq:z-euler-dunkl}) is
+\begin{equation}
+\label{eq:HDE-zeta}
+  \zeta_{E,\alpha}(s,x) = \frac{1}{2} H(s,x), 
+  \quad s \in \C.
+\end{equation}
+
+Again, when $\alpha -1/2$ and $x \mapsto 2x-1$ (now by \eqref{eq:EtoE} we make the changes to recover Euler polynomials from Euler-Dunkl polynomials, as we did with the Hurwitz-Dunkl zeta function) we get the function
+\begin{equation*}
+%\label{eq:z-euler}
+\zeta_{E,-1/2}(s,2x-1) = \frac{1}{2^s} \sum_{n=0}^{\infty}
+\frac{(-1)^n}{(x+n)^s} = \frac{1}{2^s} \zeta_{E}(s,x),
+\end{equation*}
+where $\zeta_{E}(s,x)$ is called the Hurwitz-type Euler zeta function (see, for instance,~\cite{SuHu}). Again, $\zeta_{\alpha,E}$ generalized many properties of $\zeta_{E,\alpha}$ by the changes $\alpha = -1/2$ and $x\mapsto 2x-1$ (and sometimes also $t \mapsto t/2$). There is also the recurrence identity 
+\[
+\zeta_{E,\alpha}(s,x) + \sigma_1(\zeta_{E,\alpha}(s,\cdot))(x) = d_{\alpha}(s,x)
+\] 
+which generalizes \cite[(2.1)]{SuHu} and \eqref{eq:HDE-zeta} is an integral representation that generalizes \cite[(3.1)]{WiZ}. Moreover, it is easy to prove that the relation of $\zeta_{E,\alpha}$ with Euler-Dunkl polynomials
+\begin{equation*}
+    \zeta_{E,\alpha}(-n,x) = \frac{1}{2}\E_{n,\alpha}(x)  \frac{n!}{\gamma_{n,\alpha}}
+\end{equation*}
+holds for all $x \in (-1,1)$ and $n=0,1,2,\dots$, which give, when we recover the classical Hurwitz-type Euler zeta function, the identity (see \cite[(2.7)]{SuHu})
+\begin{equation*}
+%\label{eq:trad-euler}
+\zeta_{E}(-n,x) = \frac{1}{2} E_n(x).
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The generalized Bernoulli-Dunkl case
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+\subsection{The generalized Bernoulli-Dunkl case}
+%-----------
+
+In the Bernoulli-Dunkl case we had
+\[
+ A(t) = \frac{1}{\I_{\alpha+1}(t)} 
+ = \frac{t}{\alpha+1} \frac{1}{\Ea(t)}\frac{1}{1 - \frac{\Ea(-t)}{\Ea(t)}}.
+\]
+For $r$ a positive integer, the generalized Bernoulli-Dunkl polynomials are defined as $A(t)^r E_\alpha(xt) = \sum_{n=0}^{\infty} \B_{n,\alpha}^{(r)}(x)t^n/\cc_{n,\alpha}$, and we have
+\[
+A(t)^r = \left( \frac{t}{\alpha+1}\frac{1}{\Ea(t)}
+\sum_{n=0}^{\infty} \left(\frac{\Ea(-t)}{\Ea(t)}\right)^n\right)^r.
+\]
+
+\begin{theorem}
+\label{teo:genBD}
+Let $\Ea(xt)/(\I_{\alpha+1}(t))^r$ be the generating function of Bernoulli-Dunkl polynomials of order $r=1,2,\dots$ Then for each $x \in (-r,r)$ the integral
+\begin{equation}
+\label{eq:mellinBDr}
+H(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} 
+\frac{\Ea(-xt)}{\left(\I_{\alpha+1}(t)\right)^r} t^{s-1} \,dt
+\end{equation} 
+converges in the right plane $\Re(s) > r$ to a holomorphic function, which may be analytically continued to an entire function of $s$ satisfying
+\begin{equation*}
+  H(-n,x) = \frac{n!}{\gamma_{n,\alpha}} \B_{n,\alpha}^{(r)}(x),\quad n=0,1,2,\dots
+\end{equation*}
+\end{theorem}
+
+The theorem can be easily proved by the same arguments as in Theorem~\ref{teo:MellinAD} and in Subsection~\ref{subsec:BD}. The only thing left to prove is the convergence of $H(s,x)$ in $x \in (-r,r)$.
+
+\begin{proof}[Proof of Theorem~\ref{teo:genBD}]
+Let us first analyze the convergence of the integral \eqref{eq:mellinBDr}.
+We use the asymptotic behavior of the Kummer confluent hypergeometric function given in \eqref{eq:asymptotic-1f1}, and proceed as in the proof of Lemma~\ref{lem:Mellin-BD}. If $x > 0$, the ``exponential part'' of the integrand of $H(s,x)$ has size $e^{-t(x+r)}$, so the integral converges if $x<r$. Repeating the argument for $x<0$, we get the convergence in $x\in(-r,r)$.
+
+Let us use that, for $r=1,2,\dots$ and $|z|<1$, 
+\[
+  \left(\sum_{n=0}^{\infty} z^n\right)^r 
+  = \frac{1}{(1-z)^r} = \sum_{n=0}^{\infty} \binom{r+n-1}{n} z^n.
+\]
+Then,
+\begin{align*}
+A(t)^r &= \left( \frac{t}{\alpha+1}\frac{1}{\Ea(t)}
+\sum_{n=0}^{\infty} \left(\frac{\Ea(-t)}{\Ea(t)}\right)^n\right)^r \\
+%= \frac{t^r}{(\alpha+1)^r}\frac{1}{\Ea(t)^r} 
+%\left(\sum_{n=0}^{\infty} \left(\frac{\Ea(-t)}{\Ea(t)}\right)^n\right)^r \\
+&= \frac{t^r}{(\alpha+1)^r}\frac{1}{\Ea(t)^r} 
+\sum_{n=0}^{\infty} \binom{r+n-1}{n} \left(\frac{\Ea(-t)}{\Ea(t)}\right)^n.
+\end{align*}
+Hence,
+\begin{align*}
+H(s,x) & = \frac{1}{\Gamma(s)} \int_{0}^{\infty} 
+\frac{\Ea(-xt)}{\left(\I_{\alpha+1}(t)\right)^r} t^{s-1} \,dt \\
+%% & = \frac{1}{\Gamma(s)} \int_{0}^{\infty} \Ea(-xt) \frac{1}{(\alpha+1)^r} 
+%%% \frac{1}{\left(\Ea(t)\right)^r} \sum_{n=0}^{\infty} \binom{r+n-1}{n} 
+%%% \left(\frac{\Ea(-t)}{\Ea(t)}\right)^n t^{s+r-1} \,dt \\
+& = \frac{1}{\Gamma(s)} \frac{1}{(\alpha+1)^r} 
+\sum_{n=0}^{\infty} \binom{r+n-1}{n} \int_{0}^{\infty}
+\frac{ \Ea(-xt)}{\left(\Ea(t)\right)^r} 
+\left(\frac{\Ea(-t)}{\Ea(t)}\right)^n t^{s+r-1} \,dt \\
+%% & = \frac{1}{\Gamma(s)} \frac{1}{(\alpha+1)^r}\sum_{n=0}^{\infty} \binom{r+n-1}{n}
+%% \int_{0}^{\infty} \tau_{-1}^n \tau_1^{-(n+r)}
+%% \left( \Ea(t\cdot) \right)(-x) t^{s} \,dt \\
+&  = \frac{\Gamma(s+r)}{\Gamma(s)} \frac{1}{(\alpha+1)^r}
+\sum_{n=0}^{\infty} \sigma_1^n 
+\Biggl( \binom{r+n-1}{n} \int_{0}^{\infty} 
+\frac{\Ea(-xt)}{\left(\Ea(t)\right)^r} t^{s+r-1} \,dt \Biggr),
+\end{align*}
+which proves the theorem.
+\end{proof}
+
+\begin{definition}
+\label{def:zetaBDr}
+For $\Re(s) > 1$ we define the Hurwitz-Dunkl zeta function of order $r=1,2,3,\dots$ as
+\[
+\zeta_{\alpha}^{(r)}(s,x) 
+ = \frac{1}{\Gamma(s)} \sum_{n=0}^{\infty} \binom{r+n-1}{n} \sigma_1^n 
+ \left(\int_{0}^{\infty} \frac{\Ea(-xt)}{\left(\Ea(t)\right)^r} t^{s-1} \,dt \right).
+\]
+
+As in \eqref{eq:sumandoHD} (that is, the case $r=1$), we can define the basic term
+\begin{equation*}
+%\label{eq:sumandoHDr}
+d_{\alpha}^{(r)}(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} 
+\frac{\Ea(-xt)}{(\Ea(t))^r} t^{s-1} \,dt
+\end{equation*}
+and then write
+\[
+\zeta_{\alpha}^{(r)}(s,x) 
+= \sum_{n=0}^{\infty} \binom{r+n-1}{n} \sigma_1^n d_{\alpha}^{(r)}(s,x).
+\]
+\end{definition}
+
+Notice that, as the function $H(s,x)$ is extended to the entire complex $s$-plane, and for $\Re(s)>0$ we have
+\begin{equation*}
+%\label{eq:Hzetaar}
+H(s,x) = \frac{(s)_r}{(\alpha+1)^r} \,\zeta_{\alpha}^{(r)}(s+r,x)
+\quad\text{for }\, \Re(s)>1-r.
+\end{equation*}
+Hence, we can define the extension of $\zeta_{\alpha}^{(r)}(s,x)$ to the complex plane by using $\zeta_{\alpha}^{(r)}(s+r,x) = (\alpha+1)^r H(s,x)/(s)_r$,
+i.e., by taking
+\[
+  \zeta_{\alpha}^{(r)}(s,x) = (\alpha+1)^r H(s-r,x)/(s-r)_r,
+  \qquad -r<x<r,\quad s \in \C,
+\]
+which generalizes~\eqref{eq:HD-zeta}.
+% Notice that when $r=1$, we have the Bernoulli-Dunkl polynomials.
+
+In the case $\alpha=-1/2$, this kind of zeta functions for the classical generalized Bernoulli polynomials has been studied in~\cite[\S\,4.4]{BayChi}; see also \cite[\S\,4.1]{BayChi} for the classical generalized Euler polynomials. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The generalized Euler-Dunkl case
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------
+\subsection{The generalized Euler-Dunkl case}
+%-----------
+
+Again, as we did with the generalized Bernoulli-Dunkl case, by using the generation function of the generalized Euler-Dunkl polynomials we have $A(t) = 1/\I_{\alpha}(t)$ and
+\[
+A(t)^r = \left( \frac{2}{\Ea(t)}
+\sum_{n=0}^{\infty} \left(-\frac{\Ea(-t)}{\Ea(t)}\right)^n\right)^r.
+\]
+
+\begin{theorem}
+\label{teo:genED}
+Let $\Ea(xt)/(\I_{\alpha}(t))^r$ be the generating function of Euler-Dunkl polynomials of order $r=1,2,\dots$ Then for each $x \in (-r,r)$ the integral
+\begin{equation*}
+%\label{eq:mellinEDr}
+H(s,x) = \frac{1}{\Gamma(s)} \int_{0}^{\infty} 
+\frac{\Ea(-xt)}{\left(\I_{\alpha}(t)\right)^r} t^{s-1} \,dt
+\end{equation*}
+converges in the right plane $\Re(s) > 0$ to a holomorphic function which may be analytically continued to an entire function of $s$ satisfying
+\begin{equation*}
+  H(-n,x) = \frac{n!}{\gamma_{n,\alpha}} \E_{n,\alpha}^{(r)}(x),\quad n=0,1,2,\dots
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+We only need to notice that
+\[
+A(t)^{r} = \frac{2^r}{\Ea(t)^r}
+\sum_{n=0}^{\infty} (-1)^n \binom{r+n-1}{n} \left(\frac{\Ea(-t)}{\Ea(t)}\right)^n,
+\]
+and proceed as in Theorem~\ref{teo:genBD}. 
+\end{proof}
+
+\begin{definition}
+\label{def:zetaEDr}
+For $\Re(s) > 0$ we define the Hurwitz-Dunkl zeta function of Euler type and order $r \in \mathbb{N}$ as
+\[
+\zeta_{E,\alpha}^{(r)}(s,x) = \sum_{n=0}^{\infty}  (-1)^n \binom{r+n-1}{n} \sigma_1^n d_{\alpha}(s,x).
+\]
+\end{definition}
+
+Finally, as the function $H(s,x)$ is extended to the entire complex $s$-plane, we have
+\begin{equation*}
+H(s,x) = 2^r \zeta_{E,\alpha}^{(r)}(s,x)
+\end{equation*}
+for $\Re(s)>0$. Hence, we can define the extension of $\zeta_{E,\alpha}^{(r)}(s,x)$ to the complex plane by 
+\[
+  \zeta_{E,\alpha}^{(r)}(s,x) = H(s,x)/2^r,
+  \qquad -r<x<r,\quad s \in \C.
+\]
+% Of course, the case $r=1$ led us to the Euler-Dunkl polynomials.
+
+%-----------
+\subsection{The generalized Hermite case}
+\label{subsec:Her}
+%-----------
+
+The classical Hermite polynomials $H_n(x)$ are giving by the generating function $e^{-t^2+2tx}$, and they are orthogonal on the real line with respect to the weight $e^{-x^2}$. 
+A well known generalization of these polynomials is the so-called generalized Hermite polynomials of order $\mu > -1/2$, which are orthogonal on the real line with respect to the weight $\omega_{\mu}(x) = |x|^{2\mu}e^{-x^2}$, that is, they are polynomials $\{H_n^{\mu}(x)\}_{n=0}^{\infty}$ satisfying
+\begin{equation*}
+    \int_{-\infty}^{\infty} H_m^{\mu}(x) H_n^{\mu}(x)\omega_{\mu}(x)\,dx = 0;
+\end{equation*}
+see, for instance, \cite{AlS}, \cite[Chapters 1 and~5]{Chi} or \cite[p.~380, problem 25]{Szego}.
+
+In \cite{Ros}, Rosenblum shows that these polynomials can be studied in the context of the Dunkl transform on the real line. This is done by means of 
+\begin{equation}
+\label{eq:Hergen}
+e^{-t^2}E_{\mu}(2xt) = \sum_{n=0}^{\infty} H_{n}^{\mu}(x)\frac{t^n}{n!}
+\end{equation}
+with $\mu = \alpha + 1/2$. Except by a simple change of variable, this is an Appell-Dunkl sequence in the sense of~\eqref{eq:ad}.
+
+For these polynomials, it is easy to find the analytic extension $H(s, x)$ such that, for $n$ a negative integer, the corresponding value is $H_{n}^{\mu}(x)$, except for a multiplicative constant. Due to the factor $e^{-t^2}$, which appears in \eqref{eq:Hergen},  
+the extension given in Theorem~\ref{teo:MellinAD} does not present any problem and is valid for $x\in\R$. The same happens with the integral 
+\[
+  \frac{1}{\Gamma(s)} \int_{0}^{\infty} e^{-t^2}E_{\mu}(-2xt) \,dt,
+\]
+which is similar to the ones that appear in Theorems~\ref{teo:mellinBD} or~\ref{teo:mellinED}.
+
+That leads us to the following result.
+
+\begin{theorem}
+Let $G(-t,x) = e^{-t^2}E_{\mu}(-2xt)$, with $\mu>-1/2$. Then, for $x \in \R$,
+\begin{align*}
+H(s,x) & = \frac{1}{\Gamma(s)} \int_{0}^{\infty} e^{-t^2}E_{\mu}(-2xt) \,dt \\
+& = \frac{\sqrt{\pi}}{2^s\Gamma(\frac{s+1}{2})}
+\,{}_1F_1\Big(\frac{s}{2},\mu+\frac{1}{2},x^2\Big) 
+- \frac{\sqrt{\pi}}{2^s\Gamma(\frac{s}{2})} \frac{x}{\mu+\frac{1}{2}}
+\,{}_1F_1\Big(\frac{s}{2},\mu+\frac{3}{2},x^2\Big)
+\end{align*}
+is an entire function of $s$ and satisfies $H(-n,x) = H_{n}^{\mu}(x)$ for $n=0,1,2,\dots$
+\end{theorem}
+
+In fact, we have $1/\Gamma(\frac{s}{2})=0$ when $s=-2n$, and $1/\Gamma(\frac{s+1}{2})=0$ when $s=-2n-1$ for $n=0,1,2,\dots$ 
+Furthermore, $\Gamma(-n+\frac{1}{2}) 
+= \frac{(-1)^n \, 2^{2n}(2n)!}{n!}\sqrt{\pi}$, which means
+\begin{align*}
+H(-2n,x) & = H_{2n}^{\mu}(x) 
+= (-1)^n \, \frac{(2n)!}{n!} \,{}_1F_1\Big({-n},\mu+\frac{1}{2},x^2\Big), 
+\\
+H(-2n-1,x) & = H_{2n+1}^{\mu}(x) 
+= (-1)^n \, \frac{(2n+1)!}{n!} 
+\frac{x}{\mu+\frac{1}{2}} \,{}_1F_1\Big({-n},\mu+\frac{3}{2},x^2\Big) .
+\end{align*}
+This, as expected, is the same as \cite[(2.1.1) and (2.2.1)]{Ros}.
+
+%-----------
+\section{Properties of the Hurwitz-Dunkl zeta functions} 
+\label{sec:prop-hurwitz}
+%-----------
+
+The aim of this section is, firstly, to provide generalization of the Riemann zeta function $\zeta(s) = \sum_{n=1}^{\infty} 1/n^s$ and the Euler-type zeta function $\zeta_E(s) = \sum_{n=1}^{\infty} (-1)^{n+1}/n^s$ (also known as Dirichlet eta function $\eta(s)$) in a Dunkl sense through the functions $\zeta_\alpha(s,x)$ and $\zeta_{E,\alpha}(s,x)$, respectively. We also provide a generalization in a Dunkl sense of the analytic continuation of $\zeta(s)$ (and $\zeta_E(s)$), as well as the so-called reflection formula, and other properties concerning our Hurwitz-Dunkl zeta functions $\zeta_\alpha(s,x)$, $\zeta_{E,\alpha}(s,x)$, $\zeta_\alpha(s)$ and $\zeta_{E,\alpha}(s)$. A conection appears here between these functions and the function $Z_\alpha(s) = \sum_{n=1}^{\infty}1/j_{n}^s$ (and also with $Z_{\alpha+1}(s)$), where $j_n$ are the positive zeros of the Bessel function $J_{\alpha}(x)$. We study $Z_\alpha(s)$ in Section~\ref{sec:zetaR}.
+
+In this section we will state the main results. The proofs are rather technical and require several lemmas. We will postpone them to Section~\ref{sec:proof-of-ths}.
+
+%-----------
+\subsection{Theorems for $\zeta_\alpha(s,x)$ and  $\zeta_\alpha(s)$}
+\label{subsec:teosza}
+%-----------
+
+In this section we are going to give another way of expressing the analytic continuation of $\zeta_{\alpha}(s,x)$ for $\Re(s)<1$, and we will give some consequences that involve the zeros of $J_{\alpha+1}(x)$. 
+
+%% LOS CEROS NO SALEN EXPL\'ICITAMENTE EN EL ENUNCIADO DEL TEOREMA,
+%% PERO S\'I EN EL LEMA PREVIO PARA PROBARLO.
+
+It is well known (see \cite[Chapter 15]{Wat} or \cite[\S\,10.21]{OlMa-NIST}) that, for any $\alpha>-1$, the zeros of the Bessel function $J_{\alpha}(x)/x^{\alpha}$ can be written as $j_{m,\alpha}$, $m\in \Z \setminus\{0\}$, with $j_{m,\alpha} = -j_{-m,\alpha}$ and $0< j_{m,\alpha} < j_{m+1,\alpha}$, $m\ge 1$.
+Moreover, $j_{m,\alpha} \sim (m + \alpha/2 - 1/4)\pi + o(1/m)$ when $m \to \infty$ (see, for instance, \cite[10.21.19] {OlMa-NIST}).
+
+Now, we are interested in the zeros of $J_{\alpha+1}(x)/x^{\alpha+1}$ so, to avoid confusion, we will denote $s_{m,\alpha} = j_{m,\alpha+1}$; in this way, we will often use $s_{m}$ for $s_{m,\alpha}$. Again, with this notation we have $s_{m,\alpha} = -s_{-m,\alpha}$ and $0< s_{m,\alpha} < s_{m+1,\alpha}$, $m\ge 1$, where $i s_{m,\alpha}$, $m \in \Z \setminus \{0\}$, are the zeros of $\I_{\alpha+1}(x)$ (or the zeros of $J_{\alpha+1}(ix)/(ix)^{\alpha+1}$). For $\alpha=-1/2$ we have $s_{m,-1/2}=\pi m$. Let us also note that $\I_{\alpha}(is_{m,\alpha})$ provides a generalization of the sign sequence $(-1)^m$ because $\I_{-1/2}(is_{m,-1/2})=(-1)^m$.
+
+The first result is the following, which is similar to the classical case that can be found, for instance, in~\cite[\S\,12.4, Theorem~12.3]{Ap-ANT}, and the proof follows the same scheme. 
+However, we have now the functions $E_\alpha(t)$, which are much more complicated than $e^t$, and then the proof needs some additional details. In particular, we require the use of our Lemma~\ref{lem:acot-g}. Actually, the zeros $s_{m,\alpha}$ do not explicitely appear in the statement of this theorem, but they will be crucial in the proof of the lemma. 
+% As explained above, the proofs are delayed up to Section~\ref{sec:proof-of-ths}.
+
+\begin{theorem}
+\label{teo:Isz}
+Let $x\in (-1,1)$ and define
+\begin{equation}
+\label{eq:Isz}
+I(s,x) 
+% = \frac{1}{2\pi i}\int_{C} g(t) t^{s-1}\,dt 
+= \frac{1}{2\pi i}\int_C \frac{\Ea(xt)}{\Ea(-t)-\Ea(t)} \,t^{s-1}\,dt,
+\end{equation}
+where $C$ is the contour shown in Figure~\ref{fig:contour}. 
+Then $I(s,x)$ is an entire function of $s$ and satisfies 
+\begin{equation}
+\label{eq:zetaaI}
+\zeta_{\alpha}(s,x) = \Gamma(1-s)I(s,x)\quad \text{ if }\, \Re(s) > 1,
+\end{equation}
+where $\zeta_{\alpha}(s,x)$ is the function defined in~\eqref{eq:HD-zeta1}.
+\end{theorem}
+
+\begin{figure}[ht]
+\begin{tikzpicture}
+%real negatives line
+\draw (-3,0) -- (0,0);
+%inner circle and conexion with outer circle
+\draw[very thick] (0.7,0) arc (0:165:0.7) -- (-3,0.1736);
+\draw (0,0) node[right] {$0$};
+\draw (0,0) node {$\bullet$};
+\draw[very thick] (0.7,0) arc (360:195:0.7) -- (-3,-0.1736);
+%arrows
+\draw[thick, ->] (1,0) arc(0:45:1);
+\draw[thick, ->] (-1.6,0.4) -- (-2.4,0.4);
+\draw[thick, ->] (-2.4,-0.4) -- (-1.6,-0.4);
+%nodes
+\draw (1,0) node[right] {$C_2$};
+\draw (-2.35,-0.8) node[right] {$C_1$};
+\draw (-2.35,0.8) node[right] {$C_3$};
+\end{tikzpicture}
+\caption{The contour $C$ from Theorem~\ref{teo:Isz}.}
+\label{fig:contour}
+\end{figure}
+
+Taking into account that \eqref{eq:Isz} is valid in the entire $s$-plane, and that $\zeta_{\alpha}(s,x)$ satisfies \eqref{eq:zetaaI} for $\Re(s)>1$, we can define the following analytic continuation for $\zeta_{\alpha}(s,x)$ in the entire $s$-plane:
+\begin{equation}
+\label{eq:zetaaACI}
+    \zeta_{\alpha}(s,x) = \Gamma(1-s) I(s,x),
+\end{equation}
+valid for $-1<x<1$. Of course, the analytic continuation of a function is unique, so this function $\zeta_{\alpha}(s,x)$ is the same that we defined in~\eqref{eq:HD-zeta}. From this and by Cauchy's residue theorem it is also possible to prove Theorems~\ref{teo:reszeta1} and~\ref{teo:zeta-n}.
+
+\begin{theorem}
+\label{teo:reszeta1}
+The function $\zeta_{\alpha}(s,x)$ defined in~\eqref{eq:zetaaACI} is analytic for $s \in \C$ except for a simple pole at $s=1$ with residue $\alpha+1$.
+\end{theorem}
+
+Taking $\alpha = -1/2$ and $x \mapsto 2x-1$, since $\zeta_{-1/2}(s,2x-1) = \zeta(s,x)/2^s$ we get that $\zeta(s,x)$ has a simple pole at $s=1$ with residue~$1$, which is what happens in the classical case (see \cite[\S\,12.5, Theorem~12.4]{Ap-ANT}).
+
+The next result was already proved in Proposition~\ref{prop:basic-z}, but later we provide another way to show it, this time starting from \eqref{eq:zetaaACI} and using Cauchy's residues theorem:
+
+\begin{theorem}
+\label{teo:zeta-n}
+The function $\zeta_{\alpha}(s,x)$ defined in~\eqref{eq:zetaaACI} satisfies, for $x \in (-1,1)$,
+\begin{equation}
+\label{eq:zeta-n}
+\zeta_\alpha(-n,x) = -\B_{n+1}(x)\frac{n!\,(\alpha+1)}{\gamma_{n+1,\alpha}},
+\qquad n=0,1,2,\dots
+\end{equation}
+\end{theorem} 
+
+Another classical result in analytic number theory is the so-called Hurwitz formula (see \cite[\S\,12.7, Theorem 12.6]{Ap-ANT} or \cite[25.13.3]{Ap-NIST}), namely
+\begin{equation}
+\label{eq:H-form}
+\zeta(1-s,x) = \frac{\Gamma(s)}{(2\pi)^s} \left(e^{-\pi s i/2} F(x,s)
++ e^{\pi s i/2} F(-x,s)\right),
+\end{equation}
+%% NOTA: Esta es la notaci\'on habitual, $F(x,s)$, 
+%% con los par\'ametros al rev\'es que en $\zeta(s,x)$
+where
+\begin{equation}
+\label{eq:Fxs}
+F(x,s) = \sum_{n=1}^{\infty} \frac{e^{2\pi i n x}}{n^s},
+\quad \Re(s) > 1,
+\end{equation}
+is known as the Lerch (or periodic) zeta function (see \cite[\S\,12.7, equation~(9), p.~257]{Ap-ANT} or \cite[25.13.1]{Ap-NIST}).
+
+In the Dunkl context, this formula can be generalized as follows. The convergence of the series~\eqref{eq:Fxs} is clear, but to prove the convergence of the corresponding series $\mathcal{F}(x,s)$, which we will use in the Dunkl context, will require some effort. 
+% (of course, it is done in the proof of the theorem, in Section~\ref{sec:proof-of-ths}). 
+
+\begin{theorem}[Hurwitz-Dunkl formula]
+\label{teo:HD-form}
+Let $\alpha>-1$ and $\{s_m\}_{m=1}^{\infty}$ be the positive zeros of~$J_{\alpha+1}$.
+For $\Re(s)>1$, the function
+\begin{equation}
+\label{eq:HD-formF}
+\mathcal{F}(x,s) = \sum_{m=1}^{\infty} 
+\frac{\Ea(xi s_m)}{\I_{\alpha}(i s_m)} \frac{1}{s_m^s}
+\end{equation}
+converges for every $x \in \R$.
+Moreover, for $x \in (-1,1)$ and $\Re(s)>1$, 
+the Hurwitz-Dunkl zeta function $\zeta_\alpha(s,x)$ satisfies
+\begin{equation}
+\label{eq:HD-form}
+\zeta_{\alpha}(1-s,x) = \frac{\Gamma(s)}{2}
+\left(e^{-\pi s i/2} \mathcal{F}(x,s) + e^{\pi s i/2} \mathcal{F}(-x,s)\right).
+\end{equation}
+\end{theorem}
+
+We call $\mathcal{F}(x,s)$ the Lerch-Dunkl zeta function since it plays a similar role as the Lerch zeta function $F(x,s)$ (but $\mathcal{F}(x,s)$ is not periodic). In fact, when $\alpha = -1/2$ and $x\mapsto 2x-1$, we have $\mathcal{F}(2x-1,s) = \pi^{-s}F(x,s)$, so \eqref{eq:HD-form} becomes~\eqref{eq:H-form}. 
+
+Now, although the identity \eqref{eq:HD-form} is valid only for $x \in (-1,1)$, the right hand side is valid for $x \in \R$, so we can extend the definition of $\zeta_\alpha(1-s,x)$ for $\Re(s)>1$ by taking
+\begin{equation}
+\label{eq:HD-form-xR}
+\zeta_{\alpha}(1-s,x) = \frac{\Gamma(s)}{2}
+\left(e^{-\pi s i/2} \mathcal{F}(x,s) + e^{\pi s i/2} \mathcal{F}(-x,s)\right),
+\quad x \in \R.
+\end{equation}
+Replacing $1-s$ by $s$, we can also define, for $\Re(s)<0$,
+\[
+\zeta_{\alpha}(s,x) = \frac{\Gamma(1-s)}{2}
+\left({-}ie^{\pi s i/2} \mathcal{F}(x,1-s) + i e^{-\pi s i/2} \mathcal{F}(-x,1-s)\right),
+\quad x \in \R.
+\]
+
+The Hurwitz-Dunkl formula gives us an expression for $\zeta_\alpha(s,x)$ and $x \in \R$ free of the intricate integrals. With that, we can easily prove a ``reflection formula'' (but in this case that isn't a suitable name) for $\zeta_\alpha(s)$ in a Dunkl sense that can be seen as a generalization of the reflection formula for~$\zeta(s)$. 
+
+Using the notation $\zeta(s) = \zeta(s,1)$, the reflection formulas of the classical zeta function (also known as ``Riemann's functional equation'')
+\begin{align*}
+\zeta(1-s) = 2(2\pi)^{-s}\Gamma(s) \cos{\left(\frac{\pi s}{2}\right)}\zeta(s),
+\qquad s \in \C,\\
+\zeta(s) = 2(2\pi)^{s-1}\Gamma(1-s) \sin{\left(\frac{\pi s}{2}\right)}\zeta(1-s),
+\qquad s \in \C,
+\end{align*}
+can be proved by taking $x=1$ in the Hurwitz formula \eqref{eq:H-form} 
+(see, for instance, \cite[\S\,12.8, Theorem~12.7]{Ap-ANT}); 
+for the first formula, the result is clear for $\Re(s)>1$, and is then valid for $s \in \C$ by analytic continuation. Actually, many properties of $\zeta(s)$ and $\zeta(s,x)$ can be seen as consequences of~\eqref{eq:H-form}. 
+
+In our case, taking $x= \pm1$ in \eqref{eq:HD-formF}, we get $\mathcal{F}(\pm1,s) = \sum_{m=1}^{\infty} {1}/{s_m^s}$, 
+% (that is convergent for $\Re(s) > 1$),
+since $\Ea(\pm i s_m) = \I_{\alpha}(i s_m)$.
+Thus, we can define, for $\Re(s)>1$,
+\begin{equation}
+\label{eq:zetaa1-s}
+  \zeta_{\alpha}(1-s) = \zeta_{\alpha}(1-s,1),
+\end{equation}
+where $\zeta_{\alpha}(1-s,1)$ is given in \eqref{eq:HD-form-xR}; of course, the same can be done for $\zeta_{\alpha}(s)$ with $\Re(s)<0$ (with this notation, $\zeta_{-1/2}(s) = \zeta_{-1/2}(s,1) = \zeta(s,1)/2^s = \zeta(s)/2^s$). Then, we have the following:
+
+\begin{theorem}
+\label{teo:ref-form}
+Let $\alpha>-1$ and $\{s_m\}_{m=1}^{\infty}$ be the positive zeros of~$J_{\alpha+1}$.
+For $\Re(s)>1$ we have
+\begin{equation}
+\label{eq:ZD-cos}
+    \zeta_{\alpha}(1-s) = \Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} 
+    \sum_{m=1}^{\infty} \frac{1}{s_m^s},
+\end{equation}
+or equivalently, for $\Re(s)<0$,
+\begin{equation}
+\label{eq:ZD-sin}
+    \zeta_{\alpha}(s) = \Gamma(1-s) \sin\left(\frac{\pi s}{2}\right) 
+    \sum_{m=1}^{\infty} \frac{1}{s_m^{1-s}}.
+\end{equation}
+\end{theorem}
+
+When $\alpha=-1/2$, we get $\sum_{m=1}^{\infty}1/s_m^s = \pi^{-s}\sum_{m=1}^{\infty}1/m^s = \pi^{-s}\zeta(s)$ so, in fact, $\sum_{m=1}^{\infty}1/s_m^s$ is playing the role of $\zeta(s)$. Hence, when $\alpha = -1/2$, Theorem~\ref{teo:ref-form} provides a generalization in a Dunkl sense of classical reflection formulas. However, there is an important difference if we compare Theorem~\ref{teo:ref-form} with the classical case: the sums $\sum_{m=1}^{\infty}$ in \eqref{eq:ZD-cos} and \eqref{eq:ZD-sin} are not the functions $\zeta_{\alpha}(1-s)$ and $\zeta_{\alpha}(s)$, respectively.
+
+Finally, by taking $s=n+1$ in \eqref{eq:HD-form-xR} we have
+\begin{equation*}
+\zeta_{\alpha}(-n,x) = \frac{n!}{2}
+\left(e^{-\pi (n+1) i/2} \mathcal{F}(x,n+1) + e^{\pi (n+1) i/2} \mathcal{F}(-x,n+1)\right),
+\quad x \in \R;
+\end{equation*}
+and, on the other hand, by Theorem~\ref{teo:zeta-n}, 
+\begin{equation*}
+\zeta_{\alpha}(-n,x) = -\B_{n+1}(x)\frac{n!\,(\alpha+1)}{\gamma_{n+1,\alpha}}, \quad x \in (-1,1).
+\end{equation*}
+Then, for $x \in (-1,1)$,
+\[
+-\B_{n+1}(x)\frac{(\alpha+1)}{\gamma_{n+1,\alpha}}
+= \frac{1}{2}
+\left(e^{-\pi (n+1) i/2} \mathcal{F}(x,n+1) + e^{\pi (n+1) i/2} \mathcal{F}(-x,n+1)\right).
+\]
+
+Since the above function is a polynomial, the limit as $x\to 1^{-}$ exists and we have
+\[
+-\B_{n+1}(1)\frac{(\alpha+1)}{\gamma_{n+1,\alpha}}  = \cos{\left(\frac{\pi (n+1)}{2}\right)} 
+   \sum_{m=1}^{\infty} \frac{1}{s_m^{n+1}}.
+\]
+Letting $n=2k-1$, we have the following:
+
+\begin{corollary}
+\label{cor:sum-sm}
+Let $\alpha>-1$ and $\{s_m\}_{m=1}^{\infty}$ be the positive zeros of~$J_{\alpha+1}$.
+Then,
+\begin{equation*}
+%\label{eq:sum-bessel}
+\sum_{m=1}^{\infty} \frac{1}{s_m^{2k}} 
+= \frac{\B_{2k}(1)(-1)^{k+1}}{2^{2k}k!\,(\alpha+2)_{k-1}},
+\quad k=1,2,3,\dots
+\end{equation*}
+\end{corollary}
+
+The previous expression for $\sum_{m=1}^{\infty} {1}/s_m^{2k}$ in terms of $\B_{2k}(1)$ was proved in \cite[Theorem 4.1]{CDPV} by other methods. 
+
+\begin{corollary}
+The function $\zeta_{\alpha}(s)$ defined in Theorem~\ref{teo:ref-form} satisfies
+\begin{equation}
+\label{eq:zeta-Dunkl-n}
+\zeta_\alpha(-n) = -\B_{n+1}(1)\frac{n!\,(\alpha+1)}{\gamma_{n+1,\alpha}},
+\quad n=1,2,\dots
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Taking $s=n=2k$, $k=1,2,\dots$, in \eqref{eq:ZD-cos} and using Corollary~\ref{cor:sum-sm} we get \eqref{eq:zeta-Dunkl-n} for $n$ odd. Taking $s=n=2k-1$, $k=1,2,\dots$ in \eqref{eq:ZD-cos} we then get $\cos{(\pi s/2)}=0$ and hence $\zeta_\alpha(1-n)$. Since $-\B_{n+1}(1)=0$ for $n$ even, this completes the proof. 
+\end{proof}
+
+%-----------
+\subsection{Theorems for $\zeta_{E,\alpha}(s,x)$ and $\zeta_{E,\alpha}(s)$}
+\label{subsec:teoszEa}
+%-----------
+
+Here, we are going state some results for $\zeta_E(s,x)$, that will be similar to the results for $\zeta_E(s,x)$ in Subsection~\ref{subsec:teosza}.
+Let us recall that $j_m = j_{m,\alpha}$, $m\in \Z\setminus\{0\}$, are the zeros of the Bessel function $J_{\alpha}(x)/x^{\alpha}$, and that they can be ordered so that $j_{m,\alpha} = -j_{-m,\alpha}$ and $0< j_{m,\alpha} < j_{m+1,\alpha}$, $m\ge 1$. Moreover, $i j_{m,\alpha}$, $m \in \Z \setminus \{0\}$, are the zeros of $\I_{\alpha}(x)$ and for $\alpha=-1/2$, $j_{m,-1/2}$ are the zeros of $\I_{-1/2}(it)$, namely the zeros of the cosine. Hence, $ j_{m,-1/2} = (m - 1/2) \pi$ for $m \ge 1$.
+
+We begin with a result that is similar to Theorem~\ref{teo:Isz}:
+
+\begin{theorem}
+\label{teo:IEsz}
+Let $x\in(-1,1)$ and 
+\[
+I_E(s,x) = \frac{1}{2\pi i}\int_{C} h(t) t^{s-1}\,dt 
+= \frac{1}{2\pi i}\int_C \frac{\Ea(xt)}{\Ea(-t)+\Ea(t)} \,t^{s-1}\,dt,
+\]
+where $C$ is again the contour shown in Figure~\ref{fig:contour} of Theorem~\ref{teo:Isz}.
+Then $I_E(s,x)$ is an entire function of $s$ and satisfies 
+\begin{equation*}
+%\label{eq:zetaEaIe}
+\zeta_{E,\alpha}(s,x) = \Gamma(1-s)I_E(s,x) \quad \text{ if } \Re(s)>0,
+\end{equation*}
+where $\zeta_{E,\alpha}(s,x)$ is the function defined in~\eqref{eq:HD-zetaHE0}.
+\end{theorem}
+
+Of course, this theorem again allows us to give the analytic extension for $\zeta_{E,\alpha}(s,x)$ to the entire $s$-plane, valid for $-1<x<1$. 
+
+Now, the ``Hurwitz-Dunkl formula of Euler type'' is the following:
+
+\begin{theorem}
+\label{teo:HD-form-E}
+Let $\alpha>-1$ and $\{j_m\}_{m=1}^{\infty}$ be the positive zeros of~$J_\alpha$. 
+For $\Re(s)>1$, the function
+\[
+\mathcal{F}_E(x,s) = \sum_{m=1}^{\infty} 
+\frac{\Ea( i j_m x)}{\I_{\alpha+1}(i j_m)} \frac{1}{j_m^{s+1}}
+\]
+converges for every $x \in \R$.
+Moreover, for $x \in (-1,1)$ and $\Re(s)>1$ we have
+\begin{equation}
+\label{eq:form-HD-Euler}
+  \zeta_{E,\alpha}(1-s,x) = -(\alpha+1)\Gamma(s)
+  \left( e^{-\frac{\pi i}{2}(s+1)} \mathcal{F}_E(x,s) 
+  + e^{\frac{\pi i}{2}(s+1)} \mathcal{F}_E(-x,s)\right).
+\end{equation}
+\end{theorem}
+
+In the particular case $\alpha=-1/2$, we get $j_m = (m - 1/2)\pi$ for $m \ge 1$. Also, $J_{1/2}(x) = \sqrt{2/(\pi x)}\sin{(x)}$, which leads to $\I_{1/2}(ij_m) = (-1)^{m+1}/j_m$. That means, when taking $x\mapsto 2x-1$, 
+we have that
+\[
+\mathcal{F}_E(2x-1,s) 
+= \frac{2^s}{\pi^s}i\sum_{m=1}^{\infty} \frac{e^{(2m-1)i\pi x}}{(2m - 1)^{s}} 
+= \frac{2^s}{\pi^s} i \ell_E(s,x),
+\]
+where the notation $\ell_E(s,x)$ for the above series has already been  used in \cite[(7.1)]{SuHu}. Furthermore, with these changes, and noticing that $\mathcal{F}_E(-x,s) = -\mathcal{F}_E(1-x,s)$, \eqref{eq:form-HD-Euler} transforms into
+\[
+\frac{1}{2^{1-s}}\zeta_E(1-s,x) = \zeta_{E,-1/2}(1-s,2x-1) 
+= \frac{2^s\Gamma(s)}{\pi^s} 
+\left(e^{-\frac{i\pi s}{2}}\ell_E(s,x) - e^{\frac{i\pi s}{2}}\ell_E(s,1-x)\right),
+\]
+which is just~\cite[(7.2)]{SuHu}. 
+
+
+As in the case of $\zeta_\alpha$, we can use \eqref{eq:form-HD-Euler} to define $\zeta_\alpha(1-s,x)$ for $\Re(s)>1$ and $x \in \R$, as well as $\zeta_\alpha(s,x)$ for $\Re(s)<0$ and $x \in \R$.
+In particular, taking $x=1$ and defining $\zeta_{E,\alpha}(s) = \zeta_{E,\alpha}(s,1)$, we have the following:
+
+\begin{theorem}
+\label{teo:ext-HD-E}
+Let $\alpha>-1$ and $\{j_m\}_{m=1}^{\infty}$ be the positive zeros of~$J_{\alpha}$.
+For $\Re(s) > 1$ we have
+\begin{equation}
+\label{eq:ext-HD-E}
+\zeta_{E,\alpha}(1-s) = -\Gamma(s)\cos{\left(\frac{\pi s}{2}\right)}
+\sum_{m=1}^{\infty} \frac{1}{j_m^s}
+\end{equation}
+or equivalently, for $\Re(s) < 0$, 
+\begin{equation*}
+\zeta_{E,\alpha}(s) = -\Gamma(1-s)\sin{\left(\frac{\pi s}{2}\right)}
+\sum_{m=1}^{\infty} \frac{1}{j_m^{1-s}}.
+\end{equation*}
+\end{theorem}
+
+When $\alpha=-1/2$, \eqref{eq:ext-HD-E} transforms into (see \cite[(7.4)]{SuHu})
+\[
+\zeta_{E}(1-s) 
+= -2\pi^{-s}\Gamma(s)\cos{\left(\frac{\pi s}{2}\right)}
+\sum_{m=1}^{\infty}\frac{1}{(2m-1)^s}.
+\]
+
+Finally, the equivalent result of Corollary~\ref{cor:sum-sm} for $\sum_{m=1}^{\infty} 1/j_m^{2k}$ is the following:
+
+\begin{corollary}
+Let $\alpha>-1$ and $\{j_m\}_{m=1}^{\infty}$ be the positive zeros of~$J_\alpha$. 
+Then,
+\begin{equation*}
+%\label{eq:sum-bessel-j}
+\sum_{m=1}^{\infty} \frac{1}{j_m^{2k}} 
+= \frac{\E_{2k-1}(1)(-1)^{k+1}}{2^{2k}(k-1)!\,(\alpha+1)_{k}},
+\qquad k=1,2,3,\dots
+\end{equation*}
+\end{corollary}
+
+This can be easily proved from~\eqref{eq:ext-HD-E}, as in Subsection~\ref{subsec:teosza}.
+Note that this result was also proved in~\cite{DPV} in a different way.
+
+\begin{corollary}
+The function $\zeta_{E,\alpha}(s)$ defined in Theorem~\ref{teo:ext-HD-E} satisfies
+\begin{equation*}
+%\label{eq:zeta-Dunkl-E-n}
+\zeta_{E,\alpha}(-n) = \frac{1}{2}\E_{n}(1)\frac{n!}{\gamma_{n,\alpha}},
+\quad n=1,2,\dots
+\end{equation*}
+\end{corollary}
+
+%-----------
+\section{Analytic continuation of $\zeta_\alpha(s)$ and  $\zeta_{E,\alpha}(s)$}
+\label{sec:zetaR}
+%-----------
+
+Finally, let us define, for $\alpha>-1$,
+\begin{equation}
+\label{eq:zetaR}
+  Z_{\alpha}(s) = \sum_{m=1}^{\infty} \frac{1}{j_m^{s}},
+  \qquad \Re(s) > 1.
+\end{equation}
+Of course, in a like manner we get
+\begin{equation*}
+%\label{eq:zetaR1}
+  Z_{\alpha+1}(s) = \sum_{m=1}^{\infty} \frac{1}{s_m^{s}},
+  \qquad \Re(s) > 1,
+\end{equation*}
+hence, $Z_{\alpha}(s)$ is related with $\zeta_{E,\alpha}(s)$ and $Z_{\alpha+1}(s)$ with $\zeta_{\alpha}(s)$. This function is similar to the classical Riemann zeta function $\sum_{m=1}^{\infty} 1/m^s$ where the positive zeros $\{\pi m\}_{m=1}^{\infty}$ of the sine have been changed by the zeros of the positive zeros of a Bessel function. Then, we will call $Z_{\alpha+1}(s)$ the ``Riemann-Bessel zeta function''.
+
+In his thesis \cite{Haw}, Hawkins provides an analytic continuation of $Z_{\alpha}(s)$. To do so, he first gets easily the analytic continuation for $\Re(s)>0$ by integration by parts, and repeating the process he is able to continue the function to $\Re(s)>-1$. However, he does not go forward by this method and, instead, uses other tools. He ends up proving that there exists an analytic continuation of $Z_{\alpha}(s)$ to the entire $s$-plane with simple poles at $s=1,-1,-3,-5,\dots$ but he didn't get an explicit formula. Due to its simplicity, we now show how to continue $Z_{\alpha}(s)$ to the region $\Re(s)>0$.
+
+\begin{theorem}
+\label{teo:zetaRanal0}
+The function $Z_{\alpha}(s) - \frac{\pi^{-s}}{s-1}$ extends analytically to the region $\Re(s)>0$.
+\end{theorem}
+
+\begin{proof}
+We start from \eqref{eq:zetaR}, valid for $\Re(s)>1$, and decompose
+\begin{align*}
+  Z_{\alpha}(s) - \frac{\pi^{-s}}{s-1} 
+  &= \sum_{m=1}^{\infty} \frac{1}{j_m^s} - \int_1^{\infty} \frac{\pi^{-s}\,dx}{x^s}
+  = \sum_{m=1}^{\infty} \frac{1}{j_m^s} - \sum_{m=1}^{\infty} \int_m^{m+1} \frac{dx}{(\pi x)^s} \\
+  &= \sum_{m=1}^{\infty} \left(\frac{1}{j_m^s} - \int_m^{m+1} \frac{dx}{(\pi x)^s} \right)
+  = \sum_{m=1}^{\infty} \int_m^{m+1} \left( \frac{1}{j_m^s} - \frac{1}{(\pi x)^s} \right) dx,
+\end{align*}
+again valid for $\Re(s)>1$. Now, let us denote
+\[
+  f_m(s) = \int_m^{m+1} \left( \frac{1}{j_m^s} - \frac{1}{(\pi x)^s} \right) dx.
+\]
+If we prove that $\sum_{m=1}^{\infty} f_m(s)$ is analytic in $\Re(s)>0$, we will have the analytic extension of $Z_{\alpha}(s) - {\pi^{-s}}/(s-1)$.
+
+Every function $f_m(s)$ is analytic in $\Re(s)>0$, so it is enough to see that the series converges uniformly on compacts in that region.
+% Si una sucesi\'on de funciones anal\'iticas converge uniformemente sobre compactos 
+% a otra funci\'on, esta \'ultima funci\'on tambi\'en es anal\'itica.
+Now, let us recall that the zeros $\{j_m\}_{m=1}^\infty$ of $J_{\alpha}(t)$ satisfy 
+$j_m \sim (m + \alpha/2 - 1/4)\pi + o(1/m)$ (see \cite[10.21.19] {OlMa-NIST}),
+so $\pi m-c \le j_{m} \le \pi m+c$ for a positive constant $c$ independent of~$m$.
+Then, because
+\[
+  \int_{j_m}^{\pi x} u^{-s-1}\,du 
+%  = -\frac{1}{s} u^{-s} \Big|_{u=j_m}^{\pi x} 
+  = \frac{1}{s} \left( \frac{1}{j_m^s} - \frac{1}{(\pi x)^s} \right),
+\]
+we have
+\begin{align*}
+  &\left| \int_m^{m+1} \left( \frac{1}{j_m^s} - \frac{1}{(\pi x)^s} \right) dx \right|
+  = \left| s \int_m^{m+1} \! \int_{j_m}^{\pi x} \frac{du}{u^{s+1}} \,dx \right| \\
+  &\qquad\le |s| \int_m^{m+1} \! \int_{\pi m-c_1}^{\pi m+c_2} \frac{du}{|u^{s+1}|} \,dx 
+  = |s| \int_m^{m+1} \! \int_{\pi m-c_1}^{\pi m+c_2} \frac{du}{u^{1+\Re(s)}} \,dx \\
+%  \le |s| \int_m^{m+1} \! \int_m^{m+1} \frac{du}{u^{1+\Re(s)}} \,dx \\
+  &\qquad\le \frac{|s|}{(s_m-c_2-c_1)^{1+\Re(s)}} \int_m^{m+1} \int_{\pi m-c_1}^{\pi m+c_2} du \,dx
+  = \frac{(c_2+c_1) |s|}{(j_m-c_2-c_1)^{1+\Re(s)}}.
+\end{align*}
+Consequently,
+\[
+  \sum_{m=1}^{\infty} \left| \int_m^{m+1} \left( \frac{1}{j_m^s} - \frac{1}{(\pi x)^s} \right) dx \right|
+  \le \sum_{m=1}^{\infty} \frac{C |s|}{j_m^{1+\Re(s)}}
+  < \infty \quad\text{for }\Re(s) > 0,
+\]
+and the Weierstrass M-test ensures the uniform convergence on compacts in $\Re(s)>0$.
+\end{proof}
+
+Using the analytic continuation in the entire $s$-plane \cite{Haw}, some of the above identities can also be analytically continued to the entire $s$-plane; see also~\cite{Sto}. Since Hawkins didn't get any explicit formula for $Z_{\alpha}(s)$, we won't get an explicit formula for $\zeta_\alpha(s)$ either. Furthermore, in this way we do not obtain $\zeta_{\alpha}(s)$ as our $\zeta_{\alpha}(s,1)$, because $\zeta_{\alpha}(s,x)$ does not exist for $x=1$ in the half-plane $\Re(s) \ge 1$ (see Definition~\ref{def:HD-zeta}). In the same way, contrary to what happen in the classical case, we do not have $\zeta_{\alpha}(s,1) = Z_{\alpha+1}(s)$ for $s\ge 1$. 
+
+Hawkins also computed the residues of $Z_{\alpha}(s)$ at $s=1,-1,-3,\dots$ and the values of $Z_{\alpha}(-2k)$ for $k=0,1,2,\dots$ They are given by (see \cite[Theorem~3.5]{Haw})
+\begin{align*}
+\Res_{s=-2k-1} ( Z_{\alpha}(s) ) = \frac{(-1)^{k+1}}{\pi}c_{2k},
+& &
+ Z_{\alpha}(-2k) = \frac{(-1)^{k}}{2}c_{2k-1},
+\end{align*}
+where $c_k := c_{k,\alpha}$ are given by the identity
+\begin{equation}
+\label{eq:coef-haw}
+\left(\sum_{k=0}^{\infty} \frac{(-1)^k}{(2x)^k} (\alpha,k)\right) 
+\left(\sum_{k=0}^{\infty} \frac{c_k}{x^{k+2}} \right)
+=
+\sum_{k=0}^{\infty} \frac{(-1)^k}{(2x)^{k+1}}(\alpha,k), 
+\end{equation}
+with
+$(\alpha,k) = \Gamma(\alpha+k+1/2) / (k!\,\Gamma(\alpha-k+1/2))$
+%\begin{equation*}
+%(\alpha,k) = \frac{1}{k!} \frac{\Gamma(\alpha+k+1/2)}{\Gamma(\alpha-k+1/2)}
+%\end{equation*}
+(see \cite[Lemma~3.4]{Haw}). To extend $\zeta_\alpha(s)$, we need to change $\alpha\mapsto \alpha+1$ in order to correspond the coefficients $c_k$ with our $Z_{\alpha+1}(s)$. Finally, Hawkins proved that $c_k$ are polynomials of $\alpha$ which vanish at $\alpha=-1/2$ and $\alpha=1/2$ (see, for instance, \cite[Proposition~4.2]{Haw}).
+
+With all this, we can now study the poles of $\zeta_\alpha(s)$ with $s\in \C$ and $-1/2 \not = \alpha>-1$.
+
+\begin{theorem}
+\label{teo:ZD-ext}
+We get
+\begin{equation}
+\label{eq:ZD-cos-ext}
+\zeta_{\alpha}(1-s) = \Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} Z_{\alpha+1}(s), \qquad s \in \C,
+\end{equation}
+or equivalently
+\begin{equation}
+\label{eq:ZD-sin-ext}
+\zeta_{\alpha}(s) = \Gamma(1-s) \sin{\left(\frac{\pi s}{2}\right)}Z_{\alpha+1}(1-s), \qquad s \in \C.
+\end{equation}
+In particular, $\zeta_\alpha(s)$ can be analytically continued to the entire $s$-plane with simple poles at $s = n = 1,2,3,\dots$ (for $\alpha\not = -1/2$) whose residues are equal to $d_{n-1}/(2n!)$, where $d_n := d_{n,\alpha} = c_{n,\alpha+1}$ with the notation of~\eqref{eq:coef-haw}. Moreover, $\zeta_\alpha(0) = -1/2$.
+\end{theorem}
+
+\begin{proof}
+We can analytically continue equations \eqref{eq:ZD-cos} and \eqref{eq:ZD-sin} by considering the analytic continuation of $Z_{\alpha+1}(s)$. From the equation \eqref{eq:ZD-cos-ext}
+the only possible poles are the ones of $\Gamma(s)$, at $s=0,-1,-2,\dots$, and the ones of $Z_{\alpha+1}(s)$, at $s=1,-1,-3,\dots$ It is straighforward to see that when $s=-2k=0,-2,-4,\dots$ we get $\cos(-\pi k) Z_{\alpha+1}(-2k)\not= 0$ and $\Gamma(-2k)$ has a pole. Hence, at those values there are simple poles. The residue at $s=-2k$ is
+\[
+\lim_{s\to -2k} (s+2k)\Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} Z_{\alpha+1}(s) = \frac{(-1)^k}{(2k)!} Z_{\alpha+1}(-2k) = \frac{d_{2k-1}}{2(2k)!}.
+\] 
+When $s=-(2k+1) = -1,-3,-5,\dots$ we prove that $\zeta_\alpha(1-s)$ has a pole at those values by a little trick and the L'H\^opital rule as follows:
+\begin{align*}
+& \lim_{s\to -2k-1} \Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} 
+Z_{\alpha+1}(s) \\
+& =\lim_{s\to -2k-1} (s+2k+1)\Gamma(s) (s+2k+1)Z_{\alpha+1}(s) \frac{\cos{\left(\frac{\pi s}{2}\right)}}{(s+2k+1)^2} \\
+ & =\Res_{s=-2k-1}(\Gamma(s)) \Res_{s=-2k-1}(Z_{\alpha+1}(s))
+ \lim_{s\to -2k-1} \frac{-\pi}{4}\frac{\sin{\left(\frac{\pi s}{2}\right)}}{s+2k+1}.
+\end{align*}
+Hence, there is a pole at those values. To calculate its residues we compute
+\begin{align*}
+& \lim_{s\to -2k-1}  (s+2k+1)\Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} Z_{\alpha+1}(s) \\
+& =\lim_{s\to -2k-1} (s+2k+1)\Gamma(s) (s+2k+1)Z_{\alpha+1}(s) \frac{\cos{\left(\frac{\pi s}{2}\right)}}{s+2k+1}\\
+ & =\Res_{s=-2k-1}(\Gamma(s)) \Res_{s=-2k-1}(Z_{\alpha+1}(s))
+ \lim_{s\to -2k-1} \frac{-\pi}{2}\sin{\left(\frac{\pi s}{2}\right)} \\
+ & = \frac{(-1)^{k+1}}{(2k+1)!}\frac{\pi}{2}\Res_{s=-2k-1}(Z_{\alpha+1}(s)) = \frac{d_{2k}}{2(2k+1)!}.
+\end{align*}
+Finally, we consider the case $s=1$. 
+We use $\Res_{s=1}(Z_{\alpha+1}(s)) = 1/\pi$. So,
+\begin{align*}
+\lim_{s\to 1}  \Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} Z_{\alpha+1}(s) 
+& = \lim_{s\to 1} (s-1)Z_{\alpha+1}(s)\Gamma(s)
+\frac{\cos{\left(\frac{\pi s}{2}\right)}}{s-1}\\
+ & = \Res_{s=1}(Z_{\alpha+1}(s))
+ \lim_{s\to 1} \frac{\cos{\left(\frac{\pi s}{2}\right)}}{s-1} 
+ = -1/2.
+ \qedhere
+\end{align*}
+\end{proof}
+
+Once we have extended $\zeta_{\alpha}(s)$ to the entire $s$-plane (with simple poles at $s=1,2,3,\dots$), 
+we use the continuations of equations \eqref{eq:ZD-cos-ext} and \eqref{eq:ZD-sin-ext}, both valid for $s\in\C$, in order to get
+\begin{equation}
+\label{eq:rel-ZD-ZR}
+  Z_{\alpha+1}(s)Z_{\alpha+1}(1-s) 
+  = \frac{\zeta_{\alpha}(1-s)\zeta_{\alpha}(s)}{\Gamma(1-s)\Gamma(s)\sin(\pi s/2)\cos(\pi s/2)}
+  = \frac{2}{\pi} \zeta_{\alpha}(1-s)\zeta_{\alpha}(s).
+\end{equation}
+
+From that, a simple verification leads us to the following functional equation.
+
+\begin{corollary}
+The function
+\[
+\Phi(s) = \sqrt{\frac{2}{\pi}} \frac{\zeta_\alpha(s)}{Z_{\alpha+1}(s)}
+\]
+satisfies the functional equation $\Phi(s) = 1/\Phi(1-s)$.
+\end{corollary}
+
+Next we study the analytic continuation of $\zeta_{E,\alpha}(s)$ which is rather similar to $\zeta_\alpha(s)$.
+
+\begin{theorem}
+We get
+\begin{equation}
+\label{eq:ZDE-cos-ext}
+\zeta_{E,\alpha}(1-s) = -\Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} Z_{\alpha}(s), \qquad s \in \C,
+\end{equation}
+or equivalently
+\begin{equation}
+\label{eq:ZDE-sin-ext}
+\zeta_{E,\alpha}(s) = -\Gamma(1-s) \sin{\left(\frac{\pi s}{2}\right)} Z_{\alpha}(1-s), \qquad s \in \C.
+\end{equation}
+In particular, $\zeta_{E,\alpha}(s)$ can be analytically continued to the entire $s$-plane with simple poles at $s = n = 1,2,3,\dots$ (for $\alpha\not = \pm 1/2$) whose residues are equal to $-c_{n-1}/(2n!)$. Moreover, $\zeta_{E,\alpha}(0) = -1/2$.
+\end{theorem}
+
+Finally, let us mention that, having $Z_{\alpha}(s)$ defined in $0<\Re(s)<1$ (Theorem~\ref{teo:zetaRanal0}, whose proof provides a convergent series to evaluate $Z_{\alpha}(s)$ in this region), one can wonder where the zeros of these functions are. Hawkins did an analysis of the zeros of $Z_{\alpha}(s)$ and provided some results involving zero free regions \cite[Section~2]{Haw} (see also~\cite{Act}). In addition, many of the graphical or numerical methods for finding the zeros of $\zeta(s)$ in the critical strip (see, for instance, \cite{Ar, ArLu} and the references therein) can be adapted to the case of $Z_{\alpha}(s)$. It is then easy to find zeros of $Z_{\alpha}(s)$ that do not satisfy $\Re(s)=1/2$. However, as far as we know, a further analysis of the zeros of $Z_\alpha(s)$ is yet to be done, but doesn't seem to be straighforward at first glance. Is there a deeper theory behind this problem?
+
+%%%%%%%%%%%%%%%%%%
+%% Proof of theorems
+%%%%%%%%%%%%%%%%%%
+
+%-----------
+\section{Proofs of the results of Section~\ref{sec:prop-hurwitz}}
+\label{sec:proof-of-ths}
+%-----------
+
+In this section we prove the theorems of Subsections~\ref{subsec:teosza} and~\ref{subsec:teoszEa}. 
+In Subsection~\ref{subsec:proofsza}, we begin by proving results concerning the Hurwitz-Dunkl zeta function $\zeta_{\alpha}(s,x)$ stated in Subsection~\ref{subsec:teosza}; in Subsection~\ref{subsec:proofszEa}, and with less details, we prove the corresponding results for $\zeta_{E,\alpha}(s,x)$ stated in Subsection~\ref{subsec:teoszEa}.
+
+%-----------
+\subsection{The Dunkl zeta function case}
+\label{subsec:proofsza}
+%-----------
+
+Our goal is to prove Theorem~\ref{teo:Isz}, and then use it to prove Theorems~\ref{teo:reszeta1}, \ref{teo:HD-form} and~\ref{teo:ref-form}. For that, some preliminary results are needed.
+
+\begin{figure}[b]
+    \centering
+    \begin{tikzpicture}[scale=0.35]
+    %rectangle
+    \draw[fill=gray] (-2,-5.2) rectangle (2,5.2);
+    %circles
+    \draw[fill=white] (0,0) circle (0.5);
+    \draw[fill=white] (0,2.5) circle (0.5);
+    \draw[fill=white] (0,-2.5) circle (0.5);
+    \draw[fill=white] (0,4.5) circle (0.5);
+    \draw[fill=white] (0,-4.5) circle (0.5);
+    %nodes
+    \filldraw[black] (0,0) circle (1pt) ;
+    \filldraw[black] (0,2.5) circle (1pt) ;
+    \filldraw[black] (0,-2.5) circle (1pt) ;
+    \filldraw[black] (0,4.5) circle (1pt) ;
+    \filldraw[black] (0,-4.5) circle (1pt) ;
+    %lines
+    \draw[thick,->] (4,0) -- (2.2,0);
+    \draw (4,0) node[right] {$0$};
+    \draw[thick,->] (4,2.5) -- (2.2,2.5);
+    \draw (4,2.5) node[right] {$is_1$};
+    \draw[thick,->] (4,-2.5) -- (2.2,-2.5);
+    \draw (4,-2.5) node[right] {$-is_1$};
+    \draw[thick,->] (4,4.5) -- (2.2,4.5);
+    \draw (4,4.5) node[right] {$is_2$};
+    \draw[thick,->] (4,-4.5) -- (2.2,-4.5);
+    \draw (4,-4.5) node[right] {$-is_2$};
+    \end{tikzpicture}
+    \caption{A compact subset of the region $S$ from Lemma~\ref{lem:acot-g}.}
+    \label{fig:reg-s}
+\end{figure}
+
+\begin{lemma}
+\label{lem:acot-g}
+Let $\{s_m\}_{m=1}^{\infty}$ be the positive zeros of $J_{\alpha+1}(t)$
+and let $S=\C\setminus\{0,\pm is_1,\allowbreak \pm is_2, \dots \}$ denote the region that remains when we remove from the $t$-plane the origin and all zeros of $\I_{\alpha+1}(t)$, as in Figure~\ref{fig:reg-s}. Then for $x\in [-1,1]\setminus \{0\}$, the function 
+\[
+g(t) = \frac{\Ea(xt)}{\Ea(-t)-\Ea(t)}
+\]
+is bounded on compact subsets of $S$ and compact subsets of $x\in [-1,1]\setminus \{0\}$.
+Furthermore, if $\alpha < 1+1/2$, then for $x=0$ the function $g(t)$ is bounded on compact subsets of~$S$.
+\end{lemma}
+
+\begin{proof}
+We use arguments similar to those of \cite[\S\,2]{DPV}, and reproduce most of them for the sake of completeness (actually, here it is somewhat simpler because \cite{DPV} uses $\alpha\in\C$ and here we have the standard $\alpha>-1$ of the Dunkl context). 
+To get started, let us take a large circle $D=\{z\in\C : |z|=A\}$ of radius $A$ with the condition that none of the points $i s_m$, $m\in \Z\setminus\{0\}$, must lie on~$D$. The poles of $g(t)$ inside $D$ are $i s_m$, with $|s_m| < A$, and all of them are simple.
+Now, we prove that the value of $A$ can be chosen arbitrarily large and such that there exists some constant $c > 0$ independent of~$A$ (but depending on~$\alpha$) satisfying
+\begin{equation}
+\label{eq:cotas2}
+    |J_{\alpha}(t)| \geq c\, {e^{\Im(t)}}/{|t|^{1/2}}
+\end{equation}
+for $t\in D$. For that, we proceed based on what is done in \cite[\S\,15.41, p.~498]{Wat}. First, we denote $H^{(1)}_{\alpha}(t)$ and $H^{(2)}_{\alpha}(t)$ as the Bessel functions of the third kind.  We use the equality
+\begin{equation}
+\label{eq:JH1H2}
+   2J_{\alpha}(t) = H^{(1)}_{\alpha}(t) + H^{(2)}_{\alpha}(t),
+\end{equation}
+and, in addition, the fact that the Bessel functions of the third kind satisfy the estimates
+\begin{align}
+\label{eq:estH1}
+   H_{\alpha}^{(1)}(t) &= \left(\frac{2}{\pi t}\right)^{1/2}
+   e^{i(t-\frac{1}{2}\alpha\pi - \frac{1}{4}\pi)}
+   \Big( 1 + \eta_{1,\alpha}(t) \Big),
+   \\
+\label{eq:estH2}
+   H_{\alpha}^{(2)}(t) &= \left(\frac{2}{\pi t}\right)^{1/2}
+   e^{-i(t-\frac{1}{2}\alpha\pi - \frac{1}{4}\pi)}
+   \Big( 1 + \eta_{2,\alpha}(t) \Big),
+\end{align}
+were $\eta_{1,\alpha}(t)$ and $\eta_{2,\alpha}(t)$ are functions of order $\calO(1/t)$ for large~$|t|$ (see \cite[\S\,15.4, p.~496]{Wat}). Therefore,
+\begin{gather*}
+   \frac{1}{2} \left(\frac{2}{\pi |t|}\right)^{1/2} e^{-\Im(t)}
+   \leq \left|H_{\alpha}^{(1)}(t)\right|
+   \leq 2 \left(\frac{2}{\pi |t|}\right)^{1/2} e^{-\Im(t)},
+\\
+   \frac{1}{2} \left(\frac{2}{\pi |t|}\right)^{1/2} e^{\Im(t)}
+   \leq \left|H_{\alpha}^{(2)}(t)\right|
+   \leq 2 \left(\frac{2}{\pi |t|}\right)^{1/2} e^{\Im(t)},
+\end{gather*}
+for $|t|$ large enough. This, together with~\eqref{eq:JH1H2}, gives
+\begin{align*}
+   2 |J_\alpha(t)|
+   &\geq \frac{1}{2} \left(\frac{2}{\pi |t|}\right)^{1/2} e^{|\Im(t)|}
+   - 2 \left(\frac{2}{\pi |t|}\right)^{1/2} e^{-|\Im(t)|}
+   \\
+   &= \frac{1}{2} \left(\frac{2}{\pi |t|}\right)^{1/2} e^{|\Im(t)|}
+   \Big(1 - 4 e^{-2|\Im(t)|}\Big)
+\end{align*}
+for $|t|$ large enough, which proves~\eqref{eq:cotas2} if $|\Im(t)| \geq 1$. On the two arcs of $D$ with $|\Im(t)| \leq 1$, according to~\eqref{eq:JH1H2}, \eqref{eq:estH1} and~\eqref{eq:estH2}, the problem reduces essentially to get a lower bound for $|\cos(t-\frac{1}{2}\alpha\pi - \frac{1}{4}\pi)|$, which can be done by simply choosing $A$ so that to avoid the zeros of the cosine function. This proves~\eqref{eq:cotas2}.
+Furthermore,~\eqref{eq:JH1H2}, \eqref{eq:estH1} and~\eqref{eq:estH2} also give 
+\begin{equation*}
+   |J_{\alpha} (t)| \leq C \, {e^{|\Im(t)|}}/{|t|^{1/2}}
+\end{equation*}
+for $|t|$ large enough, with a constant $C > 0$ depending only on~$\alpha$. Therefore, for any compact set $K\subset [-1,1]\setminus\{0\}$ the radius $A$ can be chosen with the additional property that there exists $C > 0$ such that, for any $t \in D$ and any $x \in K$,
+\begin{align}
+\label{eq:cotasalfa}
+   |J_{\alpha} (tx)| &\leq C\, {e^{|\Im(tx)|}}/{|tx|^{1/2}},
+   \\
+\label{eq:cotasalfa+1}
+   |J_{\alpha+1} (tx)| &\leq C\, {e^{|\Im(tx)|}}/{|tx|^{1/2}}.
+\end{align}
+Using~\eqref{eq:cotas2}, \eqref{eq:cotasalfa} and~\eqref{eq:cotasalfa+1}, we get, for $x\in K$ and $t\in D$,
+\begin{align*}
+&\left| \frac{\Ea(xt)}{\Ea(-t)-\Ea(t)}\right| 
+= \left| \frac{\Ea(tx)\,(\alpha+1)}{\I_{\alpha+1}(t) t}\right|
+%     = \left| \frac{(\alpha+1)\left[\I_{\alpha}(tx)
+%     + \frac{tx}{2(\alpha+1)}\I_{\alpha+1}(tx)\right]}{\I_{\alpha+1}(t) t}\right| \\
+= \left| \frac{(\alpha+1) \I_{\alpha}(tx)}{\I_{\alpha+1}(t) t}
++ \frac{x \I_{\alpha+1}(tx)}{2 \I_{\alpha+1}(t)}\right| \\
+&\qquad= \left| \frac{J_{\alpha}(itx) i + J_{\alpha+1}(itx)}{2x^{\alpha} J_{\alpha+1}(it)} \right|
+%    \leq \frac{C \frac{e^{\Im(itx)}}{|itx|^{1/2}}(i + \alpha + 1)} 
+%    {2 x^{\alpha}c \frac{e^{\Im(it)}}{|it|^{1/2}}}
+\leq \tilde{c} \,\frac{e^{|\Im(xit)|}/|xit|^{1/2}}{|x|^{\alpha}e^{|\Im(it)|}/|it|^{1/2}} 
+= \tilde{c} \,\frac{e^{(|x|-1)|\Re(t)|}}{|x|^{\alpha-1/2}}
+\end{align*}
+for some constant $\tilde{c}$ depending only on $\alpha$ and~$K$.
+This proves the result for $x \in [-1,1]\setminus\{ 0 \}$. Finally, let us study the particular case $x=0$. As $\Ea(0) = 1$, it follows that
+\[
+|g(t)| = \left| \frac{\alpha+1}{\I_{\alpha+1}(t)t}\right| 
+\leq \tilde{c} \, \frac{|t|^{\alpha -1 -1/2}}{e^{|\Re(t)|}}.
+\]
+Since we can choose $t$ such as $|t|\to \infty$ and $\Re(t)$ is constant, to ensure that $g(t)$ is bounded at $x=0$ on compact subsets of $S$ we have to consider that $\alpha < 1+1/2$.
+\end{proof}
+
+We now have the tools for the next step:
+
+\begin{proof}[Proof of Theorem~\ref{teo:Isz}]
+For simplicity, let us denote
+\[
+  g(t) = \frac{\Ea(xt)}{\Ea(-t)-\Ea(t)}.
+\]
+The contour $C$ in Figure~\ref{fig:contour} is composed of three parts, $C_1$, $C_2$ and $C_3$. We take $C_2$ as a positively oriented circle of radius $0< c < s_1$ (where $s_1$ is the first zero of $J_{\alpha+1}(x)/x^{\alpha+1}$) about the origin. This avoids $C_2$ passing through a zero of $g(t)$. On the other hand, $C_1$ and $C_3$ are the lower and upper edges of a ``cut'' in the $t$-plane along the negative real axis, traversed as shown in Figure~\ref{fig:contour}.
+Then,
+\begin{equation}
+\label{eq:int-div}
+   2\pi i I(s,x) = \left( \int_{C_1} + \int_{C_2}+ \int_{C_3}\right)g(t)t^{s-1}\,dt.
+\end{equation}
+We consider an arbitrary compact disk $|s|\leq M$ and prove that the integrals along $C_1$ and $C_3$ converge uniformly on every such disk. Since the integrand is an entire function of $s$, this will prove that $I(s,x)$ is entire. 
+
+We have $t = re^{-\pi i}$ on $C_1$, $t=re^{\pi i}$ on $C_3$ (with $r$ varying from $c>0$ to~$\infty$) and $g(t) = g(-r)$. 
+Also, let us denote $\sigma = \Re(s)$.
+Along $C_1$ and $C_3$, for $r \geq 1$,
+\[
+|t^{s-1}| = r^{\sigma-1} |e^{\pm\pi i(\sigma-1+iy)}| 
+= r^{\sigma-1}e^{\pm\pi y} \leq r^{M-1}e^{\pi M}.
+\]
+Hence on either $C_1$ or $C_3$, for $r\geq 1$,
+\begin{equation*}
+    \left|g(t) t^{s-1}\right| \leq r^{M-1}e^{\pi M}\left|g(-r)\right|.
+\end{equation*}
+Following the proof of Lemma~\ref{lem:acot-g}, we find that $g(-r)$ is bounded by 
+\[
+  \tilde{c} \, \frac{e^{(|x|-1)r}}{|x|^{\alpha-1/2}}.
+\]
+% $\tilde{c} {e^{(|x|-1)r}}/{|x|^{\alpha-1/2}}$.
+That means $|g(t) t^{s-1}| \leq A r^{M}e^{(|x|-1)|r|}$ for some constant $A$ depending on $M$ and~$x$. Since the integral $\int_c^{\infty} r^{M}e^{(|x|-1)r} \,dr$ converges when $c>0$ and $-1< x < 1$, this shows the convergence along $C_1$ and $C_3$ and hence, $I(s,x)$ is entire.
+
+Now, we compute $I(s,x)$ by \eqref{eq:int-div}, taking into account that $t=ce^{i\theta}$ (with $-\pi \leq \theta \leq \pi$) on $C_2$. Let us take
+\begin{align*}
+    2\pi i I(s,x) & = \int_{\infty}^{c}r^{s-1}e^{-\pi i s}g(-r)\,dr \\
+    &\qquad + \int_{-\pi}^{\pi} c^{s-1} e^{i\theta(s-1)} g(ce^{i\theta})i c e^{i\theta}\,d\theta 
+%    \\ &\qquad 
+    + \int_{c}^{\infty}r^{s-1}e^{\pi i s}g(-r)\,dr.
+\end{align*}
+The sum of the integrals along $C_1$ and $C_3$ is equal to
+\begin{align*}
+   \int_{c}^{\infty} r^{s-1} g(-r) ( e^{\pi i s} - e^{-\pi i s})\,dr 
+   & = 2i \sin(s\pi) \int_{c}^{\infty}r^{s-1}g(-r)\,dr \\ 
+   & =: 2i \sin(s\pi) I_1(s,c),
+\end{align*}
+and the integral along $C_2$ is equal to
+\[
+ic^s\int_{-\pi}^{\pi}e^{i\theta s}g(c e^{i\theta})\,d\theta =: i c^s I_2(s,c).
+\]
+Dividing by $2i$, we get
+\[
+\pi I(s,x) = \sin(s\pi) I_1(s,c) + \frac{c^s}{2} I_2(s,c).
+\]
+If we take $c\to 0$, we notice that $I_1(s,c) \to \Gamma(s)\zeta_{\alpha}(s,x)$ if $\sigma > 1$, where $\zeta_{\alpha}(s,x)$ is the function defined in~\eqref{eq:HD-zeta1}, so it only remains to prove that $I_2(s,c) \to 0$ as $c \to 0$. 
+
+Notice that $g(t)$ is analytic in $|t|<s_1$ except on the simple pole at $t=0$. Hence $g(t)t$ is analytic everywhere on $|t|<s_1$ and so it is bounded here, say $g(t) \leq A/|t|$ for some constant $A > 0$ and $|t|=c>0$. Therefore we have
+\[
+|I_2(s,c)| \leq \frac{c^{\sigma}}{2} \int_{-\pi}^{\pi} e^{-y\theta} \,\frac{A}{c}\,d\theta 
+\leq Ae^{\pi |y|}c^{\sigma-1}.
+\]
+If $\sigma > 1$ and $c\to 0$, we find $I_2(s,c) \to 0$. In conclusion, for $\sigma > 1$,
+\[
+\pi I(s,x) = \sin(s\pi) \Gamma(s) \zeta_{\alpha}(s,x),
+\]
+and finally, using that $\Gamma(s)\Gamma(1-s) = \pi/\sin(\pi s)$, we get~\eqref{eq:zetaaI}.
+\end{proof}
+
+Let us give the proof of Theorem~\ref{teo:reszeta1}, where we show that the unique singularity of $\zeta_{\alpha}(s,x)$, such as defined in~\eqref{eq:zetaaACI}, is a simple pole at $s=1$. 
+
+\begin{proof}[Proof of Theorem~\ref{teo:reszeta1}]
+Since $I(s,x)$ is entire, the only possible singularities of $\zeta_{\alpha}(s,x)$ are the poles of $\Gamma(1-s)$, that is, the points $s=1,2,3,\dots$ But $\zeta_{\alpha}(s,x)$ is analytic for $s>1$, so $s=1$ is the only possible pole of $\zeta_{\alpha}(s,x)$.
+
+If $s$ is any integer, say $s=n$, the integrand in the contour integral for $I(s,x)$ takes the same values on $C_1$ as on $C_3$, and hence the integrals along $C_1$ and $C_3$ cancel, leaving, by Cauchy's residue theorem,
+\[
+I(n,x) = \frac{1}{2\pi i}\int_{C_2} \frac{\Ea(xt)}{\Ea(-t)-\Ea(t)} t^{n-1}\,dt = \Res_{t=0} \Big(\frac{\Ea(xt)}{\Ea(-t)-\Ea(t)} t^{n-1}\Big).
+\]
+In particular, when $s=1$ we have
+\[
+I(1,x) = \Res_{t=0} \Big(\frac{\Ea(xt)}{\Ea(-t)-\Ea(t)}\Big) 
+= - \lim_{t\to 0} \frac{t \Ea(xt)(\alpha+1)}{\I_{\alpha+1}(t)t} = -(\alpha+1).
+\]
+To find the residue of $\zeta_{\alpha}(s,x)$ at $s=1$ we compute the limit
+\[
+\lim_{s\to 1}(s-1)\zeta_{\alpha}(s,x) 
+= - \lim_{s\to 1}(1-s)\Gamma(1-s) I(s,x) 
+= -I(1,x)\lim_{s\to 1}\Gamma(2-s) = \alpha+1.
+\]
+This proves that $\zeta_{\alpha}(s,x)$ has a simple pole at $s=1$ with residue $\alpha + 1$.
+\end{proof}
+
+Now that Theorem~\ref{teo:Isz} is proved, we can obtain the expression of 
+$\zeta_\alpha(-n,x)$, for $n=0,1,2,\dots$ related to the Bernoulli-Dunkl polynomials:
+
+\begin{proof}[Proof of Theorem~\ref{teo:zeta-n}]
+Evaluating at $s=-n$ in \eqref{eq:Isz} we get $\zeta_\alpha(-n,x) = n!\,I(-n,x)$. Applying Cauchy's residue theorem, we have 
+\begin{align*}
+I(-n,x) & = \Res_{t=0} \left( \frac{\Ea(xt)}{\Ea(-t)-\Ea(t)}t^{-n-1}\right) 
+ = \Res_{t=0} \left( -(\alpha+1)\frac{\Ea(xt)}{\I_{\alpha+1}(t)}t^{-n-2}\right) \\
+ & =  -(\alpha+1)\Res_{t=0} \left(t^{-n-2} \sum_{m=0}^{\infty}
+ \frac{\B_{m,\alpha}(x)}{\gamma_{m,\alpha}}t^m\right) \\
+ & =  -(\alpha+1)\lim_{t\to 0} \left(t^{-n-1} \sum_{m=0}^{\infty} 
+ \frac{\B_{m,\alpha}(x)}{\gamma_{m,\alpha}}t^m\right) 
+ =  -(\alpha+1) \frac{\B_{n+1,\alpha}(x)}{\gamma_{n+1,\alpha}}.
+\qedhere
+\end{align*}
+\end{proof}
+
+Now we are ready to prove the convergence of the Lerch-Dunkl zeta function $\mathcal{F}(x,s)$ defined in~\eqref{eq:HD-formF}, and the Hurwitz-Dunkl formula:
+
+\begin{proof}[Proof of Theorem~\ref{teo:HD-form}]
+We begin by proving the convergence of \eqref{eq:HD-formF}, with $\Re(s)>1$, for $x \in \R$.
+For real values of the variable, we have
+\[
+J_{\alpha}(t)^2 + J_{\alpha+1}(t)^2 = \frac{2}{\pi t}(1+o(1)), \quad t \to \infty,
+\]
+so $\lim_n s_n^{1/2} |J_\alpha(s_n)| = \sqrt{2/\pi}$, and consequently
+\[
+  |\I_{\alpha}(is_m)| \sim C s_m^{-\alpha-1/2}, \quad t \to \infty.
+\]
+Moreover, $|\Ea(xis_m)| \le C|xs_m|^{-\alpha-1/2}$ by~\eqref{eq:asymptotic-1f1}. Then,
+\[
+  \left| \frac{\Ea(xi s_m)}{\I_{\alpha}(i s_m)} \frac{1}{s_m^s} \right|
+  \le C |x|^{-\alpha-1/2} s_m^{-s},
+\]
+and this guarantees the absolute convergence of~\eqref{eq:HD-formF}.
+
+To prove~\eqref{eq:HD-form}, let us consider the contour integral
+\begin{equation}
+\label{eq:INsx}
+    I_N(s,x) = \frac{1}{2\pi i}\int_{C(N)}\frac{\Ea(xt)}{\Ea(-t)-\Ea(t)} t^{s-1}\,dt,
+\end{equation}
+where $C(N)$ is the loop shown in Figure~\ref{fig:contour-cN}.
+We now denote $\sigma = \Re(s)$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.5]
+%inner circle and conexion with outer circle
+\draw (1,0) arc (0:170:1) -- (-3,0.1736);
+\draw (0,0) node[right] {$0$};
+\draw (0,0) node {$\bullet$};
+%\draw (1,0) node {$\bullet$};
+\draw (1,0) arc (360:190:1) -- (-3,-0.1736);
+% outer circle
+\draw (3,0) arc (0:177:3);
+\draw (3,0) arc (0:90:3);
+\draw (3,0) arc (360:183:3);
+% nodes
+\draw (0,2.5) node[right] {$is_N$};
+\draw (0,2.5) node {$\bullet$};
+\draw (0,3.5) node[right] {$is_{N+1}$};
+\draw (0,3.5) node {$\bullet$};
+\draw (0,-2.5) node[right] {$-is_N$};
+\draw (0,-2.5) node {$\bullet$};
+\draw (0,-3.5) node[right] {$-is_{N+1}$};
+\draw (0,-3.5) node {$\bullet$};
+%arrows
+\draw[ultra thick, ->] (1,0) node[right] {};
+\draw[ultra thick, ->] (-2.0,0.1736) -- (-2.01,0.1736);
+\draw[ultra thick, ->] (-2.01,-0.1736) -- (-2,-0.1736);
+\draw[ultra thick, ->] (3,0) -- (3,-0.01);
+\end{tikzpicture}
+\caption{The contour $C(N)$ from \eqref{eq:INsx}.}
+\label{fig:contour-cN}
+\end{figure}
+
+First we prove that $\lim_{N\to \infty} I_N(s,x) = I(s,x)$ if $\sigma < 0$. For this it suffices to show that the integral along the outer circle tends to $0$ as $N\to \infty$.
+
+On the outer circle we have $t=Re^{i\theta}$, $-\pi \leq \theta \leq \pi$, hence
+\[
+  |t^{s-1}| = |R^{\sigma-1} e^{\pi i(\sigma +iy)}| 
+  = R^{\sigma-1}e^{-y \pi}  \leq R^{\sigma-1}e^{\pi |y|}. 
+\]
+Since the outer circle lies in the set $S$ of Lemma~\ref{lem:acot-g}, the integrand is bounded by $AR^{\sigma-1}e^{\pi |y|}$, where $A$ is the bound for $g(t)$ implied by Lemma~\ref{lem:acot-g}; hence, the integral is bounded by $2\pi AR^{\sigma}e^{\pi |y|}$. This tends to $0$ as $R \to \infty$ if $\sigma < 0$. Therefore, replacing $s$ by $1-s$, we see that
+\[
+  \lim_{N\to \infty}I_N(1-s,x) = I(1-s,x),\quad \text{ if } \sigma > 1.
+\]
+Since
+\[
+  \frac{\Ea(xt)}{\Ea(-t)-\Ea(t)} t^{-s} 
+  = -\frac{\Ea(xt)(\alpha+1)}{\I_{\alpha+1}(t)} t^{-s-1},
+\]
+the poles of $g(t)t^{-s}$ are just the zeros of $\I_{\alpha+1}(t)$, say $i s_m$, $m\in \Z\setminus \{0\}$ (we don't take into account the pole at $t = 0$ because $C(N)$ doesn't contain it). We compute $I_N(1-s,x)$ explicitely by Cauchy's residue theorem. We have
+\begin{equation}
+\label{eq:exp-res}
+I_N(1-s,x) = -\sum_{\substack{m=-N\\m \ne 0}}^{m=N} R(m) 
+= -\sum_{\substack{m=-N\\m \ne 0}}^{m=N} 
+\Res_{t=i s_m}\left(\frac{\Ea(xt)}{\Ea(-t)-\Ea(t)} t^{-s}\right).
+\end{equation}
+%where
+%\begin{equation*}
+% R(m) = \Res_{t=i s_m}\left(\frac{\Ea(xt)}{\Ea(-t)-\Ea(t)} t^{-s}\right).
+%\end{equation*}
+Now, if $m>0$,
+\begin{align*}
+  -R(m) & = \lim_{t\to i s_m} (t-is_m)\frac{\Ea(xt)(\alpha+1)}{\I_{\alpha+1}(t)} t^{-s-1} \\
+  & = \Ea(xis_m)(is_m)^{-s-1}(\alpha+1)\lim_{t\to i s_m}\frac{(t-is_m)}{\I_{\alpha+1}(t)} \\
+  & = \Ea(xis_m)(is_m)^{-s-1}(\alpha+1)\frac{1}{\I'_{\alpha+1}(i s_m)}.
+\end{align*}
+Now, we compute $\I'_{\alpha+1}(i s_m)$ as follows. First, let us write $\I_\alpha(z) = 2^\alpha \Gamma(\alpha+1){I_{\alpha}(z)}/{z^{\alpha}}$, where $I_\alpha$ is the modified Bessel function of the first kind and order~$\alpha$, see~\cite{Wat, OlMa-NIST}. We will use the identities (see, for instance, \cite[10.29.2]{OlMa-NIST})
+% \url{http://dlmf.nist.gov/10.29}
+\begin{equation}
+\label{eq:Ider+}
+  I_\alpha'(z) = I_{\alpha+1}(z) + \frac{\alpha}{z}\,I_\alpha (z)
+\end{equation}
+and
+\begin{equation}
+\label{eq:Ider-}
+  I_\alpha'(z) = I_{\alpha-1}(z) - \frac{\alpha}{z}\,I_\alpha (z).
+\end{equation}
+By \eqref{eq:Ider+} we have
+\begin{equation}
+\label{eq:der-besselI}
+  \I_\alpha'(z) = 2^\alpha \Gamma(\alpha+1) \left(\frac{I_\alpha'(z)}{z^\alpha}
+  - \alpha \, \frac{I_\alpha(z)}{z^{\alpha+1}}\right)
+  = \frac{z}{2(\alpha+1)} \, \I_{\alpha+1}(z),
+\end{equation}
+and by \eqref{eq:Ider-} (with $\alpha+1$ instead of~$\alpha$) we deduce that
+\begin{align*}
+  \I_{\alpha+1}'(z) &= 2^{\alpha+1} \Gamma(\alpha+2) \left(\frac{I_{\alpha+1}'(z)}{z^{\alpha+1}}
+  - (\alpha+1)\frac{I_{\alpha+1}(z)}{z^{\alpha+2}}\right) \\
+  &= 2^{\alpha+1} \Gamma(\alpha+2) \left(\frac{I_{\alpha}(z)}{z^{\alpha+1}}
+  - 2(\alpha+1)\frac{I_{\alpha+1}(z)}{z^{\alpha+2}}\right) \\
+  &= \frac{2(\alpha+1)}{z}(\I_{\alpha}(z)-\I_{\alpha+1}(z)).
+\end{align*}
+Hence, $\I_{\alpha+1}'(i s_m) = \frac{2(\alpha+1)}{i s_m}\I_{\alpha}(i s_m)$. Therefore we get, for $m =1, 2, \dots$,
+\begin{equation}
+\label{eq:res+}
+  -R(m) = \frac{1}{2}\frac{\Ea(xis_m)}{\I_{\alpha}(i s_m)}(is_m)^{-s}.
+\end{equation}
+Analogously, for $m = -1, -2, \dots$, we can compute $-R(m)$ the same way as before, but taking into account that $s_{-m} = -s_m$ and knowing that $\I_{\alpha}(t)$ is an even function of~$t$. In this case, we get
+\begin{equation}
+\label{eq:res-}
+    -R(m) = \frac{1}{2}\frac{\Ea(-xis_m)}{\I_{\alpha}(i s_m)}(-is_m)^{-s}.
+\end{equation}
+By \eqref{eq:res+} and \eqref{eq:res-} we are able to compute \eqref{eq:exp-res}. Indeed,
+\begin{equation*}
+  I_N(1-s,x) = \frac{i^{-s}}{2} \sum_{m=1}^{N} \frac{\Ea(xis_m)}{\I_{\alpha}(i s_m)s_m^s} 
+  + \frac{(-i)^{-s}}{2} \sum_{m=1}^{N} \frac{\Ea(-xis_m)}{\I_{\alpha}(i s_m)s_m^s}.
+\end{equation*}
+Writing $i^{-s} = e^{-\pi s/2}$ and $(-i)^{-s} = e^{\pi s/2}$ and taking $N \to \infty$ we get
+\begin{equation*}
+  I(1-s,x) = \frac{1}{2}\left( e^{-\pi s i/2} \sum_{m=1}^{\infty} 
+  \frac{\Ea(x i s_m)}{\I_{\alpha}(i s_m)s_m^s}
+  + e^{\pi s i/2} \sum_{m=1}^{\infty} \frac{\Ea(-x i s_m)}{\I_{\alpha}(i s_m)s_m^s}\right).
+\end{equation*}
+Since $\zeta_{\alpha}(1-s,x) = \Gamma(s) I(1-s,x)$, if we call $\mathcal{F}(x,s) = \sum_{m=1}^{\infty} \frac{\Ea(x i s_m)}{\I_{\alpha}(i s_m)s_m^s}$ we finally get the Hurwitz-Dunkl formula~\eqref{eq:HD-form}.
+\end{proof}
+
+The Hurwitz-Dunkl formula gives us an expression for $\zeta_\alpha(s,x)$ free of the intricate integrals. With it, we can easily prove Theorem~\ref{teo:ref-form}.
+
+\begin{proof}[Proof of Theorem~\ref{teo:ref-form}]
+Taking $x=1$ in the Hurwitz-Dunkl formula \eqref{eq:HD-form}, we get $\mathcal{F}(1,s) = \sum_{m=1}^{\infty} {1}/{s_m^s}$, since $\Ea(\pm i s_m) = \I_{\alpha}(i s_m)$. Hence, 
+\begin{equation*}
+\zeta_{\alpha}(1-s) = \zeta_{\alpha}(1-s,1) 
+= \frac{\Gamma(s)}{2} \sum_{m=1}^{\infty} 
+\frac{1}{s_m^s} \left( e^{-\pi s i/2} + e^{\pi s i/2}\right) 
+= \Gamma(s) \cos{\left(\frac{\pi s}{2}\right)} \sum_{m=1}^{\infty} \frac{1}{s_m^s} .
+\end{equation*}
+Changing $1-s$ for $s$ we get the equivalent expression in terms of $\sin(x)$.
+\end{proof}
+
+%-----------
+\subsection{The Euler-type Dunkl zeta function case}
+\label{subsec:proofszEa}
+%-----------
+
+Now we prove the analogous results for $\zeta_{E,\alpha}(s,x)$ and $\zeta_{E,\alpha}(s)$.
+
+\begin{lemma}
+\label{lem:acot-h}
+Let $\{j_m\}_{m=1}^{\infty}$ be the positive zeros of $J_{\alpha}(t)$ and
+let $S=\C\setminus\{0,\allowbreak \pm ij_1,\allowbreak \pm ij_2,\allowbreak \dots \}$.
+% (i.e., the region that remains when we remove from the $t$-plane the origin 
+% and all zeros of $\I_{\alpha}(t)$). 
+Then for $x\in [-1,1]\setminus \{0\}$, the function 
+\[
+h(t) = \frac{\Ea(xt)}{\Ea(-t)+\Ea(t)}
+\]
+is bounded on compact subsets of $S$ and compact subsets of $x\in [-1,1]\setminus \{0\}$.
+Furthermore, if $\alpha < 1/2$, then for $x=0$ the function $h(t)$ is bounded on compact subsets of~$S$.
+\end{lemma}
+
+\begin{proof}
+We start again by taking a large circle $D=\{z\in\C : |z|=A\}$ of radius $A$ with the only condition that none of the points $j_m$, $m\in \Z\setminus\{0\}$, must lie on~$D$. The poles of $h(t)$ inside $D$ are $j_m$, with $|j_m| < A$, and all of them are simple.
+ For any compact set $K\subset [-1,1]\setminus\{0\}$ the radius $A$ can be chosen with the additional property that there exist $c, C > 0$ such that, for any $t \in D$ and $x \in K$, equations~\eqref{eq:cotas2}, \eqref{eq:cotasalfa} and~\eqref{eq:cotasalfa+1} are satisfied. Hence, we have
+\begin{align*}
+\left| \frac{\Ea(xt)}{\Ea(-t)+\Ea(t)}\right| 
+&= \left| \frac{\Ea(tx)}{2 \I_{\alpha}(t)}\right|
+= \left| \frac{\I_{\alpha}(tx)}{2\I_{\alpha}(t)}
++ \frac{xt \I_{\alpha+1}(tx)}{4(\alpha+1) \I_{\alpha}(t)}\right| \\
+&= \left| \frac{J_{\alpha}(itx) i + J_{\alpha+1}(itx)}{2x^{\alpha} J_{\alpha}(it)} \right|
+%    &\leq \dfrac{C \frac{e^{\Im(itx)}}{|itx|^{1/2}}(i + \alpha + 1)}
+%    {2 x^{\alpha}c \frac{e^{\Im(it)}}{|it|^{1/2}}}
+\leq \tilde{c}\, \frac{e^{(|x|-1)|\Re(t)|}}{|x|^{\alpha-1/2}}
+\end{align*}
+for some constant $\tilde{c}$ depending only on $\alpha$ and~$K$.
+This proves the result for $x \in [-1,1]\setminus\{ 0 \}$. Finally, we consider the particular case $x=0$. As $\Ea(0) = 1$, it follows that
+\[
+|h(t)| = \left| \frac{1}{2\I_{\alpha}(t)}\right| 
+\leq \tilde{c} \,\frac{|t|^{\alpha + 1/2}}{e^{|\Re(t)|}},
+\]
+which is bounded, when $|t| \geq A$, if $\alpha < 1/2$. Hence, for $x=0$, $h(t)$ is bounded on $S$ if $\alpha < 1/2$. 
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{teo:IEsz}]
+The proof is identical to the one of Theorem~\ref{teo:Isz} but using the bound of Lemma~\ref{lem:acot-h} instead.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{teo:HD-form-E}]
+The convergence of $\mathcal{F}_E(x,s)$, for $x \in \R$, can be proved as in the case of Theorem~\ref{teo:HD-form}, this time with $|\I_{\alpha+1}(j_m)| \sim C |j_m|^{-\alpha-1-1/2}$, so
+\[
+  \left| \frac{\Ea( i j_m x)}{\I_{\alpha+1}(i j_m)} \frac{1}{j_m^{s+1}} \right|
+  \le C |x|^{-\alpha-1/2} j_m^{-s},
+\]
+and the converges is again for $\Re(s)>1$.
+
+To prove \eqref{eq:form-HD-Euler}, let us now consider 
+\[
+    I_N(s,x) = \frac{1}{2\pi i} \int_{C(N)}\frac{\Ea(xt)}{\Ea(-t)+\Ea(t)} t^{s-1}\,dt
+\]
+with $C(N)$ the loop of Figure~\ref{fig:contour-cN}.
+On the outer circle the integrand is bounded by $AR^{\sigma-1}e^{\pi |y|}$, where $A$ is the bound for $h(t)$ implied by Lemma~\ref{lem:acot-h}; hence, the integral is bounded by $2\pi AR^{\sigma}e^{\pi |y|}$. If $\sigma < 0$ the integral $I_N(s,x)\to 0$ along the outer circle of $C(N)$ when $R\to \infty$.
+Hence, replacing $s$ for $1-s$, we get $\lim_{N\to \infty} I_N(1-s,x) = I_E(1-s,x)$ for $\sigma > 1$. We compute $I_N(1-s,x)$ by Cauchy's residue theorem. Let $m=1,2,\dots$ We compute the residue at $t=i j_m$ using~\eqref{eq:der-besselI}:
+\begin{align*}
+    -R(m) & = -\Res_{t=i j_m} \left(\frac{\Ea(xt)}{2\I_{\alpha}(t)}t^{-s}\right) 
+    = -\lim_{t \to i j_m}(t - ij_m) \left(\frac{\Ea(xt)}{2\I_{\alpha}(t)}t^{-s}\right) \\
+    & = -\frac{\Ea(i j_m x)}{2\I_{\alpha}^{'}(i j_m)}(i j_m)^{-s} 
+    = -\frac{(\alpha+1)\Ea(i j_m x)}{\I_{\alpha+1}(i j_m)}(i j_m)^{-s-1}.
+\end{align*}
+Also, when $m=-1,-2,\dots$, we have
+\[
+    -R(m) = -\frac{(\alpha+1)\Ea(-i j_m x)}{\I_{\alpha+1}(-i j_m)}(-i j_m)^{-s-1}.
+\]
+Then,
+\begin{equation*}
+I_N(1-s,x) = -\sum_{\substack{m=-N\\m \ne 0}}^{N} R(m) 
+= -\sum_{\substack{m=-N\\m \ne 0}}^{N} 
+\frac{(\alpha+1)\Ea(i j_m x)}{\I_{\alpha+1}(i j_m)}(i j_m)^{-s-1}.
+\end{equation*}
+Letting $N\to \infty$, we get~\eqref{eq:form-HD-Euler}.
+\end{proof}
+
+\subsection*{Acknowledgments.} 
+The authors wish to thank the anonymous referees and the editor for their detailed revision of the manuscript, which has allowed us to improve the final version of the paper.
+
+%-----------
+\begin{thebibliography}{00}
+%-----------
+
+\bibitem{Act}
+A. Actor and I. Bender,
+The zeta function constructed from the zeros of the Bessel function,
+\textit{J. Phys. A} \textbf{29} (1996), 6555--6580.
+
+\bibitem{AlS}
+W. A. Al-Salam,
+Characterization theorems for orthogonal polynomials,
+\textit{Orthogonal Polynomials: Theory and Practice}
+(Columbus, OH, 1989, P.~Nevai, ed.), 1--24,
+NATO Adv. Sci. Inst. Ser. C Math. Phys. Sci., 294,
+Kluwer Acad. Publ., Dordrecht, 1990.
+
+\bibitem{Ap}
+T. M. Apostol,
+On the Lerch zeta function,
+\textit{Pacific J. Math.} \textbf{1} (1951), 161--167;
+addendum, \textit{Pacific J. Math.} \textbf{2} (1952), 10.
+
+\bibitem{Ap-ANT}
+T. M. Apostol,
+\textit{Introduction to Analytic Number Theory},
+Springer-Verlag, New York, 1976.
+
+\bibitem{Ap-NIST}
+T. M. Apostol,
+Zeta and related functions,
+\textit{NIST handbook of mathematical functions},
+% (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+587--599, % Es el Chapter 25
+U.S. Dept. Commerce, Washington, DC, 2010.
+%% LONG CITE:
+% National Institute of Standards and Technology, Washington, DC,
+% and Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/25}
+
+% MR2772105
+\bibitem{Ar}
+J. Arias de Reyna,
+High precision computation of Riemann's zeta function by the Riemann-Siegel formula, I,
+\textit{Math. Comp.} \textbf{80} (2011), 995--1009. 
+
+% MR3206394 
+\bibitem{ArLu}
+J. Arias de Reyna and J. van de Lune, 
+On the exact location of the non-trivial zeros of Riemann's zeta function,
+\textit{Acta Arith.} \textbf{163} (2014), 215--245.
+
+\bibitem{BayChi}
+A. Bayad and J. Chikhi,
+Reduction and duality of the generalized Hurwitz-Lerch zetas,
+\textit{Fixed Point Theory Appl.} \textbf{2013} (2013), article 82, 14~pp.
+
+\bibitem{BaySim}
+A. Bayad and Y. Simsek,
+Values of twisted Barnes zeta functions at negative integers,
+\textit{Russ. J. Math. Phys.} \textbf{20} (2013), 129--137.
+
+\bibitem{BG}
+Y. Ben Cheikh and M. Gaied,
+Dunkl-Appell $d$-orthogonal polynomials,
+\textit{Integral Transforms Spec. Funct.}
+\textbf{18} (2007), 581--597.
+
+\bibitem{BKI}
+A. Bouanani, L. Kh\'eriji and M. Ihsen Tounsi,
+Characterization of $q$-Dunkl Appell symmetric orthogonal $q$-polynomials,
+\textit{Expo. Math.}
+\textbf{28} (2010), 325--336.
+
+\bibitem{Chi}
+T. S. Chihara,
+\textit{An Introduction to Orthogonal Polynomials},
+Gordon and Breach, New York, 1978.
+
+\bibitem{CDPV}
+\'O. Ciaurri, A. J. Dur\'an, M. P\'erez and J. L. Varona,
+{Bernoulli-Dunkl and Apostol-Euler-Dunkl polynomials with applications to series involving zeros of Bessel functions},
+\textit{J. Approx. Theory}
+\textbf{235} (2018), 20--45.
+
+\bibitem{CMV}
+\'O. Ciaurri, J. M\'inguez Ceniceros and J. L. Varona,
+{Bernoulli-Dunkl and Euler-Dunkl polynomials and their generalizations},
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM}
+\textbf{113} (2019), 2853--2876.
+% https://doi.org/10.1007/s13398-019-00662-z
+
+%% NO SE CITA
+%\bibitem{CPRV}
+%\'O. Ciaurri, M. P\'erez, J. M. Reyes and J. L. Varona,
+%Mean convergence of Fourier-Dunkl series,
+%\textit{J. Math. Anal. Appl.}
+%\textbf{372} (2010), 470--485.
+%% http://www.unirioja.es/cu/jvarona/downloads/Fourier-Dunkl-series.pdf
+
+%% NO SE CITA
+%\bibitem{CV}
+%\'O. Ciaurri and J. L. Varona,
+%{A Whittaker-Shannon-Kotel'nikov sampling theorem related to the Dunkl transform},
+%\textit{Proc. Amer. Math. Soc.}
+%\textbf{135} (2007), 2939--2947.
+
+%% NO SE CITA
+%\bibitem{Cho}
+%F. M. Cholewinski,
+%\textit{The finite calculus associated with Bessel functions},
+%Contemporary Mathematics, 75, American Mathematical Society, Providence, RI, 1988.
+
+\bibitem{Dil-NIST}
+K. Dilcher,
+Bernoulli and Euler polynomials,
+\textit{NIST handbook of mathematical functions},
+% (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+587--599, % Es el Chapter 24
+U.S. Dept. Commerce, Washington, DC, 2010.
+%% LONG CITE:
+% National Institute of Standards and Technology, Washington, DC,
+% and Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/24}
+
+\bibitem{DH}
+I. H. Dimovski and V. Z. Hristov,
+Nonlocal operational calculi for Dunkl operators,
+\textit{SIGMA Symmetry Integrability Geom. Methods Appl.}
+\textbf{5} (2009), Paper~030, 16~pp.
+
+\bibitem{Du}
+C. F. Dunkl,
+{Differential-difference operators associated to reflection groups},
+\textit{Trans. Amer. Math. Soc.}
+\textbf{311} (1989), 167--183.
+
+\bibitem{DPV}
+A. J. Dur\'an, M. P\'erez and J. L. Varona,
+{Fourier-Dunkl system of the second kind and Euler-Dunkl polynomials},
+\textit{J. Approx. Theory}
+\textbf{245} (2019), 23--39.
+% https://doi.org/10.1016/j.jat.2019.04.007
+
+%% NO SE CITA
+%\bibitem{DPV-bessel}
+%A. J. Dur\'an, M. P\'erez and J. L. Varona,
+%{On the properties of zeros of Bessel series in the real line}, 
+%\textit{Integral Transforms Spec. Funct}. 
+%\textbf{32} (2021), 912--931.
+
+\bibitem{ExLaMiVa}
+J. I. Extremiana Aldana, E. Labarga, J. Mínguez Ceniceros and J. L. Varona, 
+Discrete Appell-Dunkl sequences and Bernoulli-Dunkl polynomials of the second kind, 
+\textit{J. Math. Anal. Appl.} \textbf{507} (2022), 125832, 20~pp. 
+
+\bibitem{DKP} % Tiene Bernoulli
+R. Graham, D. Knuth and O. Patashnik, 
+\textit{Concrete mathematics: A foundation for computer science}, 
+2nd ed., Addison-Wesley, 1994.
+
+%% NO SE CITA
+%\bibitem{Erdelyi}
+%A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. Tricomi,
+%\textit{Higher Transcendental Functions}, 
+%Volume I, McGraw-Hill, New York, 1953.
+
+%% NO SE CITA
+%\bibitem{EMOT2}
+%A. Erd\'elyi, W. Magnus, F. Oberhettinger and F. G. Tricomi,
+%\textit{Tables of integral transforms},
+%vol.~II, McGraw-Hill, New York, 1954.
+
+%% NO SE CITA
+%\bibitem{Guillera}
+%J. Guillera and J. Sondow, 
+%Double integrals and infinite products for some classical constants via analytic continuations of Lerch's transcendent, 
+%\textit{Ramanujan J.} 
+%\textbf{16} (2008), 247--270.
+
+% MR2633293
+\bibitem{Haw}
+J. H. Hawkins, 
+\textit{On a zeta-function associated with Bessel's equation}, 
+Ph.D. Thesis, University of Illinois at Urbana-Champaign, 1983. 
+% https://www.proquest.com/pagepdf/303279356?accountid=17251
+
+\bibitem{SuHu}
+S. Hu, D. Kim and M.-S. Kim, 
+Special values and integral representations for the Hurwitz-type Euler zeta functions,
+\textit{J. Korean Math. Soc.} 
+\textbf{55} (2018), no. 1, 185--210.
+
+%% NO SE CITA
+%\bibitem{Jeu}
+%M. F. E. de Jeu,
+%{The Dunkl transform},
+%\textit{Invent. Math.}
+%\textbf{113} (1993), 147--162.
+
+%% NO SE CITA
+%\bibitem{Le}
+%N. N. Lebedev,
+%\textit{Special functions and their applications},
+%Dover, New York, 1972.
+
+\bibitem{LiLiao}
+Z. Li and J. Liao % Zhongkai Li and Jianquan Liao
+Harmonic analysis associated with the one-dimensional Dunkl transform,
+\textit{Constr. Approx.} \textbf{37} (2013), 233--281.
+
+\bibitem{NRV-2018}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+Appell polynomials as values of special functions,
+\textit{J. Math. Anal. Appl.}
+\textbf{459} (2018), 419--436.
+
+\bibitem{NRV-2019}
+L. M. Navas, F. J. Ruiz and J. L. Varona,
+A note on Appell sequences, Mellin transforms and Fourier series,
+\textit{J. Math. Anal. Appl.}
+\textbf{476} (2019), 836--850.
+
+% Primeros Bernoulli de orden alpha (entero positivo)
+\bibitem{Nor}
+% N. E. N\"orlund, % <--- In the paper, this is the name of the author.
+N. E. N{\o}rlund, % <--- The correct name in Danish
+M\'emoire sur les polyn\^omes de Bernoulli,
+\textit{Acta. Math.}
+\textbf{43} (1922), 121--196.
+
+% Primeros Euler de orden alpha (entero positivo y negativo)
+\bibitem{Nor-book}
+% N. E. N\"orlund, % <--- In the book, this is the name of the author.
+N. E. N{\o}rlund, % <--- The correct name in Danish
+\textit{Vorlesungen \"uber Differenzenrechnung}, 1st ed.,
+Springer-Verlag, Berlin-Heidelberg, 1924.
+
+\bibitem{OlMa-NIST}
+F. W. J. Olver and L. C. Maximon,
+Bessel Functions,
+\textit{NIST handbook of mathematical functions},
+% (edited by F.~W. F.~Olver, D.~W. Lozier, R.~F. Boisvert and C.~W. Clark),
+215--286, % Es el Chapter 10
+U.S. Dept. Commerce, Washington, DC, 2010.
+%% LONG CITE:
+% National Institute of Standards and Technology, Washington, DC,
+% and Cambridge University Press, Cambridge, 2010.
+Available online in \url{http://dlmf.nist.gov/10}
+
+\bibitem{Ros}
+M. Rosenblum,
+{Generalized Hermite polynomials and the Bose-like oscillator calculus},
+\textit{Oper. Theory Adv. Appl.}
+\textbf{73} (1994), 369--396.
+
+\bibitem{Rosler-LN}
+M. R\"osler,
+Dunkl operators: theory and applications,
+\textit{Orthogonal polynomials and special functions
+(Leuven, 2002)}, 93--135,
+Lecture Notes in Math., 1817, Springer, Berlin, 2003.
+
+\bibitem{Rosler-TAMS}
+M. R\"osler,
+A positive radial product formula for the Dunkl kernel,
+\textit{Trans. Amer. Math. Soc.}
+\textbf{355} (2003), 2413--2438.
+
+%\bibitem{Rudin}
+%W. Rudin, 
+%\textit{Priciples of Mathematical Analysis}, 3rd ed.,
+%International Series in Pure and Applied Mathematics,
+%McGraw-Hill, 1976.
+
+%% Director de tesis de Hawkins
+\bibitem{Sto}
+K. B. Stolarsky,
+Singularities of Bessel-zeta functions and Hawkins' polynomials,
+\textit{Mathematika}
+\textbf{32} (1985), 96--103.
+
+\bibitem{Szego}
+G. Szeg\H{o}, 
+\textit{Orthogonal Polynomials}, 4th~ed.,
+Amer. Math. Soc. Colloquium Publ., Vol.~23, 
+American Mathematics Society, New York, 1975.
+% La primera edici\'on es de 1939
+
+\bibitem{ThX}
+S. Thangavelu and Y. Xu,
+Riesz transform and Riesz potentials for Dunkl transform,
+\textit{J. Comput. Appl. Math.}
+\textbf{199} (2007), 181--195.
+
+\bibitem{Wat}
+G. N. Watson,
+\textit{A Treatise on the Theory of Bessel Functions}, 2nd ed.,
+Cambridge Univ. Press,
+Cambridge, 1944.
+
+\bibitem{WiZ}
+K. S. Williams and N. Y. Zhang, 
+Special values of the Lerch zeta function and the evaluation of certain integrals, 
+\textit{Proc. Amer. Math. Soc.} \textbf{119} (1993), no. 1, 35--49.
+
+
+%-----------
+\end{thebibliography}
+%-----------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%---------------------
+\end{document}
+%---------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%

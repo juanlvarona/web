@@ -1,0 +1,285 @@
+%&pdftex
+% JUAN LUIS VARONA
+
+% CONGRESO UNIMAC'96
+
+% FECHA COMIENZO DOCUMENTO: 15 DE FEBRERO DE 1996
+% FECHA \'ULTIMA MODIFICACI\'ON: 6 DE AGOSTO DE 1996
+% A\~NADIDA REFERENCIA A LAS ACTAS: 26 DE AGOSTO DE 2004
+
+% ----------------------------------------------------------
+
+\magnification=\magstep1
+\pretolerance=2000 % Puesto un n\'umero alto para evitar cortes de palabras
+\tolerance=3000
+%\overfullrule=0pt
+\frenchspacing % Para no dejar doble espacio despu\'es de los puntos
+\parskip=4pt plus 3pt minus 2 pt % Un poco m\'as de espacio entre p\'arrafos
+% (Jugar con esto para ajustar el n\'umero de p\'aginas)
+
+% \nopagenumbers
+
+\font\titulobf=cmbx12 at 18truept
+
+\font\eightrm=cmr8
+\font\eighttt=cmtt9
+
+\font\sc = cmcsc10
+
+% THE ORIGINAL \LaTeX LOGO IS DEFINED HERE:
+\def\LaTeX{{\rm L\kern-.36em\raise.3ex\hbox{\sc a}\kern-.15em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TEXTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\centerline{\titulobf HERRAMIENTAS INFORM\'ATICAS PARA}
+\medskip
+\centerline{\titulobf ESCRIBIR \TeX\ EN CASTELLANO}
+\footnote{}{{\sevenrm El trabajo investigador del autor est\'a
+subvencionado con la ayuda ULR-96PYB56JVM de la Universidad de La Rioja.}}
+\footnote{}{{\sevenrm Esta ponencia fue presentada en el congreso
+UNIMAC 96, celebrado del 19 al 21 de septiembre de 1996 en el
+Centro Polit\'ecnico Superior de la Universiad de Zaragoza.
+Acompa\~nado de las ``herramientas inform\'aticas'' que se citan,
+fue publicado en las Actas del Congreso, en el
+CD-ROM UNIMAC 96, editado por la Universidad de Zaragoza.}}
+
+\bigskip
+
+\centerline{\bf Juan Luis Varona Malumbres}
+\centerline{Dpto.\ de Matem\'aticas y Computaci\'on. Universidad de La Rioja}
+\centerline{Calle Luis de Ulloa s/n, 26004 LOGRO\~NO}
+
+\medskip
+
+\centerline{Correo electr\'onico: {\tt jvarona@siur.unirioja.es}}
+
+\bigskip
+
+% ----------------------------------------------------------
+
+{\narrower \eightrm
+RESUMEN: 
+Presentamos dos herramientas destinadas a ayudar a los usuarios de \TeX\ en
+Macintosh, fundamentalmente cuando escriben en castellano. La primera es un
+diccionario en espa\~nol y la segunda es un parche destinado a facilitar la
+escritura de de documentos \TeX\ en procesadores de texto de Macintosh. Ambas
+est\'an, ya en la actualidad, disponibles a la comunidad de usuarios de \TeX\
+a trav\'es de Internet por medio de diversos servidores de {\eighttt ftp}
+an\'onimo.
+\par}
+
+\bigskip
+
+% ----------------------------------------------------------
+
+\beginsection{INTRODUCCI\'ON}
+
+\TeX\ es una mezcla entre procesador de texto y lenguaje de programaci\'on
+dedicado a confeccionar documentos escritos de gran calidad tipogr\'afica.
+Estos documentos pueden usarse sin cambio alguno en todo tipo de ordenadores
+que cuenten con una implementaci\'on de \TeX, y el documento impreso que se
+obtiene es independiente del ordenador o impresora usado (l\'ogicamente, las
+copias impresas tendr\'an mayor o menor calidad dependiendo de la
+resoluci\'on de la impresora). \TeX\ es especialmente \'util cuando se desea
+escribir documentos que contienen expresiones matem\'aticas, por complejas que
+\'estas sean.
+
+El n\'ucleo de programa \TeX\ fue realizado por D. E. Knuth, y es de libre
+disposici\'on para todo tipo de usuarios ---tanto acad\'emicos como los que
+desean hacer de \'el un uso comercial---, incluyendo el c\'odigo fuente. En
+esto, junto con su gran calidad tipogr\'afica, potencia, y estabilidad frente
+a errores, radica su \'exito actual entre las personas que escriben documentos
+de tipo cient\'{\i}fico, principalmente matem\'aticos, f\'{\i}sicos e
+inform\'aticos. Existen implementaciones de \TeX\ para gran cantidad de
+ordenadores, unas gratis y otras de tipo comercial (aunque siempre baratas, ya
+que D. E. Knuth no cobra cantidad alguna por usar el n\'ucleo del programa).
+Por ejemplo, por citar los m\'as usados, existe para compatibles PC con MS-DOS
+o Windows, para equipos UNIX y para Macintosh.
+
+Un fichero fuente de \TeX\ es un archivo en c\'odigo ASCII puro que puede ser
+le\'{\i}do por cualquier ordenador, y no se pierde ninguna informaci\'on al
+interpretarlo en diversas m\'aquinas o sistemas operativos. Adem\'as, se
+transmite por correo electr\'onico sin ning\'un problema, y es la forma
+m\'as c\'omoda, segura y f\'acil de compartir documentos complejos a
+trav\'es de Internet.
+
+La mayor parte de los temas relacionados con \TeX, as\'{\i} como c\'odigo
+fuente e implementaciones para muchos ordenadores, se divulgan y se hacen
+disponibles al p\'ublico en general a trav\'es de CTAN (Comprehensive
+\TeX\ Archive Network) por medio de ftp an\'onimo en Internet. Actualmente,
+la distribuci\'on se hace, oficialmente, a trav\'es de dos servidores, que
+esencialmente contienen los mismos archivos. Estos son
+$$
+\vbox{
+\halign{#\hfil&\quad#\hfil\cr
+{\it Direcci\'on Internet del ordenador}&
+{\it Situaci\'on}\cr
+{\tt ftp.uni-stuttgart.edu}&
+Universidad de Stuttgart (Alemania)\cr
+{\tt ftp.tex.ac.uk}&
+Cambridge University (Reino Unido)\cr
+}}
+$$
+
+En la bibliograf\'{\i}a pueden verse varios libros que constituyen la
+referencia obligada de cualquiera que desee profundizar en \TeX\ [3] o en
+\LaTeX\ [2, 4]. As\'{\i} mismo, incluimos citas a varios art\'{\i}culos que
+informan de la direcci\'on en que se orienta el desarrollo actual basado en
+\TeX\ [5] y los intentos para lograr independizarlo lo m\'as posible del
+idioma ingl\'es [1].
+
+Referente al uso y desarrollo de \TeX\ para usuarios hispanoablantes, existe un
+grupo de usarios (en formaci\'on) denominado Cervan\TeX, que est\'a
+coordinado por Jos\'e Ram\'on Portillo, de la Universidad de Sevilla. Puede
+consultarse la p\'agina Web del grupo en
+{\tt http://gordo.us.es/Actividades/GUTH}. As\'{\i} mismo, existe una lista de
+respuestas a preguntas frecuentes sobre asuntos relacionados con el uso de
+\TeX\ en castellano; dicha lista est\'a mantenida por Santigo Vila, de la
+Universidad de Extremadura, y puede accederse a ella en {\tt
+ftp://ftp.unex.es/pub/tex/faq/}. Consultando cualquiera de las dos
+direcciones anteriores puede obtenerse todo tipo informaci\'on sobre \TeX\ en
+castellano, as\'{\i} como los modos de entrar en contacto con los diferentes
+foros de debate que existen.
+
+En lo que a nosotros respecta, aqu\'{\i} presentamos dos herramientas
+destinadas a ayudar a los usuarios de \TeX\ en Macintosh, fundamentalmente
+cuando escriben en castellano. La primera es un diccionario en espa\~nol y la
+segunda es un parche destinado a facilitar la escritura de documentos
+\TeX\ en procesadores de texto de Macintosh. Ambas est\'an, ya en la
+actualidad, disponibles a la comunidad de usuarios de \TeX\ a trav\'es de
+Internet por medio de diversos servidores de {\tt ftp} an\'onimo. Aparte de
+esto, el que escribe se ofrece, desde estas l\'{\i}neas, a facilit\'arselas a
+cualquiera que se las solicite.
+
+% ----------------------------------------------------------
+
+\beginsection{DICCIONARIO PARA \TeX\ EN CASTELLANO}
+
+Para realizar el diccionario en formato inform\'atico adecuado para \TeX\ no
+basta con tener en el ordenador un diccionario com\'un de los que venden en
+las librer\'{\i}as. En realidad, cada palabra debe aparecer con todas sus
+variaciones permitidas al a\~nadirle distintos prefijos y sufijos. Por
+ejemplo, los sustantivos y adjetivos deben aparecer en masculino, femenino,
+singular y plural; y los verbos conjugados. Y hay que transformar los
+diversos caracteres no ingleses (\~n, acentos) a formato entendible por \TeX.
+
+S\'{\i} que existen programas (verificadores ortogr\'aficos) capaces de
+chequear documentos \TeX\ a partir de un diccionario. Por ejemplo,
+``Excalibur'' para Macintosh y ``Amspell'' para PC (y no podemos dejar de
+citar ``ispell'' que, aunque con un enfoque distinto, est\'a disponible para
+equipos UNIX). Pero, l\'ogicamente, no tienen ninguna utilidad para las
+personas que escriben en espa\~nol sin un diccionario en ese idioma. Hasta
+ahora, hab\'{\i}a disponibles en multitud de idiomas, pero no hab\'{\i}a
+ninguno en espa\~nol de dominio p\'ublico y suficientemente completo.
+
+Por otra parte, tambi\'en existen diccionarios comerciales para multitud de
+procesadores de textos, por ejemplo, para Microsoft Word o para Word Perfect,
+por citar dos de los m\'as usuales. Pero, en primer lugar, hay que comprar una
+licencia para poderlos usar, es decir, no son de dominio p\'ublico. Y, en
+segundo lugar, un diccionario comercial de alg\'un procesador de textos no
+sirve para nada a la hora de chequear documentos \TeX, pues encuentra como
+errores todos los comandos de manejo de \TeX. Adem\'as, todos ellos son de
+car\'acter general y no est\'an especializados. Las a\~nadidos de palabras que
+pueden hacerse funcionan de manera muy poco efectiva. El usuario no tiene
+acceso al diccionario fuente y no puede modificarlo a su antojo.
+
+El que escribe ha elaborado un diccionario en espa\~nol que permite verificar
+la ortograf\'{\i}a de documentos \TeX, y que contiene casi 250.000 palabras.
+El diccionario se maneja a trav\'es de ``Excalibur'', de Robert Gottshall y
+Rick Zaccone. Es de destacar que es el \'unico en castellano que, adem\'as de
+estar disponible gratis, cuenta con un n\'umero suficiente de palabras
+para ser comparable, e incluso mejor, que el de los programas comerciales.
+Adem\'as, este diccionario incluye multitud de palabras relacionadas con la
+matem\'atica, f\'{\i}sica e inform\'atica, que son las disciplinas donde
+m\'as se utiliza \TeX.
+
+El diccionario puede conseguirse, accediendo mediante {\tt ftp anonymous}, en
+el directorio {\tt systems/mac/support/excalibur}) de CTAN, o en el directorio
+{\tt pub/mac/Excalibur-dictionaries} de {\tt ftp.eg.bucknell.edu}.
+Lamentablemente, como la Universidad de La Rioja no tiene ning\'un servidor de
+{\tt ftp}, no es posible hacerlo disponible a la comunidad cient\'{\i}fica (y
+al p\'ublico en general) en nuestra propia Universidad.
+
+% ----------------------------------------------------------
+
+\beginsection{PARCHE PARA EDITORES DE TEXTO}
+
+Que los archivos fuente de \TeX\ sean c\'odigo ASCII puro requiere varias
+complicaciones (al menos a primera vista):
+
+\item{(i)}
+En un documento \TeX, por ejemplo, para que, una vez ``compilado'' el
+documento, aparezca la letra griega $\alpha$ hay que teclear, dentro de
+c\'odigo fuente, la sucesi\'on de caracteres {\tt $\backslash$alpha}.
+
+\item{(ii)}
+Las letras no inglesas no est\'an, en principio, definidas, y se obtienen, en
+el documento fuente, a trav\'es de distintos artificios. As\'{\i}, una
+interrogaci\'on abierta (?`) se escribe como {\tt ?{}`}, una e\~ne como {\tt
+$\backslash$\~{}n}, y una a acentuada como {\tt $\backslash$'{}a}.
+
+Estas caracter\'{\i}sticas permiten escribir con \TeX\ documentos de gran
+complejidad tipogr\'afica pero, en alguna medida, se puede considerar que
+representan una desventaja con respecto a los procesadores de texto
+denominados WYSIWYG.
+
+Para intentar solventarla, se han elaborado una serie de parches que se pueden
+a\~nadir a un procesador de texto y que facilitar la labor de la persona que
+escribe documentos \TeX. Para usarlos no se requiere ning\'un INIT, sino que
+los parches se incorporan al editor deseado. Se instalan con ``Text Editor
+Patches'', de James W. Walker. De esta forma, se logran escribir f\'ormulas
+matem\'aticas de manera m\'as sencilla (por ejemplo, para teclear los
+caracteres correspondientes a la letra griega $\alpha$ bastar\'{\i}a pulsar
+simult\'aneamente las teclas {\it opci\'on\/} y {\it a\/}) y teclear las letras
+acentuadas y otros caracteres no ingleses tal como lo har\'{\i}amos en
+cualquier otro procesador de texto, transform\'andose autom\'aticamente en la
+notaci\'on requerida por \TeX.
+
+Estos parches est\'an desarrollados teniendo en cuenta el tipo de teclado del
+que disponga el Macintosh, ya sea QWERTY (como el espa\~nol y el ingl\'es),
+AZERTY (franc\'es y flamenco), QWERTZ (alem\'an y suizo) o QZERTY (italiano).
+
+Por \'ultimo, no podemos pasar por alto que, desde la versi\'on 3.0 de \TeX,
+es posible usarlo con un juego completo de caracteres de 8 bits, lo cual
+incluye acentos y caracteres no ingleses. Aunque esto tiene el inconveniente
+de que estos caracteres no tienen los mismos n\'umeros ASCII en todos los
+ordenadores, con lo que surgen problemas al intercambiar ficheros entre
+distintas plataformas (hay que decir que tales problemas son f\'acilmente
+solucionables). El caso es que unas personas prefieren escribir \TeX\ con un
+conjunto de caracteres de 7 bits, y otras con uno completo de 8 bits (lo cual
+incluye acentos y caracteres no ingleses). As\'{\i}, hemos incluido en los
+parches la posibilidad de desconectarse por etapas. Por ejemplo, se pueden
+mantener activos los atajos para escribir letras griegas pero no los
+correspondientes a los caracteres no ingleses.
+
+Todos estos parches para \TeX, junto con la aplicaci\'on ``Text Editor
+Patches'' que los instala, as\'{\i} como documentaci\'on completa explicando
+su funcionamiento, pueden conseguirse mediante {\tt ftp anonymous} en el
+directorio {\tt text} de {\tt info-mac} (es decir, en {\tt
+sumex-aim.stanford.edu}), el servidor de programas para Macintosh m\'as
+conocido y que cuenta con multitud de {\it mirrors\/} de f\'acil acceso.
+
+% ----------------------------------------------------------
+
+\beginsection{Referencias}
+
+\item{[1]} {\sc J. Braams}, {\it Babel, a multilingual style-option system for
+use with \LaTeX's standard document styles}, TUGboat {\bf 12} (1991), 291--301.
+
+\item{[2]} {\sc M. Goossens, F. Mittelbach y A. Samarin}, {\it ``The \LaTeX\
+Companion''}, Addison Wesley, Reading, 1994.
+
+\item{[3]} {\sc D. E. Knuth}, {\it ``The \TeX book''}, Addison-Wesley, Reading,
+1994.
+
+\item{[4]}{\sc  L. Lamport}, {\it ``\LaTeX\ ---A Document Preparation System---
+User's Guide and Reference Manual''}, 2\raise1ex\hbox{\underbar{\sevenrm a}}
+ed., Addison-Wesley, Reading, 1994.
+
+\item{[5]} {\sc F. Mittebatch y R. Sch\"opf}, {\it Towers \LaTeX3.0}, TUGboat
+{\bf 12} (1991), 74--79.
+
+\bye

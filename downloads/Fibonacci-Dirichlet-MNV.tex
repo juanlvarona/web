@@ -1,0 +1,1450 @@
+\documentclass[11pt, a4paper]{article}
+
+%----------
+% To automatically save paper and trees (at least, for preprints):
+\usepackage{fullpage} % or \usepackage[headings]{fullpage}
+%----------
+
+%----------
+% To load external graphics:
+\usepackage{graphicx}
+%----------
+
+%----------
+% AMS packages, very recommended for maths:
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+% \usepackage{mathtools}
+\allowdisplaybreaks[3]
+%----------
+
+%----------
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+%----------
+
+%----------
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\p}{\mathcal{P}} % \P ya existe
+\newcommand{\manF}{\Lambda_{\mathcal{F}}} 
+%\newcommand{\uF}{u_\mathcal{F}} 
+%\newcommand{\muF}{\mu_\mathcal{F}} 
+\newcommand{\Fp}{\mathcal{F}_{\mathcal{P}}} 
+\newcommand{\IF}{\operatorname{IF}} 
+%----------
+
+%----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+%----------
+
+% %----------
+% %%% Para BORRADORES:
+% \usepackage{color}
+% \usepackage[svgnames,x11names,dvipsnames]{xcolor}
+% \newcommand{\rojo}[1]{\textcolor{red}{#1}}
+% \newcommand{\azul}[1]{\textcolor{blue}{#1}}
+% \newcommand{\verde}[1]{\textcolor{green}{#1}}
+% \usepackage[notcite,notref]{showkeys}
+% %----------
+
+%----------
+% To automatically include internal hyperlinks 
+% and internet links with \url{http://....} 
+\usepackage{hyperref}
+\usepackage{orcidlink}
+%----------
+
+%----------
+%%% Para BORRADORES:
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{refcheck}
+%\usepackage{backref}
+%----------
+
+%% Gaspar Mora:
+%% Facultad de Ciencias Exactas y Naturales, Universidad Nacional de Asunci\'on, 
+%% Campus Universitario de San Lorenzo, San Lorenzo, Paraguay
+%% gaspar.mora@facen.una.py
+%% https://orcid.org/0000-0003-0883-220X
+%% https://www.facen.una.py
+
+%% Luis M. Navas:
+%% navas@usal.es
+%% Luis Manuel Navas Vicente
+%% Departamento de Matem\'aticas and Instituto Universitario de F\'isica Fundamental y Matem\'aticas (IUFFyM),
+%% Universidad de Salamanca, 
+%%%% Plaza de la Merced, 1--4,
+%% 37008 Salamanca, Spain
+%% https://orcid.org/0000-0002-5742-8679
+
+%% Juan L. Varona:
+%% Departamento de Matem\'aticas y Computaci\'on, 
+%% Universidad de La Rioja, 26006 Logro\~no, Spain
+%% jvarona@unirioja.es
+%% https://orcid.org/0000-0002-2023-9946
+
+%% Luis y Juan Luis:
+%% Partially supported by grant PID2021-124332NB-C22 % antiguo
+%% (Ministerio de Ciencia e Innovaci\'on-Agencia Estatal de Investigaci\'on, Spain).
+%% PID2024-155593NB-C22 % nuevo
+%% (Ministerio de Ciencia, Innovaci\'on y Universidades-Agencia Estatal de Investigaci\'on, Spain).
+
+%% Luis: 
+%% Partially supported by grant PID2023-150787NB-I00
+
+%----------
+\title{On the von Mangoldt-type function\\of the Fibonacci zeta function\thanks{%
+This research was partially supported by grants PID2023-150787NB-I00 and PID2024-155593NB-C22
+(Minis\-te\-rio de Cien\-cia, Inno\-va\-ci\'on y Uni\-ver\-si\-da\-des, Spain).}
+\textsuperscript{,}\thanks{\textbf{This paper has been published in:} \textit{Rev.\ R.\ Acad.\ Cienc.\ Exactas\ F\'is.\ Nat.\ Ser.\ A Mat.\ RACSAM} \textbf{119} (2025), no.~4, Paper No.~126, 19~pp., \url{https://doi.org/10.1007/s13398-025-01792-3}}}
+%----------
+
+%----------
+%\author{Gaspar Mora, Luis M. Navas and Juan L. Varona}
+\author{Gaspar Mora\textsuperscript{1}\,\orcidlink{0000-0003-0883-220X}, 
+Luis M. Navas\textsuperscript{2}\,\orcidlink{0000-0002-5742-8679}, 
+and Juan L. Varona\textsuperscript{3}\,\orcidlink{0000-0002-2023-9946}\\[6pt]
+  \small 
+  \textsuperscript{1}Facultad de Ciencias Exactas y Naturales, Universidad Nacional de Asunci\'on,\\[-2pt]
+  \small Campus Universitario de San Lorenzo, San Lorenzo, Paraguay\\[-1pt]
+  \small {gaspar.mora@facen.una.py}\\[3pt]
+  \small 
+  \textsuperscript{2}Departamento de Matem\'aticas and 
+  Instituto Universitario de \\[-2pt]
+  \small F\'isica Fundamental y Matem\'aticas (IUFFyM), Universidad de Salamanca, Spain\\[-1pt]
+  \small {navas@usal.es}\\[3pt]
+  \small 
+  \textsuperscript{3}Departamento de Matem\'aticas y
+  Computaci\'on, Universidad de La Rioja,\\[-2pt]
+  \small Logro\~no, Spain\\[-1pt]
+  \small {jvarona@unirioja.es}
+}
+%----------
+
+%----------
+\date{}     % Activate to display a given date or no date
+%----------
+
+%----------
+\begin{document}
+%----------
+
+%----------
+\maketitle
+%----------
+
+\begin{abstract}
+The Dirichlet series associated to the Fibonacci sequence $\{F_{n}\}$, 
+\begin{equation*}
+  \sum_{n=1}^{\infty} F_{n}^{-s},
+  %\quad s\in \C, \quad \Re s>0,
+\end{equation*}
+converges for $s\in \mathbb{C}$ with $\Re s > 0$. The analytic function $\varphi(s)$ it defines on the right half-plane is known as the Fibonacci zeta function. Here we consider its logarithmic derivative $\varphi'(s)/\varphi(s)$, which formally corresponds to the Dirichlet series 
+\begin{equation*}
+  % \frac{\varphi'(s)}{\varphi(s)} \leftrightsquigarrow
+  -\sum_{l=1}^{\infty} \Lambda_{\mathcal{F}}(l)l^{-s},
+\end{equation*}
+where the arithmetical function $\Lambda_{\mathcal{F}}(l)$ can be considered analogous to the classical von Mangoldt function $\Lambda(s)$, which is defined by $\zeta'(s)/\zeta(s) = -\sum_{n=1}^{\infty} \Lambda(n) n^{-s}$ where $\zeta(s)$ is the Riemann zeta function. This paper studies some properties of the function $\Lambda_{\mathcal{F}}(l)$ along with the domain of convergence of this Dirichlet series.
+
+\medskip
+
+\textbf{MSC2020:} Primary 11M41; Secondary 11A25, 11B39, 30B50.
+%11A25 - Arithmetic functions; related numbers; inversion formulas
+%11B39 - Fibonacci and Lucas numbers and polynomials and generalizations
+%11M41 - Other Dirichlet series and zeta functions
+%30B50 - Dirichlet series, exponential series and other series in one complex variable
+
+\smallskip
+
+\textbf{Keywords:} Fibonacci numbers, Fibonacci zeta function, Dirichlet series, von Mangoldt-Fibonacci function.
+\end{abstract}
+
+%----------
+\section{Introduction and main results}
+%----------
+
+Let us denote the golden ratio by $\phi = \frac{1+\sqrt{5}}{2}$. It is well known that the $n$\textsuperscript{th} Fibonacci number, $F_{n}$, defined by the recurrence relation
+\[
+  F_{n+2} := F_{n+1}+F_{n}, \quad n\geq 1,\qquad F_1=1,\quad F_2=1, 
+\]
+can be expressed in terms of $\phi$ and $\psi := 1-\phi = -1/\phi = \frac{1-\sqrt{5}}{2}$ by means of Binet's formula 
+%% Table[FullSimplify[(GoldenRatio^n - (-GoldenRatio)^(-n))/Sqrt[5]], {n, 1, 18}]
+%% {1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584}
+%%
+\begin{equation*}
+%\label{eq:Binet}
+F_{n} = \frac{\phi^{n} - \psi^n}{\phi - \psi}
+= \frac{\phi^{n} - (-\phi)^{-n}}{\sqrt{5}},
+\qquad n\geq 1.
+\end{equation*}
+The Fibonacci zeta function is defined by the Dirichlet series
+\begin{equation}
+\label{eq:phiFib}
+\varphi(s) := \sum_{n=1}^{\infty} F_{n}^{-s},\quad s\in \C,
+\quad \Re s>0
+\end{equation}
+(the convergence for $\Re(s)>0$ is clear from the asymptotic relation $F_{n} \approx \phi^{n}/\sqrt{5}$ when $n\to\infty$). Around the turn of the millennium Egami \cite{Ega} and Navas \cite{Na} independently obtained the meromorphic continuation of \eqref{eq:phiFib} to the complex plane, via the series
+\[
+\varphi(s) = 5^{s/2} \sum_{k=0}^{\infty}
+\binom{-s}{k} \frac{1}{\phi^{s+2k}+(-1)^{k+1}}, 
+\]
+which exhibits simple poles at the points 
+\[
+s = -2k+\frac{\pi i(2m+k)}{\log \phi},
+\quad k, m\in \Z,
+\text{ with }k\geq 0.
+\]
+Later, Ram Murty \cite{Mur} easily derived the analytic continuation of \eqref{eq:phiFib} by using a technique that he had previously developed jointly with
+Sinha~\cite{MurSin}. See also the recent paper \cite{SeNa} for the analytic continuation of general Dirichlet $\sum_{n=1}^{\infty} a_{n}^{-s}$ where $a_{n}$ satisfies a linear recurrence of arbitrary degree with integer coefficients.
+
+As for the zeros of $\varphi(s)$, in \cite[Corollary~7]{Mo} it was proved that $\varphi(s) \neq 0$ for all $s$ in the half-plane 
+\[
+  H_{\eta} = \{ s\in \C :\Re s>\eta \}, 
+\]
+where $\eta $ is the unique positive real number satisfying $\varphi(\eta )=4$, and whose approximate value is 
+\[
+\eta = 0.7570549496906548985355124\dots
+\]
+(see \cite[Theorem~13]{Mo}). Thus $\frac{\varphi'(s)}{\varphi(s)}$ is analytic on $H_{\eta}$.
+We are interested in the formal Dirichlet series associated to this function, which we will denote by
+\begin{equation}
+\label{eq:ManFib}
+  -\sum_{l=1}^{\infty} \manF(l)l^{-s},
+\end{equation}
+where the arithmetical function
+\[
+  \manF : \N \rightarrow \C
+\]
+is, in this context, analogous to the classical von Mangoldt function, defined by 
+\[
+  \Lambda (l) := 
+  \begin{cases}
+    \log(p), & \text{ if } l = p^{k}, \ p\text{ prime, }k\geq 1, 
+         \\ 
+        0, & \text{ otherwise,}
+  \end{cases}
+\]
+and which is determined by the formal relation (see, for instance, \cite[p.~3]{Ivic})
+\[
+  \frac{\zeta'(s)}{\zeta(s)} = -\sum_{l=1}^{\infty} \Lambda (l)l^{-s},
+  \quad \Re s>1. 
+\]
+We will study the values $\manF(l)$ and the convergence of~\eqref{eq:ManFib}. 
+
+Since $\varphi'(s) = - \sum_{n=1}^\infty \log(F_{n}) F_{n}^{-s}$, the relation
+\[
+  \varphi'(s) = \varphi(s) \cdot \frac{\varphi'(s)}{\varphi(s)}  
+\]
+means that
+\begin{equation}
+\label{eq:producto}
+\sum_{n=1}^\infty \log(F_{n}) F_{n}^{-s} 
+= \left( \sum_{n=1}^\infty F_{n}^{-s} \right)
+\left( \sum_{l=1}^\infty \manF(l)l^{-s} \right).
+\end{equation}
+Recall that the formal product of two Dirichlet series $f(s) = \sum_{n=1}^\infty a(n)n^{-s}$ and $g(s) = \sum_{n=1}^\infty b(n)n^{-s}$ corresponds to the Dirichlet series $h(s) = f(s)g(s) = \sum_{n=1}^\infty c(n)n^{-s}$ of the Dirichlet convolution  $c(n) = (a*b)(n) = \sum_{rs=n} a(r)b(s)$ of their coefficients (and moreover, if $f(s)$ is absolutely convergent for $\Re(s)>\sigma_f$ and $g(s)$ for $\Re(s)>\sigma_g$, then $h(s)$ is absolutely convergent for $\Re(s) > \max\{\sigma_f, \sigma_g\}$); see, for instance, \cite[Chapter~11]{Ap}. 
+In the case of \eqref{eq:producto}, this allows us to recursively compute the coefficients $\manF(l)$ using~\eqref{eq:producto}. In particular, the formal relation
+\begin{equation}
+\label{eq:ManDir}
+\frac{\varphi'(s)}{\varphi(s)} = -\sum_{l=1}^{\infty} \manF(l)l^{-s}
+\end{equation}
+will be valid analytically if the right-hand-side series converges in some half-plane. 
+The main goal of this paper is to determine $\sigma_0>0$ such that this series converges absolutely for $\Re(s)>\sigma_0$. Along the way, we will prove some interesting properties of the function $\manF(l)$. As far as we know, these functions have not been previously considered in the mathematical literature; see \cite{GoSh}, which collects many interesting Dirichlet series, as well as \cite[Chapters 16 and~17]{HaWr} and  \cite[Chapters 1 and~2]{Kno}. 
+
+Since we will be considering only the multiplicative structure of the Fibonacci numbers, we only need the those that are greater than $1$, that is,
+\[
+\calF = \{ F_{n} : n\ge3 \} = \{ 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610,\dots \}.
+\]
+We denote the multiplicative semigroup generated by $\calF$ by
+\begin{equation}
+\label{eq:Fpbasic}
+\Fp := \{\text{finite products of powers of numbers in $\calF$}\};
+\end{equation}
+% sub\'indice ``$\p$'' alude a ``producto''
+and we assume $1 \in \Fp$, by thinking of it as the empty product. In particular, $\calF \subseteq \Fp$.
+
+To generate all the numbers in \eqref{eq:Fpbasic}, it is not necessary to use $F_6=8$ and $F_{12}=144$, because they can be written as product of other Fibonacci numbers, namely $F_6 = 8 = F_3^3$ and $F_{12} = 144 = 2^4 \cdot 3^2 = F_3^4 F_4^2$ (besides $F_1=F_2=1$, these are also the unique Fibonacci numbers that are perfect powers, a non-trivial result proved in~\cite{BMS}). 
+
+Furthermore, Carmichael's Theorem (see \cite[Theorem~23, p.~61]{Car} or, for a simpler proof, \cite[Theorem 3]{Ya}) states that, if $n \ne 1,2,6,12$, the Fibonacci number $F_{n}$ contains at least one primitive divisor, defined as a prime divisor $p$ such that $p$ does not divide any $F_m$ for $0<m<n$. Hence, $F_{6}$ and $F_{12}$ are the only Fibonacci numbers expressible as a power or as a product of powers of smaller Fibonacci numbers, so that
+\begin{equation}
+\label{eq:Fp}
+\Fp = \left\{
+l = F_{n_1}^{m_1}F_{n_2}^{m_2} \cdots F_{n_{k_l}}^{m_{k_l}} :
+m_{j}>0, \ 3 \le n_1<n_2<\cdots<n_{k_l}, \ n_{j}\neq 6, 12 \right\}, 
+\end{equation}
+where $k_{l}$ is the number of different Fibonacci numbers in $\calF \setminus \{8,144\}$ that appear in the decomposition of $l$; again, we assume $1 \in \Fp$ is the product of zero factors. 
+
+By imitating the standard proof of unique factorization of natural numbers, it is a straightforward exercise to check that Carmichael's Theorem implies unique factorization in $\Fp$. When we refer to ``the'' factorization of a number in $\Fp$, this is the one we mean.
+
+We now present our list of results concerning the function $\manF(l)$ and the convergence of the Dirichlet series \eqref{eq:ManDir}. The corresponding proofs will be given in the following sections.
+
+The first result concerns the support of $\manF(l)$:
+
+\begin{proposition}
+\label{prop:Man(l)=0}
+Let $\manF(l)$ be the arithmetical function defined in~\eqref{eq:producto}. Then, $\manF(1)=0$ and $\manF(l) = 0$ when $l \notin \Fp$.
+\end{proposition}
+
+As a consequence of this result, the Dirichlet series \eqref{eq:ManDir} can be written as
+\begin{equation}
+\label{eq:ManFp}
+\frac{\varphi'(s)}{\varphi(s)}
+= -\sum_{l\in \Fp} \manF(l)l^{-s}.
+\end{equation}
+
+For $l$ equal to a product of powers of (ordered) Fibonacci numbers excluding $F_3=2$, or including $F_3$ but raised to a power less than $3$, the expression for $\manF(l)$ is the following:
+
+\begin{proposition}
+\label{prop:Man(l)prod}
+Let $\manF(l)$ be the arithmetical function defined in~\eqref{eq:producto}. 
+Then, if 
+\[
+l = F_{n_1}^{m_1} F_{n_2}^{m_2} \cdots F_{n_{k_l}}^{m_{k_l}} \in \Fp
+\] 
+(with a factorization as in \eqref{eq:Fp}, which is in fact unique) 
+with $F_{n_1}\neq 2$ or $F_{n_1}=2$ and $m_1<3$, one has 
+\begin{equation}
+\label{eq:Man(l)prod}
+\manF(l) =
+(-1)^{r_l-1}\frac{1}{2^{r_{l}}}\frac{(r_l-1)!}{m_1!\, m_2! \cdots m_{k_l}!}\log(l), 
+\end{equation}
+where $r_{l} := m_1 + m_2 + \cdots + m_{k_l}$.
+\end{proposition}
+
+As we will see later in this paper (\eqref{eq:Man(8)} and \eqref{eq:Man(144)}, or Table~\ref{tab:m1m2}), 
+$\manF(8) = \frac{13}{24}\log(8)$ and $\manF(144) = \frac{35}{128}\log(144)$. 
+It can then be checked that \eqref{eq:Man(l)prod} is not valid for $l=8=F_3^3$ 
+and $l = 144 = F_3^4 F_4^2$.
+% Respectivamente, \eqref{eq:Man(l)prod} para $l=8=F_3^3$ y $l = 144 = F_3^4 F_4^2$ 
+% dar\'ia $\frac{1}{24}\log(8)$ y $\frac{-5}{128}\log(144)$.
+
+Proposition~\ref{prop:Man(l)prod} allows us to compute $\manF(l)$ for $l=F_{n}^m$ with $m \ge 1$ when $n \ne 3,6,12$ (i.e., $F_{n}\ne 2, 8, 144$), namely 
+\[
+\manF(F_{n}^m) = \frac{(-1)^{m-1}}{2^m} \log(F_{n}), \quad n \ne 3,6,12, \quad m \ge 1.
+\]
+The Fibonacci numbers $8$ and $144$ do not appear as basic factors in the decompositions~\eqref{eq:Fp}, but $F_3 = 2$ does. 
+This proposition gives a closed expression for~$\manF(2^m)$:
+
+\begin{proposition}
+\label{prop:Man(2m)}
+For $m \ge 1$, one has
+\begin{align}
+\label{eq:Man(2m)1}
+  \manF(2^m) &= \left((-1)^{m+1} - 2^{-2m} (1+i\sqrt{7})^m 
+  - 2^{-2m} (1-i\sqrt{7})^m\right) \log(2) \\
+\label{eq:Man(2m)2}
+  &= \left( (-1)^{m+1} - 2^{1-m/2} \cos(m \arctan\sqrt{7}) \right) \log(2) \\
+\label{eq:Man(2m)3}
+  &= \biggl( (-1)^{m+1} - 2^{1-2m} \sum_{k=0}^{\lfloor m/2 \rfloor} (-1)^k \binom{m}{2k} 7^k \biggr) \log(2).
+\end{align}
+\end{proposition}
+
+For $l$ equal to $2^m$ times a Fibonacci number, we have the following:
+
+\begin{proposition}
+\label{prop:Man(2mFk)}
+For $m \ge 1$, and a Fibonacci number $F_k \ge 3$, different from $8$ and $144$, one has
+\begin{align*}
+%\label{eq:Man(2mFk)1}
+%\notag
+  \manF(2^m F_k) &= \frac{1}{2^{2+m/2}} \left(2^{m/2}(-1)^m + \cos(m \arctan\sqrt{7}) 
+  - \frac{1}{\sqrt{7}} \sin(m \arctan\sqrt{7}) \right) \log(2^mF_k) \\
+%\label{eq:Man(2mFk)2}
+%\notag
+  &\sim \frac{(-1)^m}{4} \log(2^mF_k)
+  \quad \text{when } m\to\infty.
+\end{align*}
+\end{proposition}
+
+Notice that, as in \eqref{eq:Man(2m)3}, $\cos(m \arctan\sqrt{7})$ and $\frac{1}{\sqrt{7}} \sin(m \arctan\sqrt{7})$ can be rewritten as expressions without trigonometric functions or squared roots, indeed as rational numbers that depend on $m$, see~\eqref{eq:sqrt7}.
+
+And, this is what happens when $l$ is $2^m$ times \emph{two} Fibonacci numbers:
+
+\begin{proposition}
+\label{prop:Man(2mFkFq)}
+For $m \ge 1$, and two different Fibonacci numbers $F_k, F_q \ge 3$, also different from $8$ and $144$, one has
+\begin{align*}
+%\label{eq:Man(2mFkFq)1}
+%\notag
+  \manF(2^m F_kF_q) &= \frac{-1}{2^{5+m/2}} \biggl(2^{m/2}(-1)^m(2m+5) 
+  + \frac{3}{7}(2m+7) \cos(m \arctan\sqrt{7}) \\
+%\notag
+  &\qquad\qquad\qquad\quad
+  - \frac{1}{7\sqrt{7}} (14m+41) \sin(m \arctan\sqrt{7}) \biggr) \log(2^mF_kF_q) \\
+%\label{eq:Man(2mFkFq)2}
+%\notag
+  &\sim \frac{(-1)^{m+1}}{16} \,m \log(2^mF_kF_q)
+  \quad \text{when } m\to\infty.
+\end{align*}
+\end{proposition}
+
+Propositions~\ref{prop:Man(2mFk)} and \ref{prop:Man(2mFkFq)} suggest that, for general values of $l$, it is not that easy to find closed expressions for $\manF(l)$. In Table~\ref{tab:m1m2} we can see the values of $\manF(2^{m_1} 3^{m_2})$ for $0 \le m_1 \le 8$ and $0 \le m_2 \le 5$, obtained with a computer algebra system (actually, we list the coefficients without the factor $\log(2^{m_1} 3^{m_2})$).
+
+\begin{table}
+%\centering
+\[
+%\newcommand{\vv}{\rule[-3pt]{0pt}{17pt}\relax\ignorespaces}
+%\newcommand{\vv}{\rule[-7pt]{0pt}{19pt}\relax\ignorespaces}
+\newcommand{\vv}{\rule[-1.5ex]{0pt}{4.25ex}\relax\ignorespaces}
+\begin{array}{c|ccccccccc}
+\vv & m_1=0 & m_1=1 & m_1=2 &
+   m_1=3 & m_1=4 & m_1=5 &
+   m_1=6 & m_1=7 & m_1=8 \\
+\hline
+\vv m_2=0 & - & \frac{1}{2} & -\frac{1}{8} &
+   \frac{13}{24} & -\frac{17}{64} & \frac{21}{160} &
+   -\frac{73}{384} & \frac{141}{896} & -\frac{225}{2048} \\
+\vv m_2=1 & \frac{1}{2} & -\frac{1}{4} & \frac{1}{8}
+   & -\frac{5}{16} & \frac{9}{32} & -\frac{13}{64} &
+   \frac{33}{128} & -\frac{69}{256} & \frac{121}{512} \\
+\vv m_2=2 & -\frac{1}{8} & \frac{1}{8} &
+   -\frac{3}{32} & \frac{3}{16} & \frac{35}{128} &
+   -\frac{5}{128} & -\frac{71}{512} & 0 & -\frac{81}{2048} \\
+\vv m_2=3 & \frac{1}{24} & -\frac{1}{16} &
+   \frac{1}{16} & -\frac{11}{96} & -\frac{11}{128} &
+   \frac{17}{256} & \frac{19}{384} & \frac{9}{128} &
+   -\frac{209}{2048} \\
+\vv m_2=4 & -\frac{1}{64} & \frac{1}{32} &
+   -\frac{5}{128} & \frac{9}{128} & \frac{13}{1024} &
+   -\frac{11}{256} & -\frac{9}{1024} & -\frac{77}{1024} &
+   \frac{475}{16384} \\
+\vv m_2=5 & \frac{1}{160} & -\frac{1}{64} &
+   \frac{3}{128} & -\frac{11}{256} & \frac{3}{256} &
+   \frac{47}{2560} & -\frac{3}{1024} & \frac{123}{2048} &
+   -\frac{205}{8192} \\
+\hline
+\end{array}
+\]
+\caption{The value of $\manF(2^{m_1}3^{m_2})/\log(2^{m_1}3^{m_2})$ for small values of $m_1$ and $m_2$.}
+\label{tab:m1m2}
+\end{table}
+
+For general values of $l$, we can find some bounds. Note that in the following proposition we have introduced two numbers $p,q$ and in fact $p=1$; the notation is intended to allow speculation about what the effect of changing the values of $p,q$ would be.
+
+\begin{proposition}
+\label{prop:Mcg}
+Let $\manF(l)$ be the arithmetical function defined in \eqref{eq:producto},
+and
+\[
+l = 2^{m_1}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}} \in \Fp
+\]
+(factorization as in \eqref{eq:Fp}, which is unique).
+Then, for a constant $C$ independent of $l$, one has
+\begin{equation}
+\label{eq:Mcg}
+|\manF(l)| \leq 
+\frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-1)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} \log(l),
+\end{equation}
+where $r_{l} := m_1+m_2+m_3+ \cdots +m_{k_l}$ (notice that $m_1$ and $m_2$ can be $=0$) with
+\begin{equation}
+\label{eq:pq022}
+p=1 \quad\text{ and }\quad 
+q = \log_2 \bigg( \frac{1}{2} + \frac{3}{10} \sqrt{5} \bigg)
+= \log\bigg( \frac{1}{2} + \frac{3}{10} \sqrt{5} \bigg)/\log(2) = 0.22752\dots
+\end{equation}
+\end{proposition}
+
+This is the final result of the paper:
+
+\begin{theorem}
+\label{theo:sigma0}
+The Dirichet series \eqref{eq:ManFp} diverges for
+\begin{equation}
+\label{eq:diverge}
+\Re(s) < \frac{7\log(7/2)}{\log(3\cdot 5\cdot 13\cdot 21\cdot 34\cdot 55\cdot 89)} = 0.431141\dots
+\end{equation}
+and converges absolutely for $\Re(s) > \sigma_0$, where $\sigma_0$
+is the unique positive real number that satisfies $\varphi^{*}(s)=1$, with
+\[
+\varphi^{*}(s) :=
+\frac{1}{2^{1-p}2^s} + \frac{1}{2^{1-q}3^s} + \frac{1}{2} \varphi(s) - 1
+- \frac{1}{2 \cdot 2^s} - \frac{1}{2 \cdot 3^s} - \frac{1}{2 \cdot 8^s} - \frac{1}{2 \cdot 144^s}.
+\]
+With $p$ and $q$ as in \eqref{eq:pq022}, its approximate value is $\sigma_0 = 0.905556\dots$
+\end{theorem}
+
+%----------
+\section{Expressions for the function $\manF(l)$: Proofs of Propositions~\ref{prop:Man(l)=0} up to \ref{prop:Man(2mFkFq)}}
+%----------
+
+%Observe that it is not necessary to include in the definition of $\calF%
+%_{\p}$ the numbers $F_{6}=8$ and $F_{12}=144$ because already
+%belong to $\Fp$: $8=2^{3}$, $144=2^{4}3^{2}$, so they
+%are a power and a product of powers of the Fibonacci numbers $F_3=2$ and $%
+%F_{4}=3$. Furthermore, it is important to stress that $F_{6}$ and $F_{12}$
+%are the only Fibonacci numbers expressible as a power or as a product of
+%powers of Fibonacci numbers \cite{BuLuMiSi, Car}.
+
+%The convergence of $\sum_{n=1}^{\infty }F_{n}^{-s}$ on $\Re s>0$, guarantees
+%the validity of the formula 
+%\[
+%\varphi'(s) = -\sum_{n=1}^{\infty }\left( \log F_{n}\right) F_{n}^{-s},
+%\quad \Re s>0,
+%\]
+%and then, since $\varphi(s)\neq 0$ on $H_{\eta }$, \eqref{eq:ManFib} formally satisfies 
+%\[
+%\frac{\varphi'(s)}{\varphi(s)} 
+%= -\sum_{l=1}^{\infty }\manF(l)l^{-s}, \quad s\in H_{\eta }. 
+%\]
+%Therefore 
+%\[
+%\sum_{n=1}^{\infty }\left( \log F_{n}\right) F_{n}^{-s}
+%= \sum_{n=1}^{\infty} F_{n}^{-s} \sum_{l=1}^{\infty} \manF(l)l^{-s}, 
+%\quad s\in H_{\eta }. 
+%\]
+
+From \eqref{eq:producto}, the coefficients $\manF(l)$ can be calculated by means of the
+formal relation 
+\[
+\begin{aligned}
+&\left( (\log 2) 2^{-s} + (\log 3) 3^{-s} + (\log 5) 5^{-s} + \cdots \right) 
+= \left( 1+1+2^{-s}+3^{-s}+5^{-s}+\cdots\right) 
+\\
+&\qquad\qquad\qquad \times \left( \manF(1) + \manF(2)2^{-s} + \manF(3)3^{-s}
++ \manF(4)4^{-s} + \manF(5)5^{-s} + \manF(6)6^{-s}+\cdots\right) .
+\end{aligned}
+\]
+It is clear that $\manF(1)=0$, so we may rewrite this as
+\begin{equation}
+\label{eq:Mansimple}
+\begin{aligned}
+&\left( (\log 2) 2^{-s} + (\log 3) 3^{-s} + (\log 5) 5^{-s} + \cdots\right) 
+= \left( 2+2^{-s}+3^{-s}+5^{-s}+\cdots\right) 
+\\
+&\qquad\qquad\qquad \times \left( \manF(2)2^{-s} + \manF(3)3^{-s} + \manF(4)4^{-s}
++ \manF(5)5^{-s} + \manF(6)6^{-s} + \cdots \right) . 
+\end{aligned}
+\end{equation}
+
+Consider an integer $l\ge 2$ and let $F_{d_1},\dots, F_{d_{p_l}}$ be the proper Fibonacci divisors of $l$ (as usual, a proper divisor of a number is a divisor that 
+is not equal to the number itself). Then, directly from \eqref{eq:Mansimple}, 
+we deduce that $\manF(l)$ can be recursively determined by means of the formula
+\begin{equation}
+\label{eq:Man(l)rec}
+\manF(l) = 
+\begin{cases}
+-\frac{1}{2} (\manF(j_1) + \cdots + \manF(j_{p_l}) - \log l),
+& \text{ if } l\in \calF, \quad p_{l} \geq 1, \\ 
+-\frac{1}{2}(\manF(j_1) + \cdots + \manF(j_{p_l})),
+& \text{ if } l\notin \calF, \quad p_{l} \geq 1, \\ 
+\frac{1}{2} (\log l),
+& \text{ if } l\in \calF, \quad p_{l} = 0, \\ 
+0,
+& \text{ if } l\notin \calF, \quad p_{l} = 0,
+\end{cases}
+\end{equation}
+where
+\[
+j_1 = \frac{l}{F_{d_1}},\ \dots,\
+j_{p_l} = \frac{l}{F_{d_{p_l}}}, \qquad p_{l} \geq 1.
+\]
+
+Let us illustrate the use of \eqref{eq:Man(l)rec} with a couple of examples that have special interest. For instance, $8\in \calF$ has $2\in \calF$ as its unique Fibonacci
+proper divisor. Therefore, $p_{8}=1$ and, by \eqref{eq:Man(l)rec}, one has 
+$\manF(8) = -\frac{1}{2}(\manF(4)-\log(8))$. Now, since $4\notin \calF$
+and $2$ is a Fibonacci proper divisor of $4$, $p_{4}=1$ and then, by \eqref{eq:Man(l)rec}, 
+$\manF(4) = -\frac{1}{2} \manF(2)$. Thus we get 
+$\manF(8) = \frac{1}{2} \left(\log(8) + \frac{1}{2} \manF(2)\right)$. 
+Finally, $2\in \calF$ but $2$ has no
+Fibonacci proper divisor greater than $1$, so $p_2=0$ and then 
+$\manF(2) = \frac{1}{2} \log(2)$. Therefore 
+\begin{equation}
+\label{eq:Man(8)}
+\manF(8) = \frac{13}{24} \log(8). 
+\end{equation}
+A more cumbersome example is $144 = 2^4\cdot3^2 \in \calF$. Its Fibonacci proper divisors are $2$, $3$ and $8$. By \eqref{eq:Man(l)rec}, we have
+\[
+\manF(144) = -\frac{1}{2}(\manF(72)+\manF(48)+\manF(18)-\log(144)),
+\]
+and again we use \eqref{eq:Man(l)rec} to compute $\manF(72)$, $\manF(48)$, $\manF(18)$,
+and so on. This recursive process finally yields
+\begin{equation}
+\label{eq:Man(144)}
+\manF(144) = \frac{35}{128} \log(144). 
+\end{equation}
+This method can be used to find all the values that appear in Table~\ref{tab:m1m2}.
+Of course, it can be implemented in any computer algebra system.
+
+%% Ejemplo que se podr\'ia usar: $l=(21^2)(34^4)$
+\begin{remark}
+It is important to observe the following regarding the practical application of \eqref{eq:Man(l)rec}. Let $l \in \Fp$, with factorization
+\[
+l = F_{n_1}^{m_1}F_{n_2}^{m_2} \cdots F_{n_{k_l}}^{m_{k_l}}
+\]
+as in \eqref{eq:Fp} (i.e., with $F_{n_i} \ne 8,144$), which is unique.
+If $F_d > 1$ is a Fibonacci number that divides $l$, we cannot ensure that $F_d$ is one of the $F_{n_i}$ that appear in the above decomposition. This happens often, due to the well-known property $\gcd(F_a,F_b) = F_{\gcd(a,b)}$ of the Fibonacci numbers. But, if a proper divisor $F_d$ is not $8$, $144$, or one of the $F_{n_i}$, then in fact $l/F_d \notin \Fp$:  indeed, if $l' = l/F_d \in \Fp$, then let
+\[
+  \frac{l}{F_d} = l' = F_{n_1'}^{m_1'} F_{n_2'}^{m_2'} \cdots F_{n_{k_{l'}}'}^{m_{k_{l'}}'}
+\]
+be its factorization. This leads to two different factorizations of $l$,
+\[
+ l = F_{n_1}^{m_1}F_{n_2}^{m_2} \cdots F_{n_{k_l}}^{m_{k_l}}
+ = F_d \cdot F_{n_1'}^{m_1'} F_{n_2'}^{m_2'} \cdots F_{n_{k_{l'}}'}^{m_{k_{l'}}'},
+\]
+which contradicts uniqueness.
+
+Moreover, also by unique factorization, $l/8 \notin \Fp$ if $F_d = 8$ is a proper divisor of $l$ and the factorization of $l$ does not contain $F_{n_1}=2$ with $m_1\ge 3$; and $l/144 \notin \Fp$ if $F_d = 144$ is a proper divisor of $l$ and $l$ does not have the factor $F_{n_1}=2$ with $m_1\ge 4$ and $F_{n_2}=3$ with $m_2\ge 2$.
+On the other hand, Proposition~\ref{prop:Man(l)=0} shows that $\manF(l) = 0$ when $l \notin \Fp$. Thus, after we prove this result, we do not need, in \eqref{eq:Man(l)rec}, to take all the $F_d$ that divide $l$, only the proper divisors that are $8$, $144$ (if $F_{n_1}=2$ with $m_1\ge 3$, or if $F_{n_1}=2$ with $m_1\ge 4$ and $F_{n_2}=3$ with $m_2\ge 2$, respectively), or one of the Fibonacci numbers $F_{n_i}$ that appear in the decomposition of $l$ in $\Fp$ because, otherwise, the corresponding summand $\manF(l/F_d)$ is null. This will be tacitly used many times in the forthcoming proofs. 
+\end{remark}
+
+Using \eqref{eq:Man(l)rec}, let us now prove Propositions~\ref{prop:Man(l)=0}, 
+\ref{prop:Man(l)prod}, \ref{prop:Man(2m)}, \ref{prop:Man(2mFk)}, 
+and~\ref{prop:Man(2mFkFq)}.
+
+%----------
+\subsection{Proof of Proposition~\ref{prop:Man(l)=0}}
+%----------
+
+%% PARECE QUE ESTA DEMO QUE SIGUE PROPORCIONA UNA DEMO PARA UN CASO MÁS GENERAL:
+% Si empezamos con un subconjunto cualquiera F de enteros (en este caso los Fibonacci), 
+% que contenga el 1, entonces la inversa de Dirichlet de la funci\'on caracter\'istica 1_F de F 
+% est\'a soportada en el semigrupo generado por F, es decir, 
+% se anula sobre números que no son productos de elementos de F.
+
+%\begin{proof}[Proof of Proposition~\ref{prop:Man(l)=0}]
+We will prove that $\manF(l) = 0$ when $l \notin \Fp$ by complete induction on $l$.
+The first $l$ that does not belong to $\Fp$ is $l=7$, and $\manF(7)=0$ by \eqref{eq:Man(l)rec} (the case $l \notin \calF$ and $p_l=0$). Let us now assume that $\manF(l') = 0$ for any $l'<l$ such that  $l' \notin \Fp$. We want to prove that also $\manF(l) = 0$. Let us write \eqref{eq:Mansimple} as
+\begin{equation}
+\label{eq:ManpD}
+\sum_{k=2}^\infty \log(F_k) F_k^{-s} 
+= \left(\sum_{n=1}^\infty a_{n} n^{-s}\right) \left(\sum_{n=1}^\infty \manF(n) n^{-s}\right)
+= \sum_{n=1}^\infty \left( \sum_{k \mid n} a_k \manF(n/k) \right) n^{-s},
+\end{equation}
+where $a_1=2$, $a_k=1$ if $k=F_j$ for some $j\ge3$ (starting with $k=F_3=2$) and $a_k=0$ otherwise.
+Comparing the coefficients of $l^{-s}$ in~\eqref{eq:ManpD}, the coefficient on the left-hand side is $0$ because $l \notin \Fp$, so $l$ is not a Fibonacci number; then if on the right-hand side we separate the summand corresponding to $k=1$, we have
+\[
+0 = a_1 \manF(l) + \sum_{k \mid l,\, k > 1} a_k \manF(l/k).
+\]
+Here, $a_k=0$ except when $k=F_j$. And, since $l \notin \Fp$, also $l/F_j \notin \Fp$, so, by the inductive hypothesis, $\manF(l/k) = 0$ for every $k=F_j>1$. Consequently, $\manF(l)=0$, and the proof is concluded.
+%\end{proof}
+
+%% En lugar de aqu\'i, esto tambi\'en se pod\'ia poner, sin llamarlo ``Remark'', 
+%% en la introducci\'on, justo después de la Proposition~\ref{prop:Man(l)=0}
+\begin{remark}
+This raises the question of whether we can have $\manF(l) = 0$ with $l \in \Fp$. 
+In light of \eqref{eq:Man(l)prod}, this can only happen when $l \in \Fp$ does not satisfy the hypotheses of Proposition~\ref{prop:Man(l)prod}. In fact $\manF(2^{7}3^{2}) = 0$ is the only $l$ in the range $1<l\le10^8$ such that $l \in \Fp$ and $\manF(l) = 0$.
+\end{remark}
+%% No parece f\'acil llegar m\'as lejos, salvo a trozos; tarda ya mucho
+%% y Mathematica se queda a veces sin memoria, y hay que reiniciarlo y seguir
+
+%----------
+\subsection{Proof of Proposition~\ref{prop:Man(l)prod}}
+%----------
+
+%\begin{proof}[Proof of Proposition~\ref{prop:Man(l)prod}]
+If $l$ is a number of $\Fp$ with $r_{l}=1$ that fulfills the hypothesis, 
+$l$ is necessarily a Fibonacci number distinct from $F_{6}=8$ and $F_{12}=144$
+(observe that $r_{8}=3$, $r_{144}=6$). Then, directly by \eqref{eq:Man(l)rec} one has 
+\[
+\manF(l) = \frac{1}{2} \log(l), 
+\]
+so formula \eqref{eq:Man(l)prod} is true if $r_{l}=1$. 
+
+To prove the validity of \eqref{eq:Man(l)prod} in general we use complete induction on $r_{l}$. Let $l = F_{n_1}^{m_1} F_{n_2}^{m_2} \cdots F_{n_{k_l}}^{m_{k_l}}$ be an element of $\Fp$ (with $F_{n_1} \neq 2$ or $F_{n_1}=2$ and $m_1<3$) having $r_{l}>1$ and assume that \eqref{eq:Man(l)prod} is true for any 
+\[
+l' = F_{n_1'}^{m_1'} F_{n_2'}^{m_2'} 
+\cdots F_{n_{k_{l'}}'}^{m_{k_{l'}}'} \in \Fp
+\]
+with 
+$r_{l'} := m_1' + m_2' + \cdots + m_{k_{l'}}' < r_{l}$
+(and such that $F_{n_1'} \neq 2$ or $F_{n_1'}=2$ and $m_1'<3$).
+By \cite{BuLuMiSi, Car}, $l\notin \calF$ and $l/F_j \notin \Fp$ 
+if $F_j$ is a Fibonacci proper divisor of $l$ that is not one of the $F_{n_{i}}$.
+Then, by applying \eqref{eq:Man(l)rec} and Proposition~\ref{prop:Man(l)=0}, we have 
+\begin{equation}
+\label{eq:Man(l)demo}
+\manF(l) = -\frac{1}{2} \left(  \manF(F_{n_1}^{m_1-1} \cdots F_{n_{k_l}}^{m_{k_l}})
++ \manF(F_{n_1}^{m_1}F_{n_2}^{m_2-1} \cdots F_{n_{k_l}}^{m_{k_l}})
++ \cdots + \manF(F_{n_1}^{m_1} \cdots F_{n_{k_l}}^{m_{k_l}-1}) \right) .
+\end{equation}
+Since the sum of exponents of each summand of the right-hand side of \eqref{eq:Man(l)demo}
+is $r_l-1$, the induction hypothesis applies and we obtain
+\begin{align*}
+\manF(l) &= -\frac{1}{2}(-1)^{r_l-2} \,\frac{1}{2^{r_l-1}}(r_l-2)! \\
+& \qquad\quad \times
+\left( \frac{1}{(m_1-1)! \cdots m_{k_l}!} \log (l/F_{n_1}) + \cdots 
++ \frac{1}{m_1! \cdots (m_{k_l}-1)!} \log (l/F_{n_{k_l}}) \right) \\
+&= (-1)^{r_l-1}\frac{1}{2^{r_l}} \frac{(r_l-1)!}{m_1! \cdots m_{k_l}!} \log(l), 
+\end{align*}
+which proves~\eqref{eq:Man(l)prod}. 
+%\end{proof}
+
+%----------
+\subsection{Proof of Proposition~\ref{prop:Man(2m)}}
+%----------
+
+%\begin{proof}[Proof of Proposition~\ref{prop:Man(2m)}]
+We have already seen that $\manF(2) = \frac{1}{2} \log(2)$, 
+$\manF(2^2) = -\frac{1}{4} \log(2)$ and $\manF(2^3) = \frac{13}{8} \log(2)$.
+For $m \ge 4$, the Fibonacci proper divisors of $l= 2^m$ are $2$ and $8$, 
+so \eqref{eq:Man(l)rec} gives
+\[
+\manF(2^m) = -\frac{1}{2} \left( \manF(2^{m-1}) + \manF(2^{m-3}) \right).
+\]
+For simplicity, let us write $a_m = \manF(2^m)$, which satisfies the linear homogeneous recurrence 
+\begin{equation}
+\label{eq:am}
+a_m + \frac{1}{2} a_{m-1} + \frac{1}{2} a_{m-3} = 0,
+\end{equation}
+whose characteristic equation is $\lambda^3 + \frac{1}{2} \lambda^2 + \frac{1}{2} = 0$.
+The roots of the characteristic equation are 
+\[
+\lambda_1 = -1 \quad\text{and}\quad
+\lambda_{2,3} = \frac{1}{4}\left(1 \pm i\sqrt{7}\right) 
+= \frac{1}{\sqrt{2}} \left(\cos(\arctan\sqrt{7}) \pm i \sin(\arctan\sqrt{7}) \right).
+\] 
+Thus, the solution of \eqref{eq:am} can be written as
+\[
+a_m = A \lambda_1^m + B \lambda_2^m + C \lambda_3^m
+\]
+or also as
+\[
+a_m = A \lambda_1^m + B' \left(\frac{1}{\sqrt{2}}\right)^m \cos(m\arctan\sqrt{7}) 
++ C' \left(\frac{1}{\sqrt{2}}\right)^m \sin(m\arctan\sqrt{7}),
+\]
+where the constants $A,B,C$ or $A,B',C'$ must be chosen to satisfy the initial values
+$a_1 = \frac{1}{2} \log(2)$, $a_2 = -\frac{1}{4} \log(2)$ and $a_3 = \frac{13}{8} \log(2)$.
+It is a simple task to find the values of these constants, and thus we get \eqref{eq:Man(2m)1} and~\eqref{eq:Man(2m)2}. 
+Finally, 
+% the sum of the binomial expansions  
+% $(1 \pm i \sqrt{7})^m = \sum_{k=0}^{m} \binom{m}{k} (\pm i)^k (\sqrt{7})^k$ is
+\[
+(1 + i \sqrt{7})^m + (1 - i \sqrt{7})^m
+= \sum_{k=0}^{m} \binom{m}{k} i^k (\sqrt{7})^k + \sum_{k=0}^{m} \binom{m}{k} (-i)^k (\sqrt{7})^k
+= 2 \sum_{k=0}^{\lfloor m/2 \rfloor} \binom{m}{2k} (-1)^k 7^k,
+\]
+which becomes \eqref{eq:Man(2m)3}.
+%\end{proof}
+
+%----------
+\subsection{Proof of Proposition~\ref{prop:Man(2mFk)}}
+%----------
+
+%\begin{proof}[Proof of Proposition~\ref{prop:Man(2mFk)}]
+By using the recurrence \eqref{eq:Man(l)rec}, we easily get
+\[
+\manF(2F_k) = -\frac{1}{4} \log(2F_k),
+\quad
+\manF(2^2F_k) = \frac{1}{8} \log(2^2F_k),
+\quad
+\manF(2^3F_k) = -\frac{5}{16} \log(2^3F_k).
+\]
+Also, for $m \ge 3$,
+\[
+\manF(2^mF_k) = -\frac{1}{2} \left( \manF(2^{m-1}F_k)
++ \manF(2^{m-3}F_k) + \manF(2^{m}) \right).
+\]
+For simplicity, let $a_m = \manF(2^mF_k)$, and $b(m) = -\frac{1}{2}\manF(2^{m})$, which is given by~\eqref{eq:Man(2m)1}. Then we have the linear recurrence
+\begin{equation*}
+%\label{eq:amFm}
+\begin{gathered}
+a_m + \frac{1}{2} a_{m-1} + \frac{1}{2} a_{m-3} = b(m),
+\\
+a_1 = -\frac{1}{4} \log(2F_k),
+\quad
+a_2 = \frac{1}{8} \log(2^2F_k),
+\quad
+a_3 = -\frac{5}{16} \log(2^3F_k),
+\end{gathered}
+\end{equation*}
+with $b(m) = c_1 p_1^m + c_2 p_2^m + c_3 p_3^m$
+for certain constants $c_1,c_2,c_3$ and $p_1,p_2,p_3$.
+Solving this recurrence by standard methods, we get
+\[
+a_m = \frac{1}{2^{2+m/2}} \left(2^{m/2}(-1)^m + \cos(m \arctan\sqrt{7}) 
+  - \frac{1}{\sqrt{7}} \sin(m \arctan\sqrt{7}) \right) \log(2^mF_k).
+\]
+Finally, it is clear from this expression that 
+$a_m \sim \frac{(-1)^m}{4} \log(2^mF_k)$ when $m \to \infty$.
+%\end{proof}
+
+\begin{remark}
+Let us see how the expressions $\cos(m \arctan\sqrt{7})$ and $\frac{1}{\sqrt{7}} \sin(m \arctan\sqrt{7})$ that appear, among other places, in Proposition~\ref{prop:Man(2mFk)}, can be rewritten without trigonometric functions or square roots. We start with De Moivre's formula
+\[
+\cos (m\theta) + i \sin(m\theta) = (\cos(\theta) + i \sin(\theta))^{m}.
+\]
+Applying the binomial formula and equating real and imaginary parts, we obtain
+%\[
+%  \cos (m \theta) = \sum_{r=0}^{2r \leq m} (-1)^{r} 
+%  \binom{m}{2r} \cos^{m-2r}(\theta) \sin^{2r}(\theta)
+%  = \cos^{m}(\theta) \sum_{r=0}^{2r \leq m} (-1)^{r} 
+%  \binom{m}{2r} \tan^{2r}(\theta)
+%\]
+\[
+  \cos (m \theta) = \sum_{r=0}^{\lfloor m/2\rfloor} (-1)^{r} 
+  \binom{m}{2r} \cos^{m-2r}(\theta) \sin^{2r}(\theta)
+  = \cos^{m}(\theta) \sum_{r=0}^{\lfloor m/2\rfloor} (-1)^{r} 
+  \binom{m}{2r} \tan^{2r}(\theta)
+\]
+and
+%\[
+%  \sin(m \theta) = \sum_{r=0}^{2r+1 \leq m} (-1)^{r} 
+%  \binom{m}{2r+1} \cos^{m-2r-1}(\theta) \sin^{2r+1}(\theta)
+%  = \cos^{m}(\theta) \sum_{r=0}^{2r+1 \leq m} (-1)^{r} 
+%  \binom{m}{2r+1} \tan^{2r+1}(\theta).
+%\]
+\begin{align*}
+  \sin(m \theta) &= \sum_{r=0}^{\lfloor(m-1)/2\rfloor} (-1)^{r} 
+  \binom{m}{2r+1} \cos^{m-2r-1}(\theta) \sin^{2r+1}(\theta)
+  \\&= \cos^{m}(\theta) \sum_{r=0}^{\lfloor(m-1)/2\rfloor} (-1)^{r} 
+  \binom{m}{2r+1} \tan^{2r+1}(\theta).
+\end{align*}
+Now, using $\cos^2(\theta) = 1/(1+\tan^2(\theta))$, we get
+\begin{align*}
+  \cos (m \theta) &= \frac{1}{(1+\tan^{2}(\theta))^{m/2}} 
+  \sum_{r=0}^{\lfloor m/2\rfloor} (-1)^{r} 
+  \binom{m}{2r} \tan^{2r}(\theta),
+\\
+  \sin(m \theta) &= \frac{1}{(1+\tan^{2}(\theta))^{m/2}} 
+  \sum_{r=0}^{\lfloor(m-1)/2\rfloor} (-1)^{r} 
+  \binom{m}{2r+1} \tan^{2r+1}(\theta).
+\end{align*}
+Finally, taking $\theta = \arctan(\sqrt{7})$, we obtain
+\begin{equation}
+\label{eq:sqrt7}
+\begin{aligned}
+  \cos (m \arctan(\sqrt{7})) &= \frac{1}{8^{m/2}}
+  \sum_{r=0}^{\lfloor m/2\rfloor} (-1)^{r} 7^r \binom{m}{2r},
+\\
+  \frac{1}{\sqrt{7}} \sin(m \arctan(\sqrt{7})) &= \frac{1}{8^{m/2}}
+  \sum_{r=0}^{\lfloor(m-1)/2\rfloor} (-1)^{r} 7^r \binom{m}{2r+1}.
+\end{aligned}
+\end{equation}
+\end{remark}
+
+%----------
+\subsection{Proof of Proposition~\ref{prop:Man(2mFkFq)}}
+%----------
+
+%\begin{proof}[Proof of Proposition~\ref{prop:Man(2mFkFq)}]
+By using the recurrence \eqref{eq:Man(l)rec}, we easily get
+\[
+\manF(2F_kF_q) = \frac{1}{4} \log(2F_kF_q),
+\quad
+\manF(2^2F_kF_q) = -\frac{3}{16} \log(2^2F_kF_q),
+\quad
+\manF(2^3F_kF_q) = \frac{3}{8} \log(2^3F_kF_q).
+\]
+In addition, for $m \ge 3$,
+\[
+\manF(2^mF_kF_q) = -\frac{1}{2} \left( \manF(2^{m-1}F_kF_q)
++ \manF(2^{m-3}F_kF_q) + \manF(2^{m}F_k) + \manF(2^{m}F_q) \right).
+\]
+Let $a_m = \manF(2^mF_kF_q)$ and $b_k(m) = -\frac{1}{2}\manF(2^{m}F_k)$, given in Proposition~\ref{prop:Man(2mFk)}. Then we have the linear recurrence
+\begin{equation*}
+\begin{gathered}
+a_m + \frac{1}{2} a_{m-1} + \frac{1}{2} a_{m-3} = b_k(m) + b_q(m),
+\\
+a_1 = \frac{1}{4} \log(2F_kF_q),
+\quad
+a_2 = -\frac{3}{16} \log(2^2F_kF_q),
+\quad
+a_3 = \frac{5}{8} \log(2^3F_kF_q).
+\end{gathered}
+\end{equation*}
+Solving the recurrence, we get the value for $a_m$. In this case solving the recurrence is a cumbersome process (it can be done with the help of computer algebra software). But, after the expression for $a_m$ has been found, checking that it satisfies the recurrence is not difficult. Finally, the asymptotic formula for $a_m$ follows immediately from its expression.
+%\end{proof}
+
+%----------
+\subsection{Some additional expressions}
+%----------
+
+% Decir que esto es \'acil de observar en la pr\'actica aunque no incluimos una demostración formal.
+
+It is easy to verify on a case by case basis that $\manF(l)$ is always a rational number multiplied by $\log(l)$. In addition, we observe that the value of $\manF(l)$, with $l \in \Fp$ factored as in \eqref{eq:Fp}, exhibits symmetry with respect to those factors different from $2$ and $3$. Namely, for $m_1 \ge 0$, $m_2 \ge 0$, and different Fibonacci numbers $F_{n_j}\ge 5$, also different from $8$ and $144$, let us denote
+\begin{equation*}
+%\label{eq:Man(2m3nprods)}
+\widehat{\manF}(m_1,m_2,J) := 
+\frac{\manF\Big(2^{m_1} 3^{m_2} \prod_{j=1}^{J} F_{n_j}\Big)}
+  {\log\Big(2^{m_1} 3^{m_2} \prod_{j=1}^{J} F_{n_j}\Big)},
+\qquad\text{with } m_1+m_2+J>0.
+\end{equation*}
+%% De todas formas, el caso J=0 es trivial
+Then, for $l=2^{m_1} 3^{m_2} F_{n_3}^{m_3} F_{n_4}^{m_4} \cdots F_{n_{k_l}}^{m_{k_l}} > 1$ (factored uniquely as in \eqref{eq:Fp}), one has
+\[
+  \frac{\manF(2^{m_1} 3^{m_2} F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}})}
+    {\log(2^{m_1} 3^{m_2} F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}})}
+  = \frac{1}{m_3!\,m_4!\cdots m_{k_l}!} 
+  \, \widehat{\manF}(m_1,m_2,m_3+m_4+\cdots+m_{k_l}).
+\]
+
+%----------
+\section{Bounds for the function $\manF(l)$: Proof of Proposition~\ref{prop:Mcg}}
+%----------
+
+Clearly, the bound \eqref{eq:Mcg} in Proposition~\ref{prop:Mcg} holds for $l$ satisfying the hypotheses of Proposition~\ref{prop:Man(l)prod} (in that case, $p$ and $q$ do not play any role). For $l \in \Fp$ in general, the idea is to give an inductive proof using the recurrence~\eqref{eq:Man(l)rec}. If $l = 2^{m_1}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}}$, then $p$ and $q$ in \eqref{eq:Mcg} can be considered as functions
+\[
+  p := p(m_1,r_l),\quad q := q(m_2,r_l),
+\]
+with values in the interval $[0,1]$, which must be chosen in such a way that~\eqref{eq:Mcg} holds.
+
+As we shall see in the following proof, this is easy if we are satisfied with $p = q = 1$; however, this choice yields a poor bound. The smaller $p$ and $q$ are, the better the bound is for use in the proof of Theorem~\ref{theo:sigma0}, but the effort that must be made to obtain these improved bounds is proportionally greater. In addition, note that if we want to use \eqref{eq:Mcg} to prove Theorem~\ref{theo:sigma0}, then we need global bounds where $p$ and $q$ are independent from $m_1$, $m_2$ and~$r_l$.
+
+In light of Propositions \ref{prop:Man(2m)}, \ref{prop:Man(2mFk)} and~\ref{prop:Man(2mFkFq)}, the bound \eqref{eq:Mcg} cannot hold for $p=q=0$; furthermore, for such a bound to hold for all $l \in \Fp$, it must necessarily be the case that $p = 1$. This does not exclude the possibility that bounds of a different type could exist. For example, numerical experiments seem to point to the existence of a bound of the form
+\[
+|\manF(l)| \leq 
+\frac{C}{2^{r_l-m_1+t\min(m_1,m_2)}}
+\dfrac{(r_l-1)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} \log(l),
+\]
+where $t$ is very close to~$1$. However, we have not been able to prove such a bound, and even if we had, it does not seem straightforward to use it to improve Theorem~\ref{theo:sigma0}).
+
+In fact, when we bound $|\manF(l)|$ via \eqref{eq:Man(l)rec}, we are taking absolute values in all the summands, which of course discards possible cancelation due to alternating signs in $\manF(l)$. Proposition~\ref{prop:Man(l)prod} suggests that $\manF(l)$ changes sign each time that a Fibonacci proper divisor is extracted from $l$; however, this is not always the case, as one can see in Table~\ref{tab:m1m2}, which makes any proof based on cancelation difficult, since one needs to take advantage of a phenomenon which happens often, but not always, and not in a controlled or localized manner.
+
+Hence, we are convinced that $|\manF(l)|$ has better bounds than those which we will discuss here, as supported by numerical experiments, although obtaining proofs does not seem easy.
+
+Let us then turn to the proof of Proposition~\ref{prop:Mcg}. We have set it up so as to exhibit the difficulties that arise if we want $p, q \in [0,1]$ to be small. In Remark~\ref{rem:m1} we discuss the possibility of finding bounds for $|\manF(l)|$ with $p<1$, by dropping the requirement that they hold for all $l$ and instead impose restrictions, such as $r_{l} \geq 2m_{1}$.
+
+\begin{proof}[Proof of Proposition~\ref{prop:Mcg}]
+We want to prove that, for a certain constant $C_{p,q}$ (that depends only on $p$ and $q$), 
+\begin{equation}
+\label{eq:McgC}
+|\manF(l)| \leq 
+\frac{C_{p,q}}{2^{r_l-pm_1-qm_2}} \frac{(r_l-1)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} \log(l),
+\end{equation}
+where $r_{l} := m_1+m_2+m_3+ \cdots +m_{k_l}$ (note that $m_1$ and $m_2$ can be~$=0$).
+
+To deal with the case $l=2^{m_1}$ (recall Proposition~\ref{prop:Man(2m)}), it is enough to take $p=1$ and $C_{p,q}$ a little larger than $1$, for example $C_{p,q}=7/4$ (note that if the bound holds for $q=0$, then it also holds for any $q\in[0,1]$);
+for the moment, though, let us forget about $l=2^{m_1}$. We will see that even when we look for a bound not covering that case, we also need to take $p = 1$.
+
+Thus, we are going to prove \eqref{eq:McgC} for 
+\begin{equation*}
+l = 2^{m_1}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}} \in \Fp
+\end{equation*}
+(factorization as usual as in \eqref{eq:Fp}) by induction on $m_1$. We will not bother with checking in detail what the exact value of $C_{p,q}$ is; when the argument requires discarding a finite number of values, it might be necessary to make $C_{p,q}$ bigger. In fact from now on we work with a global value of $C = 7/4$.
+
+Proposition~\ref{prop:Man(l)prod} shows that \eqref{eq:McgC} is true when $m_1 \in \{0,1,2\}$ (in this case, the bound is valid for $p=q=0$, hence also for any $p,q\in[0,1]$), so it is enough to see what happens when $m_1 \ge 3$.
+Indeed, this is the starting point of the inductive process.
+
+In order to avoid dealing with many separate cases, and to allow us to express summands which do not actually form part of some expressions, we will use the following notation:
+\[
+  \IF_{\mathrm{condition}}(a) =
+  \begin{cases}
+  a & \text{if ``condition'' is true},\\
+  0 & \text{if ``condition'' is false}.
+  \end{cases}
+\]
+Note that, in the following arguments, we always bound $\IF_{\mathrm{condition}}(a)$ by a positive constant, so the bound can also be used when $\IF_{\mathrm{condition}}(a) = 0$. We will use two different ``conditions'', namely
+\[
+(m_2 \ge 1)  \quad\text{and}\quad (m_1 \ge 4 \text{ and } m_2 \ge 2)
+\]
+which, for simplicity, will be denoted by $\IF_3$ and $\IF_{144}$.
+Observe that if they do not hold, the corresponding summand $\manF(l/3)$ or $\manF(l/144)$ in \eqref{eq:Man(l)rec} is absent. 
+
+%% Para estudiar lo que sigue, los $F_i$ que no sean $2$ y $3$ pr\'acticamente no pintan nada. 
+%% Es como si no estuviesen.
+
+Under the inductive hypothesis, we assume that the bound \eqref{eq:McgC} holds for all $l'$ whose corresponding $m_1'$ is less than $m_1$. By the recursive formula \eqref{eq:Man(l)rec}, we have 
+\begin{align*}
+%\notag
+%\label{eq:MFl-1}
+|\manF(l)| &\leq \frac{1}{2} \left| \manF(2^{m_1-1}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}}) \right|
++ \frac{1}{2} \left| \manF(2^{m_1-3}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}})\right| 
+\\
+%\notag
+&\quad+ \frac{1}{2} \IF_3 \left( \left| \manF(2^{m_1}3^{m_2-1}F_{n_3}^{m_3} 
+  \cdots F_{n_{k_l}}^{m_{k_l}})\right| \right) 
++ \frac{1}{2} \IF_{144} \left( \left| \manF(2^{m_1-4}3^{m_2-2}F_{n_3}^{m_3} 
+  \cdots F_{n_{k_l}}^{m_{k_l}})\right| \right) 
+\\
+%\label{eq:MFl-2}
+%\notag
+&\quad + \frac{1}{2} \left| \manF(2^{m_1}3^{m_2}F_{n_3}^{m_3-1} \cdots F_{n_{k_l}}^{m_{k_l}}) \right|
++ \cdots + \frac{1}{2} \left| \manF(2^{m_1}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}-1}) \right|
+\\
+&=: \frac{1}{2} S_1 + \frac{1}{2} S_2 + \frac{1}{2} S_3  
++ \frac{1}{2} S_4 + \frac{1}{2} S_5 + \frac{1}{2} S_6.
+%\label{eq:men6}
+\end{align*}
+By induction,
+\begin{align}
+\notag
+% &\left| \manF(2^{m_1-1}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}}) \right|
+S_1 
+&\le \frac{C}{2^{r_l-1-p(m_1-1)-qm_2}} \frac{(r_l-2)!}{(m_1-1)!\,m_2!\,m_3! \cdots m_{k_l}!} \log(l/2) \\
+&= \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} 
+\, 2^{1-p} m_1 \log(l/2)
+\label{eq:men6-1}
+\end{align}
+and again by induction,
+\begin{align}
+\notag
+%&\left| \manF(2^{m_1-3}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}}) \right|
+S_2 
+&\le \frac{C}{2^{r_l-3-p(m_1-3)-qm_2}} \frac{(r_l-4)!}{(m_1-3)!\,m_2!\,m_3! \cdots m_{k_l}!} \log(l/8) \\
+&= \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!}
+\frac{m_1(m_1-1)(m_1-2)}{(r_l-2)(r_l-3)} \, 2^{3-3p} \log(l/8)
+\label{eq:men6-2}
+\end{align}
+(if needed, we can use that $\log(l/8) \le \log(l/2)$).
+By induction (noting the summand is absent if $\IF_3$ is false)
+\begin{align}
+\notag
+%\left| \manF(2^{m_1}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}}) \right| 
+S_3 
+&\le \frac{C}{2^{r_l-1-pm_1-q(m_2-1)}} \frac{(r_l-2)!}{m_1!\,(m_2-1)!\,m_3! \cdots m_{k_l}!} \log(l/3) \\
+&= \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} 
+\, 2^{1-q} m_2 \log(l/3).
+\label{eq:men6-3}
+\end{align}
+By induction (noting that this summand is absent if $\IF_{144}$ is false), 
+\begin{align}
+\notag
+%\left| \manF(2^{m_1-4}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}})\right|
+S_4 
+&\le \frac{C}{2^{r_l-6-p(m_1-4)-q(m_2-2)}} \frac{(r_l-7)!}{(m_1-4)!\,(m_2-2)!\,m_3! \cdots m_{k_l}!} \log(l/144) \\
+&= \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} 
+\frac{m_1(m_1-1)(m_1-2)(m_1-3)m_2(m_2-1)}{(r_l-2)(r_l-3)(r_l-4)(r_l-5)(r_l-6)} \, 2^{6-4p-2q} \log(l/144)
+\label{eq:men6-4}
+\end{align}
+(and if needed, here we can use that $\log(l/144) \le \log(l/3)$).
+Once more, by induction
+\begin{align*}
+%\notag
+%\left| \manF(2^{m_1}3^{m_2}F_{n_3}^{m_3-1} \cdots F_{n_{k_l}}^{m_{k_l}}) \right|
+S_5 
+&\le \frac{C}{2^{r_l-1-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,(m_3-1)! \cdots m_{k_l}!} \log(l/F_{n_3}) \\
+&\qquad= \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} \, 2m_3 \log(l/F_{n_3})
+%\label{eq:men6-5}
+\end{align*}
+up to
+\begin{align*}
+%\notag
+%\left| \manF(2^{m_1}3^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}-1}) \right|
+S_6 
+&\le \frac{C}{2^{r_l-1-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots (m_{k_l}-1)!} \log(l/F_{n_{k_l}}) \\
+&\qquad= \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} 
+\, 2m_{k_l} \log(l/F_{n_{k_l}}).
+%\label{eq:men6-6}
+\end{align*}
+
+The strategy at this point is to combine the coefficients of \eqref{eq:men6-1} and \eqref{eq:men6-2} and to choose $p$ so as to obtain the inequality $\le 2m_1$, then do the same with \eqref{eq:men6-3} and \eqref{eq:men6-4}, choosing $q$ so as to obtain the inequality~$\le 2m_2$.
+% La idea ahora es agrupar los coeficientes de \eqref{eq:men6-1} y \eqref{eq:men6-2} 
+% y elegir $p$ para que salga un $\le 2m_1$;
+% y lo mismo con \eqref{eq:men6-3} y \eqref{eq:men6-4} y elegir $q$ para que salga un $\le 2m_2$.
+Specifically, suppose that after using $\log(l/8) \le \log(l/2)$ and $\log(l/144) \le \log(l/3)$, we are able to obtain in \eqref{eq:men6-1} and \eqref{eq:men6-2}, that
+% En concreto, supongamos que, tras hacer $\log(l/8) \le \log(l/2)$ y $\log(l/144) \le \log(l/3)$, 
+% en \eqref{eq:men6-1} y \eqref{eq:men6-2} conseguimos
+\begin{equation}
+\label{eq:pm1}
+2^{1-p} m_1 + \frac{m_1(m_1-1)(m_1-2)}{(r_l-2)(r_l-3)} \, 2^{3-3p} \le 2m_1
+\end{equation}
+and likewise, that in \eqref{eq:men6-3} and \eqref{eq:men6-4} we are able to obtain
+\begin{equation}
+\label{eq:qm2}
+2^{1-q} m_2 + \frac{m_1(m_1-1)(m_1-2)(m_1-3)m_2(m_2-1)}{(r_l-2)(r_l-3)(r_l-4)(r_l-5)(r_l-6)} 
+\, 2^{6-4p-2q} \le 2m_2.
+\end{equation}
+If we achieve this, then we would have (possibly with $m_2=0$)
+\begin{align*}
+|\manF(l)| &\le
+\frac{1}{2} \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} \\
+&\qquad \times
+\left( 2m_1\log(l/2) + 2m_2\log(l/3) + 2m_3\log(l/F_{n_3}) + \cdots + 2m_{k_l}\log(l/F_{n_{k_l}}) \right)
+\\
+&= \frac{1}{2} \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!}
+\log\bigg( \frac{l^{2m_1+2m_2+2m_3+\cdots+2m_{k_l}}}{2^{2m_1}3^{2m_2}F_{n_3}^{2m_3} 
+  \cdots F_{n_{k_l}}^{2m_{k_l}}} \bigg)
+\\
+&= \frac{1}{2} \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-2)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!}
+\log(l^{2r_l-2})
+\\
+&= \frac{C}{2^{r_l-pm_1-qm_2}} \frac{(r_l-1)!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!}
+\log(l),
+\end{align*}
+and we could conclude.
+
+Let us then deal with \eqref{eq:pm1} and \eqref{eq:qm2}.
+In \eqref{eq:pm1}, $r_l \ge m_1+1$, unless $l=2^{m_1}$, in which case we are in the situation of Proposition~\ref{prop:Man(2m)} and there is nothing to prove; on top of this we already said that we need to take $p=1$ even if we discard that case, hence
+\begin{equation}
+\label{eq:m1rl}
+\frac{(m_1-1)(m_1-2)}{(r_l-2)(r_l-3)} \le 1,
+\end{equation}
+and what we need is to find $p \in [0,1]$ such that $2^{1-p} + 2^{3-3p} \le 2$, or equivalently,
+\begin{equation}
+\label{eq:f(p)}
+f(p) := 2^{-p} + 2^{2-3p} \le 1.
+\end{equation}
+The function $f(p)$ is decreasing on $[0,1]$, with $f(0)=5$ and $f(1)=1$, which leaves us only with the choice $p=1$. We could choose a value $p < 1$ if $m_{1}$ and $r_{1}$ were restricted in such a way as to yield a smaller bound in \eqref{eq:m1rl}, although then we would not have the same function $f(p)$ as above in \eqref{eq:f(p)} (Remark~\ref{rem:m1}, goes into more detail regarding this possibility).
+
+In general we cannot do this, since if $m_{1}$ and $r_{l}$ both go to $\infty$ in such a way that their quotient goes to $1$, it is impossible to obtain a smaller bound in \eqref{eq:m1rl}. However, it would be possible if we assume a relation along the lines of $r_l \ge 2m_1$ (see again Remark~\ref{rem:m1}).
+
+In any case, with $p=1$, after canceling $2m_2$, \eqref{eq:qm2} can be rewritten as
+% (fijarse que he subido un $2$ al numerador)
+\begin{equation}
+\label{eq:qm2-sinp}
+2^{-q} + \frac{2m_1(m_1-1)(m_1-2)(m_1-3)(m_2-1)}{(r_l-2)(r_l-3)(r_l-4)(r_l-5)(r_l-6)} \, 2^{-2q} \le 1.
+\end{equation}
+Since this bound involves $\IF_{144}$, we have $m_1\ge 4$ y $m_2\ge 2$, so that we may assume that $r_l \ge 7$ (if $r_l = 6$ then $l=188$ and one has to verify separately that this case also satisfies the bound).
+%% En principio, podr\'ia ocurrir que satisface con constante multiplicativa mayor si hiciera falta, 
+%% pero tambi\'en se puede pasar completamente de este caso pues, para estudiar la convergencia de una serie, 
+%% un sumando no pinta nada.
+Now, with $m_1\ge 4$, $m_2\ge 2$, $r_l \ge 7$, it is easy to check that, except when $r_l=m_1+m_2$, with
+\begin{equation}
+\label{eq:excepciones}
+(m_1,m_2) \in \big\{ (5,2), (6,2), (7,2), (4,3), (5,3), (6,3) \big\},
+\end{equation}
+we have
+\begin{equation}
+\label{eq:1/2}
+\frac{2m_1(m_1-1)(m_1-2)(m_1-3)(m_2-1)}{(r_l-2)(r_l-3)(r_l-4)(r_l-5)(r_l-6)} \le \frac{1}{2}.
+\end{equation}
+
+Since the exceptions in \eqref{eq:excepciones} are a finite number of cases, we can simply consult Table~\ref{tab:m1m2} to check that in each of these cases the bound is satisfied with $C=7/4$ as we stated at the beginning.
+%% No tienen ninguna importancia para decidir si la serie converge o no, 
+%% o porque s\'olo afectar\'ia al valor de~$C$
+Thus, what we need to do now is to find $q \in [0,1]$ such that
+\begin{equation}
+\label{eq:g(q)}
+g(q) := 2^{-q} + 2^{-2q-1} \le 1.
+\end{equation}
+This is a decreasing function on $[0,1]$, with $g(0)=3/2$ and $g(1)=5/8$; to obtain
+$g(q)\le1$ it is enough to take
+\[
+q = \log_2\bigg(\frac{1+\sqrt{3}}{2}\Big) = \log\Big(\frac{1+\sqrt{3}}{2}\bigg)/\log(2)
+= 0.449984\dots
+\]
+or anything larger. 
+
+Without going into all the details, let us see how this method can be improved to obtain a smaller $q$. If in \eqref{eq:1/2} we substitute $\le 1/2$ for $\le 2/5$, a finite number of exceptions appear: we need to add $(7,3)$, $(8,2)$ y $(8,3)$ to those in \eqref{eq:excepciones}); the inequality which replaces \eqref{eq:g(q)} is now $g(q) := 2^{-q} + 2^{-2q-1}/5 \le 1$, and we can lower $q$ down to $q = \log_2\Big(\frac{5+\sqrt{65}}{10}\Big) = 0.3854\dots$.
+%% En todo caso, esto es muy f\'acil de chequear, pues el Reduce de Mathematica da todas las excepciones.
+
+With $\le 1/4$ in \eqref{eq:1/2}, somewhat more than 30 exceptions arise; this time, there are 3 exceptions with $r_l=m_1+m_2+1$, which are easily dealt with with a computational algebra package. Thus leads to $q = \log_2\Big(\frac{1+\sqrt{2}}{2}\Big) = 0.271553\dots$
+
+With $\le1/5$ now there are a bit more than 100 exceptions, and we continue lowering the value of $q$. This time we have the inequality $g(q) := 2^{-q} + 2^{-2q}/5 \le 1$, and we arrive at
+\[
+  q = \log_2 \bigg( \frac{1}{2} + \frac{3}{10} \sqrt{5} \bigg) = 0.22752\dots,
+\]
+which concludes the proof of the theorem. Note that with $\le1/6$, an infinite number of exceptions arise, so we cannot continue.
+\end{proof}
+
+\begin{remark}
+\label{rem:m1}
+If we look for bounds under the condition that $r_{l} \geq 2m_{1}$, then instead of \eqref{eq:m1rl} we have
+\begin{equation*}
+%\label{eq:m1rl4}
+\frac{(m_1-1)(m_1-2)}{(r_l-2)(r_l-3)} \le \frac{1}{4},
+\end{equation*}
+which leads to finding $p \in [0,1]$ such that $2^{1-p} + 2^{1-3p} \le 2$, i.e.
+\begin{equation*}
+%\label{eq:f(p)alt}
+f(p) := 2^{-p} + 2^{-3p} \le 1.
+\end{equation*}
+The unique solution $f(p)=1$ with $p \in [0,1]$ is
+\[
+p = -\log_2\bigg( \sqrt[3]{ \frac{1}{18} (\sqrt{93}+9) }
+- \sqrt[3]{ \frac{1}{18} (\sqrt{93}-9)} \bigg)
+= 0.551463\dots
+\]
+Note however that this does not just consist of a slight variation on the proof, since the condition $r_l \ge 2m_1$ doesn't play well with our inductive steps. Other ideas  are needed to get it to work. In addition, this would also affect $q$ in \eqref{eq:qm2} and would not lead to the same expression as in~\eqref{eq:qm2-sinp}.
+\end{remark}
+
+%----------
+\section{Proof of Theorem~\ref{theo:sigma0}}
+%----------
+
+We prove that the Dirichlet series \eqref{eq:ManDir} does not converge when $s$ satisfies~\eqref{eq:diverge}, by showing that the general term $\manF(l) l^{-s}$ does not tend to~$0$. Without loss of generality, we can consider that $s$ is a positive real number.
+
+The idea is to take $l$ a product of consecutive Fibonacci numbers greater than $2$ (excluding $F_6$ and $F_{12}$ of course) to a power $m$, get the value $\manF(l)$ applying Proposition~\ref{prop:Man(l)prod}, estimate it by using Stirling's formula, and obtain the condition for $\manF(l)l^{-s}$, as a function of $m$, to tend to $0$ when $m\to\infty$. We have checked that the most demanding condition on $s$ is obtained with seven Fibonacci factors, so we will limit ourselves to this case.
+
+Let $l = (3\cdot 5\cdot 13\cdot 21\cdot 34\cdot 55\cdot 89)^m$, with $m \ge 1$. By Proposition~\ref{prop:Man(l)prod},
+\[
+\manF(l) = (-1)^{7m-1} \frac{1}{2^{7m}} \frac{(7m-1)!}{(m!)^7}\, m 
+\log(3\cdot 5\cdot 13\cdot 21\cdot 34\cdot 55\cdot 89).
+\]
+Stirling’s formula leads to
+%% With Mathematica:
+%% Asymptotic[(7*m-1)!, m -> Infinity]
+%% y dividir "a mano" por
+%% Asymptotic[m!, m -> Infinity]
+%% elevado a la 7
+%% (la asintótica de Asymptotic[(7*m-1)!/(m!)^7, m -> Infinity] la devuelve sin hacer)
+\[
+\manF(l) l^{-s} \sim (-1)^{7m-1} \left(\frac{7}{2}\right)^{7m} \frac{1}{8\sqrt{7}\pi^3 m^3} 
+\log(3\cdot 5\cdot 13\cdot 21\cdot 34\cdot 55\cdot 89) \cdot
+(3\cdot 5\cdot 13\cdot 21\cdot 34\cdot 55\cdot 89)^{-sm},
+\quad m \to \infty.
+\]
+Convergence of the series $\sum_{l} \manF(l) l^{-s}$ implies that
+\[
+\frac{1}{m^3} \left(\frac{7}{2}\right)^{7m} 
+(3\cdot 5\cdot 13\cdot 21\cdot 34\cdot 55\cdot 89)^{-sm} \to 0 \quad \text{when }m \to \infty
+\]
+and it is an easy exercise to check that this is not true when
+\[
+s < \frac{7\log(7/2)}{\log(3\cdot 5\cdot 13\cdot 21\cdot 34\cdot 55\cdot 89)} = 0.431141\dots,
+\]
+so that \eqref{eq:ManDir} does not converge in this case.
+%% Sum[1/2^(7m) (7m-1)!/(m!)^7*m*(3*5*13*21*34*55*89)^{-s*m}, {m, 1, Infinity}, GenerateConditions -> True]
+%% La condición es 681530850^s > 823543/128, i.e. 
+%% s > \frac{7\log(7/2)}{\log(3\cdot 5\cdot 13\cdot 21\cdot 34\cdot 55\cdot 89)}
+%% Reduce[681530850^s > 823543/128, s, Reals]
+%% s > -((7 (Log[2] - Log[7]))/(Log[2] + 2 Log[3] + 2 Log[5] + Log[7] + Log[11] + Log[13] + Log[17] + Log[89]))
+%% Con el = el t\'ermino general s\'i se va a 0, pero la serie que le he planteado a Mathematica no converge.
+
+We will now find an abscissa $\sigma_0$ such that $\sum_l {\manF(l)} l^{-s}$ converges absolutely for $\Re(s)>\sigma_0$, necessarily to $\varphi'(s)/\varphi(s)$. To achieve this, we use the bound in Proposition~\ref{prop:Mcg}, which will show how the resulting value of $\sigma_{0}$ depends on the numbers $p,q$ which appear in~\eqref{eq:Mcg}. The smaller we can take $p$ and $q$, the smaller the value of~$\sigma_0$. 
+
+Considering $\sum_l \frac{\manF(l)}{\log(l)} l^{-s}$ instead of $\sum_l {\manF(l)} l^{-s}$ does not change the abscissa of absolute convergence (it can change what happens on the boundary, but this doesn't affect our argument), hence we can drop the factors of $\log(l)$. In addition, since our bounds are absolute, we are actually dealing with  $\sum_l {|\manF(l)|} l^{-s}$ for positive real $s$.
+
+With this in mind, consider the function
+\[
+\xi(s) = \sum_{l \in \Fp} \frac{1}{2^{r_l-pm_1-qm_2}} \frac{1}{r_l} 
+\frac{r_l!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} \,l^{-s}
+\]
+where $l \in \Fp$ has the factorization $l = F_{n_1}^{m_1}F_{n_2}^{m_2}F_{n_3}^{m_3}  \cdots F_{n_{k_l}}^{m_{k_l}}$ given in \eqref{eq:Fp}. Since
+\[
+\sum_{l \in \Fp} |\manF(l)/\log(l)| l^{-s} \le \xi(s),
+\quad 
+\]
+the convergence of $\xi(s)$ implies the absolute convergence of $\sum_l {\manF(l)} l^{-s}$ to $\varphi'(s)/\varphi(s)$. 
+
+For a positive integer $M$, consider the set of $l \in \Fp$ whose factorization~\eqref{eq:Fp} contains only Fibonacci numbers from $F_{3} = 2$ up to $F_{M}$ (some may be absent in the factorization), in other words,
+\begin{align*}
+%\label{eq:FpM}
+\Fp(M) := \big\{\,
+l &= F_{n_1}^{m_1}F_{n_2}^{m_2}F_{n_3}^{m_3} \cdots F_{M}^{m_{M}} : m_{j} \ge 0, \\ 
+&\qquad\qquad 3 = n_1<n_2<\cdots < n_{k_l} = M,  
+n_{j}\neq 6, 12,\, n_j \le M \,\big\}.
+\end{align*}
+Assuming $M>12$, we have
+\begin{equation*}
+%\label{eq:nj}
+\begin{gathered}
+n_1 = 3,\
+n_2 = 4,\
+n_3 = 5,\
+n_4 = 7,\
+n_5 = 8,\
+n_6 = 9,\
+n_7 = 10,\
+n_8 = 11,\
+n_9 = 13,\\
+n_j = j+4\text{ for }j > 9,
+\quad\text{up to}\quad
+n_{k_l} = M-4.
+\end{gathered}
+\end{equation*}
+Consider the summands of the series $\xi(s)$ corresponding to $l \in \Fp(M)$,
+\begin{align*}
+\xi_M(s) &= \sum_{l \in \Fp(M)} \frac{1}{2^{r_l-pm_1-qm_2}} 
+  \frac{1}{r_l} \frac{r_l!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} 
+  \Big(F_{n_1}^{m_1}F_{n_2}^{m_2}F_{n_3}^{m_3} \cdots F_{n_{k_l}}^{m_{k_l}}\Big)^{-s} \\
+  &= \sum_{l \in \Fp(M)} \frac{1}{r_l} \frac{r_l!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} 
+  \Big((2^{1-p}F_{n_1}^{-s})^{m_1} (2^{1-q}F_{n_2}^{-s})^{m_2} (2F_{n_3}^{-s})^{m_3} \cdots (2F_{n_{k_l}}^{-s})^{m_{k_l}}\Big).
+\end{align*} 
+We then have $\xi(s) = \lim_{M\to\infty} \xi_M(s)$.
+% Obs\'ervese que, en las factorizaciones de $l \in \Fp(M)$, podemos incluir todos los $F_{n_j} \le M$ 
+% (con $n_{j}\neq 6, 12$) sin m\'as que poner $m_j \ge 0$ en vez de $m_j > 0$; 
+% los $m_j = 0$ no tienen ninguna contribuci\'on ni en $r_l$ ni en el producto de los $m_j!$.
+For fixed $r$, let
+\[
+S_{M,r}(s) = \frac{1}{r} \sum_{\substack{l \in \Fp(M)\\ r_l=r}}  
+\frac{r_l!}{m_1!\,m_2!\,m_3! \cdots m_{k_l}!} 
+  \Big((2^{1-p}F_{n_1}^{-s})^{m_1} (2^{1-q}F_{n_2}^{-s})^{m_2} 
+  (2F_{n_3}^{-s})^{m_3} \cdots (2F_{n_{k_l}}^{-s})^{m_{k_l}}\Big).
+\]
+% Since indices with $m_j = 0$ do not contribute to the product of the $m_{j}!$ or to $r_{l}$, 
+% the formula for $\manF(l)$ sigue siendo v\'alida.
+The multinomial expansion
+\[
+(x_1+x_2+\cdots+x_k)^{r} =
+\sum_{\substack{m_1+m_2+\cdots+m_k=r,\\ m_j \ge 0}} \frac{r!}{m_1!\,m_2!\cdots m_k!} \, x_1^{m_1} x_2^{m_2} \cdots x_k^{m_k}
+\]
+leads directly to
+\[
+S_{M,r}(s) = \frac{1}{r} \left( \frac{1}{2^{1-p}F_3^s} + \frac{1}{2^{1-q}F_4^s} + \frac{1}{2F_5^s} 
++ \dots + \frac{1}{2F_{n_{k_l}}^s} \right)^r
+=: \frac{1}{r} \Big( S_{M}^{*}(s) \Big)^r,
+\]
+where the $F_{j}$ appearing in this expression are all those $F_j \le F_M$ with $j \notin \{1,2,6,12\}$ 
+
+Since all the terms involved are positive for $s > 0$, Tannery's Theorem, which is a special case of the Dominated Convergence Theorem, shows that
+\[
+  \xi(s) = \lim_{M\to\infty} \xi_M(s)
+  = \lim_{M\to\infty} \sum_{r=1}^{\infty} S_{M,r}(s)
+  = \sum_{r=1}^{\infty} \lim_{M\to\infty} S_{M,r}(s)
+  = \sum_{r=1}^{\infty} \frac{1}{r} \Big(\lim_{M\to\infty} S_{M}^{*}(s) \Big)^r,
+\]
+where the limit is exchanged with raising to the $r$\textsuperscript{th} power is justified by continuity. Finally,
+\begin{align*}
+&\lim_{M\to\infty} S_{M}^{*}(s)
+= \frac{1}{2^{1-p}F_3^s} + \frac{1}{2^{1-q}F_4^s} + \frac{1}{2F_5^s} + \cdots + \frac{1}{2F_{M}^s} + \cdots \\
+&= \frac{1}{2^{1-p}F_3^s} + \frac{1}{2^{1-q}F_4^s} + \frac{1}{2} \sum_{j=5}^{\infty} \frac{1}{F_j^s}
+- \frac{1}{2F_6^s} - \frac{1}{2F_{12}^s} \\
+&= \frac{1}{2^{1-p}2^s} + \frac{1}{2^{1-q}3^s} + \frac{1}{2} \varphi(s) - 1
+- \frac{1}{2 \cdot 2^s} - \frac{1}{2 \cdot 3^s} - \frac{1}{2 \cdot 8^s} - \frac{1}{2 \cdot 144^s} 
+=: \varphi^{*}(s).
+\end{align*}
+Recall that $\sum_{r=1}^\infty a^r/r = -\log(1-a)$ for $|a|<1$. Hence, if $\varphi^{*}(s) < 1$, then
+\[
+\xi(s) = \sum_{r=1}^{\infty} \frac{1}{r} \Big(\varphi^{*}(s)\Big)^r
+= -\log(1-\varphi^{*}(s))
+\]
+and we will be done. Since $\varphi^{*}(s)$ is clearly decreasing, $\varphi^{*}(s) < 1$ will hold for $s > \sigma_0$ for that $\sigma_0$ satisfying $\varphi^{*}(\sigma_0) = 1$; the concrete value depends on $p$ and $q$. With $p=1$ and $q = 0.22752\dots$ as in Proposition~\ref{prop:Mcg}, we find $\sigma_0=0.905556\dots$, which concludes the proof.
+
+\begin{remark}
+As we saw in the proof of Proposition~\ref{prop:Mcg}, the bound in \eqref{eq:Mcg} with $p=q=0$ is false, but, if it were valid, the corresponding solution of $\varphi^{*}(s) = 1$ would be $s=0.686895\dots$. The bound above is probably not optimal, and we can speculate that the abscisa of absolute convergence of \eqref{eq:ManFp} is some number between our $\sigma_0=0.905556\dots$, obtained in the proof of Theorem~\ref{theo:sigma0}, and the value $0.686895\dots$ which would result if the bound \eqref{eq:Mcg} with $p=q=0$ held.
+\end{remark}
+
+%----------
+\begin{thebibliography}{99}
+%----------
+
+\bibitem{Ap} 
+T. M. Apostol,  
+\textit{Introduction to Analytic Number Theory}, 
+Springer, New York, 1976.
+
+%\bibitem{Ash} 
+%Ash, R. B.: 
+%\textit{Complex Variables}, 
+%Academic Press, New York, 1971.
+
+%\bibitem{Ber}
+%V. Bernstein, % Vladimir Bernstein
+%\textit{Le\c{c}ons sur les progr\`es r\'ecents de la th\'eorie des s\'eries 
+%de Dirichlet profess\'ees au Coll\`ege de France},
+%Gauthier-Villars, Paris, 1933.
+%% 320 pages
+%% https://books.google.es/books?id=UnB2oAEACAAJ
+%% https://zbmath.org/0008.11503
+
+% MR2399185 
+\bibitem{BuLuMiSi} 
+% Bugeaud, Y., Luca, F., Mignotte, M., Siksek, S.: 
+Y. Bugeaud, F. Luca, M. Mignotte and S. Siksek, 
+{Fibonacci numbers at most one away from a perfect power}, 
+\textit{Elem. Math.} \textbf{63} (2008), 65--75.
+
+% MR2215137
+\bibitem{BMS}
+Y. Bugeaud, M. Mignotte and S. Siksek,
+Classical and modular approaches to exponential Diophantine equations I. 
+Fibonacci and Lucas perfect powers, 
+\textit{Ann. of Math. (2)} \textbf{163} (2006), 969--1018.
+
+% MR1502458 y MR1502459 
+\bibitem{Car}
+R. D. Carmichael, 
+On the numerical factors of the arithmetic forms $\alpha^n\pm \beta^n$,
+\textit{Ann. of Math. (2)} \textbf{15} (1913/14), 30--48 and 49--80.
+
+%%% NO HACE FALTA
+%% Corolario de p. 262:
+%% Si la hip\'otesis de Riemann es verdad, entonces la serie de Dirichet de $1/\zeta(s)$
+%% converge a $1/\zeta(s)$ en todo el semiplano en $\Re(s) > 1/2$
+%% (El rec\'iproco es verdad y es f\'acil).
+%% De hecho, la serie de Dirichlet de $1/\zeta(s)$ es la de coeficientes $\mu(n), 
+%% y precisamente la mu_F(n) no sale en este artículo.
+% \bibitem{Ed}
+% H. M. Edwards,
+% \textit{Riemann's Zeta Function},
+% Academic Press, 1974.
+
+% MR1744904
+\bibitem{Ega} 
+S. Egami, % Egami, Shigeki
+{Some curious Dirichlet series} (English Summary), 
+\textit{Analytic number theory and its interactions with other
+parts of number theory} (Japanese) (Kyoto, 1998),
+\textit{S\={u}rikaisekikenky\={u}sho K\={o}ky\={u}roku} \textbf{1091} (1999), 172--174.
+
+% MR3589830
+\bibitem{GoSh}
+H. W. Gould and T. Shonhiwa,
+A catalog of interesting Dirichlet series,
+\textit{Missouri J. Math. Sci.} \textbf{20} (2008), 1--17. % no. 1 
+% https://doi.org/10.35834/mjms/1316032830
+
+\bibitem{HaWr}
+G. H. Hardy and E. M. Wright,
+\textit{An introduction to the theory of numbers},
+5th~ed., Oxford University Press, 1979.
+
+% MR0792089 y MR1994094
+\bibitem{Ivic} 
+% Ivi\'c, Aleksandar
+A. Ivi\'c,  
+\textit{The Riemann zeta-function}, John Wiley \& Sons,
+New York, 1985. Reprinted, Dover, 2003.
+
+%%% Son dos p\'aginas y es majo, 
+%%% pero no est\'a publicado y tampoco aporta nada importante.
+%\bibitem{Kit} 
+%A. R. Kitson, % Adrian R. Kitson
+%{The regularized product of the Fibonacci numbers}, 
+%arXiv:math/0608187, 8 Aug 2006.
+%% https://arxiv.org/abs/math/0608187
+
+\bibitem{Kno}
+J. Knopfmacher, % John Knopfmacher
+\textit{Abstract Analytic Number Theory}, Dover, 2015.
+% Corrected and enlarged republication of the edition originally published 
+% by North-Holland Publishing Company, Amsterdam, 
+% and the American Elsevier Publishing Company, Inc., New York, 1975.
+
+\bibitem{Mo}
+G. Mora,
+On the zeros of the partial sums of the Fibonacci zeta function,
+\textit{Rev. R. Acad. Cienc. Exactas F\'is. Nat. Ser. A Mat. RACSAM} 
+\textbf{117} (2023), no.~4, Paper No. 139, 18~pp.
+% https://doi.org/10.1007/s13398-023-01471-1
+
+% MR3156859
+\bibitem{Mur} 
+% Murty, M. Ram
+M. R. Murty, 
+{The Fibonacci zeta function}, 
+\textit{Automorphic representations and $L$-functions} (Mumbai, 2012), 409--425, 
+Tata Inst. Fundam. Res. Stud. Math., {22}, Hindustan Book Agency, Gurgaon, 2013.
+
+% MR2279934
+\bibitem{MurSin} 
+% Murty, M. Ram; Sinha, Kaneenika
+M. R. Murty and K. Sinha,  
+{Multiple Hurwitz zeta functions}, 
+\textit{Multiple Dirichlet Series, Automorphic Forms and Analytic Number Theory}, 
+135--156, Proc. Sympos. Pure Math., {75}, Amer. Math. Society, Providence, RI, 2006.
+
+\bibitem{Na}
+L. M. Navas, 
+Analytic continuation of the Fibonacci Dirichlet series, 
+\textit{Fibonacci Q.} \textbf{39} (2001), 409--418.
+% https://www.fq.math.ca/Scanned/39-5/
+
+%\bibitem{Rob}
+%H. Robbins, 
+%A remark on Stirling's formula, 
+%\textit{Amer. Math. Monthly} \textbf{62} (1955), no.~1, 26--29.
+%% https://www.jstor.org/stable/2308012
+%% https://doi.org/10.2307%2F2308012
+
+% MR4594520 
+\bibitem{SeNa}
+\'A. Serrano Holgado and L. M. Navas,
+The zeta function of a recurrence sequence of arbitrary degree,
+\textit{Mediterr. J. Math.} \textbf{20} (2023), no.~4, Paper No.~224, 18~pp.
+% https://doi.org/10.1007/s00009-023-02427-w
+
+\bibitem{Ya}
+% Yabuta, Minoru
+M. Yabuta, 
+A simple proof of Carmichael's theorem on primitive divisors,
+\textit{Fibonacci Q.} \textbf{39} (2001), no.~5, 439--443.
+% https://www.fq.math.ca/Scanned/39-5/
+
+%----------
+\end{thebibliography}
+%----------
+
+%----------
+\end{document}
+%----------
+
